@@ -1,33 +1,4 @@
-# Arquivos grandes demais para o repositório
-src/ETL/Agregados_por_setores_alfabetizacao_BR.csv
-src/ETL/Agregados_por_setores_basico_BR_20250417.csv
-src/ETL/Agregados_por_setores_caracteristicas_domicilio1_BR.csv
-src/ETL/Agregados_por_setores_caracteristicas_domicilio2_BR_20250417.csv
-src/ETL/Agregados_por_setores_caracteristicas_domicilio3_BR_20250417.csv
-src/ETL/Agregados_por_setores_cor_ou_raca_BR.csv
-src/ETL/Agregados_por_setores_demografia_BR.csv
-src/ETL/Agregados_por_setores_domicilios_indigenas_BR.csv
-src/ETL/Agregados_por_setores_domicilios_quilombolas_BR.csv
-src/ETL/Agregados_por_setores_obitos_BR.csv
-src/ETL/Agregados_por_setores_parentesco_BR.csv
-src/ETL/Agregados_por_setores_pessoas_indigenas_BR.csv
-src/ETL/Agregados_por_setores_pessoas_quilombolas_BR.csv
-src/ETL/Agregados_por_setores_renda_responsavel_BR.csv
-output/resultados_busca.csv
-output/informacoes_agregados.csv
-formatar/Relatorio_Metodologico_IVS_2022_Corrigido.xlsx
-formatar/Relatorio_Modular_Variaveis.xlsx
-formatar/dicionario_de_dados_agregados_por_setores_censitarios_20250417.xlsx
-formatar/dicionario_de_dados_renda_responsavel.xlsx
-formatar/Dicionario_de_dados_malha_agregados.ods
-formatar/~$Relatorio_Metodologico_IVS_2022_Corrigido.xlsx
-formatar/~$Relatorio_Modular_Variaveis.xlsx
-output/Comparativo_Variaveis.xlsx
-# Adicione outros arquivos grandes conforme necessário
-Banco_Censo_Completo.db
-Banco_IVS.db
-banco_de_dados/Base_Bruta_Unificada_Censo2022.csv
-# Ignorar arquivos grandes e temporários
+# Ignorar arquivos grandes e temporários de base de dados
 banco_de_dados/*.csv
 banco_de_dados/*.xlsx
 banco_de_dados/*.db
@@ -35,7 +6,6 @@ banco_de_dados/~*
 dados/*.csv
 dados/output/*.csv
 dados/processed/*.xlsx
-notebooks/*.ipynb
 formatar/*.csv
 docs/*.xlsx
 ~*
@@ -71,3 +41,5 @@ src/ETL/ficheiros_inuteis/Agregados_por_setores_obitos_BR.csv
 src/ETL/ficheiros_inuteis/Agregados_por_setores_parentesco_BR.csv
 src/ETL/ficheiros_inuteis/Agregados_por_setores_pessoas_indigenas_BR.csv
 src/ETL/ficheiros_inuteis/Agregados_por_setores_pessoas_quilombolas_BR.csv
+dados/banco_de_dados/SQL/Banco_Censo_Completo.db
+dados/banco_de_dados/SQL/Banco_IVS.db
