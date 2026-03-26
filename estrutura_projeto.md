@@ -1,63 +1,111 @@
-# Estrutura do Projeto IVS Censo
+---
+# Documentação da Arquitetura e Estrutura do Projeto
 
-Este projeto está organizado para facilitar o processamento, análise e armazenamento de dados do Censo IVS. Abaixo está uma descrição detalhada da estrutura das pastas e arquivos, com foco especial na pasta `ETL`.
+## Visão Geral
+Este projeto tem como objetivo unificar, processar e analisar dados do Censo 2022, utilizando Python, Jupyter Notebooks e SQLite para manipulação eficiente de grandes volumes de dados. A estrutura foi desenhada para garantir organização, reprodutibilidade e facilidade de manutenção.
 
-## Estrutura Geral
+## Estrutura de Pastas e Arquivos
 
-- **LICENSE**: Arquivo de licença do projeto.
-- **README.md**: Documentação inicial e instruções de uso.
-- **requirements.txt**: Lista de dependências Python necessárias para execução.
-- **Base de dados/**: Contém os dados brutos do censo.
-    - **IVS Censo 2022/**: Dados do censo de 2022.
-        - **Setores Censitários/**: Dados organizados por setores censitários.
-- **data/**: Pasta destinada ao armazenamento de dados intermediários ou processados.
-- **output/**: Resultados finais e arquivos gerados.
-    - **resultados_busca.csv**: Resultado de buscas ou análises.
-- **src/**: Código fonte do projeto.
-    - **ETL/**: Arquivos de transformação, limpeza e agregação de dados.
+```
+├── arquivos_git.txt
+├── estrutura_projeto.md
+├── LICENSE
+├── objetos_git.txt
+├── README.md
+├── requirements.txt
+├── dados/
+│   ├── Agregados_por_setores_*.csv
+│   └── banco_de_dados/
+│       ├── Base_Analitica_IVS_Calculado.csv
+│       ├── Base_Bruta_Unificada_Censo2022.csv
+│       ├── Base_Censo_Completa_Unificada.csv
+│       └── SQL/
+├── output/
+│   ├── informacoes_agregados.csv
+│   └── resultados_busca.csv
+├── processed/
+├── docs/
+├── formatar/
+│   ├── busca3.py
+│   ├── formatar3.py
+│   └── informacoes_agregados.csv
+├── notebooks/
+│   ├── 01_Unificacao_Base_Censo.ipynb
+│   ├── 02_Extracao_Variaveis_Alvo.ipynb
+│   ├── 03_Auditoria_Dados.ipynb
+│   ├── 04_Calculo_Final_IVS.ipynb
+│   └── 05_Formatacao_e_Dicionarios.ipynb
+└── src/
+    └── ETL/
+        ├── mapeamento_variaveis.py
+        └── ficheiros_inuteis/
+            └── (arquivos CSV não utilizados)
+```
+
+## Descrição dos Principais Arquivos e Pastas
+
+- **arquivos_git.txt / objetos_git.txt**: Listas de arquivos e objetos versionados pelo Git.
+- **estrutura_projeto.md**: Este documento, detalhando a arquitetura do projeto.
+- **requirements.txt**: Dependências Python necessárias para execução.
+- **dados/**: Contém todos os arquivos brutos do Censo e subpastas para bancos de dados e SQL.
+  - **banco_de_dados/**: Armazena bases intermediárias e finais em CSV e o banco SQLite.
+- **output/**: Resultados de buscas e informações agregadas geradas pelo processamento.
+- **formatar/**: Scripts e arquivos auxiliares para formatação e busca de dados.
+- **notebooks/**: Jupyter Notebooks que documentam e executam cada etapa do pipeline de dados.
+- **src/ETL/**: Scripts de ETL (Extract, Transform, Load) e mapeamento de variáveis.
+- **processed/**: Pasta reservada para dados já processados (pode ser utilizada em etapas futuras).
+
+## Lógica de Processamento e Fluxo de Dados
+
+1. **Leitura dos Dados Brutos**
+   - Os arquivos CSV do Censo são armazenados em `dados/`.
+   - O notebook `01_Unificacao_Base_Censo.ipynb` lê esses arquivos em blocos (chunks) para evitar sobrecarga de memória.
+   - As colunas de chave (ex: `CD_SETOR`) são padronizadas durante a leitura.
+
+2. **Armazenamento no Banco de Dados**
+   - Os dados lidos são salvos em tabelas SQLite dentro de `dados/banco_de_dados/Banco_Censo_Completo.db`.
+   - Cada arquivo CSV gera uma tabela correspondente no banco.
+
+3. **Unificação das Tabelas**
+   - Um JOIN SQL une todas as tabelas em uma única tabela `base_censo_unificada`.
+   - Essa tabela é exportada para `Base_Censo_Completa_Unificada.csv`.
+
+4. **Processamento e Análises**
+   - Notebooks subsequentes (`02_Extracao_Variaveis_Alvo.ipynb`, etc.) extraem variáveis, realizam auditorias e calculam indicadores.
+   - Scripts em `formatar/` e `src/ETL/` auxiliam na transformação e padronização dos dados.
+
+5. **Geração de Resultados**
+   - Resultados finais e intermediários são salvos em `output/` e `dados/banco_de_dados/`.
+
+## Descrição dos Notebooks e Scripts
+
+### Notebooks
+- **01_Unificacao_Base_Censo.ipynb**: Unifica e padroniza os dados brutos, salva no SQLite e exporta a base unificada.
+- **02_Extracao_Variaveis_Alvo.ipynb**: Extrai variáveis de interesse para análises posteriores.
+- **03_Auditoria_Dados.ipynb**: Realiza auditoria e validação dos dados unificados.
+- **04_Calculo_Final_IVS.ipynb**: Calcula o Índice de Vulnerabilidade Social (IVS) e outros indicadores.
+- **05_Formatacao_e_Dicionarios.ipynb**: Formata os dados finais e gera dicionários de variáveis.
+
+### Scripts Python
+- **formatar/busca3.py**: Realiza buscas específicas em arquivos de dados e gera relatórios metodológicos de equivalência de variáveis entre censos.
+- **formatar/formatar3.py**: Formata e padroniza arquivos agregados, gera relatórios modulares e dicionários de variáveis.
+- **src/ETL/mapeamento_variaveis.py**: Mapeia e documenta variáveis utilizadas no projeto, faz varredura dos arquivos CSV e resume colunas e linhas.
+
+## Resumo do Fluxo de Dados
+
+1. **Entrada**: CSVs brutos em `dados/`
+2. **Processamento**: Notebooks e scripts Python
+3. **Banco de Dados**: SQLite em `dados/banco_de_dados/`
+4. **Saída**: CSVs finais em `output/` e `dados/banco_de_dados/`
+
+## Observações
+- O projeto prioriza o uso de chunks para leitura e escrita, evitando problemas de memória.
+- Toda a lógica de padronização e unificação está documentada nos notebooks, facilitando a reprodutibilidade.
+- Scripts auxiliares podem ser executados separadamente para tarefas específicas de formatação ou busca.
 
 ---
 
-## Pasta `src/ETL/`
-
-A pasta `ETL` (Extract, Transform, Load) contém arquivos CSV agregados por setores censitários, cada um representando diferentes aspectos dos dados do censo. Abaixo, segue a lista dos arquivos presentes e uma breve descrição de cada um:
-
-### Arquivos e Descrições
-
-- **Agregados_por_setores_alfabetizacao_BR.csv**
-  - Contém dados agregados sobre alfabetização por setor censitário no Brasil.
-  - Inclui informações sobre o nível de alfabetização da população.
-
-- **Agregados_por_setores_basico_BR_20250417.csv**
-  - Dados básicos agregados por setor censitário.
-  - Engloba informações demográficas essenciais, como população total, idade, sexo, etc.
-
-- **Agregados_por_setores_caracteristicas_domicilio1_BR.csv**
-  - Características dos domicílios (primeira parte), como tipo de construção, material predominante, etc.
-
-- **Agregados_por_setores_caracteristicas_domicilio2_BR_20250417.csv**
-  - Características dos domicílios (segunda parte), incluindo acesso a serviços básicos (água, energia, saneamento).
-
-- **Agregados_por_setores_caracteristicas_domicilio3_BR_20250417.csv**
-  - Características dos domicílios (terceira parte), abordando aspectos complementares como posse de bens e equipamentos.
-
-- **Agregados_por_setores_cor_ou_raca_BR.csv**
-  - Dados agregados sobre cor ou raça da população por setor censitário.
-
-- **Agregados_por_setores_demografia_BR.csv**
-  - Informações demográficas detalhadas, como distribuição etária, sexo, e outros indicadores populacionais.
-
-- **Agregados_por_setores_domicilios_indigenas_BR.csv**
-  - Dados sobre domicílios indígenas por setor censitário.
-
-- **Agregados_por_setores_domicilios_quilombolas_BR.csv**
-  - Dados sobre domicílios quilombolas por setor censitário.
-
-- **Agregados_por_setores_obitos_BR.csv**
-  - Informações sobre óbitos registrados por setor censitário.
-
-- **Agregados_por_setores_parentesco_BR.csv**
-  - Dados sobre relações de parentesco entre moradores dos domicílios.
+Para dúvidas ou contribuições, consulte o README.md ou entre em contato com os responsáveis pelo projeto.
 
 - **Agregados_por_setores_pessoas_indigenas_BR.csv**
   - Informações sobre pessoas indígenas por setor censitário.
