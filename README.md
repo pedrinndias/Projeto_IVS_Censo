@@ -23,19 +23,31 @@ O projeto faz parte de uma **Iniciação Científica** vinculada à **Fiocruz Mi
 
 ## Metodologia
 
-O IVS é um indicador composto que sintetiza **7 variáveis** em **2 dimensões**, calculado ao nível do setor censitário:
+O IVS é um indicador composto que sintetiza **7 variáveis** em **2 dimensões**, calculado ao nível do setor censitário.
 
-| Dimensão | Indicadores | Variáveis do Censo 2022 |
-|---|---|---|
-| **Saneamento** | Água inadequada | V00112 a V00118 |
-| | Esgoto inadequado | *(em validação)* |
-| | Lixo inadequado | V00398 a V00402 |
-| **Socioeconômica** | Analfabetismo (15+ anos) | V00901 / V00900 |
-| | Densidade habitacional | *(em validação)* |
-| | Renda (min-max invertido) | V06004 |
-| | Raça/cor (proxy de vulnerabilidade social) | V01318 + V01320 + V01321 |
+Conforme o **Relatório Metodológico** (`docs/Relatorio_Metodologico_IVS_2022_Corrigido.xlsx`):
+
+| Dimensão | Indicador | IVS 2012 (Censo 2010) | Censo 2022 Equivalente | Denominador |
+|---|---|---|---|---|
+| **Saneamento** | Água inadequada | V013, V014, V015 | V00112 a V00118 (7 var.) | V00001 (dom. permanentes) |
+| | Esgoto inadequado | V019 a V028 | ⚠️ **V00312–V00316** (De-Para) vs **V00249–V00253** (Mapa de Arquivos) | V00001 |
+| | Lixo inadequado | V037 a V042 | V00398 a V00402 (5 var.) | V00001 |
+| **Socioeconômica** | Analfabetismo (15+) | V068 a V134 | V00901 / V00900 | V00900 (pop. 15+) |
+| | Densidade habitacional | Pop. / dom. ocupados | v0005 (pronta do IBGE) | — |
+| | Renda (min-max invertido) | % fam. ≤2 SM | V06004 (renda média) | — |
+| | Raça/cor | Pretos + Pardos + Indígenas | V01318 + V01320 + V01321 | v0001 (pop. total) |
+
+> ⚠️ **O próprio Relatório Metodológico contém uma inconsistência interna:** a aba "De_Para_Variaveis" indica V00312–V00316 para esgoto, enquanto a aba "Mapa_de_Arquivos" indica V00249–V00253. Os notebooks usam V00312–V00316. **Essa divergência precisa ser resolvida consultando o dicionário oficial do IBGE.**
 
 A metodologia é baseada no **IVS de Belo Horizonte (SMS-BH, 2012/2013)** e complementada pelo **Índice de Saúde Urbana (ISU)** de Passarelli-Araujo (2023).
+
+### Limitações Documentadas no Relatório
+
+| Item exigido no IVS 2012 | Limitação no Censo 2022 | Impacto | Solução proposta |
+|---|---|---|---|
+| % chefes com <4 anos de estudo | Anos de instrução não disponíveis nos agregados | Alto | Substituir por taxa de analfabetismo (V00901) |
+| % famílias ≤2 salários mínimos | Contagem por faixas salarial não disponível | Alto | Usar rendimento médio (V06004) com normalização invertida |
+| Coef. óbitos por doenças cardiovasculares | IBGE registrou apenas se houve óbito, sem causa mortis | Médio | Buscar dados do DATASUS (Sistema SIM) e cruzar no QGIS |
 
 ## Estrutura de Pastas
 
@@ -117,8 +129,9 @@ O projeto possui **duas versões** da pipeline, desenvolvidas sequencialmente:
 
 1. **Ausência do filtro ELSI-Brasil** — a pipeline processa todos os 5.297 municípios brasileiros (~450k setores) em vez de apenas os 70 municípios ELSI
 2. **Normalização de renda global** — deveria ser por município para capturar desigualdades intraurbanas
-3. **Variáveis de esgoto inconsistentes** — `busca3.py` usa V00249-V00253, notebooks usam V00312-V00316
-4. **Dados duplicados** — ~8 GB de arquivos obsoletos/duplicados espalhados pelo projeto
+3. **Variáveis de esgoto inconsistentes** — o próprio Relatório Metodológico contém divergência interna: aba "De_Para" indica V00312–V00316, aba "Mapa_de_Arquivos" indica V00249–V00253. Os notebooks usam V00312–V00316. Necessário consultar o dicionário do IBGE para definir as variáveis corretas
+4. **Denominadores divergentes entre Fases** — Fase 1 usa V00001 (dom. permanentes, conforme Relatório Metodológico), Fase 2 usa V01042 (responsáveis, que **não consta** no Relatório Metodológico original)
+5. **Dados duplicados** — ~8 GB de arquivos obsoletos/duplicados espalhados pelo projeto
 
 Veja [`DIAGNOSTICO_COMPLETO_PROJETO.md`](DIAGNOSTICO_COMPLETO_PROJETO.md) para o detalhamento completo e plano de ação.
 

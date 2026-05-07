@@ -198,14 +198,14 @@ O projeto tem **duas linhas de análise separadas** que coexistem sem integraç�
 | `dicionario_de_dados_agregados_por_setores_censitarios_20250417.xlsx` | ✅ Referência IBGE |
 | `dicionario_de_dados_renda_responsavel.xlsx` | ✅ Dicionário de renda |
 | `Dicionario_de_dados_malha_agregados.ods` | ✅ Dicionário da malha |
-| `Relatorio_Metodologico_IVS_2022_Corrigido.xlsx` | ⚠️ Referente à Fase 1 |
+| `Relatorio_Metodologico_IVS_2022_Corrigido.xlsx` | ⚠️ **Inconsistência interna**: aba "De_Para" lista esgoto como V00312–V00316, mas aba "Mapa_de_Arquivos" lista V00249–V00253. Também não menciona V01042 (usado na Fase 2). |
 | `Relatorio_Modular_Variaveis.xlsx` | ⚠️ Útil como referência |
 
 ### 📁 `formatar/` — Scripts Auxiliares
 
 | Arquivo | Status | Observação |
 |---|---|---|
-| `busca3.py` | ⚠️ Legado | Usa variáveis de esgoto **V00249-V00253**, diferentes dos notebooks (**V00312-V00316**). Inconsistência grave. |
+| `busca3.py` | ⚠️ Legado | É o script que **gerou** o `Relatorio_Metodologico_IVS_2022_Corrigido.xlsx`. Usa variáveis de esgoto V00249-V00253 na aba "Mapa_de_Arquivos", mas V00312-V00316 na aba "De_Para". A inconsistência do relatório vem daqui. |
 | `formatar3.py` | ✅ Utilitário | Gera relatório modular cruzando dicionários com CSVs |
 | `informacoes_agregados.csv` | ⚠️ Duplicado | Também existe em `dados/output/` |
 | `~$*.xlsx` (2 arquivos) | 🔴 Lixo | Temporários do Excel |
@@ -276,13 +276,14 @@ O Plano do Artigo define **explicitamente** que a análise deve ser feita para o
 | # | Problema | Gravidade | Impacto |
 |---|---|---|---|
 | **0** | **Ausência do filtro ELSI-Brasil** — analisou 5.297 municípios em vez de 70 | 🔴 Bloqueante | Todos os outputs são inválidos para o artigo |
-| **1** | **Variáveis de esgoto inconsistentes** — `busca3.py` usa V00249-V00253, notebooks usam V00312-V00316 | 🔴 Crítico | Cálculo do IVS pode estar incorreto |
+| **1** | **Variáveis de esgoto inconsistentes** — o próprio Relatório Metodológico tem divergência interna: aba "De_Para" = V00312–V00316, aba "Mapa_de_Arquivos" = V00249–V00253. Notebooks usam V00312–V00316. | 🔴 Crítico | Cálculo do IVS pode estar incorreto |
 | **2** | **Normalização de renda global** — min/max de todos os 450k setores do Brasil, não por município | 🔴 Crítico | Distorce comparações intraurbanas |
-| **3** | **Duas pipelines paralelas** — Fase 1 e Fase 2 coexistem com resultados diferentes para os mesmos indicadores | 🟡 Confuso | Não se sabe qual é a "oficial" |
-| **4** | **~8 GB de dados duplicados/obsoletos** espalhados pelo projeto | 🟡 Organizacional | Desperdício de espaço, risco de confusão |
-| **5** | **README e docs desatualizados** — mencionam arquivos/scripts que não existem | 🟡 Documentação | Dificulta a compreensão do projeto |
-| **6** | **requirements.txt incorreto** — lista módulos built-in, falta numpy/openpyxl/xlsxwriter | 🟢 Menor | Problema de reprodutibilidade |
-| **7** | **Código duplicado** nos notebooks (função duplicada na Fase 2, auditoria duplicada na Fase 1) | 🟢 Menor | Manutenção |
+| **3** | **Denominadores divergentes** — Relatório Metodológico define V00001 (dom. permanentes), Fase 2 usa V01042 (responsáveis) sem documentação | 🔴 Crítico | Resultados da Fase 2 não estão alinhados com a metodologia documentada |
+| **4** | **Duas pipelines paralelas** — Fase 1 e Fase 2 coexistem com resultados diferentes | 🟡 Confuso | Não se sabe qual é a "oficial" |
+| **5** | **~8 GB de dados duplicados/obsoletos** espalhados pelo projeto | 🟡 Organizacional | Desperdício de espaço, risco de confusão |
+| **6** | **README e docs desatualizados** — mencionam arquivos/scripts que não existem | 🟡 Documentação | Dificulta a compreensão do projeto |
+| **7** | **requirements.txt incorreto** — lista módulos built-in, falta numpy/openpyxl/xlsxwriter | 🟢 Menor | Problema de reprodutibilidade |
+| **8** | **Código duplicado** nos notebooks (função duplicada na Fase 2, auditoria duplicada na Fase 1) | 🟢 Menor | Manutenção |
 
 ---
 ---
@@ -297,10 +298,10 @@ O Plano do Artigo define **explicitamente** que a análise deve ser feita para o
 - [ ] Todos os outputs atuais serão regenerados após o filtro
 
 ## Prioridade 1 — Validação Metodológica (em paralelo com P0)
-- [ ] **Verificar variáveis de esgoto** no dicionário do IBGE: V00249-V00253 vs V00312-V00316 — qual é o correto?
+- [ ] **Resolver inconsistência de esgoto**: a aba "De_Para" do Relatório Metodológico indica V00312–V00316, mas a aba "Mapa_de_Arquivos" indica V00249–V00253. Consultar o dicionário do IBGE (`docs/dicionario_de_dados_agregados_por_setores_censitarios_20250417.xlsx`) para definir quais são as variáveis corretas
+- [ ] **Decidir denominador de saneamento**: V00001 (dom. permanentes, conforme Relatório Metodológico original) vs V01042 (responsáveis, usado na Fase 2 sem documentação). Documentar a decisão
 - [ ] **Decidir normalização da renda**: por município (recomendado para análise intraurbana)
-- [ ] **Confirmar denominadores**: V00001 (dom. permanentes) vs V01042 (responsáveis) — qual usar para saneamento?
-- [ ] **Validar V00005 e V00006**: confirmar o que representam exatamente no Censo 2022
+- [ ] **Validar v0005**: confirmar que é a média de moradores por dom. particular ocupado (conforme Relatório)
 
 ## Prioridade 2 — Limpeza de Arquivos (~8 GB a recuperar)
 - [ ] Apagar `src/ETL/ficheiros_inuteis/` inteiro (4.3 GB)
