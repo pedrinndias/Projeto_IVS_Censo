@@ -128,45 +128,36 @@ vulnerabilidade" (a renda é invertida).
 
 ---
 
-## 5. O Código — Duas Pipelines
+## 5. O Código — Pipeline Ativa e Legados
 
-O repositório contém **duas linhas de análise** desenvolvidas em sequência. Elas coexistem
-sem integração e **produzem resultados diferentes** para os mesmos indicadores, porque usam
-denominadores diferentes.
+A **pipeline ativa** vive em `notebooks/Fase3_EDA_ELSI/` e finalmente aplica o
+recorte dos 70 municípios ELSI. As versões anteriores foram movidas para `Backup/`.
 
-### Fase 1 — IVS Básico *(legado, supersedido)*
-`notebooks/Fase1_IVS_Basico/` — 5 notebooks (01→05).
-- 6 arquivos do Censo; denominador de saneamento = **V00001** (domicílios permanentes).
-- Densidade habitacional = `v0005` (variável pronta do IBGE).
-- Renda: normalização min-max invertida **global**.
-- Saída: `dados/banco_de_dados/Base_Analitica_IVS_Calculado.csv`.
-
-### Fase 2 — IVS Multidimensional *(pipeline ativa)*
-`notebooks/Fase2_IVS_Multidimensional/` — 4 notebooks (01→04).
+### Fase 3 — EDA com filtro ELSI *(ativa)*
+`notebooks/Fase3_EDA_ELSI/` — 2 notebooks (01→02).
 
 | Notebook | O que faz |
 |---|---|
-| `01_Extracao_Base_Bruta_Completa` | Lê 8 CSVs do Censo, faz o merge por `CD_SETOR`, cria a coluna `Moradia_Predominante` (morfologia urbana) e roda auditoria de integridade do JOIN. |
-| `02_Tratamento_e_Calculo_Multidimensional` | Trata sigilo (`X` → -1), classifica setores em `OK`/`SIGILOSO`/`COLETIVO`/`ZERADO` (coluna `Dados_sig`), calcula os 6 indicadores base e o `ind_pobreza_multidimensional`. |
-| `03_Formatacao_e_Dicionarios_Fase2` | Gera o Excel formatado com 4 abas (base + dicionários + prova real). |
-| `04_Relatorio_Metodologico_e_Auditoria_Final` | Gera o relatório De-Para + Mapa de Arquivos + Limitações e a auditoria final. |
+| `01_Extracao_Filtragem_ELSI` | Lê os 8 CSVs do Censo, cruza por (UF + nome normalizado) com `dados/municipios_elsi_brasil.csv`, filtra apenas os setores dos 70 municípios, faz o merge unificado, classifica morfologia urbana e roda auditoria de integridade. Saída: `banco_de_dados/Base_ELSI_Bruta_Censo2022.csv`. |
+| `02_Analises_Descritivas` | EDA completa seguindo o framework FIOCRUZ: tipagem com sigilo → `Dados_sig` (regras do `Cálculo IVS2012.docx`) → 7 proporções brutas com denominador V01042 → descritivas globais/municípios/regiões → histogramas → boxplots por região → outliers (IQR) → mapa de missing → matriz de correlação (Pearson + Spearman). Saídas: CSVs e PNGs em `banco_de_dados/eda/`. |
 
-Diferenças em relação à Fase 1:
-- 8 arquivos do Censo (inclui demografia e parentesco).
-- Denominador de saneamento = **V01042** (total de responsáveis / "total de lares reais").
-- Densidade habitacional = `(V00005 + V00006) / V01042` (cálculo manual).
-- Indicador de renda substituído por uma **Proxy de Extrema Pobreza Multidimensional**:
-  `renda invertida (40%) + falta de banheiro (20%) + domicílios improvisados (20%) +
-  sobrecarga infantil 0–14 anos (20%)`.
-- Saída: `banco_de_dados/Base_Analitica_Multidimensional_Calculada.csv`.
+Decisões metodológicas consolidadas (fontes em `docs/`):
+- **Denominador V01042** (Total de Responsáveis) confirmado pelo
+  `Cálculo IVS2012.docx`: *"achamos melhor considerar o número de responsáveis
+  como número total de domicílios do setor"*.
+- **Sigilo:** `X` do IBGE convertido para `NaN` (ou `-1` na nomenclatura original).
+- **`Dados_sig`:** `SIGILOSO` (qualquer base sigilosa) / `COLETIVO` (% coletivos ≥ 100) /
+  `ZERADO` (`v0001 = 0`) / `OK` (participa das análises).
 
-**Os 7 indicadores finais da Fase 2** (todos 0–1): `ind_agua_inadequada`,
-`ind_esgoto_inadequado`, `ind_lixo_inadequado`, `ind_analfabetismo`, `ind_cor_raca`,
-`ind_densidade_habitacional`, `ind_pobreza_multidimensional`.
+### Legados em `Backup/`
+- `Backup/Fase1_IVS_Basico/` — 5 notebooks; pipeline inicial (sem filtro ELSI), denominador V00001.
+- `Backup/Fase2_IVS_Multidimensional/` — 4 notebooks; segunda iteração (sem filtro ELSI), introduziu V01042 e a Proxy de Extrema Pobreza Multidimensional.
+- `Backup/ETL/`, `Backup/formatar/`, `Backup/banco_de_dados/` — scripts auxiliares e bases intermediárias antigas.
+- `Backup/DIAGNOSTICO_COMPLETO_PROJETO.md` — diagnóstico histórico.
 
-> ⚠️ **Importante:** os notebooks calculam os indicadores, mas o **IVS final ainda não é
-> calculado** — falta a análise fatorial, a ponderação e a categorização em 4 faixas. O que
-> existe hoje é a base analítica com os indicadores componentes.
+> ⚠️ **O que ainda falta para o IVS final:** análise fatorial (pesos), composição
+> ponderada das duas dimensões e categorização em 4 faixas de risco. O notebook 02
+> entrega as descritivas necessárias para alimentar essa próxima etapa.
 
 ---
 
@@ -177,51 +168,52 @@ Projeto_IVS_Censo22/
 │
 ├── README.md                          Apresentação geral
 ├── GUIA_DO_PROJETO.md                 Este documento (mestre de retomada)
-├── DIAGNOSTICO_COMPLETO_PROJETO.md    Diagnóstico detalhado + plano de ação
-├── estrutura_projeto.md               Arquitetura técnica detalhada
+├── estrutura_projeto.md               Arquitetura técnica (parcialmente desatualizada)
 ├── requirements.txt                   Dependências Python
 ├── LICENSE                            Licença MIT
-├── Plano_Artigo_Cientifico_IC_Preenchido.docx   Roteiro do artigo
+├── Plano_Artigo_Cientifico_IC_Preenchido.docx   Roteiro do artigo (versão raiz)
 │
 ├── dados/                             DADOS BRUTOS DO IBGE (~2.4 GB, imutáveis)
 │   ├── Agregados_por_setores_*.csv     8 CSVs oficiais do Censo 2022
-│   ├── banco_de_dados/                Outputs da Fase 1 + SQLite (legado, ~5 GB)
+│   ├── municipios_elsi_brasil.csv     Lista oficial dos 70 municípios ELSI
 │   ├── output/                        Outputs de scripts auxiliares
 │   └── processed/                     Exports em Excel (legado)
 │
-├── banco_de_dados/                    OUTPUTS DA FASE 2 (pipeline ativa)
-│   ├── Base_Bruta_Multidimensional_Censo2022.csv
-│   ├── Base_Analitica_Multidimensional_Calculada.csv
-│   ├── Base_Auditoria_Todos_Setores.csv
-│   ├── Base_IVS_Multidimensional_Formatada.xlsx
-│   └── Relatorio_Metodologico_Fase2_Atualizado.xlsx
+├── banco_de_dados/                    OUTPUTS DA PIPELINE ATIVA (Fase 3)
+│   ├── Base_ELSI_Bruta_Censo2022.csv  Saída do Notebook 01 (filtrada por ELSI)
+│   └── eda/                           Saídas do Notebook 02 (descritivas + figuras)
+│       ├── descritivas_globais.csv
+│       ├── descritivas_por_municipio.csv
+│       ├── descritivas_por_regiao.csv
+│       ├── outliers.csv
+│       ├── missing_por_municipio.csv
+│       ├── correlacao_pearson.csv
+│       ├── correlacao_spearman.csv
+│       └── figuras/                   PNGs (histogramas, boxplots, correlação)
 │
-├── notebooks/
-│   ├── Fase1_IVS_Basico/              5 notebooks (legado)
-│   ├── Fase2_IVS_Multidimensional/    4 notebooks (ativa)
-│   └── banco_de_dados/                CSV intermediário duplicado
+├── notebooks/Fase3_EDA_ELSI/          PIPELINE ATIVA
+│   ├── 01_Extracao_Filtragem_ELSI.ipynb
+│   ├── 02_Analises_Descritivas.ipynb
+│   └── README.md
 │
-├── docs/                              DICIONÁRIOS E RELATÓRIOS
-│   ├── dicionario_de_dados_agregados_por_setores_censitarios_20250417.xlsx
-│   ├── dicionario_de_dados_renda_responsavel.xlsx
-│   ├── Dicionario_de_dados_malha_agregados.ods
-│   ├── Relatorio_Metodologico_IVS_2022_Corrigido.xlsx
-│   └── Relatorio_Modular_Variaveis.xlsx
+├── docs/                              DOCUMENTAÇÃO-FONTE
+│   ├── Cálculo IVS2012.docx           Metodologia operacional do IVS-BH
+│   ├── guia_analises.docx             Framework FIOCRUZ de EDA
+│   ├── indice_vulnerabilidade2012 (2).pdf  IVS-BH 2012 oficial
+│   ├── Estudo Longitudinal da Saúde dos Idosos Brasileiros.docx
+│   ├── Plano de trabalho.pdf
+│   └── Plano_Artigo_Cientifico_IC_Preenchido.docx
 │
-├── formatar/                          Scripts auxiliares de formatação
-│   ├── busca3.py                      Gera o Relatório Metodológico
-│   └── formatar3.py                   Gera o Relatório Modular de variáveis
-│
-├── src/ETL/
-│   ├── mapeamento_variaveis.py        Varredura dos CSVs (cabeçalhos + contagem)
-│   └── ficheiros_inuteis/             CSVs descartados (~4.3 GB — remover)
+├── Backup/                            LEGADOS (Fases 1 e 2, scripts antigos)
+│   ├── Fase1_IVS_Basico/              5 notebooks da pipeline inicial
+│   ├── Fase2_IVS_Multidimensional/    4 notebooks da segunda iteração
+│   ├── ETL/                           mapeamento_variaveis.py
+│   ├── formatar/                      busca3.py, formatar3.py
+│   ├── banco_de_dados/                CSVs intermediários antigos
+│   └── DIAGNOSTICO_COMPLETO_PROJETO.md
 │
 └── tests/                             (vazia — testes futuros)
 ```
-
-> **Documentos de planejamento** (ficam **fora** do repositório, em `D:\Iniciação
-> Cientifica\Plano de ação\` e `D:\Iniciação Cientifica\DOCS TEMP REPO\`): `Plano de
-> trabalho.pdf`, `Objetivos.docx`, e os dicionários/relatórios-fonte em Excel.
 
 ### Os 8 arquivos-fonte do Censo 2022
 
