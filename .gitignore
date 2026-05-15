@@ -24,6 +24,7 @@ docs/*.xlsx
 !src/**
 !docs/*.md
 !tests/**
+!dados/municipios_elsi_brasil.csv
 dados/banco_de_dados/Banco_IVS_Essencial.db
 dados/banco_de_dados/Base_Analitica_IVS_Calculado.csv
 dados/banco_de_dados/Base_Bruta_Unificada_Censo2022.csv

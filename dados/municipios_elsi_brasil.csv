@@ -1,0 +1,71 @@
+regiao;uf_codigo;uf_sigla;nm_municipio
+Norte;13;AM;Autazes
+Norte;13;AM;Manaus
+Norte;15;PA;Ananindeua
+Norte;15;PA;Belém
+Norte;15;PA;Placas
+Norte;15;PA;Portel
+Nordeste;21;MA;Rosário
+Nordeste;21;MA;São José de Ribamar
+Nordeste;21;MA;São Luís
+Nordeste;21;MA;São Raimundo do Doca Bezerra
+Nordeste;22;PI;Teresina
+Nordeste;23;CE;Fortaleza
+Nordeste;23;CE;Groaíras
+Nordeste;23;CE;Limoeiro do Norte
+Nordeste;24;RN;Natal
+Nordeste;25;PB;Arara
+Nordeste;26;PE;Água Preta
+Nordeste;26;PE;Camaragibe
+Nordeste;26;PE;Jaqueira
+Nordeste;26;PE;Recife
+Nordeste;27;AL;Maceió
+Nordeste;27;AL;Marechal Deodoro
+Nordeste;28;SE;Japoatã
+Nordeste;29;BA;Feira de Santana
+Nordeste;29;BA;Itajuípe
+Nordeste;29;BA;Itapetinga
+Nordeste;29;BA;Salvador
+Nordeste;29;BA;Urandi
+Sudeste;31;MG;Belo Horizonte
+Sudeste;31;MG;Capelinha
+Sudeste;31;MG;Coroaci
+Sudeste;31;MG;Divinópolis
+Sudeste;31;MG;Orizânia
+Sudeste;31;MG;Salinas
+Sudeste;32;ES;Cachoeiro de Itapemirim
+Sudeste;32;ES;Ibatiba
+Sudeste;33;RJ;Duque de Caxias
+Sudeste;33;RJ;Macaé
+Sudeste;33;RJ;Nova Iguaçu
+Sudeste;33;RJ;Rio de Janeiro
+Sudeste;33;RJ;São Gonçalo
+Sudeste;33;RJ;São Pedro da Aldeia
+Sudeste;35;SP;Araçatuba
+Sudeste;35;SP;Campinas
+Sudeste;35;SP;Guapiaçu
+Sudeste;35;SP;Guarujá
+Sudeste;35;SP;Guarulhos
+Sudeste;35;SP;Igarapava
+Sudeste;35;SP;Mauá
+Sudeste;35;SP;Salto
+Sudeste;35;SP;São Bernardo do Campo
+Sudeste;35;SP;São Caetano do Sul
+Sudeste;35;SP;São Paulo
+Sudeste;35;SP;Tabatinga
+Sul;41;PR;Curitiba
+Sul;41;PR;Pato Branco
+Sul;41;PR;Santa Maria do Oeste
+Sul;41;PR;São José dos Pinhais
+Sul;42;SC;Taió
+Sul;43;RS;Canoas
+Sul;43;RS;Charqueadas
+Sul;43;RS;Porto Alegre
+Sul;43;RS;São Paulo das Missões
+Centro-Oeste;50;MS;Campo Grande
+Centro-Oeste;51;MT;Chapada dos Guimarães
+Centro-Oeste;52;GO;Anápolis
+Centro-Oeste;52;GO;Goianésia
+Centro-Oeste;52;GO;Goiânia
+Centro-Oeste;52;GO;Vicentinópolis
+Centro-Oeste;53;DF;Brasília

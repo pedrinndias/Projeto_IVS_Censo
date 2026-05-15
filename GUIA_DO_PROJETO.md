@@ -4,7 +4,7 @@
 > metodológico e o *estado atual* do código. Serve como ponto de partida para retomar o
 > trabalho e como base de alinhamento entre o pesquisador e o assistente (Claude).
 >
-> **Atualizado em:** 14/05/2026
+> **Atualizado em:** 15/05/2026
 > **Documentos relacionados no repositório:** [`README.md`](README.md) ·
 > [`estrutura_projeto.md`](estrutura_projeto.md) ·
 > [`DIAGNOSTICO_COMPLETO_PROJETO.md`](DIAGNOSTICO_COMPLETO_PROJETO.md)
@@ -244,14 +244,19 @@ Projeto_IVS_Censo22/
 |---|---|
 | Obtenção dos dados brutos do Censo 2022 | ✅ Concluída |
 | Mapeamento e dicionários de variáveis | ✅ Concluída |
-| Pipeline ETL (extração, unificação, indicadores) | ⚠️ Roda, mas precisa de correções |
-| Filtro dos 70 municípios ELSI-Brasil | 🔴 **Pendente (bloqueante)** |
+| Pipeline ETL Fase 2 (sem filtro ELSI) | ⚠️ Legada — substituída pela Fase 3 |
+| Lista oficial dos 70 municípios ELSI-Brasil | ✅ [`dados/municipios_elsi_brasil.csv`](dados/municipios_elsi_brasil.csv) |
+| Fase 3 — Notebook 01 (extração + filtro ELSI) | ✅ [`notebooks/Fase3_EDA_ELSI/01_Extracao_Filtragem_ELSI.ipynb`](notebooks/Fase3_EDA_ELSI/01_Extracao_Filtragem_ELSI.ipynb) |
+| Fase 3 — Notebook 02 (análises descritivas) | 🟡 Esqueleto criado, conteúdo em construção |
 | Normalização de renda por município | 🔴 Pendente |
 | Validação das variáveis de esgoto | 🔴 Pendente |
 | Análise fatorial / pesos / cálculo do IVS final | 🔴 Pendente |
 | Categorização em 4 faixas de risco | 🔴 Pendente |
 | Mapas temáticos (QGIS) | 🔴 Pendente |
 | Redação do artigo científico | 🟡 Plano preenchido, redação pendente |
+
+A pipeline ativa agora é a **Fase 3** em `notebooks/Fase3_EDA_ELSI/`, que finalmente
+aplica o recorte dos 70 municípios. As Fases 1 e 2 ficam preservadas como histórico.
 
 ---
 
