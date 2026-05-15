@@ -247,7 +247,7 @@ Projeto_IVS_Censo22/
 | Pipeline ETL Fase 2 (sem filtro ELSI) | ⚠️ Legada — substituída pela Fase 3 |
 | Lista oficial dos 70 municípios ELSI-Brasil | ✅ [`dados/municipios_elsi_brasil.csv`](dados/municipios_elsi_brasil.csv) |
 | Fase 3 — Notebook 01 (extração + filtro ELSI) | ✅ [`notebooks/Fase3_EDA_ELSI/01_Extracao_Filtragem_ELSI.ipynb`](notebooks/Fase3_EDA_ELSI/01_Extracao_Filtragem_ELSI.ipynb) |
-| Fase 3 — Notebook 02 (análises descritivas) | 🟡 Esqueleto criado, conteúdo em construção |
+| Fase 3 — Notebook 02 (análises descritivas) | ✅ [`notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb`](notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb) — implementado |
 | Normalização de renda por município | 🔴 Pendente |
 | Validação das variáveis de esgoto | 🔴 Pendente |
 | Análise fatorial / pesos / cálculo do IVS final | 🔴 Pendente |
@@ -269,7 +269,7 @@ Detalhamento completo em [`DIAGNOSTICO_COMPLETO_PROJETO.md`](DIAGNOSTICO_COMPLET
 | **0** | **Ausência do filtro ELSI-Brasil** — a pipeline processa os ~468 mil setores de 5.297 municípios (Brasil inteiro) em vez dos 70 municípios ELSI. A palavra "ELSI" não aparece em nenhum arquivo do repositório. **Todos os outputs atuais são inválidos para o artigo.** | 🔴 Bloqueante |
 | **1** | **Variáveis de esgoto inconsistentes** — o próprio Relatório Metodológico diverge: aba "De_Para" indica V00312–V00316; aba "Mapa_de_Arquivos" indica V00249–V00253. Os notebooks usam V00312–V00316. Precisa ser resolvido com o dicionário oficial do IBGE. | 🔴 Crítico |
 | **2** | **Normalização de renda global** — usa min/max de todos os setores do Brasil; deveria ser por município para capturar desigualdade intraurbana. | 🔴 Crítico |
-| **3** | **Denominadores divergentes** — o Relatório Metodológico define V00001; a Fase 2 usa V01042 sem documentar a mudança. | 🔴 Crítico |
+| **3** | ~~Denominadores divergentes~~ — **resolvido em 15/05/2026**: o documento oficial `docs/Cálculo IVS2012.docx` confirma o uso de **Total de Responsáveis (V01042)** como denominador. A Fase 2 estava correta; o Relatório Metodológico precisa ser atualizado. | ✅ Resolvido |
 | **4** | **Duas pipelines paralelas** — Fase 1 e Fase 2 coexistem com resultados diferentes; falta definir qual é a oficial. | 🟡 Confuso |
 | **5** | **~8 GB de dados duplicados/obsoletos** espalhados pelo projeto. | 🟡 Organizacional |
 | **6** | **README/docs parcialmente desatualizados** em relação ao código. | 🟡 Documentação |
