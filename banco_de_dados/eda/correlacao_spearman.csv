@@ -1,0 +1,8 @@
+﻿;pct_agua_inad;pct_esgoto_inad;pct_lixo_inad;razao_moradores;pct_analfab;renda_media;pct_raca_pretpardind
+pct_agua_inad;1.0;0.445;0.145;0.266;0.265;-0.275;0.361
+pct_esgoto_inad;0.445;1.0;0.234;0.352;0.452;-0.464;0.437
+pct_lixo_inad;0.145;0.234;1.0;-0.036;0.192;-0.184;0.207
+razao_moradores;0.266;0.352;-0.036;1.0;0.412;-0.442;0.462
+pct_analfab;0.265;0.452;0.192;0.412;1.0;-0.754;0.625
+renda_media;-0.275;-0.464;-0.184;-0.442;-0.754;1.0;-0.809
+pct_raca_pretpardind;0.361;0.437;0.207;0.462;0.625;-0.809;1.0
