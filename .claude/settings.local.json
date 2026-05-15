@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//d/Iniciação Cientifica/**)",
+      "Bash(python -c ' *)",
+      "Bash(python -X utf8 -c ' *)",
+      "Bash(ls \"C:\\\\Users\\\\Pedro\\\\.claude\\\\projects\\\\D--Inicia--o-Cientifica-Projeto-IVS-Censo22\\\\memory\\\\\" 2>nul; echo \"---\"; cat \"C:\\\\Users\\\\Pedro\\\\.claude\\\\projects\\\\D--Inicia--o-Cientifica-Projeto-IVS-Censo22\\\\memory\\\\MEMORY.md\" 2>nul)",
+      "Bash(git -C \"D:/Iniciação Cientifica/Projeto_IVS_Censo22\" status)",
+      "Bash(cp \"D:/Iniciação Cientifica/Projeto_IVS_Censo22/.claude/worktrees/nervous-brahmagupta-f87319/GUIA_DO_PROJETO.md\" \"D:/Iniciação Cientifica/Projeto_IVS_Censo22/GUIA_DO_PROJETO.md\")",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)"
+    ]
+  }
+}
