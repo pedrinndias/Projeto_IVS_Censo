@@ -13,6 +13,9 @@ docs/*.xlsx
 *.bak
 *.tmp
 *.log
+
+# Configuração local do Claude Code (worktrees, settings locais)
+.claude/
 # Exceções: mantenha scripts e documentação
 !formatar/*.py
 !README.md
