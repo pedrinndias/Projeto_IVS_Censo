@@ -6,171 +6,163 @@ Construir um **Índice de Vulnerabilidade à Saúde (IVS)** intraurbano a partir
 
 O projeto faz parte de uma **Iniciação Científica** vinculada à **Fiocruz Minas — IRR**, na área de Saúde Coletiva, Saúde Urbana e Epidemiologia Espacial.
 
+> **Documento mestre:** [`GUIA_DO_PROJETO.md`](GUIA_DO_PROJETO.md) — versão atualizada e canônica de objetivos, metodologia, estado e plano.
+> **Diagnóstico técnico mais recente:** [`docs/Relatorio_Integridade_Projeto.md`](docs/Relatorio_Integridade_Projeto.md).
+
 ## Status Atual
 
-> ⚠️ **Projeto em reestruturação** — veja [`DIAGNOSTICO_COMPLETO_PROJETO.md`](DIAGNOSTICO_COMPLETO_PROJETO.md) para detalhes.
+A pipeline ativa é a **Fase 3 (`notebooks/Fase3_EDA_ELSI/`)**, que aplica o filtro pelos 70 municípios do ELSI-Brasil e produz a EDA (análise exploratória) sobre 106.281 setores OK. As Fases 1 e 2 estão arquivadas em [`Backup/`](Backup/) como histórico.
 
 | Etapa | Status |
 |---|---|
 | Obtenção dos dados brutos do Censo 2022 | ✅ Concluída |
 | Mapeamento e dicionários de variáveis | ✅ Concluída |
-| Pipeline ETL (extração, unificação, cálculo) | ⚠️ Requer correções |
-| Filtro dos 70 municípios ELSI-Brasil | 🔴 Pendente |
-| Normalização de renda por município | 🔴 Pendente |
-| Validação de variáveis de esgoto | 🔴 Pendente |
-| Mapas temáticos (QGIS) | 🔴 Pendente |
-| Redação do artigo científico | 🔴 Pendente |
+| Lista oficial dos 70 municípios ELSI-Brasil ([`dados/municipios_elsi_brasil.csv`](dados/municipios_elsi_brasil.csv)) | ✅ Concluída |
+| Fase 3 — Notebook 01 (extração + filtro ELSI) | ✅ Concluída |
+| Fase 3 — Notebook 02 (análises descritivas / EDA) | ✅ Concluída |
+| Validação das variáveis de esgoto (V00249–V00253 vs V00312–V00316) | 🟡 Diagnóstico empírico no Notebook 02 (célula `step4b`); decisão final pendente |
+| Normalização de renda por município | 🔴 Pendente (a fazer no Notebook 03) |
+| Análise fatorial / ACP — definição dos pesos | 🔴 Pendente (Notebook 04) |
+| Cálculo do IVS final + categorização em 4 faixas | 🔴 Pendente (Notebook 05) |
+| Mapas temáticos (QGIS 3.x) | 🔴 Pendente |
+| Redação do artigo científico | 🟡 Plano preenchido em `docs/Plano_Artigo_Cientifico_IC_Preenchido.docx` |
 
 ## Metodologia
 
 O IVS é um indicador composto que sintetiza **7 variáveis** em **2 dimensões**, calculado ao nível do setor censitário.
 
-Conforme o **Relatório Metodológico** (`docs/Relatorio_Metodologico_IVS_2022_Corrigido.xlsx`):
+A operacionalização adotada na pipeline ativa (Fase 3) segue o documento oficial [`docs/Cálculo IVS2012.docx`](docs/Cálculo%20IVS2012.docx), que explicita: *"achamos melhor considerar o número de responsáveis como número total de domicílios do setor"*. Portanto o denominador adotado para saneamento é **V01042 (Total de Responsáveis)**.
 
-| Dimensão | Indicador | IVS 2012 (Censo 2010) | Censo 2022 Equivalente | Denominador |
-|---|---|---|---|---|
-| **Saneamento** | Água inadequada | V013, V014, V015 | V00112 a V00118 (7 var.) | V00001 (dom. permanentes) |
-| | Esgoto inadequado | V019 a V028 | ⚠️ **V00312–V00316** (De-Para) vs **V00249–V00253** (Mapa de Arquivos) | V00001 |
-| | Lixo inadequado | V037 a V042 | V00398 a V00402 (5 var.) | V00001 |
-| **Socioeconômica** | Analfabetismo (15+) | V068 a V134 | V00901 / V00900 | V00900 (pop. 15+) |
-| | Densidade habitacional | Pop. / dom. ocupados | v0005 (pronta do IBGE) | — |
-| | Renda (min-max invertido) | % fam. ≤2 SM | V06004 (renda média) | — |
-| | Raça/cor | Pretos + Pardos + Indígenas | V01318 + V01320 + V01321 | v0001 (pop. total) |
-
-> ⚠️ **O próprio Relatório Metodológico contém uma inconsistência interna:** a aba "De_Para_Variaveis" indica V00312–V00316 para esgoto, enquanto a aba "Mapa_de_Arquivos" indica V00249–V00253. Os notebooks usam V00312–V00316. **Essa divergência precisa ser resolvida consultando o dicionário oficial do IBGE.**
+| Dimensão | Indicador | Censo 2022 (numerador) | Denominador |
+|---|---|---|---|
+| **Saneamento** | Água inadequada | V00112 a V00118 (7 vars.) | **V01042** |
+| | Esgoto inadequado | V00312 a V00316 *(faixa em validação — ver §Problemas Conhecidos)* | **V01042** |
+| | Lixo inadequado | V00398 a V00402 (5 vars.) | **V01042** |
+| **Socioeconômica** | Analfabetismo (15+) | V00901 | V00900 (pop. 15+) |
+| | Densidade habitacional | V00005 + V00006 | **V01042** |
+| | Renda (invertida no índice) | V06004 (rendimento médio mensal) | — |
+| | Raça/cor (pretos + pardos + indígenas) | V01318 + V01320 + V01321 | v0001 (pop. total) |
 
 A metodologia é baseada no **IVS de Belo Horizonte (SMS-BH, 2012/2013)** e complementada pelo **Índice de Saúde Urbana (ISU)** de Passarelli-Araujo (2023).
 
-### Limitações Documentadas no Relatório
+### Limitações Documentadas
 
-| Item exigido no IVS 2012 | Limitação no Censo 2022 | Impacto | Solução proposta |
-|---|---|---|---|
-| % chefes com <4 anos de estudo | Anos de instrução não disponíveis nos agregados | Alto | Substituir por taxa de analfabetismo (V00901) |
-| % famílias ≤2 salários mínimos | Contagem por faixas salarial não disponível | Alto | Usar rendimento médio (V06004) com normalização invertida |
-| Coef. óbitos por doenças cardiovasculares | IBGE registrou apenas se houve óbito, sem causa mortis | Médio | Buscar dados do DATASUS (Sistema SIM) e cruzar no QGIS |
+| Item exigido no IVS 2012 | Limitação no Censo 2022 | Solução adotada |
+|---|---|---|
+| % chefes com <4 anos de estudo | Anos de instrução não disponíveis nos agregados | Taxa de analfabetismo (V00901 / V00900) |
+| % famílias ≤2 salários mínimos | Contagem por faixa salarial não disponível | Rendimento médio (V06004) com normalização invertida |
+| Coef. óbitos por doenças cardiovasculares | IBGE registrou apenas se houve óbito, sem causa | Buscar DATASUS (Sistema SIM) futuramente |
 
 ## Estrutura de Pastas
 
 ```
 Projeto_IVS_Censo22/
 │
-├── dados/                                  # Dados brutos do IBGE (8 CSVs agregados por setor)
-│   ├── Agregados_por_setores_*.csv         #   ~2.4 GB — dados-fonte imutáveis
-│   ├── banco_de_dados/                     #   Outputs da Fase 1 (legado)
-│   │   ├── SQL/                            #     Bancos SQLite (~4.3 GB)
-│   │   └── *.csv, *.xlsx                   #     Bases intermediárias/finais
-│   ├── output/                             #   Resultados de scripts auxiliares
-│   └── processed/                          #   Dados formatados em Excel
+├── README.md                          Este arquivo (apresentação geral)
+├── GUIA_DO_PROJETO.md                 Documento mestre de retomada (canônico)
+├── requirements.txt                   Dependências Python
+├── LICENSE                            Licença MIT
 │
-├── banco_de_dados/                         # Outputs da Fase 2 (pipeline ativa)
-│   ├── Base_Bruta_Multidimensional_Censo2022.csv
-│   ├── Base_Analitica_Multidimensional_Calculada.csv
-│   ├── Base_Auditoria_Todos_Setores.csv
-│   ├── Base_IVS_Multidimensional_Formatada.xlsx
-│   └── Relatorio_Metodologico_Fase2_Atualizado.xlsx
+├── dados/                             Dados brutos do IBGE (~2.4 GB, imutáveis)
+│   ├── Agregados_por_setores_*.csv    8 CSVs oficiais do Censo 2022
+│   ├── municipios_elsi_brasil.csv     Lista oficial dos 70 municípios ELSI
+│   ├── output/                        Outputs de scripts auxiliares
+│   └── processed/                     Exports em Excel (legado)
 │
-├── notebooks/                              # Jupyter Notebooks (pipeline de análise)
-│   ├── Fase1_IVS_Basico/                   #   Fase 1 — versão inicial (5 notebooks)
-│   │   ├── 01_Unificacao_Base_Censo.ipynb
-│   │   ├── 02_Extracao_Variaveis_Alvo.ipynb
-│   │   ├── 03_Auditoria_Dados.ipynb
-│   │   ├── 04_Calculo_Final_IVS.ipynb
-│   │   └── 05_Formatacao_e_Dicionarios.ipynb
-│   ├── Fase2_IVS_Multidimensional/         #   Fase 2 — versão atual (4 notebooks)
-│   │   ├── 01_Extracao_Base_Bruta_Completa.ipynb
-│   │   ├── 02_Tratamento_e_Calculo_Multidimensional.ipynb
-│   │   ├── 03_Formatacao_e_Dicionarios_Fase2.ipynb
-│   │   └── 04_Relatorio_Metodologico_e_Auditoria_Final.ipynb
-│   └── banco_de_dados/                     #   CSV intermediário (duplicata)
+├── banco_de_dados/                    Outputs da pipeline ativa (Fase 3)
+│   ├── Base_ELSI_Bruta_Censo2022.csv  Saída do Notebook 01 (filtrada por ELSI)
+│   └── eda/                           Saídas do Notebook 02 (EDA)
+│       ├── descritivas_globais.csv
+│       ├── descritivas_por_municipio.csv
+│       ├── descritivas_por_regiao.csv
+│       ├── outliers.csv
+│       ├── missing_por_municipio.csv
+│       ├── correlacao_pearson.csv
+│       ├── correlacao_spearman.csv
+│       ├── elegibilidade_setores.csv
+│       ├── diagnostico_proporcoes_fora_intervalo.csv    (auditoria C1)
+│       ├── diagnostico_esgoto_312_vs_249.csv            (auditoria C2)
+│       ├── extremos_razao_moradores.csv                 (auditoria R4)
+│       └── figuras/                                     histogramas, boxplots, correlação, missing
 │
-├── docs/                                   # Dicionários de dados e relatórios
-│   ├── dicionario_de_dados_agregados_por_setores_censitarios_20250417.xlsx
-│   ├── dicionario_de_dados_renda_responsavel.xlsx
-│   ├── Dicionario_de_dados_malha_agregados.ods
-│   ├── Relatorio_Metodologico_IVS_2022_Corrigido.xlsx
-│   └── Relatorio_Modular_Variaveis.xlsx
+├── notebooks/Fase3_EDA_ELSI/          Pipeline ativa
+│   ├── 01_Extracao_Filtragem_ELSI.ipynb
+│   ├── 02_Analises_Descritivas.ipynb
+│   └── README.md
 │
-├── formatar/                               # Scripts auxiliares de formatação
-│   ├── busca3.py                           #   Relatório de equivalência de variáveis
-│   └── formatar3.py                        #   Relatório modular cruzando dicionários
+├── docs/                              Documentação-fonte
+│   ├── Cálculo IVS2012.docx
+│   ├── guia_analises.docx
+│   ├── indice_vulnerabilidade2012 (2).pdf
+│   ├── Plano_Artigo_Cientifico_IC_Preenchido.docx
+│   ├── Plano de trabalho.pdf
+│   ├── Relatorio_EDA_Fase3_IVS_ELSI.{md,docx}
+│   ├── Apresentacao_EDA_Fase3_IVS_ELSI.pptx
+│   └── Relatorio_Integridade_Projeto.md    Diagnóstico técnico mais recente
 │
-├── src/ETL/                                # Scripts de extração e mapeamento
-│   ├── mapeamento_variaveis.py             #   Varredura dos CSVs do Censo
-│   └── ficheiros_inuteis/                  #   CSVs descartados (~4.3 GB)
+├── Backup/                            Legados — Fases 1 e 2, scripts antigos
+│   ├── Fase1_IVS_Basico/              5 notebooks (sem filtro ELSI)
+│   ├── Fase2_IVS_Multidimensional/    4 notebooks (sem filtro ELSI, com V01042)
+│   ├── ETL/, formatar/, banco_de_dados/
+│   └── DIAGNOSTICO_COMPLETO_PROJETO.md
 │
-├── tests/                                  # (vazia — testes futuros)
-│
-├── DIAGNOSTICO_COMPLETO_PROJETO.md         # Diagnóstico detalhado do projeto
-├── Plano_Artigo_Cientifico_IC_Preenchido.docx  # Plano do artigo científico
-├── estrutura_projeto.md                    # Documentação da arquitetura (desatualizada)
-├── requirements.txt                        # Dependências Python
-└── LICENSE                                 # Licença MIT
+└── tests/                             Testes unitários (sanity-checks da pipeline)
 ```
-
-## Pipelines de Análise
-
-O projeto possui **duas versões** da pipeline, desenvolvidas sequencialmente:
-
-### Fase 1 — IVS Básico *(legado)*
-- 5 notebooks em `notebooks/Fase1_IVS_Basico/`
-- 6 fontes de dados, denominador baseado em domicílios permanentes (V00001)
-- Indicador de renda simples (normalização min-max invertida global)
-- Saída: `dados/banco_de_dados/Base_Analitica_IVS_Calculado.csv`
-
-### Fase 2 — IVS Multidimensional *(ativa)*
-- 4 notebooks em `notebooks/Fase2_IVS_Multidimensional/`
-- 8 fontes de dados (inclui demografia e parentesco)
-- Denominador baseado em responsáveis (V01042 — "total de lares reais")
-- Classificação de elegibilidade: `OK` / `SIGILOSO` / `COLETIVO` / `ZERADO`
-- Proxy de Extrema Pobreza Multidimensional (renda 40% + falta banheiro 20% + improvisados 20% + sobrecarga infantil 20%)
-- Saída: `banco_de_dados/Base_Analitica_Multidimensional_Calculada.csv`
 
 ## Problemas Conhecidos
 
-1. **Ausência do filtro ELSI-Brasil** — a pipeline processa todos os 5.297 municípios brasileiros (~450k setores) em vez de apenas os 70 municípios ELSI
-2. **Normalização de renda global** — deveria ser por município para capturar desigualdades intraurbanas
-3. **Variáveis de esgoto inconsistentes** — o próprio Relatório Metodológico contém divergência interna: aba "De_Para" indica V00312–V00316, aba "Mapa_de_Arquivos" indica V00249–V00253. Os notebooks usam V00312–V00316. Necessário consultar o dicionário do IBGE para definir as variáveis corretas
-4. **Denominadores divergentes entre Fases** — Fase 1 usa V00001 (dom. permanentes, conforme Relatório Metodológico), Fase 2 usa V01042 (responsáveis, que **não consta** no Relatório Metodológico original)
-5. **Dados duplicados** — ~8 GB de arquivos obsoletos/duplicados espalhados pelo projeto
+Lista resumida — detalhamento técnico em [`docs/Relatorio_Integridade_Projeto.md`](docs/Relatorio_Integridade_Projeto.md).
 
-Veja [`DIAGNOSTICO_COMPLETO_PROJETO.md`](DIAGNOSTICO_COMPLETO_PROJETO.md) para o detalhamento completo e plano de ação.
+| # | Problema | Gravidade |
+|---|---|---|
+| 1 | **Variáveis de esgoto** — V00312–V00316 vs V00249–V00253. O Notebook 02 inclui um diagnóstico empírico (célula `step4b`) e exporta `diagnostico_esgoto_312_vs_249.csv` para subsidiar a decisão final. | 🟡 Pendente |
+| 2 | **Normalização de renda global** — usa min/max global; será trocada para por município no Notebook 03 (a criar). | 🟡 Pendente (próxima fase) |
+| 3 | ~~**Ausência do filtro ELSI**~~ | ✅ Resolvido (Fase 3) |
+| 4 | ~~**Denominadores divergentes**~~ — confirmado V01042 pelo `Cálculo IVS2012.docx`. | ✅ Resolvido |
+| 5 | **Dados duplicados em `Backup/`** — ~8 GB de arquivos obsoletos. Limpeza opcional. | 🟢 Organizacional |
 
 ## Dados Utilizados
 
 | Arquivo do Censo 2022 | Dimensão do IVS | Tamanho |
 |---|---|---|
-| `Agregados_por_setores_basico_BR_20250417.csv` | Filtros e população base | 130 MB |
-| `Agregados_por_setores_caracteristicas_domicilio1_BR.csv` | Denominador habitacional | 177 MB |
-| `Agregados_por_setores_caracteristicas_domicilio2_BR_20250417.csv` | Saneamento básico | 747 MB |
-| `Agregados_por_setores_alfabetizacao_BR.csv` | Educação / Escolaridade | 701 MB |
-| `Agregados_por_setores_cor_ou_raca_BR.csv` | Vulnerabilidade social | 192 MB |
-| `Agregados_por_setores_renda_responsavel_BR.csv` | Renda (base financeira) | 26 MB |
-| `Agregados_por_setores_demografia_BR.csv` | Sobrecarga infantil (Fase 2) | 85 MB |
-| `Agregados_por_setores_parentesco_BR.csv` | Total de lares reais (Fase 2) | 346 MB |
+| `Agregados_por_setores_basico_BR_20250417.csv` | Filtros e população base (v0001, v0005) | 130 MB |
+| `Agregados_por_setores_caracteristicas_domicilio1_BR.csv` | Denominador habitacional (V00001, V00002, V00005, V00006) | 177 MB |
+| `Agregados_por_setores_caracteristicas_domicilio2_BR_20250417.csv` | Saneamento (água, esgoto, lixo) | 747 MB |
+| `Agregados_por_setores_alfabetizacao_BR.csv` | Educação (V00900, V00901) | 701 MB |
+| `Agregados_por_setores_cor_ou_raca_BR.csv` | Raça/cor (V01318, V01320, V01321) | 192 MB |
+| `Agregados_por_setores_renda_responsavel_BR.csv` | Renda (V06004) | 26 MB |
+| `Agregados_por_setores_demografia_BR.csv` | Sobrecarga infantil (futuro) | 85 MB |
+| `Agregados_por_setores_parentesco_BR.csv` | Total de Responsáveis (V01042) | 346 MB |
 
-Fonte: [IBGE — Censo Demográfico 2022 — Agregados por Setores Censitários](https://www.ibge.gov.br/estatisticas/sociais/populacao/22827-censo-demografico-2022.html)
+Fonte: [IBGE — Censo Demográfico 2022 — Agregados por Setores Censitários](https://www.ibge.gov.br/estatisticas/sociais/populacao/22827-censo-demografico-2022.html).
 
 ## Como Executar
 
 ### Pré-requisitos
-```
-Python 3.10+
-```
+- Python 3.10+
+- Os 8 CSVs do Censo 2022 em `dados/` (não versionados — baixar do IBGE)
 
 ### Instalação
 ```bash
-pip install pandas numpy openpyxl xlsxwriter
+pip install -r requirements.txt
 ```
 
-### Execução
-Os notebooks devem ser executados na ordem numérica dentro da pasta da fase desejada:
+### Execução da Pipeline Ativa
+Os notebooks da Fase 3 devem ser executados na ordem numérica:
 
 ```
-notebooks/Fase2_IVS_Multidimensional/
-  01 → 02 → 03 → 04
+notebooks/Fase3_EDA_ELSI/  →  01 → 02
 ```
 
-> **Atenção:** A execução completa pode demorar vários minutos e consumir bastante memória RAM devido ao tamanho dos CSVs (~2.4 GB de dados brutos).
+- **Notebook 01:** extrai e filtra → produz `banco_de_dados/Base_ELSI_Bruta_Censo2022.csv` (109.032 setores × 47 colunas, ~17 MB).
+- **Notebook 02:** EDA completa → produz 11 CSVs e 4 figuras em `banco_de_dados/eda/`.
+
+> A execução completa consome bastante RAM e tempo (~2.4 GB de CSVs brutos). Os notebooks leem apenas as colunas necessárias e processam os arquivos maiores em chunks.
+
+### Testes Sanity
+```bash
+python -m pytest tests/ -v
+```
 
 ## Referências Metodológicas
 
@@ -178,11 +170,12 @@ notebooks/Fase2_IVS_Multidimensional/
 - Passarelli-Araujo H. *Mapeando as disparidades socioeconômicas de saúde urbana: um estudo comparativo entre seis capitais brasileiras*. Rev. bras. Est. Pop., v.40, 1-25, 2023.
 - Caiaffa WT et al. *Saúde urbana, cidades e a interseção de sistemas*. Rio de Janeiro: Fiocruz, 2021.
 - Buss PM, Pellegrini Filho A. *A saúde e seus determinantes sociais*. Physis, v.17, n.1, p.77-93, 2007.
+- Matos DAS, Rodrigues EC. *Análise fatorial*. Brasília: Enap, 2019.
 
 ## Créditos
 
-**Pesquisador:** Pedro Dias Soares  
-**Instituição:** Fiocruz Minas — IRR  
-**Área:** Saúde Coletiva — Saúde Urbana e Epidemiologia Espacial  
-**Período:** Março/2026 – Fevereiro/2027  
+**Pesquisador:** Pedro Dias Soares
+**Instituição:** Fiocruz Minas — IRR
+**Área:** Saúde Coletiva — Saúde Urbana e Epidemiologia Espacial
+**Período:** Março/2026 – Fevereiro/2027
 **Licença:** MIT (ver [LICENSE](LICENSE))

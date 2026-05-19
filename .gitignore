@@ -3,6 +3,15 @@ banco_de_dados/*.csv
 banco_de_dados/*.xlsx
 banco_de_dados/*.db
 banco_de_dados/~*
+
+# Bases derivadas pesadas em subpastas (regeneráveis via notebooks)
+# Mantemos as tabelas-resumo pequenas (descritivas_*, correlacao_*, outliers,
+# missing_*, elegibilidade_*, extremos_*, diagnostico_proporcoes_*) versionadas
+# como histórico de execução, mas excluímos qualquer Base_*.csv e o
+# diagnostico de esgoto (uma linha por setor, ~4 MB).
+banco_de_dados/**/Base_*.csv
+banco_de_dados/**/diagnostico_esgoto_*.csv
+
 dados/*.csv
 dados/output/*.csv
 dados/processed/*.xlsx
@@ -47,3 +56,5 @@ src/ETL/ficheiros_inuteis/Agregados_por_setores_pessoas_indigenas_BR.csv
 src/ETL/ficheiros_inuteis/Agregados_por_setores_pessoas_quilombolas_BR.csv
 dados/banco_de_dados/SQL/Banco_Censo_Completo.db
 dados/banco_de_dados/SQL/Banco_IVS.db
+__pycache__/
+*.pyc
