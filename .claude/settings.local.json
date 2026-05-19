@@ -8,7 +8,19 @@
       "Bash(git -C \"D:/Iniciação Cientifica/Projeto_IVS_Censo22\" status)",
       "Bash(cp \"D:/Iniciação Cientifica/Projeto_IVS_Censo22/.claude/worktrees/nervous-brahmagupta-f87319/GUIA_DO_PROJETO.md\" \"D:/Iniciação Cientifica/Projeto_IVS_Censo22/GUIA_DO_PROJETO.md\")",
       "Bash(git add *)",
-      "Bash(git commit -m ' *)"
+      "Bash(git commit -m ' *)",
+      "Bash(python _fixes_nb02.py)",
+      "Bash(python -c \"import jupyter, nbconvert; print\\('ok', nbconvert.__version__\\)\")",
+      "Bash(pip install *)",
+      "Bash(python -m nbclient.cli notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb --kernel-name=python3 --timeout=600)",
+      "Bash(python -m nbclient.cli --help)",
+      "Bash(python -m ipykernel install --user --name python3)",
+      "Bash(python _run_nb02.py)",
+      "Bash(python -m pytest \"D:/Iniciação Cientifica/Projeto_IVS_Censo22/.claude/worktrees/angry-rosalind-57b969/tests\" -v)",
+      "Bash(cp \"D:/Iniciação Cientifica/Projeto_IVS_Censo22/banco_de_dados/eda/diagnostico_proporcoes_fora_intervalo.csv\" \"D:/Iniciação Cientifica/Projeto_IVS_Censo22/banco_de_dados/eda/diagnostico_esgoto_312_vs_249.csv\" \"D:/Iniciação Cientifica/Projeto_IVS_Censo22/banco_de_dados/eda/extremos_razao_moradores.csv\" \"D:/Iniciação Cientifica/Projeto_IVS_Censo22/.claude/worktrees/angry-rosalind-57b969/banco_de_dados/eda/\" 2>&1; echo \"copiados\"; ls -la \"D:/Iniciação Cientifica/Projeto_IVS_Censo22/.claude/worktrees/angry-rosalind-57b969/banco_de_dados/eda/\" | grep diagn)",
+      "Bash(cp \"D:/Iniciação Cientifica/Projeto_IVS_Censo22/banco_de_dados/eda/figuras/\"*.png \"D:/Iniciação Cientifica/Projeto_IVS_Censo22/.claude/worktrees/angry-rosalind-57b969/banco_de_dados/eda/figuras/\" 2>&1; ls -la \"D:/Iniciação Cientifica/Projeto_IVS_Censo22/.claude/worktrees/angry-rosalind-57b969/banco_de_dados/eda/figuras/\")",
+      "Bash(awk '{print $5, $NF}')",
+      "Bash(git check-ignore *)"
     ]
   }
 }
