@@ -1,7 +1,5 @@
 # Bases do IVS — Censo 2022
 
-Bases que a senhora pediu, separadas em dois recortes:
-
 - **70 municípios do ELSI-Brasil:** `Base_ELSI_70Municipios_Censo2022.csv` / `.db`
 - **Belo Horizonte:** `Base_BeloHorizonte_Censo2022.csv` / `.db`
 
@@ -83,8 +81,3 @@ Não apareceram setores COLETIVO ou ZERADO nos 70 municípios do ELSI.
 
 O IBGE não publica `V00901` (analfabetos 15+) quando o valor é muito pequeno. Isso atinge **15,76% dos setores OK** no recorte ELSI e **23,5% dos setores OK** em Belo Horizonte. O sigilo não é aleatório: concentra-se justamente nos setores urbanos com poucos analfabetos absolutos. Nesses casos, `pct_analfab` fica vazio. A auditoria detalhada está em `banco_de_dados/eda/auditoria_analfabetismo_municipio.csv`.
 
-## Fonte e versão
-
-IBGE, *Censo Demográfico 2022 — Agregados por Setores Censitários*, atualização de 17/04/2025. Extração rodada pelo notebook `notebooks/Fase3_EDA_ELSI/01_Extracao_Filtragem_ELSI.ipynb`.
-
-Os denominadores e fórmulas foram revisados em 22/05/2026 (denominador domiciliar passou de `V01042` para `V00001`, taxa de analfabetismo virou `V00901/(V00900+V00901)`, razão de moradores virou `(V00005+V00006)/(V00001+V00002)`). Detalhes na apresentação `docs/Apresentacao_Revisao_Denominador_Analfabetismo.pptx`.
