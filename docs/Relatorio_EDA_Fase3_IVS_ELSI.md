@@ -5,8 +5,8 @@
 > **Documento:** Relatório técnico-interpretativo da análise exploratória da
 > Fase 3 da pipeline.
 > **Pipeline:** [`notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb`](../notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb)
-> **Insumos analisados:** 8 CSVs e 4 figuras em [`banco_de_dados/eda/`](../banco_de_dados/eda/)
-> **Data:** 15 de maio de 2026
+> **Insumos analisados:** CSVs e figuras em [`banco_de_dados/eda/`](../banco_de_dados/eda/)
+> **Data:** 12 de junho de 2026 (regerado sobre a metodologia consolidada em 22/05/2026: denominador **V00001** + taxa de analfabetismo `V00901/(V00900+V00901)`)
 > **Pesquisador:** Pedro Dias Soares — IC Fiocruz Minas / IRR
 
 ---
@@ -18,8 +18,9 @@ censitários** dos **70 municípios da amostra do ELSI-Brasil**, extraídos do
 Censo Demográfico 2022. Após aplicar as regras de elegibilidade definidas pelo
 IVS-BH 2012 (Secretaria Municipal de Saúde de Belo Horizonte), **106.281 setores
 (97,5%)** foram considerados aptos para a análise. As **sete variáveis-componente**
-do IVS foram calculadas em proporções brutas, com denominador **V01042 (Total de
-Responsáveis)**, conforme a metodologia operacional do IVS-BH.
+do IVS foram calculadas em proporções brutas, com denominador domiciliar **V00001
+(Domicílios Particulares Permanentes Ocupados)** — o equivalente no Censo 2022 do
+denominador padrão do IVS-BH 2012.
 
 Os principais achados podem ser sintetizados em quatro grandes blocos:
 
@@ -34,8 +35,8 @@ Os principais achados podem ser sintetizados em quatro grandes blocos:
 2. **Gradiente Norte→Sul replica o padrão histórico de desigualdade.** A região
    Norte apresenta as piores condições em água (35,6% setores inadequados em
    média), esgoto (27,1%) e densidade habitacional (mediana de 3,20 pessoas por
-   domicílio). Em contraste, Sul e Sudeste exibem proporções de inadequação
-   abaixo de 5% para água e esgoto. A renda média segue o mesmo eixo, com
+   domicílio). Em contraste, Sul e Sudeste exibem proporções médias de inadequação
+   em torno de 5% ou menos para água e esgoto (medianas iguais a zero). A renda média segue o mesmo eixo, com
    municípios do Nordeste e Norte abaixo de R$ 1.800 (mediana) versus São
    Caetano do Sul/SP em R$ 5.292.
 
@@ -80,18 +81,23 @@ para o Censo 2022 da seguinte forma:
 
 | Dimensão | Variável | Numerador (Censo 2022) | Denominador |
 |---|---|---|---|
-| Saneamento | % domicílios com **água inadequada** | V00112 a V00118 | V01042 |
-| Saneamento | % domicílios com **esgoto inadequado** | V00312 a V00316 | V01042 |
-| Saneamento | % domicílios com **lixo inadequado** | V00398 a V00402 | V01042 |
-| Socioeconômica | **Razão de moradores por domicílio** | V00005 + V00006 | V01042 |
-| Socioeconômica | **% pessoas analfabetas** (15+) | V00901 | V00900 |
+| Saneamento | % domicílios com **água inadequada** | V00112 a V00118 | V00001 |
+| Saneamento | % domicílios com **esgoto inadequado** | V00312 a V00316 | V00001 |
+| Saneamento | % domicílios com **lixo inadequado** | V00398 a V00402 | V00001 |
+| Socioeconômica | **Razão de moradores por domicílio** | V00005 + V00006 | V00001 + V00002 |
+| Socioeconômica | **% pessoas analfabetas** (15+) | V00901 | V00900 + V00901 |
 | Socioeconômica | **Rendimento médio mensal** (R$) | V06004 (direto) | — |
 | Socioeconômica | **% pretos, pardos e indígenas** | V01318 + V01320 + V01321 | v0001 |
 
-O denominador **V01042 (Total de Responsáveis)** foi adotado para os indicadores
-de saneamento conforme a recomendação explícita do documento oficial
-[`Cálculo IVS2012.docx`](Cálculo%20IVS2012.docx): *"achamos melhor considerar o
-número de responsáveis como número total de domicílios do setor"*.
+O denominador domiciliar **V00001 (Domicílios Particulares Permanentes Ocupados)** foi
+adotado para os indicadores de saneamento por ser o equivalente no Censo 2022 do `V002`
+(Dom_part_p) do Censo 2010, denominador padrão do IVS-BH 2012. Esta foi a decisão
+consolidada na **revisão metodológica de 22/05/2026** (orientadora): o `V01042` do arquivo
+de parentesco é uma contagem de *pessoas* responsáveis, não de domicílios, e foi descartado
+como denominador. Validação empírica: com V00001 **nenhuma** proporção de saneamento
+ultrapassa 1,0 (ver `diagnostico_proporcoes_fora_intervalo.csv`). A razão de moradores usa
+`(V00001 + V00002)` para reproduzir o V0005 do IBGE, e a taxa de analfabetismo usa o total
+de pessoas com 15+ anos (`V00900 + V00901`) no denominador.
 
 ---
 
@@ -142,8 +148,8 @@ Conforme as regras do IVS-BH 2012, cada setor recebeu uma classificação:
 | Classe | Critério | n | % |
 |---|---|---:|---:|
 | **OK** | Setor elegível para análise | 106.281 | **97,48%** |
-| **SIGILOSO** | Alguma variável-base (v0001, V00001, V01042) sigilosa | 2.751 | 2,52% |
-| COLETIVO | 100% de domicílios coletivos (asilos, presídios) | 0 | 0,00% |
+| **SIGILOSO** | Variável-base (`v0001` ou `V00001`) sigilosa | 2.751 | 2,52% |
+| COLETIVO | `V00001 = 0` com população > 0 (asilos, presídios) | 0 | 0,00% |
 | ZERADO | População residente nula | 0 | 0,00% |
 | **Total** | | **109.032** | 100,00% |
 
@@ -228,11 +234,13 @@ mesmo em municípios bem-atendidos quanto a água e esgoto.
 | Mediana | 2,71 |
 | Desvio-padrão | 0,40 |
 | Assimetria | +0,08 |
-| Mínimo | 0,17 |
+| Mínimo | 1,00 |
 | Máximo | 8,79 |
 
 Variável de comportamento **mais simétrico** — média e mediana praticamente
-coincidem. A densidade média brasileira de moradores por domicílio é
+coincidem. Com o denominador `(V00001 + V00002)`, o mínimo é **1,00** (ao menos um
+morador por domicílio ocupado), eliminando os valores < 1 que apareciam com o
+denominador anterior (V01042). A densidade média brasileira de moradores por domicílio é
 historicamente próxima de 3,0; o valor observado (2,70) está dentro do
 esperado e a baixa variabilidade (CV = 14,8%) sugere que esta variável
 contribuirá com **menos discriminação** ao IVS do que as variáveis de
@@ -243,20 +251,22 @@ saneamento — mas é homogeneamente informativa.
 | Estatística | Valor |
 |---|---:|
 | n | 89.527 (cobertura: 84,2%) |
-| Média | 0,042 (4,2%) |
-| Mediana | 0,029 (2,9%) |
-| P75 | 0,055 (5,5%) |
-| Máximo | 1,000 |
-| Assimetria | +4,69 |
-| Curtose | +44,1 |
+| Média | 0,039 (3,9%) |
+| Mediana | 0,028 (2,8%) |
+| P25 / P75 | 0,013 / 0,052 (1,3% / 5,2%) |
+| Máximo | 0,842 (84,2%) |
+| Assimetria | +2,98 |
+| Curtose | +17,7 |
 
-A cobertura efetiva de 84% (16% sigilo) reflete a supressão do IBGE em
-setores com poucos indivíduos de 15 anos ou mais (denominador V00900). A
-mediana de 2,9% é compatível com a taxa nacional de analfabetismo de
-~7% — esperada inferior em territórios urbanos. A altíssima curtose (+44)
-indica a existência de setores com **taxa de analfabetismo extremamente
+A cobertura efetiva de 84% (15,8% sigilo) reflete a supressão do IBGE em
+setores com poucos indivíduos de 15 anos ou mais. Com o denominador correto
+`V00901 / (V00900 + V00901)`, a taxa fica naturalmente limitada a [0, 1]
+(máximo observado 84,2%, contra os valores espúrios > 1 que a fórmula anterior
+`V00901 / V00900` produzia). A mediana de 2,8% é compatível com a taxa nacional
+de analfabetismo — esperada inferior em territórios urbanos. A alta curtose
+(+17,7) indica a existência de setores com **taxa de analfabetismo extremamente
 elevada**, concentrados em pequenos municípios do Nordeste rural (Arara/PB
-mediana de **45%**, Jaqueira/PE 33%, Água Preta/PE 32%).
+mediana de **31,1%**, Jaqueira/PE 24,9%, Água Preta/PE 24,2%).
 
 ### 4.4 Rendimento médio (`renda_media`)
 
@@ -309,8 +319,8 @@ desempenho regional para cada indicador.
 
 | Região | Água inad. | Esgoto inad. | Lixo inad. | Razão mor. | Analfab. | Renda média (R$) | PPI |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| Norte | **0,199** | **0,082** | 0,000 | **3,20** | 0,031 | 1.774 | **0,774** |
-| Nordeste | 0,011 | 0,000 | 0,000 | 2,79 | **0,056** | **1.693** | 0,737 |
+| Norte | **0,199** | **0,082** | 0,000 | **3,20** | 0,030 | 1.774 | **0,774** |
+| Nordeste | 0,011 | 0,000 | 0,000 | 2,79 | **0,053** | **1.693** | 0,737 |
 | Centro-Oeste | 0,000 | 0,000 | 0,000 | 2,81 | 0,028 | 3.083 | 0,607 |
 | Sudeste | 0,000 | 0,000 | 0,000 | 2,66 | 0,024 | 2.714 | 0,514 |
 | Sul | 0,000 | 0,000 | 0,000 | 2,60 | 0,017 | **3.686** | 0,222 |
@@ -322,7 +332,7 @@ desempenho regional para cada indicador.
 - **Norte e Nordeste concentram a precariedade.** A Região Norte lidera tanto
   na inadequação de água (mediana de 20% dos setores) quanto na densidade
   habitacional (3,2 pessoas por domicílio). O Nordeste tem a pior renda
-  (mediana R$ 1.693) e o pior analfabetismo (5,6%).
+  (mediana R$ 1.693) e o pior analfabetismo (5,3%).
 
 - **Sul é a região mais bem-atendida e mais homogeneamente branca.** A renda
   mediana é a maior (R$ 3.686), a inadequação de saneamento é praticamente
@@ -353,15 +363,15 @@ extraídos da tabela [`descritivas_por_municipio.csv`](../banco_de_dados/eda/des
 
 | Posição | Água | Esgoto | Lixo |
 |---|---|---|---|
-| 1 | Portel/PA (98,9%) | Placas/PA (98,5%) | Portel/PA (99,2%) |
-| 2 | Placas/PA (96,8%) | Santa Maria do Oeste/PR (98,3%) | Autazes/AM (96,7%) |
-| 3 | Autazes/AM (96,4%) | Urandi/BA (98,2%) | Salto/SP (96,4%) |
-| 4 | Coroaci/MG (95,7%) | Japoatã/SE (98,2%) | Placas/PA (94,2%) |
-| 5 | Santa Maria do Oeste/PR (93,8%) | Vicentinópolis/GO (97,9%) | São R. do Doca Bezerra/MA (91,4%) |
+| 1 | Portel/PA (99,0%) | Placas/PA (98,7%) | Portel/PA (99,4%) |
+| 2 | Placas/PA (97,1%) | Portel/PA (98,4%) | Autazes/AM (96,7%) |
+| 3 | Autazes/AM (96,4%) | Santa Maria do Oeste/PR (98,3%) | Salto/SP (96,4%) |
+| 4 | Coroaci/MG (95,7%) | Urandi/BA (98,2%) | Placas/PA (94,2%) |
+| 5 | Santa Maria do Oeste/PR (93,8%) | Japoatã/SE (98,2%) | São R. do Doca Bezerra/MA (91,4%) |
 
 Os municípios do **Pará** (Portel, Placas) e **Amazonas** (Autazes) aparecem
 sistematicamente entre os piores em todos os três quesitos. **Coroaci/MG,
-Santa Maria do Oeste/PR, Urandi/BA e Vicentinópolis/GO** são pequenos
+Santa Maria do Oeste/PR, Urandi/BA e Japoatã/SE** são pequenos
 municípios rurais cuja inadequação tende a ser próxima de 100% em quase todos
 os setores — atenção para o n pequeno (29 a 47 setores).
 
@@ -394,8 +404,8 @@ algo claramente inadequado para uma análise intraurbana. A normalização
 
 - **Maior razão de moradores por domicílio:** Portel/PA (4,6) e Autazes/AM
   (3,7) — coerente com a precariedade habitacional dessas localidades.
-- **Maior taxa de analfabetismo:** Arara/PB (45%!), Jaqueira/PE (33%),
-  Água Preta/PE (32%) — municípios pequenos do Nordeste interior.
+- **Maior taxa de analfabetismo:** Arara/PB (31,1%), Jaqueira/PE (24,9%),
+  Água Preta/PE (24,2%) — municípios pequenos do Nordeste interior.
 - **Maior proporção de pretos/pardos/indígenas:** Autazes/AM (92,9%),
   Salvador/BA (88,9%), Rosário/MA (88,1%), Portel/PA (87,8%), Itajuípe/BA
   (84,5%).
@@ -410,12 +420,12 @@ estão em [`outliers.csv`](../banco_de_dados/eda/outliers.csv):
 
 | Variável | n_outliers | % outliers | Interpretação |
 |---|---:|---:|---|
-| pct_agua_inad | 21.502 | **20,2%** | Artefato da concentração em zero |
-| pct_esgoto_inad | 21.145 | **19,9%** | Artefato da concentração em zero |
-| pct_lixo_inad | 19.564 | **18,4%** | Artefato da concentração em zero |
+| pct_agua_inad | 21.476 | **20,2%** | Artefato da concentração em zero |
+| pct_esgoto_inad | 21.158 | **19,9%** | Artefato da concentração em zero |
+| pct_lixo_inad | 19.557 | **18,4%** | Artefato da concentração em zero |
 | renda_media | 10.850 | 10,2% | Outliers reais — cauda direita |
-| pct_analfab | 5.344 | 6,0% | Setores de alta vulnerabilidade educacional |
-| razao_moradores | 3.841 | 3,6% | Setores com superlotação extrema |
+| pct_analfab | 4.696 | 5,3% | Setores de alta vulnerabilidade educacional |
+| razao_moradores | 3.829 | 3,6% | Setores com superlotação extrema |
 | pct_raca_pretpardind | 0 | 0,0% | Distribuição bem-comportada |
 
 **Interpretação importante.** Os altos percentuais de "outliers" em água,
@@ -472,10 +482,10 @@ para analfabetismo:
 | São Paulo | SP | 19,7% |
 | Araçatuba | SP | 18,5% |
 
-Inversamente, **10 municípios pequenos têm zero missing em todas as
+Inversamente, **11 municípios pequenos têm zero missing em todas as
 variáveis**: Arara/PB, Coroaci/MG, Ibatiba/ES, Itajuípe/BA, Jaqueira/PE,
 Portel/PA, Salinas/MG, Santa Maria do Oeste/PR, São Raimundo do Doca
-Bezerra/MA, Urandi/BA.
+Bezerra/MA, Urandi/BA e Água Preta/PE.
 
 **Implicação metodológica.** O sigilo do IBGE introduz um **viés sistemático**
 nas análises agregadas: setores pequenos (que tendem a ser de classes médias
@@ -626,7 +636,7 @@ nas etapas seguintes:
 
 | Arquivo | Caminho | Conteúdo |
 |---|---|---|
-| Base bruta filtrada | [`banco_de_dados/Base_ELSI_Bruta_Censo2022.csv`](../banco_de_dados/Base_ELSI_Bruta_Censo2022.csv) | 109k setores × 50 colunas (Notebook 01) |
+| Base bruta filtrada | [`banco_de_dados/Base_ELSI_Bruta_Censo2022.csv`](../banco_de_dados/Base_ELSI_Bruta_Censo2022.csv) | 109k setores × 47 colunas (Notebook 01) |
 | Descritivas globais | [`banco_de_dados/eda/descritivas_globais.csv`](../banco_de_dados/eda/descritivas_globais.csv) | 7 variáveis × 12 estatísticas |
 | Descritivas por município | [`banco_de_dados/eda/descritivas_por_municipio.csv`](../banco_de_dados/eda/descritivas_por_municipio.csv) | 70 mun × 7 var |
 | Descritivas por região | [`banco_de_dados/eda/descritivas_por_regiao.csv`](../banco_de_dados/eda/descritivas_por_regiao.csv) | 5 reg × 7 var |
