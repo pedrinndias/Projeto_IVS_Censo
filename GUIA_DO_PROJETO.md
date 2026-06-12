@@ -4,10 +4,11 @@
 > metodológico e o *estado atual* do código. Serve como ponto de partida para retomar o
 > trabalho e como base de alinhamento entre o pesquisador e o assistente (Claude).
 >
-> **Atualizado em:** 15/05/2026
+> **Atualizado em:** 22/05/2026 (revisão metodológica: denominador V00001 + taxa de analfabetismo)
 > **Documentos relacionados no repositório:** [`README.md`](README.md) ·
 > [`estrutura_projeto.md`](estrutura_projeto.md) ·
-> [`DIAGNOSTICO_COMPLETO_PROJETO.md`](DIAGNOSTICO_COMPLETO_PROJETO.md)
+> [`docs/Relatorio_Integridade_Projeto.md`](docs/Relatorio_Integridade_Projeto.md) ·
+> [`Backup/DIAGNOSTICO_COMPLETO_PROJETO.md`](Backup/DIAGNOSTICO_COMPLETO_PROJETO.md) *(histórico)*
 
 ---
 
@@ -114,8 +115,8 @@ vulnerabilidade" (a renda é invertida).
 | Água inadequada | V013–V015 | V00112 a V00118 (7 var.) | V00001 |
 | Esgoto inadequado | V019–V028 | ⚠️ **V00312–V00316** ou **V00249–V00253** | V00001 |
 | Lixo inadequado | V037–V042 | V00398 a V00402 (5 var.) | V00001 |
-| Analfabetismo (15+) | V068–V134 | V00901 / V00900 | V00900 (pop. 15+) |
-| Densidade habitacional | Pop. / dom. ocupados | v0005 (variável pronta do IBGE) | — |
+| Analfabetismo (15+) | V068–V134 | V00901 / (V00900 + V00901) | V00900 + V00901 (pop. 15+) |
+| Densidade habitacional | Pop. / dom. ocupados | (V00005 + V00006) / (V00001 + V00002) *(reproduz o V0005 do IBGE)* | V00001 + V00002 |
 | Renda | % fam. ≤ 2 SM | V06004 (rendimento médio, invertido) | — |
 | Raça/cor | Pretos + Pardos + Indígenas | V01318 + V01320 + V01321 | v0001 (pop. total) |
 
@@ -139,15 +140,23 @@ recorte dos 70 municípios ELSI. As versões anteriores foram movidas para `Back
 | Notebook | O que faz |
 |---|---|
 | `01_Extracao_Filtragem_ELSI` | Lê os 8 CSVs do Censo, cruza por (UF + nome normalizado) com `dados/municipios_elsi_brasil.csv`, filtra apenas os setores dos 70 municípios, faz o merge unificado, classifica morfologia urbana e roda auditoria de integridade. Saída: `banco_de_dados/Base_ELSI_Bruta_Censo2022.csv`. |
-| `02_Analises_Descritivas` | EDA completa seguindo o framework FIOCRUZ: tipagem com sigilo → `Dados_sig` (regras do `Cálculo IVS2012.docx`) → 7 proporções brutas com denominador V01042 → descritivas globais/municípios/regiões → histogramas → boxplots por região → outliers (IQR) → mapa de missing → matriz de correlação (Pearson + Spearman). Saídas: CSVs e PNGs em `banco_de_dados/eda/`. |
+| `02_Analises_Descritivas` | EDA completa seguindo o framework FIOCRUZ: tipagem com sigilo → `Dados_sig` → 7 proporções brutas com denominador **V00001** → descritivas globais/municípios/regiões → histogramas → boxplots por região → outliers (IQR) → mapa de missing → matriz de correlação (Pearson + Spearman). Saídas: CSVs e PNGs em `banco_de_dados/eda/`. |
 
-Decisões metodológicas consolidadas (fontes em `docs/`):
-- **Denominador V01042** (Total de Responsáveis) confirmado pelo
-  `Cálculo IVS2012.docx`: *"achamos melhor considerar o número de responsáveis
-  como número total de domicílios do setor"*.
-- **Sigilo:** `X` do IBGE convertido para `NaN` (ou `-1` na nomenclatura original).
-- **`Dados_sig`:** `SIGILOSO` (qualquer base sigilosa) / `COLETIVO` (% coletivos ≥ 100) /
-  `ZERADO` (`v0001 = 0`) / `OK` (participa das análises).
+Decisões metodológicas consolidadas (**revisão de 22/05/2026**):
+- **Denominador domiciliar V00001** (Domicílios Particulares Permanentes Ocupados) —
+  equivalente no Censo 2022 do `V002` do Censo 2010, padrão do IVS-BH 2012. O `V01042`
+  (arquivo Parentesco) **foi descartado**: é uma contagem de *pessoas* responsáveis,
+  não de domicílios. A leitura anterior do `Cálculo IVS2012.docx` (*"considerar o número
+  de responsáveis como total de domicílios"*) só vale para detectar setores 100%
+  coletivos, não como denominador.
+- **Razão de moradores:** `(V00005 + V00006) / (V00001 + V00002)` — reproduz o V0005 do IBGE.
+- **Taxa de analfabetismo:** `V00901 / (V00900 + V00901)` (o denominador é o total de
+  pessoas com 15+ anos; a fórmula anterior `V00901 / V00900` era incorreta e gerava
+  setores com taxa > 1).
+- **Sigilo:** `X` do IBGE convertido para `NaN`. Em `pct_analfab`, o sigilo em V00901
+  (~16% dos setores OK) é mantido como `NaN` (não imputado a zero).
+- **`Dados_sig`:** `SIGILOSO` (`v0001` ou `V00001` sigilosos) / `COLETIVO`
+  (`V00001 = 0` com `v0001 > 0`) / `ZERADO` (`v0001 = 0`) / `OK` (participa das análises).
 
 ### Legados em `Backup/`
 - `Backup/Fase1_IVS_Basico/` — 5 notebooks; pipeline inicial (sem filtro ELSI), denominador V00001.
@@ -168,10 +177,9 @@ Projeto_IVS_Censo22/
 │
 ├── README.md                          Apresentação geral
 ├── GUIA_DO_PROJETO.md                 Este documento (mestre de retomada)
-├── estrutura_projeto.md               Arquitetura técnica (parcialmente desatualizada)
+├── estrutura_projeto.md               Arquitetura técnica
 ├── requirements.txt                   Dependências Python
 ├── LICENSE                            Licença MIT
-├── Plano_Artigo_Cientifico_IC_Preenchido.docx   Roteiro do artigo (versão raiz)
 │
 ├── dados/                             DADOS BRUTOS DO IBGE (~2.4 GB, imutáveis)
 │   ├── Agregados_por_setores_*.csv     8 CSVs oficiais do Censo 2022
@@ -254,18 +262,18 @@ aplica o recorte dos 70 municípios. As Fases 1 e 2 ficam preservadas como hist�
 
 ## 8. Problemas Conhecidos
 
-Detalhamento completo em [`DIAGNOSTICO_COMPLETO_PROJETO.md`](DIAGNOSTICO_COMPLETO_PROJETO.md).
+Detalhamento completo em [`Backup/DIAGNOSTICO_COMPLETO_PROJETO.md`](Backup/DIAGNOSTICO_COMPLETO_PROJETO.md) *(histórico)* e em [`docs/Relatorio_Integridade_Projeto.md`](docs/Relatorio_Integridade_Projeto.md).
 
 | # | Problema | Gravidade |
 |---|---|---|
-| **0** | **Ausência do filtro ELSI-Brasil** — a pipeline processa os ~468 mil setores de 5.297 municípios (Brasil inteiro) em vez dos 70 municípios ELSI. A palavra "ELSI" não aparece em nenhum arquivo do repositório. **Todos os outputs atuais são inválidos para o artigo.** | 🔴 Bloqueante |
+| **0** | ~~**Ausência do filtro ELSI-Brasil**~~ — **resolvido na Fase 3**: `notebooks/Fase3_EDA_ELSI/01` filtra os 70 municípios ELSI (109.032 setores) antes de qualquer cálculo. | ✅ Resolvido |
 | **1** | **Variáveis de esgoto inconsistentes** — o próprio Relatório Metodológico diverge: aba "De_Para" indica V00312–V00316; aba "Mapa_de_Arquivos" indica V00249–V00253. Os notebooks usam V00312–V00316. Precisa ser resolvido com o dicionário oficial do IBGE. | 🔴 Crítico |
 | **2** | **Normalização de renda global** — usa min/max de todos os setores do Brasil; deveria ser por município para capturar desigualdade intraurbana. | 🔴 Crítico |
-| **3** | ~~Denominadores divergentes~~ — **resolvido em 15/05/2026**: o documento oficial `docs/Cálculo IVS2012.docx` confirma o uso de **Total de Responsáveis (V01042)** como denominador. A Fase 2 estava correta; o Relatório Metodológico precisa ser atualizado. | ✅ Resolvido |
-| **4** | **Duas pipelines paralelas** — Fase 1 e Fase 2 coexistem com resultados diferentes; falta definir qual é a oficial. | 🟡 Confuso |
+| **3** | ~~Denominadores divergentes~~ — **resolvido em 22/05/2026**: consolidado **V00001** (Dom. Particulares Permanentes Ocupados) como denominador domiciliar, padrão do IVS-BH 2012. O **V01042 foi descartado** (é contagem de pessoas, não de domicílios). Decisão empiricamente validada: com V00001 nenhuma proporção de saneamento estoura 1,0. | ✅ Resolvido |
+| **4** | ~~Duas pipelines paralelas~~ — **resolvido**: a Fase 3 é a oficial; as Fases 1 e 2 foram arquivadas em `Backup/` como histórico. | ✅ Resolvido |
 | **5** | **~8 GB de dados duplicados/obsoletos** espalhados pelo projeto. | 🟡 Organizacional |
-| **6** | **README/docs parcialmente desatualizados** em relação ao código. | 🟡 Documentação |
-| **7** | **requirements.txt incorreto** — lista módulos built-in (`sqlite3`, `os`); falta `numpy`, `openpyxl`, `xlsxwriter`. | 🟢 Menor |
+| **6** | **README/docs parcialmente desatualizados** em relação ao código — os relatórios em `docs/` (EDA e Integridade) ainda trazem números da metodologia V01042 e precisam ser **regerados** a partir dos CSVs atuais. | 🟡 Documentação |
+| **7** | ~~requirements.txt incorreto~~ — **resolvido**: lista `pandas`, `numpy`, `matplotlib`, `openpyxl`, `xlsxwriter`; sem módulos built-in. | ✅ Resolvido |
 | **8** | **Código duplicado nos notebooks** — função `ler_csv_padronizado` definida duas vezes na Fase 2; auditoria duplicada na Fase 1. | 🟢 Menor |
 
 ---
@@ -274,18 +282,18 @@ Detalhamento completo em [`DIAGNOSTICO_COMPLETO_PROJETO.md`](DIAGNOSTICO_COMPLET
 
 Ordem sugerida de ataque ao reentrar no projeto:
 
-### Prioridade 0 — Desbloquear (filtro ELSI-Brasil)
-- [ ] Obter a lista oficial dos **70 municípios do ELSI-Brasil** com códigos IBGE
+### Prioridade 0 — Desbloquear (filtro ELSI-Brasil) ✅ Concluída na Fase 3
+- [x] Obter a lista oficial dos **70 municípios do ELSI-Brasil**
       (fonte: <https://elsi.cpqrr.fiocruz.br/amostra/>).
-- [ ] Criar `dados/municipios_elsi_brasil.csv` (`CD_MUN`, `NM_MUN`, `UF`).
-- [ ] Adicionar o filtro no notebook de extração da Fase 2.
-- [ ] Reprocessar toda a pipeline apenas com os setores dos 70 municípios.
+- [x] Criar `dados/municipios_elsi_brasil.csv`.
+- [x] Adicionar o filtro no notebook de extração (Fase 3, Notebook 01).
+- [x] Reprocessar a pipeline apenas com os setores dos 70 municípios.
 
 ### Prioridade 1 — Validação metodológica (em paralelo)
 - [ ] Resolver a inconsistência das variáveis de esgoto consultando o dicionário do IBGE.
-- [ ] Decidir e **documentar** o denominador de saneamento (V00001 vs V01042).
-- [ ] Mudar a normalização de renda para **por município**.
-- [ ] Validar `v0005` (média de moradores por domicílio particular ocupado).
+- [x] Decidir e **documentar** o denominador de saneamento — **V00001** consolidado em 22/05/2026.
+- [ ] Mudar a normalização de renda para **por município** (Notebook 03).
+- [x] Validar a razão de moradores `(V00005+V00006)/(V00001+V00002)` — reproduz o V0005 do IBGE.
 
 ### Prioridade 2 — Completar o cálculo do IVS
 - [ ] Implementar a **análise fatorial / ACP** para definir os pesos.
@@ -360,14 +368,18 @@ checklist STROBE).
 **Pré-requisitos:** Python 3.10+ e os 8 CSVs do Censo 2022 em `dados/`.
 
 ```bash
-pip install pandas numpy openpyxl xlsxwriter
+pip install -r requirements.txt
 ```
 
-Executar os notebooks da Fase 2 na ordem numérica:
+Executar os notebooks da **pipeline ativa (Fase 3)** na ordem numérica:
 
 ```
-notebooks/Fase2_IVS_Multidimensional/  →  01 → 02 → 03 → 04
+notebooks/Fase3_EDA_ELSI/  →  01 → 02
 ```
+
+> O Notebook 01 extrai e filtra os 70 municípios ELSI (gera `Base_ELSI_Bruta_Censo2022.csv`);
+> o Notebook 02 roda a EDA. As Fases 1 e 2 em `Backup/` são legado e não fazem parte da
+> pipeline atual.
 
 > A execução completa consome bastante RAM e tempo (~2.4 GB de CSVs brutos). Os notebooks
 > leem apenas as colunas necessárias para proteger a memória.
