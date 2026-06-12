@@ -44,8 +44,8 @@ Os principais achados podem ser sintetizados em quatro grandes blocos:
    correlação de Spearman entre renda média e proporção de pessoas pretas,
    pardas e indígenas é de **−0,81** — o maior valor absoluto observado entre
    todos os pares. Renda e analfabetismo têm correlação de **−0,75**, e raça/cor
-   com analfabetismo de **+0,63**. As variáveis de saneamento se correlacionam
-   menos entre si (0,15 a 0,45), mas todas se associam ao bloco socioeconômico.
+   com analfabetismo de **+0,62**. As variáveis de saneamento se correlacionam
+   menos entre si (0,14 a 0,45), mas todas se associam ao bloco socioeconômico.
    Esse padrão sustenta a hipótese de dois fatores latentes — saneamento e
    socioeconômico — recomendada pelo IVS-BH 2012.
 
@@ -182,7 +182,7 @@ forma da distribuição (assimetria, curtose) e cobertura efetiva de dados.
 | Desvio-padrão | 0,221 |
 | Coeficiente de Variação | 267,8% |
 | Assimetria | +3,07 |
-| Curtose | +8,47 |
+| Curtose | +8,46 |
 
 **Distribuição extremamente assimétrica à direita.** A maioria absoluta dos
 setores ELSI tem acesso adequado à água (mediana = 0). Mas a cauda longa
@@ -204,8 +204,8 @@ fortemente influenciada pelos bolsões).
 | Mediana | 0,000 |
 | P75 | 0,023 (2,3%) |
 | Máximo | 1,000 |
-| Assimetria | +2,77 |
-| Curtose | +6,54 |
+| Assimetria | +2,76 |
+| Curtose | +6,52 |
 
 Padrão similar ao da água, com **35 dos 70 municípios (50%)** tendo mais da
 metade dos setores com algum esgotamento inadequado.
@@ -219,7 +219,7 @@ metade dos setores com algum esgotamento inadequado.
 | Mediana | 0,000 |
 | P75 | 0,071 (7,1%) |
 | Máximo | 1,000 |
-| Assimetria | +2,24 |
+| Assimetria | +2,23 |
 
 A inadequação no destino do lixo tem **média mais alta (12,6%)** que água e
 esgoto, indicando que a coleta inadequada é um problema mais disseminado
@@ -231,9 +231,9 @@ mesmo em municípios bem-atendidos quanto a água e esgoto.
 |---|---:|
 | n | 106.281 |
 | Média | 2,70 |
-| Mediana | 2,71 |
+| Mediana | 2,72 |
 | Desvio-padrão | 0,40 |
-| Assimetria | +0,08 |
+| Assimetria | +0,09 |
 | Mínimo | 1,00 |
 | Máximo | 8,79 |
 
@@ -424,7 +424,7 @@ estão em [`outliers.csv`](../banco_de_dados/eda/outliers.csv):
 | pct_esgoto_inad | 21.158 | **19,9%** | Artefato da concentração em zero |
 | pct_lixo_inad | 19.557 | **18,4%** | Artefato da concentração em zero |
 | renda_media | 10.850 | 10,2% | Outliers reais — cauda direita |
-| pct_analfab | 4.696 | 5,3% | Setores de alta vulnerabilidade educacional |
+| pct_analfab | 4.696 | 5,2% | Setores de alta vulnerabilidade educacional |
 | razao_moradores | 3.829 | 3,6% | Setores com superlotação extrema |
 | pct_raca_pretpardind | 0 | 0,0% | Distribuição bem-comportada |
 
@@ -507,13 +507,13 @@ assimetria das variáveis de saneamento e renda, Spearman é mais informativo.**
 
 |  | água | esgoto | lixo | razão | analfab | renda | PPI |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| pct_agua_inad | 1,00 | 0,45 | 0,15 | 0,27 | 0,27 | −0,28 | 0,36 |
+| pct_agua_inad | 1,00 | 0,45 | 0,14 | 0,27 | 0,27 | −0,28 | 0,36 |
 | pct_esgoto_inad | 0,45 | 1,00 | 0,23 | 0,35 | **0,45** | **−0,46** | 0,44 |
-| pct_lixo_inad | 0,15 | 0,23 | 1,00 | −0,04 | 0,19 | −0,18 | 0,21 |
+| pct_lixo_inad | 0,14 | 0,23 | 1,00 | −0,04 | 0,19 | −0,18 | 0,21 |
 | razao_moradores | 0,27 | 0,35 | −0,04 | 1,00 | 0,41 | −0,44 | 0,46 |
-| pct_analfab | 0,27 | 0,45 | 0,19 | 0,41 | 1,00 | **−0,75** | **0,63** |
+| pct_analfab | 0,27 | 0,45 | 0,19 | 0,41 | 1,00 | **−0,75** | **0,62** |
 | renda_media | −0,28 | −0,46 | −0,18 | −0,44 | −0,75 | 1,00 | **−0,81** |
-| pct_raca_pretpardind | 0,36 | 0,44 | 0,21 | 0,46 | 0,63 | **−0,81** | 1,00 |
+| pct_raca_pretpardind | 0,36 | 0,44 | 0,21 | 0,46 | 0,62 | **−0,81** | 1,00 |
 
 > *Valores em negrito: |ρ| ≥ 0,45.*
 
@@ -524,7 +524,7 @@ são todas no triângulo renda × analfabetismo × raça/cor (PPI):
 
 - **renda × PPI = −0,81**
 - **renda × analfab = −0,75**
-- **analfab × PPI = +0,63**
+- **analfab × PPI = +0,62**
 
 Esse resultado é metodologicamente importante: ele sustenta a hipótese de
 **raça/cor como proxy de vulnerabilidade socioeconômica estrutural**,
@@ -540,7 +540,7 @@ renda (−0,44). Embora não seja a variável mais discriminante, contribui de
 forma coerente para o vetor socioeconômico.
 
 **Eixo saneamento (dimensão secundária).** Água, esgoto e lixo formam um
-bloco coerente, mas com correlações entre si mais modestas (0,15 a 0,45). A
+bloco coerente, mas com correlações entre si mais modestas (0,14 a 0,45). A
 correlação **esgoto × analfabetismo = +0,45** sugere que esgoto inadequado
 pode estar relacionado a contextos socioeconômicos vulneráveis — uma
 correlação cruzada entre dimensões.
@@ -607,7 +607,7 @@ nas etapas seguintes:
 | 16% de sigilo em analfabetismo | Regra IBGE de supressão | Reportar transparentemente; considerar imputação por mediana municipal |
 | Variáveis de saneamento bimodais | Realidade da cobertura nacional | Análises com mediana/IQR; análises fatoriais robustas |
 | Município de Salto/SP atípico em lixo | Possível classificação categórica de "caçamba de serviço" | Validar com o dicionário do IBGE |
-| Correlação 0,15 entre água e lixo | Heterogeneidade real entre serviços | Tratar como bloco saneamento mesmo assim |
+| Correlação 0,14 entre água e lixo | Heterogeneidade real entre serviços | Tratar como bloco saneamento mesmo assim |
 | Falácia ecológica | Inerente ao delineamento ecológico | Reportar explicitamente na seção de Discussão do artigo |
 
 ---
