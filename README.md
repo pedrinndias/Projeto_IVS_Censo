@@ -31,15 +31,15 @@ A pipeline ativa é a **Fase 3 (`notebooks/Fase3_EDA_ELSI/`)**, que aplica o fil
 
 O IVS é um indicador composto que sintetiza **7 variáveis** em **2 dimensões**, calculado ao nível do setor censitário.
 
-A operacionalização adotada na pipeline ativa (Fase 3) segue o documento oficial [`docs/Cálculo IVS2012.docx`](docs/Cálculo%20IVS2012.docx), que explicita: *"achamos melhor considerar o número de responsáveis como número total de domicílios do setor"*. Portanto o denominador adotado para saneamento é **V01042 (Total de Responsáveis)**.
+A operacionalização adotada na pipeline ativa (Fase 3) segue o padrão do **IVS-BH 2012**, ancorada no denominador domiciliar **V00001 (Domicílios Particulares Permanentes Ocupados)** — o equivalente no Censo 2022 do `V002` (Dom_part_p) do Censo 2010 usado pelo IVS-BH. Decisão consolidada na revisão metodológica de **22/05/2026** (orientadora): o `V01042` do arquivo de parentesco é uma **contagem de pessoas responsáveis**, não de domicílios, e por isso foi descartado como denominador. O `V01042` segue sendo extraído apenas para auditoria de setores 100% coletivos.
 
 | Dimensão | Indicador | Censo 2022 (numerador) | Denominador |
 |---|---|---|---|
-| **Saneamento** | Água inadequada | V00112 a V00118 (7 vars.) | **V01042** |
-| | Esgoto inadequado | V00312 a V00316 *(faixa em validação — ver §Problemas Conhecidos)* | **V01042** |
-| | Lixo inadequado | V00398 a V00402 (5 vars.) | **V01042** |
-| **Socioeconômica** | Analfabetismo (15+) | V00901 | V00900 (pop. 15+) |
-| | Densidade habitacional | V00005 + V00006 | **V01042** |
+| **Saneamento** | Água inadequada | V00112 a V00118 (7 vars.) | **V00001** |
+| | Esgoto inadequado | V00312 a V00316 *(faixa em validação — ver §Problemas Conhecidos)* | **V00001** |
+| | Lixo inadequado | V00398 a V00402 (5 vars.) | **V00001** |
+| **Socioeconômica** | Analfabetismo (15+) | V00901 | **V00900 + V00901** (total de pessoas 15+) |
+| | Densidade habitacional | V00005 + V00006 | **V00001 + V00002** *(reproduz o V0005 do IBGE)* |
 | | Renda (invertida no índice) | V06004 (rendimento médio mensal) | — |
 | | Raça/cor (pretos + pardos + indígenas) | V01318 + V01320 + V01321 | v0001 (pop. total) |
 
@@ -49,7 +49,7 @@ A metodologia é baseada no **IVS de Belo Horizonte (SMS-BH, 2012/2013)** e comp
 
 | Item exigido no IVS 2012 | Limitação no Censo 2022 | Solução adotada |
 |---|---|---|
-| % chefes com <4 anos de estudo | Anos de instrução não disponíveis nos agregados | Taxa de analfabetismo (V00901 / V00900) |
+| % chefes com <4 anos de estudo | Anos de instrução não disponíveis nos agregados | Taxa de analfabetismo (V00901 / (V00900 + V00901)) |
 | % famílias ≤2 salários mínimos | Contagem por faixa salarial não disponível | Rendimento médio (V06004) com normalização invertida |
 | Coef. óbitos por doenças cardiovasculares | IBGE registrou apenas se houve óbito, sem causa | Buscar DATASUS (Sistema SIM) futuramente |
 
@@ -118,7 +118,7 @@ Lista resumida — detalhamento técnico em [`docs/Relatorio_Integridade_Projeto
 | 1 | **Variáveis de esgoto** — V00312–V00316 vs V00249–V00253. O Notebook 02 inclui um diagnóstico empírico (célula `step4b`) e exporta `diagnostico_esgoto_312_vs_249.csv` para subsidiar a decisão final. | 🟡 Pendente |
 | 2 | **Normalização de renda global** — usa min/max global; será trocada para por município no Notebook 03 (a criar). | 🟡 Pendente (próxima fase) |
 | 3 | ~~**Ausência do filtro ELSI**~~ | ✅ Resolvido (Fase 3) |
-| 4 | ~~**Denominadores divergentes**~~ — confirmado V01042 pelo `Cálculo IVS2012.docx`. | ✅ Resolvido |
+| 4 | ~~**Denominadores divergentes**~~ — consolidado **V00001** (Dom. Particulares Permanentes Ocupados) na revisão de 22/05/2026; `V01042` descartado (é contagem de pessoas, não de domicílios). | ✅ Resolvido |
 | 5 | **Dados duplicados em `Backup/`** — ~8 GB de arquivos obsoletos. Limpeza opcional. | 🟢 Organizacional |
 
 ## Dados Utilizados
