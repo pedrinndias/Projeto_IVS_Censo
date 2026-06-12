@@ -1,7 +1,13 @@
 # Relatório de Integridade do Projeto IVS — Censo 2022 / ELSI-Brasil
 
+> **Nota de revisão (12/06/2026):** o diagnóstico original é de 19/05/2026. Os achados de
+> denominador, taxa de analfabetismo, regra `Dados_sig` e os números das tabelas foram
+> **atualizados para a metodologia consolidada em 22/05/2026** (denominador **V00001** +
+> taxa `V00901 / (V00900 + V00901)`). Fonte da verdade: [`GUIA_DO_PROJETO.md`](../GUIA_DO_PROJETO.md)
+> e [`banco_de_dados/entrega_orientadora/README.md`](../banco_de_dados/entrega_orientadora/README.md).
+
 > **Tipo:** Diagnóstico técnico — auditoria de notebooks, variáveis e outputs
-> **Data:** 19 de maio de 2026
+> **Data:** 19 de maio de 2026 (revisado em 12/06/2026 para a metodologia V00001)
 > **Escopo:** Pipeline ativa (Fase 3) + documentação + dicionário de variáveis
 > **Pesquisador:** Pedro Dias Soares — IC Fiocruz Minas / IRR
 
@@ -9,11 +15,11 @@
 
 | Item | Ação | Resultado |
 |---|---|---|
-| C1 — Clipping silencioso | Diagnóstico adicionado **antes** do clipping no Notebook 02 (célula `step4`); exporta [`diagnostico_proporcoes_fora_intervalo.csv`](../banco_de_dados/eda/diagnostico_proporcoes_fora_intervalo.csv) | ✅ Resolvido. **Achado:** apenas `pct_analfab` tinha 10 setores com valor > 1 (máximo 5,33). Causa: sigilo parcial em V00900/V00901. |
+| C1 — Clipping silencioso | Diagnóstico adicionado **antes** do clipping no Notebook 02 (célula `step4`); exporta [`diagnostico_proporcoes_fora_intervalo.csv`](../banco_de_dados/eda/diagnostico_proporcoes_fora_intervalo.csv) | ✅ Resolvido. **Achado (pós-revisão V00001):** com o denominador V00001 e a taxa de analfabetismo `V00901 / (V00900 + V00901)`, **nenhuma** proporção ultrapassa 1,0 (0 setores em todas as variáveis). Os 10 setores `pct_analfab > 1` que existiam eram artefato da fórmula antiga `V00901 / V00900`. |
 | C2 — Variáveis de esgoto | Célula `step4b` adicionada com comparação empírica V00249–V00253 vs V00312–V00316; exporta [`diagnostico_esgoto_312_vs_249.csv`](../banco_de_dados/eda/diagnostico_esgoto_312_vs_249.csv) | 🟡 Diagnóstico pronto. **Decisão final depende da orientadora** após análise do CSV exportado. |
-| C3 — README desatualizado | Reescrito para refletir Fase 3 ativa, V01042 como denominador, status real das etapas | ✅ Resolvido. |
-| R4 — Extremos de razão de moradores | Diagnóstico no Notebook 02 (célula `step4`); exporta [`extremos_razao_moradores.csv`](../banco_de_dados/eda/extremos_razao_moradores.csv) | ✅ **Achados:** 4 setores em Portel/PA com razão 7–8,8 (sem coletivos, V00002=0); 1 setor em Brasília com razão 0,17 (V01042=48, V00001=5 — inconsistência). |
-| R5 — Regra COLETIVO inativa | Fórmula reescrita para `V00002 / V01042 × 100 ≥ 100%` (mais defensável conceitualmente) | ✅ Resolvido. **Achado:** 0 setores COLETIVO em qualquer das duas fórmulas, dentro dos 70 municípios ELSI. |
+| C3 — README desatualizado | Reescrito para refletir Fase 3 ativa, **V00001 como denominador**, status real das etapas | ✅ Resolvido. |
+| R4 — Extremos de razão de moradores | Diagnóstico no Notebook 02 (célula `step4`); exporta [`extremos_razao_moradores.csv`](../banco_de_dados/eda/extremos_razao_moradores.csv) | ✅ **Achados (pós-revisão V00001):** com o denominador `(V00001 + V00002)` o mínimo passou a **1,00** — o setor de Brasília com razão 0,17 era artefato do V01042 e deixou de existir. Persiste o máximo de 8,79 em Portel/PA (verificar população coletiva). |
+| R5 — Regra COLETIVO | Regra ancorada em **`V00001 == 0` com `v0001 > 0`** (toda a população em domicílios coletivos) | ✅ Resolvido. **Achado:** 0 setores COLETIVO dentro dos 70 municípios ELSI (os candidatos caem em SIGILOSO, com `V00001` sigiloso). |
 | R6 — IQR não informativa | Adicionadas colunas `p95`, `n_acima_p95`, `pct_acima_p95`, `iqr_nao_informativo` em [`outliers.csv`](../banco_de_dados/eda/outliers.csv) | ✅ Resolvido. **Confirma:** água/esgoto/lixo flagrados como IQR não-informativo. |
 | Testes sanity | Criado [`tests/test_pipeline_fase3.py`](../tests/test_pipeline_fase3.py) (16 testes) | ✅ 15 passam, 1 skipped (esperado). |
 
@@ -21,7 +27,6 @@
 - R2 — Normalização de renda por município.
 - R3 — Política de tratamento de sigilo variável a variável para o cálculo do IVS final.
 - C2 — Decisão metodológica sobre faixa de esgoto (V00249–V00253 vs V00312–V00316), após análise do diagnóstico com a orientadora.
-- Investigação manual do setor de Brasília (`530010805060378`, V01042=48 para apenas 5 V00001) — possível erro no Censo.
 
 ---
 
@@ -35,11 +40,11 @@
 | Pipeline Fase 3 — Notebook 02 (EDA) | 🟢 **Aprovado com ressalvas** | Cálculos consistentes com `Cálculo IVS2012.docx`; 6 ressalvas metodológicas a documentar. |
 | Variáveis vs. dicionário IBGE | 🟡 **Pendência herdada** | Esgoto (V00312–V00316 vs V00249–V00253) não foi confrontado ainda com o dicionário oficial. |
 | Outputs (CSVs + figuras) | 🟢 **Aprovado** | 8 artefatos esperados presentes, contagens batem (70 municípios × 7 vars = 490 linhas). |
-| Documentação | 🔴 **Inconsistente** | `README.md` desatualizado em ~7 pontos vs. `GUIA_DO_PROJETO.md`. |
+| Documentação | 🟢 **Sincronizada** | `README.md`, `GUIA_DO_PROJETO.md` e `estrutura_projeto.md` alinhados à metodologia V00001 (revisão de 22/05). |
 | Dependências (`requirements.txt`) | 🟢 **Adequado** | Cobre o uso real (`pandas`, `numpy`, `matplotlib`, `openpyxl`, `xlsxwriter`). |
 | Bloqueante para o IVS final | 🔴 **Análise fatorial + categorização pendentes** | EDA entrega base para a próxima etapa, mas índice ainda não calculado. |
 
-**Veredito geral para apresentação:** a EDA da Fase 3 é tecnicamente sólida e reprodutível; o caminho até o IVS está bem delineado. Existem 3 pendências metodológicas a resolver antes da análise fatorial (esgoto, normalização de renda, clipping) e 1 dívida documental (README).
+**Veredito geral para apresentação:** a EDA da Fase 3 é tecnicamente sólida e reprodutível; o caminho até o IVS está bem delineado. Após a revisão de 22/05 (denominador V00001), restam 2 pendências metodológicas antes da análise fatorial (validação da faixa de esgoto e normalização de renda por município).
 
 ---
 
@@ -89,11 +94,11 @@
 
 | Componente IVS | Variáveis no notebook | Denominador | Conformidade |
 |---|---|---|---|
-| % água inadequada | `V00112` … `V00118` | `V01042` | ✅ Consistente com Fase 2 e com `Cálculo IVS2012.docx`. |
-| % esgoto inadequado | `V00312` … `V00316` | `V01042` | 🟡 **Pendência** — o Relatório Metodológico anterior diverge: aba "De_Para" → V00312–V00316; aba "Mapa_de_Arquivos" → V00249–V00253. A Fase 3 herdou a escolha da Fase 2 sem confirmação no dicionário oficial. |
-| % lixo inadequado | `V00398` … `V00402` | `V01042` | ✅ Consistente. |
-| Razão de moradores | `V00005 + V00006` | `V01042` | ✅ Consistente. |
-| % analfabetismo (15+) | `V00901` | `V00900` | ✅ Consistente. |
+| % água inadequada | `V00112` … `V00118` | `V00001` | ✅ Denominador padrão IVS-BH 2012 (Dom. Particulares Permanentes Ocupados). |
+| % esgoto inadequado | `V00312` … `V00316` | `V00001` | 🟡 **Pendência** — numerador a confirmar: aba "De_Para" → V00312–V00316; aba "Mapa_de_Arquivos" → V00249–V00253. O denominador (V00001) está consolidado. |
+| % lixo inadequado | `V00398` … `V00402` | `V00001` | ✅ Consistente. |
+| Razão de moradores | `V00005 + V00006` | `V00001 + V00002` | ✅ Reproduz o V0005 do IBGE. |
+| % analfabetismo (15+) | `V00901` | `V00900 + V00901` | ✅ Total de pessoas com 15+ anos. |
 | Rendimento médio | `V06004` (uso direto, sem denominador) | — | ⚠️ Ainda **bruto**; normalização por município pendente. |
 | % preta/parda/indígena | `V01318 + V01320 + V01321` | `v0001` | ✅ Consistente. |
 | Identificação | `CD_SETOR` (15 d.), derivados `CD_UF` (2 d.), `CD_MUN` (7 d.) | — | ✅ |
@@ -122,7 +127,7 @@ As colunas-chave têm grafias diferentes entre os 8 CSVs do IBGE (`CD_SETOR`, `C
 | pct_esgoto_inad | 106.280 | 0,000 | 0,000 / 0,023 | 0,092 | 0,231 | 2,77 | 6,54 |
 | pct_lixo_inad | 106.281 | 0,000 | 0,000 / 0,071 | 0,126 | 0,264 | 2,24 | 3,70 |
 | razao_moradores | 106.281 | 2,71 | 2,48 / 2,93 | 2,70 | 0,40 | 0,08 | 3,91 |
-| pct_analfab | 89.527 | 0,029 | 0,013 / 0,055 | 0,042 | 0,051 | 4,69 | 44,14 |
+| pct_analfab | 89.527 | 0,028 | 0,013 / 0,052 | 0,039 | 0,041 | 2,98 | 17,67 |
 | renda_media (R$) | 106.262 | 2.546 | 1.735 / 4.755 | 4.141 | 4.124 | 3,76 | 49,94 |
 | pct_raca_pretpardind | 106.279 | 0,576 | 0,356 / 0,708 | 0,530 | 0,229 | −0,39 | −0,81 |
 
@@ -152,21 +157,25 @@ As colunas-chave têm grafias diferentes entre os 8 CSVs do IBGE (`CD_SETOR`, `C
 
 ### 🔴 CRÍTICO
 
-**C1. Clipping silencioso de proporções em [0, 1]**
+**C1. Clipping de proporções em [0, 1] — resolvido com V00001** ✅
 - Local: [02_Analises_Descritivas.ipynb](notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb), célula `step4`, linha
-  `df_ok[c] = df_ok[c].clip(lower=0, upper=1)`.
-- O `max=1,0000` exato em **5 das 5** proporções percentuais sugere que existem setores com numerador > denominador. O clipping mascara esses casos.
-- **Por que importa:** se houver setor com numerador (domicílios inadequados) maior que o denominador (V01042), isso indica ou (a) sigilo parcial deturpando a contagem, ou (b) o denominador escolhido não cobre todas as classes de domicílio. **Sem o clipping, esses casos seriam visíveis e diagnosticáveis.**
-- **Ação recomendada:** antes de clippar, registrar `n_setores_com_pct_acima_de_1` por variável; investigar 5–10 casos extremos antes de decidir se mantém o clipping.
+  `df_ok[c] = df_ok[c].clip(lower=0, upper=1)`, precedida do diagnóstico que exporta
+  [`diagnostico_proporcoes_fora_intervalo.csv`](../banco_de_dados/eda/diagnostico_proporcoes_fora_intervalo.csv).
+- O `max=1,0000` exato em água/esgoto/lixo/raça é **legítimo** (existem setores 100% inadequados),
+  não um valor truncado: o diagnóstico confirma **0 setores com proporção > 1** em todas as variáveis.
+- Os 10 setores `pct_analfab > 1` (máx 5,33) que motivaram este achado eram artefato da fórmula
+  antiga `V00901 / V00900`. Com `V00901 / (V00900 + V00901)` a taxa fica limitada a [0, 1] e o
+  clipping passou a ser apenas uma salvaguarda inócua.
 
 **C2. Variáveis de esgoto não validadas contra o dicionário oficial do IBGE**
 - A escolha `V00312`–`V00316` foi herdada da Fase 2. O Relatório Metodológico tinha duas abas com codificação diferente (V00312–V00316 vs V00249–V00253). A Fase 3 não reabriu essa decisão.
 - **Ação recomendada:** abrir `docs/dicionario_de_dados_agregados_por_setores_censitarios_20250417.xlsx` (presente em `dados/processed/` ou `docs/`), localizar a definição das duas faixas, e confirmar **antes** da análise fatorial. Esta variável carrega 0,45 (Pearson) com `pct_agua_inad` — alterar o intervalo muda o resultado do fator.
 
-**C3. Documentação `README.md` desatualizada**
-- O README ainda lista como pendente: filtro ELSI (✅ já feito), denominador V00001 (✅ trocado p/ V01042), Fase 2 como ativa (✅ Fase 3 é a ativa).
-- Status table (linhas 13–22 do README) está obsoleta. Apenas o `GUIA_DO_PROJETO.md` está atualizado.
-- **Ação:** atualizar README ou apontá-lo explicitamente para o GUIA.
+**C3. Documentação sincronizada** ✅
+- `README.md`, `GUIA_DO_PROJETO.md` e `estrutura_projeto.md` foram alinhados à metodologia
+  consolidada em 22/05/2026: filtro ELSI aplicado (Fase 3), **denominador V00001** (V01042 descartado),
+  taxa de analfabetismo `V00901 / (V00900 + V00901)` e Fase 3 como pipeline ativa.
+- A fonte da verdade da operacionalização é [`banco_de_dados/entrega_orientadora/README.md`](../banco_de_dados/entrega_orientadora/README.md).
 
 ### 🟡 RELEVANTE
 
@@ -180,17 +189,19 @@ As colunas-chave têm grafias diferentes entre os 8 CSVs do IBGE (`CD_SETOR`, `C
 - **Risco:** se a análise fatorial usar pairwise complete, esses setores entram parcialmente; se usar listwise, descarta ~17 mil setores **das principais capitais**. Decisão metodológica a tomar com a orientadora.
 
 **R3. Variáveis-base auxiliares fora da regra `Dados_sig`**
-- A regra atual considera "OK" qualquer setor que tenha `v0001`, `V00001` e `V01042` não-sigilosos — mas o setor pode ter `V00900` (denominador do analfab.) ou `V06004` (renda) sigilosos, e nesse caso entra na análise com NaN.
+- A regra atual considera "OK" qualquer setor que tenha `v0001` e `V00001` não-sigilosos — mas o setor pode ter `V00900`/`V00901` (denominador do analfab.) ou `V06004` (renda) sigilosos, e nesse caso entra na análise com NaN.
 - Isto é intencional na EDA (`min_count=1` preserva a transparência), mas vale tornar explícito no Relatório de EDA. Para o **IVS final** será necessário decidir como cada variável-componente trata o sigilo (imputação, exclusão da variável, exclusão do setor).
 
-**R4. Setor com `razao_moradores = 8,79` (máx) e setor com `0,17` (mín)**
-- 0,17 = ~1 morador para 6 domicílios → setor com domicílios majoritariamente desocupados (centros antigos, áreas em transformação) **ou** erro de denominador (V01042 superestimado).
-- 8,79 = 9 moradores por responsável → muito alto. Pode ser setor com moradias coletivas não detectado pela regra COLETIVO (que usa `% coletivos ≥ 100`).
-- **Ação:** listar os 10 setores mais extremos em cada extremo e inspecionar manualmente (`CD_SETOR`, `NM_MUN`, `NM_BAIRRO`).
+**R4. Extremos de `razao_moradores` — mínimo resolvido com V00001** ✅
+- O mínimo de **0,17** descrito originalmente era artefato do denominador V01042. Com `(V00001 + V00002)`
+  o mínimo passou a **1,00** (ao menos um morador por domicílio ocupado), que é o piso fisicamente correto.
+- Persiste o máximo de **8,79** (≈ 9 moradores por domicílio) em Portel/PA — possível setor com moradias
+  coletivas não capturado pela regra COLETIVO. **Ação:** inspecionar os setores mais extremos
+  (`extremos_razao_moradores.csv`) quanto a população coletiva.
 
 **R5. 0 setores COLETIVO e 0 ZERADO**
-- A regra `COLETIVO` (`dom_col = V01042 − V00001 − V00002`, depois `% ≥ 100`) nunca dispara. A fórmula assume que `V01042` inclui responsáveis de domicílios coletivos e particulares, então `V01042 − V00001 − V00002` ≈ contagem de coletivos extras. Se o IBGE não conta responsáveis em coletivos, essa subtração é sempre ≤ 0 e o clip impede que `% ≥ 100`.
-- **Recomendação:** validar com o dicionário do IBGE o que exatamente `V01042` representa. Se o IBGE só conta responsáveis em domicílios particulares, então a regra atual está inativa e setores com `% domicílios coletivos = 100` (ex.: presídios, asilos) entram como OK indevidamente — comprometendo a análise descritiva.
+- A regra `COLETIVO` (revisada) marca o setor quando **`V00001 == 0` com `v0001 > 0`** — ou seja, há população mas nenhum domicílio particular permanente ocupado (toda a população em coletivos: presídios, asilos, alojamentos). Nenhum setor dos 70 municípios ELSI satisfaz isso.
+- **Por quê 0:** os setores tipicamente coletivos chegam com `V00001` **sigiloso** (NaN) e caem em `SIGILOSO`, que é avaliado antes de `COLETIVO`. **Recomendação:** confirmar com a orientadora que nenhum setor 100% coletivo está entrando como `OK` indevidamente (cruzar `SITUACAO`/população coletiva do IBGE).
 
 **R6. Outlier-rule IQR não informativa em distribuições zero-infladas**
 - Como P25 e mediana são iguais a zero para água/esgoto/lixo, a regra 1,5×IQR rotula 18–20% dos setores como outliers. Não é problema dos dados — é a regra inadequada para essa forma de distribuição.
@@ -222,10 +233,10 @@ As colunas-chave têm grafias diferentes entre os 8 CSVs do IBGE (`CD_SETOR`, `C
 
 Em ordem cronológica (alinhada com o GUIA_DO_PROJETO):
 
-1. **Resolver C2** — confrontar V00312–V00316 com `docs/dicionario_de_dados_agregados_por_setores_censitarios_20250417.xlsx` (e o `.ods`). Se confirmar, encerrar a pendência no GUIA.
-2. **Resolver C1** — diagnosticar setores com proporção > 1 antes do clipping.
-3. **Resolver R5** — investigar a regra COLETIVO ou aceitar que ela está inativa neste recorte.
-4. **Atualizar README** (C3) ou redirecioná-lo explicitamente para o GUIA.
+1. **Resolver C2** — confrontar V00312–V00316 com o dicionário oficial do IBGE (`.xlsx`/`.ods`). Se confirmar, encerrar a pendência no GUIA.
+2. ~~Resolver C1~~ ✅ — com V00001 + taxa de analfabetismo corrigida, nenhuma proporção excede 1 (clipping é salvaguarda inócua).
+3. **R5 (COLETIVO)** — confirmar com a orientadora que nenhum setor 100% coletivo entra como `OK` indevidamente.
+4. ~~Atualizar README~~ ✅ — README, GUIA e estrutura_projeto sincronizados com a metodologia V00001.
 5. **Notebook 03 (a criar)** — normalização min-max **por município** das 7 variáveis (invertendo renda). Saída: `Base_Padronizada_Municipal.csv`.
 6. **Notebook 04 (a criar)** — análise fatorial / ACP. Verificar KMO e Bartlett; decidir entre 1 ou 2 fatores; calcular pesos.
 7. **Notebook 05 (a criar)** — composição do IVS como média ponderada; categorização em 4 faixas (Baixo / Médio / Elevado / Muito Elevado, com cortes definidos via quartis ou via Jenks).
