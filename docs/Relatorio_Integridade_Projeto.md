@@ -6,6 +6,13 @@
 > taxa `V00901 / (V00900 + V00901)`). Fonte da verdade: [`GUIA_DO_PROJETO.md`](../GUIA_DO_PROJETO.md)
 > e [`banco_de_dados/entrega_orientadora/README.md`](../banco_de_dados/entrega_orientadora/README.md).
 
+> **Nota de revisão (18/06/2026) — correção do numerador de lixo:** após baixar o dicionário
+> oficial do IBGE, confirmou-se que **V00398 ("Lixo depositado em caçamba de serviço de limpeza")
+> é coleta adequada** e estava indevidamente somada ao numerador de `pct_lixo_inad`. O numerador
+> foi corrigido de `V00398–V00402` para **`V00399–V00402`**. Impacto: média global de lixo
+> inadequado 12,6% → **1,9%**; Salto/SP 96% → 0%; correlações do lixo recalculadas. A EDA foi
+> reexecutada e todos os números de lixo nas seções abaixo já estão corrigidos.
+
 > **Tipo:** Diagnóstico técnico — auditoria de notebooks, variáveis e outputs
 > **Data:** 19 de maio de 2026 (revisado em 12/06/2026 para a metodologia V00001)
 > **Escopo:** Pipeline ativa (Fase 3) + documentação + dicionário de variáveis
@@ -96,7 +103,7 @@
 |---|---|---|---|
 | % água inadequada | `V00112` … `V00118` | `V00001` | ✅ Denominador padrão IVS-BH 2012 (Dom. Particulares Permanentes Ocupados). |
 | % esgoto inadequado | `V00312` … `V00316` | `V00001` | 🟡 **Pendência** — numerador a confirmar: aba "De_Para" → V00312–V00316; aba "Mapa_de_Arquivos" → V00249–V00253. O denominador (V00001) está consolidado. |
-| % lixo inadequado | `V00398` … `V00402` | `V00001` | ✅ Consistente. |
+| % lixo inadequado | `V00399` … `V00402` | `V00001` | ✅ Corrigido em 18/06/2026: V00398 (caçamba de serviço de limpeza) é coleta adequada e foi removida do numerador (confirmado no dicionário oficial IBGE). |
 | Razão de moradores | `V00005 + V00006` | `V00001 + V00002` | ✅ Reproduz o V0005 do IBGE. |
 | % analfabetismo (15+) | `V00901` | `V00900 + V00901` | ✅ Total de pessoas com 15+ anos. |
 | Rendimento médio | `V06004` (uso direto, sem denominador) | — | ⚠️ Ainda **bruto**; normalização por município pendente. |
@@ -125,7 +132,7 @@ As colunas-chave têm grafias diferentes entre os 8 CSVs do IBGE (`CD_SETOR`, `C
 |---|--:|--:|--:|--:|--:|--:|--:|
 | pct_agua_inad | 106.281 | 0,000 | 0,000 / 0,017 | 0,083 | 0,221 | 3,07 | 8,46 |
 | pct_esgoto_inad | 106.280 | 0,000 | 0,000 / 0,023 | 0,092 | 0,231 | 2,76 | 6,52 |
-| pct_lixo_inad | 106.281 | 0,000 | 0,000 / 0,071 | 0,126 | 0,264 | 2,23 | 3,68 |
+| pct_lixo_inad | 106.276 | 0,000 | 0,000 / 0,000 | 0,019 | 0,102 | 7,28 | 57,25 |
 | razao_moradores | 106.281 | 2,72 | 2,48 / 2,93 | 2,70 | 0,40 | 0,09 | 3,90 |
 | pct_analfab | 89.527 | 0,028 | 0,013 / 0,052 | 0,039 | 0,041 | 2,98 | 17,67 |
 | renda_media (R$) | 106.262 | 2.546 | 1.735 / 4.755 | 4.141 | 4.124 | 3,76 | 49,94 |
@@ -141,12 +148,13 @@ As colunas-chave têm grafias diferentes entre os 8 CSVs do IBGE (`CD_SETOR`, `C
 | pct_analfab × pct_raca_pretpardind | +0,625 | Forte. |
 | pct_esgoto_inad × pct_analfab | +0,452 | Moderada — bloco saneamento ↔ socioeconômico. |
 | pct_agua_inad × pct_esgoto_inad | +0,445 | Moderada — coesão da dimensão saneamento. |
-| **pct_lixo_inad × razao_moradores** | **−0,036** | **Atenção:** quase nula. |
+| pct_esgoto_inad × pct_lixo_inad | +0,370 | Moderada — coesão da dimensão saneamento (pós-correção do lixo). |
+| pct_lixo_inad × razao_moradores | +0,156 | Fraca-positiva (era −0,036 antes da correção do numerador de lixo). |
 
-→ **Implicação para a análise fatorial:** `pct_lixo_inad` tende a carregar fraco. A estrutura de 2 fatores (saneamento + socioeconômico) sugerida pelo IVS-BH continua plausível, mas pode ser melhor verificá-la com **KMO** e **teste de esfericidade de Bartlett** antes da rotação.
+→ **Implicação para a análise fatorial:** após a correção do numerador (remoção da caçamba V00398), `pct_lixo_inad` passou a se associar coerentemente ao bloco de saneamento (água 0,32; esgoto 0,37) — não mais "autônoma". A estrutura de 2 fatores (saneamento + socioeconômico) sugerida pelo IVS-BH fica mais bem sustentada, mas convém verificá-la com **KMO** e **teste de esfericidade de Bartlett** antes da rotação.
 
 ### 4.4 Outliers (regra IQR clássica)
-- `pct_agua_inad`, `pct_esgoto_inad`, `pct_lixo_inad`: ~20% setores classificados como outliers — **falso positivo metodológico**, pois P25=P50=0 colapsa o IQR. Não é problema dos dados, é limitação da regra IQR em distribuição zero-inflada. Documentar.
+- `pct_agua_inad`, `pct_esgoto_inad`: ~20% setores classificados como outliers — **falso positivo metodológico**, pois P25=P50=0 colapsa o IQR. `pct_lixo_inad`: 8,5% (P25=P50=P75=0 após a correção do numerador). Não é problema dos dados, é limitação da regra IQR em distribuição zero-inflada. Documentar.
 - `renda_media`: 10,2% outliers acima de R$ 9.285 — consistente com cauda longa de altíssima renda; máximo R$ 170.418 (1 setor) merece verificação manual.
 - `razao_moradores`: 3,6% outliers — máximo 8,79 (verificar se é um setor com população coletiva não detectada).
 - `pct_raca_pretpardind`: 0 outliers — distribuição mais simétrica (curtose negativa).
