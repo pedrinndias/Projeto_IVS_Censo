@@ -375,11 +375,16 @@ Santa Maria do Oeste/PR, Urandi/BA e Japoatã/SE** são pequenos
 municípios rurais cuja inadequação tende a ser próxima de 100% em quase todos
 os setores — atenção para o n pequeno (29 a 47 setores).
 
-A presença de **Salto/SP** no top-5 de lixo inadequado é surpreendente para
-um município paulista — pode indicar problema de classificação categórica nas
-variáveis V00398-V00402 que merece checagem (e.g., se "caçamba de serviço de
-limpeza" foi indevidamente contabilizada como inadequada, conforme observação
-no documento `Cálculo IVS2012.docx`).
+A presença de **Salto/SP** no top-5 de lixo inadequado chama atenção para um
+município paulista. **Verificado contra o documento-fonte (18/06/2026):** não é
+erro de classificação. O IVS-BH 2012 (`docs/Cálculo IVS2012.docx`, Tabela 3 —
+categoria V037 no Censo 2010 → V00398 no Censo 2022) conta **"lixo depositado em
+caçamba de serviço de limpeza" como inadequado** — só a coleta porta-a-porta
+(V00397) é adequada. Em Salto, ~86% dos domicílios usam caçamba comunitária, daí
+a alta proporção. A inclusão da caçamba é **intencional**, por fidelidade ao
+IVS-BH 2012. *(Observação: pela definição moderna da OMS, coleta em caçamba seria
+adequada — uma eventual mudança nesse critério é uma decisão metodológica a tomar
+com a orientadora, não um bug.)*
 
 ### 6.2 Renda mediana — extremos
 
