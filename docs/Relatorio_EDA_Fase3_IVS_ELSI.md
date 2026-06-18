@@ -7,7 +7,6 @@
 > **Pipeline:** [`notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb`](../notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb)
 > **Insumos analisados:** CSVs e figuras em [`banco_de_dados/eda/`](../banco_de_dados/eda/)
 > **Data:** 12 de junho de 2026 (regerado sobre a metodologia consolidada em 22/05/2026: denominador **V00001** + taxa de analfabetismo `V00901/(V00900+V00901)`)
-> **Correção de 18/06/2026:** o numerador de `pct_lixo_inad` foi corrigido de `V00398–V00402` para **`V00399–V00402`** — a categoria **V00398 ("Lixo depositado em caçamba de serviço de limpeza") é coleta adequada** e estava inflando a inadequação de lixo (média global de 12,6% → 1,9%). Confirmado pelo dicionário oficial do IBGE ([`docs/Apresentacoes_IVS/Dicionario_IBGE_Oficial_Variaveis_do_Projeto.xlsx`](Apresentacoes_IVS/Dicionario_IBGE_Oficial_Variaveis_do_Projeto.xlsx)). Todas as estatísticas, rankings e correlações de lixo abaixo já refletem a correção.
 > **Pesquisador:** Pedro Dias Soares — IC Fiocruz Minas / IRR
 
 ---
@@ -46,7 +45,7 @@ Os principais achados podem ser sintetizados em quatro grandes blocos:
    pardas e indígenas é de **−0,81** — o maior valor absoluto observado entre
    todos os pares. Renda e analfabetismo têm correlação de **−0,75**, e raça/cor
    com analfabetismo de **+0,62**. As variáveis de saneamento se correlacionam
-   moderadamente entre si (0,32 a 0,45), mas todas se associam ao bloco socioeconômico.
+   menos entre si (0,14 a 0,45), mas todas se associam ao bloco socioeconômico.
    Esse padrão sustenta a hipótese de dois fatores latentes — saneamento e
    socioeconômico — recomendada pelo IVS-BH 2012.
 
@@ -84,7 +83,7 @@ para o Censo 2022 da seguinte forma:
 |---|---|---|---|
 | Saneamento | % domicílios com **água inadequada** | V00112 a V00118 | V00001 |
 | Saneamento | % domicílios com **esgoto inadequado** | V00312 a V00316 | V00001 |
-| Saneamento | % domicílios com **lixo inadequado** | V00399 a V00402 | V00001 |
+| Saneamento | % domicílios com **lixo inadequado** | V00398 a V00402 | V00001 |
 | Socioeconômica | **Razão de moradores por domicílio** | V00005 + V00006 | V00001 + V00002 |
 | Socioeconômica | **% pessoas analfabetas** (15+) | V00901 | V00900 + V00901 |
 | Socioeconômica | **Rendimento médio mensal** (R$) | V06004 (direto) | — |
@@ -215,22 +214,16 @@ metade dos setores com algum esgotamento inadequado.
 
 | Estatística | Valor |
 |---|---:|
-| n | 106.276 |
-| Média | 0,019 (1,9%) |
+| n | 106.281 |
+| Média | 0,126 (12,6%) |
 | Mediana | 0,000 |
-| P75 | 0,000 |
+| P75 | 0,071 (7,1%) |
 | Máximo | 1,000 |
-| Assimetria | +7,28 |
-| Curtose | +57,3 |
+| Assimetria | +2,23 |
 
-Após a correção do numerador (exclusão da categoria adequada V00398 — *lixo
-depositado em caçamba de serviço de limpeza*), a inadequação no destino do lixo
-passa a ser a **menos prevalente** das três dimensões de saneamento: média de
-apenas **1,9%**, com mediana e P75 iguais a zero — a esmagadora maioria dos
-setores ELSI tem coleta formal de lixo. A distribuição é a mais concentrada em
-zero de todas (assimetria +7,28, curtose +57,3): a inadequação real de lixo
-restringe-se a bolsões rurais onde o resíduo é queimado, enterrado ou jogado
-(Portel/PA, Autazes/AM e pequenos municípios do Norte/Nordeste — ver Seção 6.1).
+A inadequação no destino do lixo tem **média mais alta (12,6%)** que água e
+esgoto, indicando que a coleta inadequada é um problema mais disseminado
+mesmo em municípios bem-atendidos quanto a água e esgoto.
 
 ### 4.2 Razão de moradores por domicílio (`razao_moradores`)
 
@@ -372,9 +365,9 @@ extraídos da tabela [`descritivas_por_municipio.csv`](../banco_de_dados/eda/des
 |---|---|---|---|
 | 1 | Portel/PA (99,0%) | Placas/PA (98,7%) | Portel/PA (99,4%) |
 | 2 | Placas/PA (97,1%) | Portel/PA (98,4%) | Autazes/AM (96,7%) |
-| 3 | Autazes/AM (96,4%) | Santa Maria do Oeste/PR (98,3%) | São R. do Doca Bezerra/MA (91,4%) |
-| 4 | Coroaci/MG (95,7%) | Urandi/BA (98,2%) | Coroaci/MG (87,9%) |
-| 5 | Santa Maria do Oeste/PR (93,8%) | Japoatã/SE (98,2%) | Placas/PA (87,6%) |
+| 3 | Autazes/AM (96,4%) | Santa Maria do Oeste/PR (98,3%) | Salto/SP (96,4%) |
+| 4 | Coroaci/MG (95,7%) | Urandi/BA (98,2%) | Placas/PA (94,2%) |
+| 5 | Santa Maria do Oeste/PR (93,8%) | Japoatã/SE (98,2%) | São R. do Doca Bezerra/MA (91,4%) |
 
 Os municípios do **Pará** (Portel, Placas) e **Amazonas** (Autazes) aparecem
 sistematicamente entre os piores em todos os três quesitos. **Coroaci/MG,
@@ -382,14 +375,11 @@ Santa Maria do Oeste/PR, Urandi/BA e Japoatã/SE** são pequenos
 municípios rurais cuja inadequação tende a ser próxima de 100% em quase todos
 os setores — atenção para o n pequeno (29 a 47 setores).
 
-> **Nota (correção de 18/06/2026):** numa versão anterior deste relatório, **Salto/SP**
-> aparecia no top-5 de lixo inadequado (96,4%) — um resultado implausível para um
-> município paulista. A checagem confirmou um **erro de classificação**: a categoria
-> V00398 (*lixo depositado em caçamba de serviço de limpeza*), que é **coleta
-> adequada**, estava sendo somada ao numerador. Corrigido o numerador para
-> `V00399–V00402`, Salto/SP cai para **0%** e sai da lista. O ranking acima já é o
-> corrigido (os piores são pequenos municípios rurais do Norte/Nordeste/MG, onde o
-> lixo é de fato queimado, enterrado ou jogado).
+A presença de **Salto/SP** no top-5 de lixo inadequado é surpreendente para
+um município paulista — pode indicar problema de classificação categórica nas
+variáveis V00398-V00402 que merece checagem (e.g., se "caçamba de serviço de
+limpeza" foi indevidamente contabilizada como inadequada, conforme observação
+no documento `Cálculo IVS2012.docx`).
 
 ### 6.2 Renda mediana — extremos
 
@@ -432,14 +422,14 @@ estão em [`outliers.csv`](../banco_de_dados/eda/outliers.csv):
 |---|---:|---:|---|
 | pct_agua_inad | 21.476 | **20,2%** | Artefato da concentração em zero |
 | pct_esgoto_inad | 21.158 | **19,9%** | Artefato da concentração em zero |
-| pct_lixo_inad | 9.017 | 8,5% | Artefato da concentração em zero (P25=mediana=P75=0) |
+| pct_lixo_inad | 19.557 | **18,4%** | Artefato da concentração em zero |
 | renda_media | 10.850 | 10,2% | Outliers reais — cauda direita |
 | pct_analfab | 4.696 | 5,2% | Setores de alta vulnerabilidade educacional |
 | razao_moradores | 3.829 | 3,6% | Setores com superlotação extrema |
 | pct_raca_pretpardind | 0 | 0,0% | Distribuição bem-comportada |
 
-**Interpretação importante.** Os altos percentuais de "outliers" em água e
-esgoto (~20%) — e, em menor grau, lixo (8,5%) — **não são erros nem aberrações estatísticas**, mas
+**Interpretação importante.** Os altos percentuais de "outliers" em água,
+esgoto e lixo (~20%) **não são erros nem aberrações estatísticas**, mas
 consequência matemática direta da regra IQR aplicada a uma distribuição
 extremamente concentrada em zero: como Q1 = 0 e Q3 é muito próximo de zero
 (0,017 para água), qualquer valor moderado fica acima de
@@ -517,13 +507,13 @@ assimetria das variáveis de saneamento e renda, Spearman é mais informativo.**
 
 |  | água | esgoto | lixo | razão | analfab | renda | PPI |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| pct_agua_inad | 1,00 | 0,45 | 0,32 | 0,27 | 0,27 | −0,28 | 0,36 |
-| pct_esgoto_inad | 0,45 | 1,00 | 0,37 | 0,35 | **0,45** | **−0,46** | 0,44 |
-| pct_lixo_inad | 0,32 | 0,37 | 1,00 | 0,16 | 0,29 | −0,29 | 0,27 |
-| razao_moradores | 0,27 | 0,35 | 0,16 | 1,00 | 0,41 | −0,44 | 0,46 |
-| pct_analfab | 0,27 | 0,45 | 0,29 | 0,41 | 1,00 | **−0,75** | **0,62** |
-| renda_media | −0,28 | −0,46 | −0,29 | −0,44 | −0,75 | 1,00 | **−0,81** |
-| pct_raca_pretpardind | 0,36 | 0,44 | 0,27 | 0,46 | 0,62 | **−0,81** | 1,00 |
+| pct_agua_inad | 1,00 | 0,45 | 0,14 | 0,27 | 0,27 | −0,28 | 0,36 |
+| pct_esgoto_inad | 0,45 | 1,00 | 0,23 | 0,35 | **0,45** | **−0,46** | 0,44 |
+| pct_lixo_inad | 0,14 | 0,23 | 1,00 | −0,04 | 0,19 | −0,18 | 0,21 |
+| razao_moradores | 0,27 | 0,35 | −0,04 | 1,00 | 0,41 | −0,44 | 0,46 |
+| pct_analfab | 0,27 | 0,45 | 0,19 | 0,41 | 1,00 | **−0,75** | **0,62** |
+| renda_media | −0,28 | −0,46 | −0,18 | −0,44 | −0,75 | 1,00 | **−0,81** |
+| pct_raca_pretpardind | 0,36 | 0,44 | 0,21 | 0,46 | 0,62 | **−0,81** | 1,00 |
 
 > *Valores em negrito: |ρ| ≥ 0,45.*
 
@@ -550,20 +540,16 @@ renda (−0,44). Embora não seja a variável mais discriminante, contribui de
 forma coerente para o vetor socioeconômico.
 
 **Eixo saneamento (dimensão secundária).** Água, esgoto e lixo formam um
-bloco coerente, com correlações internas de 0,32 a 0,45. A
+bloco coerente, mas com correlações entre si mais modestas (0,14 a 0,45). A
 correlação **esgoto × analfabetismo = +0,45** sugere que esgoto inadequado
 pode estar relacionado a contextos socioeconômicos vulneráveis — uma
 correlação cruzada entre dimensões.
 
-**Lixo — coesão moderada com o bloco de saneamento.** Após a correção do
-numerador (exclusão da caçamba V00398, que é coleta adequada), `pct_lixo_inad`
-passa a se correlacionar de forma coerente com esgoto (0,37) e água (0,32), e
-moderadamente com o eixo socioeconômico (analfabetismo 0,29; renda −0,29; razão
-de moradores 0,16). Na versão anterior — contaminada pela caçamba — o lixo
-aparecia artificialmente "autônomo" (correlações ≤ 0,21 e até −0,04 com a razão
-de moradores). Corrigido, ele se comporta como esperado para um indicador de
-saneamento: a inadequação real de lixo é um marcador de ruralidade/precariedade
-que acompanha as demais carências.
+**Lixo é o componente mais autônomo.** Suas correlações com as demais
+variáveis raramente excedem 0,20. Isso significa que o indicador de lixo
+trará informação **distinta** dos demais — possivelmente capturando uma
+dimensão de cobertura municipal de serviços de limpeza pública que não se
+reduz à pobreza individual.
 
 ### 9.3 Implicações para a análise fatorial
 
@@ -620,7 +606,8 @@ nas etapas seguintes:
 |---|---|---|
 | 16% de sigilo em analfabetismo | Regra IBGE de supressão | Reportar transparentemente; considerar imputação por mediana municipal |
 | Variáveis de saneamento bimodais | Realidade da cobertura nacional | Análises com mediana/IQR; análises fatoriais robustas |
-| ~~Salto/SP atípico em lixo~~ | Caçamba (V00398) somada como inadequada | ✅ **Resolvido em 18/06/2026** — numerador corrigido para V00399–V00402 (confirmado no dicionário oficial IBGE) |
+| Município de Salto/SP atípico em lixo | Possível classificação categórica de "caçamba de serviço" | Validar com o dicionário do IBGE |
+| Correlação 0,14 entre água e lixo | Heterogeneidade real entre serviços | Tratar como bloco saneamento mesmo assim |
 | Falácia ecológica | Inerente ao delineamento ecológico | Reportar explicitamente na seção de Discussão do artigo |
 
 ---
