@@ -96,7 +96,7 @@
 |---|---|---|---|
 | % água inadequada | `V00112` … `V00118` | `V00001` | ✅ Denominador padrão IVS-BH 2012 (Dom. Particulares Permanentes Ocupados). |
 | % esgoto inadequado | `V00312` … `V00316` | `V00001` | 🟡 **Pendência** — numerador a confirmar: aba "De_Para" → V00312–V00316; aba "Mapa_de_Arquivos" → V00249–V00253. O denominador (V00001) está consolidado. |
-| % lixo inadequado | `V00398` … `V00402` | `V00001` | ✅ Consistente. |
+| % lixo inadequado | `V00398` … `V00402` | `V00001` | ✅ Fiel ao IVS-BH 2012 (Tabela 3 do `Cálculo IVS2012.docx`): inclui a caçamba (V00398 ≙ V037/2010) como inadequada; só a coleta porta-a-porta (V00397) é adequada. Confirmado no dicionário oficial IBGE em 18/06/2026. |
 | Razão de moradores | `V00005 + V00006` | `V00001 + V00002` | ✅ Reproduz o V0005 do IBGE. |
 | % analfabetismo (15+) | `V00901` | `V00900 + V00901` | ✅ Total de pessoas com 15+ anos. |
 | Rendimento médio | `V06004` (uso direto, sem denominador) | — | ⚠️ Ainda **bruto**; normalização por município pendente. |
