@@ -11,6 +11,7 @@ banco_de_dados/~*
 # diagnostico de esgoto (uma linha por setor, ~4 MB).
 banco_de_dados/**/Base_*.csv
 banco_de_dados/**/diagnostico_esgoto_*.csv
+banco_de_dados/**/*_por_setor.csv
 
 dados/*.csv
 dados/output/*.csv
