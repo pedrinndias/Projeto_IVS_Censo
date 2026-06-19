@@ -113,7 +113,7 @@ vulnerabilidade" (a renda é invertida).
 | Componente | IVS 2012 (Censo 2010) | Censo 2022 | Denominador (Relatório) |
 |---|---|---|---|
 | Água inadequada | V013–V015 | V00112 a V00118 (7 var.) | V00001 |
-| Esgoto inadequado | V019–V028 | ⚠️ **V00312–V00316** ou **V00249–V00253** | V00001 |
+| Esgoto inadequado | V019–V028 | **V00312–V00316** ✅ (confirmado no dicionário oficial) | V00001 |
 | Lixo inadequado | V037–V042 | V00398 a V00402 (5 var.) | V00001 |
 | Analfabetismo (15+) | V068–V134 | V00901 / (V00900 + V00901) | V00900 + V00901 (pop. 15+) |
 | Densidade habitacional | Pop. / dom. ocupados | (V00005 + V00006) / (V00001 + V00002) *(reproduz o V0005 do IBGE)* | V00001 + V00002 |
@@ -220,7 +220,7 @@ Projeto_IVS_Censo22/
 │   ├── banco_de_dados/                CSVs intermediários antigos
 │   └── DIAGNOSTICO_COMPLETO_PROJETO.md
 │
-└── tests/                             (vazia — testes futuros)
+└── tests/                             test_pipeline_fase3.py (16 testes sanity-check)
 ```
 
 ### Os 8 arquivos-fonte do Censo 2022
@@ -230,7 +230,7 @@ Projeto_IVS_Censo22/
 | `..._basico_BR_20250417.csv` | Identificação + população | `CD_SETOR`, `NM_MUN`, `v0001`, `v0005` |
 | `..._caracteristicas_domicilio1_BR.csv` | Denominador habitacional | `V00001`, `V00002`, `V00005`, `V00006` |
 | `..._caracteristicas_domicilio2_BR_20250417.csv` | Saneamento | Água, esgoto, lixo, banheiro |
-| `..._alfabetizacao_BR.csv` | Educação | `V00900` (pop. 15+), `V00901` (analfabetos) |
+| `..._alfabetizacao_BR.csv` | Educação | `V00900` (alfabetizados 15+ — *sabe ler/escrever*), `V00901` (analfabetos 15+). Total 15+ = V00900 + V00901 |
 | `..._cor_ou_raca_BR.csv` | Vulnerabilidade social | `V01318`, `V01320`, `V01321` |
 | `..._renda_responsavel_BR.csv` | Renda | `V06004` (rendimento médio mensal) |
 | `..._demografia_BR.csv` | Sobrecarga infantil (Fase 2) | `V01031`–`V01033` (pop. 0–14) |
@@ -249,7 +249,7 @@ Projeto_IVS_Censo22/
 | Fase 3 — Notebook 01 (extração + filtro ELSI) | ✅ [`notebooks/Fase3_EDA_ELSI/01_Extracao_Filtragem_ELSI.ipynb`](notebooks/Fase3_EDA_ELSI/01_Extracao_Filtragem_ELSI.ipynb) |
 | Fase 3 — Notebook 02 (análises descritivas) | ✅ [`notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb`](notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb) — implementado |
 | Normalização de renda por município | 🔴 Pendente |
-| Validação das variáveis de esgoto | 🔴 Pendente |
+| Validação das variáveis de esgoto | ✅ Concluída — V00312–V00316 confirmado no dicionário oficial do IBGE |
 | Análise fatorial / pesos / cálculo do IVS final | 🔴 Pendente |
 | Categorização em 4 faixas de risco | 🔴 Pendente |
 | Mapas temáticos (QGIS) | 🔴 Pendente |
@@ -267,12 +267,12 @@ Detalhamento completo em [`Backup/DIAGNOSTICO_COMPLETO_PROJETO.md`](Backup/DIAGN
 | # | Problema | Gravidade |
 |---|---|---|
 | **0** | ~~**Ausência do filtro ELSI-Brasil**~~ — **resolvido na Fase 3**: `notebooks/Fase3_EDA_ELSI/01` filtra os 70 municípios ELSI (109.032 setores) antes de qualquer cálculo. | ✅ Resolvido |
-| **1** | **Variáveis de esgoto inconsistentes** — o próprio Relatório Metodológico diverge: aba "De_Para" indica V00312–V00316; aba "Mapa_de_Arquivos" indica V00249–V00253. Os notebooks usam V00312–V00316. Precisa ser resolvido com o dicionário oficial do IBGE. | 🔴 Crítico |
+| **1** | ~~**Variáveis de esgoto inconsistentes**~~ — **resolvido**: o dicionário oficial do IBGE (`dados/dicionario_de_dados_agregados_por_setores_censitarios_20260520.xlsx` e o recorte em `docs/Apresentacoes_IVS/Dicionario_IBGE_Oficial_Variaveis_do_Projeto.xlsx`) confirma que **V00312–V00316** é o bloco de esgoto inadequado (fossa rudimentar, vala, rio/lago/mar, outra forma, inexistente). V00309–V00311 são adequadas (rede geral, fossa séptica). Os notebooks já usam V00312–V00316; o diagnóstico empírico está na célula `step4b` do Notebook 02. | ✅ Resolvido |
 | **2** | **Normalização de renda global** — usa min/max de todos os setores do Brasil; deveria ser por município para capturar desigualdade intraurbana. | 🔴 Crítico |
 | **3** | ~~Denominadores divergentes~~ — **resolvido em 22/05/2026**: consolidado **V00001** (Dom. Particulares Permanentes Ocupados) como denominador domiciliar, padrão do IVS-BH 2012. O **V01042 foi descartado** (é contagem de pessoas, não de domicílios). Decisão empiricamente validada: com V00001 nenhuma proporção de saneamento estoura 1,0. | ✅ Resolvido |
 | **4** | ~~Duas pipelines paralelas~~ — **resolvido**: a Fase 3 é a oficial; as Fases 1 e 2 foram arquivadas em `Backup/` como histórico. | ✅ Resolvido |
 | **5** | **~8 GB de dados duplicados/obsoletos** espalhados pelo projeto. | 🟡 Organizacional |
-| **6** | **README/docs parcialmente desatualizados** em relação ao código — os relatórios em `docs/` (EDA e Integridade) ainda trazem números da metodologia V01042 e precisam ser **regerados** a partir dos CSVs atuais. | 🟡 Documentação |
+| **6** | ~~README/docs parcialmente desatualizados~~ — **resolvido**: `docs/Relatorio_EDA_Fase3_IVS_ELSI.md` foi regerado em 12/06/2026 sobre a metodologia V00001 e está consistente com os CSVs atuais; `Relatorio_Integridade_Projeto.md` revisado na mesma data. | ✅ Resolvido |
 | **7** | ~~requirements.txt incorreto~~ — **resolvido**: lista `pandas`, `numpy`, `matplotlib`, `openpyxl`, `xlsxwriter`; sem módulos built-in. | ✅ Resolvido |
 | **8** | **Código duplicado nos notebooks** — função `ler_csv_padronizado` definida duas vezes na Fase 2; auditoria duplicada na Fase 1. | 🟢 Menor |
 
@@ -290,7 +290,7 @@ Ordem sugerida de ataque ao reentrar no projeto:
 - [x] Reprocessar a pipeline apenas com os setores dos 70 municípios.
 
 ### Prioridade 1 — Validação metodológica (em paralelo)
-- [ ] Resolver a inconsistência das variáveis de esgoto consultando o dicionário do IBGE.
+- [x] Resolver a inconsistência das variáveis de esgoto consultando o dicionário do IBGE — **V00312–V00316 confirmado** (dicionário oficial versionado).
 - [x] Decidir e **documentar** o denominador de saneamento — **V00001** consolidado em 22/05/2026.
 - [ ] Mudar a normalização de renda para **por município** (Notebook 03).
 - [x] Validar a razão de moradores `(V00005+V00006)/(V00001+V00002)` — reproduz o V0005 do IBGE.
