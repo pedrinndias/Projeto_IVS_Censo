@@ -16,17 +16,17 @@
 | Item | Ação | Resultado |
 |---|---|---|
 | C1 — Clipping silencioso | Diagnóstico adicionado **antes** do clipping no Notebook 02 (célula `step4`); exporta [`diagnostico_proporcoes_fora_intervalo.csv`](../banco_de_dados/eda/diagnostico_proporcoes_fora_intervalo.csv) | ✅ Resolvido. **Achado (pós-revisão V00001):** com o denominador V00001 e a taxa de analfabetismo `V00901 / (V00900 + V00901)`, **nenhuma** proporção ultrapassa 1,0 (0 setores em todas as variáveis). Os 10 setores `pct_analfab > 1` que existiam eram artefato da fórmula antiga `V00901 / V00900`. |
-| C2 — Variáveis de esgoto | Célula `step4b` adicionada com comparação empírica V00249–V00253 vs V00312–V00316; exporta [`diagnostico_esgoto_312_vs_249.csv`](../banco_de_dados/eda/diagnostico_esgoto_312_vs_249.csv) | 🟡 Diagnóstico pronto. **Decisão final depende da orientadora** após análise do CSV exportado. |
+| C2 — Variáveis de esgoto | Célula `step4b` adicionada com comparação empírica V00249–V00253 vs V00312–V00316; exporta [`diagnostico_esgoto_312_vs_249.csv`](../banco_de_dados/eda/diagnostico_esgoto_312_vs_249.csv) | ✅ **Resolvido.** O dicionário oficial do IBGE (versionado em `dados/` e no recorte de `docs/Apresentacoes_IVS/`) confirma **V00312–V00316** como esgoto inadequado (fossa rudimentar, vala, rio/lago/mar, outra forma, inexistente); V00309–V00311 são adequadas. Bloco V00312–V00316 mantido. |
 | C3 — README desatualizado | Reescrito para refletir Fase 3 ativa, **V00001 como denominador**, status real das etapas | ✅ Resolvido. |
 | R4 — Extremos de razão de moradores | Diagnóstico no Notebook 02 (célula `step4`); exporta [`extremos_razao_moradores.csv`](../banco_de_dados/eda/extremos_razao_moradores.csv) | ✅ **Achados (pós-revisão V00001):** com o denominador `(V00001 + V00002)` o mínimo passou a **1,00** — o setor de Brasília com razão 0,17 era artefato do V01042 e deixou de existir. Persiste o máximo de 8,79 em Portel/PA (verificar população coletiva). |
 | R5 — Regra COLETIVO | Regra ancorada em **`V00001 == 0` com `v0001 > 0`** (toda a população em domicílios coletivos) | ✅ Resolvido. **Achado:** 0 setores COLETIVO dentro dos 70 municípios ELSI (os candidatos caem em SIGILOSO, com `V00001` sigiloso). |
 | R6 — IQR não informativa | Adicionadas colunas `p95`, `n_acima_p95`, `pct_acima_p95`, `iqr_nao_informativo` em [`outliers.csv`](../banco_de_dados/eda/outliers.csv) | ✅ Resolvido. **Confirma:** água/esgoto/lixo flagrados como IQR não-informativo. |
-| Testes sanity | Criado [`tests/test_pipeline_fase3.py`](../tests/test_pipeline_fase3.py) (16 testes) | ✅ 15 passam, 1 skipped (esperado). |
+| Testes sanity | Criado [`tests/test_pipeline_fase3.py`](../tests/test_pipeline_fase3.py) (16 testes) | ✅ 16 passam quando a base bruta foi gerada localmente; se a base (~17 MB, não versionada) estiver ausente, 15 passam + 1 skipped (esperado). |
 
 **Pendências carregadas para a próxima fase (Notebook 03+):**
 - R2 — Normalização de renda por município.
 - R3 — Política de tratamento de sigilo variável a variável para o cálculo do IVS final.
-- C2 — Decisão metodológica sobre faixa de esgoto (V00249–V00253 vs V00312–V00316), após análise do diagnóstico com a orientadora.
+- ~~C2 — Decisão metodológica sobre faixa de esgoto~~ — **resolvido**: V00312–V00316 confirmado no dicionário oficial do IBGE.
 
 ---
 
@@ -38,7 +38,7 @@
 |---|---|---|
 | Pipeline Fase 3 — Notebook 01 (Extração + Filtro ELSI) | 🟢 **Aprovado** | Filtro funciona, 70/70 municípios localizados, 109.032 setores extraídos, auditoria interna passa. |
 | Pipeline Fase 3 — Notebook 02 (EDA) | 🟢 **Aprovado com ressalvas** | Cálculos consistentes com `Cálculo IVS2012.docx`; 6 ressalvas metodológicas a documentar. |
-| Variáveis vs. dicionário IBGE | 🟡 **Pendência herdada** | Esgoto (V00312–V00316 vs V00249–V00253) não foi confrontado ainda com o dicionário oficial. |
+| Variáveis vs. dicionário IBGE | 🟢 **Conferido** | Esgoto (V00312–V00316), água (V00112–V00118), lixo (V00398–V00402), analfabetismo (V00900/V00901) e demais confrontados com o dicionário oficial do IBGE versionado. |
 | Outputs (CSVs + figuras) | 🟢 **Aprovado** | 8 artefatos esperados presentes, contagens batem (70 municípios × 7 vars = 490 linhas). |
 | Documentação | 🟢 **Sincronizada** | `README.md`, `GUIA_DO_PROJETO.md` e `estrutura_projeto.md` alinhados à metodologia V00001 (revisão de 22/05). |
 | Dependências (`requirements.txt`) | 🟢 **Adequado** | Cobre o uso real (`pandas`, `numpy`, `matplotlib`, `openpyxl`, `xlsxwriter`). |
