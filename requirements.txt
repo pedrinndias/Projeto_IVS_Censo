@@ -1,8 +1,15 @@
 # Dependências do Projeto IVS — Censo 2022
 # Instalar com: pip install -r requirements.txt
+#
+# Versões mínimas fixadas em 19/06/2026. Notas de compatibilidade:
+#  - pandas >= 2.2: o Notebook 02 usa groupby().apply(..., include_groups=False).
+#  - matplotlib >= 3.9: o Notebook 02 usa boxplot(..., tick_labels=...) (antes era 'labels').
 
-pandas
-numpy
-openpyxl
-xlsxwriter
-matplotlib
+pandas>=2.2
+numpy>=1.26
+matplotlib>=3.9
+openpyxl>=3.1
+xlsxwriter>=3.2
+
+# Testes (tests/test_pipeline_fase3.py)
+pytest>=8.0
