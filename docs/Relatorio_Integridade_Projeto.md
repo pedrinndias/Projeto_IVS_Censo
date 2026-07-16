@@ -44,7 +44,7 @@
 | Dependências (`requirements.txt`) | 🟢 **Adequado** | Cobre o uso real (`pandas`, `numpy`, `matplotlib`, `openpyxl`, `xlsxwriter`). |
 | Bloqueante para o IVS final | 🔴 **Análise fatorial + categorização pendentes** | EDA entrega base para a próxima etapa, mas índice ainda não calculado. |
 
-**Veredito geral para apresentação:** a EDA da Fase 3 é tecnicamente sólida e reprodutível; o caminho até o IVS está bem delineado. Após a revisão de 22/05 (denominador V00001), restam 2 pendências metodológicas antes da análise fatorial (validação da faixa de esgoto e normalização de renda por município).
+**Veredito geral para apresentação:** a EDA da Fase 3 é tecnicamente sólida e reprodutível; o caminho até o IVS está bem delineado. Após a revisão de 22/05 (denominador V00001) e a confirmação da faixa de esgoto (V00312–V00316) no dicionário oficial do IBGE, resta 1 pendência metodológica antes da análise fatorial: a normalização de renda por município.
 
 ---
 
@@ -95,7 +95,7 @@
 | Componente IVS | Variáveis no notebook | Denominador | Conformidade |
 |---|---|---|---|
 | % água inadequada | `V00112` … `V00118` | `V00001` | ✅ Denominador padrão IVS-BH 2012 (Dom. Particulares Permanentes Ocupados). |
-| % esgoto inadequado | `V00312` … `V00316` | `V00001` | 🟡 **Pendência** — numerador a confirmar: aba "De_Para" → V00312–V00316; aba "Mapa_de_Arquivos" → V00249–V00253. O denominador (V00001) está consolidado. |
+| % esgoto inadequado | `V00312` … `V00316` | `V00001` | ✅ **Resolvido** — o dicionário oficial do IBGE (versionado em `dados/`) confirma V00312–V00316 como esgoto inadequado; V00249–V00253 é tipologia de habitação. O denominador (V00001) está consolidado. |
 | % lixo inadequado | `V00398` … `V00402` | `V00001` | ✅ Fiel ao IVS-BH 2012 (Tabela 3 do `Cálculo IVS2012.docx`): inclui a caçamba (V00398 ≙ V037/2010) como inadequada; só a coleta porta-a-porta (V00397) é adequada. Confirmado no dicionário oficial IBGE em 18/06/2026. |
 | Razão de moradores | `V00005 + V00006` | `V00001 + V00002` | ✅ Reproduz o V0005 do IBGE. |
 | % analfabetismo (15+) | `V00901` | `V00900 + V00901` | ✅ Total de pessoas com 15+ anos. |
@@ -167,9 +167,9 @@ As colunas-chave têm grafias diferentes entre os 8 CSVs do IBGE (`CD_SETOR`, `C
   antiga `V00901 / V00900`. Com `V00901 / (V00900 + V00901)` a taxa fica limitada a [0, 1] e o
   clipping passou a ser apenas uma salvaguarda inócua.
 
-**C2. Variáveis de esgoto não validadas contra o dicionário oficial do IBGE**
-- A escolha `V00312`–`V00316` foi herdada da Fase 2. O Relatório Metodológico tinha duas abas com codificação diferente (V00312–V00316 vs V00249–V00253). A Fase 3 não reabriu essa decisão.
-- **Ação recomendada:** abrir `docs/dicionario_de_dados_agregados_por_setores_censitarios_20250417.xlsx` (presente em `dados/processed/` ou `docs/`), localizar a definição das duas faixas, e confirmar **antes** da análise fatorial. Esta variável carrega 0,45 (Pearson) com `pct_agua_inad` — alterar o intervalo muda o resultado do fator.
+**C2. Variáveis de esgoto validadas contra o dicionário oficial do IBGE — resolvido** ✅
+- A escolha `V00312`–`V00316` foi herdada da Fase 2. O Relatório Metodológico tinha duas abas com codificação diferente (V00312–V00316 vs V00249–V00253), e a Fase 3 inicialmente não havia reaberto essa decisão.
+- **Resolução:** o dicionário oficial do IBGE (`dados/dicionario_de_dados_agregados_por_setores_censitarios_20260520.xlsx`, recorte em `docs/Apresentacoes_IVS/Dicionario_IBGE_Oficial_Variaveis_do_Projeto.xlsx`) confirma **V00312–V00316** como o bloco de esgoto inadequado (fossa rudimentar, vala, rio/lago/mar, outra forma, inexistente); V00249–V00253 é tipologia de habitação. O diagnóstico empírico da célula `step4b` do Notebook 02 corrobora.
 
 **C3. Documentação sincronizada** ✅
 - `README.md`, `GUIA_DO_PROJETO.md` e `estrutura_projeto.md` foram alinhados à metodologia
@@ -212,7 +212,7 @@ As colunas-chave têm grafias diferentes entre os 8 CSVs do IBGE (`CD_SETOR`, `C
 - **M1.** `requirements.txt` está adequado para a Fase 3 (não falta nada). Os módulos built-in citados como problema no GUIA (`sqlite3`, `os`) já foram removidos.
 - **M2.** Saídas CSV usam `utf-8-sig` (BOM) — bom para Excel; verificar se o QGIS lê corretamente quando importar shapefiles cruzados com esses CSVs (preferir sem BOM se houver problemas).
 - **M3.** `Backup/Fase2_IVS_Multidimensional/` ainda contém legados que duplicam ~200 MB em `Backup/banco_de_dados/`. Não impacta a Fase 3, mas justifica limpeza futura.
-- **M4.** Nenhum teste unitário (`tests/` vazio). Aceitável para escopo de IC, mas valeria adicionar 1–2 testes sanity-check para regressão (ex.: "70 municípios encontrados", "n_OK = 106.281").
+- **M4.** ~~Nenhum teste unitário (`tests/` vazio)~~ — **resolvido**: [`tests/test_pipeline_fase3.py`](../tests/test_pipeline_fase3.py) traz 16 testes sanity-check dos artefatos (incluindo "70 municípios encontrados" e as contagens de setores); ver item "Testes sanity" na tabela do §0.
 
 ---
 
@@ -233,7 +233,7 @@ As colunas-chave têm grafias diferentes entre os 8 CSVs do IBGE (`CD_SETOR`, `C
 
 Em ordem cronológica (alinhada com o GUIA_DO_PROJETO):
 
-1. **Resolver C2** — confrontar V00312–V00316 com o dicionário oficial do IBGE (`.xlsx`/`.ods`). Se confirmar, encerrar a pendência no GUIA.
+1. ~~Resolver C2~~ ✅ — **V00312–V00316 confirmado** no dicionário oficial do IBGE (versionado em `dados/`); pendência encerrada no GUIA.
 2. ~~Resolver C1~~ ✅ — com V00001 + taxa de analfabetismo corrigida, nenhuma proporção excede 1 (clipping é salvaguarda inócua).
 3. **R5 (COLETIVO)** — confirmar com a orientadora que nenhum setor 100% coletivo entra como `OK` indevidamente.
 4. ~~Atualizar README~~ ✅ — README, GUIA e estrutura_projeto sincronizados com a metodologia V00001.

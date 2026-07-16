@@ -20,7 +20,7 @@ A pipeline ativa é a **Fase 3 (`notebooks/Fase3_EDA_ELSI/`)**, que aplica o fil
 | Lista oficial dos 70 municípios ELSI-Brasil ([`dados/municipios_elsi_brasil.csv`](dados/municipios_elsi_brasil.csv)) | ✅ Concluída |
 | Fase 3 — Notebook 01 (extração + filtro ELSI) | ✅ Concluída |
 | Fase 3 — Notebook 02 (análises descritivas / EDA) | ✅ Concluída |
-| Validação das variáveis de esgoto (V00249–V00253 vs V00312–V00316) | 🟡 Diagnóstico empírico no Notebook 02 (célula `step4b`); decisão final pendente |
+| Validação das variáveis de esgoto | ✅ Concluída — **V00312–V00316** confirmado no dicionário oficial do IBGE (V00249–V00253 é tipologia de habitação) |
 | Normalização de renda por município | 🔴 Pendente (a fazer no Notebook 03) |
 | Análise fatorial / ACP — definição dos pesos | 🔴 Pendente (Notebook 04) |
 | Cálculo do IVS final + categorização em 4 faixas | 🔴 Pendente (Notebook 05) |
@@ -97,7 +97,7 @@ Projeto_IVS_Censo22/
 │   ├── Plano_Artigo_Cientifico_IC_Preenchido.docx
 │   ├── Plano de trabalho.pdf
 │   ├── Relatorio_EDA_Fase3_IVS_ELSI.{md,docx}
-│   ├── Apresentacao_EDA_Fase3_IVS_ELSI.pptx
+│   ├── Apresentacoes_IVS/                  Decks .pptx da EDA + dicionários de variáveis
 │   └── Relatorio_Integridade_Projeto.md    Diagnóstico técnico mais recente
 │
 ├── Backup/                            Legados — Fases 1 e 2, scripts antigos
@@ -115,7 +115,7 @@ Lista resumida — detalhamento técnico em [`docs/Relatorio_Integridade_Projeto
 
 | # | Problema | Gravidade |
 |---|---|---|
-| 1 | **Variáveis de esgoto** — V00312–V00316 vs V00249–V00253. O Notebook 02 inclui um diagnóstico empírico (célula `step4b`) e exporta `diagnostico_esgoto_312_vs_249.csv` para subsidiar a decisão final. | 🟡 Pendente |
+| 1 | ~~**Variáveis de esgoto**~~ — o dicionário oficial do IBGE (versionado em `dados/`) confirma **V00312–V00316** como esgoto inadequado; V00249–V00253 é tipologia de habitação. O diagnóstico empírico (célula `step4b` do Notebook 02, `diagnostico_esgoto_312_vs_249.csv`) corrobora. | ✅ Resolvido |
 | 2 | **Normalização de renda global** — usa min/max global; será trocada para por município no Notebook 03 (a criar). | 🟡 Pendente (próxima fase) |
 | 3 | ~~**Ausência do filtro ELSI**~~ | ✅ Resolvido (Fase 3) |
 | 4 | ~~**Denominadores divergentes**~~ — consolidado **V00001** (Dom. Particulares Permanentes Ocupados) na revisão de 22/05/2026; `V01042` descartado (é contagem de pessoas, não de domicílios). | ✅ Resolvido |
@@ -155,7 +155,7 @@ notebooks/Fase3_EDA_ELSI/  →  01 → 02
 ```
 
 - **Notebook 01:** extrai e filtra → produz `banco_de_dados/Base_ELSI_Bruta_Censo2022.csv` (109.032 setores × 47 colunas, ~17 MB).
-- **Notebook 02:** EDA completa → produz 11 CSVs e 4 figuras em `banco_de_dados/eda/`.
+- **Notebook 02:** EDA completa → produz as tabelas-resumo (CSVs) e 4 figuras em `banco_de_dados/eda/` — a procedência arquivo a arquivo está em [`banco_de_dados/eda/README.md`](banco_de_dados/eda/README.md).
 
 > A execução completa consome bastante RAM e tempo (~2.4 GB de CSVs brutos). Os notebooks leem apenas as colunas necessárias e processam os arquivos maiores em chunks.
 

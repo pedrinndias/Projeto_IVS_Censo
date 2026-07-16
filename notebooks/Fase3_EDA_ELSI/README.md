@@ -9,7 +9,7 @@ Brasil inteiro).
 | # | Notebook | O que faz |
 |---|---|---|
 | 01 | [`01_Extracao_Filtragem_ELSI.ipynb`](01_Extracao_Filtragem_ELSI.ipynb) | Lê os 8 CSVs do Censo 2022, cruza com `dados/municipios_elsi_brasil.csv`, filtra apenas os setores dos 70 municípios e exporta `banco_de_dados/Base_ELSI_Bruta_Censo2022.csv`. |
-| 02 | [`02_Analises_Descritivas.ipynb`](02_Analises_Descritivas.ipynb) | EDA da base filtrada — descritivas por município, distribuições, correlações, missingness. **Em construção.** |
+| 02 | [`02_Analises_Descritivas.ipynb`](02_Analises_Descritivas.ipynb) | EDA completa da base filtrada — tipagem e sigilo, elegibilidade (`Dados_sig`), cálculo das 7 proporções (denominador V00001), descritivas globais/por município/por região, variáveis complementares (habitação precária, banheiro, chefia feminina, estrutura etária), histogramas, boxplots, outliers (IQR), missing e correlações (Pearson + Spearman). Exporta os CSVs e figuras de `banco_de_dados/eda/`. |
 
 ## Como usar
 
@@ -34,4 +34,4 @@ lista ELSI ou os dados-fonte forem atualizados).
 | Escopo | Brasil inteiro (~468 mil setores) | 70 municípios ELSI |
 | Filtro de município | Inexistente | `dados/municipios_elsi_brasil.csv` |
 | Foco | Cálculo dos indicadores compostos | EDA + futura análise fatorial |
-| Cálculo do IVS | Calcula 7 indicadores 0–1 | Por enquanto só extrai/filtra |
+| Cálculo do IVS | Calcula 7 indicadores 0–1 | Calcula as 7 proporções brutas na EDA; índice final pendente (fatorial, Notebooks 03+) |
