@@ -1,0 +1,142 @@
+{
+  ".vscode/settings.json": {
+    "mtime": 1772837910.4788134,
+    "ast_hash": "fdb8e89c302d988c6d9658561072914e",
+    "semantic_hash": "fdb8e89c302d988c6d9658561072914e"
+  },
+  "Backup/ETL/mapeamento_variaveis.py": {
+    "mtime": 1773225521.2547226,
+    "ast_hash": "1bc2f763f03649d04528bb3ce7122262",
+    "semantic_hash": "1bc2f763f03649d04528bb3ce7122262"
+  },
+  "Backup/formatar/busca3.py": {
+    "mtime": 1773228783.6837573,
+    "ast_hash": "8162c303e12bd67bced3eb9f3659c0c2",
+    "semantic_hash": "8162c303e12bd67bced3eb9f3659c0c2"
+  },
+  "Backup/formatar/formatar3.py": {
+    "mtime": 1773226207.3661795,
+    "ast_hash": "41e5514f5e33d448e6e44b170bd7ed93",
+    "semantic_hash": "41e5514f5e33d448e6e44b170bd7ed93"
+  },
+  "tests/test_pipeline_fase3.py": {
+    "mtime": 1781891712.4637358,
+    "ast_hash": "a09ce36ef67fc69fb2f11ab324edc80a",
+    "semantic_hash": "a09ce36ef67fc69fb2f11ab324edc80a"
+  },
+  "Backup/DIAGNOSTICO_COMPLETO_PROJETO.md": {
+    "mtime": 1778111920.8694525,
+    "ast_hash": "7a8eab93190e193decf83db4dd6a54e0",
+    "semantic_hash": "7a8eab93190e193decf83db4dd6a54e0"
+  },
+  "GUIA_DO_PROJETO.md": {
+    "mtime": 1781889685.8942351,
+    "ast_hash": "ccd55cc139e5a9525bd4249da955226e",
+    "semantic_hash": "ccd55cc139e5a9525bd4249da955226e"
+  },
+  "README.md": {
+    "mtime": 1783367106.232422,
+    "ast_hash": "24e7afc15acada3b19c5d26c4dcae82a",
+    "semantic_hash": "24e7afc15acada3b19c5d26c4dcae82a"
+  },
+  "banco_de_dados/eda/README.md": {
+    "mtime": 1781892103.0453448,
+    "ast_hash": "203ea4bee60d07d34a949b37900deee6",
+    "semantic_hash": "203ea4bee60d07d34a949b37900deee6"
+  },
+  "banco_de_dados/entrega_orientadora/README.md": {
+    "mtime": 1779705830.0674882,
+    "ast_hash": "4007f9085c4dc5f1cf933b2bf4c664fb",
+    "semantic_hash": "4007f9085c4dc5f1cf933b2bf4c664fb"
+  },
+  "docs/Relatorio_EDA_Fase3_IVS_ELSI.md": {
+    "mtime": 1781783883.0080924,
+    "ast_hash": "98cc8114b7ad3eab68e84ef7a92bc9f6",
+    "semantic_hash": "98cc8114b7ad3eab68e84ef7a92bc9f6"
+  },
+  "docs/Relatorio_Integridade_Projeto.md": {
+    "mtime": 1783367147.6944754,
+    "ast_hash": "799eb4a11427da469036934e033938c9",
+    "semantic_hash": "799eb4a11427da469036934e033938c9"
+  },
+  "estrutura_projeto.md": {
+    "mtime": 1783367190.7615807,
+    "ast_hash": "6248bcf734c65abf4e1f57b4236ea445",
+    "semantic_hash": "6248bcf734c65abf4e1f57b4236ea445"
+  },
+  "graphify-out/converted/C\u00e1lculo IVS2012_aef91822.md": {
+    "mtime": 1783467033.9755857,
+    "ast_hash": "caad787c2b5d379543e59e0a1527e334",
+    "semantic_hash": "caad787c2b5d379543e59e0a1527e334"
+  },
+  "graphify-out/converted/Estudo Longitudinal da Sa\u00fade dos Idosos Brasileiros_dee0030f.md": {
+    "mtime": 1783467034.2972007,
+    "ast_hash": "7095653f302f1f691c536e5f7c7c1cd0",
+    "semantic_hash": "7095653f302f1f691c536e5f7c7c1cd0"
+  },
+  "graphify-out/converted/Plano_Artigo_Cientifico_IC_Preenchido_2eadaab4.md": {
+    "mtime": 1783467035.9045002,
+    "ast_hash": "3526e590ab2a2340122b2f8323b472b0",
+    "semantic_hash": "3526e590ab2a2340122b2f8323b472b0"
+  },
+  "graphify-out/converted/Relatorio_EDA_Fase3_IVS_ELSI_129c9f1c.md": {
+    "mtime": 1783467036.5544739,
+    "ast_hash": "8fb0594ed28673c7c17f00527b575097",
+    "semantic_hash": "8fb0594ed28673c7c17f00527b575097"
+  },
+  "graphify-out/converted/dicionario_de_dados_agregados_por_setores_censitarios_20260520_af2e7b80.md": {
+    "mtime": 1783467033.2753885,
+    "ast_hash": "78c862bd1d167ac2cd8a150d08b98b1f",
+    "semantic_hash": "78c862bd1d167ac2cd8a150d08b98b1f"
+  },
+  "graphify-out/converted/dicionario_de_dados_renda_responsavel_20260508_c1bc4468.md": {
+    "mtime": 1783467033.3582783,
+    "ast_hash": "8b3975f074883bf58aa09ec78cf6ba61",
+    "semantic_hash": "8b3975f074883bf58aa09ec78cf6ba61"
+  },
+  "graphify-out/converted/guia_analises_9759ba40.md": {
+    "mtime": 1783467036.961213,
+    "ast_hash": "43caa6798582c58150fc93468de5416d",
+    "semantic_hash": "43caa6798582c58150fc93468de5416d"
+  },
+  "notebooks/Fase3_EDA_ELSI/README.md": {
+    "mtime": 1783367159.3264978,
+    "ast_hash": "440c73fba359cc88cdc75c920705706e",
+    "semantic_hash": "440c73fba359cc88cdc75c920705706e"
+  },
+  "requirements.txt": {
+    "mtime": 1781892084.1579847,
+    "ast_hash": "b55508354f8322c4da3ea56ee8d4a1ab",
+    "semantic_hash": "b55508354f8322c4da3ea56ee8d4a1ab"
+  },
+  "docs/Plano de trabalho.pdf": {
+    "mtime": 1772833827.6154084,
+    "ast_hash": "db0df73bc86562608d2f62da06badbe4",
+    "semantic_hash": "db0df73bc86562608d2f62da06badbe4"
+  },
+  "docs/indice_vulnerabilidade2012 (2).pdf": {
+    "mtime": 1772833648.7490945,
+    "ast_hash": "f0c780a726a1586f79a60194a1916c2b",
+    "semantic_hash": "f0c780a726a1586f79a60194a1916c2b"
+  },
+  "banco_de_dados/eda/figuras/boxplots_por_regiao.png": {
+    "mtime": 1781815978.1619484,
+    "ast_hash": "c78d738963aad365de489c73526699f9",
+    "semantic_hash": "c78d738963aad365de489c73526699f9"
+  },
+  "banco_de_dados/eda/figuras/histogramas.png": {
+    "mtime": 1781815975.2200131,
+    "ast_hash": "bbc05809ff831b771f3659784e9d5337",
+    "semantic_hash": "bbc05809ff831b771f3659784e9d5337"
+  },
+  "banco_de_dados/eda/figuras/matriz_correlacao.png": {
+    "mtime": 1781815981.5186388,
+    "ast_hash": "ce34ae003ce97a5d112ab6d5ca7f9324",
+    "semantic_hash": "ce34ae003ce97a5d112ab6d5ca7f9324"
+  },
+  "banco_de_dados/eda/figuras/missing_por_municipio.png": {
+    "mtime": 1781815979.7903986,
+    "ast_hash": "4a64c74cfd65a63f79352baf820b6781",
+    "semantic_hash": "4a64c74cfd65a63f79352baf820b6781"
+  }
+}
