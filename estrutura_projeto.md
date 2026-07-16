@@ -169,9 +169,9 @@ Detalhamento em [`docs/Relatorio_Integridade_Projeto.md`](docs/Relatorio_Integri
 
 | # | Problema | Status |
 |---|---|---|
-| 1 | Variáveis de esgoto — V00312–V00316 vs V00249–V00253 (diagnóstico empírico no Notebook 02) | 🟡 Decisão final pendente |
+| 1 | ~~Variáveis de esgoto~~ — **V00312–V00316** confirmado no dicionário oficial do IBGE (versionado em `dados/`); V00249–V00253 é tipologia de habitação | ✅ Resolvido |
 | 2 | Normalização de renda por município (no Notebook 03 a criar) | 🟡 Próxima fase |
-| 3 | Relatórios em `docs/` (EDA e Integridade) com números da era V01042 — regerar a partir dos CSVs atuais | 🟡 Documentação |
+| 3 | ~~Relatórios em `docs/` com números da era V01042~~ — regerados em 12/06/2026 sobre a metodologia V00001 | ✅ Resolvido |
 | 4 | ~8 GB de dados duplicados/obsoletos em `Backup/` | 🟢 Limpeza opcional |
 | 5 | Análise fatorial + cálculo do IVS final + categorização | 🔴 Pendente |
 
