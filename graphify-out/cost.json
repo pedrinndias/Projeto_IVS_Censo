@@ -5,8 +5,15 @@
       "input_tokens": 417007,
       "output_tokens": 0,
       "files": 28
+    },
+    {
+      "date": "2026-08-10T20:26:16.048637+00:00",
+      "input_tokens": 273737,
+      "output_tokens": 0,
+      "files": 13,
+      "nota": "update parcial: AST(9) + figuras(4); 16 documentos pendentes"
     }
   ],
-  "total_input_tokens": 417007,
+  "total_input_tokens": 690744,
   "total_output_tokens": 0
 }
