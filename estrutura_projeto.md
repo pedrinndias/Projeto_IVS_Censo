@@ -1,6 +1,6 @@
 # 🏗️ Arquitetura e Estrutura do Projeto IVS — Censo 2022
 
-> Última atualização: 22/05/2026 (revisão metodológica: denominador V00001 + taxa de analfabetismo)
+> Última atualização: 09/08/2026 (demandas da orientadora: recorte urbano, envelhecimento, tipo de domicílio, favelas, tabela de variáveis e cálculo nacional)
 
 ---
 
@@ -36,8 +36,24 @@ Projeto_IVS_Censo22/
 │   ├── 02_Analises_Descritivas.ipynb        EDA completa (descritivas, correlações, missing)
 │   └── README.md
 │
+├── 📂 src/ivs_censo/                  CÓDIGO COMPARTILHADO (importável por scripts)
+│   ├── fontes.py                      Os 8 arquivos do Censo e o que se lê de cada um
+│   ├── indicadores.py                 Os 23 indicadores: fórmula, escala, elegibilidade
+│   ├── dicionario.py                  Tabela de variáveis (descrição IBGE + arquivo-fonte)
+│   └── __init__.py
+│
+├── 📂 scripts/                        EXECUTÁVEIS VERSIONADOS
+│   ├── gerar_tabela_variaveis.py      Dicionário de variáveis (CSV + XLSX)
+│   ├── gerar_entrega_orientadora.py   Pacote de entrega (CSV + SQLite, 95 colunas)
+│   └── proporcoes_brasil.py           Indicadores do Brasil inteiro + comparativo ELSI
+│
 ├── 📂 banco_de_dados/                 OUTPUTS DA PIPELINE ATIVA (Fase 3)
-│   ├── Base_ELSI_Bruta_Censo2022.csv  Saída do Notebook 01 (filtrada por ELSI, ~17 MB)
+│   ├── Base_ELSI_Bruta_Censo2022.csv  Saída do Notebook 01 (filtrada por ELSI, ~23 MB)
+│   ├── 📂 nacional/                   Saídas do cálculo Brasil inteiro
+│   │   ├── proporcoes_por_recorte.csv          Brasil todo / Brasil urbano / ELSI urbano
+│   │   ├── proporcoes_brasil_por_{regiao,uf,municipio}.csv
+│   │   ├── comparativo_brasil_vs_elsi.csv      ← entregável central da demanda 7
+│   │   └── representatividade_elsi_no_brasil.csv
 │   ├── 📂 eda/                        Saídas do Notebook 02 (descritivas + figuras)
 │   │   ├── descritivas_globais.csv
 │   │   ├── descritivas_por_municipio.csv
@@ -73,7 +89,8 @@ Projeto_IVS_Censo22/
 │   └── DIAGNOSTICO_COMPLETO_PROJETO.md
 │
 └── 📂 tests/                          Testes sanity-check da pipeline
-    └── test_pipeline_fase3.py
+    ├── test_pipeline_fase3.py         Sanity-check dos artefatos gerados
+    └── test_ivs_censo.py              Fórmulas dos indicadores (dados sintéticos)
 ```
 
 ---
@@ -109,14 +126,30 @@ dados/*.csv (8 arquivos) + dados/municipios_elsi_brasil.csv
   │   Saída → banco_de_dados/Base_ELSI_Bruta_Censo2022.csv (109.032 setores)
   │
   ▼  02_Analises_Descritivas.ipynb
-  │   Sigilo 'X' → NaN  →  Elegibilidade (Dados_sig)  →  7 proporções brutas
+  │   Sigilo 'X' → NaN  →  Elegibilidade (Dados_sig)  →  RECORTE URBANO
+  │   7 proporções brutas + blocos complementares (habitação, banheiro, chefia
+  │   feminina, envelhecimento, tipo de domicílio, favelas)
   │   Descritivas (global / município / região), histogramas, boxplots,
   │   outliers (IQR + P95), missing, correlações (Pearson + Spearman)
-  │   Saída → banco_de_dados/eda/*.csv + figuras/*.png (106.281 setores OK)
+  │   Saída → banco_de_dados/eda/*.csv + figuras/*.png (104.108 setores urbanos OK)
   │
   ▼  (a criar) Notebook 03+ → normalização por município, análise fatorial,
                               IVS final, categorização em 4 faixas, mapas (QGIS)
 ```
+
+### Linha lateral — cálculo nacional (não é recorte de análise)
+
+```
+dados/*.csv (8 arquivos, sem filtro de município)
+  │
+  ▼  scripts/proporcoes_brasil.py   (usa src/ivs_censo — mesmas fórmulas do NB02)
+  │   468.099 setores → elegibilidade → recorte urbano → 23 indicadores
+  │   Agrega por Brasil / região / UF / município e compara com os 70 ELSI
+  │   Saída → banco_de_dados/nacional/*.csv        (~10 min de execução)
+```
+
+Serve de **linha de base de representatividade**: mostra o quanto a amostra ELSI difere
+do país (é mais urbana, mais rica e concentra 58,6% dos setores de favela do Brasil).
 
 ---
 
@@ -138,10 +171,17 @@ dados/*.csv (8 arquivos) + dados/municipios_elsi_brasil.csv
 
 | Classe | Critério |
 |---|---|
-| **OK** | participa das análises |
+| **ZERADO** | `v0001 = 0` (setor sem população) — avaliado **primeiro** |
 | **SIGILOSO** | `v0001` ou `V00001` sigilosos (NaN) |
 | **COLETIVO** | `V00001 = 0` com `v0001 > 0` (população 100% em domicílios coletivos) |
-| **ZERADO** | `v0001 = 0` (setor sem população) |
+| **OK** | participa das análises |
+
+> A ordem importa e foi corrigida em 09/08/2026: `ZERADO` passou a ser testado antes de
+> `SIGILOSO`. Sem isso, 1.736 setores sem população (entre eles as 78 massas d'água,
+> `CD_SIT = 9`) apareciam como dado suprimido pelo IBGE. Nenhum setor `OK` mudou.
+
+**Recorte de análise:** além de `Dados_sig = OK`, exige-se `SITUACAO = Urbana`.
+109.032 setores na base → 106.281 elegíveis → **104.108 urbanos elegíveis**.
 
 ### Limitações Documentadas
 

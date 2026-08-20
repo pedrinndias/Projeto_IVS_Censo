@@ -104,3 +104,111 @@ def test_figuras_eda_existem():               # TESTE: as 4 figuras esperadas da
     for png in ['histogramas.png', 'boxplots_por_regiao.png',
                 'matriz_correlacao.png', 'missing_por_municipio.png']:
         assert (fig_dir / png).exists(), f'Faltando figura: {png}'
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Demandas da orientadora (revisão de 09/08/2026)
+# ─────────────────────────────────────────────────────────────────────────────
+
+def test_base_bruta_tem_colunas_territoriais_e_pirâmide_etaria():
+    """A base do NB01 precisa trazer a classificação territorial (favelas/rural) e as
+    faixas de 15 a 59 anos, sem as quais RDI e contagem de FCU não são calculáveis."""
+    base = BD / 'Base_ELSI_Bruta_Censo2022.csv'
+    if not base.exists():
+        pytest.skip(f'Base bruta não versionada e não gerada localmente: {base}')
+    cols = set(pd.read_csv(base, sep=';', dtype=str, nrows=1).columns)
+    for c in ['CD_SIT', 'CD_TIPO', 'CD_FCU', 'NM_FCU']:        # classificação territorial
+        assert c in cols, f'Coluna territorial ausente na base: {c}'
+    for n in range(1031, 1042):                                 # V01031 a V01041 (pirâmide completa)
+        assert f'V0{n}' in cols, f'Faixa etária ausente na base: V0{n}'
+
+
+def test_elegibilidade_separa_zerado_de_sigiloso():
+    """Setores sem população têm que aparecer como ZERADO, não como SIGILOSO."""
+    df = _read(EDA / 'elegibilidade_setores.csv')
+    df = df.rename(columns={df.columns[0]: 'Dados_sig'}).set_index('Dados_sig')
+    assert 'ZERADO' in df.index, 'Nenhum setor ZERADO — a ordem da regra Dados_sig regrediu?'
+    assert df.loc['OK', 'n_setores'] == 106_281                 # o conjunto elegível não muda com a correção
+    assert df['n_setores'].sum() == 109_032
+
+
+@pytest.mark.parametrize('arquivo', [         # artefatos criados pelas seções novas do Notebook 02
+    'exclusao_rural_conferencia.csv',                  # 3b — recorte urbano
+    'situacao_urbano_rural_total.csv',
+    'indicadores_envelhecimento_total.csv',            # 7e — envelhecimento
+    'indicadores_envelhecimento_por_regiao.csv',
+    'tipo_domicilio_global.csv',                       # 7f — tipo de domicílio
+    'tipo_domicilio_totais_por_grupo.csv',
+    'favelas_fcu_total.csv',                           # 7g — favelas
+    'favelas_fcu_por_municipio.csv',
+    'favelas_fcu_comparativo_indicadores.csv',
+])
+def test_artefatos_das_demandas_existem(arquivo):
+    assert (EDA / arquivo).exists(), f'Faltando: {arquivo}'
+
+
+def test_recorte_urbano_mantem_os_70_municipios():
+    """O filtro rural não pode zerar nenhum município da amostra ELSI."""
+    conf = _read(EDA / 'exclusao_rural_conferencia.csv')
+    assert len(conf) == 70                                       # uma linha por município
+    assert (conf['n_ok_urbano'] > 0).all(), 'Algum município ficou sem setores urbanos'
+    assert conf['n_ok_total'].sum() == 106_281                   # soma dos elegíveis antes do filtro
+    assert conf['n_ok_urbano'].sum() == 104_108                  # conjunto de análise final
+
+
+def test_indice_de_envelhecimento_usa_denominador_0a14():
+    """IEP = 60+ / menores de 15 (Galvão et al., 2025). Recalcula a partir das contagens
+    exportadas e confere com a coluna publicada — pega qualquer regressão do denominador."""
+    tot = _read(EDA / 'indicadores_envelhecimento_total.csv').iloc[0]
+    esperado = tot['n_idoso_60mais'] / tot['n_pop_0a14'] * 100
+    assert abs(tot['IEP'] - esperado) < 0.1, 'IEP não bate com 60+ / menores de 15'
+    # o denominador antigo (só 0 a 4 anos) daria um valor ~3x maior — garante que não voltou
+    antigo = tot['n_idoso_60mais'] / tot['n_crianca_0a4'] * 100
+    assert abs(tot['IEP'] - antigo) > 100, 'IEP parece estar usando o denominador antigo (0 a 4 anos)'
+    assert 0 < tot['IEP'] < 500 and 0 < tot['RDI'] < 200         # faixas plausíveis
+
+
+def test_contagem_de_setores_de_favela():
+    """CD_TIPO = 1 identifica Favela e Comunidade Urbana; a contagem tem que bater
+    entre a tabela total, a de regiões e a de municípios."""
+    total = _read(EDA / 'favelas_fcu_total.csv').iloc[0]
+    por_reg = _read(EDA / 'favelas_fcu_por_regiao.csv')
+    por_mun = _read(EDA / 'favelas_fcu_por_municipio.csv')
+    assert total['n_setores_fcu'] == 19_507
+    assert por_reg['n_setores_fcu'].sum() == total['n_setores_fcu']
+    assert por_mun['n_setores_fcu'].sum() == total['n_setores_fcu']
+    assert len(por_mun) == 70
+
+
+def test_calculo_nacional_bate_com_o_censo():
+    """Demanda 7: o total do país tem que reproduzir os números publicados pelo IBGE.
+
+    Vale como teste de regressão de precisão: com `float32` a soma da população dava
+    203.080.736 em vez de 203.080.756.
+    """
+    caminho = BD / 'nacional' / 'representatividade_elsi_no_brasil.csv'
+    if not caminho.exists():
+        pytest.skip('Cálculo nacional não executado localmente — rode scripts/proporcoes_brasil.py')
+    rep = _read(caminho).set_index('metrica')
+    assert rep.loc['população (v0001)', 'Brasil'] == 203_080_756      # Censo 2022, população residente
+    assert rep.loc['setores (todos)', 'Brasil'] == 468_099            # setores do arquivo básico
+    assert rep.loc['setores (todos)', 'ELSI_70'] == 109_032           # o recorte do projeto
+    assert rep.loc['municípios', 'ELSI_70'] == 70
+
+
+def test_comparativo_brasil_vs_elsi_cobre_os_indicadores():
+    caminho = BD / 'nacional' / 'comparativo_brasil_vs_elsi.csv'
+    if not caminho.exists():
+        pytest.skip('Cálculo nacional não executado localmente — rode scripts/proporcoes_brasil.py')
+    comp = _read(caminho)
+    assert ESPERADOS_INDICADORES <= set(comp['indicador'])             # os 7 do IVS estão lá
+    assert comp['razao_agregada__BR_urbano'].notna().all()
+    assert comp['razao_agregada__ELSI70_urbano'].notna().all()
+
+
+def test_tipo_domicilio_soma_coerente():
+    """Convencional + não convencional não pode passar de 100% dos DPPO (V00001)."""
+    grupos = _read(EDA / 'tipo_domicilio_totais_por_grupo.csv').set_index('grupo')
+    soma_dppo = grupos.loc['Convencional', 'pct_sobre_V00001'] + grupos.loc['Não convencional', 'pct_sobre_V00001']
+    assert soma_dppo <= 100.0, f'Soma dos tipos de DPPO passou de 100%: {soma_dppo}'
+    assert soma_dppo > 99.0, f'Soma dos tipos de DPPO baixa demais ({soma_dppo}) — sigilo excessivo?'
