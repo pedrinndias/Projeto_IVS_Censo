@@ -4,8 +4,12 @@
 > metodológico e o *estado atual* do código. Serve como ponto de partida para retomar o
 > trabalho e como base de alinhamento entre o pesquisador e o assistente (Claude).
 >
-> **Atualizado em:** 22/05/2026 (revisão metodológica: denominador V00001 + taxa de analfabetismo)
-> **Documentos relacionados no repositório:** [`README.md`](README.md) ·
+> **Atualizado em:** 10/08/2026 — acrescentada a **seção 6**, que consolida as decisões
+> metodológicas com justificativa, verificação e status, e registra as quatro decisões que
+> seguem em aberto. Antes disso, 09/08/2026: demandas da orientadora (recorte urbano,
+> envelhecimento, tipo de domicílio, favelas, tabela de variáveis e linha de base nacional).
+> **Documentos relacionados no repositório:** [`docs/MANUAL_DO_PROJETO.md`](docs/MANUAL_DO_PROJETO.md) ·
+> [`README.md`](README.md) ·
 > [`estrutura_projeto.md`](estrutura_projeto.md) ·
 > [`docs/Relatorio_Integridade_Projeto.md`](docs/Relatorio_Integridade_Projeto.md) ·
 > [`Backup/DIAGNOSTICO_COMPLETO_PROJETO.md`](Backup/DIAGNOSTICO_COMPLETO_PROJETO.md) *(histórico)*
@@ -47,7 +51,7 @@ intraurbanos de desigualdade emergem dessa distribuição?
 
 | | |
 |---|---|
-| **P** — População | Setores censitários urbanos dos 70 municípios do ELSI-Brasil (Censo 2022) |
+| **P** — População | Setores censitários **urbanos** dos 70 municípios do ELSI-Brasil (Censo 2022) — 104.108 setores elegíveis |
 | **I** — Exposição | Variáveis de saneamento e socioeconômicas em nível de setor |
 | **C** — Comparação | Distribuição do IVS entre setores e entre municípios/regiões |
 | **O** — Desfecho | IVS contínuo (0–1) e categorizado em 4 faixas de risco |
@@ -127,6 +131,63 @@ vulnerabilidade" (a renda é invertida).
 | % famílias ≤ 2 salários mínimos | Faixas salariais não disponíveis | Rendimento médio (V06004) invertido |
 | Coef. óbitos cardiovasculares | IBGE registrou só se houve óbito, sem causa | Buscar DATASUS (SIM) futuramente |
 
+### Variáveis descritivas complementares (fora dos 7 componentes)
+
+Não entram no índice, mas caracterizam o território e alimentam as tabelas do artigo.
+Todas calculadas no Notebook 02 e disponíveis no pacote de entrega.
+
+| Bloco | Variáveis |
+|---|---|
+| Habitação precária | `pct_dom_improv`, `pct_hab_precaria` |
+| Banheiro | `pct_sem_banheiro`, `pct_sem_banheiro_nem_sanitario` |
+| Chefia domiciliar | `pct_resp_feminino` |
+| **Tipo de domicílio** | `pct_moradia_convencional` (casa + vila/condomínio + apartamento), `pct_moradia_nao_convencional`, **`pct_apartamento`**, `pct_casa`, `pct_casa_vila_condominio` |
+| **Envelhecimento** | `pct_pop_0a14`, `pct_idoso_60mais`, **`iep_setor`**, `rdi_setor`, `prop_70mais_entre_60mais` |
+
+### Indicadores de envelhecimento — definições
+
+Fonte: **Galvão, S. M. et al.** *Envelhecimento populacional em Mato Grosso e sua relação
+com indicadores demográficos e econômicos.* Hygeia, v. 21, e2106, 2025 — Quadro 1
+(indicadores adotados pelas Nações Unidas em estudos populacionais).
+
+| Indicador | Fórmula (× 100) | Censo 2022 | Situação |
+|---|---|---|---|
+| **IEP** — Índice de Envelhecimento | 60+ / **menores de 15** | (V01040+V01041) / (V01031+V01032+V01033) | ✅ |
+| **RDI** — Razão de Dependência de Idosos | 60+ / 15 a 59 | (V01040+V01041) / (V01034…V01039) | ✅ |
+| **% 60 anos ou mais** | 60+ / população total | (V01040+V01041) / v0001 | ✅ |
+| **LI** — Longevidade | 75+ / 60+ | — | ❌ **inviável**: a faixa mais fina no topo é "70 anos ou mais" (V01041) |
+
+> **Correção de 09/08/2026:** o protótipo anterior usava 60+ / **0–4 anos**, o que
+> inflava o índice em ~3×. O denominador correto é a população com menos de 15 anos.
+> Valores de referência do Censo 2022 para conferência: IEP Brasil = 80,0; Norte = 41,4;
+> Sul = 95,4; Sudeste = 98,0.
+
+### Recorte urbano
+
+O IVS é intraurbano; os setores **rurais são excluídos da análise**. O filtro
+(`SITUACAO = Urbana`, equivalente a `CD_SIT ∈ {1,2,3}`) é aplicado no **Notebook 02**,
+não na extração — a base bruta preserva os 109.032 setores e a tabela
+`exclusao_rural_conferencia.csv` registra exatamente o que saiu, por município.
+
+| | Setores |
+|---|---:|
+| Base bruta (70 municípios) | 109.032 |
+| Elegíveis (`Dados_sig = OK`) | 106.281 |
+| **Elegíveis urbanos — recorte de análise** | **104.108** (97,96%) |
+| Excluídos pelo filtro rural | 2.173 (2,04%) |
+
+⚠️ A exclusão é desigual entre municípios: 29 dos 70 perdem mais de 10% dos setores, e
+alguns municípios pequenos perdem mais de 75% (São Raimundo do Doca Bezerra fica com 3
+setores). Isso precisa ser considerado nas análises por município e declarado nas
+limitações do artigo.
+
+### Setores de vilas e favelas (FCU)
+
+O Censo 2022 substituiu "aglomerado subnormal" por **Favela e Comunidade Urbana**,
+marcada em `CD_TIPO = 1` (com `CD_FCU`/`NM_FCU` identificando a comunidade). No recorte
+ELSI são **19.507 setores (17,9%)**, distribuídos em 5.903 FCUs distintas de 42 dos 70
+municípios, abrigando 10,07 milhões de pessoas.
+
 ---
 
 ## 5. O Código — Pipeline Ativa e Legados
@@ -140,23 +201,29 @@ recorte dos 70 municípios ELSI. As versões anteriores foram movidas para `Back
 | Notebook | O que faz |
 |---|---|
 | `01_Extracao_Filtragem_ELSI` | Lê os 8 CSVs do Censo, cruza por (UF + nome normalizado) com `dados/municipios_elsi_brasil.csv`, filtra apenas os setores dos 70 municípios, faz o merge unificado, classifica morfologia urbana e roda auditoria de integridade. Saída: `banco_de_dados/Base_ELSI_Bruta_Censo2022.csv`. |
-| `02_Analises_Descritivas` | EDA completa seguindo o framework FIOCRUZ: tipagem com sigilo → `Dados_sig` → 7 proporções brutas com denominador **V00001** → descritivas globais/municípios/regiões → histogramas → boxplots por região → outliers (IQR) → mapa de missing → matriz de correlação (Pearson + Spearman). Saídas: CSVs e PNGs em `banco_de_dados/eda/`. |
+| `02_Analises_Descritivas` | EDA completa seguindo o framework FIOCRUZ: tipagem com sigilo → `Dados_sig` → **recorte urbano** → 7 proporções brutas com denominador **V00001** → descritivas globais/municípios/regiões → blocos complementares (habitação precária, banheiro, chefia feminina, **envelhecimento**, **tipo de domicílio**, **favelas**) → histogramas → boxplots por região → outliers (IQR) → mapa de missing → matriz de correlação (Pearson + Spearman). Saídas: CSVs e PNGs em `banco_de_dados/eda/`. |
 
-Decisões metodológicas consolidadas (**revisão de 22/05/2026**):
-- **Denominador domiciliar V00001** (Domicílios Particulares Permanentes Ocupados) —
-  equivalente no Censo 2022 do `V002` do Censo 2010, padrão do IVS-BH 2012. O `V01042`
-  (arquivo Parentesco) **foi descartado**: é uma contagem de *pessoas* responsáveis,
-  não de domicílios. A leitura anterior do `Cálculo IVS2012.docx` (*"considerar o número
-  de responsáveis como total de domicílios"*) só vale para detectar setores 100%
-  coletivos, não como denominador.
-- **Razão de moradores:** `(V00005 + V00006) / (V00001 + V00002)` — reproduz o V0005 do IBGE.
-- **Taxa de analfabetismo:** `V00901 / (V00900 + V00901)` (o denominador é o total de
-  pessoas com 15+ anos; a fórmula anterior `V00901 / V00900` era incorreta e gerava
-  setores com taxa > 1).
-- **Sigilo:** `X` do IBGE convertido para `NaN`. Em `pct_analfab`, o sigilo em V00901
-  (~16% dos setores OK) é mantido como `NaN` (não imputado a zero).
-- **`Dados_sig`:** `SIGILOSO` (`v0001` ou `V00001` sigilosos) / `COLETIVO`
-  (`V00001 = 0` com `v0001 > 0`) / `ZERADO` (`v0001 = 0`) / `OK` (participa das análises).
+### Código compartilhado e scripts *(criados em 09/08/2026)*
+
+A pipeline de notebooks continua sendo a referência do recorte ELSI. O que precisava
+rodar **fora** dela — o Brasil inteiro, o pacote de entrega — passou a usar um módulo
+comum, para as fórmulas não existirem em duas versões.
+
+| Onde | O que é |
+|---|---|
+| `src/ivs_censo/fontes.py` | Os 8 arquivos do Censo, a chave do setor em cada um e quais variáveis o projeto lê. É a fonte da coluna "arquivo-fonte" da tabela de variáveis. |
+| `src/ivs_censo/indicadores.py` | Definição declarativa dos 23 indicadores (numerador, denominador, escala) + `calcular_indicadores` e `classificar_dados_sig`. |
+| `src/ivs_censo/dicionario.py` | Lê os dicionários oficiais do IBGE e monta a tabela de variáveis. |
+| `scripts/gerar_tabela_variaveis.py` | Gera `Dicionario_Variaveis_Projeto.{csv,xlsx}`. |
+| `scripts/gerar_entrega_orientadora.py` | Regenera o pacote de entrega (CSV + SQLite, 95 colunas, 3 tabelas). Antes disso os `.db` vinham de um script ad-hoc não versionado. |
+| `scripts/proporcoes_brasil.py` | Calcula os indicadores para os ~468 mil setores do Brasil e compara com os 70 municípios ELSI. |
+
+Cobertura de testes: `tests/test_pipeline_fase3.py` (artefatos) e `tests/test_ivs_censo.py`
+(fórmulas, com dados sintéticos).
+
+As **decisões metodológicas** que regem esta pipeline — denominador, regra de
+elegibilidade, recorte urbano, tratamento do sigilo — estão consolidadas na
+**seção 6**, com justificativa, verificação e status.
 
 ### Legados em `Backup/`
 - `Backup/Fase1_IVS_Basico/` — 5 notebooks; pipeline inicial (sem filtro ELSI), denominador V00001.
@@ -170,7 +237,261 @@ Decisões metodológicas consolidadas (**revisão de 22/05/2026**):
 
 ---
 
-## 6. Estrutura de Pastas
+## 6. As Decisões Metodológicas — justificativa, verificação e status
+
+Esta seção é o **registro canônico das decisões**. Cada uma traz: o que foi decidido, a
+justificativa, a alternativa descartada, a verificação empírica que a sustenta e o status.
+Se algum documento do repositório divergir daqui, **vale esta seção**.
+
+O detalhamento operacional de cada decisão — qual célula, qual comando, como desfazer —
+está na Parte C de [`docs/MANUAL_DO_PROJETO.md`](docs/MANUAL_DO_PROJETO.md). A argumentação
+estendida, com o passo a passo de execução, está na §12 de
+[`docs/Relatorio_EDA_Fase3_IVS_ELSI.md`](docs/Relatorio_EDA_Fase3_IVS_ELSI.md).
+
+### 6.1 Os três princípios que orientam as decisões
+
+**1. A metodologia-fonte manda.** Onde o `Cálculo IVS2012.docx` define — quais formas de
+saneamento são inadequadas, qual o denominador, como classificar setores inelegíveis — o
+projeto reproduz, mesmo quando o resultado é contraintuitivo. O objetivo é *replicar* o
+IVS-BH no Censo 2022, não redesenhá-lo. Caso mais visível: a caçamba de lixo (§6.2.9).
+
+**2. Quando o Censo 2022 não permite reproduzir, a substituição é declarada.** Três
+componentes do IVS-BH não existem nos agregados por setor. Nesses casos adota-se o
+substituto mais próximo e **declara-se a limitação**, em vez de improvisar um cálculo de
+aparência equivalente. O mesmo vale para o que é simplesmente impossível, como o índice de
+Longevidade (§6.2.7).
+
+**3. Toda escolha que muda um número é verificada empiricamente.** Nenhuma decisão entrou
+sem um teste que a sustente. Onde não foi possível verificar, isso está dito.
+
+### 6.2 Decisões consolidadas
+
+#### 6.2.1 Denominador domiciliar: `V00001`
+
+**Decisão.** O denominador domiciliar é `V00001` (Domicílios Particulares Permanentes
+Ocupados), usado em cinco dos sete componentes.
+
+**Justificativa.** É o equivalente exato, no Censo 2022, do `V002` que o IVS-BH 2012 usou
+no Censo 2010. Manter a mesma unidade de referência é o que torna os dois índices
+comparáveis.
+
+**Alternativa descartada.** `V01042`, do arquivo Parentesco, usado numa versão anterior.
+Ele conta **pessoas responsáveis**, não domicílios — usá-lo como denominador domiciliar
+mistura duas unidades de análise. A leitura do `Cálculo IVS2012.docx` que sugeria
+"considerar o número de responsáveis como total de domicílios" vale apenas para detectar
+setores 100% coletivos.
+
+**Verificação.** Com `V00001`, **nenhuma proporção ultrapassa 1,0** em nenhum dos 104.108
+setores. Com o denominador anterior, várias estouravam — sinal inequívoco de erro.
+
+**Status:** ✅ consolidada em 22/05/2026, revalidada em 09/08/2026.
+
+#### 6.2.2 Taxa de analfabetismo: denominador é o total de 15+
+
+**Decisão.** `pct_analfab = V00901 / (V00900 + V00901)`.
+
+**Justificativa.** `V00900` conta quem **sabe** ler e escrever e `V00901` quem **não sabe**,
+ambos com 15 anos ou mais. O denominador de uma taxa de analfabetismo é a população de
+referência inteira, que é a soma das duas.
+
+**Alternativa descartada.** `V00901 / V00900`, usada antes — matematicamente é uma razão
+entre analfabetos e alfabetizados, não uma taxa, e gerava setores com valor acima de 1.
+
+**Status:** ✅ consolidada.
+
+#### 6.2.3 Razão de moradores
+
+**Decisão.** `(V00005 + V00006) / (V00001 + V00002)` — inclui domicílios permanentes e
+improvisados nos dois lados.
+
+**Justificativa.** Reproduz exatamente a definição do `V0005` publicado pelo IBGE (média de
+moradores em Domicílios Particulares Ocupados), o que permite conferir o cálculo contra o
+número oficial.
+
+**Status:** ✅ consolidada e validada.
+
+#### 6.2.4 Ordem das condições da regra `Dados_sig`
+
+**Decisão.** As condições são avaliadas nesta ordem: **`ZERADO` → `SIGILOSO` → `COLETIVO`
+→ `OK`**. População zero é testada **antes** de sigilo.
+
+**Justificativa.** Com a ordem anterior, setores sem nenhuma população mas com `V00001`
+vazio eram rotulados `SIGILOSO`, isto é, contados como *dado suprimido pelo IBGE* quando na
+verdade são setores vazios — muitos deles massas d'água (`CD_SIT = 9`). O erro não afeta o
+cálculo, mas superestima a supressão em todo relatório que cite esse número.
+
+**Verificação.** O sigilo real caiu de 2.751 para 1.015 setores, e apareceram 1.736
+`ZERADO`. **Nenhum setor `OK` mudou de classe** — o conjunto analisado é idêntico.
+
+**Status:** ✅ corrigida em 09/08/2026.
+
+#### 6.2.5 Recorte urbano aplicado na análise, não na extração
+
+**Decisão.** O filtro `SITUACAO = Urbana` é aplicado no Notebook 02. A base bruta preserva
+os 109.032 setores.
+
+**Justificativa.** Três razões: **auditabilidade** (a conferência município a município só
+é possível com a base completa), **reversibilidade** (desfazer é uma linha, sem reprocessar
+2,4 GB) e **fidelidade do dado bruto** (a base continua sendo o retrato do que o IBGE
+publica, sem recorte analítico embutido).
+
+**Por que excluir os rurais.** O IVS é intraurbano. Setores rurais têm padrões de
+saneamento estruturalmente distintos — fossa e poço são a norma, não a exceção — e, se
+mantidos, fariam o índice medir em parte a diferença campo-cidade em vez da desigualdade
+dentro da cidade.
+
+**Verificação.** `CD_SIT` 1–3 corresponde a Urbana e 5–8 a Rural em todos os 468.099
+setores do país, sem exceção. Os setores com `CD_SIT = 9` têm população zero nas 1.101
+ocorrências nacionais.
+
+**Consequência registrada.** A exclusão é desigual: 29 dos 70 municípios perdem mais de
+10% dos setores e 14 perdem mais da metade. Precisa constar nas limitações e exige decidir
+um piso mínimo de setores para análises municipais (§6.3).
+
+**Status:** ✅ consolidada em 09/08/2026.
+
+#### 6.2.6 Tratamento do sigilo
+
+**Decisão.** O `X` do IBGE vira ausente, nunca zero. Nas somas de numerador, o indicador só
+resulta ausente quando **todas** as parcelas estão sigilosas (`min_count=1`). Em
+`pct_analfab`, o sigilo é mantido como ausente e **não imputado**.
+
+**Justificativa.** O sigilo do analfabetismo **não é aleatório**: incide onde a contagem
+absoluta de analfabetos é pequena, ou seja, nos setores de melhor situação educacional.
+Imputar zero subestimaria o analfabetismo justamente nas áreas menos vulneráveis e
+comprimiria artificialmente a variabilidade do indicador. Descartar os setores também não
+serve: removeria 16% do conjunto de forma seletiva.
+
+**Status:** ✅ consolidada para a EDA. ⚠️ A política para o **cálculo final do índice**
+ainda precisa ser definida — a alternativa mais defensável é imputação por mediana
+municipal com indicador de imputação.
+
+#### 6.2.7 Indicadores de envelhecimento
+
+**Decisão.** IEP = 60+ ÷ **menores de 15 anos**; RDI = 60+ ÷ 15–59; percentual de 60+ sobre
+a população total. Fonte: Quadro 1 de Galvão et al. (2025), que adota os indicadores das
+Nações Unidas.
+
+**Justificativa.** A versão anterior usava 60+ ÷ crianças de 0 a 4 anos, o que não
+corresponde a nenhuma definição publicada: o índice ficava cerca de três vezes maior e
+**incomparável com qualquer referência** — não dava para confrontar com o IEP do Brasil nem
+com os valores regionais do próprio artigo.
+
+**Alternativa descartada.** O corte de 65 anos, mais comum na literatura internacional, é
+**impossível**: o IBGE agrega a faixa como "60 a 69" (`V01040`). Por isso todos os
+indicadores do projeto usam 60+.
+
+**O que é inviável.** O índice de **Longevidade (75+ ÷ 60+) não é calculável** nos
+agregados por setor — a faixa mais fina no topo é `V01041` = "70 anos ou mais". A proporção
+de 70+ entre os 60+ é calculada como substituto parcial, explicitamente rotulada como **não
+sendo o LI**.
+
+**Verificação.** A soma das 11 faixas etárias reproduz `v0001` em todos os 99.957 setores
+comparáveis. O IEP nacional resultou em **79,99** contra os **80,0** publicados pelo IBGE.
+
+**Status:** ✅ corrigida em 09/08/2026.
+
+#### 6.2.8 Critério de identificação de favelas
+
+**Decisão.** Setor de Favela e Comunidade Urbana é aquele com **`CD_TIPO = 1`**.
+
+**Justificativa.** É o campo oficial de classificação do tipo de setor; `NM_FCU` é atributo
+descritivo.
+
+**Verificação.** Os dois critérios possíveis — `CD_TIPO = 1` e "tem `NM_FCU` preenchido" —
+coincidem exatamente nos 468.099 setores do país: 33.272 setores pelos dois. No recorte
+ELSI há 25 setores com nome de FCU mas `CD_TIPO ≠ 1`, isolados e quantificados na análise;
+eles seguem o critério oficial.
+
+**Status:** ✅ consolidada em 09/08/2026.
+
+#### 6.2.9 A caçamba de lixo (`V00398`) conta como destino inadequado
+
+**Decisão.** Mantida como inadequada, conforme o `Cálculo IVS2012.docx`, em que apenas a
+coleta porta a porta (`V00397`) é adequada.
+
+**Justificativa.** Princípio 1 (§6.1): fidelidade à metodologia-fonte.
+
+**⚠️ Ressalva empírica registrada.** As análises desta EDA levantaram indício de que a
+escolha distorce o indicador: o lixo é a variável **menos correlacionada com todas as
+demais** (0,10 a 0,20) e a **única em que o recorte ELSI está pior que o Brasil urbano**
+(1,21×). A hipótese é que a caçamba seja muito mais comum em cidade grande e que o
+indicador esteja capturando **porte urbano** em vez de vulnerabilidade.
+
+**Status:** ⚠️ mantida por fidelidade, mas **em revisão** — ver §6.3.
+
+#### 6.2.10 Indicadores descritivos ficam fora do índice
+
+**Decisão.** Os dezesseis indicadores complementares (habitação precária, banheiro, chefia
+feminina, envelhecimento, tipo de domicílio) **não integram o IVS**.
+
+**Justificativa.** Um componente de índice composto precisa de direção inequívoca de
+vulnerabilidade. `pct_apartamento` é o exemplo claro: verticalização aparece tanto em área
+central de alta renda quanto em conjunto habitacional popular — não há "mais é pior". Esses
+indicadores servem para **caracterizar** o território, não para pontuá-lo.
+
+**Como isso é garantido no código.** A separação é estrutural: em
+`src/ivs_censo/indicadores.py` existem duas listas, `INDICADORES_IVS` (7) e
+`INDICADORES_COMPLEMENTARES` (16). Um indicador não entra no índice por descuido.
+
+**Status:** ✅ consolidada.
+
+#### 6.2.11 Fórmulas em módulo compartilhado
+
+**Decisão.** As definições dos indicadores vivem em `src/ivs_censo/indicadores.py`, em
+forma declarativa, e são usadas pelo cálculo nacional e pelos scripts de entrega.
+
+**Justificativa.** Copiar o código do notebook para rodar o Brasil inteiro criaria duas
+versões da mesma fórmula, que divergem na primeira correção feita em uma só delas — e aí a
+comparação Brasil × ELSI deixa de ser legítima, que é justamente o objetivo dela.
+
+**⚠️ Limitação atual.** O Notebook 02 **ainda não importa** o módulo: ele define as
+fórmulas nas próprias células. Na prática as fórmulas existem em dois lugares, e mudar uma
+sem a outra faz o recorte ELSI divergir do nacional em silêncio. Unificar é uma melhoria
+pendente; enquanto isso, **toda mudança de fórmula precisa ser feita nos dois lados**.
+
+**Status:** 🟡 parcialmente implementada.
+
+### 6.3 Decisões em aberto
+
+Quatro pontos dependem de definição com a orientação e travam etapas seguintes:
+
+| # | Decisão | O que ela trava | Elementos para decidir |
+|---|---|---|---|
+| 1 | **Critério dos pesos**: empíricos (análise fatorial) ou guiados pela literatura (60% socioeconômica / 40% saneamento, padrão IVS-BH)? | Notebooks 04 e 05 | Renda, cor/raça e analfabetismo se correlacionam a −0,81 e −0,76: pesos iguais dariam três votos à posição social sem que isso fosse escolha deliberada |
+| 2 | **Indicador de lixo**: entra como está, ou `V00398` (caçamba) é separada das demais formas? | Composição do índice | §6.2.9 — o indicador pode estar medindo porte urbano |
+| 3 | **Política de sigilo no analfabetismo** para o cálculo final | Notebook 03 | §6.2.6 — o sigilo é informativo, não aleatório |
+| 4 | **Piso mínimo de setores** por município nas análises municipais | Tabelas municipais e mapas | §6.2.5 — 14 municípios perdem mais da metade dos setores |
+
+### 6.4 As demandas de julho de 2026 — resumo
+
+Sete demandas, todas implementadas em 09/08/2026. A justificativa de cada escolha está nas
+subseções acima; o processo de execução, na §12 do relatório da EDA.
+
+| # | Demanda | Decisão principal | Resultado |
+|---|---|---|---|
+| 1 | Ajustar o índice de envelhecimento | Denominador passa a ser menores de 15 (§6.2.7) | IEP 92,7 no recorte |
+| 2 | Tabela de variáveis com a fonte | Descrições do dicionário oficial, com coluna de procedência | 67 variáveis, 8 arquivos |
+| 3 | Excluir setores rurais | Filtro na análise, não na extração (§6.2.5) | 104.108 setores; 2,04% excluídos |
+| 4 | Agrupar moradias convencionais | Critério de adequação da edificação | 99,19% convencionais |
+| 5 | Indicador de apartamento | Fora do índice, por falta de direção (§6.2.10) | média de 31,5% |
+| 6 | Contagem de vilas e favelas | Critério `CD_TIPO = 1` (§6.2.8) | 19.507 setores (17,9%) |
+| 7 | Proporções para o Brasil todo | Módulo compartilhado (§6.2.11) | população confere: 203.080.756 |
+
+Pendente: a **redação das limitações** com Lima-Costa & Barreto (2003) — falácia ecológica,
+viés de sobrevivência e exclusão de institucionalizados.
+
+### 6.5 Onde cada nível de detalhe está documentado
+
+| Documento | O que traz | Quando consultar |
+|---|---|---|
+| **Esta seção** | A decisão canônica, a justificativa e o status | "O que foi decidido, afinal?" |
+| [`docs/Relatorio_EDA_Fase3_IVS_ELSI.md`](docs/Relatorio_EDA_Fase3_IVS_ELSI.md), §12 | A argumentação estendida, alternativas descartadas e passo a passo da execução | "Por que, e como foi feito?" |
+| [`docs/MANUAL_DO_PROJETO.md`](docs/MANUAL_DO_PROJETO.md), Parte C | Arquivos e células tocados, comandos, como conferir e como desfazer | "Onde está e como rodo de novo?" |
+
+---
+
+## 7. Estrutura de Pastas
 
 ```
 Projeto_IVS_Censo22/
@@ -220,7 +541,9 @@ Projeto_IVS_Censo22/
 │   ├── banco_de_dados/                CSVs intermediários antigos
 │   └── DIAGNOSTICO_COMPLETO_PROJETO.md
 │
-└── tests/                             test_pipeline_fase3.py (16 testes sanity-check)
+├── src/ivs_censo/                     Código compartilhado (fontes, indicadores, dicionário)
+├── scripts/                           gerar_tabela_variaveis · gerar_entrega_orientadora · proporcoes_brasil
+└── tests/                             test_pipeline_fase3.py + test_ivs_censo.py (43 testes)
 ```
 
 ### Os 8 arquivos-fonte do Censo 2022
@@ -238,7 +561,7 @@ Projeto_IVS_Censo22/
 
 ---
 
-## 7. Estado Atual
+## 8. Estado Atual
 
 | Etapa | Status |
 |---|---|
@@ -248,6 +571,8 @@ Projeto_IVS_Censo22/
 | Lista oficial dos 70 municípios ELSI-Brasil | ✅ [`dados/municipios_elsi_brasil.csv`](dados/municipios_elsi_brasil.csv) |
 | Fase 3 — Notebook 01 (extração + filtro ELSI) | ✅ [`notebooks/Fase3_EDA_ELSI/01_Extracao_Filtragem_ELSI.ipynb`](notebooks/Fase3_EDA_ELSI/01_Extracao_Filtragem_ELSI.ipynb) |
 | Fase 3 — Notebook 02 (análises descritivas) | ✅ [`notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb`](notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb) — implementado |
+| Demandas da orientadora (jul/2026) — 7 itens | ✅ Concluídas em 09/08/2026 (envelhecimento, tabela de variáveis, recorte urbano, moradia convencional, apartamento, favelas, Brasil todo) |
+| Linha de base nacional (~468 mil setores) | ✅ `scripts/proporcoes_brasil.py` → `banco_de_dados/nacional/` |
 | Normalização de renda por município | 🔴 Pendente |
 | Validação das variáveis de esgoto | ✅ Concluída — V00312–V00316 confirmado no dicionário oficial do IBGE |
 | Análise fatorial / pesos / cálculo do IVS final | 🔴 Pendente |
@@ -260,7 +585,7 @@ aplica o recorte dos 70 municípios. As Fases 1 e 2 ficam preservadas como hist�
 
 ---
 
-## 8. Problemas Conhecidos
+## 9. Problemas Conhecidos
 
 Detalhamento completo em [`Backup/DIAGNOSTICO_COMPLETO_PROJETO.md`](Backup/DIAGNOSTICO_COMPLETO_PROJETO.md) *(histórico)* e em [`docs/Relatorio_Integridade_Projeto.md`](docs/Relatorio_Integridade_Projeto.md).
 
@@ -275,10 +600,13 @@ Detalhamento completo em [`Backup/DIAGNOSTICO_COMPLETO_PROJETO.md`](Backup/DIAGN
 | **6** | ~~README/docs parcialmente desatualizados~~ — **resolvido**: `docs/Relatorio_EDA_Fase3_IVS_ELSI.md` foi regerado em 12/06/2026 sobre a metodologia V00001 e está consistente com os CSVs atuais; `Relatorio_Integridade_Projeto.md` revisado na mesma data. | ✅ Resolvido |
 | **7** | ~~requirements.txt incorreto~~ — **resolvido**: lista `pandas`, `numpy`, `matplotlib`, `openpyxl`, `xlsxwriter`; sem módulos built-in. | ✅ Resolvido |
 | **8** | **Código duplicado nos notebooks** — função `ler_csv_padronizado` definida duas vezes na Fase 2; auditoria duplicada na Fase 1. | 🟢 Menor |
+| **9** | ~~Entregáveis sem código-fonte~~ — os `.db`/`.csv` de `entrega_orientadora/` vinham de script ad-hoc não versionado. **Resolvido em 09/08/2026**: `scripts/gerar_entrega_orientadora.py`. | ✅ Resolvido |
+| **10** | ~~Massas d'água contadas como sigilo~~ — 1.736 setores sem população apareciam como `SIGILOSO` porque a condição de sigilo era testada antes da de população zero. **Resolvido**: ordem invertida em `classificar_dados_sig`; nenhum setor `OK` mudou. | ✅ Resolvido |
+| **11** | **Municípios pequenos ficam com poucos setores após o filtro urbano** — 29 dos 70 perdem >10% dos setores; alguns ficam com menos de 10. Afeta a estabilidade das descritivas por município e precisa constar nas limitações. | 🟡 Metodológico |
 
 ---
 
-## 9. Plano de Retomada — Próximos Passos
+## 10. Plano de Retomada — Próximos Passos
 
 Ordem sugerida de ataque ao reentrar no projeto:
 
@@ -294,6 +622,18 @@ Ordem sugerida de ataque ao reentrar no projeto:
 - [x] Decidir e **documentar** o denominador de saneamento — **V00001** consolidado em 22/05/2026.
 - [ ] Mudar a normalização de renda para **por município** (Notebook 03).
 - [x] Validar a razão de moradores `(V00005+V00006)/(V00001+V00002)` — reproduz o V0005 do IBGE.
+
+### Prioridade 1b — Demandas da orientadora (jul/2026) ✅ Concluídas em 09/08/2026
+- [x] **Índice de envelhecimento** com denominador correto (menores de 15), mais RDI e % 60+.
+- [x] **Tabela de variáveis** com descrição oficial do IBGE e arquivo-fonte do Censo.
+- [x] **Exclusão dos setores rurais**, com conferência por município e região.
+- [x] **Agrupamento das moradias convencionais** no tipo de domicílio.
+- [x] **Indicador de apartamento** (`pct_apartamento`).
+- [x] **Contagem de setores de vilas e favelas** (FCU) no recorte ELSI.
+- [x] **Proporções para o Brasil todo** e comparativo com os 70 municípios.
+- [ ] Redigir as limitações do artigo com Lima-Costa & Barreto (2003): falácia ecológica,
+      viés de sobrevivência e exclusão de institucionalizados (que na base corresponde a
+      `Dados_sig = COLETIVO`).
 
 ### Prioridade 2 — Completar o cálculo do IVS
 - [ ] Implementar a **análise fatorial / ACP** para definir os pesos.
@@ -312,7 +652,7 @@ Ordem sugerida de ataque ao reentrar no projeto:
 
 ---
 
-## 10. Cronograma do Bolsista
+## 11. Cronograma do Bolsista
 
 | Atividade | Período |
 |---|---|
@@ -330,7 +670,7 @@ Ordem sugerida de ataque ao reentrar no projeto:
 
 ---
 
-## 11. O Plano do Artigo — Estado das Fases
+## 12. O Plano do Artigo — Estado das Fases
 
 O `Plano_Artigo_Cientifico_IC_Preenchido.docx` segue a sequência de redação
 **tabelas → método → resultados → discussão → introdução → resumo** (Pereira & Galvão;
@@ -363,7 +703,7 @@ checklist STROBE).
 
 ---
 
-## 12. Como Executar
+## 13. Como Executar
 
 **Pré-requisitos:** Python 3.10+ e os 8 CSVs do Censo 2022 em `dados/`.
 
@@ -386,7 +726,7 @@ notebooks/Fase3_EDA_ELSI/  →  01 → 02
 
 ---
 
-## 13. Referências
+## 14. Referências
 
 - **SMS-BH.** *Índice de Vulnerabilidade da Saúde 2012.* Belo Horizonte: Secretaria
   Municipal de Saúde, 2013.
@@ -406,3 +746,11 @@ notebooks/Fase3_EDA_ELSI/  →  01 → 02
   *Rev. Bras. Geriatr. Gerontol.*, v. 23, n. 1, 2020.
 - **IBGE.** *Censo Demográfico 2022 — Agregados por Setores Censitários.* Rio de Janeiro:
   IBGE, 2022.
+- **Galvão, S. M.; Galvão, N. D.; Alves, M. R.; Rocha, S. C.; Rocon, P. C.; Andrade,
+  A. C. S.** Envelhecimento populacional em Mato Grosso e sua relação com indicadores
+  demográficos e econômicos. *Hygeia*, v. 21, e2106, 2025. — Definições do IEP, RDI,
+  LI e % 60+ (Quadro 1); referência de estudo ecológico com análise espacial (Moran).
+- **Lima-Costa, M. F.; Barreto, S. M.** Tipos de estudos epidemiológicos: conceitos
+  básicos e aplicações na área do envelhecimento. *Epidemiologia e Serviços de Saúde*,
+  v. 12, n. 4, p. 189–201, 2003. — Tipologia de estudos e fontes de viés
+  (respondente próximo, exclusão de institucionalizados, viés de sobrevivência).

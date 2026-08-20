@@ -1,238 +1,310 @@
 <!-- converted from Relatorio_EDA_Fase3_IVS_ELSI.docx -->
 
-Relatório de Análise Exploratória de Dados
-IVS intraurbano — Censo Demográfico 2022 / ELSI-Brasil
+# Relatório de Análise Exploratória de Dados (EDA)
+## IVS intraurbano — Censo Demográfico 2022 / ELSI-Brasil
+Documento: relatório técnico-interpretativo da análise exploratória da Fase 3. Pipeline: notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb Insumos: CSVs e figuras em banco_de_dados/eda/ Data: 9 de agosto de 2026 (reescrito sobre o recorte urbano) Pesquisador: Pedro Dias Soares — IC Fiocruz Minas / IRR
+O que mudou nesta versão. A anterior, de 12/06/2026, descrevia 106.281 setores elegíveis com os rurais incluídos. Esta descreve o recorte urbano de 104.108 setores, incorpora a correção da regra de elegibilidade e acrescenta os blocos descritivos criados para atender às demandas de julho: envelhecimento populacional, tipo de domicílio e setores de favela. Todos os números aqui foram lidos dos CSVs da execução de 09/08/2026.
 
-Pedro Dias Soares
-Iniciação Científica — Fiocruz Minas / IRR
-Saúde Coletiva — Saúde Urbana e Epidemiologia Espacial
-12 de junho de 2026 (regerado sobre a metodologia V00001 consolidada em 22/05/2026)
+## Sumário Executivo
+A base analisada reúne 104.108 setores censitários urbanos dos 70 municípios da amostra do ELSI-Brasil, com 52,1 milhões de residentes. Sobre eles calculei as sete variáveis-componente do IVS e mais dezesseis indicadores descritivos.
+Cinco conclusões que orientam a próxima etapa:
+- As três variáveis de saneamento têm mediana zero. Em mais da metade dos setores urbanos, água, esgoto e lixo estão integralmente adequados. As distribuições são infladas de zeros, com coeficientes de variação entre 218% e 284%. Isso invalida a regra do IQR para detectar outliers nessas variáveis e condiciona a escolha do método de normalização.
+- A renda é fortemente assimétrica (média R$ 4.187, mediana R$ 2.572, máximo R$ 170.418; assimetria 3,74 e curtose 49,5). A normalização min-max global comprime quase todos os setores num canto da escala e precisa ser substituída por normalização por município.
+- O analfabetismo tem 15,9% de dados faltantes, de forma não aleatória. O sigilo do IBGE incide justamente onde a contagem absoluta de analfabetos é pequena, ou seja, nos setores de menor vulnerabilidade educacional. Imputar zero enviesaria o índice.
+- Renda, cor/raça e analfabetismo são fortemente colineares (Spearman de −0,81 e −0,76 com a renda). A análise fatorial provavelmente extrairá um fator socioeconômico dominante carregado por essas três variáveis.
+- O lixo inadequado se comporta de forma independente das demais (correlações de 0,10 a 0,20, e −0,06 com a razão de moradores) e é a única variável em que o recorte ELSI está pior que o Brasil urbano. Há indício de que ele esteja capturando porte urbano em vez de vulnerabilidade.
+Validação externa da pipeline. Aplicando as mesmas fórmulas aos 468.099 setores do país, o índice de envelhecimento agregado resultou em 79,99 contra os 80,0 publicados pelo IBGE, e a população somou 203.080.756, o número oficial do Censo 2022.
 
-# Sumário Executivo
-A análise exploratória foi conduzida sobre uma base de 109.032 setores censitários dos 70 municípios da amostra do ELSI-Brasil, extraídos do Censo Demográfico 2022. Após aplicar as regras de elegibilidade definidas pelo IVS-BH 2012 (Secretaria Municipal de Saúde de Belo Horizonte), 106.281 setores (97,5%) foram considerados aptos para a análise. As sete variáveis-componente do IVS foram calculadas em proporções brutas, com denominador domiciliar V00001 (Domicílios Particulares Permanentes Ocupados) — o equivalente no Censo 2022 do denominador padrão do IVS-BH 2012.
-Os principais achados podem ser sintetizados em quatro grandes blocos:
-- Distribuições marcadamente assimétricas para saneamento. As medianas de inadequação de água, esgoto e lixo são iguais a zero — mais da metade dos setores ELSI tem acesso adequado em todas as três dimensões — mas a cauda à direita revela bolsões de vulnerabilidade extrema concentrados no Norte e em municípios pequenos do Nordeste e MG/PR rurais. Em Portel/PA, Placas/PA e Autazes/AM, mais de 95% dos setores apresentam alguma forma de saneamento inadequado.
-- Gradiente Norte→Sul replica o padrão histórico de desigualdade. A região Norte apresenta as piores condições em água (35,6% setores inadequados em média), esgoto (27,1%) e densidade habitacional (mediana de 3,20 pessoas por domicílio). Em contraste, Sul e Sudeste exibem proporções médias de inadequação em torno de 5% ou menos para água e esgoto (medianas iguais a zero). A renda média segue o mesmo eixo, com municípios do Nordeste e Norte abaixo de R$ 1.800 (mediana) versus São Caetano do Sul/SP em R$ 5.292.
-- Correlação forte e estruturada entre as variáveis socioeconômicas. A correlação de Spearman entre renda média e proporção de pessoas pretas, pardas e indígenas é de −0,81 — o maior valor absoluto observado entre todos os pares. Renda e analfabetismo têm correlação de −0,75, e raça/cor com analfabetismo de +0,62. As variáveis de saneamento se correlacionam menos entre si (0,14 a 0,45), mas todas se associam ao bloco socioeconômico. Esse padrão sustenta a hipótese de dois fatores latentes — saneamento e socioeconômico — recomendada pelo IVS-BH 2012.
-- Dados faltantes concentrados em grandes cidades. Cerca de 16% dos setores têm sigilo para analfabetismo (V00900/V00901), majoritariamente em São Caetano do Sul, Porto Alegre, Curitiba, Belo Horizonte, Rio de Janeiro e São Paulo — refletindo a regra do IBGE de suprimir microdados em setores com poucos residentes de 15 anos ou mais. As demais variáveis têm cobertura ≥ 99%.
-A EDA confirma a viabilidade da construção do IVS sobre essa base e fornece evidência empírica das hipóteses centro-periferia que o estudo se propõe a quantificar. Recomenda-se prosseguir com a análise fatorial baseada em correlação de Spearman (dada a forte assimetria das variáveis de saneamento) e considerar normalização da renda por município, não global.
+## 1. Introdução
+Esta EDA antecede a construção do índice. Seu objetivo não é medir vulnerabilidade, e sim responder a três perguntas que determinam como o índice poderá ser construído:
+- Qual a forma das distribuições? Define se a padronização min-max é adequada e se as variáveis precisam de transformação.
+- Onde faltam dados, e o padrão de ausência é aleatório? Define a política de tratamento do sigilo no cálculo final.
+- As sete variáveis medem construtos distintos? Define se a ponderação pode ser empírica (análise fatorial) e quantos fatores esperar.
+O referencial de organização é o framework de EDA da FIOCRUZ (docs/guia_analises.docx): medidas de tendência central e dispersão, gráficos de distribuição, análise de outliers, análise de dados faltantes e estrutura de correlação.
 
-# 1. Introdução
-Este relatório documenta a análise exploratória dos dados que servirão de base para a construção do Índice de Vulnerabilidade à Saúde (IVS) intraurbano para os 70 municípios participantes do ELSI-Brasil (Estudo Longitudinal da Saúde dos Idosos Brasileiros), com dados do Censo Demográfico 2022.
-A EDA cumpre quatro funções, conforme o checklist FIOCRUZ (Módulo 2 do Curso de Análise de Dados): (i) caracterizar a estrutura e a qualidade dos dados, (ii) detectar padrões e outliers, (iii) escolher métricas descritivas adequadas à distribuição de cada variável e (iv) verificar pressupostos antes da modelagem subsequente — neste caso, a análise fatorial.
-Todas as sete variáveis-componente do IVS-BH 2012 foram operacionalizadas para o Censo 2022 da seguinte forma:
-O denominador domiciliar V00001 (Domicílios Particulares Permanentes Ocupados) foi adotado por ser o equivalente no Censo 2022 do V002 (Dom_part_p) do Censo 2010, denominador padrão do IVS-BH 2012. Decisão consolidada na revisão metodológica de 22/05/2026: o V01042 do arquivo de parentesco é uma contagem de pessoas responsáveis, não de domicílios, e foi descartado como denominador. Validação empírica: com V00001 nenhuma proporção de saneamento ultrapassa 1,0.
-# 2. Universo Amostral
-O Notebook 01 (Extração e Filtragem ELSI) localizou os 70 municípios oficiais do ELSI-Brasil no arquivo básico do Censo 2022 por chave composta (código IBGE da UF + nome normalizado do município). Todos os 70 foram identificados, com a seguinte distribuição:
-A dominância do Sudeste reflete o desenho amostral do ELSI-Brasil, que contempla 26 municípios nessa região, incluindo as áreas metropolitanas de São Paulo, Rio de Janeiro e Belo Horizonte.
-# 3. Tratamento e Elegibilidade
-## 3.1 Sigilo do IBGE
-O IBGE suprime células com marcador X em setores onde a contagem é suficientemente baixa para comprometer o anonimato (geralmente setores com menos de 5 domicílios particulares permanentes para indicadores domiciliares, e poucos indivíduos para indicadores pessoais). No Notebook 02, o marcador X foi convertido em NaN antes da conversão para tipos numéricos.
-## 3.2 Separador decimal
-A variável V06004 (rendimento médio mensal) é entregue pelo IBGE no padrão brasileiro, com vírgula como separador decimal (ex.: '2453,03'). O Notebook 02 substitui a vírgula por ponto antes da conversão numérica — uma correção crítica que recuperou 106.262 valores válidos (originalmente parseados como NaN em ~98% dos setores por um bug de parsing).
-## 3.3 Classificação Dados_sig
-Conforme as regras do IVS-BH 2012, cada setor recebeu uma classificação:
-A taxa de elegibilidade de 97,5% é excelente e compara favoravelmente com o IVS-BH original (que excluiu 2,7% dos setores em 2012). Não há setores 100% coletivos nem zerados — o desenho amostral do ELSI-Brasil concentra-se em áreas urbanas habitadas. As análises a seguir consideram somente os 106.281 setores OK.
-# 4. Análise por Variável
-Esta seção descreve a distribuição de cada uma das sete variáveis-componente do IVS para o conjunto de 70 municípios ELSI. Para cada variável reportam-se medidas de tendência central (média, mediana), dispersão (DP, CV, IQR), forma da distribuição (assimetria, curtose) e cobertura efetiva de dados.
-## 4.1 Tabela consolidada — Descritivas globais
-## 4.2 Saneamento — água, esgoto, lixo
-As três variáveis de saneamento exibem distribuição extremamente assimétrica à direita. A maioria absoluta dos setores ELSI tem acesso adequado nas três dimensões (mediana = 0). Mas a cauda longa indica a existência de setores onde 100% dos domicílios têm acesso inadequado ou ausente, elevando as médias para 8–13% e produzindo coeficientes de variação superiores a 200% — refletindo a coexistência de dois regimes estatísticos distintos: a "norma urbana" próxima de zero e os "bolsões" próximos de um.
-Padrão similar entre as três: 35 dos 70 municípios (50%) têm mais da metade dos setores com algum esgotamento inadequado; 34 (48,6%) idem para água. O lixo apresenta média mais alta (12,6%), indicando que a coleta inadequada é um problema mais disseminado mesmo em municípios bem-atendidos quanto a água e esgoto.
-Para o artigo: reportar MEDIANA e IQR, não média e DP — a média é fortemente influenciada pelos bolsões de vulnerabilidade extrema.
-## 4.3 Razão de moradores por domicílio
-Variável de comportamento mais simétrico (assimetria +0,09) — média (2,70) e mediana (2,72) praticamente coincidem. A densidade média brasileira de moradores por domicílio é historicamente próxima de 3,0; o valor observado está dentro do esperado. A baixa variabilidade (CV = 14,8%) sugere que esta variável contribuirá com menos discriminação ao IVS do que as variáveis de saneamento, mas é homogeneamente informativa.
-## 4.4 Analfabetismo (15+)
-A cobertura efetiva de 84% (15,8% sigilo) reflete a supressão do IBGE em setores com poucos indivíduos de 15 anos ou mais. Com o denominador correto V00901 / (V00900 + V00901), a taxa fica naturalmente limitada a [0, 1] (máximo observado 84,2%, contra os valores espúrios maiores que 1 que a fórmula anterior V00901 / V00900 produzia). A mediana de 2,8% é compatível com a taxa nacional de analfabetismo — esperada inferior em territórios urbanos. A alta curtose (+17,7) indica a existência de setores com taxa de analfabetismo extremamente elevada, concentrados em pequenos municípios do Nordeste rural (Arara/PB mediana de 31,1%, Jaqueira/PE 24,9%, Água Preta/PE 24,2%).
-## 4.5 Rendimento médio mensal
-A renda apresenta a distribuição mais assimétrica entre todas as variáveis, com média (R$ 4.141) muito superior à mediana (R$ 2.546) — sinal clássico de concentração de renda. A cauda direita estende-se a valores extremos (R$ 170 mil), refletindo setores residenciais de altíssima renda nas áreas nobres das capitais.
-Para o artigo, é mandatório usar mediana e IQR para reportar renda. O intervalo interquartil de R$ 3.020 já é, por si só, ilustrativo da heterogeneidade dentro das ELSI.
-## 4.6 Raça/cor — pretos, pardos e indígenas (PPI)
-Esta é a única variável com assimetria negativa (−0,39) e a única bem distribuída no intervalo [0,1]: a curtose negativa indica uma distribuição mais plana que a Normal. A mediana de 57,6% revela que, no conjunto ELSI, a maioria dos setores tem mais de metade da população classificada como preta, parda ou indígena. A discriminação regional é elevada — ver Seção 5.
+## 2. Universo Amostral
 
-Figura 1 — Histogramas das 7 variáveis-componente do IVS (setores OK, 70 municípios ELSI). Distribuições altamente assimétricas para saneamento e renda; razão de moradores e raça/cor mais simétricas.
-# 5. Análise Regional
-A Tabela abaixo apresenta as medianas das sete variáveis estratificadas pelas cinco regiões geográficas do Brasil.
-Valores são medianas. PPI = pretos, pardos e indígenas.
-## Interpretação substantiva
-- Norte e Nordeste concentram a precariedade. A Região Norte lidera tanto na inadequação de água (mediana de 20% dos setores) quanto na densidade habitacional (3,2 pessoas por domicílio). O Nordeste tem a pior renda (mediana R$ 1.693) e o pior analfabetismo (5,3%).
-- Sul é a região mais bem-atendida e mais homogeneamente branca. A renda mediana é a maior (R$ 3.686), a inadequação de saneamento é praticamente nula nas medianas, o analfabetismo é o menor (1,7%) e a proporção de pretos/pardos/indígenas é dramaticamente inferior (22,2%, contra 77,4% no Norte). Esse contraste de 55 pontos percentuais entre Norte e Sul para raça/cor é o maior gradiente regional observado entre todas as variáveis.
-- Centro-Oeste apresenta perfil dual. A renda mediana (R$ 3.083) é puxada fortemente para cima por Brasília/DF e Campo Grande/MS. A composição raça/cor (60,7%) está intermediária. As variáveis de saneamento ficam próximas do Sudeste.
-- Sudeste tem o maior contraste interno. Embora os indicadores agregados da região sejam bons, ela contém tanto municípios excelentes (São Caetano do Sul, com renda mediana de R$ 5.292) quanto periferias problemáticas.
+O Sudeste concentra 59% dos setores da amostra. São Paulo sozinho responde por 27.301 setores e o Rio de Janeiro por 13.782. Qualquer média simples entre setores é, na prática, dominada pelas grandes capitais do Sudeste — o que precisa ser considerado ao interpretar os agregados do recorte.
 
-Figura 2 — Boxplots das 7 variáveis estratificados por região. O contraste Norte vs. Sul é dramático em todas as variáveis, especialmente raça/cor (PPI).
-# 6. Heterogeneidade Municipal
-## 6.1 Top-5 municípios com piores medianas em saneamento
-Os municípios do Pará (Portel, Placas) e Amazonas (Autazes) aparecem sistematicamente entre os piores em todos os três quesitos. Coroaci/MG, Santa Maria do Oeste/PR, Urandi/BA e Japoatã/SE são pequenos municípios rurais cuja inadequação tende a ser próxima de 100% em quase todos os setores (atenção para o n pequeno, 29 a 47 setores).
-A presença de Salto/SP no top-5 de lixo inadequado é surpreendente para um município paulista — pode indicar problema de classificação categórica nas variáveis V00398–V00402 que merece checagem (e.g., se "caçamba de serviço de limpeza" foi indevidamente contabilizada como inadequada).
-## 6.2 Renda mediana — extremos
-A razão entre o município mais rico (São Caetano do Sul) e o mais pobre (Portel) é de 5,18 vezes — magnitude condizente com a desigualdade estrutural histórica do Brasil. Esses extremos serão fundamentais quando se discutir a normalização da renda: uma normalização min-max global comprime essa amplitude e trata Portel e São Caetano como pertencendo ao mesmo "mercado de renda" — claramente inadequado para análise intraurbana. A normalização por município é fortemente recomendada.
-## 6.3 Outros padrões municipais
-- Maior razão de moradores por domicílio: Portel/PA (4,6) e Autazes/AM (3,7) — coerente com a precariedade habitacional dessas localidades.
-- Maior taxa de analfabetismo: Arara/PB (31,1%), Jaqueira/PE (24,9%), Água Preta/PE (24,2%) — municípios pequenos do Nordeste interior.
-- Maior proporção de pretos/pardos/indígenas: Autazes/AM (92,9%), Salvador/BA (88,9%), Rosário/MA (88,1%), Portel/PA (87,8%), Itajuípe/BA (84,5%).
-# 7. Análise de Outliers (regra IQR)
-A regra clássica do diagrama de caixa (Tukey, 1977) classifica como outlier qualquer valor fora do intervalo [Q1 − 1,5·IQR, Q3 + 1,5·IQR].
-Os altos percentuais de "outliers" em água, esgoto e lixo (~20%) NÃO são erros nem aberrações estatísticas, mas consequência matemática direta da regra IQR aplicada a uma distribuição extremamente concentrada em zero: como Q1 = 0 e Q3 é muito próximo de zero (0,017 para água), qualquer valor moderado fica acima de Q3 + 1,5·IQR ≈ 0,04. Isso significa que a regra IQR não é apropriada para identificar valores aberrantes nessas variáveis — ela apenas redescobre o fato já conhecido de que as inadequações de saneamento têm distribuição bimodal.
-Recomendação: NÃO excluir nenhum setor com base em outliers de saneamento. Os bolsões de inadequação extrema são o objeto principal do estudo, não ruído a remover. Para renda, os outliers superiores correspondem a setores de altíssima renda em áreas nobres das capitais e devem ser preservados; influenciarão a normalização e justificam o uso de mediana e IQR para descrição.
-# 8. Análise de Dados Faltantes
-## 8.1 Cobertura por variável (global)
-## 8.2 Concentração de missing em grandes cidades (analfabetismo)
-Os setores com sigilo em V00900/V00901 concentram-se em municípios densamente povoados — onde a regra do IBGE de suprimir setores com poucos indivíduos acaba afetando muitas microáreas. Os 10 municípios com maior taxa de missing para analfabetismo:
-Inversamente, 11 municípios pequenos têm zero missing em todas as variáveis: Arara/PB, Coroaci/MG, Ibatiba/ES, Itajuípe/BA, Jaqueira/PE, Portel/PA, Salinas/MG, Santa Maria do Oeste/PR, São Raimundo do Doca Bezerra/MA, Urandi/BA e Água Preta/PE.
-O sigilo do IBGE introduz um viés sistemático nas análises agregadas: setores pequenos (que tendem a ser de classes médias em vias urbanas tradicionais) são preferencialmente suprimidos. Discutir essa limitação na seção de Discussão do artigo.
+## 3. Tratamento e Elegibilidade
+### 3.1 Sigilo do IBGE
+O IBGE substitui contagens muito pequenas pela letra X. A base bruta preserva o marcador; a conversão para NaN ocorre no início do notebook de análise. Nas somas de numerador uso min_count=1: o indicador só resulta ausente quando todas as parcelas estão sigilosas, nunca zero silencioso.
+### 3.2 Separador decimal
+O rendimento médio (V06004) vem com vírgula decimal (2453,03). Sem a substituição por ponto antes da conversão numérica, a coluna inteira se tornaria nula. O tratamento está na célula step2.
+### 3.3 Classificação `Dados_sig`
 
-Figura 3 — Mapa de calor: % de dados faltantes por município × variável. A coluna de pct_analfab destaca-se com tons mais escuros em grandes capitais; a coluna de renda_media é praticamente uniforme após a correção do separador decimal.
-# 9. Estrutura de Correlações
-A matriz de correlação fornece a evidência empírica mais direta da estrutura latente que a análise fatorial buscará explicitar. São apresentados dois coeficientes — Pearson (paramétrico, mede associação linear) e Spearman (não-paramétrico, baseado em postos, robusto à assimetria). Dada a forte assimetria das variáveis de saneamento e renda, Spearman é mais informativo.
-## 9.1 Matriz de correlação de Spearman
-Correlações de Spearman entre as 7 variáveis-componente do IVS.
-## 9.2 Leitura substantiva
-Eixo socioeconômico (dimensão dominante). As três correlações mais fortes são todas no triângulo renda × analfabetismo × raça/cor (PPI):
-- renda × PPI = −0,81 (a correlação mais forte do conjunto)
-- renda × analfabetismo = −0,75
-- analfabetismo × PPI = +0,62
-Esse resultado é metodologicamente importante: ele sustenta a hipótese de raça/cor como proxy de vulnerabilidade socioeconômica estrutural, mencionada no Plano do Artigo (Tabela 5). A correlação de −0,81 entre PPI e renda média é o sinal empírico mais forte da desigualdade racial-econômica nos territórios do ELSI-Brasil e sustenta a inclusão da variável raça/cor no IVS apesar de ser uma variável categórica subjacente.
-Densidade habitacional como mediadora. A razão de moradores correlaciona positivamente com PPI (+0,46) e com analfabetismo (+0,41), e negativamente com renda (−0,44). Embora não seja a variável mais discriminante, contribui de forma coerente para o vetor socioeconômico.
-Eixo saneamento (dimensão secundária). Água, esgoto e lixo formam um bloco coerente, mas com correlações entre si mais modestas (0,14 a 0,45). A correlação esgoto × analfabetismo = +0,45 sugere que esgoto inadequado pode estar relacionado a contextos socioeconômicos vulneráveis — uma correlação cruzada entre dimensões.
-Lixo é o componente mais autônomo. Suas correlações com as demais variáveis raramente excedem 0,20. Isso significa que o indicador de lixo trará informação distinta dos demais — possivelmente capturando uma dimensão de cobertura municipal de serviços de limpeza pública que não se reduz à pobreza individual.
-## 9.3 Implicações para a análise fatorial
-A estrutura de correlações é coerente com dois fatores latentes:
-- Fator 1 (socioeconômico): renda média (invertida), analfabetismo, raça/cor (PPI), razão de moradores. Esperam-se cargas fatoriais altas para estas quatro variáveis.
-- Fator 2 (saneamento): água inadequada, esgoto inadequado, lixo inadequado. Cargas fatoriais menores, mas coerentes.
-O peso relativo do Fator 1 será provavelmente superior ao do Fator 2 — consistente com a divisão histórica do IVS-BH (~60% socioeconômico / ~40% saneamento). A confirmação dependerá da análise fatorial (PCA ou Análise Fatorial Exploratória) no Notebook 03.
-Recomendação técnica: usar a matriz de correlação de Spearman como entrada da análise fatorial, dado o desvio acentuado de normalidade das variáveis de saneamento e renda (assimetrias 2,2 a 4,7).
+Correção aplicada em 09/08/2026. A condição de sigilo estava sendo avaliada antes da condição de população zero. Com isso, 1.736 setores sem população — entre eles os 78 de massa d'água (CD_SIT = 9) — eram rotulados SIGILOSO, isto é, contados como dado suprimido pelo IBGE. Invertida a ordem, o sigilo real caiu de 2.751 para 1.015 setores. Nenhum setor OK mudou de classe: a correção não altera o conjunto analisado, apenas deixa de superestimar a supressão nos relatórios.
+### 3.4 Recorte urbano
+O IVS é um índice intraurbano. Setores rurais entram na base porque o recorte é municipal, mas não pertencem ao objeto de análise. O filtro (SITUACAO = 'Urbana', equivalente a CD_SIT ∈ {1, 2, 3}) é aplicado no notebook de análise, e não na extração — a base bruta preserva os 109.032 setores, o que torna a exclusão auditável e reversível.
 
-Figura 4 — Matriz de correlação. Esquerda: Pearson. Direita: Spearman. O par renda × PPI destaca-se com o maior valor absoluto (−0,81 em Spearman).
-# 10. Implicações para a Construção do IVS
-Esta EDA sustenta cinco recomendações práticas para a construção do índice nas etapas seguintes:
-- Reportar mediana e IQR (não média e DP) nas tabelas descritivas do artigo para todas as variáveis assimétricas (água, esgoto, lixo, renda, analfabetismo).
-- Normalizar renda por município, e não globalmente. A razão de 5,18× entre os extremos (Portel × São Caetano do Sul) confirma que a renda precisa ser interpretada relativamente ao mercado local de cada cidade, sob pena de comprimir indevidamente a variação intraurbana.
-- Usar correlação de Spearman como entrada da análise fatorial, em função da forte assimetria não-linear das variáveis.
-- Preservar os outliers de saneamento — não são erros, são justamente os bolsões de vulnerabilidade que o estudo se propõe a identificar. A regra IQR é inadequada como critério de exclusão para essas variáveis.
-- Considerar imputação ou exclusão pareada para o sigilo de analfabetismo. Excluir os ~16% de setores com sigilo poderia introduzir viés contra grandes cidades. Imputar a mediana municipal é uma opção metodologicamente defensável.
-# 11. Limitações da Análise Exploratória
-# 12. Próximos Passos
-- Notebook 03 — Análise Fatorial. Aplicar PCA / Análise Fatorial Exploratória sobre a matriz de correlação de Spearman para extrair os pesos das variáveis e gerar o IVS contínuo (0–1).
-- Categorização em 4 faixas. Definir os pontos de corte (Baixo / Médio / Elevado / Muito Elevado) com base em quartis ou desvios da média, conforme metodologia IVS-BH.
-- Geoprocessamento. Construir os mapas temáticos do IVS por setor censitário no QGIS 3.x. Atenção aos 10 municípios pequenos (n < 50 setores) onde o mapa será menos rico visualmente.
-- Revisão metodológica com a orientadora. Submeter as recomendações desta EDA (normalização por município, uso de Spearman, tratamento de sigilo) antes da execução do Notebook 03.
-- Iniciar a redação dos Resultados do artigo a partir das tabelas e figuras desta EDA — especialmente a Tabela 1 (descritivas por município) e a Figura 1 (matriz de correlação).
-# Anexos — Localização dos artefatos
-# Referências metodológicas
-- SMS-BH. Cálculo IVS 2012 — documento operacional do Índice de Vulnerabilidade da Saúde de Belo Horizonte.
-- FIOCRUZ — Campus Virtual. Curso de Análise de Dados, Módulo 2: Estatística Descritiva e Comunicação de Resultados.
-- Passarelli-Araujo, H. (2023). Mapeando as disparidades socioeconômicas de saúde urbana: um estudo comparativo entre seis capitais brasileiras. Revista Brasileira de Estudos de População, v. 40.
-- Tukey, J.W. (1977). Exploratory Data Analysis. Addison-Wesley.
-| Dimensão | Variável | Numerador (Censo 2022) | Denominador |
+A exclusão é desigual entre municípios. Nove municípios não perdem nenhum setor, mas 29 dos 70 perdem mais de 10% e 14 perdem mais da metade. Os casos extremos são São Raimundo do Doca Bezerra (19 setores elegíveis, 3 urbanos), Orizânia (21 → 5) e São Paulo das Missões (18 → 6). Descritivas municipais nesses casos são instáveis, e a adoção de um piso mínimo de setores para análises por município precisa ser decidida. Conferência completa em exclusao_rural_conferencia.csv.
+
+## 4. Análise por Variável
+Descritivas globais dos sete componentes, sobre os 104.108 setores urbanos elegíveis:
+
+
+Figura — figuras/histogramas.png
+### 4.1 Saneamento
+Água inadequada (soma de V00112–V00118 ÷ V00001). Média de 6,96% dos domicílios, mediana zero, P75 de 1,18%. Um quarto dos setores tem alguma inadequação; a concentração está no Norte, cuja média regional (0,323) é dezesseis vezes a do Sul (0,020). As piores medianas municipais são Portel (0,919), Placas (0,832) e Ananindeua (0,825).
+Esgoto inadequado (V00312–V00316 ÷ V00001). Média de 8,20%, mediana zero. Piores medianas municipais: Portel (0,980), Vicentinópolis (0,979), São Raimundo do Doca Bezerra (0,971). A faixa de variáveis foi confirmada no dicionário oficial do IBGE — V00309 a V00311 (rede geral e fossa séptica) são adequadas e ficam fora do numerador. O diagnóstico empírico que compara esta faixa com a alternativa V00249–V00253 está na célula step4b e em diagnostico_esgoto_312_vs_249.csv.
+Lixo inadequado (V00398–V00402 ÷ V00001). Média de 11,58%, a maior das três, e com o menor coeficiente de variação. É a única variável de saneamento cujo perfil regional é praticamente plano: varia apenas de 0,091 (Centro-Oeste) a 0,154 (Nordeste). A pior mediana municipal é Salto (0,964), seguida de Groaíras (0,720) e Salvador (0,340).
+Sobre a caçamba. A V00398 (lixo depositado em caçamba de serviço de limpeza) conta como destino inadequado, seguindo o Cálculo IVS2012.docx, em que apenas a coleta porta a porta (V00397) é adequada. A decisão é herdada da metodologia-fonte, mas tem consequência empírica discutida na seção 11.
+### 4.2 Razão de moradores por domicílio
+(V00005 + V00006) ÷ (V00001 + V00002), fórmula que reproduz o V0005 publicado pelo IBGE. É a variável mais bem comportada do conjunto: CV de 14%, distribuição aproximadamente simétrica (assimetria −0,22), mínimo exatamente 1,00 e máximo 6,91. Média regional de 3,19 no Norte contra 2,53 no Sul. Maiores medianas municipais: Portel (4,23), Autazes (3,64) e Coroaci (3,38). Os extremos foram auditados em extremos_razao_moradores.csv.
+### 4.3 Analfabetismo de 15 anos ou mais
+V00901 ÷ (V00900 + V00901). Média de 3,64% e mediana de 2,71%, com máximo de 72,55%. É a variável com maior perda de casos: 87.556 setores calculáveis de 104.108 (84,1%). O padrão regional foge do gradiente Norte-Sul das demais: o pico é o Nordeste (0,062) e não o Norte (0,033). Maiores medianas municipais: Arara (0,231), Água Preta (0,213) e Jaqueira (0,191). O tratamento do sigilo está detalhado na seção 8.
+### 4.4 Rendimento médio do responsável
+V06004, usado diretamente. Média de R$ 4.187,41 e mediana de R$ 2.572,39 — a diferença entre as duas já indica a assimetria. O máximo, R$ 170.418,06 num único setor, é plausível: trata-se de rendimento médio dos responsáveis, e há setores de altíssima renda. Extremos municipais: São Caetano do Sul (mediana R$ 5.292), Curitiba (R$ 4.115) e Porto Alegre (R$ 3.987) no topo; Jaqueira (R$ 1.062), Água Preta (R$ 1.240) e Rosário (R$ 1.272) na base — uma razão de cinco vezes entre os extremos.
+### 4.5 Cor ou raça preta, parda e indígena
+(V01318 + V01320 + V01321) ÷ v0001. Média de 52,67% e mediana de 57,19%, com a distribuição mais espalhada do conjunto (é a única com assimetria negativa e nenhum outlier pela regra do IQR). Extremos municipais: Salvador (0,889), Autazes (0,846) e Rosário (0,838) no topo; Taió (0,160), Charqueadas (0,167) e São Caetano do Sul (0,172) na base.
+
+## 5. Análise Regional
+Médias entre setores, por região:
+
+
+Figura — figuras/boxplots_por_regiao.png
+Interpretação. O gradiente Norte-Sul é consistente em cinco das sete variáveis: água (16×), esgoto (8×), razão de moradores, renda e proporção PPI (3×). Duas variáveis fogem do padrão, e as duas exceções são informativas:
+- O analfabetismo tem pico no Nordeste, não no Norte. Reflete a história educacional das duas regiões e mostra que vulnerabilidade educacional e sanitária não são a mesma dimensão territorial.
+- O lixo é plano entre regiões. Como a coleta porta a porta é quase universal nas áreas urbanas de todas as regiões, o que sobra no indicador é sobretudo a caçamba, que não segue o gradiente de desenvolvimento.
+O Centro-Oeste apresentar a maior renda média (R$ 4.945) reflete o peso de Brasília na composição regional da amostra, com 5.418 setores em sete municípios.
+
+## 6. Heterogeneidade Municipal
+As descritivas por município estão em descritivas_por_municipio.csv (70 municípios × 7 variáveis = 490 linhas). Três padrões se destacam:
+Os mesmos municípios lideram várias dimensões. Portel aparece como pior mediana em água e esgoto e maior razão de moradores; Arara e Água Preta lideram analfabetismo e estão entre as menores rendas. Há um pequeno conjunto de municípios de alta vulnerabilidade em várias dimensões ao mesmo tempo, o que é um bom sinal para a construção de um índice composto.
+A amplitude intermunicipal é grande. A renda mediana varia cinco vezes entre o maior e o menor município; a mediana de esgoto inadequado varia de praticamente zero a 0,98.
+Os municípios pequenos são instáveis após o recorte urbano. Os casos com menos de dez setores urbanos (São Raimundo do Doca Bezerra, Orizânia, São Paulo das Missões) produzem medianas que oscilam muito com poucos setores. Nas tabelas por município, esses valores devem ser lidos com reserva.
+
+## 7. Análise de Outliers
+
+A regra do IQR não é aplicável às três variáveis de saneamento. Quando o primeiro quartil e a mediana são ambos zero, o intervalo interquartil fica minúsculo e qualquer valor positivo acima de um limiar de 3 a 15 pontos percentuais é classificado como outlier. Os 18% a 21% de setores flagrados não são erros de medição nem casos extremos: são os setores que simplesmente têm alguma inadequação, num universo em que a maioria não tem nenhuma.
+Por isso a tabela outliers.csv traz também as colunas p95, n_acima_p95, pct_acima_p95 e a sinalização iqr_nao_informativo. Para essas três variáveis, o percentil 95 é o critério apropriado de cauda alta.
+Nos demais indicadores o IQR funciona. Os 10,1% de outliers da renda são reais: refletem a cauda de setores de alta renda, não erro de dado. A proporção PPI não tem nenhum outlier, consequência de ser limitada em [0, 1] e ter distribuição espalhada.
+
+## 8. Análise de Dados Faltantes
+
+
+Figura — figuras/missing_por_municipio.png
+O problema está concentrado numa variável. Seis das sete têm cobertura praticamente total. O analfabetismo perde 15,9% dos setores porque o IBGE suprime a contagem de analfabetos (V00901) quando ela é pequena.
+Municípios mais afetados: Belo Horizonte (22,5%), Araçatuba (18,8%), Brasília (16,3%), Ananindeua (9,7%), Belém (6,8%).
+O sigilo não é aleatório — é informativo. Ele incide onde o número absoluto de analfabetos é pequeno, isto é, nos setores urbanos de melhor situação educacional. Isso significa que:
+- imputar zero enviesaria o índice, subestimando o analfabetismo exatamente nas áreas de menor vulnerabilidade e comprimindo artificialmente a variabilidade do indicador;
+- descartar os setores reduziria o conjunto analítico em 16% e o faria de forma seletiva, eliminando preferencialmente os setores de melhor situação.
+Na EDA mantive os valores ausentes. Para o cálculo do índice a política precisa ser definida explicitamente; a alternativa mais defensável é imputação por mediana municipal com indicador de imputação, mas isso ainda não está decidido.
+
+## 9. Estrutura de Correlações
+Matriz de Spearman; a de Pearson está em correlacao_pearson.csv. Uso Spearman como referência porque as distribuições estão longe da normalidade.
+
+Figura — figuras/matriz_correlacao.png
+
+### 9.1 Leitura
+Um bloco socioeconômico muito coeso. Renda, cor/raça e analfabetismo formam um triângulo de correlações fortes: −0,81, −0,76 e 0,63. As três medem, em boa parte, o mesmo construto latente de posição social do território.
+Um bloco de saneamento moderado. Água e esgoto se correlacionam a 0,42, e ambos se ligam ao bloco socioeconômico com magnitudes entre 0,23 e 0,45. É uma dimensão distinta, mas não ortogonal.
+O lixo isolado. Correlaciona-se de 0,10 a 0,20 com todas as demais e −0,06 com a razão de moradores. Não pertence claramente a nenhum dos dois blocos.
+A razão de moradores é intermediária, com correlações de 0,26 a 0,46 com quase tudo — comporta-se como variável de ligação entre as duas dimensões.
+### 9.2 Implicações para a análise fatorial
+- Esperar dois fatores, e não os dois blocos teóricos simetricamente: um fator socioeconômico forte (renda, PPI, analfabetismo, com a razão de moradores carregando parcialmente) e um fator de saneamento mais fraco (água e esgoto).
+- O lixo provavelmente ficará com comunalidade baixa em ambos os fatores. Será preciso decidir se permanece no índice, se entra com peso reduzido ou se é reportado como indicador descritivo à parte.
+- A colinearidade do bloco socioeconômico é o argumento técnico a favor de pesos empíricos: uma ponderação igual entre as sete variáveis daria à posição social três votos e ao saneamento dois e meio, sem que essa fosse uma escolha deliberada.
+
+## 10. Blocos Descritivos Complementares
+Estes indicadores não integram o IVS. Caracterizam o território e alimentam as tabelas descritivas do artigo.
+### 10.1 Habitação precária e banheiro
+
+São fenômenos raros no recorte urbano: as medianas e mesmo os percentis 90 são zero em todos os quatro. A privação sanitária extrema praticamente desapareceu das cidades da amostra, o que justifica mantê-los fora do índice — não discriminariam setores.
+### 10.2 Pessoa responsável do sexo feminino
+V01063 ÷ (V01062 + V01063). Média de 52,81% e mediana de 53,39% (n = 103.961). Por região: Nordeste 55,4%, Norte 54,2%, Sudeste 52,5%, Sul 51,3%, Centro-Oeste 49,8%. Na maioria dos setores urbanos da amostra, portanto, as mulheres já são maioria entre as pessoas responsáveis pelo domicílio.
+### 10.3 Indicadores de envelhecimento
+Definições do Quadro 1 de Galvão et al. (Hygeia, v.21, e2106, 2025), que adota os indicadores das Nações Unidas.
+
+Por região: Sul 111,9 · Sudeste 105,5 · Nordeste 81,7 · Centro-Oeste 73,0 · Norte 56,3. No Sul e no Sudeste da amostra já há mais idosos do que crianças.
+Correção do denominador. A versão anterior calculava o índice como idosos ÷ crianças de 0 a 4 anos (V01031). O denominador correto é a população com menos de 15 anos (V01031 + V01032 + V01033). Com o denominador antigo o índice ficava cerca de três vezes maior e não era comparável com nenhuma referência publicada.
+A Longevidade (75+ ÷ 60+) não é calculável nos agregados por setor: a faixa mais fina no topo da pirâmide é V01041 = "70 anos ou mais". Calculo a proporção de 70+ entre os 60+ (44,6% no recorte) como substituto parcial, explicitamente rotulado como tal.
+### 10.4 Tipo de domicílio
+
+pct_apartamento = V00049 ÷ V00001: média de 31,5% entre setores, com gradiente Sul 39,0% · Sudeste 34,8% · Centro-Oeste 29,0% · Nordeste 23,8% · Norte 16,4%. Municípios mais verticalizados: São Caetano do Sul (53,4%), Porto Alegre (52,4%), Rio de Janeiro (42,1%).
+Verificação do denominador. A soma dos seis tipos de domicílio permanente nunca ultrapassa V00001 em nenhum dos 104 mil setores; quando fica abaixo, o déficit é de no máximo seis domicílios e decorre de sigilo em parcelas pequenas. Isso confirma V00001 como denominador correto para o bloco.
+### 10.5 Setores de favela e comunidade urbana
+O Censo 2022 substituiu a categoria "aglomerado subnormal" pelas Favelas e Comunidades Urbanas, marcadas em CD_TIPO = 1.
+
+Distribuição regional (percentual dos setores de cada região): Norte 50,6% · Nordeste 27,7% · Sudeste 14,6% · Sul 8,5% · Centro-Oeste 4,6%. É a maior heterogeneidade regional de qualquer variável do projeto. Em Ananindeua 58,9% dos setores são de favela, em Belém 55,9% e em Manaus 51,7%.
+Comparação entre setores de FCU e demais setores urbanos elegíveis:
+
+Este é o resultado mais relevante da EDA para a validação do índice. Os setores de FCU são identificados por classificação independente, feita pelo próprio IBGE, e todos os componentes do IVS se movem na direção esperada com magnitudes grandes. Quando o índice estiver calculado, comparar sua distribuição entre FCU e não-FCU será o teste de validade de critério mais direto disponível, sem depender de fonte externa.
+
+## 11. Comparação com o Brasil
+O script scripts/proporcoes_brasil.py aplica as mesmas fórmulas aos 468.099 setores do país. Não é recorte de análise: serve de linha de base de representatividade.
+
+
+A amostra é mais rica, mais alfabetizada e mais bem servida de esgoto que o Brasil urbano — o esperado numa amostra de capitais e cidades médias. Ela deve ser descrita no artigo como representativa do Brasil urbano de grande porte, não do Brasil.
+A exceção é o lixo, única variável em que o recorte está pior que o país. A hipótese mais provável é a caçamba (V00398), que conta como destino inadequado e é muito mais comum em cidade grande do que em município pequeno. Se confirmada, significa que o indicador de lixo captura parcialmente porte urbano em vez de vulnerabilidade — o que é coerente com ele ser também o menos correlacionado com todas as demais variáveis. Recomendo decompor V00398 das demais formas antes de fechar a ponderação do índice.
+
+## 12. Implicações para a Construção do IVS
+- Normalização por município, não global. É a mudança mais urgente. A assimetria da renda e a natureza intraurbana do objetivo tornam a escala global inadequada.
+- Tratar as distribuições infladas de zeros. Para água, esgoto e lixo, a padronização min-max é dominada pela cauda. Avaliar transformação, winsorização no P95 ou padronização por posto.
+- Definir a política de sigilo no analfabetismo antes do cálculo, com imputação explícita e indicador de imputação, ou justificar formalmente a exclusão dos setores.
+- Decidir o destino do indicador de lixo à luz das seções 9 e 11.
+- Pesos empíricos, mas com leitura crítica. A colinearidade do bloco socioeconômico favorece a análise fatorial; ainda assim é preciso confrontar o resultado com a proporção de referência do IVS-BH (60% socioeconômica, 40% saneamento).
+- Piso mínimo de setores por município nas análises municipais, dado o efeito do recorte urbano em municípios pequenos.
+
+## 13. Limitações da Análise Exploratória
+- Falácia ecológica. Todas as medidas são agregadas por setor; nada aqui autoriza inferência sobre indivíduos (Lima-Costa & Barreto, 2003).
+- Exclusão de institucionalizados. A regra Dados_sig remove setores 100% coletivos (asilos, presídios). No recorte ELSI nenhum setor caiu nessa classe, mas a população institucionalizada permanece sub-representada dentro dos setores mistos.
+- O recorte urbano reduz municípios pequenos de forma desigual, como detalhado em 3.4.
+- O sigilo do analfabetismo é seletivo e afeta 15,9% dos setores.
+- Três componentes do IVS-BH original não são reprodutíveis com os agregados do Censo
+2022 (anos de estudo, faixas de renda, óbitos cardiovasculares).
+- A EDA é descritiva. Nenhuma inferência ou teste de hipótese foi conduzido; as correlações são exploratórias.
+
+## 14. Próximos Passos
+
+
+## Anexos — Localização dos artefatos
+Tabelas (banco_de_dados/eda/)
+
+Figuras (banco_de_dados/eda/figuras/): histogramas.png, boxplots_por_regiao.png, matriz_correlacao.png, missing_por_municipio.png.
+Nacional (banco_de_dados/nacional/): proporcoes_por_recorte.csv, proporcoes_brasil_por_{regiao,uf,municipio}.csv, comparativo_brasil_vs_elsi.csv, representatividade_elsi_no_brasil.csv — seção 11.
+
+## Referências metodológicas
+- SMS-BH. Índice de Vulnerabilidade da Saúde 2012. Belo Horizonte, 2013.
+- Galvão, S. M. et al. Envelhecimento populacional em Mato Grosso e sua relação com indicadores demográficos e econômicos. Hygeia, v. 21, e2106, 2025.
+- Lima-Costa, M. F.; Barreto, S. M. Tipos de estudos epidemiológicos: conceitos básicos e aplicações na área do envelhecimento. Epidemiol. Serv. Saúde, v. 12, n. 4, 2003.
+- Passarelli-Araujo, H. Mapeando as disparidades socioeconômicas de saúde urbana.
+Rev. Bras. Est. Pop., v. 40, 2023.
+- Matos, D. A. S.; Rodrigues, E. C. Análise fatorial. Brasília: Enap, 2019.
+- IBGE. Censo Demográfico 2022 — Agregados por Setores Censitários. Rio de Janeiro, 2022.
+| Região | Municípios | Setores na base | Rurais | % rural | Setores urbanos elegíveis |
+| --- | --- | --- | --- | --- | --- |
+| Sudeste | 26 | 64.291 | 859 | 1,34% | 61.989 |
+| Nordeste | 22 | 20.548 | 577 | 2,81% | 19.497 |
+| Centro-Oeste | 7 | 10.186 | 544 | 5,34% | 9.490 |
+| Sul | 9 | 7.486 | 167 | 2,23% | 7.217 |
+| Norte | 6 | 6.521 | 460 | 7,05% | 5.915 |
+| Total | 70 | 109.032 | 2.607 | 2,39% | 104.108 |
+| Classe | Critério | Setores | % |
 | --- | --- | --- | --- |
-| Saneamento | % domicílios com água inadequada | V00112 a V00118 | V00001 |
-| Saneamento | % domicílios com esgoto inadequado | V00312 a V00316 | V00001 |
-| Saneamento | % domicílios com lixo inadequado | V00398 a V00402 | V00001 |
-| Socioeconômica | Razão de moradores por domicílio | V00005 + V00006 | V00001 + V00002 |
-| Socioeconômica | % pessoas analfabetas (15+) | V00901 | V00900 + V00901 |
-| Socioeconômica | Rendimento médio mensal (R$) | V06004 (direto) | — |
-| Socioeconômica | % pretos, pardos e indígenas | V01318 + V01320 + V01321 | v0001 |
-| Região | Municípios | UFs envolvidas | Setores totais |
-| --- | --- | --- | --- |
-| Sudeste | 26 | MG, ES, RJ, SP | 64.281 |
-| Nordeste | 22 | MA, PI, CE, RN, PB, PE, AL, SE, BA | 20.628 |
-| Sul | 9 | PR, SC, RS | 7.561 |
-| Centro-Oeste | 7 | MS, MT, GO, DF | 10.171 |
-| Norte | 6 | AM, PA | 6.391 |
-| Total | 70 | 22 UFs | 109.032 |
-| Classe | Critério | n | % |
-| --- | --- | --- | --- |
-| OK | Setor elegível para análise | 106.281 | 97,48% |
-| SIGILOSO | Variável-base (v0001 ou V00001) sigilosa | 2.751 | 2,52% |
-| COLETIVO | 100% de domicílios coletivos (asilos, presídios) | 0 | 0,00% |
-| ZERADO | População residente nula | 0 | 0,00% |
-| Total | — | 109.032 | 100,00% |
-| Variável | n | Média | Mediana | DP | P25 | P75 | Assim. | Curt. |
+| ZERADO | v0001 = 0 — setor sem população residente | 1.736 | 1,59% |
+| SIGILOSO | v0001 ou V00001 suprimidos pelo IBGE | 1.015 | 0,93% |
+| COLETIVO | V00001 = 0 com população > 0 | 0 | — |
+| OK | participa da análise | 106.281 | 97,48% |
+|  | Setores |
+| --- | --- |
+| Base bruta dos 70 municípios | 109.032 |
+| Elegíveis (Dados_sig = OK) | 106.281 |
+| Urbanos elegíveis — recorte de análise | 104.108 |
+| Excluídos pelo filtro rural | 2.173 (2,04%) |
+| Indicador | n | Média | DP | Mediana | P75 | Máximo | CV % | Assimetria |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| pct_agua_inad | 106.281 | 0,083 | 0,000 | 0,221 | 0,000 | 0,017 | +3,07 | +8,46 |
-| pct_esgoto_inad | 106.280 | 0,092 | 0,000 | 0,231 | 0,000 | 0,023 | +2,76 | +6,52 |
-| pct_lixo_inad | 106.281 | 0,126 | 0,000 | 0,264 | 0,000 | 0,071 | +2,23 | +3,68 |
-| razao_moradores | 106.281 | 2,70 | 2,72 | 0,40 | 2,48 | 2,93 | +0,09 | +3,90 |
-| pct_analfab | 89.527 | 0,039 | 0,028 | 0,041 | 0,013 | 0,052 | +2,98 | +17,7 |
-| renda_media (R$) | 106.262 | 4.141 | 2.546 | 4.124 | 1.735 | 4.755 | +3,76 | +49,9 |
-| pct_raca_pretpardind | 106.279 | 0,530 | 0,576 | 0,229 | 0,356 | 0,708 | −0,39 | −0,81 |
-| Região | Água inad. | Esgoto inad. | Lixo inad. | Razão mor. | Analfab. | Renda (R$) | PPI |
+| pct_agua_inad | 104.108 | 0,0696 | 0,1974 | 0,0000 | 0,0118 | 1,0000 | 284 | 3,42 |
+| pct_esgoto_inad | 104.107 | 0,0820 | 0,2143 | 0,0000 | 0,0182 | 1,0000 | 261 | 2,98 |
+| pct_lixo_inad | 104.108 | 0,1158 | 0,2524 | 0,0000 | 0,0594 | 1,0000 | 218 | 2,38 |
+| razao_moradores | 104.108 | 2,6909 | 0,3899 | 2,7126 | 2,9261 | 6,9135 | 14 | −0,22 |
+| pct_analfab | 87.556 | 0,0364 | 0,0352 | 0,0271 | 0,0499 | 0,7255 | 97 | 2,34 |
+| renda_media | 104.096 | 4.187,41 | 4.150,66 | 2.572,39 | 4.835,89 | 170.418,06 | 99 | 3,74 |
+| pct_raca_pretpardind | 104.106 | 0,5267 | 0,2283 | 0,5719 | 0,7044 | 1,0000 | 43 | −0,39 |
+| Região | Água | Esgoto | Lixo | Moradores | Analfab. | Renda (R$) | PPI |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Norte | 0,199 | 0,082 | 0,000 | 3,20 | 0,030 | 1.774 | 0,774 |
-| Nordeste | 0,011 | 0,000 | 0,000 | 2,79 | 0,053 | 1.693 | 0,737 |
-| Centro-Oeste | 0,000 | 0,000 | 0,000 | 2,81 | 0,028 | 3.083 | 0,607 |
-| Sudeste | 0,000 | 0,000 | 0,000 | 2,66 | 0,024 | 2.714 | 0,514 |
-| Sul | 0,000 | 0,000 | 0,000 | 2,60 | 0,017 | 3.686 | 0,222 |
-| # | Água inadequada | Esgoto inadequado | Lixo inadequado |
-| --- | --- | --- | --- |
-| 1 | Portel/PA — 99,0% | Placas/PA — 98,7% | Portel/PA — 99,4% |
-| 2 | Placas/PA — 97,1% | Portel/PA — 98,4% | Autazes/AM — 96,7% |
-| 3 | Autazes/AM — 96,4% | Santa Maria do Oeste/PR — 98,3% | Salto/SP — 96,4% |
-| 4 | Coroaci/MG — 95,7% | Urandi/BA — 98,2% | Placas/PA — 94,2% |
-| 5 | Santa Maria do Oeste/PR — 93,8% | Japoatã/SE — 98,2% | São R. do Doca Bezerra/MA — 91,4% |
-| # | Mais baixa (R$) | Mais alta (R$) |
+| Norte | 0,323 | 0,238 | 0,098 | 3,194 | 0,033 | 2.881 | 0,748 |
+| Nordeste | 0,118 | 0,162 | 0,154 | 2,771 | 0,062 | 3.008 | 0,713 |
+| Centro-Oeste | 0,055 | 0,075 | 0,091 | 2,762 | 0,031 | 4.945 | 0,565 |
+| Sudeste | 0,038 | 0,049 | 0,111 | 2,626 | 0,030 | 4.491 | 0,474 |
+| Sul | 0,020 | 0,029 | 0,102 | 2,529 | 0,021 | 4.842 | 0,246 |
+| Indicador | P25 | P75 | Limite superior | Outliers pelo IQR | P95 | IQR informativo? |
+| --- | --- | --- | --- | --- | --- | --- |
+| pct_agua_inad | 0,000 | 0,012 | 0,030 | 21.532 (20,7%) | 0,558 | não |
+| pct_esgoto_inad | 0,000 | 0,018 | 0,045 | 20.901 (20,1%) | 0,693 | não |
+| pct_lixo_inad | 0,000 | 0,059 | 0,149 | 19.124 (18,4%) | 0,846 | não |
+| razao_moradores | 2,479 | 2,926 | 3,597 | 3.632 (3,5%) | 3,286 | sim |
+| pct_analfab | 0,013 | 0,050 | 0,106 | 4.114 (4,7%) | 0,103 | sim |
+| renda_media | 1.752 | 4.836 | 9.461 | 10.469 (10,1%) | 12.896 | sim |
+| pct_raca_pretpardind | 0,353 | 0,704 | 1,232 | 0 (0,0%) | 0,846 | sim |
+| Variável | Setores com valor | Cobertura |
 | --- | --- | --- |
-| 1 | Portel/PA — 1.022 | São Caetano do Sul/SP — 5.292 |
-| 2 | Rosário/MA — 1.039 | Curitiba/PR — 4.115 |
-| 3 | Água Preta/PE — 1.055 | Porto Alegre/RS — 3.951 |
-| 4 | Jaqueira/PE — 1.073 | Brasília/DF — 3.388 |
-| 5 | São R. do Doca Bezerra/MA — 1.083 | Campinas/SP — 3.375 |
-| Variável | n outliers | % outliers | Interpretação |
-| --- | --- | --- | --- |
-| pct_agua_inad | 21.476 | 20,2% | Artefato da concentração em zero |
-| pct_esgoto_inad | 21.158 | 19,9% | Artefato da concentração em zero |
-| pct_lixo_inad | 19.557 | 18,4% | Artefato da concentração em zero |
-| renda_media | 10.850 | 10,2% | Outliers reais — cauda direita |
-| pct_analfab | 4.696 | 5,2% | Setores de alta vulnerabilidade educacional |
-| razao_moradores | 3.829 | 3,6% | Setores com superlotação extrema |
-| pct_raca_pretpardind | 0 | 0,0% | Distribuição bem-comportada |
-| Variável | n válidos | Cobertura |
-| --- | --- | --- |
-| pct_agua_inad | 106.281 | 100,00% |
-| pct_lixo_inad | 106.281 | 100,00% |
-| razao_moradores | 106.281 | 100,00% |
-| pct_esgoto_inad | 106.280 | 100,00% |
-| pct_raca_pretpardind | 106.279 | 100,00% |
-| renda_media | 106.262 | 99,98% |
-| pct_analfab | 89.527 | 84,24% |
-| Município | UF | % missing analfab. |
-| --- | --- | --- |
-| São Caetano do Sul | SP | 29,7% |
-| Porto Alegre | RS | 27,5% |
-| Curitiba | PR | 23,1% |
-| São Pedro da Aldeia | RJ | 22,7% |
-| Belo Horizonte | MG | 22,5% |
-| Canoas | RS | 20,9% |
-| Rio de Janeiro | RJ | 20,0% |
-| Campinas | SP | 19,9% |
-| São Paulo | SP | 19,7% |
-| Araçatuba | SP | 18,5% |
-|  | água | esgoto | lixo | razão | analf. | renda | PPI |
+| pct_agua_inad | 104.108 | 100,00% |
+| pct_lixo_inad | 104.108 | 100,00% |
+| razao_moradores | 104.108 | 100,00% |
+| pct_esgoto_inad | 104.107 | 100,00% |
+| pct_raca_pretpardind | 104.106 | 100,00% |
+| renda_media | 104.096 | 99,99% |
+| `pct_analfab` | 87.556 | 84,10% |
+|  | Água | Esgoto | Lixo | Moradores | Analfab. | Renda | PPI |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| pct_agua_inad | 1,00 | 0,45 | 0,14 | 0,27 | 0,27 | −0,28 | 0,36 |
-| pct_esgoto_inad | 0,45 | 1,00 | 0,23 | 0,35 | 0,45 | −0,46 | 0,44 |
-| pct_lixo_inad | 0,14 | 0,23 | 1,00 | −0,04 | 0,19 | −0,18 | 0,21 |
-| razao_moradores | 0,27 | 0,35 | −0,04 | 1,00 | 0,41 | −0,44 | 0,46 |
-| pct_analfab | 0,27 | 0,45 | 0,19 | 0,41 | 1,00 | −0,75 | 0,62 |
-| renda_media | −0,28 | −0,46 | −0,18 | −0,44 | −0,75 | 1,00 | −0,81 |
-| pct_raca_pretpardind | 0,36 | 0,44 | 0,21 | 0,46 | 0,62 | −0,81 | 1,00 |
-| Limitação | Origem | Mitigação proposta |
+| Água | 1,00 | 0,42 | 0,10 | 0,26 | 0,23 | −0,26 | 0,35 |
+| Esgoto | 0,42 | 1,00 | 0,20 | 0,35 | 0,43 | −0,45 | 0,43 |
+| Lixo | 0,10 | 0,20 | 1,00 | −0,06 | 0,16 | −0,16 | 0,19 |
+| Moradores | 0,26 | 0,35 | −0,06 | 1,00 | 0,41 | −0,44 | 0,46 |
+| Analfabetismo | 0,23 | 0,43 | 0,16 | 0,41 | 1,00 | −0,76 | 0,63 |
+| Renda | −0,26 | −0,45 | −0,16 | −0,44 | −0,76 | 1,00 | −0,81 |
+| PPI | 0,35 | 0,43 | 0,19 | 0,46 | 0,63 | −0,81 | 1,00 |
+| Indicador | n | Média | P95 | P99 | Máximo |
+| --- | --- | --- | --- | --- | --- |
+| pct_dom_improv | 98.969 | 0,00073 | 0,000 | 0,000 | 0,973 |
+| pct_hab_precaria | 104.108 | 0,00654 | 0,026 | 0,165 | 1,000 |
+| pct_sem_banheiro | 91.912 | 0,00235 | 0,000 | 0,055 | 1,000 |
+| pct_sem_banheiro_nem_sanitario | 101.139 | 0,00016 | 0,000 | 0,000 | 0,667 |
+| Indicador | Fórmula (× 100) | Valor no recorte |
 | --- | --- | --- |
-| 16% de sigilo em analfabetismo | Regra IBGE de supressão | Reportar transparentemente; considerar imputação por mediana municipal |
-| Variáveis de saneamento bimodais | Realidade da cobertura nacional | Análises com mediana/IQR; análises fatoriais robustas |
-| Salto/SP atípico em lixo | Possível classificação categórica | Validar com o dicionário do IBGE |
-| Correlação 0,14 entre água e lixo | Heterogeneidade real entre serviços | Tratar como bloco saneamento mesmo assim |
-| Falácia ecológica | Inerente ao delineamento ecológico | Reportar explicitamente na Discussão do artigo |
-| Arquivo | Caminho | Conteúdo |
+| IEP — Índice de Envelhecimento | 60+ ÷ menores de 15 anos | 92,7 |
+| RDI — Razão de dependência de idosos | 60+ ÷ 15 a 59 anos | 25,5 |
+| Percentual de 60 anos ou mais | 60+ ÷ população total | 16,65% |
+| Percentual de menores de 15 anos | — | 17,96% |
+| Grupo | Domicílios | % sobre `V00001` |
 | --- | --- | --- |
-| Base bruta filtrada | banco_de_dados/Base_ELSI_Bruta_Censo2022.csv | 109k setores × 47 colunas |
-| Descritivas globais | banco_de_dados/eda/descritivas_globais.csv | 7 variáveis × 12 estatísticas |
-| Descritivas por município | banco_de_dados/eda/descritivas_por_municipio.csv | 70 mun × 7 var |
-| Descritivas por região | banco_de_dados/eda/descritivas_por_regiao.csv | 5 reg × 7 var |
-| Outliers | banco_de_dados/eda/outliers.csv | Regra IQR |
-| Missing por município | banco_de_dados/eda/missing_por_municipio.csv | % faltante mun × var |
-| Correlação Pearson | banco_de_dados/eda/correlacao_pearson.csv | Matriz 7×7 |
-| Correlação Spearman | banco_de_dados/eda/correlacao_spearman.csv | Matriz 7×7 |
-| Elegibilidade | banco_de_dados/eda/elegibilidade_setores.csv | Distribuição Dados_sig |
-| Figuras | banco_de_dados/eda/figuras/ | Histogramas, boxplots, missing, correlação |
+| Convencional (casa, vila/condomínio, apartamento) | 19.128.392 | 99,187% |
+| Não convencional (cortiço, maloca, estrutura degradada) | 110.168 | 0,571% |
+| Improvisado (DPIO) | 11.525 | 0,060% |
+|  | Valor |
+| --- | --- |
+| Setores de FCU no recorte | 19.507 (17,9%) |
+| Favelas distintas (CD_FCU) | 5.903 |
+| População residente em FCU | 10.071.575 |
+| Domicílios em FCU | 3.443.687 |
+| Municípios com pelo menos uma FCU | 42 de 70 |
+| Indicador | Em FCU | Fora de FCU | Razão |
+| --- | --- | --- | --- |
+| Esgoto inadequado | 0,214 | 0,052 | 4,14× |
+| Lixo inadequado | 0,248 | 0,085 | 2,90× |
+| Analfabetismo | 0,062 | 0,029 | 2,14× |
+| Água inadequada | 0,108 | 0,061 | 1,77× |
+| Cor/raça PPI | 0,735 | 0,479 | 1,53× |
+| Menores de 15 anos | 0,222 | 0,161 | 1,38× |
+| Razão de moradores | 2,927 | 2,637 | 1,11× |
+| Renda média | R$ 1.610 | R$ 4.780 | 0,34× |
+| Apartamento | 0,033 | 0,377 | 0,09× |
+| Índice de envelhecimento | 55,2 | 153,0 | 0,36× |
+| Métrica | Brasil | ELSI 70 | % |
+| --- | --- | --- | --- |
+| Setores censitários | 468.099 | 109.032 | 23,3% |
+| Setores urbanos elegíveis | 347.400 | 104.108 | 30,0% |
+| Municípios | 5.572 | 70 | 1,3% |
+| População | 203.080.756 | 52.732.704 | 26,0% |
+| Domicílios | 72.438.953 | 19.458.006 | 26,9% |
+| Setores de favela | 33.272 | 19.507 | 58,6% |
+| Indicador (razão agregada) | Brasil urbano | ELSI 70 | Razão |
+| --- | --- | --- | --- |
+| Esgoto inadequado | 0,155 | 0,080 | 0,52× |
+| Analfabetismo | 0,058 | 0,036 | 0,62× |
+| Água inadequada | 0,083 | 0,069 | 0,83× |
+| Razão de moradores | 2,762 | 2,695 | 0,98× |
+| Cor/raça PPI | 0,544 | 0,551 | 1,01× |
+| Renda média | R$ 3.209 | R$ 4.187 | 1,31× |
+| Lixo inadequado | 0,094 | 0,114 | 1,21× |
+| Etapa | Entrega | Depende de |
+| --- | --- | --- |
+| Notebook 03 | Normalização min-max por município, com renda invertida | nada |
+| Notebook 04 | Análise fatorial: KMO, Bartlett, número de fatores, cargas e pesos | NB03 |
+| Notebook 05 | IVS final, categorização em 4 faixas e validação contra os setores de FCU | NB04 e decisão sobre pesos |
+| Geoprocessamento | Mapas coropléticos e autocorrelação espacial (Moran) | NB05 e malha de setores 2022 |
+| Arquivo | Conteúdo |
+| --- | --- |
+| descritivas_globais.csv | Seção 4 |
+| descritivas_por_municipio.csv · descritivas_por_regiao.csv | Seções 5 e 6 |
+| elegibilidade_setores.csv | Seção 3.3 |
+| situacao_urbano_rural_{total,por_regiao,por_municipio}.csv · exclusao_rural_conferencia.csv | Seção 3.4 |
+| outliers.csv | Seção 7 |
+| missing_por_municipio.csv | Seção 8 |
+| correlacao_pearson.csv · correlacao_spearman.csv | Seção 9 |
+| habitacao_precaria_*.csv · inadequacao_banheiro_*.csv · resp_feminino_*.csv | Seções 10.1 e 10.2 |
+| indicadores_envelhecimento_*.csv · estrutura_etaria_*.csv | Seção 10.3 |
+| tipo_domicilio_*.csv · moradia_predominante_agrupada_por_regiao.csv | Seção 10.4 |
+| favelas_fcu_*.csv | Seção 10.5 |
+| diagnostico_proporcoes_fora_intervalo.csv · diagnostico_esgoto_312_vs_249.csv · extremos_razao_moradores.csv | Auditorias |

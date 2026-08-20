@@ -1,5 +1,23 @@
 # Relatório de Integridade do Projeto IVS — Censo 2022 / ELSI-Brasil
 
+> **Nota de revisão (09/08/2026):** a pipeline mudou depois deste diagnóstico, ao atender
+> às demandas da orientadora. O que aqui estiver em conflito com os números abaixo está
+> desatualizado — a fonte da verdade é o [`GUIA_DO_PROJETO.md`](../GUIA_DO_PROJETO.md).
+>
+> | O que mudou | Antes | Agora |
+> |---|---|---|
+> | Base bruta | 109.032 × 58 colunas | 109.032 × **68** colunas (`CD_SIT`, `CD_TIPO`, `CD_FCU`, `NM_FCU`, faixas etárias 15–59) |
+> | Recorte de análise | 106.281 setores elegíveis | **104.108** urbanos elegíveis (rurais excluídos no NB02 §3b) |
+> | `Dados_sig` | sigilo avaliado antes de população zero → 2.751 `SIGILOSO`, 0 `ZERADO` | população zero primeiro → **1.015 `SIGILOSO`, 1.736 `ZERADO`**; nenhum setor `OK` mudou |
+> | Índice de envelhecimento | 60+ / 0–4 anos | **60+ / menores de 15** (IEP), mais RDI e % 60+ |
+> | Indicadores calculados | 7 (IVS) + descritivos esparsos | **23**, definidos em `src/ivs_censo/indicadores.py` |
+> | Testes | 16 | **41** (`test_pipeline_fase3.py` + `test_ivs_censo.py`) |
+> | Entregáveis | script ad-hoc não versionado | `scripts/gerar_entrega_orientadora.py` |
+>
+> Achados novos desta rodada: **19.507 setores de favela (FCU)** no recorte ELSI; o filtro
+> rural retira mais de 10% dos setores em **29 dos 70 municípios**; e os 78 setores sem
+> `SITUACAO` são massas d'água (`CD_SIT = 9`) com população zero.
+
 > **Nota de revisão (12/06/2026):** o diagnóstico original é de 19/05/2026. Os achados de
 > denominador, taxa de analfabetismo, regra `Dados_sig` e os números das tabelas foram
 > **atualizados para a metodologia consolidada em 22/05/2026** (denominador **V00001** +
