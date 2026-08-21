@@ -66,10 +66,16 @@ def test_descritivas_por_regiao_tem_35_linhas():  # TESTE: 5 regiões × 7 indic
     assert df['regiao'].nunique() == 5         # 5 regiões distintas
 
 
-def test_correlacoes_simetricas():            # TESTE: as matrizes de correlação são 7×7, simétricas e com diagonal = 1
+def test_correlacoes_simetricas():            # TESTE: as matrizes são quadradas, simétricas e com diagonal = 1
+    # Desde ago/2026 a matriz tem 10 variáveis: as 7 do IVS mais idosos 60+, menores de 5
+    # e chefia feminina (demanda da orientadora). As 3 são descritivas, não componentes.
+    descritivas = {'pct_idoso_60mais', 'pct_crianca_0a4', 'pct_resp_feminino'}
     for f in ['correlacao_pearson.csv', 'correlacao_spearman.csv']:  # testa as duas matrizes
         df = pd.read_csv(EDA / f, sep=';', index_col=0)  # 1ª coluna é o índice (nomes das variáveis)
-        assert df.shape == (7, 7)             # tem que ser 7×7
+        assert df.shape[0] == df.shape[1]     # quadrada
+        assert set(df.columns) == set(df.index)                      # mesmas variáveis nos dois eixos
+        assert ESPERADOS_INDICADORES <= set(df.columns), 'faltou uma componente do IVS'
+        assert descritivas <= set(df.columns), 'faltou uma das descritivas pedidas em ago/2026'
         # Diagonal igual a 1
         for c in df.columns:                  # para cada variável...
             assert abs(df.loc[c, c] - 1.0) < 1e-9  # correlação consigo mesma = 1 (tolerância p/ float)
@@ -212,3 +218,80 @@ def test_tipo_domicilio_soma_coerente():
     soma_dppo = grupos.loc['Convencional', 'pct_sobre_V00001'] + grupos.loc['Não convencional', 'pct_sobre_V00001']
     assert soma_dppo <= 100.0, f'Soma dos tipos de DPPO passou de 100%: {soma_dppo}'
     assert soma_dppo > 99.0, f'Soma dos tipos de DPPO baixa demais ({soma_dppo}) — sigilo excessivo?'
+
+
+def test_tabelas_de_auditoria_usam_o_recorte_com_rurais():
+    """As tabelas de `scripts/gerar_tabelas_auditoria.py` são do recorte PRÉ-filtro urbano.
+
+    Elas sustentam números já apresentados à orientadora (106.281 setores). Se alguém
+    regerá-las sobre o recorte urbano (104.108), as apresentações antigas deixam de bater
+    — este teste é o alarme.
+    """
+    total = _read(EDA / 'cobertura_total.csv').iloc[0]
+    assert total['n_setores_OK'] == 106_281
+    por_reg = _read(EDA / 'cobertura_por_regiao.csv')
+    por_mun = _read(EDA / 'cobertura_por_municipio.csv')
+    assert por_reg['n_setores_OK'].sum() == total['n_setores_OK']     # regiões particionam o total
+    assert por_mun['n_setores_OK'].sum() == total['n_setores_OK']     # municípios também
+    assert len(por_mun) == 70
+
+
+def test_cobertura_de_saneamento_e_internamente_coerente():
+    """Ter os 3 serviços integrais é mais raro que ter cada um deles, e coleta de lixo
+    (sem caçamba no numerador) é sempre mais frequente que lixo totalmente adequado."""
+    t = _read(EDA / 'cobertura_total.csv').iloc[0]
+    assert t['saneamento_3_100'] <= min(t['agua_adeq_100'], t['esgoto_adeq_100'], t['lixo_adeq_100'])
+    assert t['coleta_lixo_100'] >= t['lixo_adeq_100']                 # caçamba conta como coletado
+    for col in ['agua_adeq_100', 'esgoto_adeq_100', 'lixo_adeq_100', 'dados_7vars_100', 'coleta_lixo_100']:
+        assert 0 < t[col] <= t['n_setores_OK']
+
+
+def test_auditoria_de_analfabetismo_fecha_as_contagens():
+    """n_validos = n_setores - n_sigilo em todo município, e a tabela por porte de setor
+    cobre exatamente os mesmos 106.281 setores."""
+    mun = _read(EDA / 'auditoria_analfabetismo_municipio.csv')
+    assert len(mun) == 70
+    assert (mun['n_validos'] == mun['n_setores'] - mun['n_sigilo']).all()
+    assert mun['pct_sigilo_v901'].is_monotonic_decreasing            # ordenada por gravidade do sigilo
+    bins = _read(EDA / 'auditoria_analfabetismo_v00900_bins.csv')
+    assert bins['n_setores'].sum() == mun['n_setores'].sum() == 106_281
+    assert bins['n_v901_sigilo'].sum() == mun['n_sigilo'].sum()
+
+
+def test_particao_da_agua_canalizada_fecha():
+    """V00199 + V00200 + V00201 = V00001 é uma partição definida pelo IBGE.
+
+    É o que autoriza medir 'sem canalização' pelo complemento de V00199 — que tem 0,04% de
+    ausentes — em vez de somar V00200+V00201, que perde 21,9% dos setores para o sigilo.
+    Se este teste falhar, a substituição deixa de ser válida.
+    """
+    base = BD / 'Base_ELSI_Bruta_Censo2022.csv'
+    if not base.exists():
+        pytest.skip('Base bruta não gerada localmente — rode o Notebook 01 da Fase 3')
+    df = pd.read_csv(base, sep=';', dtype=str, usecols=['V00001', 'V00199', 'V00200', 'V00201'])
+    for c in df.columns:
+        df[c] = pd.to_numeric(df[c].replace({'X': None, 'x': None}), errors='coerce')
+    soma = df[['V00199', 'V00200', 'V00201']].sum(axis=1, min_count=3)   # exige as três
+    conferiveis = soma.notna()
+    assert conferiveis.sum() > 50_000, 'poucos setores conferíveis — algo mudou na extração'
+    fecham = (soma[conferiveis] - df.loc[conferiveis, 'V00001']).abs() <= 0.5
+    assert fecham.all(), f'{(~fecham).sum()} setores em que a trinca não soma V00001'
+
+
+def test_agua_canalizada_exportada_e_coerente():
+    """As proporções regionais somam 100% e o gradiente Norte-Sul aparece."""
+    reg = _read(EDA / 'agua_canalizada_por_regiao.csv')
+    assert len(reg) == 5
+    # As três categorias NÃO somam 100%: onde o IBGE sigila V00200/V00201 a contagem some
+    # do numerador e V00001 continua inteiro no denominador. A soma tem que ficar logo
+    # abaixo de 100, e a diferença é exatamente a massa suprimida que a coluna registra.
+    soma = reg['pct_dentro_casa'] + reg['pct_so_terreno'] + reg['pct_nao_encanada']
+    assert (soma <= 100.001).all(), f'soma acima de 100%: {soma.tolist()}'
+    assert (soma > 99.0).all(), f'sigilo alto demais para a razão agregada: {soma.tolist()}'
+    esperado = 100 - reg['pct_dentro_casa']
+    assert ((reg['pct_sem_canalizacao'] - esperado).abs() < 0.011).all(), \
+        'pct_sem_canalizacao devia ser o complemento de pct_dentro_casa, não a soma das parcelas'
+    assert (reg['pct_suprimido'] >= 0).all()
+    norte = reg.loc[reg['regiao'] == 'Norte', 'pct_sem_canalizacao'].iloc[0]
+    sul = reg.loc[reg['regiao'] == 'Sul', 'pct_sem_canalizacao'].iloc[0]
+    assert norte > sul, 'o gradiente Norte-Sul do saneamento sumiu — conferir a extração'
