@@ -43,6 +43,7 @@ class Indicador:
     escala: float = 1.0                        # 100 nos índices expressos por 100 (IEP, RDI)
     limitar_0_1: bool = True                   # aplicar clip em [0, 1] (proporções)
     min_count_den: int = 1                     # exigir TODAS as parcelas do denominador? (2 = sim, no analfabetismo)
+    complemento: bool = False                  # devolver 1 - (num/den); ver pct_sem_agua_canalizada
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -109,6 +110,30 @@ INDICADORES_COMPLEMENTARES: list[Indicador] = [
               'Proporção de domicílios do tipo casa', 'Morfologia'),
     Indicador('pct_casa_vila_condominio', ['V00048'], ['V00001'],
               'Proporção de domicílios do tipo casa de vila ou em condomínio', 'Morfologia'),
+    # -- canalização da água (V00199-V00201, acrescentadas em 21/08/2026) --
+    # Eixo distinto do bloco de FONTE da água (V00112-V00118, que entra no IVS): um
+    # domicílio pode ter rede geral e mesmo assim receber água só no terreno. Spearman
+    # entre os dois é 0,459 — parentes, não gêmeos.
+    #
+    # Por que o principal usa `complemento` em vez de somar V00200+V00201:
+    # as três formam partição de V00001 (conferido: fecham em 100,00% dos 81.270 setores
+    # em que as três estão presentes). Mas V00200 e V00201 são contagens pequenas, que o
+    # IBGE sigila — juntas deixam 21,9% dos setores sem valor. V00199 é contagem grande e
+    # quase nunca é sigilada. Pelo complemento o mesmo número sai com 0,04% de ausentes.
+    #
+    # RESSALVA: a identidade só é *verificável* onde as três estão presentes. Nos setores
+    # com V00200/V00201 sigilosos, usá-la é extrapolação — justificada porque a partição é
+    # definida pelo IBGE, mas é suposição, não medição.
+    Indicador('pct_sem_agua_canalizada', ['V00199'], ['V00001'],
+              'Proporção de domicílios em que a água não chega encanada até dentro do domicílio '
+              '(complemento de V00199; equivale a V00200+V00201 sobre V00001)',
+              'Saneamento', complemento=True),
+    Indicador('pct_agua_nao_encanada', ['V00201'], ['V00001'],
+              'Proporção de domicílios em que a água não chega encanada ao domicílio (V00201)',
+              'Saneamento'),
+    Indicador('pct_agua_so_terreno', ['V00200'], ['V00001'],
+              'Proporção de domicílios em que a água chega encanada apenas ao terreno (V00200)',
+              'Saneamento'),
     # -- saneamento complementar --
     Indicador('pct_sem_banheiro', ['V00495'], ['V00001'],
               'Proporção de domicílios sem banheiro de uso exclusivo com chuveiro e vaso sanitário',
@@ -139,6 +164,9 @@ INDICADORES_COMPLEMENTARES: list[Indicador] = [
 
 TODOS_INDICADORES: list[Indicador] = INDICADORES_IVS + INDICADORES_COMPLEMENTARES
 
+# acesso por nome — usado pelo Notebook 02 para pedir só os indicadores de cada seção
+INDICADORES_POR_NOME: dict[str, Indicador] = {ind.nome: ind for ind in TODOS_INDICADORES}
+
 # variável do Censo -> indicadores em que ela aparece (usado na tabela de variáveis)
 USO_DAS_VARIAVEIS: dict[str, list[str]] = {}
 for _ind in TODOS_INDICADORES:
@@ -148,11 +176,17 @@ for _ind in TODOS_INDICADORES:
             USO_DAS_VARIAVEIS[_v].append(_ind.nome)
 
 
-def calcular_indicadores(df: pd.DataFrame, indicadores: list[Indicador] | None = None) -> pd.DataFrame:
+def calcular_indicadores(df: pd.DataFrame, indicadores: list[Indicador] | None = None,
+                        limitar: bool = True) -> pd.DataFrame:
     """Calcula os indicadores pedidos e devolve um DataFrame com uma coluna por indicador.
 
     Espera `df` já numérico (sigilo convertido em `NaN`). Colunas ausentes são
     ignoradas com aviso — assim dá para calcular só o que o recorte permite.
+
+    `limitar=False` devolve as proporções **sem** o corte em [0, 1]. Serve para
+    auditoria: o diagnóstico C1 do Notebook 02 precisa ver o valor bruto para
+    detectar proporções impossíveis — se medisse o valor já cortado, nunca acharia
+    nenhuma.
     """
     indicadores = indicadores if indicadores is not None else TODOS_INDICADORES
     saida = {}
@@ -167,7 +201,9 @@ def calcular_indicadores(df: pd.DataFrame, indicadores: list[Indicador] | None =
         else:
             den = df[ind.denominador].sum(axis=1, min_count=ind.min_count_den)
             valores = pd.Series(safe_div(num, den) * ind.escala, index=df.index)
-        if ind.limitar_0_1:
+        if ind.complemento:
+            valores = 1 - valores          # o complemento vem ANTES do clip: cortar depois inverteria o corte
+        if ind.limitar_0_1 and limitar:
             valores = valores.clip(lower=0, upper=1)
         saida[ind.nome] = valores
     return pd.DataFrame(saida, index=df.index)
