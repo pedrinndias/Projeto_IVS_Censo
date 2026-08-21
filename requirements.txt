@@ -13,3 +13,8 @@ xlsxwriter>=3.2
 
 # Testes (tests/test_pipeline_fase3.py)
 pytest>=8.0
+
+# Execução dos notebooks da Fase 3 (a pipeline são os notebooks; sem kernel não roda)
+#   jupyter execute notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb
+ipykernel>=6.29
+nbclient>=0.10

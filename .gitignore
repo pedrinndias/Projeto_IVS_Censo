@@ -64,3 +64,11 @@ dados/banco_de_dados/SQL/Banco_Censo_Completo.db
 dados/banco_de_dados/SQL/Banco_IVS.db
 __pycache__/
 *.pyc
+
+# Ambiente virtual local (criado com: uv venv --python 3.13 .venv)
+.venv/
+
+# node_modules do gerador da apresentação (npm install pptxgenjs)
+node_modules/
+package-lock.json
+package.json
