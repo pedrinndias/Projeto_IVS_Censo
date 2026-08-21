@@ -136,7 +136,7 @@ as quatro figuras de `banco_de_dados/eda/figuras/` (regeneradas sobre o recorte 
 `tests/test_ivs_censo.py`
 
 **Documentação:** `docs/MANUAL_DO_PROJETO.md` ·
-`docs/Apresentacoes_IVS/IVS_Andamento_2026-08_rev2.pptx` ·
+`docs/Apresentacoes_IVS/historico/2026-08-09_Andamento_rev2.pptx` ·
 `banco_de_dados/nacional/README.md`
 
 **Dados:** 12 CSVs novos em `banco_de_dados/eda/` (favelas, envelhecimento, tipo de
