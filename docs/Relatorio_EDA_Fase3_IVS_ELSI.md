@@ -334,9 +334,13 @@ significa que:
 - **descartar os setores** reduziria o conjunto analítico em 16% e o faria de forma
   seletiva, eliminando preferencialmente os setores de melhor situação.
 
-Na EDA mantive os valores ausentes. Para o cálculo do índice a política precisa ser
-definida explicitamente; a alternativa mais defensável é imputação por mediana municipal
-com indicador de imputação, mas isso ainda não está decidido.
+Na EDA mantive os valores ausentes. **Em agosto de 2026 a orientadora decidiu aceitar a
+limitação e declará-la, sem imputação** — inclusive descartando a imputação por mediana
+municipal antes cogitada, que transferiria aos setores ricos o perfil dos pobres, na direção
+oposta ao viés real. A quantificação do viés e os limites da média verdadeira estão na
+seção 14.1. Para o **cálculo do índice** resta decidir o que fazer com os 16.552 setores sem
+o dado: excluí-los, calcular o IVS com as seis componentes restantes, ou reportá-los à
+parte.
 
 ---
 
@@ -930,11 +934,122 @@ Toda decisão acima passou por pelo menos uma verificação empírica. As princi
   (asilos, presídios). No recorte ELSI nenhum setor caiu nessa classe, mas a população
   institucionalizada permanece sub-representada dentro dos setores mistos.
 - **O recorte urbano reduz municípios pequenos** de forma desigual, como detalhado em 3.4.
-- **O sigilo do analfabetismo é seletivo** e afeta 15,9% dos setores.
+- **O sigilo do analfabetismo é seletivo** e afeta 15,9% dos setores — tratado em 14.1.
 - **Três componentes do IVS-BH original não são reprodutíveis** com os agregados do Censo
   2022 (anos de estudo, faixas de renda, óbitos cardiovasculares).
 - **A EDA é descritiva.** Nenhuma inferência ou teste de hipótese foi conduzido; as
   correlações são exploratórias.
+
+### 14.1 O sigilo do analfabetismo — limitação aceita
+
+**Decisão (ago/2026).** A supressão de `V00901` pelo IBGE é aceita como limitação
+declarada. Não haverá imputação, substituição por variável proxy nem exclusão dos setores
+afetados do restante da análise.
+
+**O que se perde.** `pct_analfab` fica indisponível em **16.552 dos 104.108 setores
+urbanos elegíveis (15,9%)**. A causa é única: o IBGE suprime `V00901` (pessoas de 15 anos
+ou mais que não sabem ler e escrever) quando a contagem é pequena. `V00900` não é suprimida
+em nenhum setor da amostra, de modo que a perda vem inteiramente do numerador.
+
+**O sigilo não é aleatório, e a direção do viés é conhecida.** A supressão incide onde há
+poucos analfabetos — isto é, nos setores de melhor situação socioeconômica. O contraste
+entre os setores com e sem o dado é grande:
+
+| | Setores com `pct_analfab` | Setores sem |
+|---|---|---|
+| Renda mediana do responsável | R$ 2.313,89 | **R$ 6.092,84** |
+| População preta, parda ou indígena (mediana) | 60,6% | **30,8%** |
+
+A dependência com o porte do setor confirma o mecanismo: entre os setores com 1 a 10
+pessoas alfabetizadas o sigilo atinge 44,1%, e cai monotonicamente até 3,3% nos setores com
+mais de mil (`auditoria_analfabetismo_v00900_bins.csv`). Por município, vai de 0% em onze
+deles a 29,7% em São Caetano do Sul; sete municípios passam de 20%.
+
+**Por isso a média observada é um teto, não uma estimativa central.** Como os setores
+excluídos são justamente os de menor analfabetismo, a média calculada sobre os 87.556
+setores com o dado **superestima** o analfabetismo da amostra completa. E como o IBGE
+reporta os zeros — 9.268 setores declaram `V00901 = 0` —, o valor suprimido é
+necessariamente maior ou igual a 1, o que fecha o intervalo pelos dois lados:
+
+| Cenário | Média por setor |
+|---|---|
+| Observado, só os setores com o dado | 3,64% *(teto)* |
+| Todo setor suprimido valendo 1 (o menor possível) | 3,14% *(piso)* |
+
+**A média verdadeira da amostra está entre 3,14% e 3,64%.** A faixa tem meio ponto
+percentual de largura, o que é estreito o bastante para que nenhuma conclusão do estudo
+dependa de qual ponto dela se adote.
+
+**Por que não imputar.** Preencher os suprimidos com zero levaria a média a 3,06% e
+subestimaria o analfabetismo exatamente nas áreas menos vulneráveis, achatando o gradiente
+que o índice existe para medir. Imputar pela média do município transferiria para os
+setores ricos o perfil dos pobres, na direção oposta e igualmente errada. As duas opções
+trocam uma ausência honesta por um número inventado.
+
+**Consequência prática para o IVS.** Os 16.552 setores sem o dado não recebem valor nesta
+componente. A decisão sobre o que fazer com eles no cálculo do índice — excluí-los, calcular
+o IVS com as seis componentes restantes, ou reportá-los separadamente — fica registrada como
+pendência do Notebook 05, e deve constar do texto do artigo com esta mesma quantificação.
+
+### 14.2 Favelas e Comunidades Urbanas — a fonte oficial e o que ela limita
+
+**Fonte.** IBGE. *Censo Demográfico 2022: Favelas e Comunidades Urbanas — Resultados do
+universo.* Rio de Janeiro: IBGE, 2024. 171 p.
+
+**Definição oficial**, transcrita da p. 46:
+
+> "As Favelas e Comunidades Urbanas são territórios populares originados das diversas
+> estratégias utilizadas pela população para atender, geralmente de forma autônoma e
+> coletiva, às suas necessidades de moradia e usos associados [...], diante da insuficiência
+> e inadequação das políticas públicas e investimentos privados dirigidos à garantia do
+> direito à cidade."
+
+**Critérios de identificação** (p. 47). O primeiro é obrigatório; basta um dos demais:
+
+1. predominância de domicílios com graus diferenciados de **insegurança jurídica da posse**; e ao menos um entre:
+2. ausência ou oferta incompleta e/ou precária de **serviços públicos** — iluminação, água, esgoto, drenagem e coleta de lixo;
+3. predomínio de **edificações e arruamento autoproduzidos** ou orientados por parâmetros distintos dos definidos pelos órgãos públicos;
+4. localização em **áreas com restrição à ocupação** — faixas de domínio, áreas protegidas — ou em **áreas de risco ambiental**.
+
+**A mudança de nomenclatura não mudou o conteúdo.** A troca de "Aglomerados Subnormais" por
+"Favelas e Comunidades Urbanas", em 2024, veio acompanhada de reescrita dos critérios, mas o
+IBGE registra (p. 46) que "não houve alterações efetivas, mas apenas uma mudança na redação
+dos elementos utilizados como referência" e que "o conteúdo essencial dos critérios [...] foi
+mantido".
+
+**Limitação 1 — as favelas pequenas não têm setor próprio.** Esta é a restrição mais
+importante para nós, e está na nota 7 da p. 75: além das 12.348 FCU classificadas, o IBGE
+identificou **2.298 FCU com 21 a 50 domicílios** que "não puderam ser definidas em setores
+censitários específicos" e para as quais não há divulgação. Como nosso critério é
+`CD_TIPO = 1`, essas favelas são **invisíveis na nossa base**: seus moradores entram em
+setores comuns. A comparação favela × restante da cidade (seção 10.5) é, portanto,
+conservadora nos dois sentidos — subestima a população favelada e contamina o grupo de
+comparação com ela.
+
+**Limitação 2 — FCU e setor censitário não são a mesma unidade.** O IBGE conta áreas; a
+nossa base conta setores. No recorte ELSI, uma FCU tem 2 setores na mediana (média 3,3;
+máximo 128), e 47% têm um setor só. Os totais das duas fontes não são comparáveis
+diretamente.
+
+**Limitação 3 — a comparação com 2010 não se sustenta.** O próprio IBGE restringe a
+comparabilidade (p. 73): foram 6.329 FCU com 11.425.644 pessoas em 2010, contra 12.348 e
+16.390.815 em 2022, mas "o aumento [...] não se deve apenas ao surgimento de novas Favelas e
+Comunidades Urbanas". O estudo de área constante que o Instituto conduziu cobre 77,9% dos
+setores de 2010 e apenas 46,5% dos de 2022, e nele a população **caiu 5,4%**. Nenhuma
+afirmação sobre crescimento da favelização entre censos deve entrar no artigo.
+
+**Representatividade da amostra ELSI**, conferida contra os números oficiais:
+
+| | Brasil (IBGE 2024) | ELSI-70 | Cobertura |
+|---|---|---|---|
+| FCU distintas | 12.348 | 5.899 | 47,8% |
+| Municípios com FCU | 656 | 42 | 6,4% |
+| População em FCU | 16.390.815 | 10.069.994 | **61,4%** |
+| Domicílios em FCU | 6.556.998 | 3.443.687 | 52,5% |
+
+Os 70 municípios do ELSI reúnem **61,4% de toda a população em favelas do país**, sendo 6,4%
+dos municípios que têm FCU. É consequência do desenho do ELSI, que privilegia grandes
+centros urbanos — e é um argumento forte de representatividade para o estudo.
 
 ---
 
@@ -988,3 +1103,5 @@ Toda decisão acima passou por pelo menos uma verificação empírica. As princi
   *Rev. Bras. Est. Pop.*, v. 40, 2023.
 - **Matos, D. A. S.; Rodrigues, E. C.** *Análise fatorial.* Brasília: Enap, 2019.
 - **IBGE.** *Censo Demográfico 2022 — Agregados por Setores Censitários.* Rio de Janeiro, 2022.
+- **IBGE.** *Censo Demográfico 2022: Favelas e Comunidades Urbanas — Resultados do universo.*
+  Rio de Janeiro: IBGE, 2024. 171 p. — fonte da definição e dos critérios de FCU (seção 14.2).

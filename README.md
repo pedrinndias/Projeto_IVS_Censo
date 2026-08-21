@@ -92,7 +92,7 @@ improvisada; (3) nenhuma decisão entra sem uma verificação que a sustente.
 | **Favela identificada por `CD_TIPO = 1`** | É o campo oficial de classificação do setor; `NM_FCU` é atributo descritivo | Os dois critérios coincidem nos 468.099 setores do país: 33.272 setores | ✅ |
 | **Caçamba (`V00398`) conta como lixo inadequado** | Fidelidade à metodologia-fonte: só a coleta porta a porta (`V00397`) é adequada | — | ⚠️ **em revisão** (ver abaixo) |
 | **Indicadores descritivos ficam fora do índice** | Um componente precisa de direção inequívoca. `pct_apartamento` não tem: verticalização aparece em área rica e em conjunto popular | Separação estrutural no código: `INDICADORES_IVS` (7) × `INDICADORES_COMPLEMENTARES` (16) | ✅ |
-| **Fórmulas em módulo compartilhado** | Copiar o código para rodar o Brasil criaria duas versões que divergem na primeira correção — e aí a comparação Brasil × ELSI deixa de ser legítima | População nacional confere: **203.080.756**, o número oficial do Censo | 🟡 parcial — o NB02 ainda não importa o módulo |
+| **Fórmulas em módulo compartilhado** | Copiar o código para rodar o Brasil criaria duas versões que divergem na primeira correção — e aí a comparação Brasil × ELSI deixa de ser legítima | População nacional confere: **203.080.756**, o número oficial do Censo. O NB02 passou a importar o módulo em 20/08/2026 e reproduz as 38 tabelas | ✅ no NB02 — pendente no NB01, que ainda tem lista de variáveis própria |
 
 ### Em aberto — dependem de definição com a orientação
 
@@ -136,6 +136,7 @@ Projeto_IVS_Censo22/
 ├── scripts/                           Executáveis versionados
 │   ├── gerar_tabela_variaveis.py      Dicionário de variáveis (CSV + XLSX)
 │   ├── gerar_entrega_orientadora.py   Pacote de entrega (CSV + SQLite)
+│   ├── gerar_tabelas_auditoria.py     Tabelas de auditoria/apresentação de banco_de_dados/eda/
 │   └── proporcoes_brasil.py           Indicadores para o Brasil inteiro + comparativo
 │
 ├── banco_de_dados/                    Outputs da pipeline ativa (Fase 3)
@@ -169,7 +170,7 @@ Projeto_IVS_Censo22/
 │   ├── Plano de trabalho.pdf
 │   ├── MANUAL_DO_PROJETO.md                Manual: onde achar tudo e como apresentar
 │   ├── Relatorio_EDA_Fase3_IVS_ELSI.{md,docx}
-│   ├── Apresentacoes_IVS/                  Decks .pptx da EDA + dicionários de variáveis
+│   ├── Apresentacoes_IVS/                  Apresentação atual + roteiro; historico/ e dicionarios/ (ver README.md da pasta)
 │   └── Relatorio_Integridade_Projeto.md    Diagnóstico técnico mais recente
 │
 ├── Backup/                            Legados — Fases 1 e 2, scripts antigos
@@ -194,7 +195,7 @@ Lista resumida — detalhamento técnico em [`docs/Relatorio_Integridade_Projeto
 | 5 | **Dados duplicados em `Backup/`** — ~8 GB de arquivos obsoletos. Limpeza opcional. | 🟢 Organizacional |
 | 6 | ~~**Massas d'água contadas como sigilo**~~ — 1.736 setores sem população apareciam como `SIGILOSO`; a ordem das condições foi invertida. Nenhum setor `OK` mudou. | ✅ Resolvido |
 | 7 | **Municípios pequenos após o filtro urbano** — 29 dos 70 perdem mais de 10% dos setores e 14 perdem mais da metade. Afeta a estabilidade das descritivas municipais. | 🟡 Metodológico |
-| 8 | **Fórmulas duplicadas** — o Notebook 02 não importa `src/ivs_censo`; as fórmulas existem em dois lugares e precisam ser alteradas nos dois. | 🟡 Manutenção |
+| 8 | ~~**Fórmulas duplicadas no Notebook 02**~~ — **resolvido em 20/08/2026**: o NB02 importa `src/ivs_censo`. Resta o **Notebook 01**, que mantém um dicionário `ARQUIVOS` próprio: acrescentar variável exige mexer nele e em `fontes.py`. | 🟡 Manutenção (só no NB01) |
 
 ## Dados Utilizados
 
@@ -218,8 +219,17 @@ Fonte: [IBGE — Censo Demográfico 2022 — Agregados por Setores Censitários]
 - Os 8 CSVs do Censo 2022 em `dados/` (não versionados — baixar do IBGE)
 
 ### Instalação
+Ambiente virtual dedicado, na raiz do projeto (o `.venv/` fica fora do git):
+
 ```bash
-pip install -r requirements.txt
+python3 -m venv .venv && ./.venv/bin/python -m pip install -r requirements.txt
+```
+
+Tudo abaixo — testes, notebooks, scripts — roda com o Python desse ambiente
+(`./.venv/bin/python`), sem precisar de `activate`. Confira que ficou de pé com:
+
+```bash
+./.venv/bin/python -m pytest tests/ -q
 ```
 
 ### Execução da Pipeline Ativa
@@ -229,6 +239,13 @@ Os notebooks da Fase 3 devem ser executados na ordem numérica:
 notebooks/Fase3_EDA_ELSI/  →  01 → 02
 ```
 
+Pelo Jupyter, ou sem abrir interface (mesmo resultado, útil para conferir que a
+pipeline ainda roda de ponta a ponta):
+
+```bash
+./.venv/bin/jupyter execute notebooks/Fase3_EDA_ELSI/01_Extracao_Filtragem_ELSI.ipynb notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb
+```
+
 - **Notebook 01:** extrai e filtra → produz `banco_de_dados/Base_ELSI_Bruta_Censo2022.csv` (109.032 setores × 68 colunas, ~24 MB).
 - **Notebook 02:** EDA completa → produz as tabelas-resumo (CSVs) e 4 figuras em `banco_de_dados/eda/` — a procedência arquivo a arquivo está em [`banco_de_dados/eda/README.md`](banco_de_dados/eda/README.md).
 
@@ -236,7 +253,7 @@ notebooks/Fase3_EDA_ELSI/  →  01 → 02
 
 ### Testes Sanity
 ```bash
-python -m pytest tests/ -v
+./.venv/bin/python -m pytest tests/ -v
 ```
 
 ## Referências Metodológicas

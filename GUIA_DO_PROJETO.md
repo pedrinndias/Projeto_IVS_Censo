@@ -217,6 +217,7 @@ comum, para as fórmulas não existirem em duas versões.
 | `scripts/gerar_tabela_variaveis.py` | Gera `Dicionario_Variaveis_Projeto.{csv,xlsx}`. |
 | `scripts/gerar_entrega_orientadora.py` | Regenera o pacote de entrega (CSV + SQLite, 95 colunas, 3 tabelas). Antes disso os `.db` vinham de um script ad-hoc não versionado. |
 | `scripts/proporcoes_brasil.py` | Calcula os indicadores para os ~468 mil setores do Brasil e compara com os 70 municípios ELSI. |
+| `scripts/gerar_tabelas_auditoria.py` | Regenera as 9 tabelas de auditoria/apresentação de `banco_de_dados/eda/` (cobertura de saneamento, morfologia, sigilo em V00901, responsáveis por sexo). Antes vinham de código ad-hoc não versionado — eram os "CSVs órfãos". Usam o recorte com rurais (106.281 setores). |
 
 Cobertura de testes: `tests/test_pipeline_fase3.py` (artefatos) e `tests/test_ivs_censo.py`
 (fórmulas, com dados sintéticos).
@@ -253,7 +254,7 @@ estendida, com o passo a passo de execução, está na §12 de
 **1. A metodologia-fonte manda.** Onde o `Cálculo IVS2012.docx` define — quais formas de
 saneamento são inadequadas, qual o denominador, como classificar setores inelegíveis — o
 projeto reproduz, mesmo quando o resultado é contraintuitivo. O objetivo é *replicar* o
-IVS-BH no Censo 2022, não redesenhá-lo. Caso mais visível: a caçamba de lixo (§6.2.9).
+IVS-BH no Censo 2022, não redesenhá-lo. Caso mais visível: a caçamba de lixo (§6.2.10).
 
 **2. Quando o Censo 2022 não permite reproduzir, a substituição é declarada.** Três
 componentes do IVS-BH não existem nos agregados por setor. Nesses casos adota-se o
@@ -362,9 +363,22 @@ Imputar zero subestimaria o analfabetismo justamente nas áreas menos vulneráve
 comprimiria artificialmente a variabilidade do indicador. Descartar os setores também não
 serve: removeria 16% do conjunto de forma seletiva.
 
-**Status:** ✅ consolidada para a EDA. ⚠️ A política para o **cálculo final do índice**
-ainda precisa ser definida — a alternativa mais defensável é imputação por mediana
-municipal com indicador de imputação.
+**Quantificação do viés (ago/2026).** Os setores sem o dado têm renda mediana de
+R$ 6.092,84 contra R$ 2.313,89 dos que têm, e 30,8% de população preta, parda ou indígena
+contra 60,6%. O sigilo cai monotonicamente com o porte do setor: 44,1% onde há de 1 a 10
+pessoas alfabetizadas, 3,3% acima de mil. Como o IBGE reporta os zeros (9.268 setores
+declaram `V00901 = 0`), o valor suprimido é ≥ 1 — e isso limita a média verdadeira da
+amostra ao intervalo **3,14% a 3,64%**, faixa estreita o bastante para não mudar nenhuma
+conclusão. Detalhamento em `docs/Relatorio_EDA_Fase3_IVS_ELSI.md`, seção 14.1.
+
+**Decisão de agosto de 2026 (orientadora).** A limitação é **aceita e declarada**, sem
+imputação. A alternativa antes cogitada — imputar pela mediana municipal com indicador de
+imputação — fica descartada para a EDA: ela transferiria aos setores ricos o perfil dos
+pobres, na direção oposta ao viés real.
+
+**Status:** ✅ consolidada. A política para o **cálculo final do índice** — excluir os
+16.552 setores, calcular o IVS com as seis componentes restantes, ou reportá-los à parte —
+segue pendente no Notebook 05.
 
 #### 6.2.7 Indicadores de envelhecimento
 
@@ -403,9 +417,77 @@ coincidem exatamente nos 468.099 setores do país: 33.272 setores pelos dois. No
 ELSI há 25 setores com nome de FCU mas `CD_TIPO ≠ 1`, isolados e quantificados na análise;
 eles seguem o critério oficial.
 
-**Status:** ✅ consolidada em 09/08/2026.
+**✅ Validada setor a setor contra a lista oficial (21/08/2026).** O IBGE publica
+`FavelaseComunidadesUrbanas2022Setores_20250417.xlsx` (33.272 setores, 12.348 FCU, 656
+municípios — bate com a publicação). Cruzando com a nossa base: dos 109.032 setores do
+recorte ELSI, **19.507 estão na lista oficial e são exatamente os 19.507 com `CD_TIPO = 1`**
+— zero falso positivo, zero omissão, **100,00% de concordância**. Os 25 setores com `NM_FCU`
+preenchido e `CD_TIPO ≠ 1` não estão na lista oficial: são setores minúsculos (845 pessoas
+somadas) que apenas fazem divisa com uma FCU. `NM_FCU` é atributo descritivo; `CD_TIPO` é a
+classificação. Planilha em `dados/`.
 
-#### 6.2.9 A caçamba de lixo (`V00398`) conta como destino inadequado
+**Fonte oficial localizada em 21/08/2026.** IBGE. *Censo Demográfico 2022: Favelas e
+Comunidades Urbanas — Resultados do universo.* Rio de Janeiro: IBGE, 2024, 171 p. A
+definição e os quatro critérios de identificação estão transcritos em
+`docs/Relatorio_EDA_Fase3_IVS_ELSI.md`, seção 14.2.
+
+**⚠️ Limitação estrutural revelada pela fonte (nota 7, p. 75).** Além das 12.348 FCU
+classificadas, o IBGE identificou **2.298 FCU com 21 a 50 domicílios que não receberam
+setor censitário próprio** — e para as quais não há informação específica divulgada. Isso
+significa que `CD_TIPO = 1` **não encontra as favelas pequenas**: seus moradores estão
+contabilizados dentro de setores comuns. A comparação "favela × resto da cidade" do NB02
+(§7g) é portanto conservadora nos dois sentidos — subestima a população em favela e
+contamina o grupo de comparação com ela.
+
+**Unidade de análise.** O IBGE conta **áreas**; nós contamos **setores**. Uma FCU é formada
+por 2 setores na mediana do recorte ELSI (média 3,3; máximo 128), e 47% delas têm um setor
+só. Os dois números nunca vão coincidir e não devem ser apresentados lado a lado sem essa
+nota.
+
+**Representatividade da amostra ELSI, conferida contra o oficial:**
+
+| | Brasil (IBGE 2024) | ELSI-70 (nossa base) | Cobertura |
+|---|---|---|---|
+| FCU distintas | 12.348 | 5.899 | 47,8% |
+| Municípios com FCU | 656 | 42 | 6,4% |
+| População em FCU | 16.390.815 | 10.069.994 | **61,4%** |
+| Domicílios em FCU | 6.556.998 | 3.443.687 | 52,5% |
+
+Os 70 municípios do ELSI concentram **61,4% de toda a população favelada do país** sendo
+apenas 6,4% dos municípios com FCU. É um argumento de representatividade forte para o
+artigo — e vale registrar que ele decorre do desenho do ELSI, que privilegia grandes
+centros urbanos.
+
+**Status:** ✅ consolidada em 09/08/2026; fonte oficial e limitação incorporadas em
+21/08/2026.
+
+#### 6.2.9 Água canalizada: medir pelo complemento de `V00199`
+
+**Decisão (21/08/2026).** `pct_sem_agua_canalizada = 1 − V00199/V00001`, e **não**
+`(V00200 + V00201)/V00001`.
+
+**Justificativa.** As três variáveis formam partição de `V00001` — conferido: fecham em
+**100,00%** dos 81.270 setores em que as três estão presentes, com diferença máxima de
+1,1 × 10⁻¹⁶. Mas `V00200` e `V00201` são contagens pequenas, que o IBGE sigila: exigindo as
+duas, **21,9%** dos setores ficam sem valor. `V00199` é contagem grande e quase nunca é
+sigilada — pelo complemento, o mesmo número sai com **0,04%** de ausentes.
+
+**Este é um eixo distinto do que já está no IVS.** `pct_agua_inad` (V00112–V00118) mede a
+*fonte* da água; a trinca mede a *entrega*. Um domicílio ligado à rede geral pode receber
+água só no terreno. Spearman entre os dois: 0,459.
+
+**⚠️ Ressalva.** A identidade só é *verificável* onde as três estão presentes. Nos setores
+com sigilo em V00200/V00201, aplicá-la é extrapolação — justificada porque a partição é
+definida pelo IBGE, mas suposição, não medição.
+
+**Vale também para os agregados.** Somar `V00200 + V00201` por região subestima o total pelo
+mesmo motivo: a contagem suprimida some do numerador e `V00001` continua inteiro no
+denominador. As três categorias somam 99,7% a 99,9%, não 100%. A tabela regional usa o
+complemento e publica a diferença na coluna `pct_suprimido`.
+
+**Status:** ✅ consolidada; testada em `test_particao_da_agua_canalizada_fecha`.
+
+#### 6.2.10 A caçamba de lixo (`V00398`) conta como destino inadequado
 
 **Decisão.** Mantida como inadequada, conforme o `Cálculo IVS2012.docx`, em que apenas a
 coleta porta a porta (`V00397`) é adequada.
@@ -420,7 +502,7 @@ indicador esteja capturando **porte urbano** em vez de vulnerabilidade.
 
 **Status:** ⚠️ mantida por fidelidade, mas **em revisão** — ver §6.3.
 
-#### 6.2.10 Indicadores descritivos ficam fora do índice
+#### 6.2.11 Indicadores descritivos ficam fora do índice
 
 **Decisão.** Os dezesseis indicadores complementares (habitação precária, banheiro, chefia
 feminina, envelhecimento, tipo de domicílio) **não integram o IVS**.
@@ -436,7 +518,7 @@ indicadores servem para **caracterizar** o território, não para pontuá-lo.
 
 **Status:** ✅ consolidada.
 
-#### 6.2.11 Fórmulas em módulo compartilhado
+#### 6.2.12 Fórmulas em módulo compartilhado
 
 **Decisão.** As definições dos indicadores vivem em `src/ivs_censo/indicadores.py`, em
 forma declarativa, e são usadas pelo cálculo nacional e pelos scripts de entrega.
@@ -445,12 +527,16 @@ forma declarativa, e são usadas pelo cálculo nacional e pelos scripts de entre
 versões da mesma fórmula, que divergem na primeira correção feita em uma só delas — e aí a
 comparação Brasil × ELSI deixa de ser legítima, que é justamente o objetivo dela.
 
-**⚠️ Limitação atual.** O Notebook 02 **ainda não importa** o módulo: ele define as
-fórmulas nas próprias células. Na prática as fórmulas existem em dois lugares, e mudar uma
-sem a outra faz o recorte ELSI divergir do nacional em silêncio. Unificar é uma melhoria
-pendente; enquanto isso, **toda mudança de fórmula precisa ser feita nos dois lados**.
+**Resolvido em 20/08/2026.** O Notebook 02 passou a importar o módulo: as fórmulas
+saíram das células e a EDA e o cálculo nacional leem a mesma definição. Conferido rodando o
+notebook inteiro — as 38 tabelas se reproduzem, com desvio máximo de 1,5 × 10⁻¹⁵ (soma
+*pairwise* do numpy, não mudança de metodologia).
 
-**Status:** 🟡 parcialmente implementada.
+**⚠️ Dívida remanescente.** O Notebook **01** ainda não usa o módulo: ele carrega um
+dicionário `ARQUIVOS` próprio, escrito à mão. Acrescentar variável ao projeto exige mexer
+em dois lugares — o notebook e `fontes.py` — ou eles divergem.
+
+**Status:** 🟢 implementada no NB02; pendente no NB01.
 
 ### 6.3 Decisões em aberto
 
@@ -459,7 +545,7 @@ Quatro pontos dependem de definição com a orientação e travam etapas seguint
 | # | Decisão | O que ela trava | Elementos para decidir |
 |---|---|---|---|
 | 1 | **Critério dos pesos**: empíricos (análise fatorial) ou guiados pela literatura (60% socioeconômica / 40% saneamento, padrão IVS-BH)? | Notebooks 04 e 05 | Renda, cor/raça e analfabetismo se correlacionam a −0,81 e −0,76: pesos iguais dariam três votos à posição social sem que isso fosse escolha deliberada |
-| 2 | **Indicador de lixo**: entra como está, ou `V00398` (caçamba) é separada das demais formas? | Composição do índice | §6.2.9 — o indicador pode estar medindo porte urbano |
+| 2 | **Indicador de lixo**: entra como está, ou `V00398` (caçamba) é separada das demais formas? | Composição do índice | §6.2.10 — o indicador pode estar medindo porte urbano |
 | 3 | **Política de sigilo no analfabetismo** para o cálculo final | Notebook 03 | §6.2.6 — o sigilo é informativo, não aleatório |
 | 4 | **Piso mínimo de setores** por município nas análises municipais | Tabelas municipais e mapas | §6.2.5 — 14 municípios perdem mais da metade dos setores |
 
@@ -474,9 +560,9 @@ subseções acima; o processo de execução, na §12 do relatório da EDA.
 | 2 | Tabela de variáveis com a fonte | Descrições do dicionário oficial, com coluna de procedência | 67 variáveis, 8 arquivos |
 | 3 | Excluir setores rurais | Filtro na análise, não na extração (§6.2.5) | 104.108 setores; 2,04% excluídos |
 | 4 | Agrupar moradias convencionais | Critério de adequação da edificação | 99,19% convencionais |
-| 5 | Indicador de apartamento | Fora do índice, por falta de direção (§6.2.10) | média de 31,5% |
+| 5 | Indicador de apartamento | Fora do índice, por falta de direção (§6.2.11) | média de 31,5% |
 | 6 | Contagem de vilas e favelas | Critério `CD_TIPO = 1` (§6.2.8) | 19.507 setores (17,9%) |
-| 7 | Proporções para o Brasil todo | Módulo compartilhado (§6.2.11) | população confere: 203.080.756 |
+| 7 | Proporções para o Brasil todo | Módulo compartilhado (§6.2.12) | população confere: 203.080.756 |
 
 Pendente: a **redação das limitações** com Lima-Costa & Barreto (2003) — falácia ecológica,
 viés de sobrevivência e exclusão de institucionalizados.
@@ -542,7 +628,7 @@ Projeto_IVS_Censo22/
 │   └── DIAGNOSTICO_COMPLETO_PROJETO.md
 │
 ├── src/ivs_censo/                     Código compartilhado (fontes, indicadores, dicionário)
-├── scripts/                           gerar_tabela_variaveis · gerar_entrega_orientadora · proporcoes_brasil
+├── scripts/                           gerar_tabela_variaveis · gerar_entrega_orientadora · proporcoes_brasil · gerar_tabelas_auditoria
 └── tests/                             test_pipeline_fase3.py + test_ivs_censo.py (43 testes)
 ```
 
@@ -592,17 +678,18 @@ Detalhamento completo em [`Backup/DIAGNOSTICO_COMPLETO_PROJETO.md`](Backup/DIAGN
 | # | Problema | Gravidade |
 |---|---|---|
 | **0** | ~~**Ausência do filtro ELSI-Brasil**~~ — **resolvido na Fase 3**: `notebooks/Fase3_EDA_ELSI/01` filtra os 70 municípios ELSI (109.032 setores) antes de qualquer cálculo. | ✅ Resolvido |
-| **1** | ~~**Variáveis de esgoto inconsistentes**~~ — **resolvido**: o dicionário oficial do IBGE (`dados/dicionario_de_dados_agregados_por_setores_censitarios_20260520.xlsx` e o recorte em `docs/Apresentacoes_IVS/Dicionario_IBGE_Oficial_Variaveis_do_Projeto.xlsx`) confirma que **V00312–V00316** é o bloco de esgoto inadequado (fossa rudimentar, vala, rio/lago/mar, outra forma, inexistente). V00309–V00311 são adequadas (rede geral, fossa séptica). Os notebooks já usam V00312–V00316; o diagnóstico empírico está na célula `step4b` do Notebook 02. | ✅ Resolvido |
+| **1** | ~~**Variáveis de esgoto inconsistentes**~~ — **resolvido**: o dicionário oficial do IBGE (`dados/dicionario_de_dados_agregados_por_setores_censitarios_20260520.xlsx` e o recorte em `docs/Apresentacoes_IVS/dicionarios/Dicionario_IBGE_Oficial_Variaveis_do_Projeto.xlsx`) confirma que **V00312–V00316** é o bloco de esgoto inadequado (fossa rudimentar, vala, rio/lago/mar, outra forma, inexistente). V00309–V00311 são adequadas (rede geral, fossa séptica). Os notebooks já usam V00312–V00316; o diagnóstico empírico está na célula `step4b` do Notebook 02. | ✅ Resolvido |
 | **2** | **Normalização de renda global** — usa min/max de todos os setores do Brasil; deveria ser por município para capturar desigualdade intraurbana. | 🔴 Crítico |
 | **3** | ~~Denominadores divergentes~~ — **resolvido em 22/05/2026**: consolidado **V00001** (Dom. Particulares Permanentes Ocupados) como denominador domiciliar, padrão do IVS-BH 2012. O **V01042 foi descartado** (é contagem de pessoas, não de domicílios). Decisão empiricamente validada: com V00001 nenhuma proporção de saneamento estoura 1,0. | ✅ Resolvido |
 | **4** | ~~Duas pipelines paralelas~~ — **resolvido**: a Fase 3 é a oficial; as Fases 1 e 2 foram arquivadas em `Backup/` como histórico. | ✅ Resolvido |
 | **5** | **~8 GB de dados duplicados/obsoletos** espalhados pelo projeto. | 🟡 Organizacional |
 | **6** | ~~README/docs parcialmente desatualizados~~ — **resolvido**: `docs/Relatorio_EDA_Fase3_IVS_ELSI.md` foi regerado em 12/06/2026 sobre a metodologia V00001 e está consistente com os CSVs atuais; `Relatorio_Integridade_Projeto.md` revisado na mesma data. | ✅ Resolvido |
-| **7** | ~~requirements.txt incorreto~~ — **resolvido**: lista `pandas`, `numpy`, `matplotlib`, `openpyxl`, `xlsxwriter`; sem módulos built-in. | ✅ Resolvido |
+| **7** | ~~requirements.txt incorreto~~ — **resolvido**: lista `pandas`, `numpy`, `matplotlib`, `openpyxl`, `xlsxwriter`; sem módulos built-in. Em 20/08/2026 ganhou `ipykernel`/`nbclient`: a pipeline **são** os notebooks, e sem kernel não havia como executá-los. | ✅ Resolvido |
 | **8** | **Código duplicado nos notebooks** — função `ler_csv_padronizado` definida duas vezes na Fase 2; auditoria duplicada na Fase 1. | 🟢 Menor |
 | **9** | ~~Entregáveis sem código-fonte~~ — os `.db`/`.csv` de `entrega_orientadora/` vinham de script ad-hoc não versionado. **Resolvido em 09/08/2026**: `scripts/gerar_entrega_orientadora.py`. | ✅ Resolvido |
 | **10** | ~~Massas d'água contadas como sigilo~~ — 1.736 setores sem população apareciam como `SIGILOSO` porque a condição de sigilo era testada antes da de população zero. **Resolvido**: ordem invertida em `classificar_dados_sig`; nenhum setor `OK` mudou. | ✅ Resolvido |
 | **11** | **Municípios pequenos ficam com poucos setores após o filtro urbano** — 29 dos 70 perdem >10% dos setores; alguns ficam com menos de 10. Afeta a estabilidade das descritivas por município e precisa constar nas limitações. | 🟡 Metodológico |
+| **12** | ~~CSVs órfãos em `banco_de_dados/eda/`~~ — 9 tabelas commitadas sem código que as reproduzisse. **Resolvido em 20/08/2026**: `scripts/gerar_tabelas_auditoria.py` as regenera valor a valor. Fica registrado que elas são do recorte **com rurais** (106.281 setores), diferente do recorte urbano do NB02. | ✅ Resolvido |
 
 ---
 
@@ -633,7 +720,9 @@ Ordem sugerida de ataque ao reentrar no projeto:
 - [x] **Proporções para o Brasil todo** e comparativo com os 70 municípios.
 - [ ] Redigir as limitações do artigo com Lima-Costa & Barreto (2003): falácia ecológica,
       viés de sobrevivência e exclusão de institucionalizados (que na base corresponde a
-      `Dados_sig = COLETIVO`).
+      `Dados_sig = COLETIVO`). **Parcial:** a limitação do sigilo do analfabetismo foi
+      escrita e quantificada em 21/08/2026 (seção 14.1 do relatório da EDA); faltam as
+      outras três.
 
 ### Prioridade 2 — Completar o cálculo do IVS
 - [ ] Implementar a **análise fatorial / ACP** para definir os pesos.
@@ -643,7 +732,9 @@ Ordem sugerida de ataque ao reentrar no projeto:
 ### Prioridade 3 — Limpeza e organização
 - [ ] Remover `src/ETL/ficheiros_inuteis/` e demais duplicados (~8 GB).
 - [ ] Decidir o destino da Fase 1 (arquivar ou remover).
-- [ ] Corrigir `requirements.txt`, `.gitignore` e a documentação.
+- [x] Corrigir `requirements.txt`, `.gitignore` e a documentação — em 20/08/2026 o `.venv/`
+      passou a ser ignorado, o `requirements.txt` ganhou o kernel dos notebooks e o
+      `README`/`GUIA` passaram a documentar a criação do ambiente.
 
 ### Prioridade 4 — Geoprocessamento e artigo
 - [ ] Mapas temáticos no QGIS (atualizar referência: usar QGIS 3.x, não 2.10.1).
@@ -708,7 +799,15 @@ checklist STROBE).
 **Pré-requisitos:** Python 3.10+ e os 8 CSVs do Censo 2022 em `dados/`.
 
 ```bash
-pip install -r requirements.txt
+python3 -m venv .venv && ./.venv/bin/python -m pip install -r requirements.txt
+```
+
+Todo comando do projeto usa o Python desse ambiente (`./.venv/bin/python`); o `.venv/`
+não é versionado. Os notebooks também rodam sem interface, o que serve de conferência
+de que a pipeline continua de pé:
+
+```bash
+./.venv/bin/jupyter execute notebooks/Fase3_EDA_ELSI/01_Extracao_Filtragem_ELSI.ipynb notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb
 ```
 
 Executar os notebooks da **pipeline ativa (Fase 3)** na ordem numérica:
@@ -728,6 +827,8 @@ notebooks/Fase3_EDA_ELSI/  →  01 → 02
 
 ## 14. Referências
 
+- **IBGE.** *Censo Demográfico 2022: Favelas e Comunidades Urbanas — Resultados do
+  universo.* Rio de Janeiro: IBGE, 2024. 171 p. — definição e critérios de FCU (§6.2.8).
 - **SMS-BH.** *Índice de Vulnerabilidade da Saúde 2012.* Belo Horizonte: Secretaria
   Municipal de Saúde, 2013.
 - **Passarelli-Araujo, H.** Mapeando as disparidades socioeconômicas de saúde urbana: um

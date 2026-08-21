@@ -80,7 +80,7 @@ Projeto_IVS_Censo22/
 │   ├── Plano de trabalho.pdf  ·  Plano_Artigo_Cientifico_IC_Preenchido.docx
 │   ├── Relatorio_EDA_Fase3_IVS_ELSI.{md,docx}     Relatório técnico-interpretativo da EDA
 │   ├── Relatorio_Integridade_Projeto.md           Diagnóstico técnico
-│   └── 📂 Apresentacoes_IVS/          Apresentações (PPTX) + Dicionário de Variáveis (XLSX)
+│   └── 📂 Apresentacoes_IVS/          Apresentação corrente + roteiro · historico/ · dicionarios/
 │
 ├── 📂 Backup/                         LEGADOS — Fases 1 e 2, scripts antigos
 │   ├── Fase1_IVS_Basico/              5 notebooks (sem filtro ELSI)

@@ -181,7 +181,7 @@ SELECT * FROM setores_censitarios WHERE Dados_sig = 'OK' AND urbano = 1;
 | `guia_analises.docx` | Framework FIOCRUZ de EDA |
 | `Plano_Artigo_Cientifico_IC_Preenchido.docx` | Plano do artigo, por fases |
 | `Plano de trabalho.pdf` | Cronograma da IC |
-| `Apresentacoes_IVS/` | Decks `.pptx`, incluindo `IVS_Andamento_2026-08.pptx` |
+| `Apresentacoes_IVS/` | Apresentação atual na raiz + `historico/` e `dicionarios/`. Índice em `Apresentacoes_IVS/README.md` |
 
 ### `tests/`
 
@@ -499,7 +499,7 @@ escolha pode estar fazendo o indicador capturar porte urbano — ver §11 e §12
 
 # Parte D — Roteiro da apresentação, slide a slide
 
-O arquivo é `docs/Apresentacoes_IVS/IVS_Andamento_2026-08.pptx`. **Todos os 30 slides têm
+O arquivo é `docs/Apresentacoes_IVS/historico/2026-08-09_Andamento.pptx` (arquivado em 21/08/2026; a apresentação corrente é `EDA_Central_IVS_2026-08.pptx`). **Todos os 30 slides têm
 notas do apresentador** — o que está abaixo é o roteiro em prosa, com o encadeamento.
 
 ## Bloco 1 · Abertura (slides 1 a 5) — 4 minutos

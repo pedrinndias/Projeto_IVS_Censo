@@ -187,7 +187,7 @@ As colunas-chave têm grafias diferentes entre os 8 CSVs do IBGE (`CD_SETOR`, `C
 
 **C2. Variáveis de esgoto validadas contra o dicionário oficial do IBGE — resolvido** ✅
 - A escolha `V00312`–`V00316` foi herdada da Fase 2. O Relatório Metodológico tinha duas abas com codificação diferente (V00312–V00316 vs V00249–V00253), e a Fase 3 inicialmente não havia reaberto essa decisão.
-- **Resolução:** o dicionário oficial do IBGE (`dados/dicionario_de_dados_agregados_por_setores_censitarios_20260520.xlsx`, recorte em `docs/Apresentacoes_IVS/Dicionario_IBGE_Oficial_Variaveis_do_Projeto.xlsx`) confirma **V00312–V00316** como o bloco de esgoto inadequado (fossa rudimentar, vala, rio/lago/mar, outra forma, inexistente); V00249–V00253 é tipologia de habitação. O diagnóstico empírico da célula `step4b` do Notebook 02 corrobora.
+- **Resolução:** o dicionário oficial do IBGE (`dados/dicionario_de_dados_agregados_por_setores_censitarios_20260520.xlsx`, recorte em `docs/Apresentacoes_IVS/dicionarios/Dicionario_IBGE_Oficial_Variaveis_do_Projeto.xlsx`) confirma **V00312–V00316** como o bloco de esgoto inadequado (fossa rudimentar, vala, rio/lago/mar, outra forma, inexistente); V00249–V00253 é tipologia de habitação. O diagnóstico empírico da célula `step4b` do Notebook 02 corrobora.
 
 **C3. Documentação sincronizada** ✅
 - `README.md`, `GUIA_DO_PROJETO.md` e `estrutura_projeto.md` foram alinhados à metodologia
