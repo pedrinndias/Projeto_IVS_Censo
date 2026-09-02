@@ -21,10 +21,12 @@ Cada par CSV/DB tem exatamente o mesmo conteúdo. O CSV é pra abrir no Excel, o
 
 ## Volumetria
 
-| Base | Setores | Municípios | Setores OK | Urbanos | Setores de favela (FCU) |
-|---|---:|---:|---:|---:|---:|
-| ELSI (70 municípios) | 109.032 | 70 | 106.281 (97,5%) | 106.347 | 19.507 |
-| Belo Horizonte | 5.166 | 1 | 5.113 (99,0%) | 5.166 | 702 |
+| Base | Setores | Municípios | Setores OK | Urbanos na base | **Recorte de análise** | FCU na base | FCU no recorte |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| ELSI (70 municípios) | 109.032 | 70 | 106.281 (97,5%) | 106.347 | **104.108** | 19.507 | 19.452 |
+| Belo Horizonte | 5.166 | 1 | 5.113 (99,0%) | 5.166 | **5.113** | 702 | 702 |
+
+> **"Urbanos na base" não é o recorte.** Ela conta `SITUACAO = Urbana` em todos os setores, inclusive zerados e sigilosos — por isso dá 106.347, número maior que os 106.281 elegíveis e impossível como recorte. O recorte é a interseção das duas condições, `Dados_sig='OK' AND urbano=1`, que é exatamente o que a consulta SQL recomendada abaixo devolve.
 
 ## Como abrir o .db
 
@@ -45,7 +47,7 @@ df = pd.read_sql("SELECT * FROM setores_censitarios WHERE Dados_sig='OK' AND urb
 ```
 
 Cada `.db` tem 3 tabelas:
-- `setores_censitarios` — os dados (1 linha por setor, 95 colunas)
+- `setores_censitarios` — os dados (1 linha por setor, 104 colunas)
 - `dicionario_variaveis` — **o que é cada coluna, de qual arquivo do Censo ela vem e como o indicador é calculado**
 - `metadados` — fonte, data, totais, denominador adotado
 
@@ -60,7 +62,7 @@ Três delas resolvem demandas específicas:
 | Coluna | Uso |
 |---|---|
 | `urbano` | `1` = setor urbano. **O recorte de análise do IVS é `Dados_sig='OK' AND urbano=1`** (104.108 setores). Os rurais ficam na base para auditoria, mas fora da análise. |
-| `is_fcu` | `1` = setor de Favela e Comunidade Urbana (`CD_TIPO = 1`). São 19.507 setores, 17,9% do recorte. |
+| `is_fcu` | `1` = setor de Favela e Comunidade Urbana (`CD_TIPO = 1`). São 19.507 em toda a base (17,9% de 109.032) e **19.452 no recorte de análise** (18,7% de 104.108) — use sempre o mesmo filtro do recorte ao calcular percentuais. |
 | `CD_SIT` | Situação detalhada: 1–3 urbana, 5–8 rural, 9 massa d'água (população zero). |
 
 ### Variáveis brutas do IBGE (56)
@@ -72,11 +74,11 @@ Todas com descrição oficial e arquivo-fonte na tabela `dicionario_variaveis`. 
 - Água: `V00112`–`V00118` · Esgoto: `V00312`–`V00316` · Lixo: `V00398`–`V00402` · Banheiro: `V00236`, `V00238`, `V00495`
 - Alfabetização 15+: `V00900` (sabem ler), `V00901` (não sabem)
 - Cor/raça: `V01318` (preta), `V01320` (parda), `V01321` (indígena)
-- Renda: `V06004` (rendimento médio dos responsáveis, R$)
+- Renda: `V06004` (rendimento médio dos responsáveis, R$), `V06001` (nº de responsáveis) e `V06005` (variância do rendimento) — as duas últimas servem para auditar a primeira
 - Demografia: `V01031`–`V01041` (pirâmide etária completa, de 0–4 a 70+)
 - Parentesco: `V01042` (pessoas responsáveis — *não* é denominador), `V01062`/`V01063` (responsáveis por sexo)
 
-### Indicadores calculados (23)
+### Indicadores calculados (26)
 
 **Os 7 componentes do IVS:**
 
@@ -89,6 +91,19 @@ Todas com descrição oficial e arquivo-fonte na tabela `dicionario_variaveis`. 
 | `pct_analfab` | V00901 / (V00900+V00901) |
 | `renda_media` | V06004 |
 | `pct_raca_pretpardind` | (V01318+V01320+V01321) / v0001 |
+
+**`renda_media_sem_extremo`** — pedida em 01/09/2026. É a mesma coluna `renda_media`, com
+**um único setor vazio**: o `310620005650366` (Belo Horizonte, Senhor dos Passos), que
+declara R$ 170.418,06 — maior valor de toda a base, 55,7× a mediana do município, num setor
+de favela com 186 domicílios e 518 pessoas. Ela fica encostada na `renda_media` no arquivo,
+e a `renda_media` **não** foi alterada: as duas lado a lado é o que torna a exclusão
+auditável. Em Belo Horizonte, no recorte de análise, a média cai de R$ 4.682,30 para
+R$ 4.649,88 (−0,69%) e o máximo passa a ser R$ 45.385,44 (Belvedere).
+
+> A exclusão é **nominal**, de um setor só, e não da classe `SUSPEITO` (66 setores) nem da
+> `EXTREMO` (3.292). A lista está em `SETORES_RENDA_EXCLUIDA`, em `src/ivs_censo/renda.py`,
+> e também na tabela `metadados` de cada `.db`. Excluir por classe seria outra decisão de
+> método, e mudaria a EDA inteira.
 
 **Morfologia e habitação:** `pct_moradia_convencional` (casa + vila/condomínio + apartamento), `pct_moradia_nao_convencional`, `pct_apartamento`, `pct_casa`, `pct_casa_vila_condominio`, `pct_dom_improv`, `pct_hab_precaria`.
 

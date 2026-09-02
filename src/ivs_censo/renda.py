@@ -75,8 +75,26 @@ import numpy as np
 import pandas as pd
 
 COLUNA_RENDA = 'V06004'          # rendimento nominal médio mensal do responsável
+COLUNA_VARIANCIA = 'V06005'      # variância do rendimento no setor (mesmo arquivo do IBGE)
+COLUNA_N_RESP = 'V06001'         # nº de pessoas responsáveis no setor
 K_TUKEY = 3.0                    # k=3 (outlier "extremo"); k=1.5 seria "moderado"
 MIN_SETORES_MUNICIPIO = 20       # abaixo disso o quartil do município não é confiável
+RAZAO_IMPLAUSIVEL = 20.0         # renda do setor > 20× a mediana do município
+
+# Setores cuja renda sai da coluna `renda_media_sem_extremo`. A chave é o CD_SETOR; o
+# valor é o motivo, que vai para o dicionário da entrega — a exclusão tem que se explicar
+# sozinha para quem abrir o arquivo daqui a um ano.
+#
+# ATENÇÃO: isto NÃO é a lista dos 66 SUSPEITO nem dos 3.292 EXTREMO. É uma exclusão
+# nominal, pedida caso a caso. Excluir por classe seria outra coisa e mudaria a EDA
+# inteira; esta coluna mexe em um valor só e deixa `renda_media` intacta ao lado.
+SETORES_RENDA_EXCLUIDA: dict[str, str] = {
+    '310620005650366': ('Belo Horizonte, bairro Senhor dos Passos: R$ 170.418,06, maior valor '
+                        'da base e 55,7× a mediana do município. Setor de favela (CD_TIPO=1) '
+                        'com 186 domicílios, 518 pessoas e 31 analfabetos — classificado '
+                        'SUSPEITO por três testes de incoerência. Excluído a pedido da '
+                        'orientadora em 01/09/2026.'),
+}
 
 # Rótulos da coluna `classe_renda`, do mais grave ao benigno.
 SUSPEITO = 'SUSPEITO'            # extremo E incoerente com o perfil do setor -> provável erro
@@ -90,6 +108,23 @@ def limites_tukey(s: pd.Series, k: float = K_TUKEY) -> tuple[float, float]:
     q1, q3 = s.quantile(0.25), s.quantile(0.75)
     iqr = q3 - q1
     return q1 - k * iqr, q3 + k * iqr
+
+
+def renda_sem_extremos(df: pd.DataFrame, coluna: str = COLUNA_RENDA) -> pd.Series:
+    """`coluna` com os setores de `SETORES_RENDA_EXCLUIDA` vazios, o resto intacto.
+
+    Espera `CD_SETOR` em `df`. O padrão de `coluna` é o `V06004` bruto, para uso direto
+    sobre a base do Notebook 01; a entrega passa `renda_media`, que é o mesmo valor já
+    restrito aos setores elegíveis — assim a coluna nova é comparável linha a linha com a
+    de onde ela saiu.
+
+    Devolve `NaN`, não zero: o setor continua na base, e o que se perde é a *medida* de
+    renda dele. Zero seria afirmar renda nula, que é falso e entraria em qualquer média.
+    """
+    if 'CD_SETOR' not in df.columns:
+        raise KeyError('renda_sem_extremos precisa de CD_SETOR para identificar os setores excluídos')
+    fora = df['CD_SETOR'].astype(str).str.strip().isin(SETORES_RENDA_EXCLUIDA)
+    return df[coluna].mask(fora)
 
 
 def rastrear_outliers_renda(df: pd.DataFrame, k: float = K_TUKEY) -> pd.DataFrame:
