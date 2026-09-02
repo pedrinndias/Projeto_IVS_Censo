@@ -43,6 +43,19 @@ DESCRICOES_DO_PROJETO: dict[str, str] = {
     'NM_FCU':    'Nome da Favela ou Comunidade Urbana à qual o setor pertence',
 }
 
+# Variáveis que a pipeline lê mas que não entram em indicador nenhum. Sem esta lista
+# elas apareceriam na tabela como "(identificação/auxiliar)", que é falso: são
+# contagens do Censo, lidas de propósito, cada uma por um motivo. Dizer o motivo é o
+# que impede que a próxima pessoa as remova por parecerem sobra.
+USO_AUXILIAR: dict[str, str] = {
+    'V06001': '(auditoria da renda) quantas pessoas responsáveis sustentam a média do V06004',
+    'V06005': '(auditoria da renda) variância do rendimento; CV = √V06005/V06004 separa '
+              'setor rico de setor com poucas declarações enormes',
+    'V01042': '(conferência) total de pessoas responsáveis; confere V01062+V01063 e '
+              'documenta o denominador ABANDONADO em 22/05/2026 — é contagem de pessoas, não de domicílios',
+    'V00236': '(conferência) banheiro de uso comum; completa o bloco de banheiro junto de V00238 e V00495',
+}
+
 
 def carregar_dicionario_oficial(caminho_dados: Path) -> pd.DataFrame:
     """Lê os dois dicionários oficiais do IBGE e devolve `[variavel, tema, descricao]`."""
@@ -90,7 +103,9 @@ def tabela_variaveis(caminho_dados: Path) -> pd.DataFrame:
                 'bloco_do_projeto': fonte.rotulo,
                 'arquivo_fonte': fonte.arquivo,
                 'chave_do_setor_no_arquivo': fonte.chave,
-                'usada_nos_indicadores': ', '.join(USO_DAS_VARIAVEIS.get(var, [])) or '(identificação/auxiliar)',
+                'usada_nos_indicadores': (', '.join(USO_DAS_VARIAVEIS.get(var, []))
+                                          or USO_AUXILIAR.get(var)
+                                          or '(identificação/auxiliar)'),
                 'origem_da_descricao': origem,
             })
 
