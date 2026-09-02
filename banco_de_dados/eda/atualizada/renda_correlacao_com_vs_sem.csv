@@ -1,0 +1,13 @@
+﻿metodo;variavel;com_suspeitos;sem_suspeitos;delta;com_renda_em_log
+pearson;pct_agua_inad;-0.1023;-0.1035;-0.0012;-0.1566
+pearson;pct_esgoto_inad;-0.2176;-0.219;-0.0013;-0.3208
+pearson;pct_lixo_inad;-0.0866;-0.0879;-0.0012;-0.1463
+pearson;razao_moradores;-0.3256;-0.3283;-0.0027;-0.4311
+pearson;pct_analfab;-0.4236;-0.4282;-0.0046;-0.5946
+pearson;pct_raca_pretpardind;-0.6874;-0.6915;-0.0041;-0.8089
+spearman;pct_agua_inad;-0.2599;-0.2609;-0.0009;-0.2599
+spearman;pct_esgoto_inad;-0.4535;-0.4544;-0.0009;-0.4535
+spearman;pct_lixo_inad;-0.1637;-0.1642;-0.0004;-0.1637
+spearman;razao_moradores;-0.4406;-0.4414;-0.0008;-0.4406
+spearman;pct_analfab;-0.7567;-0.758;-0.0013;-0.7567
+spearman;pct_raca_pretpardind;-0.8106;-0.8115;-0.0009;-0.8106
