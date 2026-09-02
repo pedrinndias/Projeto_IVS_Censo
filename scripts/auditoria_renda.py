@@ -82,7 +82,8 @@ def tabela_rastreamento(ok: pd.DataFrame, r: pd.DataFrame) -> pd.DataFrame:
                           'NM_FCU', COLUNA_RENDA, 'V00001', 'v0001',
                           'pct_analfab', 'pct_raca_pretpardind']],
         r.loc[marcados, ['classe_renda', 'renda_p50_mun', 'razao_mediana_mun',
-                         'renda_lim_sup_mun', 'outlier_global', 'outlier_municipio', 'motivos']],
+                         'renda_lim_sup_mun', 'outlier_global', 'outlier_municipio',
+                         'razao_implausivel', 'cv_renda', 'motivos']],
     ], axis=1)
     t['e_favela'] = t['CD_TIPO'].astype(str).eq('1').map({True: 'sim', False: 'não'})
     t = t.rename(columns={COLUNA_RENDA: 'renda_media_setor', 'V00001': 'n_domicilios',
@@ -93,13 +94,21 @@ def tabela_rastreamento(ok: pd.DataFrame, r: pd.DataFrame) -> pd.DataFrame:
     t['renda_lim_sup_mun'] = t['renda_lim_sup_mun'].round(2)
     for c in ['pct_analfab', 'pct_raca_pretpardind']:
         t[c] = t[c].round(4)
+    t['cv_renda'] = t['cv_renda'].round(2)
     ordem = ['classe_renda', 'CD_SETOR', 'NM_MUN', 'CD_MUN', 'NM_BAIRRO', 'regiao',
              'e_favela', 'NM_FCU', 'renda_media_setor', 'renda_p50_mun', 'razao_mediana_mun',
              'renda_lim_sup_mun', 'n_domicilios', 'populacao', 'pct_analfab',
-             'pct_raca_pretpardind', 'outlier_global', 'outlier_municipio', 'motivos']
-    # SUSPEITO primeiro, e dentro de cada classe do valor mais absurdo para o menos
+             'pct_raca_pretpardind', 'outlier_global', 'outlier_municipio',
+             'razao_implausivel', 'cv_renda', 'motivos']
+    # SUSPEITO primeiro, e dentro de cada classe do valor mais absurdo para o menos.
+    # Ordenar por `classe_renda` direto ordenava em ALFABÉTICA — EXTREMO, NORMAL,
+    # SUSPEITO —, o que enterrava os 66 suspeitos no fim de 3.358 linhas, justamente as
+    # linhas por causa das quais o arquivo existe.
+    prioridade = {SUSPEITO: 0, EXTREMO: 1, NORMAL: 2}
     return (t[ordem]
-            .sort_values(['classe_renda', 'razao_mediana_mun'], ascending=[True, False])
+            .assign(_ord=t['classe_renda'].map(prioridade))
+            .sort_values(['_ord', 'razao_mediana_mun'], ascending=[True, False])
+            .drop(columns='_ord')
             .reset_index(drop=True))
 
 

@@ -26,6 +26,46 @@ Duas decisões de método
    local ou alta proporção de população preta, parda ou indígena é internamente
    contraditório — e é aí que mora o erro de dado.
 
+Três ressalvas que o resultado NÃO permite esconder
+---------------------------------------------------
+**A separação favela/não-favela entre as classes é definição, não achado.** `e_favela`
+é um dos testes de incoerência, então todo setor de favela que for outlier municipal cai
+obrigatoriamente em `SUSPEITO` e nenhum pode cair em `EXTREMO`. Dizer "nenhum dos
+extremos coerentes é favela" é repetir a regra, não confirmá-la. O que a tabela mostra de
+fato é *quantos* setores cada teste pegou — não que o teste esteja certo.
+
+**O sinal do analfabetismo é fraco.** Estar acima da *mediana* do município é evento de
+~50% por construção. Dos 66 suspeitos, 40 são flagrados só por esse teste. Eles merecem
+inspeção individual antes de qualquer exclusão, não tratamento de bloco.
+
+**Erro de dado em bairro rico é invisível para esta regra.** O setor `355030832000202`
+(São Paulo, R$ 140.172,64 para 78 domicílios, 45× a mediana municipal) é o segundo maior
+valor da base e sai classificado `EXTREMO`, porque o perfil do entorno é coerente com
+renda alta. A regra detecta incoerência de contexto, não implausibilidade de magnitude.
+Um segundo critério — razão sobre a mediana municipal acima de um limiar, sem depender do
+perfil — pegaria esses casos.
+
+Sobre "é só uma vírgula fora do lugar"
+---------------------------------------
+A leitura de que o valor de Belo Horizonte seria R$ 1.704 (170.418,06 ÷ 100) é **hipótese
+não confirmada**, e o próprio arquivo do IBGE tem como testá-la: `V06005` traz a variância
+do rendimento no setor. Com ela, CV = √V06005 ÷ V06004:
+
+    mediana nacional do CV: 0,78   |   P99: 2,53   |   P99,9: 8,12
+    BH 310620005650366: 5,26       |   SP 355030832000202: 6,85
+    Belém 150140255000432: 8,66    |   Recife 261160605200257: 10,77
+
+Se apenas a média tivesse deslizado uma casa decimal, o CV de BH seria ~526. Ele é 5,26:
+a variância publicada é **coerente com a média alta**. Ou seja, o dado do IBGE não diz
+"erro de digitação" — diz que o setor tem uma ou poucas declarações enormes puxando a
+média. É uma afirmação mais defensável e de consequência diferente: não se corrige
+dividindo por 100 nem se resolve excluindo 66 setores; argumenta-se por estatística
+robusta (posto, log, mediana) para toda a variável.
+
+`V06001` (nº de responsáveis) e `V06005` estão no mesmo CSV e passaram a ser extraídos
+por causa disso. `V06006` (rendimento mediano) aparece no dicionário do IBGE mas **não
+existe** nesta versão do arquivo — conferido no cabeçalho.
+
 Nada aqui remove observação. O módulo **rotula**; a decisão de excluir é de quem
 analisa, e as duas versões da EDA (com e sem) ficam lado a lado para sustentá-la.
 """
@@ -66,7 +106,17 @@ def rastrear_outliers_renda(df: pd.DataFrame, k: float = K_TUKEY) -> pd.DataFram
       é a medida legível para o slide ("este setor tem 62× a mediana da cidade")
     * `outlier_global` / `outlier_municipio` — os dois critérios, para comparação
     * `incoerente` — o perfil do setor contradiz a renda declarada
+    * `cv_renda` — √V06005 ÷ V06004, quando a variância está disponível; mede o quanto a
+      média do setor depende de poucas declarações (mediana nacional 0,78)
+    * `razao_implausivel` — a renda supera `RAZAO_IMPLAUSIVEL` × a mediana do município,
+      **independentemente** do perfil do entorno
     * `classe_renda` — SUSPEITO, EXTREMO ou NORMAL
+
+    `razao_implausivel` é diagnóstico, **não** entra na classificação. É de propósito: a
+    classificação em três classes já foi apresentada à orientadora, e trocar a regra por
+    conta própria mudaria números que ela já viu. A coluna existe para mostrar o ponto
+    cego — setor implausível por magnitude mas coerente por contexto sai como `EXTREMO` —
+    e a decisão de promovê-la a critério é dela, não deste módulo.
     """
     renda = df[COLUNA_RENDA]
     saida = pd.DataFrame(index=df.index)
@@ -84,6 +134,15 @@ def rastrear_outliers_renda(df: pd.DataFrame, k: float = K_TUKEY) -> pd.DataFram
     saida['renda_lim_sup_mun'] = lim_sup.where(n_mun >= MIN_SETORES_MUNICIPIO)
     saida['razao_mediana_mun'] = renda / saida['renda_p50_mun'].replace(0, np.nan)
     saida['outlier_municipio'] = renda.gt(saida['renda_lim_sup_mun']).fillna(False)
+
+    # ── diagnóstico de magnitude, sem depender do perfil do entorno ───────────
+    # O teste de coerência não enxerga erro de dado em bairro rico: lá o entorno sustenta
+    # a renda alta e o setor sai como EXTREMO. Estas duas colunas são o contrapeso.
+    saida['razao_implausivel'] = saida['razao_mediana_mun'].gt(RAZAO_IMPLAUSIVEL).fillna(False)
+    if COLUNA_VARIANCIA in df.columns:
+        saida['cv_renda'] = np.sqrt(df[COLUNA_VARIANCIA]) / renda.replace(0, np.nan)
+    else:
+        saida['cv_renda'] = np.nan
 
     # ── coerência: o resto do perfil do setor sustenta essa renda? ────────────
     # Cada teste compara o setor com o próprio município, não com o país.

@@ -6,8 +6,34 @@ inteiro, uma UF, um município) sem duplicar código.
 
 Convenções herdadas da pipeline:
 
-* **Sigilo**: o `X` do IBGE vira `NaN`. Somas de numerador usam `min_count=1`, ou seja,
-  só resultam `NaN` quando *todas* as parcelas estão sigilosas — nunca zero silencioso.
+* **Sigilo**: o `X` do IBGE vira `NaN`. Somas de numerador usam `min_count=1`: o
+  indicador só vira `NaN` quando *todas* as parcelas estão sigilosas.
+
+  **O que isso implica, e é preciso dizer com todas as letras:** quando *algumas* das
+  parcelas estão sigilosas e outras não, as sigilosas entram na soma **valendo zero**.
+  Num numerador de 7 variáveis como o da água, basta uma delas vir `X` para o setor ser
+  medido a menos. Não é caso raro — no recorte urbano elegível:
+
+  | numerador | setores com ≥1 parcela sigilosa | com todas sigilosas |
+  |---|---:|---:|
+  | água (7 variáveis)      | 30.302 (29,1%) | 0 |
+  | esgoto (5 variáveis)    | 29.606 (28,4%) | 1 |
+  | lixo (5 variáveis)      | 28.239 (27,1%) | 0 |
+  | cor/raça PPI (3 vars)   | 24.226 (23,3%) | 2 |
+
+  O viés é sempre **para baixo** e é limitado, porque o IBGE só sigila contagem pequena:
+  supondo que cada `X` valha de 1 a 4 domicílios, a média da água sobe de 0,0696 para
+  algo entre 0,0723 e 0,0800 (+3,9% a +14,9%); esgoto +3,2% a +12,5%; lixo +2,0% a +7,9%.
+
+  A alternativa — `min_count` igual ao número de parcelas — trocaria o viés por perda de
+  casos: exigir as 7 variáveis da água deixaria 29,1% dos setores sem indicador nenhum.
+  Entre subestimar pouco e perder um terço da base, a escolha foi subestimar; mas ela é
+  escolha, não neutralidade, e tem que aparecer nas limitações do artigo.
+
+  Consequência prática para a leitura: um setor com `pct_agua_inad == 0` e alguma parcela
+  sigilosa **não** é um setor comprovadamente adequado — é um setor sem inadequação
+  *medida*. Dos setores que aparecem com zero, têm ao menos uma parcela sigilosa 22,6%
+  (água), 22,1% (esgoto) e 30,5% (lixo).
 * **Divisão**: `safe_div` devolve `NaN` (não `inf`, não zero) quando o denominador é
   zero ou nulo.
 * **Denominador domiciliar padrão**: `V00001` (Domicílios Particulares Permanentes
