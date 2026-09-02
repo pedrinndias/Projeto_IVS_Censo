@@ -84,6 +84,10 @@ d['urbano_rural'] = {
 exc = ler(EDA, 'exclusao_rural_conferencia')
 d['exclusao'] = {
     'n_ok_total': inteiro(exc['n_ok_total'].sum()), 'n_ok_urbano': inteiro(exc['n_ok_urbano'].sum()),
+    # O que o filtro urbano tira do conjunto ELEGÍVEL (2.173) não é o mesmo que o total de
+    # setores rurais da base (2.607): 434 rurais já haviam saído como ZERADO ou SIGILOSO.
+    # Usar o segundo numa tabela que vai de 106.281 a 104.108 não fecha a conta.
+    'n_ok_rural': inteiro(exc['n_ok_total'].sum() - exc['n_ok_urbano'].sum()),
     'municipios': str(len(exc)),
     'perdem_10pct': str(int(((1 - exc['n_ok_urbano'] / exc['n_ok_total']) > 0.10).sum())),
     'menos_de_10_setores': str(int((exc['n_ok_urbano'] < 10).sum())),
@@ -116,7 +120,7 @@ for v in IVS7:
 B['por_regiao'] = bloco(
     'As sete componentes por região', URBANO, 'descritivas_por_regiao.csv',
     ['Componente'] + ORDEM_REGIAO, linhas,
-    'Média entre setores. O gradiente Norte–Sul aparece em seis das sete.')
+    'Média entre setores: cada setor pesa igual, independentemente de quantos domicílios tem.')
 
 # ── outliers ────────────────────────────────────────────────────────────────
 ou = ler(EDA, 'outliers', index_col=0)
@@ -126,7 +130,7 @@ B['outliers'] = bloco(
     [[ROT7[v], n2(ou.loc[v, 'q1'], 3), n2(ou.loc[v, 'q3'], 3), n2(ou.loc[v, 'lim_sup'], 3),
       inteiro(ou.loc[v, 'n_outliers']), pct(ou.loc[v, 'pct_outliers']),
       'não' if bool(ou.loc[v, 'iqr_nao_informativo']) else 'sim'] for v in IVS7],
-    'Onde a mediana e o q1 são zero, o IQR marca como atípico todo setor com qualquer inadequação.')
+    'Limite superior = q3 + 1,5 × (q3 − q1), a regra de Tukey.')
 
 # ── faltantes ───────────────────────────────────────────────────────────────
 mi = ler(EDA, 'missing_por_municipio', index_col=0)
@@ -196,10 +200,17 @@ B['envelhecimento'] = bloco(
     'IEP = 60+ ÷ menores de 15 × 100, conforme Galvão et al. (Hygeia, 2025).')
 
 # ── favelas ─────────────────────────────────────────────────────────────────
-fc = ler(EDA, 'favelas_fcu_total').iloc[0]
-d['fcu'] = {k: (inteiro(fc[k]) if 'pct' not in k else n2(fc[k])) for k in
-            ['n_setores_fcu', 'pct_setores_fcu', 'n_fcu_distintas', 'pop_fcu', 'pct_pop_fcu',
-             'dom_fcu', 'pct_dom_fcu']}
+# A tabela traz duas linhas: a base completa (109.032) e o recorte de análise (104.108).
+# Confundir as duas foi o que fez a apresentação de agosto anunciar "17,9% do recorte" —
+# percentual que é da base. No recorte dá 18,7%.
+_fcu = ler(EDA, 'favelas_fcu_total')
+_col_uni = _fcu.columns[-1]
+CHAVES_FCU = ['n_setores_fcu', 'pct_setores_fcu', 'n_fcu_distintas', 'pop_fcu', 'pct_pop_fcu',
+              'dom_fcu', 'pct_dom_fcu']
+fc = _fcu[_fcu[_col_uni].str.startswith('base')].iloc[0]
+fc_rec = _fcu[_fcu[_col_uni].str.startswith('recorte')].iloc[0]
+d['fcu'] = {k: (inteiro(fc[k]) if 'pct' not in k else n2(fc[k])) for k in CHAVES_FCU}
+d['fcu_recorte'] = {k: (inteiro(fc_rec[k]) if 'pct' not in k else n2(fc_rec[k])) for k in CHAVES_FCU}
 cmp_fcu = ler(EDA, 'favelas_fcu_comparativo_indicadores')
 c_ind = [c for c in cmp_fcu.columns if c.lower() in ('indicador', 'variavel')][0]
 cols = list(cmp_fcu.columns)
@@ -209,7 +220,7 @@ B['favela_resto'] = bloco(
     [c.replace('_', ' ') for c in cols],
     [[str(ln[c]) if not isinstance(ln[c], float) else n2(ln[c], 3) for c in cols]
      for _, ln in cmp_fcu.iterrows()],
-    'Quantas vezes o valor médio no setor de favela supera o de fora.')
+    'Razão de médias abaixo de 1 significa valor MENOR em favela — é o caso da renda, do apartamento e do índice de envelhecimento.')
 
 # ── cobertura e faixas (recorte COM RURAIS — declarado) ─────────────────────
 cb = ler(EDA, 'cobertura_total').iloc[0]
