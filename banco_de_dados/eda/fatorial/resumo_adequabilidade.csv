@@ -1,0 +1,7 @@
+﻿nome;n;p;razao_casos_var;metodo;pct_corr_acima_030;kmo;msa_min;bartlett_qui2;bartlett_gl;bartlett_p;autovalores_acima_1;autovalores_acima_horn;var_acumulada_k;comunalidade_min
+ivs7_spearman;87545;7;12506.4286;spearman;0.5714;0.7826;0.6995;235084.3838;21;0.0;2;2;62.1177;0.2535
+ivs7_pearson;87545;7;12506.4286;pearson;0.3333;0.7318;0.5422;131592.7087;21;0.0;3;3;53.6157;0.3272
+ivs6_sem_lixo_spearman;87545;6;14590.8333;spearman;0.8;0.787;0.7153;225320.1766;15;0.0;1;1;69.9615;0.3804
+ivs6_sem_analfab_spearman;104093;6;17348.8333;spearman;0.5333;0.7067;0.6027;202755.6869;15;0.0;2;2;63.8325;0.3278
+ivs7_minmax_municipal_spearman;87241;7;12463.0;spearman;0.4286;0.72;0.624;149050.8265;21;0.0;3;3;56.4809;0.0911
+ivs6_sem_lixo_minmax_municipal_spearman;87241;6;14540.1667;spearman;0.6;0.7225;0.6112;139402.4117;15;0.0;2;2;64.9419;0.378
