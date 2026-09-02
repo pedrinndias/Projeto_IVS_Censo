@@ -1,6 +1,11 @@
-﻿regiao;n_setores;n_setores_fcu;pct_setores_fcu;n_fcu_distintas;pop_fcu;pct_pop_fcu;dom_fcu;pct_dom_fcu
-Norte;6521.0;3301.0;50.62;574.0;2185049.0;55.06;666656.0;53.86
-Nordeste;20548.0;5694.0;27.71;1707.0;2968724.0;26.28;1058220.0;25.99
-Sudeste;64291.0;9407.0;14.63;3144.0;4350385.0;15.61;1530220.0;14.5
-Sul;7486.0;637.0;8.51;339.0;327693.0;8.31;112856.0;7.27
-Centro-Oeste;10186.0;468.0;4.59;139.0;239724.0;4.24;75735.0;3.71
+﻿regiao;n_setores;n_setores_fcu;pct_setores_fcu;n_fcu_distintas;pop_fcu;pct_pop_fcu;dom_fcu;pct_dom_fcu;universo
+Norte;6521.0;3301.0;50.62;574.0;2185049.0;55.06;666656.0;53.86;base completa (109.032 setores)
+Nordeste;20548.0;5694.0;27.71;1707.0;2968724.0;26.28;1058220.0;25.99;base completa (109.032 setores)
+Sudeste;64291.0;9407.0;14.63;3144.0;4350385.0;15.61;1530220.0;14.5;base completa (109.032 setores)
+Sul;7486.0;637.0;8.51;339.0;327693.0;8.31;112856.0;7.27;base completa (109.032 setores)
+Centro-Oeste;10186.0;468.0;4.59;139.0;239724.0;4.24;75735.0;3.71;base completa (109.032 setores)
+Norte;5915.0;3294.0;55.69;574.0;2185021.0;56.46;666656.0;54.94;recorte de análise (104.108 urbanos elegíveis)
+Nordeste;19497.0;5686.0;29.16;1706.0;2968641.0;26.73;1058220.0;26.35;recorte de análise (104.108 urbanos elegíveis)
+Sudeste;61989.0;9368.0;15.11;3141.0;4348915.0;15.69;1530220.0;14.55;recorte de análise (104.108 urbanos elegíveis)
+Sul;7217.0;636.0;8.81;339.0;327693.0;8.42;112856.0;7.34;recorte de análise (104.108 urbanos elegíveis)
+Centro-Oeste;9490.0;468.0;4.93;139.0;239724.0;4.35;75735.0;3.78;recorte de análise (104.108 urbanos elegíveis)
