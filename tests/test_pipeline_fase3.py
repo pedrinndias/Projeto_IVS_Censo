@@ -460,3 +460,78 @@ def test_entrega_separa_urbanos_da_base_do_recorte_de_analise():
     assert meta['n_setores_favela_fcu_no_recorte'].replace(',', '') == '19452'
 
 
+def test_coluna_de_renda_sem_o_extremo_de_belo_horizonte():
+    """A coluna nova tem que diferir de `renda_media` em exatamente um setor.
+
+    Pedido da orientadora em 01/09/2026: uma coluna de renda sem o valor extremo de Belo
+    Horizonte. O setor é o `310620005650366` (Senhor dos Passos), R$ 170.418,06 — maior
+    valor da base, 55,7× a mediana do município, e classificado SUSPEITO pelos três testes
+    de incoerência de `src/ivs_censo/renda.py`.
+
+    O que este teste trava é o escopo: a exclusão é **nominal e de um setor só**. Se ela
+    algum dia passar a valer para uma classe inteira (os 66 SUSPEITO, os 3.292 EXTREMO),
+    isto aqui quebra — e tem que quebrar, porque seria outra decisão de método.
+    """
+    import sqlite3
+    import sys
+    sys.path.insert(0, str(ROOT / 'src'))
+    from ivs_censo.renda import SETORES_RENDA_EXCLUIDA
+
+    db = BD / 'entrega_orientadora' / 'Base_ELSI_70Municipios_Censo2022.db'
+    if not db.exists():
+        pytest.skip('Entregável não gerado — rode scripts/gerar_entrega_orientadora.py')
+
+    with sqlite3.connect(db) as con:
+        colunas = [c[1] for c in con.execute('PRAGMA table_info(setores_censitarios)')]
+        divergentes = con.execute(
+            'SELECT CD_SETOR, renda_media FROM setores_censitarios '
+            'WHERE renda_media IS NOT NULL AND renda_media_sem_extremo IS NULL'
+        ).fetchall()
+        iguais = con.execute(
+            'SELECT COUNT(*) FROM setores_censitarios '
+            'WHERE renda_media IS NOT NULL AND renda_media_sem_extremo IS NOT NULL '
+            'AND renda_media != renda_media_sem_extremo'
+        ).fetchone()[0]
+        meta = dict(con.execute('SELECT chave, valor FROM metadados').fetchall())
+        descricao = con.execute(
+            "SELECT descricao FROM dicionario_variaveis WHERE coluna = 'renda_media_sem_extremo'"
+        ).fetchone()
+
+    assert 'renda_media_sem_extremo' in colunas
+    # encostada em renda_media: quem abre no Excel vê as duas lado a lado
+    assert colunas.index('renda_media_sem_extremo') == colunas.index('renda_media') + 1
+
+    assert len(divergentes) == 1, f'esperado 1 setor excluído, obtido {len(divergentes)}'
+    setor, valor = divergentes[0]
+    assert setor == '310620005650366'
+    assert abs(valor - 170_418.06) < 0.01
+    assert setor in SETORES_RENDA_EXCLUIDA, 'o setor excluído não está na lista do módulo'
+
+    # fora esse setor, a coluna é idêntica — não é uma renda recalculada
+    assert iguais == 0, 'renda_media_sem_extremo mudou valores além do setor excluído'
+
+    # e a exclusão se explica sozinha para quem abrir o arquivo
+    assert meta['setores_excluidos_de_renda_media_sem_extremo'] == '310620005650366'
+    assert descricao and 'Senhor dos Passos' in descricao[0]
+
+
+def test_renda_sem_extremos_nao_zera_nem_derruba_linhas():
+    """A exclusão é NaN, não zero: zero afirmaria renda nula e entraria em qualquer média."""
+    import sys
+    sys.path.insert(0, str(ROOT / 'src'))
+    from ivs_censo.renda import COLUNA_RENDA, renda_sem_extremos
+
+    df = pd.DataFrame({
+        'CD_SETOR': ['310620005650366', '310620005620422', '355030832000202'],
+        COLUNA_RENDA: [170_418.06, 45_385.44, 140_172.64],
+    })
+    s = renda_sem_extremos(df)
+
+    assert len(s) == len(df), 'a função não pode remover linhas — ela só apaga o valor'
+    assert pd.isna(s.iloc[0])
+    assert s.iloc[1] == 45_385.44
+    assert s.iloc[2] == 140_172.64, 'só o setor de BH sai; o de São Paulo continua'
+    assert (s.fillna(-1) != 0).all(), 'exclusão virou zero em algum lugar'
+
+    with pytest.raises(KeyError):
+        renda_sem_extremos(df.drop(columns='CD_SETOR'))

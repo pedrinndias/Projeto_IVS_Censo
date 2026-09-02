@@ -29,6 +29,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))  # torna o 
 from ivs_censo import ARQUIVOS_CENSO, encontrar_raiz, tabela_variaveis          # noqa: E402
 from ivs_censo.indicadores import (TODOS_INDICADORES, calcular_indicadores,     # noqa: E402
                                    classificar_dados_sig)
+from ivs_censo.renda import SETORES_RENDA_EXCLUIDA, renda_sem_extremos          # noqa: E402
 
 COLS_TEXTO = ['CD_SETOR', 'CD_UF', 'CD_MUN', 'NM_MUN', 'NM_BAIRRO', 'SITUACAO',
               'CD_SIT', 'CD_TIPO', 'CD_FCU', 'NM_FCU', 'Moradia_Predominante']
@@ -48,6 +49,10 @@ DESC_DERIVADAS = {
     'Moradia_Predominante_Agrupada': 'Moradia predominante agrupada em Convencional / Não convencional / Indefinido',
     'urbano': '1 se SITUACAO = Urbana (recorte de análise do IVS); 0 caso contrário',
     'is_fcu': '1 se o setor é de Favela e Comunidade Urbana (CD_TIPO = 1)',
+    'renda_media_sem_extremo':
+        'Igual a renda_media, exceto nos setores excluídos nominalmente, onde fica vazia. '
+        'Hoje é um só: ' + ' | '.join(f'{k} — {v}' for k, v in SETORES_RENDA_EXCLUIDA.items())
+        + ' A coluna renda_media continua ao lado, sem alteração, para a exclusão ser auditável.',
 }
 
 
@@ -77,6 +82,12 @@ def preparar_base(raiz: Path) -> pd.DataFrame:
         df[col] = pd.NA
         df.loc[ok, col] = indicadores[col]
 
+    # Coluna pedida pela orientadora em 01/09/2026: a renda sem o extremo de Belo
+    # Horizonte. Fica encostada em `renda_media` de propósito — quem abrir o CSV no Excel
+    # vê as duas lado a lado e enxerga o que foi tirado.
+    df.insert(df.columns.get_loc('renda_media') + 1, 'renda_media_sem_extremo',
+              renda_sem_extremos(df, 'renda_media'))
+    n_excluidos = int((df['renda_media'].notna() & df['renda_media_sem_extremo'].isna()).sum())
 
     print(f'  elegibilidade: ' + ' | '.join(f'{k}={v:,}' for k, v in df['Dados_sig'].value_counts().items()))
     recorte = (df['Dados_sig'] == 'OK') & (df['urbano'] == 1)
@@ -85,6 +96,8 @@ def preparar_base(raiz: Path) -> pd.DataFrame:
     print(f'  setores de FCU na base: {int(df["is_fcu"].sum()):,} | '
           f'no recorte: {int((recorte & (df["is_fcu"] == 1)).sum()):,}')
     print(f'  indicadores calculados: {len(indicadores.columns)}')
+    print(f'  renda_media_sem_extremo: {n_excluidos} setor(es) com renda excluída '
+          f'de {len(SETORES_RENDA_EXCLUIDA)} listado(s)')
     return df
 
 
@@ -139,6 +152,8 @@ def gravar(df: pd.DataFrame, dicionario: pd.DataFrame, destino: Path, nome: str,
         ('n_setores_favela_fcu', f"{int(df['is_fcu'].sum()):,}"),
         ('n_setores_favela_fcu_no_recorte',
          f"{int(((df['Dados_sig'] == 'OK') & (df['urbano'] == 1) & (df['is_fcu'] == 1)).sum()):,}"),
+        ('setores_excluidos_de_renda_media_sem_extremo',
+         ' | '.join(SETORES_RENDA_EXCLUIDA) or '(nenhum)'),
         ('denominador_domiciliar', 'V00001 — Domicílios Particulares Permanentes Ocupados'),
         ('recorte_de_analise', 'Setores urbanos (SITUACAO = Urbana) com Dados_sig = OK'),
         ('arquivos_do_censo', ' | '.join(f.arquivo for f in ARQUIVOS_CENSO.values())),
