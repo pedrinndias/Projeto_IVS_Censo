@@ -81,7 +81,7 @@ def ler_arquivo_nacional(caminho_dados: Path, chave: str, limite_chunks: int | N
                     break
                 pedaco = pedaco.rename(columns={fonte.chave: 'CD_SETOR'}).set_index('CD_SETOR')
                 numericas = [c for c in pedaco.columns if c not in COLS_CATEGORIA + COLS_TEXTO]
-                convertido = _para_numero(pedaco[numericas])                       # V… viram float32
+                convertido = _para_numero(pedaco[numericas])                       # V… viram float64
                 for c in [c for c in pedaco.columns if c in COLS_CATEGORIA]:       # códigos repetitivos
                     convertido[c] = pedaco[c].astype('category')
                 for c in [c for c in pedaco.columns if c in COLS_TEXTO]:           # texto livre
@@ -93,7 +93,10 @@ def ler_arquivo_nacional(caminho_dados: Path, chave: str, limite_chunks: int | N
             return df
         except UnicodeDecodeError:
             continue
-    raise UnicodeDecodeError(f'Não foi possível ler {caminho}')
+    # latin1 decodifica qualquer byte, então este ponto só é alcançável se o arquivo
+    # sumir ou vier truncado. RuntimeError, e não UnicodeDecodeError: esta última exige
+    # cinco argumentos e levantá-la com um só trocaria o erro real por um TypeError.
+    raise RuntimeError(f'Não foi possível ler {caminho}')
 
 
 def montar_base_nacional(caminho_dados: Path, limite_chunks: int | None = None) -> pd.DataFrame:
@@ -119,8 +122,16 @@ def resumir(df: pd.DataFrame, nomes: list[str]) -> pd.DataFrame:
             continue
         s = df[ind.nome].dropna()
         if ind.denominador:                                            # razão agregada (soma/soma)
-            num = df[ind.numerador].sum(axis=1, min_count=1).sum()
-            den = df[ind.denominador].sum(axis=1, min_count=ind.min_count_den).sum()
+            num_setor = df[ind.numerador].sum(axis=1, min_count=1)
+            den_setor = df[ind.denominador].sum(axis=1, min_count=ind.min_count_den)
+            # Somar cada lado por conta própria mede numerador e denominador em
+            # conjuntos DIFERENTES de setores: onde o numerador é sigiloso, o setor sai
+            # do numerador mas o denominador dele continua na conta, e a razão sai baixa
+            # demais. Em pct_apartamento isso dava −8,9%; em pct_sem_banheiro, −13,1%.
+            # Restringir aos setores em que os dois lados existem é o que torna a razão
+            # agregada uma razão de fato.
+            par = num_setor.notna() & den_setor.notna()
+            num, den = num_setor[par].sum(), den_setor[par].sum()
             agregado = (num / den * ind.escala) if den else np.nan
         else:
             agregado = df[ind.numerador[0]].mean()                     # renda: média simples

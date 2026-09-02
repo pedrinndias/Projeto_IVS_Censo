@@ -23,10 +23,10 @@ Leva cerca de 10 minutos e exige os 8 CSVs do Censo em `dados/` (~2,4 GB). A op�
 
 | Arquivo | Conteúdo |
 |---|---|
-| `proporcoes_por_recorte.csv` | Os 23 indicadores em três recortes: **Brasil (todos)**, **Brasil (urbano)** e **ELSI 70 (urbano)** |
+| `proporcoes_por_recorte.csv` | Os 26 indicadores em três recortes: **Brasil (todos)**, **Brasil (urbano)** e **ELSI 70 (urbano)** |
 | `proporcoes_brasil_por_regiao.csv` | Idem, por região (Brasil urbano) |
 | `proporcoes_brasil_por_uf.csv` | Idem, por Unidade da Federação |
-| `proporcoes_brasil_por_municipio.csv` | Idem, por município (5.572 municípios × 23 indicadores) |
+| `proporcoes_brasil_por_municipio.csv` | Idem, por município (5.572 municípios × 26 indicadores) |
 | `comparativo_brasil_vs_elsi.csv` | **Entregável central**: lado a lado Brasil urbano × ELSI-70 urbano, com a razão entre os dois |
 | `representatividade_elsi_no_brasil.csv` | Que fatia do país a amostra ELSI representa (setores, municípios, população, domicílios, favelas) |
 
