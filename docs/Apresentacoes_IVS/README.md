@@ -25,7 +25,7 @@ raiz junto do deck.
 | **Arquivo** | `EDA_Central_IVS_2026-09_rev2.pptx` — 51 slides |
 | **O que mudou** | A EDA inteira foi recalculada com `renda_media_sem_extremo` (renda sem o setor `310620005650366`, Belo Horizonte). Os 4 slides novos, logo depois da abertura, dizem o que mudou e o que ficou igual. |
 | **1ª rodada** | `historico/2026-08-21_EDA_Central_1a_rodada.pptx` — com a renda completa |
-| **Roteiro** | `complementos/Roteiro_EDA_Central_1a_rodada.docx` — **escrito para a 1ª rodada**: está defasado em 4 slides e nos números da renda |
+| **Roteiro** | `complementos/Roteiro_EDA_Central_2a_rodada.docx` — fala sugerida slide a slide, o que apontar em cada figura e as perguntas prováveis. Cobre os 51 slides |
 | **Recorte** | 104.108 setores urbanos elegíveis, 70 municípios do ELSI-Brasil |
 | **Gerada por** | `scripts/gerar_deck_eda_central.js` |
 | **Números** | extraídos por `scripts/eda_central_dados.py` das tabelas de `banco_de_dados/eda/` |
@@ -73,14 +73,32 @@ procurava a apresentação.
 
 | Arquivo | O que é | Gerado por |
 |---|---|---|
-| `Roteiro_EDA_Central_1a_rodada.docx` / `.pdf` | Fala sugerida slide a slide, o que apontar em cada figura, perguntas prováveis. **Escrito para a 1ª rodada** | à mão |
+| `Roteiro_EDA_Central_2a_rodada.docx` | **O roteiro em uso.** Fala sugerida slide a slide, o que apontar em cada figura, perguntas prováveis — os 51 slides | à mão, atualizado por `scripts/atualizar_roteiro_2a_rodada.py` |
+| `Roteiro_EDA_Central_1a_rodada.docx` / `.pdf` | O mesmo roteiro na versão de 47 slides, guardado como origem da atualização | à mão |
 | `Resumo_EDA_Central_2026-08.docx` / `.pdf` | As tabelas e figuras da EDA em texto corrido, com um comentário embaixo de cada uma | `scripts/gerar_resumo_eda_central.py` |
 | `Criterio_Outliers_Renda.pptx` / `.pdf` | Abre a regra de classificação de outlier de renda inteira: corte de Tukey por município, os três testes de coerência, os dois diagnósticos que ficam de fora de propósito | `scripts/gerar_deck_criterio_renda.js` e `scripts/gerar_pdf_outliers_renda.py` |
 
-> **Os três são da 1ª rodada.** O critério de renda diz 66 suspeitos e 3.358 setores
-> rastreados; na 2ª rodada são 65 e 3.357, porque o setor de Belo Horizonte saiu da coluna
-> de renda. A **regra** que esses documentos descrevem não mudou — só as contagens. Os
-> geradores ainda não aceitam `--atualizada`.
+> **O resumo e o critério de renda continuam na 1ª rodada.** O critério diz 66 suspeitos e
+> 3.358 setores rastreados; na 2ª rodada são 65 e 3.357, porque o setor de Belo Horizonte
+> saiu da coluna de renda. A **regra** que esses documentos descrevem não mudou — só as
+> contagens. Os geradores dos dois ainda não aceitam `--atualizada`.
+
+### Por que o roteiro não é gerado
+
+Ele é o único artefato desta pasta escrito à mão, e é assim de propósito: o que ele tem de
+valioso não são os números, é o julgamento — quais slides não podem cair se o tempo apertar,
+o que dizer em cada um, que pergunta a orientadora provavelmente fará. Isso não sai de
+tabela nenhuma.
+
+Por isso a passagem de uma rodada para a outra é feita por
+`scripts/atualizar_roteiro_2a_rodada.py`, que renumera os slides, insere as seções dos 4
+novos e troca **só** os números que mudaram — cada um lido de
+`banco_de_dados/eda/atualizada/`, nenhum digitado no script. O texto do autor sobrevive
+palavra por palavra, e o arquivo fica como registro do que foi preciso mexer se houver uma
+3ª rodada.
+
+O `.pdf` do roteiro da 2ª rodada ainda não existe: a conversão sai do Word, e esta máquina
+não tem LibreOffice para automatizá-la.
 
 ---
 
