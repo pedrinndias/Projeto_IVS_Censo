@@ -39,7 +39,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
 from ivs_censo import (INDICADORES_IVS, calcular_indicadores,        # noqa: E402
                        classificar_dados_sig, encontrar_raiz)
 from ivs_censo.renda import (COLUNA_RENDA, EXTREMO, K_TUKEY, NORMAL,  # noqa: E402
-                             SUSPEITO, rastrear_outliers_renda, resumo_por_classe)
+                             SETORES_RENDA_EXCLUIDA, SUSPEITO, rastrear_outliers_renda,
+                             renda_sem_extremos, resumo_por_classe)
 
 COLS_TEXTO = ['CD_SETOR', 'CD_UF', 'CD_MUN', 'NM_MUN', 'NM_BAIRRO',
               'SITUACAO', 'CD_SIT', 'CD_TIPO', 'CD_FCU', 'NM_FCU',
@@ -270,9 +271,26 @@ def tabela_por_regiao(ok: pd.DataFrame, r: pd.DataFrame) -> pd.DataFrame:
 
 
 def main() -> None:
+    # `--sem-extremo` roda a MESMA auditoria sobre a renda já sem os setores excluídos
+    # nominalmente (hoje só o de Belo Horizonte). As tabelas vão para uma pasta
+    # separada, para as duas rodadas ficarem lado a lado — que é o que permite dizer o
+    # que mudou. Nada aqui é duplicado: é o mesmo código com outra coluna de entrada.
+    sem_extremo = '--sem-extremo' in sys.argv
     raiz = encontrar_raiz(Path(__file__).resolve().parent)
     destino = raiz / 'banco_de_dados' / 'eda'
     ok = carregar(raiz)
+    if sem_extremo:
+        destino = destino / 'atualizada'
+        destino.mkdir(parents=True, exist_ok=True)
+        antes = ok[COLUNA_RENDA].notna().sum()
+        ok[COLUNA_RENDA] = renda_sem_extremos(ok)
+        # `carregar()` já calculou os indicadores, e `renda_media` é o V06004 direto
+        # (indicador sem denominador). Sem esta linha, as tabelas descritivas
+        # continuariam lendo a renda ANTIGA enquanto a classificação usava a nova —
+        # o pior dos dois mundos, e silencioso.
+        ok['renda_media'] = ok[COLUNA_RENDA]
+        print(f'--sem-extremo: {antes - ok[COLUNA_RENDA].notna().sum()} setor(es) sem renda '
+              f'({", ".join(SETORES_RENDA_EXCLUIDA)}); saída em {destino}')
     r = rastrear_outliers_renda(ok, k=K_TUKEY)
 
     tabelas = {

@@ -65,12 +65,12 @@
     ],
     [
      "Renda média (R$)",
-     "104.096",
-     "4.187,41",
+     "104.095",
+     "4.185,81",
      "2.572,39",
-     "4.835,89",
-     "170.418,06",
-     "3,74"
+     "4.835,82",
+     "140.172,64",
+     "3,20"
     ],
     [
      "Preta, parda ou indígena",
@@ -142,7 +142,7 @@
      "2.880,50",
      "3.008,45",
      "4.944,55",
-     "4.490,82",
+     "4.488,14",
      "4.842,18"
     ],
     [
@@ -217,10 +217,10 @@
     ],
     [
      "Renda média (R$)",
-     "1.752,477",
-     "4.835,885",
-     "9.460,996",
-     "10.469",
+     "1.752,475",
+     "4.835,825",
+     "9.460,850",
+     "10.468",
      "10,06%",
      "sim"
     ],
@@ -487,13 +487,13 @@
     ],
     [
      "renda_media",
-     "19448",
-     "1.609,626",
-     "1.515,350",
+     "19447",
+     "1.600,946",
+     "1.515,320",
      "84648",
      "4.779,659",
      "3.067,015",
-     "0,337"
+     "0,335"
     ],
     [
      "pct_raca_pretpardind",
@@ -915,7 +915,7 @@
      "1,01"
     ]
    ],
-   "nota": "Razão agregada: soma dos numeradores ÷ soma dos denominadores em cada recorte."
+   "nota": "Razão agregada: soma dos numeradores ÷ soma dos denominadores em cada recorte. ATENÇÃO: esta é a ÚNICA tabela do deck que usa a renda COM o extremo de BH (R$ 4.187,41, e não R$ 4.185,81). A linha de base nacional é calculada sobre os 468 mil setores do país, onde o setor também está — excluí-lo só do lado do ELSI quebraria a comparação. Aplicar a exclusão aos dois lados é decisão de método, ainda em aberto."
   },
   "renda_classes": {
    "titulo": "As três classes de renda",
@@ -931,10 +931,10 @@
    "linhas": [
     [
      "SUSPEITO",
-     "66",
+     "65",
      "0,06%",
-     "R$ 10.167,85",
-     "22 de 66 (33%)"
+     "R$ 10.131,71",
+     "21 de 65 (32%)"
     ],
     [
      "EXTREMO",
@@ -945,7 +945,7 @@
     ],
     [
      "NORMAL",
-     "100.750",
+     "100.751",
      "96,78%",
      "R$ 2.505,16",
      "—"
@@ -954,7 +954,7 @@
    "nota": "A coluna da direita não valida a regra: ser favela É um dos testes de incoerência, então nenhuma favela pode cair em EXTREMO."
   },
   "renda_com_sem": {
-   "titulo": "O que muda ao remover os 66 suspeitos",
+   "titulo": "O que muda ao remover os 65 suspeitos",
    "recorte": "setores urbanos elegíveis (104.108)",
    "fonte": "renda_eda_com_vs_sem.csv + renda_correlacao_com_vs_sem.csv",
    "colunas": [
@@ -966,9 +966,9 @@
    "linhas": [
     [
      "Média da renda (R$)",
-     "4.187,41",
+     "4.185,81",
      "4.178,44",
-     "-0,21%"
+     "-0,18%"
     ],
     [
      "Mediana da renda (R$)",
@@ -978,27 +978,27 @@
     ],
     [
      "Desvio-padrão (R$)",
-     "4.150,66",
+     "4.118,57",
      "4.096,07",
-     "-1,32%"
+     "-0,55%"
     ],
     [
      "Assimetria",
-     "3,74",
+     "3,20",
      "3,14",
-     "-16,16%"
+     "-1,94%"
     ],
     [
      "Pearson renda × analfabetismo",
-     "-0,4181",
+     "-0,4236",
      "-0,4282",
-     "-0,0102"
+     "-0,0046"
     ],
     [
      "Spearman renda × analfabetismo",
-     "-0,7566",
+     "-0,7567",
      "-0,7580",
-     "-0,0014"
+     "-0,0013"
     ]
    ],
    "nota": "Nas duas últimas linhas a coluna \"Variação\" é a diferença absoluta do coeficiente, não porcentagem."
@@ -1033,14 +1033,6 @@
      "35,9 pp"
     ],
     [
-     "Belo Horizonte",
-     "5.113",
-     "2",
-     "98,8%",
-     "70,8%",
-     "28,0 pp"
-    ],
-    [
      "Belém",
      "2.004",
      "6",
@@ -1055,6 +1047,14 @@
      "94,0%",
      "79,1%",
      "14,9 pp"
+    ],
+    [
+     "São José de Ribamar",
+     "580",
+     "1",
+     "49,8%",
+     "45,8%",
+     "4,0 pp"
     ]
    ],
    "nota": "23 dos 63 municípios avaliados têm ao menos um suspeito."
@@ -1103,11 +1103,11 @@
     [
      "Sudeste",
      "61.989",
-     "R$ 2.730,60",
-     "62,4×",
-     "3,93",
+     "R$ 2.730,59",
+     "51,3×",
+     "3,18",
      "2,18%",
-     "0,044%"
+     "0,042%"
     ],
     [
      "Sul",
@@ -1120,6 +1120,124 @@
     ]
    ],
    "nota": "Extremo e suspeito são coisas diferentes: o Sudeste concentra os valores absolutos, o Norte concentra a suspeita."
+  },
+  "alteracoes_renda": {
+   "titulo": "A renda, antes e depois da exclusão",
+   "recorte": "setores urbanos elegíveis (104.108)",
+   "fonte": "eda/descritivas_globais.csv × eda/atualizada/descritivas_globais.csv",
+   "colunas": [
+    "Estatística",
+    "Antes",
+    "Depois",
+    "Variação"
+   ],
+   "linhas": [
+    [
+     "Média (R$)",
+     "4.187,41",
+     "4.185,81",
+     "-0,04%"
+    ],
+    [
+     "Mediana (R$)",
+     "2.572,39",
+     "2.572,39",
+     "0,00%"
+    ],
+    [
+     "Desvio-padrão (R$)",
+     "4.150,66",
+     "4.118,57",
+     "-0,77%"
+    ],
+    [
+     "Máximo (R$)",
+     "170.418,06",
+     "140.172,64",
+     "-17,75%"
+    ],
+    [
+     "Assimetria",
+     "3,74",
+     "3,20",
+     "-14,50%"
+    ],
+    [
+     "Curtose",
+     "49,49",
+     "25,66",
+     "-48,16%"
+    ],
+    [
+     "n de setores com renda",
+     "104.096",
+     "104.095",
+     "−1 setor"
+    ]
+   ],
+   "nota": "A exclusão de 1 setor em 104.108 quase não move o nível e desmonta a cauda: a curtose cai quase pela metade."
+  },
+  "alteracoes_correlacao": {
+   "titulo": "As correlações de Pearson com a renda",
+   "recorte": "setores urbanos elegíveis (104.108)",
+   "fonte": "eda/atualizada/comparacao_antes_depois.csv",
+   "colunas": [
+    "Par com a renda",
+    "Antes",
+    "Depois",
+    "Δ"
+   ],
+   "linhas": [
+    [
+     "Esgoto inadequado",
+     "-0,216",
+     "-0,218",
+     "-0,002"
+    ],
+    [
+     "Lixo inadequado",
+     "-0,086",
+     "-0,087",
+     "-0,001"
+    ],
+    [
+     "Razão de moradores",
+     "-0,323",
+     "-0,326",
+     "-0,003"
+    ],
+    [
+     "Analfabetismo 15+",
+     "-0,418",
+     "-0,424",
+     "-0,006"
+    ],
+    [
+     "Preta, parda ou indígena",
+     "-0,682",
+     "-0,687",
+     "-0,005"
+    ],
+    [
+     "Idosos 60+",
+     "0,377",
+     "0,380",
+     "0,003"
+    ],
+    [
+     "Crianças 0–4",
+     "-0,297",
+     "-0,299",
+     "-0,002"
+    ],
+    [
+     "Chefia feminina",
+     "-0,249",
+     "-0,251",
+     "-0,002"
+    ]
+   ],
+   "nota": "Todas ficam mais fortes: o valor extremo achatava a associação linear. Spearman não muda em casa nenhuma — ele já era imune ao caso."
   }
  },
  "eleg": {
@@ -1218,16 +1336,32 @@
   }
  },
  "renda": {
-  "n_suspeitos": "66",
+  "n_suspeitos": "65",
   "n_extremos": "3.292",
-  "n_rastreados": "3.358",
-  "max_valor": "R$ 170.418,06",
-  "max_municipio": "Belo Horizonte",
-  "max_dom": "186",
-  "sudeste_max_mediana": "62,4",
-  "sudeste_pct_suspeitos": "0,044%",
-  "max_delta_correlacao": "0,0102",
-  "global_total": "3.988",
-  "global_concordam": "1.673"
+  "n_rastreados": "3.357",
+  "max_valor": "R$ 140.172,64",
+  "max_municipio": "São Paulo",
+  "max_dom": "78",
+  "sudeste_max_mediana": "51,3",
+  "sudeste_pct_suspeitos": "0,042%",
+  "max_delta_correlacao": "0,0046",
+  "global_total": "3.987",
+  "global_concordam": "1.672"
+ },
+ "alteracoes": {
+  "setor": "310620005650366",
+  "municipio": "Belo Horizonte",
+  "bairro": "Senhor dos Passos",
+  "valor": "R$ 170.418,06",
+  "n_celulas": "45",
+  "tabelas_alteradas": [
+   "correlacao_pearson",
+   "descritivas_globais",
+   "descritivas_por_regiao",
+   "favelas_fcu_comparativo_indicadores",
+   "missing_por_municipio",
+   "outliers"
+  ],
+  "n_tabelas_alteradas": "6"
  }
 }

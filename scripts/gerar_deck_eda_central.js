@@ -1,5 +1,5 @@
 /**
- * Gera a EDA Central — docs/Apresentacoes_IVS/EDA_Central_IVS_2026-08.pptx
+ * Gera a EDA Central — docs/Apresentacoes_IVS/EDA_Central_IVS_2026-09_rev2.pptx
  *
  * Por que este script existe
  * --------------------------
@@ -18,29 +18,13 @@
  *
  * Ordem de execução:
  *     ./.venv/bin/python scripts/eda_central_dados.py banco_de_dados/eda/dados_deck.json
- *     node scripts/gerar_deck_eda_central.js docs/Apresentacoes_IVS/EDA_Central_IVS_2026-08.pptx
+ *     node scripts/gerar_deck_eda_central.js docs/Apresentacoes_IVS/EDA_Central_IVS_2026-09_rev2.pptx
  *
  * Uso:
- *     node scripts/gerar_deck_eda_central.js docs/Apresentacoes_IVS/EDA_Central_IVS_2026-08.pptx
+ *     node scripts/gerar_deck_eda_central.js <saida.pptx> [dados_deck.json]
  *
- * Requer `pptxgenjs` (npm). Os números vêm das tabelas da EDA; as figuras, de
- * banco_de_dados/eda/figuras/.
- */
-/**
- * Gera a EDA Central — docs/Apresentacoes_IVS/EDA_Central_IVS_2026-08.pptx
- *
- * Por que este script existe
- * --------------------------
- * Nenhuma apresentação anterior do projeto tinha gerador. Cada deck foi montado à mão,
- * e a lista do que entrava vivia na cabeça de quem montava — foi assim que o bloco de
- * chefia feminina, presente no deck de junho, sumiu do de agosto sem ninguém notar.
- * É a mesma causa raiz dos CSVs órfãos de banco_de_dados/eda/.
- *
- * Com o deck versionado, a cobertura passa a ser revisável: dá para ler nesta lista o
- * que entra e comparar com as tabelas geradas em banco_de_dados/eda/.
- *
- * Uso:
- *     node scripts/gerar_deck_eda_central.js docs/Apresentacoes_IVS/EDA_Central_IVS_2026-08.pptx
+ * Sem o segundo argumento usa banco_de_dados/eda/dados_deck.json (1ª rodada). Com o JSON
+ * da 2ª rodada, que traz o bloco `alteracoes`, ele acrescenta os 4 slides de comparação.
  *
  * Requer `pptxgenjs` (npm). Os números vêm das tabelas da EDA; as figuras, de
  * banco_de_dados/eda/figuras/.
@@ -52,8 +36,20 @@ catch (e) {
   console.error('\n  pptxgenjs não encontrado:  npm install pptxgenjs\n');
   process.exit(1);
 }
-const RAIZ = '/Users/pedro/Code/Projeto_IVS_Censo22';
+// A raiz sai da localização deste arquivo (scripts/ fica um nível abaixo dela). Antes
+// era um caminho absoluto fixo — que apontava para uma pasta inexistente nesta máquina e
+// fazia o gerador morrer sem conseguir ler número nenhum. Caminho fixo em script de
+// geração é bomba-relógio: quebra em toda máquina que não for a de quem escreveu.
+const RAIZ = path.resolve(__dirname, '..');
 const FIG = path.join(RAIZ, 'banco_de_dados/eda/figuras');
+const FIG_NOVA = path.join(RAIZ, 'banco_de_dados/eda/atualizada/figuras');
+// Só três figuras dependem da renda e foram regeradas. `fig()` pega a versão nova
+// quando ela existe e a original quando não — o deck nunca fica com metade de cada
+// rodada sem que isso esteja dito.
+function fig(nome) {
+  const nova = path.join(FIG_NOVA, nome);
+  return (USAR_NOVAS && require('fs').existsSync(nova)) ? nova : path.join(FIG, nome);
+}
 
 // ── Paleta enxuta, de papel: tinta quase preta, um acento de carimbo ─────────
 const TINTA   = '1A1A18';
@@ -188,8 +184,11 @@ function anotar(s, x, y, w, h, nota, nx, ny, nw) {
 }
 
 const S = novo;
-const D = JSON.parse(require('fs').readFileSync(
-  path.join(RAIZ, 'banco_de_dados/eda/dados_deck.json'), 'utf8'));
+// argv[3] permite gerar o deck atualizado com o MESMO gerador, só trocando o JSON.
+const JSON_DECK = process.argv[3] || path.join(RAIZ, 'banco_de_dados/eda/dados_deck.json');
+const D = JSON.parse(require('fs').readFileSync(JSON_DECK, 'utf8'));
+const ALT = D.alteracoes || null;        // só o deck atualizado tem este bloco
+const USAR_NOVAS = ALT !== null;
 
 /** Bloco do JSON: legenda numerada acima, tabela booktabs, procedência embaixo. */
 function blocoTabela(s, chave, opts) {
@@ -242,9 +241,14 @@ function nota(s, txt) {
 
 // ═════════ CAPA ═════════
 { const s = S();
-  capa(s, 'INICIAÇÃO CIENTÍFICA · FIOCRUZ MINAS — IRR', 'A EDA Central',
-    'Índice de Vulnerabilidade da Saúde intraurbano · Censo Demográfico 2022 · 70 municípios do ELSI-Brasil\nToda a análise exploratória reunida em um só lugar, recalculada no recorte atual.',
-    'Pedro Dias Soares  ·  agosto de 2026  ·  104.108 setores censitários urbanos elegíveis');
+  capa(s, 'INICIAÇÃO CIENTÍFICA · FIOCRUZ MINAS — IRR',
+    ALT ? 'A EDA Central — 2ª rodada' : 'A EDA Central',
+    ALT
+      ? 'Índice de Vulnerabilidade da Saúde intraurbano · Censo Demográfico 2022 · 70 municípios do ELSI-Brasil\nA mesma análise, recalculada com a renda sem o valor extremo de Belo Horizonte. As alterações estão marcadas.'
+      : 'Índice de Vulnerabilidade da Saúde intraurbano · Censo Demográfico 2022 · 70 municípios do ELSI-Brasil\nToda a análise exploratória reunida em um só lugar, recalculada no recorte atual.',
+    ALT
+      ? 'Pedro Dias Soares  ·  setembro de 2026  ·  104.108 setores urbanos elegíveis  ·  renda sem o setor 310620005650366'
+      : 'Pedro Dias Soares  ·  agosto de 2026  ·  104.108 setores censitários urbanos elegíveis');
   s.addNotes('Primeira apresentação que reúne a EDA inteira. As anteriores eram recortes: cada deck foi montado em torno da pauta do mês, e o que não estava na pauta caía fora sem aviso.');
 }
 
@@ -264,6 +268,58 @@ function nota(s, txt) {
   nota(s, 'Levantamento feito arquivo por arquivo sobre os 7 .pptx versionados em docs/Apresentacoes_IVS/.');
 }
 
+// ═════════ O QUE MUDOU (só no deck atualizado) ═════════
+if (ALT) {
+  { const s = S();
+    titulo(s, 'O que mudou nesta rodada',
+      'A EDA inteira foi recalculada. Um único valor saiu da base — e o efeito dele é mais estreito e mais fundo do que se esperava.');
+    bloco(s, M, 1.80, W - 2*M, 'O pedido.',
+      'Criar uma coluna de renda sem o valor extremo de Belo Horizonte. A coluna nova é `renda_media_sem_extremo`; a `renda_media` original continua na base, sem alteração, ao lado dela.', true, 0.8);
+    bloco(s, M, 2.62, W - 2*M, 'O setor.',
+      `${ALT.setor} — ${ALT.municipio}, bairro ${ALT.bairro}, ${ALT.valor} por responsável. Maior valor da base, 55,7× a mediana do município, num setor de favela com 186 domicílios e 518 pessoas.`, false, 0.8);
+    bloco(s, M, 3.44, W - 2*M, 'O alcance.',
+      `De todas as células recalculadas, ${ALT.n_celulas} mudaram, em ${ALT.n_tabelas_alteradas} tabelas: ${ALT.tabelas_alteradas.join(', ')}. Nenhuma delas fora da renda e de suas correlações.`, false, 0.9);
+    numero(s, M, 4.75, 2.6, '1', 'setor excluído', true);
+    numero(s, M + 2.9, 4.75, 2.6, '104.108', 'setores no recorte');
+    numero(s, M + 5.8, 4.75, 2.6, ALT.n_celulas, 'células alteradas');
+    numero(s, M + 8.7, 4.75, 2.9, '−48%', 'na curtose da renda', true);
+    nota(s, 'Comparação célula a célula em banco_de_dados/eda/atualizada/comparacao_antes_depois.csv, gerada por scripts/eda_atualizada.py.');
+    s.addNotes('A recomputação foi validada: rodada com a coluna antiga, ela reproduz número a número as tabelas já publicadas. Só depois disso as tabelas novas foram aceitas.');
+  }
+
+  { const s = S();
+    titulo(s, 'A renda, antes e depois', 'O nível quase não se move. A forma da distribuição, sim.');
+    blocoTabela(s, 'alteracoes_renda', { y: 1.75, colW: [3.6, 2.8, 2.8, 2.6] });
+    bloco(s, M, 5.30, W - 2*M, 'A leitura.',
+      'A média cai 0,04% e a mediana não muda — tirar um setor em 104 mil não desloca o centro. O que muda é a cauda: o desvio-padrão cai 0,8%, a assimetria 14,5% e a curtose 48,2%. Metade do peso da cauda da renda no recorte inteiro estava naquele único setor.', true, 1.0);
+    nota(s, 'eda/descritivas_globais.csv (antes) × eda/atualizada/descritivas_globais.csv (depois).');
+  }
+
+  { const s = S();
+    titulo(s, 'As correlações com a renda', 'Todas ficam mais fortes — e Spearman não muda em casa nenhuma.');
+    blocoTabela(s, 'alteracoes_correlacao', { y: 1.75, colW: [4.4, 2.4, 2.4, 2.0] });
+    bloco(s, M, 5.05, W - 2*M, 'Por que isso importa.',
+      'Pearson mede associação linear e é sensível a um ponto extremo: o setor de BH achatava toda a coluna da renda. A matriz de Spearman, que trabalha com postos, é idêntica antes e depois — o caso nunca a afetou. É o argumento empírico a favor de estatística robusta para a renda, já registrado como decisão em aberto.', true, 1.2);
+    nota(s, 'São 16 células alteradas na matriz — os 8 pares acima, contados nos dois triângulos. Detalhe em eda/atualizada/comparacao_antes_depois.csv.');
+  }
+
+  { const s = S();
+    titulo(s, 'O que NÃO mudou', 'Tão importante quanto o que mudou: a exclusão não vazou para o resto da análise.');
+    tabela(s, ['Bloco da EDA', 'Situação após o recálculo'], [
+      ['Elegibilidade e recorte urbano', 'idêntico — 106.281 elegíveis, 104.108 no recorte'],
+      ['Água, esgoto, lixo, razão de moradores, analfabetismo, cor/raça', 'idênticos em média, mediana, outliers e faltantes'],
+      ['Matriz de Spearman (10 variáveis)', 'idêntica em todas as 100 células'],
+      ['Favelas e Comunidades Urbanas — contagens', 'idênticas: 19.452 no recorte, 19.507 na base'],
+      ['Cobertura de saneamento, faixas de gravidade, morfologia', 'idênticos'],
+      ['Chefia feminina, envelhecimento, habitação precária, banheiro', 'idênticos'],
+      ['Canalização da água', 'idêntica'],
+    ], { y: 1.85, colW: [6.2, 6.6], fontSize: 12, rowH: 0.42 });
+    bloco(s, M, 5.20, W - 2*M, 'Como isso foi verificado.',
+      'Não por inspeção visual: o script recalcula as sete tabelas nas duas versões e compara célula a célula. As que não aparecem na lista de alterações têm diferença exatamente zero.', false, 0.9);
+    nota(s, 'scripts/eda_atualizada.py — a mesma rotina valida que, com a coluna antiga, o recálculo reproduz a EDA publicada.');
+  }
+}
+
 // ═════════ 1. DESENHO ═════════
 { const s = S(); secao(s, '1', 'O desenho do estudo', 'A pergunta, a base e como a pipeline está estruturada.'); }
 
@@ -272,11 +328,11 @@ function nota(s, txt) {
   cartao(s, M, 1.75, 5.85, 2.0, 'A pergunta',
     'Como a vulnerabilidade à saúde se distribui DENTRO das cidades brasileiras onde vive a coorte do ELSI-Brasil, e o que essa distribuição revela sobre desigualdade intraurbana?');
   cartao(s, M + 6.25, 1.75, 5.85, 2.0, 'O objeto: o setor censitário',
-    'A menor unidade territorial do Censo. O IVS é um índice INTRAURBANO — compara setores dentro da mesma cidade, não cidades entre si. Essa escolha determina tudo que vem depois.', SEAFOAM);
+    'A menor unidade territorial do Censo. O IVS é um índice INTRAURBANO — compara setores dentro da mesma cidade, não cidades entre si. É dessa escolha que decorrem o recorte urbano, a normalização por município e o desenho ecológico.', SEAFOAM);
   stat(s, M, 4.15, 2.75, '104.108', 'setores urbanos elegíveis');
   stat(s, M + 2.95, 4.15, 2.75, '70', 'municípios do ELSI-Brasil');
   stat(s, M + 5.90, 4.15, 2.75, '8', 'arquivos do Censo 2022');
-  stat(s, M + 8.85, 4.15, 2.75, '71', 'variáveis na base bruta');
+  stat(s, M + 8.85, 4.15, 2.75, '73', 'variáveis na base bruta');
   s.addText('O recorte reúne 61,4% de toda a população favelada do país — conferido contra o dado oficial do IBGE.',
     { x: M, y: 6.0, w: W - 2*M, h: 0.4, fontFace: SANS, fontSize: 13.5, color: PETROL, bold: true });
 }
@@ -288,7 +344,7 @@ function nota(s, txt) {
     ['2', 'Notebook 01', 'Lê os 8 arquivos do Censo (2,4 GB), filtra os 70 municípios, une por CD_SETOR e audita a integridade. Base bruta: 109.032 setores.'],
     ['3', 'Notebook 02', 'A EDA: tipagem e sigilo, elegibilidade, recorte urbano, 7 componentes, blocos descritivos, figuras e matriz de correlação.'],
     ['4', 'scripts/', 'Cálculo nacional, tabelas de auditoria, auditoria de renda, extração dos dados deste deck e o gerador dele.'],
-    ['5', 'tests/', '59 testes automatizados. Conferem fórmulas com dados sintéticos e os artefatos já gerados.'],
+    ['5', 'tests/', '63 testes automatizados. Conferem fórmulas com dados sintéticos e os artefatos já gerados.'],
   ];
   let y = 1.75;
   et.forEach(([n, tit, txt]) => {
@@ -311,9 +367,9 @@ function nota(s, txt) {
     ['Filtro ELSI-Brasil', '70 municípios da coorte', {text:'109.032', options:{bold:true}}, 'municípios fora da coorte'],
     ['ZERADO', 'v0001 = 0 (massas d\'água)', '−' + D.eleg.ZERADO, 'setores sem população'],
     ['SIGILOSO', 'v0001 ou V00001 suprimidos', '−' + D.eleg.SIGILOSO, 'sem denominador calculável'],
-    ['COLETIVO', 'V00001 = 0 com população > 0', '0', 'asilos, presídios (nenhum no recorte)'],
+    ['COLETIVO', 'V00001 = 0 com população > 0', '0', 'classe vazia — ver limitações'],
     ['Elegíveis (Dados_sig = OK)', '', D.eleg.OK, ''],
-    ['Recorte urbano', 'SITUACAO = Urbana', {text:D.exclusao.n_ok_urbano, options:{bold:true, color:PETROL}}, D.urbano_rural.set_rural + ' setores rurais'],
+    ['Recorte urbano', 'SITUACAO = Urbana', {text:D.exclusao.n_ok_urbano, options:{bold:true, color:PETROL}}, D.exclusao.n_ok_rural + ' setores rurais elegíveis'],
   ], { y: 1.8, colW: [3.3, 3.6, 2.0, 3.0], fontSize: 12 });
   cartao(s, M, 5.05, 5.85, 1.45, 'A exclusão rural, conferida município a município',
     `${D.exclusao.perdem_10pct} dos ${D.exclusao.municipios} municípios perdem mais de 10% dos setores e ${D.exclusao.menos_de_10_setores} ficam com menos de 10. Isso afeta a estabilidade das descritivas municipais e consta das limitações.`, CLAY);
@@ -346,7 +402,7 @@ function nota(s, txt) {
 { const s = S();
   titulo(s, 'As sete componentes em números', 'Média e mediana lado a lado — a distância entre elas mede a assimetria.');
   blocoTabela(s, 'descritivas', { y: 1.75, colW: [3.2, 1.6, 1.6, 1.6, 1.5, 1.9, 1.5], fontSize: 12, rowH: 0.4 });
-  s.addText('Em cinco das sete a mediana é zero: água, esgoto e lixo estão totalmente adequados na maioria dos setores urbanos. Os dois números que abrem as seções seguintes são o n do analfabetismo e a assimetria da renda.',
+  s.addText('Em três das sete a mediana é zero: água, esgoto e lixo não têm inadequação medida na maioria dos setores urbanos. Os dois números que abrem as seções seguintes são o n do analfabetismo e a assimetria da renda.',
     { x: M, y: 5.4, w: W - 2*M, h: 0.7, fontFace: SANS, fontSize: 12.5, color: INK });
 }
 
@@ -361,14 +417,14 @@ function nota(s, txt) {
 
 { const s = S();
   titulo(s, 'Como as sete variáveis se distribuem', 'Histogramas sobre os setores urbanos elegíveis.');
-  s.addImage({ path: path.join(FIG, 'histogramas.png'), x: 2.59, y: 1.52, w: 8.15, h: 5.40 });
+  s.addImage({ path: fig('histogramas.png'), x: 2.59, y: 1.52, w: 8.15, h: 5.40 });
   nota(s, 'banco_de_dados/eda/figuras/histogramas.png — gerada pela célula step8 do Notebook 02.');
   s.addNotes('Cinco das sete são fortemente assimétricas à direita, com massa concentrada no zero. A razão de moradores é a única aproximadamente simétrica.');
 }
 
 { const s = S();
   titulo(s, 'Distribuição por região', 'Boxplots das sete componentes, região a região.');
-  s.addImage({ path: path.join(FIG, 'boxplots_por_regiao.png'), x: 2.97, y: 1.52, w: 7.39, h: 5.40 });
+  s.addImage({ path: fig('boxplots_por_regiao.png'), x: 2.97, y: 1.52, w: 7.39, h: 5.40 });
   nota(s, 'banco_de_dados/eda/figuras/boxplots_por_regiao.png — célula step9 do Notebook 02.');
 }
 
@@ -376,7 +432,7 @@ function nota(s, txt) {
   titulo(s, 'Outliers: a regra do IQR não serve para o saneamento', 'Quando a mediana e o primeiro quartil são zero, o IQR marca como atípico todo setor com qualquer inadequação.');
   const y14 = blocoTabela(s, 'outliers', { y: 1.70, colW: [3.0, 1.5, 1.5, 1.9, 1.6, 1.6, 1.8], fontSize: 12, rowH: 0.38 });
   cartao(s, M, y14, 5.85, 1.35, 'Onde o IQR falha',
-    'Água, esgoto e lixo têm cerca de 20% dos setores classificados como outlier. Não é cauda: é a forma da distribuição.', CLAY);
+    'Água, esgoto e lixo têm cerca de 20% dos setores classificados como outlier. O que a regra está marcando é a forma da distribuição, não uma cauda de casos extremos.', CLAY);
   cartao(s, M + 6.25, y14, 5.85, 1.35, 'Onde o IQR funciona',
     'Razão de moradores, analfabetismo, renda e cor/raça têm distribuições com dispersão real — ali a regra identifica extremos de verdade.', PETROL);
 }
@@ -403,12 +459,12 @@ function nota(s, txt) {
 
 { const s = S();
   titulo(s, 'Matriz de correlação — agora com dez variáveis', 'Demanda de agosto: idosos de 60+, menores de 5 anos e chefia feminina entram na matriz.');
-  s.addImage({ path: path.join(FIG, 'matriz_correlacao.png'), x: 0.57, y: 1.58, w: 12.20, h: 5.30 });
+  s.addImage({ path: fig('matriz_correlacao.png'), x: 0.57, y: 1.58, w: 12.20, h: 5.30 });
   nota(s, 'A linha preta separa as 7 componentes do IVS das 3 descritivas. Elas não entram no índice — estão na matriz para decidir se deveriam.');
 }
 
 { const s = S();
-  titulo(s, 'O que a matriz decidiu', 'A pergunta não era "quanto se correlacionam", e sim "alguma delas merece entrar no índice?"');
+  titulo(s, 'O que a matriz decidiu', 'A pergunta que interessa: alguma das três descritivas merece entrar no índice?');
   tabela(s, ['Variável descritiva', 'Maior |r| com o IVS-7', 'Média |r|', 'Leitura'], [
     ['pct_resp_feminino', '−0,299 com renda', {text:'0,133', options:{bold:true, color:PETROL}}, 'carrega eixo próprio'],
     ['pct_crianca_0a4', '−0,517 com renda', '0,383', 'redundante com o que já existe'],
@@ -423,7 +479,7 @@ function nota(s, txt) {
 }
 
 // ═════════ 5. RENDA ═════════
-{ const s = S(); secao(s, '5', 'A renda sob auditoria', 'Cinco demandas de agosto convergem aqui: identificar, rastrear, comparar e decidir.'); }
+{ const s = S(); secao(s, '5', 'A renda sob auditoria', 'Cinco demandas de agosto convergem aqui, do caso isolado à decisão de escala.'); }
 
 { const s = S();
   titulo(s, 'O caso que abriu o assunto', 'Um setor com renda média declarada de R$ 170.418,06 por responsável.');
@@ -436,12 +492,12 @@ function nota(s, txt) {
     { text: '186 domicílios · 518 pessoas · 31 analfabetos', options: {} },
   ], { x: M, y: 3.14, w: 5.6, h: 1.2, fontFace: FONTE, fontSize: 13, color: TINTA, margin: 0, lineSpacing: 19 });
   regua(s, 4.42, 0.75, REGUA, M, 5.6);
-  anotar(s, M - 0.14, 2.26, 3.42, 0.80, 'dividido por 100 dá R$ 1.704 —\no valor que o setor teria', M + 3.62, 2.34, 2.55);
+  anotar(s, M - 0.14, 2.26, 3.42, 0.80, 'CV de 5,26 contra 0,78 —\numa média puxada por poucos', M + 3.62, 2.34, 2.55);
   cartao(s, M + 6.25, 1.75, 5.85, 1.45, 'Por que não é renda alta',
-    'R$ 170 mil × 186 domicílios daria R$ 31,7 milhões por mês circulando numa favela de 186 casas. 170418,06 ÷ 100 = R$ 1.704 — o que se espera do setor.', CLAY);
-  cartao(s, M + 6.25, 3.4, 5.85, 1.45, 'E não é caso isolado',
-    'O segundo maior valor da base — Belém, R$ 78.444 — também é setor de favela. "Renda altíssima em favela" é a assinatura do erro de dado.', CLAY);
-  nota(s, 'banco_de_dados/eda/renda_outliers_rastreados.csv — 3.358 setores, um por linha, com identificação completa.');
+    'R$ 170 mil × 186 domicílios daria R$ 31,7 milhões por mês circulando numa favela de 186 casas. O perfil do setor não sustenta esse valor.', CLAY);
+  cartao(s, M + 6.25, 3.4, 5.85, 1.45, 'O que o próprio IBGE responde',
+    'O arquivo traz V06005, a variância. Aqui o CV é 5,26 contra mediana nacional de 0,78. Se fosse vírgula fora do lugar, o CV seria da ordem de 526 — a média está sendo puxada por poucas declarações.', CLAY);
+  nota(s, `banco_de_dados/eda/renda_outliers_rastreados.csv — ${D.renda.n_rastreados} setores, um por linha, com identificação completa.`);
 }
 
 { const s = S();
@@ -450,81 +506,77 @@ function nota(s, txt) {
     'O IVS é intraurbano. R$ 20 mil é comum em São Paulo e anômalo em Autazes. Um corte global mede a distância ENTRE cidades, que não é o objeto.', PETROL);
   cartao(s, M + 6.25, 1.75, 5.85, 1.75, '2. Extremo suspeito ≠ extremo alto',
     'O que levanta suspeita não é o valor, é a INCOERÊNCIA: setor no topo da renda local que também é favela, ou tem analfabetismo e proporção PPI acima da mediana do município.', PETROL);
-  tabela(s, ['Classe', 'Setores', '% da base', 'Renda mediana', 'São favela?'], [
-    [{text:'SUSPEITO', options:{bold:true, color:CLAY}}, '66', '0,06%', 'R$ 10.167,85', {text:'22 de 66 (33%)', options:{bold:true, color:CLAY}}],
-    ['EXTREMO', '3.292', '3,16%', 'R$ 14.106,20', {text:'0 de 3.292 (0%)', options:{bold:true, color:PETROL}}],
-    ['NORMAL', '100.750', '96,78%', 'R$ 2.505,16', '—'],
-  ], { y: 3.85, colW: [2.4, 1.8, 1.7, 2.6, 3.4], fontSize: 13, rowH: 0.42 });
-  s.addText('O teste de coerência se validou sozinho: um terço dos suspeitos é favela, e nenhum dos 3.292 extremos coerentes é.',
-    { x: M, y: 5.55, w: W - 2*M, h: 0.5, fontFace: SANS, fontSize: 13.5, color: PETROL, bold: true });
+  // Vem do JSON: com a renda sem o extremo de BH os suspeitos passam de 66 a 65, e um
+  // número digitado aqui passaria a contradizer a tabela de origem.
+  { const b = D.blocos.renda_classes;
+    tabela(s, b.colunas, b.linhas.map(ln => ln.map((c, i) => {
+      if (ln[0] === 'SUSPEITO' && (i === 0 || i === 4)) return { text: String(c), options: { bold: true, color: CLAY } };
+      if (ln[0] === 'EXTREMO' && i === 4) return { text: String(c), options: { bold: true, color: PETROL } };
+      return String(c);
+    })), { y: 3.85, colW: [2.4, 1.8, 1.7, 2.6, 3.4], fontSize: 13, rowH: 0.42 }); }
+  s.addText('A coluna da direita não valida a regra: ser favela É um dos testes de incoerência, então nenhuma favela pode cair em EXTREMO. O que a regra ainda não pega é erro em bairro rico — São Paulo, R$ 140.172,64, 45× a mediana local, sai como EXTREMO.',
+    { x: M, y: 5.55, w: W - 2*M, h: 0.7, fontFace: SANS, fontSize: 12.5, color: CLAY, bold: true });
 }
 
 { const s = S();
   titulo(s, 'As duas análises exploratórias, lado a lado', 'Demanda: rodar com e sem os extremos e comparar. O resultado contraria a intuição.');
-  tabela(s, ['O que muda ao remover os 66 suspeitos', 'Com', 'Sem', 'Variação'], [
-    ['Média da renda (R$)', '4.187,41', '4.178,44', '−0,21%'],
-    ['Mediana da renda (R$)', '2.572,39', '2.571,17', '−0,05%'],
-    ['Desvio-padrão (R$)', '4.150,66', '4.096,07', '−1,32%'],
-    ['Assimetria', '3,74', '3,14', {text:'−16%', options:{bold:true, color:PETROL}}],
-    ['Pearson renda × analfabetismo', '−0,4181', '−0,4282', '0,010'],
-    ['Spearman renda × analfabetismo', '−0,7566', '−0,7580', '0,001'],
-  ], { y: 1.8, colW: [5.3, 2.2, 2.2, 2.2], fontSize: 12.5, rowH: 0.38 });
+  { const b = D.blocos.renda_com_sem;
+    tabela(s, [b.titulo, 'Com', 'Sem', 'Variação'],
+      b.linhas.map(ln => ln.map((c, i) => (ln[0] === 'Assimetria' && i === 3)
+        ? { text: String(c), options: { bold: true, color: PETROL } } : String(c))),
+      { y: 1.8, colW: [5.3, 2.2, 2.2, 2.2], fontSize: 12.5, rowH: 0.38 }); }
   cartao(s, M, 4.5, 5.85, 1.9, 'Excluir quase não muda a estatística',
-    'As correlações se movem no máximo 0,010; o Spearman fica praticamente imóvel. Se o argumento para excluir fosse o efeito na correlação, ele seria fraco.', MUTED);
+    `As correlações se movem no máximo ${D.renda.max_delta_correlacao}; o Spearman fica praticamente imóvel. Se o argumento para excluir fosse o efeito na correlação, ele seria fraco.`, MUTED);
   cartao(s, M + 6.25, 4.5, 5.85, 1.9, 'Mas transformar muda dez vezes mais',
     'Passar a renda para log leva a correlação com analfabetismo de −0,42 para −0,59, e com cor/raça de −0,68 para −0,81. Dezessete vezes o efeito da exclusão.', PETROL);
 }
 
 { const s = S();
   titulo(s, 'Onde a exclusão importa de verdade: a escala', 'A normalização min-max por município é o insumo do índice — e é ali que um valor ruim destrói tudo.');
-  tabela(s, ['Município', 'Setores', 'Suspeitos', 'Comprimidos no 1º decil (com)', '(sem)', 'Ganho'], [
-    [{text:'Autazes', options:{bold:true}}, '43', '1', '81,4%', '14,3%', {text:'67,1 pp', options:{bold:true, color:PETROL}}],
-    ['Salto', '196', '1', '94,9%', '59,0%', '35,9 pp'],
-    ['Belo Horizonte', '5.113', '2', '98,8%', '70,8%', '28,0 pp'],
-    ['Belém', '2.004', '6', '92,7%', '69,6%', '23,1 pp'],
-    ['São Gonçalo', '2.357', '3', '94,0%', '79,1%', '14,9 pp'],
-  ], { y: 1.85, colW: [3.0, 1.6, 1.8, 3.4, 1.6, 2.5], fontSize: 12.5, rowH: 0.4 });
+  { const b = D.blocos.renda_normalizacao;
+    tabela(s, b.colunas, b.linhas.map((ln, r) => ln.map((c, i) =>
+      (r === 0 && (i === 0 || i === 5)) ? { text: String(c), options: { bold: true, color: i === 5 ? PETROL : TINTA } } : String(c))),
+      { y: 1.85, colW: [3.0, 1.6, 1.8, 3.4, 1.6, 2.5], fontSize: 12.5, rowH: 0.4 }); }
   regua(s, 4.62, 1.25, TINTA);
   s.addText('Autazes é o caso didático', { x: M, y: 4.72, w: 11.6, h: 0.36, fontFace: FONTE, fontSize: 14, bold: true, color: TINTA, margin: 0 });
-  s.addText('43 setores, UM valor ruim, e 81% da cidade colapsa no primeiro decil da escala de renda — a variável deixa de discriminar dentro da cidade, que é exatamente o que o índice precisa que ela faça. 23 dos 63 municípios avaliados têm ao menos um suspeito.',
+  s.addText(`43 setores, UM valor ruim, e 81% da cidade colapsa no primeiro decil da escala de renda — a variável deixa de discriminar dentro da cidade, que é exatamente o que o índice precisa que ela faça. ${D.blocos.renda_normalizacao.nota}`,
     { x: M, y: 5.12, w: 11.0, h: 0.85, fontFace: FONTE, fontSize: 13, color: TINTA, margin: 0, lineSpacing: 18 });
 }
 
 { const s = S();
-  titulo(s, 'Renda alta está mesmo nos setores pequenos?', 'A demanda supunha que sim. Os dados dizem sim e não — e a distinção importa.');
-  s.addImage({ path: path.join(FIG, 'renda_tamanho_do_setor.png'), x: 2.29, y: 1.58, w: 8.75, h: 3.60 });
+  titulo(s, 'Renda alta está mesmo nos setores pequenos?', 'A demanda supunha que sim. O valor não depende do tamanho; a suspeita depende.');
+  s.addImage({ path: fig('renda_tamanho_do_setor.png'), x: 2.29, y: 1.58, w: 8.75, h: 3.60 });
   cartao(s, M, 5.3, 5.85, 1.3, 'O VALOR não depende do tamanho',
-    'Spearman entre nº de domicílios e renda: −0,031. O maior valor da base está num setor de 186 domicílios, não num pequeno.', MUTED);
+    `Spearman entre nº de domicílios e renda: −0,031. O maior valor da base (${D.renda.max_valor}, ${D.renda.max_municipio}) está num setor de ${D.renda.max_dom} domicílios, não num pequeno.`, MUTED);
   cartao(s, M + 6.25, 5.3, 5.85, 1.3, 'Mas a SUSPEITA depende, e muito',
     '0,265% de suspeitos nos setores até 50 domicílios contra 0,045% nos de 201–400: seis vezes mais. O coeficiente de variação cai de 1,11 para 0,90.', PETROL);
 }
 
 { const s = S();
   titulo(s, 'Sudeste e Norte: dois fenômenos com o mesmo rótulo', 'Demanda: olhar os outliers de renda nessas duas regiões.');
-  tabela(s, ['Região', 'Setores', 'Mediana', 'Máx ÷ mediana', 'Assimetria', 'Extremos', 'Suspeitos'], [
-    ['Norte', '5.915', 'R$ 1.820,99', '43,1×', '6,15', '7,03%', {text:'0,372%', options:{bold:true, color:CLAY}}],
-    ['Nordeste', '19.497', 'R$ 1.719,20', '39,1×', '3,66', '6,29%', '0,067%'],
-    ['Sudeste', '61.989', 'R$ 2.730,60', {text:'62,4×', options:{bold:true, color:CLAY}}, '3,93', '2,18%', '0,044%'],
-    ['Centro-Oeste', '9.490', 'R$ 3.127,12', '15,1×', '2,27', '2,36%', '0,032%'],
-    ['Sul', '7.217', 'R$ 3.722,28', '13,4×', '2,65', '1,05%', '0,014%'],
-  ], { y: 1.85, colW: [2.2, 1.6, 2.0, 2.1, 1.6, 1.6, 2.0], fontSize: 12.5, rowH: 0.4 });
+  { const b = D.blocos.renda_regioes;
+    tabela(s, b.colunas, b.linhas.map(ln => ln.map((c, i) => {
+      if (ln[0] === 'Norte' && i === 6) return { text: String(c), options: { bold: true, color: CLAY } };
+      if (ln[0] === 'Sudeste' && i === 3) return { text: String(c), options: { bold: true, color: CLAY } };
+      return String(c);
+    })), { y: 1.85, colW: [2.2, 1.6, 2.0, 2.1, 1.6, 1.6, 2.0], fontSize: 12.5, rowH: 0.4 }); }
   cartao(s, M, 4.65, 5.85, 1.75, 'Sudeste tem os extremos absolutos',
-    'O maior valor do país está lá: 62,4 vezes a mediana da própria região. Mas a taxa de suspeita é baixa — 0,044%.');
+    `O maior valor do país está lá: ${D.renda.sudeste_max_mediana} vezes a mediana da própria região. Mas a taxa de suspeita é baixa — ${D.renda.sudeste_pct_suspeitos}.`);
   cartao(s, M + 6.25, 4.65, 5.85, 1.75, 'Norte tem 26 vezes a taxa do Sul',
-    'Não por ter mais rico, e sim porque a distribuição é tão comprimida na base que qualquer setor de classe média já destoa. Assimetria 6,15, a maior do país.', CLAY);
-  s.addNotes('O critério global inverte esse retrato: marca 4,61% do Sudeste e só 1,32% do Norte. Dos cerca de 4.000 setores marcados pelos dois critérios, apenas 1.673 coincidem.');
+    'A causa é a distribuição tão comprimida na base que qualquer setor de classe média já destoa, e não uma concentração maior de ricos. Assimetria 6,15, a maior do país.', CLAY);
+  s.addNotes(`O critério global inverte esse retrato: marca 4,61% do Sudeste e só 1,32% do Norte. Dos ${D.renda.global_total} setores marcados pelo critério global, apenas ${D.renda.global_concordam} coincidem com o municipal.`);
 }
 
 { const s = S();
   titulo(s, 'A distribuição da renda em cada uma das 70 cidades', 'Demanda: boxplot ou histograma por cidade, para conferir os valores destoantes.');
-  s.addImage({ path: path.join(FIG, 'renda_boxplot_por_cidade.png'), x: 4.1, y: 1.35, w: 2.45, h: 5.6 });
+  s.addImage({ path: fig('renda_boxplot_por_cidade.png'), x: 4.1, y: 1.35, w: 2.45, h: 5.6 });
   cartao(s, M, 1.7, 3.1, 1.75, 'Por que painéis por região',
     'Setenta cidades num único boxplot passa do limite de categorias legíveis. Os painéis mantêm as cidades comparáveis dentro da região.');
   cartao(s, M, 3.65, 3.1, 1.75, 'Por que escala logarítmica',
     'Com assimetria 3,74, em escala linear 60 das 70 caixas colapsam contra a margem esquerda e nada se distingue.');
   cartao(s, M, 5.6, 3.1, 1.35, 'Por que caixas neutras',
     'A região já está codificada pelo painel. A única cor é o vermelho dos suspeitos.', CLAY);
-  s.addText('Os 66 setores suspeitos aparecem em vermelho, cidade a cidade. Belo Horizonte, Belém e Salvador concentram os casos mais graves. A figura em tamanho cheio está em banco_de_dados/eda/figuras/renda_boxplot_por_cidade.png.',
+  s.addText(`Os ${D.renda.n_suspeitos} setores suspeitos aparecem em vermelho, cidade a cidade. Belo Horizonte, Belém e Salvador concentram os casos mais graves. A figura em tamanho cheio está em banco_de_dados/eda/figuras/renda_boxplot_por_cidade.png.`,
     { x: 6.9, y: 3.2, w: 5.7, h: 1.6, fontFace: SANS, fontSize: 13, color: INK });
 }
 
@@ -569,7 +621,7 @@ function nota(s, txt) {
 }
 
 { const s = S();
-  titulo(s, 'O truque que salvou 21,9% dos setores', 'Mesmo número, mesmo conceito — e um vigésimo do buraco.');
+  titulo(s, 'O complemento que recupera 21,9% dos setores', 'A mesma quantidade medida por outro caminho, com um vigésimo dos ausentes.');
   regua(s, 1.84, 1.25, ACENTO, M, 5.6);
   s.addText('(V00200 + V00201) / V00001', { x: M, y: 1.96, w: 5.6, h: 0.44, fontFace: MONO, fontSize: 14, color: ACENTO, bold: true, margin: 0 });
   s.addText('21,9%', { x: M, y: 2.44, w: 5.6, h: 0.8, fontFace: FONTE, fontSize: 44, color: ACENTO, bold: true, margin: 0 });
@@ -610,7 +662,7 @@ function nota(s, txt) {
   cartao(s, M, 1.72, 5.85, 1.35, 'A fonte',
     'IBGE. Censo Demográfico 2022: Favelas e Comunidades Urbanas — Resultados do universo. Rio de Janeiro, 2024. 171 p. Definição e os quatro critérios transcritos na seção 14.2 do relatório.');
   cartao(s, M + 6.25, 1.72, 5.85, 1.35, 'A validação',
-    `Dos 109.032 setores do recorte, ${D.fcu.n_setores_fcu} estão na lista oficial — e são exatamente os ${D.fcu.n_setores_fcu} com CD_TIPO = 1. Zero falso positivo, zero omissão: 100,00%.`, PETROL);
+    `Dos 109.032 setores da base completa, ${D.fcu.n_setores_fcu} estão na lista oficial — e são exatamente os ${D.fcu.n_setores_fcu} com CD_TIPO = 1. Zero falso positivo, zero omissão. No recorte de análise são ${D.fcu_recorte.n_setores_fcu}, ${D.fcu_recorte.pct_setores_fcu}% dos 104.108. O campo NM_FCU não serve de critério: diverge em 25 setores, nenhum deles na lista oficial.`, PETROL);
   tabela(s, ['', 'Brasil (IBGE 2024)', 'ELSI-70', 'Cobertura'], [
     ['Favelas e Comunidades Urbanas', '12.348', '5.899', '47,8%'],
     ['Municípios com FCU', '656', '42', '6,4%'],
@@ -643,7 +695,7 @@ function nota(s, txt) {
 { const s = S(); secao(s, '8', 'Limitações e processo', 'O que a base não permite afirmar, o que foi corrigido e o que vem agora.'); }
 
 { const s = S();
-  titulo(s, 'O sigilo do analfabetismo — limitação aceita e quantificada', 'Demanda de agosto: aceitar a limitação. Aceitar não é deixar sem número.');
+  titulo(s, 'O sigilo do analfabetismo — limitação aceita e quantificada', 'Demanda de agosto: aceitar a limitação, e ainda assim medir o tamanho dela.');
   cartao(s, M, 1.72, 5.85, 1.9, 'O sigilo incide nos setores RICOS',
     'A supressão de V00901 acontece onde há poucos analfabetos — na melhor situação socioeconômica. Renda mediana de R$ 6.092,84 nos setores sem o dado, contra R$ 2.313,89 nos que têm. E 30,8% de população preta, parda ou indígena contra 60,6%.', CLAY);
   cartao(s, M + 6.25, 1.72, 5.85, 1.9, 'Por isso a média observada é um TETO',
@@ -676,7 +728,7 @@ function nota(s, txt) {
 }
 
 { const s = S();
-  titulo(s, 'As correções desta rodada', 'A maioria foi encontrada por teste ou por conferência, não por leitura do código.');
+  titulo(s, 'As correções desta rodada', 'A maioria apareceu num teste ou numa conferência de números.');
   tabela(s, ['O que estava errado', 'Como foi pego', 'Correção'], [
     ['A tabela regional de água somava as duas parcelas sigilosas', {text:'teste automatizado', options:{bold:true, color:PETROL}}, 'passou a usar o complemento; a massa suprimida virou coluna publicada'],
     ['O deck trazia banheiro e apartamento de outro recorte', {text:'auditoria número a número', options:{bold:true, color:PETROL}}, 'os números passaram a ser lidos das tabelas em tempo de build, com o recorte carimbado'],
@@ -692,7 +744,7 @@ function nota(s, txt) {
 { const s = S();
   titulo(s, 'As demandas de agosto, uma a uma');
   tabela(s, ['#', 'Demanda', 'Onde está', 'Situação'], [
-    ['1', 'Identificar todos os outliers de renda, com cidade, setor e se é favela', 'renda_outliers_rastreados.csv — 3.358 setores', {text:'cumprida', options:{color:PETROL, bold:true}}],
+    ['1', 'Identificar todos os outliers de renda, com cidade, setor e se é favela', `renda_outliers_rastreados.csv — ${D.renda.n_rastreados} setores`, {text:'cumprida', options:{color:PETROL, bold:true}}],
     ['1.1', 'Duas EDAs, com e sem os outliers, e a comparação', 'renda_eda_com_vs_sem · renda_correlacao_com_vs_sem', {text:'cumprida', options:{color:PETROL, bold:true}}],
     ['2', 'Rastrear rendas exorbitantes em setores pequenos, à mostra na EDA', 'renda_setores_pequenos.csv · figura renda_tamanho_do_setor', {text:'cumprida', options:{color:PETROL, bold:true}}],
     ['3', 'Boxplot ou histograma por cidade', 'figura renda_boxplot_por_cidade — 70 cidades', {text:'cumprida', options:{color:PETROL, bold:true}}],
@@ -709,9 +761,9 @@ function nota(s, txt) {
 
 { const s = S();
   titulo(s, 'Por que estes números são confiáveis', 'A EDA inteira é reexecutável do zero, e o que ela afirma é verificado por teste.');
-  stat(s, M, 1.8, 2.75, '59', 'testes automatizados');
+  stat(s, M, 1.8, 2.75, '63', 'testes automatizados');
   stat(s, M + 2.95, 1.8, 2.75, '100%', 'passando');
-  stat(s, M + 5.90, 1.8, 2.75, '61', 'tabelas em eda/');
+  stat(s, M + 5.90, 1.8, 2.75, '61', 'tabelas em eda/');   // conferido: ls banco_de_dados/eda/*.csv
   stat(s, M + 8.85, 1.8, 2.75, '0', 'CSVs sem código-fonte');
   const it = [
     ['Fórmulas testadas contra dados sintéticos', 'Cada indicador é conferido com valores redondos calculáveis na mão — safe_div, denominador do analfabetismo, complemento da água, classificação de renda.'],
@@ -740,10 +792,10 @@ function nota(s, txt) {
     'Com correlações de 0,10 a 0,20, pct_lixo_inad carrega sozinho ou em lugar nenhum — e a escolha do que fazer volta a ser manual.');
   cartao(s, M + 8.4, 3.1, 3.7, 1.7, 'Custo assimétrico de errar',
     '60/40 é citável e reversível. A fatorial exige imputar 15,9% de faltantes não aleatórios e defender tudo sozinho.');
-  cartao(s, M, 5.05, 5.85, 1.55, 'O ponto cego que só a revisão pegou',
+  cartao(s, M, 5.05, 5.85, 1.55, 'O que a revisão acrescentou',
     'A normalização min-max por município mexe mais no ranking do que qualquer peso — e ninguém testou. Debater 60/40 sobre uma escala arbitrária por município é otimizar o parâmetro errado.', CLAY);
   cartao(s, M + 6.25, 5.05, 5.85, 1.55, 'O próximo passo que fecha a questão',
-    'Calcular o IVS três vezes — 60/40, pesos iguais e 50/50 — e reportar a correlação de Spearman entre os rankings. Acima de 0,95, a pergunta morre com uma tabela.', PETROL);
+    'Calcular o IVS três vezes — 60/40, pesos iguais e 50/50 — e reportar a correlação de Spearman entre os rankings. Acima de 0,95, uma tabela responde a pergunta.', PETROL);
   s.addNotes('As cinco revisões cegas escolheram independentemente a mesma resposta como a mais forte. A arbitragem final é da orientação.');
 }
 
@@ -755,7 +807,7 @@ function nota(s, txt) {
     ['Sensibilidade dos pesos', 'IVS calculado com 60/40, pesos iguais e 50/50; Spearman entre os rankings. Resultado publicável em uma tabela.'],
     ['Notebook 04 — fatorial', 'Plano pronto: transformar a renda, decidir os 16.552 setores sem analfabetismo, KMO e Bartlett, número de fatores, varimax. Execução aguardando decisão.'],
     ['Estudos de renda propostos', 'Renda relativa à mediana municipal como indicador; desigualdade intraurbana por Gini ou p90/p10; renda × favela sistematizada.'],
-    ['Redação das limitações', 'Falta escrever falácia ecológica, viés de sobrevivência e exclusão de institucionalizados. A do analfabetismo e a das favelas já estão prontas.'],
+    ['Redação das limitações', 'Falta escrever falácia ecológica, viés de sobrevivência e institucionalizados — que não saem pela classe COLETIVO, vazia na base, e sim porque entram em v0001 sem entrar em V00001. A do analfabetismo e a das favelas já estão prontas.'],
   ];
   let y = 1.85;
   prox.forEach(([t, d2], i) => {

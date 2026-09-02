@@ -33,7 +33,16 @@ RURAIS = 'elegíveis incluindo rurais (106.281)'
 ORDEM_REGIAO = ['Norte', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Sul']
 
 
+# `--atualizada` faz cada tabela ser lida de banco_de_dados/eda/atualizada/ QUANDO ela
+# existe lá, e da pasta normal quando não existe. É o que permite gerar os dois decks
+# com um gerador só: a rodada nova só reescreveu as tabelas que a renda afeta, e as
+# outras continuam vindo da rodada original — sem cópia e sem risco de divergirem.
+ATUALIZADA = EDA / 'atualizada' if '--atualizada' in sys.argv else None
+
+
 def ler(pasta: Path, nome: str, **kw) -> pd.DataFrame:
+    if ATUALIZADA is not None and pasta == EDA and (ATUALIZADA / f'{nome}.csv').exists():
+        pasta = ATUALIZADA
     return pd.read_csv(pasta / f'{nome}.csv', sep=';', encoding='utf-8-sig', **kw)
 
 
@@ -281,10 +290,152 @@ if (NAC / 'comparativo_brasil_vs_elsi.csv').exists():
               n2(float(cp.loc[cp[c_ind] == v, el_[0]].iloc[0])
                  / float(cp.loc[cp[c_ind] == v, br[0]].iloc[0]), 2)]
              for v in IVS7 if v in set(cp[c_ind])],
-            'Razão agregada: soma dos numeradores ÷ soma dos denominadores em cada recorte.')
+            'Razão agregada: soma dos numeradores ÷ soma dos denominadores em cada recorte.'
+            + ('' if ATUALIZADA is None else
+               ' ATENÇÃO: esta é a ÚNICA tabela do deck que usa a renda COM o extremo de BH '
+               '(R$ 4.187,41, e não R$ 4.185,81). A linha de base nacional é calculada sobre os '
+               '468 mil setores do país, onde o setor também está — excluí-lo só do lado do ELSI '
+               'quebraria a comparação. Aplicar a exclusão aos dois lados é decisão de método, '
+               'ainda em aberto.'))
     rp = ler(NAC, 'representatividade_elsi_no_brasil').set_index('metrica')
     d['nacional'] = {i: {'Brasil': inteiro(rp.loc[i, 'Brasil']), 'ELSI': inteiro(rp.loc[i, 'ELSI_70'])}
                      for i in rp.index}
+
+# ── renda: classificação e as duas EDAs ─────────────────────────────────────
+# Estes dois blocos existiam como texto digitado dentro do gerador — 66 suspeitos,
+# 3.292 extremos, a tabela do "com e sem". Com a rodada sem o extremo de BH os números
+# mudam (65 suspeitos), e um deck com número escrito à mão passaria a mentir. Agora
+# saem da tabela, como todo o resto.
+rc = ler(EDA, 'renda_classes_resumo')
+ro = ler(EDA, 'renda_outliers_rastreados')
+fav = ro[ro['e_favela'] == 'sim'].groupby('classe_renda').size()
+_ordem = ['SUSPEITO', 'EXTREMO', 'NORMAL']
+_linhas_rc = []
+for _, ln in rc.set_index('classe_renda').reindex(_ordem).dropna(how='all').reset_index().iterrows():
+    cls, n = ln['classe_renda'], int(ln['n_setores'])
+    nf = int(fav.get(cls, 0))
+    _linhas_rc.append([cls, inteiro(n), pct(ln['pct_setores'], 2),
+                       'R$ ' + n2(ln['renda_mediana']),
+                       '—' if cls == 'NORMAL' else f'{inteiro(nf)} de {inteiro(n)} ({nf / n * 100:.0f}%)'])
+B['renda_classes'] = bloco(
+    'As três classes de renda', URBANO, 'renda_classes_resumo.csv + renda_outliers_rastreados.csv',
+    ['Classe', 'Setores', '% da base', 'Renda mediana', 'São favela?'], _linhas_rc,
+    'A coluna da direita não valida a regra: ser favela É um dos testes de incoerência, '
+    'então nenhuma favela pode cair em EXTREMO.')
+
+cs = ler(EDA, 'renda_eda_com_vs_sem').set_index('variavel').loc['renda_media']
+cc = ler(EDA, 'renda_correlacao_com_vs_sem')
+
+
+def _corr(metodo):
+    ln = cc[(cc['metodo'] == metodo) & (cc['variavel'] == 'pct_analfab')].iloc[0]
+    return [f'{metodo.capitalize()} renda × analfabetismo', n2(ln['com_suspeitos'], 4),
+            n2(ln['sem_suspeitos'], 4), n2(ln['delta'], 4)]
+
+
+def _cs(rot, campo, casas=2):
+    a, b = float(cs[f'{campo}_com']), float(cs[f'{campo}_sem'])
+    return [rot, n2(a, casas), n2(b, casas), n2((b - a) / a * 100, 2) + '%']
+
+
+B['renda_com_sem'] = bloco(
+    f'O que muda ao remover os {inteiro(rc.set_index("classe_renda").loc["SUSPEITO", "n_setores"])} suspeitos',
+    URBANO, 'renda_eda_com_vs_sem.csv + renda_correlacao_com_vs_sem.csv',
+    ['Estatística', 'Com', 'Sem', 'Variação'],
+    [_cs('Média da renda (R$)', 'media'), _cs('Mediana da renda (R$)', 'mediana'),
+     _cs('Desvio-padrão (R$)', 'dp'), _cs('Assimetria', 'assimetria'),
+     _corr('pearson'), _corr('spearman')],
+    'Nas duas últimas linhas a coluna "Variação" é a diferença absoluta do coeficiente, '
+    'não porcentagem.')
+
+# Tabelas da seção 5 que também estavam digitadas no gerador.
+nz = ler(EDA, 'renda_normalizacao_impacto').sort_values('ganho_pp', ascending=False)
+B['renda_normalizacao'] = bloco(
+    'Efeito da exclusão na escala min-max, por município', URBANO,
+    'renda_normalizacao_impacto.csv',
+    ['Município', 'Setores', 'Suspeitos', 'Comprimidos no 1º decil (com)', '(sem)', 'Ganho'],
+    [[ln['NM_MUN'], inteiro(ln['n_setores']), inteiro(ln['n_suspeitos']),
+      pct(ln['pct_1o_decil_com'], 1), pct(ln['pct_1o_decil_sem'], 1),
+      n2(ln['ganho_pp'], 1) + ' pp'] for _, ln in nz.head(5).iterrows()],
+    f'{int((nz["n_suspeitos"] > 0).sum())} dos {len(nz)} municípios avaliados têm ao menos um suspeito.')
+
+rr = ler(EDA, 'renda_extremos_por_regiao').set_index('regiao').reindex(ORDEM_REGIAO).reset_index()
+B['renda_regioes'] = bloco(
+    'Os extremos de renda, região a região', URBANO, 'renda_extremos_por_regiao.csv',
+    ['Região', 'Setores', 'Mediana', 'Máx ÷ mediana', 'Assimetria', 'Extremos', 'Suspeitos'],
+    [[ln['regiao'], inteiro(ln['n_setores']), 'R$ ' + n2(ln['renda_mediana']),
+      n2(ln['max_sobre_mediana'], 1) + '×', n2(ln['assimetria'], 2),
+      pct(ln['pct_extremos'], 2), pct(ln['pct_suspeitos'], 3)] for _, ln in rr.iterrows()],
+    'Extremo e suspeito são coisas diferentes: o Sudeste concentra os valores absolutos, '
+    'o Norte concentra a suspeita.')
+
+_maior = ro.sort_values('renda_media_setor', ascending=False).iloc[0]
+d['renda'] = {
+    'n_suspeitos': inteiro(rc.set_index('classe_renda').loc['SUSPEITO', 'n_setores']),
+    'n_extremos': inteiro(rc.set_index('classe_renda').loc['EXTREMO', 'n_setores']),
+    'n_rastreados': inteiro(len(ro)),
+    'max_valor': 'R$ ' + n2(_maior['renda_media_setor']),
+    'max_municipio': str(_maior['NM_MUN']),
+    'max_dom': inteiro(_maior['n_domicilios']),
+    'sudeste_max_mediana': n2(rr.set_index('regiao').loc['Sudeste', 'max_sobre_mediana'], 1),
+    'sudeste_pct_suspeitos': pct(rr.set_index('regiao').loc['Sudeste', 'pct_suspeitos'], 3),
+    # os três abaixo estavam digitados no gerador e ficaram defasados na 2ª rodada
+    'max_delta_correlacao': n2(ler(EDA, 'renda_correlacao_com_vs_sem')['delta'].abs().max(), 4),
+    'global_total': inteiro(ler(EDA, 'renda_criterio_global_vs_municipal')['outlier_global'].sum()),
+    'global_concordam': inteiro(ler(EDA, 'renda_criterio_global_vs_municipal')['concordam'].sum()),
+}
+
+# ── o que mudou nesta rodada ────────────────────────────────────────────────
+# Só existe no deck atualizado. A fonte é a tabela de comparação célula a célula
+# gerada por scripts/eda_atualizada.py — nenhum destes números é digitado aqui.
+if ATUALIZADA is not None and (ATUALIZADA / 'comparacao_antes_depois.csv').exists():
+    cmpa = ler(ATUALIZADA, 'comparacao_antes_depois')
+    de_novo = ler(EDA, 'descritivas_globais', index_col=0)
+    de_velho = pd.read_csv(EDA / 'descritivas_globais.csv', sep=';',
+                           encoding='utf-8-sig', index_col=0)
+
+    def _linha_delta(rot, campo, casas=2):
+        a, b = de_velho.loc['renda_media', campo], de_novo.loc['renda_media', campo]
+        var = (b - a) / a * 100 if a else float('nan')
+        return [rot, n2(a, casas), n2(b, casas), n2(var, 2) + '%']
+
+    B['alteracoes_renda'] = bloco(
+        'A renda, antes e depois da exclusão', URBANO,
+        'eda/descritivas_globais.csv × eda/atualizada/descritivas_globais.csv',
+        ['Estatística', 'Antes', 'Depois', 'Variação'],
+        [_linha_delta('Média (R$)', 'media'), _linha_delta('Mediana (R$)', 'mediana'),
+         _linha_delta('Desvio-padrão (R$)', 'dp'), _linha_delta('Máximo (R$)', 'max'),
+         _linha_delta('Assimetria', 'assim'), _linha_delta('Curtose', 'curt'),
+         # o n cai de 1 em 104 mil: em porcentagem isso imprime '-0,00%', que parece
+         # erro de arredondamento em vez do fato
+         ['n de setores com renda', inteiro(de_velho.loc['renda_media', 'n']),
+          inteiro(de_novo.loc['renda_media', 'n']),
+          f"−{int(de_velho.loc['renda_media', 'n'] - de_novo.loc['renda_media', 'n'])} setor"]],
+        'A exclusão de 1 setor em 104.108 quase não move o nível e desmonta a cauda: '
+        'a curtose cai quase pela metade.')
+
+    # ROT7 só cobre as sete componentes; a matriz ampliada tem mais três.
+    ROT10 = dict(ROT7, pct_idoso_60mais='Idosos 60+', pct_crianca_0a4='Crianças 0–4',
+                 pct_resp_feminino='Chefia feminina')
+    corr = cmpa[cmpa['tabela'] == 'correlacao_pearson'].copy()
+    corr = corr[corr['linha'] == 'renda_media']
+    B['alteracoes_correlacao'] = bloco(
+        'As correlações de Pearson com a renda', URBANO,
+        'eda/atualizada/comparacao_antes_depois.csv',
+        ['Par com a renda', 'Antes', 'Depois', 'Δ'],
+        [[ROT10.get(ln['coluna'], ln['coluna'].replace('_', ' ')), n2(ln['antes'], 3),
+          n2(ln['depois'], 3), n2(ln['delta'], 3)] for _, ln in corr.iterrows()],
+        'Todas ficam mais fortes: o valor extremo achatava a associação linear. '
+        'Spearman não muda em casa nenhuma — ele já era imune ao caso.')
+
+    mudou = sorted(cmpa['tabela'].unique())
+    d['alteracoes'] = {
+        'setor': '310620005650366', 'municipio': 'Belo Horizonte',
+        'bairro': 'Senhor dos Passos', 'valor': 'R$ 170.418,06',
+        'n_celulas': str(len(cmpa)),
+        'tabelas_alteradas': mudou,
+        'n_tabelas_alteradas': str(len(mudou)),
+    }
 
 Path(sys.argv[1] if len(sys.argv) > 1 else EDA / 'dados_deck.json').write_text(
     json.dumps(d, ensure_ascii=False, indent=1), encoding='utf-8')
