@@ -39,7 +39,7 @@ A pipeline ativa é a **Fase 3 (`notebooks/Fase3_EDA_ELSI/`)**, que aplica o fil
 | 3 | Excluir setores rurais, conferindo a porcentagem | NB02 §3b — filtro urbano + `exclusao_rural_conferencia.csv` |
 | 4 | Agrupar as moradias "normais" no tipo de domicílio | NB02 §7f — `pct_moradia_convencional` (casa + vila/condomínio + apartamento) |
 | 5 | Criar um indicador de apartamento | NB02 §7f — `pct_apartamento` = V00049 / V00001 |
-| 6 | Quantos setores do ELSI são de vilas e favelas | NB02 §7g — **19.507 setores (17,9%)** via `CD_TIPO = 1` |
+| 6 | Quantos setores do ELSI são de vilas e favelas | NB02 §7g — **19.452 no recorte de análise (18,7%)**, 19.507 na base completa (17,9%), via `CD_TIPO = 1` |
 | 7 | Proporções para o Brasil todo e depois para os 70 municípios | [`scripts/proporcoes_brasil.py`](scripts/proporcoes_brasil.py) → `banco_de_dados/nacional/` |
 
 ## Metodologia
@@ -130,7 +130,7 @@ Projeto_IVS_Censo22/
 ├── src/ivs_censo/                     Código compartilhado (procedência das variáveis,
 │   │                                  fórmulas dos indicadores, regra de elegibilidade)
 │   ├── fontes.py                      Os 8 arquivos do Censo e o que se lê de cada um
-│   ├── indicadores.py                 Definição e cálculo dos 23 indicadores
+│   ├── indicadores.py                 Definição e cálculo dos 26 indicadores
 │   └── dicionario.py                  Tabela de variáveis (descrição IBGE + arquivo-fonte)
 │
 ├── scripts/                           Executáveis versionados
@@ -179,7 +179,7 @@ Projeto_IVS_Censo22/
 │   ├── ETL/, formatar/, banco_de_dados/
 │   └── DIAGNOSTICO_COMPLETO_PROJETO.md
 │
-└── tests/                             43 testes (artefatos da pipeline + fórmulas dos indicadores)
+└── tests/                             65 testes (artefatos da pipeline + fórmulas dos indicadores)
 ```
 
 ## Problemas Conhecidos

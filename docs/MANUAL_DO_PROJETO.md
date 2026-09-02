@@ -106,7 +106,7 @@ copiar código.
 | Arquivo | O que contém | Quando abrir |
 |---|---|---|
 | `fontes.py` | Os 8 arquivos do Censo, a chave do setor em cada um e quais variáveis o projeto lê de cada | Para saber de qual arquivo vem uma variável |
-| `indicadores.py` | Definição declarativa dos 23 indicadores (numerador, denominador, escala) + `calcular_indicadores` e `classificar_dados_sig` | **Para conferir a fórmula de qualquer indicador** |
+| `indicadores.py` | Definição declarativa dos 26 indicadores (numerador, denominador, escala) + `calcular_indicadores` e `classificar_dados_sig` | **Para conferir a fórmula de qualquer indicador** |
 | `dicionario.py` | Monta a tabela de variáveis a partir dos dicionários oficiais | Para regenerar o dicionário |
 
 ### `scripts/` — executáveis versionados
@@ -114,7 +114,7 @@ copiar código.
 | Script | O que gera | Tempo |
 |---|---|---:|
 | `gerar_tabela_variaveis.py` | `Dicionario_Variaveis_Projeto.csv` e `.xlsx` | segundos |
-| `gerar_entrega_orientadora.py` | O pacote de entrega: CSV + SQLite com 95 colunas | ~1 min |
+| `gerar_entrega_orientadora.py` | O pacote de entrega: CSV + SQLite com 104 colunas | ~1 min |
 | `proporcoes_brasil.py` | Os indicadores para os 468 mil setores do país | ~7 min |
 
 ### `banco_de_dados/` — saídas
@@ -156,9 +156,9 @@ banco_de_dados/
 
 | Arquivo | Conteúdo |
 |---|---|
-| `Base_ELSI_70Municipios_Censo2022.csv` / `.db` | 109.032 setores × 95 colunas |
+| `Base_ELSI_70Municipios_Censo2022.csv` / `.db` | 109.032 setores × 104 colunas |
 | `Base_BeloHorizonte_Censo2022.csv` / `.db` | 5.166 setores, mesmo esquema |
-| `Dicionario_Variaveis_Projeto.csv` / `.xlsx` | As 67 variáveis com descrição oficial e arquivo-fonte |
+| `Dicionario_Variaveis_Projeto.csv` / `.xlsx` | As 72 variáveis com descrição oficial e arquivo-fonte |
 | `README.md` | Como abrir os `.db` e o que é cada coluna |
 
 Cada `.db` tem três tabelas: `setores_censitarios`, `dicionario_variaveis` e `metadados`.
@@ -194,7 +194,7 @@ SELECT * FROM setores_censitarios WHERE Dados_sig = 'OK' AND urbano = 1;
 python -m pytest tests/ -v
 ```
 
-São 43 testes. Se todos passam, a pipeline está íntegra.
+São 65 testes. Se todos passam, a pipeline está íntegra.
 
 ### `Backup/` — legado
 
@@ -208,8 +208,8 @@ Se alguém perguntar "de onde saiu esse número", esta é a tabela.
 
 | Slide | Número | Arquivo de origem |
 |---|---|---|
-| 3 | 70 municípios · 104.108 setores · 23 indicadores | `exclusao_rural_conferencia.csv` · `src/ivs_censo/indicadores.py` |
-| 3 | 43 testes | `pytest tests/` |
+| 3 | 70 municípios · 104.108 setores · 26 indicadores | `exclusao_rural_conferencia.csv` · `src/ivs_censo/indicadores.py` |
+| 3 | 65 testes | `pytest tests/` |
 | 7 | Tamanho dos 8 arquivos | `dados/` |
 | 8 e 9 | As 28 variáveis e seus arquivos | `Dicionario_Variaveis_Projeto.csv` |
 | 11 | Elegibilidade (1.736 / 1.015 / 0 / 106.281) | `elegibilidade_setores.csv` |
@@ -305,7 +305,7 @@ python scripts/gerar_tabela_variaveis.py
 
 Não depende dos notebooks — lê os dicionários direto de `dados/`.
 
-**Como conferir.** São 67 variáveis de 8 arquivos: 57 descrições do dicionário oficial e 10
+**Como conferir.** São 72 variáveis de 8 arquivos: 62 descrições do dicionário oficial e 10
 da documentação do projeto. Nenhuma linha pode sair como `(sem descrição)`.
 
 **Detalhe que costuma confundir.** O IBGE grafa a chave do setor de três formas diferentes
@@ -430,7 +430,7 @@ que é justamente o objetivo da demanda.
 | Arquivo | O que contém |
 |---|---|
 | `src/ivs_censo/fontes.py` | os 8 arquivos, a chave de cada um e as variáveis lidas |
-| `src/ivs_censo/indicadores.py` | os 23 indicadores como objetos declarativos, mais `calcular_indicadores` e `classificar_dados_sig` |
+| `src/ivs_censo/indicadores.py` | os 26 indicadores como objetos declarativos, mais `calcular_indicadores` e `classificar_dados_sig` |
 | `src/ivs_censo/dicionario.py` | a tabela de variáveis |
 | `scripts/proporcoes_brasil.py` | lê os 8 arquivos, monta a base nacional e calcula os indicadores |
 | `tests/test_ivs_censo.py` | testa as fórmulas com dados sintéticos |
@@ -499,7 +499,7 @@ escolha pode estar fazendo o indicador capturar porte urbano — ver §11 e §12
 
 # Parte D — Roteiro da apresentação, slide a slide
 
-O arquivo é `docs/Apresentacoes_IVS/historico/2026-08-09_Andamento.pptx` (arquivado em 21/08/2026; a apresentação corrente é `EDA_Central_IVS_2026-08.pptx`). **Todos os 30 slides têm
+O arquivo é `docs/Apresentacoes_IVS/historico/2026-08-09_Andamento.pptx` (arquivado em 21/08/2026; a apresentação corrente é `EDA_Central_IVS_2026-09_rev2.pptx`). **Todos os 30 slides têm
 notas do apresentador** — o que está abaixo é o roteiro em prosa, com o encadeamento.
 
 ## Bloco 1 · Abertura (slides 1 a 5) — 4 minutos
@@ -626,7 +626,7 @@ bruta preserva todos os setores para auditoria.
 outro: 15,9% dos setores não têm a taxa de analfabetismo, e de forma não aleatória.
 
 **"O que garante que a sua pipeline está certa?"**
-Três coisas: 43 testes automatizados; a soma das faixas etárias reproduzir exatamente a
+Três coisas: 65 testes automatizados; a soma das faixas etárias reproduzir exatamente a
 população em todos os setores comparáveis; e o cálculo nacional reproduzir o índice de
 envelhecimento publicado pelo IBGE (79,99 contra 80,0) e a população do Censo
 (203.080.756, exato).
