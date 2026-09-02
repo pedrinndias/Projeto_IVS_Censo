@@ -1,0 +1,520 @@
+{
+ "constantes": {
+  "k_tukey": "3,0",
+  "min_setores": "20",
+  "razao_implausivel": "20"
+ },
+ "totais": {
+  "n_suspeitos": "66",
+  "n_extremos": "3.292",
+  "n_rastreados": "3.358",
+  "n_mun_peq": "12",
+  "n_set_peq": "118",
+  "n_mun_aval": "58",
+  "n_impl_ext": "13",
+  "n_impl_sus": "3",
+  "um_teste": "54",
+  "tres_testes": "6",
+  "so_analfab": "40",
+  "n_favela": "22",
+  "cv_med_sus": "1,48",
+  "cv_med_ext": "0,82",
+  "n_global": "3.988",
+  "n_municipal": "3.358",
+  "concordam": "1.673",
+  "so_global": "2.315",
+  "so_municipal": "1.685",
+  "norm_avaliados": "63",
+  "norm_com_suspeito": "23"
+ },
+ "por_teste": {
+  "e_favela": "22",
+  "pct_analfab_acima": "52",
+  "pct_raca_pretpardind_acima": "10"
+ },
+ "tabelas": {
+  "classes": {
+   "colunas": [
+    "Classe",
+    "Setores",
+    "% da base",
+    "Renda mediana",
+    "Renda média",
+    "Renda máxima"
+   ],
+   "linhas": [
+    [
+     "SUSPEITO",
+     "66",
+     "0,063%",
+     "10.167,85",
+     "18.332,37",
+     "170.418,06"
+    ],
+    [
+     "EXTREMO",
+     "3.292",
+     "3,162%",
+     "14.106,20",
+     "15.716,64",
+     "140.172,64"
+    ],
+    [
+     "NORMAL",
+     "100.750",
+     "96,775%",
+     "2.505,16",
+     "3.801,38",
+     "23.854,81"
+    ]
+   ],
+   "fonte": "renda_classes_resumo.csv. Recorte urbano elegível, 104.108 setores."
+  },
+  "municipios_pequenos": {
+   "colunas": [
+    "Município",
+    "Região",
+    "Setores"
+   ],
+   "linhas": [
+    [
+     "São Raimundo do Doca Bezerra",
+     "Nordeste",
+     "3"
+    ],
+    [
+     "Orizânia",
+     "Sudeste",
+     "5"
+    ],
+    [
+     "São Paulo das Missões",
+     "Sul",
+     "6"
+    ],
+    [
+     "Japoatã",
+     "Nordeste",
+     "7"
+    ],
+    [
+     "Santa Maria do Oeste",
+     "Sul",
+     "8"
+    ],
+    [
+     "Urandi",
+     "Nordeste",
+     "9"
+    ],
+    [
+     "Jaqueira",
+     "Nordeste",
+     "9"
+    ],
+    [
+     "Coroaci",
+     "Sudeste",
+     "11"
+    ],
+    [
+     "Vicentinópolis",
+     "Centro-Oeste",
+     "11"
+    ],
+    [
+     "Groaíras",
+     "Nordeste",
+     "14"
+    ],
+    [
+     "Placas",
+     "Norte",
+     "16"
+    ],
+    [
+     "Arara",
+     "Nordeste",
+     "19"
+    ]
+   ],
+   "fonte": "exclusao_rural_conferencia.csv, recorte urbano elegível."
+  },
+  "motivos": {
+   "colunas": [
+    "Combinação de testes que disparou",
+    "Setores"
+   ],
+   "linhas": [
+    [
+     "pct_analfab_acima",
+     "40"
+    ],
+    [
+     "e_favela",
+     "11"
+    ],
+    [
+     "e_favela + pct_analfab_acima + pct_raca_pretpardind_acima",
+     "6"
+    ],
+    [
+     "e_favela + pct_analfab_acima",
+     "5"
+    ],
+    [
+     "pct_raca_pretpardind_acima",
+     "3"
+    ],
+    [
+     "pct_analfab_acima + pct_raca_pretpardind_acima",
+     "1"
+    ]
+   ],
+   "fonte": "renda_outliers_rastreados.csv, coluna motivos."
+  },
+  "maiores_suspeitos": {
+   "colunas": [
+    "Setor",
+    "Município",
+    "Bairro",
+    "Renda",
+    "Mediana mun.",
+    "Razão",
+    "Dom.",
+    "CV",
+    "Testes"
+   ],
+   "linhas": [
+    [
+     "310620005650366",
+     "Belo Horizonte",
+     "Senhor dos Passos",
+     "170.418",
+     "3.060",
+     "55,7×",
+     "186",
+     "5,26",
+     "favela + analfab + PPI"
+    ],
+    [
+     "150140255000432",
+     "Belém",
+     "Guamá",
+     "78.444",
+     "1.803",
+     "43,5×",
+     "87",
+     "8,66",
+     "favela + analfab"
+    ],
+    [
+     "354520905000248",
+     "Salto",
+     "—",
+     "60.597",
+     "3.040",
+     "19,9×",
+     "183",
+     "7,90",
+     "analfab"
+    ],
+    [
+     "330455705330089",
+     "Rio de Janeiro",
+     "Rocinha",
+     "42.148",
+     "2.702",
+     "15,6×",
+     "109",
+     "8,90",
+     "favela + analfab + PPI"
+    ],
+    [
+     "355030881000403",
+     "São Paulo",
+     "—",
+     "40.275",
+     "3.109",
+     "13,0×",
+     "53",
+     "6,88",
+     "analfab"
+    ],
+    [
+     "292740805220740",
+     "Salvador",
+     "Beiru / Tancredo Neves",
+     "36.672",
+     "1.638",
+     "22,4×",
+     "218",
+     "13,49",
+     "favela"
+    ],
+    [
+     "355030806000114",
+     "São Paulo",
+     "—",
+     "32.867",
+     "3.109",
+     "10,6×",
+     "100",
+     "3,08",
+     "analfab"
+    ],
+    [
+     "330455705290362",
+     "Rio de Janeiro",
+     "Barra da Tijuca",
+     "29.941",
+     "2.702",
+     "11,1×",
+     "91",
+     "0,54",
+     "analfab"
+    ]
+   ],
+   "fonte": "renda_outliers_rastreados.csv. Razão = renda do setor ÷ mediana do município."
+  },
+  "implausiveis": {
+   "colunas": [
+    "Setor",
+    "Município",
+    "Bairro",
+    "Renda",
+    "Mediana mun.",
+    "Razão",
+    "Dom.",
+    "CV"
+   ],
+   "linhas": [
+    [
+     "355030832000202",
+     "São Paulo",
+     "—",
+     "140.173",
+     "3.109",
+     "45,1×",
+     "78",
+     "6,85"
+    ],
+    [
+     "261160605200257",
+     "Recife",
+     "Vasco da Gama",
+     "67.237",
+     "1.779",
+     "37,8×",
+     "190",
+     "10,77"
+    ],
+    [
+     "292740805090354",
+     "Salvador",
+     "Patamares",
+     "61.671",
+     "1.638",
+     "37,7×",
+     "397",
+     "4,69"
+    ],
+    [
+     "351880005000793",
+     "Guarulhos",
+     "São João",
+     "65.032",
+     "2.362",
+     "27,5×",
+     "148",
+     "11,41"
+    ],
+    [
+     "130260305110044",
+     "Manaus",
+     "Aleixo",
+     "50.803",
+     "1.853",
+     "27,4×",
+     "159",
+     "1,69"
+    ],
+    [
+     "355030868000461",
+     "São Paulo",
+     "—",
+     "77.469",
+     "3.109",
+     "24,9×",
+     "73",
+     "7,76"
+    ],
+    [
+     "355030883000206",
+     "São Paulo",
+     "—",
+     "73.199",
+     "3.109",
+     "23,5×",
+     "85",
+     "7,43"
+    ],
+    [
+     "292740805270142",
+     "Salvador",
+     "Barra",
+     "37.428",
+     "1.638",
+     "22,9×",
+     "132",
+     "8,72"
+    ],
+    [
+     "292740805070406",
+     "Salvador",
+     "Horto Florestal",
+     "36.766",
+     "1.638",
+     "22,4×",
+     "92",
+     "0,63"
+    ],
+    [
+     "130260305130065",
+     "Manaus",
+     "Ponta Negra",
+     "40.720",
+     "1.853",
+     "22,0×",
+     "81",
+     "0,88"
+    ]
+   ],
+   "fonte": "renda_outliers_rastreados.csv, classe EXTREMO com razao_implausivel verdadeiro."
+  },
+  "criterios": {
+   "colunas": [
+    "Região",
+    "Setores",
+    "Global",
+    "% global",
+    "Municipal",
+    "% municipal",
+    "Coincidem"
+   ],
+   "linhas": [
+    [
+     "Norte",
+     "5.915",
+     "78",
+     "1,32%",
+     "438",
+     "7,40%",
+     "78"
+    ],
+    [
+     "Nordeste",
+     "19.497",
+     "318",
+     "1,63%",
+     "1.239",
+     "6,35%",
+     "318"
+    ],
+    [
+     "Centro-Oeste",
+     "9.490",
+     "550",
+     "5,80%",
+     "227",
+     "2,39%",
+     "154"
+    ],
+    [
+     "Sudeste",
+     "61.989",
+     "2.860",
+     "4,61%",
+     "1.377",
+     "2,22%",
+     "1.062"
+    ],
+    [
+     "Sul",
+     "7.217",
+     "182",
+     "2,52%",
+     "77",
+     "1,07%",
+     "61"
+    ]
+   ],
+   "fonte": "renda_criterio_global_vs_municipal.csv."
+  },
+  "tamanho": {
+   "colunas": [
+    "Faixa de domicílios",
+    "Setores",
+    "% da base",
+    "Renda mediana",
+    "Renda máxima",
+    "CV",
+    "Suspeitos",
+    "% suspeitos"
+   ],
+   "linhas": [
+    [
+     "1 a 50",
+     "4.531",
+     "4,35%",
+     "2.028",
+     "59.643",
+     "1,109",
+     "12",
+     "0,265%"
+    ],
+    [
+     "51 a 100",
+     "11.121",
+     "10,68%",
+     "2.489",
+     "140.173",
+     "1,128",
+     "13",
+     "0,117%"
+    ],
+    [
+     "101 a 200",
+     "47.197",
+     "45,33%",
+     "2.761",
+     "170.418",
+     "0,974",
+     "23",
+     "0,049%"
+    ],
+    [
+     "201 a 400",
+     "39.966",
+     "38,39%",
+     "2.478",
+     "61.671",
+     "0,913",
+     "18",
+     "0,045%"
+    ],
+    [
+     "mais de 400",
+     "1.293",
+     "1,24%",
+     "2.386",
+     "25.898",
+     "0,899",
+     "0",
+     "0,000%"
+    ]
+   ],
+   "fonte": "renda_setores_pequenos.csv. CV é o da renda dentro da faixa, não o do setor."
+  }
+ }
+}
