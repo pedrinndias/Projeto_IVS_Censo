@@ -176,13 +176,36 @@ def test_indice_de_envelhecimento_usa_denominador_0a14():
 
 def test_contagem_de_setores_de_favela():
     """CD_TIPO = 1 identifica Favela e Comunidade Urbana; a contagem tem que bater
-    entre a tabela total, a de regiões e a de municípios."""
-    total = _read(EDA / 'favelas_fcu_total.csv').iloc[0]
+    entre a tabela total, a de regiões e a de municípios.
+
+    As tabelas trazem os DOIS universos, e é isso que este teste protege: 19.507 na base
+    completa (109.032 setores) e 19.452 no recorte de análise (104.108 urbanos
+    elegíveis). Foi a confusão entre os dois que fez a apresentação de agosto anunciar
+    "17,9% do recorte" — percentual que é da base, não do recorte, onde dá 18,7%.
+    """
+    total = _read(EDA / 'favelas_fcu_total.csv')
     por_reg = _read(EDA / 'favelas_fcu_por_regiao.csv')
     por_mun = _read(EDA / 'favelas_fcu_por_municipio.csv')
-    assert total['n_setores_fcu'] == 19_507
-    assert por_reg['n_setores_fcu'].sum() == total['n_setores_fcu']
-    assert por_mun['n_setores_fcu'].sum() == total['n_setores_fcu']
+
+    base = total[total['universo'].str.startswith('base')].iloc[0]
+    recorte = total[total['universo'].str.startswith('recorte')].iloc[0]
+    assert base['n_setores_fcu'] == 19_507
+    assert base['n_setores'] == 109_032
+    assert recorte['n_setores_fcu'] == 19_452
+    assert recorte['n_setores'] == 104_108
+    # o percentual do recorte é maior porque o denominador dele não tem setor rural,
+    # zerado nem sigiloso — nenhum dos quais pode ser favela
+    assert recorte['pct_setores_fcu'] > base['pct_setores_fcu']
+
+    # a linha da base tem que continuar em primeiro: testes e gerador do deck leem iloc[0]
+    assert total.iloc[0]['n_setores_fcu'] == 19_507
+
+    for universo, esperado in [('base', 19_507), ('recorte', 19_452)]:
+        fatia = por_reg[por_reg['universo'].str.startswith(universo)]
+        assert len(fatia) == 5, f'faltou região no universo {universo}'
+        assert fatia['n_setores_fcu'].sum() == esperado
+
+    assert por_mun['n_setores_fcu'].sum() == 19_507      # por município: só a base completa
     assert len(por_mun) == 70
 
 
@@ -295,3 +318,145 @@ def test_agua_canalizada_exportada_e_coerente():
     norte = reg.loc[reg['regiao'] == 'Norte', 'pct_sem_canalizacao'].iloc[0]
     sul = reg.loc[reg['regiao'] == 'Sul', 'pct_sem_canalizacao'].iloc[0]
     assert norte > sul, 'o gradiente Norte-Sul do saneamento sumiu — conferir a extração'
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Regressões da auditoria de 24/08/2026
+# ─────────────────────────────────────────────────────────────────────────────
+
+def test_marcacao_de_favela_bate_com_a_lista_oficial_do_ibge():
+    """`CD_TIPO = 1` tem que reproduzir a lista oficial de setores de FCU do IBGE.
+
+    A apresentação de agosto afirmava que `CD_TIPO = 1` coincidia com ter `NM_FCU`
+    preenchido. Não coincide: são 33.272 contra 33.321 no país, 19.507 contra 19.532 no
+    recorte. Quem erra é o `NM_FCU` — os divergentes não constam da lista oficial. Este
+    teste trava a conferência que de fato vale.
+    """
+    base = BD / 'Base_ELSI_Bruta_Censo2022.csv'
+    planilha = ROOT / 'dados' / 'FavelaseComunidadesUrbanas2022Setores_20250417.xlsx'
+    if not base.exists():
+        pytest.skip(f'Base bruta não gerada localmente: {base}')
+    if not planilha.exists():
+        pytest.skip(f'Lista oficial de FCU do IBGE não encontrada: {planilha}')
+
+    oficial = set(pd.read_excel(planilha, sheet_name='Setores_FCUs', dtype=str)['CD_SETOR'].str.strip())
+    assert len(oficial) == 33_272, 'a lista oficial do IBGE mudou de tamanho'
+
+    df = pd.read_csv(base, sep=';', dtype=str, usecols=['CD_SETOR', 'CD_TIPO', 'NM_FCU'])
+    marcados = set(df.loc[df['CD_TIPO'].eq('1'), 'CD_SETOR'])
+    no_recorte = oficial & set(df['CD_SETOR'])
+
+    assert marcados == no_recorte, 'CD_TIPO=1 deixou de coincidir com a lista oficial do IBGE'
+    assert len(marcados) == 19_507
+
+    # e o NM_FCU continua NÃO servindo como critério — é o que a afirmação antiga supunha
+    com_nome = set(df.loc[df['NM_FCU'].notna(), 'CD_SETOR'])
+    assert com_nome != marcados, 'se NM_FCU passou a coincidir, revisar o texto das apresentações'
+    assert not (com_nome - marcados) <= oficial or (com_nome - marcados) - oficial, \
+        'os setores com NM_FCU e sem CD_TIPO=1 não deveriam estar na lista oficial'
+
+
+def test_razao_agregada_mede_numerador_e_denominador_nos_mesmos_setores():
+    """A razão agregada não pode somar cada lado num conjunto diferente de setores.
+
+    `resumir()` somava o numerador pulando os setores sigilosos e o denominador somando
+    todos — o setor saía do numerador mas continuava no denominador, e a razão vinha baixa
+    demais: −8,9% em `pct_apartamento`, −13,1% em `pct_sem_banheiro`. O teste refaz a
+    conta a partir da base e confere contra o que o script publicou.
+    """
+    import sys
+    caminho = BD / 'nacional' / 'proporcoes_por_recorte.csv'
+    base = BD / 'Base_ELSI_Bruta_Censo2022.csv'
+    if not caminho.exists():
+        pytest.skip('Cálculo nacional não executado — rode scripts/proporcoes_brasil.py')
+    if not base.exists():
+        pytest.skip(f'Base bruta não gerada localmente: {base}')
+
+    sys.path.insert(0, str(ROOT / 'src'))
+    from ivs_censo import INDICADORES_POR_NOME, classificar_dados_sig
+
+    df = pd.read_csv(base, sep=';', dtype=str)
+    texto = ['CD_SETOR', 'CD_UF', 'CD_MUN', 'NM_MUN', 'NM_BAIRRO', 'SITUACAO',
+             'CD_SIT', 'CD_TIPO', 'CD_FCU', 'NM_FCU', 'Moradia_Predominante']
+    num_cols = [c for c in df.columns if c not in texto]
+    df[num_cols] = (df[num_cols].replace({'X': None, 'x': None})
+                    .apply(lambda c: c.astype(str).str.replace(',', '.', regex=False))
+                    .apply(pd.to_numeric, errors='coerce'))
+    ok = df[(classificar_dados_sig(df) == 'OK') & df['SITUACAO'].eq('Urbana')]
+
+    publicado = pd.read_csv(caminho, sep=';', encoding='utf-8-sig')
+    elsi = publicado[publicado['recorte'].str.startswith('ELSI')].set_index('indicador')
+
+    # pct_apartamento e pct_sem_banheiro são os que mais sofriam: numerador de uma
+    # variável só, que o IBGE sigila com frequência
+    for nome in ['pct_apartamento', 'pct_sem_banheiro', 'pct_casa_vila_condominio', 'pct_agua_inad']:
+        ind = INDICADORES_POR_NOME[nome]
+        n = ok[ind.numerador].sum(axis=1, min_count=1)
+        d = ok[ind.denominador].sum(axis=1, min_count=ind.min_count_den)
+        par = n.notna() & d.notna()
+        esperado = n[par].sum() / d[par].sum()
+        obtido = elsi.loc[nome, 'razao_agregada']
+        assert abs(obtido - esperado) < 1e-6, (
+            f'{nome}: razão agregada {obtido:.6f} != {esperado:.6f} medido nos mesmos setores')
+
+
+def test_auditoria_de_renda_poe_os_suspeitos_primeiro_e_expoe_a_magnitude():
+    """O arquivo existe por causa dos suspeitos — eles têm que estar no topo.
+
+    Ordenar por `classe_renda` direto dava ordem alfabética (EXTREMO, NORMAL, SUSPEITO) e
+    enterrava os 66 suspeitos no fim de 3.358 linhas. E `razao_implausivel` é o contrapeso
+    do teste de coerência, que não enxerga erro de dado em bairro rico: o setor de São
+    Paulo com 45× a mediana municipal sai como EXTREMO e só esta coluna o denuncia.
+    """
+    caminho = EDA / 'renda_outliers_rastreados.csv'
+    if not caminho.exists():
+        pytest.skip('Auditoria de renda não executada — rode scripts/auditoria_renda.py')
+    t = _read(caminho)
+
+    for col in ['razao_implausivel', 'cv_renda']:
+        assert col in t.columns, f'coluna de diagnóstico ausente: {col}'
+
+    assert t.iloc[0]['classe_renda'] == 'SUSPEITO', 'os suspeitos deixaram de vir primeiro'
+    primeira_extremo = t['classe_renda'].tolist().index('EXTREMO')
+    assert 'SUSPEITO' not in t['classe_renda'].tolist()[primeira_extremo:], \
+        'as classes estão intercaladas — a ordenação por prioridade se perdeu'
+
+    # dentro de cada classe, do mais absurdo para o menos
+    for classe in ['SUSPEITO', 'EXTREMO']:
+        fatia = t[t['classe_renda'] == classe]['razao_mediana_mun']
+        assert fatia.is_monotonic_decreasing, f'{classe} não está ordenada por razão'
+
+    # o ponto cego que a coluna existe para mostrar
+    implausiveis_extremos = t[(t['classe_renda'] == 'EXTREMO') & t['razao_implausivel']]
+    assert len(implausiveis_extremos) > 0, (
+        'nenhum EXTREMO implausível: ou a base mudou, ou razao_implausivel parou de ser calculada')
+
+    # CV alto é a assinatura da média puxada por poucas declarações
+    assert t.loc[t['classe_renda'] == 'SUSPEITO', 'cv_renda'].max() > 3, \
+        'CV dos suspeitos baixo demais — V06005 está sendo lida?'
+
+
+def test_entrega_separa_urbanos_da_base_do_recorte_de_analise():
+    """Os metadados do entregável não podem anunciar 106.347 como recorte de análise.
+
+    `n_setores_urbanos` conta SITUACAO='Urbana' na base inteira e dá 106.347 — número
+    maior que os 106.281 elegíveis, impossível como recorte. O recorte é a interseção com
+    Dados_sig='OK' e dá 104.108, que é o que a consulta SQL recomendada devolve.
+    """
+    import sqlite3
+    db = BD / 'entrega_orientadora' / 'Base_ELSI_70Municipios_Censo2022.db'
+    if not db.exists():
+        pytest.skip('Entregável não gerado — rode scripts/gerar_entrega_orientadora.py')
+
+    with sqlite3.connect(db) as con:
+        meta = dict(con.execute('SELECT chave, valor FROM metadados').fetchall())
+        n_sql = con.execute(
+            "SELECT COUNT(*) FROM setores_censitarios WHERE Dados_sig='OK' AND urbano=1"
+        ).fetchone()[0]
+
+    assert meta['n_setores_recorte_analise'].replace(',', '') == '104108'
+    assert meta['n_setores_urbanos'].replace(',', '') == '106347'
+    assert n_sql == 104_108, 'a consulta recomendada no README não devolve o recorte anunciado'
+    assert meta['n_setores_favela_fcu_no_recorte'].replace(',', '') == '19452'
+
+
