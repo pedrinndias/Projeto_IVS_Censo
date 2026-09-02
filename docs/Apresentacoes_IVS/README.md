@@ -5,11 +5,16 @@ já foi apresentado e ficou para trás — não use como fonte de número.
 
 ```
 Apresentacoes_IVS/
-├── EDA_Central_IVS_2026-08.pptx          ← use esta
-├── Roteiro_EDA_Central_IVS_2026-08.docx  ← como apresentar, slide a slide
-├── historico/                            ← 10 decks anteriores, em ordem cronológica
-└── dicionarios/                          ← planilhas de variáveis (não são apresentações)
+├── EDA_Central_IVS_2026-09_rev2.pptx   ← A APRESENTAÇÃO. É a única coisa na raiz.
+├── complementos/                        ← documentos de apoio do deck atual
+├── historico/                           ← 11 decks fora de circulação, em ordem cronológica
+└── dicionarios/                         ← planilhas de variáveis (não são apresentações)
 ```
+
+**A raiz tem um arquivo só, e é de propósito.** Quem abre a pasta com pressa pega o que está
+na raiz; se houver quatro arquivos ali, um deles vai ser aberto por engano. Foi o que
+aconteceu em agosto, quando roteiro, resumo e o deck do critério de renda foram parar na
+raiz junto do deck.
 
 ---
 
@@ -17,8 +22,10 @@ Apresentacoes_IVS/
 
 | | |
 |---|---|
-| **Arquivo** | `EDA_Central_IVS_2026-08.pptx` — 47 slides |
-| **Roteiro** | `Roteiro_EDA_Central_IVS_2026-08.docx` — fala sugerida, o que apontar em cada figura e as perguntas prováveis |
+| **Arquivo** | `EDA_Central_IVS_2026-09_rev2.pptx` — 51 slides |
+| **O que mudou** | A EDA inteira foi recalculada com `renda_media_sem_extremo` (renda sem o setor `310620005650366`, Belo Horizonte). Os 4 slides novos, logo depois da abertura, dizem o que mudou e o que ficou igual. |
+| **1ª rodada** | `historico/2026-08-21_EDA_Central_1a_rodada.pptx` — com a renda completa |
+| **Roteiro** | `complementos/Roteiro_EDA_Central_1a_rodada.docx` — **escrito para a 1ª rodada**: está defasado em 4 slides e nos números da renda |
 | **Recorte** | 104.108 setores urbanos elegíveis, 70 municípios do ELSI-Brasil |
 | **Gerada por** | `scripts/gerar_deck_eda_central.js` |
 | **Números** | extraídos por `scripts/eda_central_dados.py` das tabelas de `banco_de_dados/eda/` |
@@ -27,8 +34,28 @@ Apresentacoes_IVS/
 
 ```bash
 ./.venv/bin/python scripts/eda_central_dados.py banco_de_dados/eda/dados_deck.json
-node scripts/gerar_deck_eda_central.js docs/Apresentacoes_IVS/EDA_Central_IVS_2026-08.pptx
+node scripts/gerar_deck_eda_central.js docs/Apresentacoes_IVS/historico/2026-08-21_EDA_Central_1a_rodada.pptx
 ```
+
+Para regerar a **2ª rodada** (renda sem o extremo), a sequência inteira é:
+
+```bash
+./.venv/bin/python scripts/auditoria_renda.py --sem-extremo
+./.venv/bin/python scripts/eda_atualizada.py
+./.venv/bin/python scripts/eda_central_dados.py banco_de_dados/eda/dados_deck_atualizado.json --atualizada
+node scripts/gerar_deck_eda_central.js docs/Apresentacoes_IVS/EDA_Central_IVS_2026-09_rev2.pptx banco_de_dados/eda/dados_deck_atualizado.json
+```
+
+**É um gerador só para os dois decks.** O que muda é o JSON: `--atualizada` faz cada tabela
+ser lida de `banco_de_dados/eda/atualizada/` quando ela existe lá, e da pasta normal quando
+não existe — só as tabelas que a renda afeta foram reescritas. O bloco `alteracoes` no JSON
+é o que liga os 4 slides de comparação; sem ele, o gerador produz a 1ª rodada como antes.
+
+> **O arquivo da 1ª rodada em `historico/` tem 40 slides, mas o gerador dele produz 47.**
+> Ele é anterior às últimas mudanças do gerador e nunca foi regerado. Ficou arquivado
+> **como estava**, que é o papel de `historico/` — regerá-lo agora produziria um arquivo
+> que nunca existiu naquele dia. Se em algum momento for preciso a versão completa da 1ª
+> rodada, o comando acima a reconstrói.
 
 Se editar o `.pptx` à mão, a próxima execução do script sobrescreve a edição. Mudanças
 permanentes vão no gerador.
@@ -39,13 +66,32 @@ permanentes vão no gerador.
 
 ---
 
+## `complementos/` — apoio, não são a apresentação
+
+Documentos que acompanham o deck sem serem o deck. Estavam na raiz e confundiam quem
+procurava a apresentação.
+
+| Arquivo | O que é | Gerado por |
+|---|---|---|
+| `Roteiro_EDA_Central_1a_rodada.docx` / `.pdf` | Fala sugerida slide a slide, o que apontar em cada figura, perguntas prováveis. **Escrito para a 1ª rodada** | à mão |
+| `Resumo_EDA_Central_2026-08.docx` / `.pdf` | As tabelas e figuras da EDA em texto corrido, com um comentário embaixo de cada uma | `scripts/gerar_resumo_eda_central.py` |
+| `Criterio_Outliers_Renda.pptx` / `.pdf` | Abre a regra de classificação de outlier de renda inteira: corte de Tukey por município, os três testes de coerência, os dois diagnósticos que ficam de fora de propósito | `scripts/gerar_deck_criterio_renda.js` e `scripts/gerar_pdf_outliers_renda.py` |
+
+> **Os três são da 1ª rodada.** O critério de renda diz 66 suspeitos e 3.358 setores
+> rastreados; na 2ª rodada são 65 e 3.357, porque o setor de Belo Horizonte saiu da coluna
+> de renda. A **regra** que esses documentos descrevem não mudou — só as contagens. Os
+> geradores ainda não aceitam `--atualizada`.
+
+---
+
 ## Histórico
 
 Do mais recente para o mais antigo. O prefixo é a data do arquivo.
 
 | Arquivo | Slides | O que era | Por que saiu de circulação |
 |---|---|---|---|
-| `2026-08-09_Andamento_rev2.pptx` | 30 | Andamento de agosto, revisão 2 — a última antes desta | Não cobria chefia feminina, habitação precária, banheiro nem morfologia |
+| `2026-08-21_EDA_Central_1a_rodada.pptx` | 40 | A EDA Central, 1ª rodada — primeira apresentação gerada por script | Superada pela 2ª rodada, com a renda sem o extremo de Belo Horizonte |
+| `2026-08-09_Andamento_rev2.pptx` | 30 | Andamento de agosto, revisão 2 | Não cobria chefia feminina, habitação precária, banheiro nem morfologia |
 | `2026-08-09_Andamento.pptx` | 29 | Mesma apresentação, revisão 1 | Superada pela rev2 no mesmo dia |
 | `2026-08-09_Retomada_e_demandas.pptx` | 25 | Retomada do projeto e as demandas em aberto | Absorvida pelo Andamento |
 | `2026-06-18_EDA_Fase3_seis_demandas.pptx` | 29 | EDA da Fase 3 + as **seis demandas de junho** | **Único deck que teve chefia feminina, habitação precária e morfologia** — recuperados na EDA Central |
@@ -55,6 +101,14 @@ Do mais recente para o mais antigo. O prefixo é a data do arquivo.
 | `2026-05-28_Correcoes_commit_2fb2e30.pptx` | 10 | Duas correções metodológicas de um commit específico | Correções já incorporadas |
 | `2026-05-22_Revisao_denominador_analfabetismo.pptx` | 13 | A correção do denominador do analfabetismo | Correção já incorporada (`V00901 / (V00900 + V00901)`) |
 | `2026-05-15_EDA_inicial_denominador_V01042.pptx` | 32 | A **primeira** EDA, sobre o denominador V01042 | **Metodologia abandonada.** V01042 é contagem de pessoas, não de domicílios — os números deste deck não valem |
+
+> **Atenção à cópia fora do repositório.** Existe um `IVS_Andamento_2026-08_rev2.pptx` em
+> `Iniciacao Cientifica/Relatorios e Andamento/` que **não** é o mesmo arquivo do
+> `2026-08-09_Andamento_rev2.pptx` acima: tem 27 slides em vez de 30 e foi editado em
+> 12/08. Ele passou pelas correções de 24/08 (contagens de teste e de indicadores, universo
+> das favelas, o extremo de renda, `CD_TIPO` × `NM_FCU`) e está factualmente alinhado com a
+> EDA Central. A versão em `historico/` continua como estava no dia em que foi apresentada,
+> que é o papel dela.
 
 ### Cuidado ao consultar o histórico
 
@@ -100,6 +154,10 @@ Mapeamento completo, para o caso de encontrar uma referência ao nome antigo em 
 | `Versoes_anteriores/EDA_antiga_15-05_V01042.pptx` | `historico/2026-05-15_EDA_inicial_denominador_V01042.pptx` |
 | `Versoes_anteriores/Revisao_Denominador_Analfabetismo_22-05.pptx` | `historico/2026-05-22_Revisao_denominador_analfabetismo.pptx` |
 | `Versoes_anteriores/Correcoes_commit_2fb2e30.pptx` | `historico/2026-05-28_Correcoes_commit_2fb2e30.pptx` |
+| `EDA_Central_IVS_2026-08.pptx` | `historico/2026-08-21_EDA_Central_1a_rodada.pptx` |
+| `Roteiro_EDA_Central_IVS_2026-08.docx` | `complementos/Roteiro_EDA_Central_1a_rodada.docx` |
+| `Resumo_EDA_Central_2026-08.docx` | `complementos/Resumo_EDA_Central_2026-08.docx` |
+| `Criterio_Outliers_Renda.pptx` | `complementos/Criterio_Outliers_Renda.pptx` |
 
 A pasta `Versoes_anteriores/` deixou de existir: ela separava três decks antigos enquanto
 outros sete, igualmente antigos, ficavam na raiz. Agora todo deck fora de circulação está
@@ -110,6 +168,9 @@ em `historico/`.
 ## Onde guardar a próxima apresentação
 
 1. A atual sai da raiz e vai para `historico/`, com o prefixo `AAAA-MM-DD_`.
-2. A nova entra na raiz.
+2. A nova entra na raiz — **sozinha**. Roteiro, resumo e qualquer documento de apoio vão
+   para `complementos/`.
 3. Acrescente a linha correspondente na tabela do histórico acima, dizendo **por que** ela
    saiu de circulação — é essa coluna que evita que alguém use número velho sem saber.
+4. Arquive o deck **como ele estava**. Regerar na hora de arquivar produz um arquivo que
+   nunca foi apresentado.
