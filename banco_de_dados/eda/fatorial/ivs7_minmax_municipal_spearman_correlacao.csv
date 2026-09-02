@@ -1,0 +1,8 @@
+﻿;Água inadequada;Esgoto inadequado;Lixo inadequado;Razão de moradores;Analfabetismo 15+;Renda (invertida);Cor/raça PPI
+Água inadequada;1.0;0.413;0.1;0.191;0.302;-0.069;0.229
+Esgoto inadequado;0.413;1.0;0.215;0.24;0.444;0.215;0.382
+Lixo inadequado;0.1;0.215;1.0;-0.025;0.062;0.161;0.238
+Razão de moradores;0.191;0.24;-0.025;1.0;0.434;0.235;0.378
+Analfabetismo 15+;0.302;0.444;0.062;0.434;1.0;0.344;0.549
+Renda (invertida);-0.069;0.215;0.161;0.235;0.344;1.0;0.6
+Cor/raça PPI;0.229;0.382;0.238;0.378;0.549;0.6;1.0

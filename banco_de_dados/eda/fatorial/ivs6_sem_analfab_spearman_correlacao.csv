@@ -1,0 +1,7 @@
+﻿;Água inadequada;Esgoto inadequado;Lixo inadequado;Razão de moradores;Renda (invertida);Cor/raça PPI
+Água inadequada;1.0;0.417;0.095;0.257;0.26;0.354
+Esgoto inadequado;0.417;1.0;0.199;0.347;0.454;0.431
+Lixo inadequado;0.095;0.199;1.0;-0.057;0.164;0.19
+Razão de moradores;0.257;0.347;-0.057;1.0;0.441;0.46
+Renda (invertida);0.26;0.454;0.164;0.441;1.0;0.811
+Cor/raça PPI;0.354;0.431;0.19;0.46;0.811;1.0
