@@ -38,13 +38,13 @@ Projeto_IVS_Censo22/
 │
 ├── 📂 src/ivs_censo/                  CÓDIGO COMPARTILHADO (importável por scripts)
 │   ├── fontes.py                      Os 8 arquivos do Censo e o que se lê de cada um
-│   ├── indicadores.py                 Os 23 indicadores: fórmula, escala, elegibilidade
+│   ├── indicadores.py                 Os 26 indicadores: fórmula, escala, elegibilidade
 │   ├── dicionario.py                  Tabela de variáveis (descrição IBGE + arquivo-fonte)
 │   └── __init__.py
 │
 ├── 📂 scripts/                        EXECUTÁVEIS VERSIONADOS
 │   ├── gerar_tabela_variaveis.py      Dicionário de variáveis (CSV + XLSX)
-│   ├── gerar_entrega_orientadora.py   Pacote de entrega (CSV + SQLite, 95 colunas)
+│   ├── gerar_entrega_orientadora.py   Pacote de entrega (CSV + SQLite, 104 colunas)
 │   └── proporcoes_brasil.py           Indicadores do Brasil inteiro + comparativo ELSI
 │
 ├── 📂 banco_de_dados/                 OUTPUTS DA PIPELINE ATIVA (Fase 3)
@@ -143,7 +143,7 @@ dados/*.csv (8 arquivos) + dados/municipios_elsi_brasil.csv
 dados/*.csv (8 arquivos, sem filtro de município)
   │
   ▼  scripts/proporcoes_brasil.py   (usa src/ivs_censo — mesmas fórmulas do NB02)
-  │   468.099 setores → elegibilidade → recorte urbano → 23 indicadores
+  │   468.099 setores → elegibilidade → recorte urbano → 26 indicadores
   │   Agrega por Brasil / região / UF / município e compara com os 70 ELSI
   │   Saída → banco_de_dados/nacional/*.csv        (~10 min de execução)
 ```

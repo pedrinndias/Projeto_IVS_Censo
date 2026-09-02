@@ -210,11 +210,98 @@ o Norte (0,033). Maiores medianas municipais: Arara (0,231), Água Preta (0,213)
 ### 4.4 Rendimento médio do responsável
 
 `V06004`, usado diretamente. Média de R$ 4.187,41 e mediana de R$ 2.572,39 — a diferença
-entre as duas já indica a assimetria. O máximo, R$ 170.418,06 num único setor, é
-plausível: trata-se de rendimento médio dos responsáveis, e há setores de altíssima renda.
+entre as duas já indica a assimetria.
+
+**O máximo, R$ 170.418,06 num único setor, não é renda alta.** Uma versão anterior deste
+relatório o descrevia como plausível. Não é: o setor é o `310620005650366`, no bairro
+Senhor dos Passos em Belo Horizonte, com `CD_TIPO = 1` — é setor de favela, e tem 186
+domicílios, 518 pessoas e 31 analfabetos. A auditoria da seção 4.4.1 e as tabelas
+`renda_*.csv` tratam dele e dos demais extremos.
 Extremos municipais: São Caetano do Sul (mediana R$ 5.292), Curitiba (R$ 4.115) e Porto
 Alegre (R$ 3.987) no topo; Jaqueira (R$ 1.062), Água Preta (R$ 1.240) e Rosário (R$ 1.272)
 na base — uma razão de cinco vezes entre os extremos.
+
+#### 4.4.1 Auditoria dos extremos de renda
+
+Esta seção nasceu do caso de Belo Horizonte e responde a cinco demandas de agosto:
+identificar *todos* os extremos com município, setor e marcação de favela; rodar a EDA
+com e sem eles; expor o rastreamento de renda alta em setor pequeno; e olhar os extremos
+do Sudeste e do Norte. As tabelas estão em `banco_de_dados/eda/renda_*.csv`, geradas por
+`scripts/auditoria_renda.py`; a regra vive em `src/ivs_censo/renda.py`.
+
+**Duas decisões de método.** A detecção é *por município*, não global: o IVS é
+intraurbano, e R$ 20 mil é corriqueiro em São Paulo e anômalo em Autazes. Um corte global
+marca 4,61% dos setores do Sudeste contra 1,32% dos do Norte — encontra riqueza, não
+desvio local; o corte municipal inverte isso (Norte 7,40%, Sudeste 2,22%). E extremo
+suspeito não é o mesmo que extremo alto: o que levanta suspeita é a *incoerência* entre a
+renda declarada e o resto do perfil do setor.
+
+| Classe | Setores | % da base | Renda mediana | São favela? |
+|---|---:|---:|---:|---:|
+| `SUSPEITO` — extremo e incoerente com o entorno | 66 | 0,06% | R$ 10.167,85 | 22 de 66 |
+| `EXTREMO` — extremo e coerente | 3.292 | 3,16% | R$ 14.106,20 | 0 de 3.292 |
+| `NORMAL` | 100.750 | 96,78% | R$ 2.505,16 | — |
+
+**Três ressalvas sobre essa tabela**, que a versão anterior deste texto não trazia:
+
+1. **A coluna "São favela?" não valida a regra — ela repete a regra.** Ser favela é um
+   dos três testes de incoerência, então nenhum setor de favela *pode* cair em `EXTREMO`.
+   Que a linha do `EXTREMO` dê zero é consequência da definição, não evidência.
+2. **O sinal mais frequente é fraco.** Dos 66 suspeitos, 40 são flagrados apenas por ter
+   analfabetismo acima da *mediana* do próprio município — evento de ~50% por construção.
+   Esses 40 pedem inspeção caso a caso, não tratamento de bloco.
+3. **A regra é cega a erro de dado em bairro rico.** O setor `355030832000202`, em São
+   Paulo, declara R$ 140.172,64 para 78 domicílios — 45 vezes a mediana municipal, o
+   segundo maior valor da base — e sai como `EXTREMO`, porque o entorno sustenta renda
+   alta. A coluna `razao_implausivel` foi acrescentada para expor esses casos: são 13
+   setores classificados `EXTREMO` que superam 20× a mediana do município.
+
+**Sobre a hipótese da vírgula fora do lugar.** É tentador ler R$ 170.418,06 como um
+R$ 1.704,18 com o decimal deslocado. O próprio arquivo do IBGE permite testar isso, porque
+traz `V06005`, a variância do rendimento no setor. Com `CV = √V06005 ÷ V06004`:
+
+| Setor | Município | V06004 | CV |
+|---|---|---:|---:|
+| `310620005650366` | Belo Horizonte | R$ 170.418,06 | 5,26 |
+| `355030832000202` | São Paulo | R$ 140.172,64 | 6,85 |
+| `150140255000432` | Belém | R$ 78.444,47 | 8,66 |
+| `261160605200257` | Recife | R$ 67.237,29 | 10,77 |
+| — | mediana nacional | — | **0,78** |
+
+Se apenas a média tivesse deslizado uma casa decimal, o CV de Belo Horizonte seria da
+ordem de 526. Ele é 5,26: **a variância publicada é coerente com a média alta**. O dado do
+IBGE não está dizendo "erro de digitação" — está dizendo que a média do setor é puxada por
+uma ou poucas declarações enormes. A consequência é diferente e mais ampla: não se corrige
+o valor dividindo por 100, e não se resolve o problema excluindo 66 setores. O que ele
+recomenda é estatística robusta para a variável inteira. `V06001` e `V06005` passaram a ser
+extraídas por causa disso. `V06006`, o rendimento mediano, resolveria a questão de vez, mas
+**não existe** nesta versão do arquivo do IBGE — conferido no cabeçalho, que vai só até
+`V06005`.
+
+**Com e sem os suspeitos.** Excluir os 66 quase não move a estatística: a média da renda
+cai 0,21%, a mediana 0,05%, e a correlação de Spearman entre renda e analfabetismo vai de
+−0,7566 para −0,7580 — 0,0014. Transformar a renda em log muda dez vezes mais: a
+correlação de Pearson com o analfabetismo passa de −0,4181 para −0,5944, e com cor/raça de
+−0,6816 para −0,8088.
+
+**Onde a exclusão importa é na escala.** A normalização min-max é o insumo do índice, e um
+único valor ruim domina o intervalo do município inteiro:
+
+| Município | Setores | Suspeitos | 1º decil (com) | (sem) | Ganho |
+|---|---:|---:|---:|---:|---:|
+| Autazes | 43 | 1 | 81,4% | 14,3% | 67,1 pp |
+| Salto | 196 | 1 | 94,9% | 59,0% | 35,9 pp |
+| Belo Horizonte | 5.113 | 2 | 98,8% | 70,8% | 28,0 pp |
+| Belém | 2.004 | 6 | 92,7% | 69,6% | 23,1 pp |
+
+**E é aqui que a leitura precisa ir além do que a tabela mostra.** Mesmo *depois* de
+remover os suspeitos, 70,8% dos setores de Belo Horizonte, 69,6% dos de Belém e 59,0% dos
+de Salto continuam comprimidos no primeiro decil. O que quebra a escala não é a presença
+de 66 valores ruins: é aplicar min-max a uma variável com assimetria 3,74. Trocar a
+normalização global pela municipal — decisão registrada na seção 13 — reduz o problema mas
+não o resolve. A saída é transformar a variável (log ou posto) ou usar escala robusta, e
+essa decisão ainda está em aberto.
+
 
 ### 4.5 Cor ou raça preta, parda e indígena
 
@@ -298,9 +385,12 @@ Por isso a tabela `outliers.csv` traz também as colunas `p95`, `n_acima_p95`,
 `pct_acima_p95` e a sinalização `iqr_nao_informativo`. **Para essas três variáveis, o
 percentil 95 é o critério apropriado de cauda alta.**
 
-Nos demais indicadores o IQR funciona. Os 10,1% de outliers da renda são reais: refletem a
-cauda de setores de alta renda, não erro de dado. A proporção PPI não tem nenhum outlier,
-consequência de ser limitada em [0, 1] e ter distribuição espalhada.
+Nos demais indicadores o IQR funciona. **A leitura da renda mudou desde a primeira versão
+deste relatório**, que dizia que os 10,1% de outliers eram todos reais. A auditoria da
+seção 4.4.1 separou os casos: com o corte de Tukey em k=3 aplicado *por município* — que é
+o corte coerente com um índice intraurbano —, 3.292 setores (3,16%) são extremos coerentes
+com o entorno e 66 (0,06%) são internamente contraditórios. A proporção PPI não tem nenhum
+outlier, consequência de ser limitada em [0, 1] e ter distribuição espalhada.
 
 ---
 
@@ -464,7 +554,8 @@ Urbanas, marcadas em `CD_TIPO = 1`.
 
 | | Valor |
 |---|---:|
-| Setores de FCU no recorte | **19.507 (17,9%)** |
+| Setores de FCU no recorte de análise | **19.452 (18,7% de 104.108)** |
+| Setores de FCU na base completa | 19.507 (17,9% de 109.032) |
 | Favelas distintas (`CD_FCU`) | 5.903 |
 | População residente em FCU | 10.071.575 |
 | Domicílios em FCU | 3.443.687 |
@@ -603,7 +694,7 @@ argumento nenhum no artigo.
    pela pipeline — o Notebook 01 só extraía 0–4, 5–9, 10–14, 60–69 e 70+. Sem elas, a
    Razão de Dependência de Idosos seria impossível.
 4. Editei o `usecols` do bloco `demog` no Notebook 01 e reprocessei a base inteira. A base
-   passou de 58 para 68 colunas.
+   passou de 58 para 73 colunas.
 5. Reescrevi a célula `idade-estrutura` do Notebook 02 com as três definições viáveis.
 6. Calculei cada indicador de **duas formas** (ver abaixo o porquê).
 7. Rodei o cálculo nacional para validar contra o número publicado.
@@ -663,7 +754,7 @@ Quem ler a tabela sabe exatamente de onde veio cada linha.
    Censo), e a mesma tabela é embutida na tabela `dicionario_variaveis` dos bancos SQLite
    da entrega.
 
-**Resultado e verificação.** São **67 variáveis** de **8 arquivos**; 57 descrições vêm do
+**Resultado e verificação.** São **72 variáveis** de **8 arquivos**; 62 descrições vêm do
 dicionário oficial e 10 da documentação do projeto. Um teste automatizado confere que toda
 variável usada em algum indicador aparece na tabela.
 
@@ -802,7 +893,7 @@ torna um padrão-ouro disponível de graça: se o índice funciona, ele tem que 
 em favela. Comparar os componentes entre os dois grupos é, portanto, uma **validação de
 critério** — e é o teste mais direto que teremos quando o IVS estiver calculado.
 
-**Resultado.** 19.507 setores de FCU no recorte (17,9%), em 5.903 favelas distintas, com
+**Resultado.** 19.452 setores de FCU no recorte de análise (18,7% dos 104.108 urbanos elegíveis) e 19.507 na base completa (17,9% dos 109.032) — a tabela é calculada sobre a base, e a coluna `universo` de `favelas_fcu_total.csv` diz qual linha é qual. São 5.899 favelas distintas no recorte e 5.903 na base, com
 10,07 milhões de residentes, presentes em 42 dos 70 municípios. Todos os componentes se
 movem na direção esperada: esgoto inadequado 4,14× maior, lixo 2,90×, analfabetismo 2,14×,
 e renda a um terço.
@@ -829,7 +920,7 @@ de garantir que a comparação seja legítima.
 1. Criei o módulo `src/ivs_censo/` com três partes: procedência das variáveis (`fontes.py`),
    definição dos indicadores (`indicadores.py`) e dicionário (`dicionario.py`).
 2. Escrevi `scripts/proporcoes_brasil.py`, que lê os 8 arquivos em blocos, monta a base
-   nacional e calcula os 23 indicadores.
+   nacional e calcula os 26 indicadores.
 3. Apliquei as mesmas regras de elegibilidade e o mesmo recorte urbano, para os números
    serem comparáveis linha a linha.
 4. Exportei três recortes — Brasil todos os setores, Brasil urbano, ELSI urbano — mais as
@@ -898,7 +989,7 @@ Toda decisão acima passou por pelo menos uma verificação empírica. As princi
 | Denominador do tipo de domicílio | Soma dos tipos não pode passar de `V00001` | 0 estouros; déficit máximo de 6 por sigilo |
 | Critério de identificação de favela | `CD_TIPO = 1` contra `NM_FCU` preenchido, no país | Coincidem: 33.272 setores |
 | Equivalência `SITUACAO` × `CD_SIT` | Tabulação cruzada nos 468.099 setores | Sem exceções |
-| Reprodutibilidade dos artefatos | Suíte de testes automatizados | 43 testes |
+| Reprodutibilidade dos artefatos | Suíte de testes automatizados | 65 testes |
 | Números dos relatórios e da apresentação | Script de auditoria contra os CSVs de origem | 286 valores conferidos, 0 divergências |
 
 ---
@@ -930,11 +1021,17 @@ Toda decisão acima passou por pelo menos uma verificação empírica. As princi
 
 - **Falácia ecológica.** Todas as medidas são agregadas por setor; nada aqui autoriza
   inferência sobre indivíduos (Lima-Costa & Barreto, 2003).
-- **Exclusão de institucionalizados.** A regra `Dados_sig` remove setores 100% coletivos
-  (asilos, presídios). No recorte ELSI nenhum setor caiu nessa classe, mas a população
-  institucionalizada permanece sub-representada dentro dos setores mistos.
+- **Institucionalizados.** A regra `Dados_sig` prevê a classe `COLETIVO` para setores sem
+  domicílios particulares, mas **nenhum setor do recorte caiu nela** — a classe está vazia.
+  Ou seja, ninguém é excluído por essa via, e dizer que os institucionalizados "saem pela
+  classe COLETIVO" seria falso. O que existe é uma **assimetria de universo entre os
+  próprios indicadores**: moradores de domicílios coletivos entram em `v0001` (e portanto
+  nos denominadores de cor/raça, `pct_idoso_60mais` e `iep_setor`) mas não em `V00001` (e
+  portanto ficam fora de todos os indicadores domiciliares). É essa assimetria que precisa
+  ser declarada, não uma exclusão que não acontece.
 - **O recorte urbano reduz municípios pequenos** de forma desigual, como detalhado em 3.4.
 - **O sigilo do analfabetismo é seletivo** e afeta 15,9% dos setores — tratado em 14.1.
+- **O sigilo parcial subestima as três variáveis de saneamento** — tratado em 14.3.
 - **Três componentes do IVS-BH original não são reprodutíveis** com os agregados do Censo
   2022 (anos de estudo, faixas de renda, óbitos cardiovasculares).
 - **A EDA é descritiva.** Nenhuma inferência ou teste de hipótese foi conduzido; as
@@ -1032,7 +1129,7 @@ máximo 128), e 47% têm um setor só. Os totais das duas fontes não são compa
 diretamente.
 
 **Limitação 3 — a comparação com 2010 não se sustenta.** O próprio IBGE restringe a
-comparabilidade (p. 73): foram 6.329 FCU com 11.425.644 pessoas em 2010, contra 12.348 e
+comparabilidade (p. 73-74): foram 6.329 FCU com 11.425.644 pessoas em 2010, contra 12.348 e
 16.390.815 em 2022, mas "o aumento [...] não se deve apenas ao surgimento de novas Favelas e
 Comunidades Urbanas". O estudo de área constante que o Instituto conduziu cobre 77,9% dos
 setores de 2010 e apenas 46,5% dos de 2022, e nele a população **caiu 5,4%**. Nenhuma
@@ -1052,6 +1149,43 @@ dos municípios que têm FCU. É consequência do desenho do ELSI, que privilegi
 centros urbanos — e é um argumento forte de representatividade para o estudo.
 
 ---
+
+### 14.3 O sigilo parcial nos numeradores de várias parcelas
+
+**O mecanismo.** Os numeradores de água (7 variáveis), esgoto (5), lixo (5) e cor/raça (3)
+são somas. A pipeline as calcula com `min_count=1`: o indicador só vira nulo se **todas** as
+parcelas estiverem sigilosas. A contrapartida é que, quando *algumas* estão sigilosas e
+outras não, as sigilosas entram na soma **valendo zero**. Basta uma das sete variáveis de
+água vir como `X` para o setor ser medido a menos.
+
+**A frequência não é desprezível**, no recorte urbano elegível:
+
+| Numerador | Setores com ao menos 1 parcela sigilosa | Com todas sigilosas |
+|---|---:|---:|
+| Água — 7 variáveis | 30.302 (29,1%) | 0 |
+| Esgoto — 5 variáveis | 29.606 (28,4%) | 1 |
+| Lixo — 5 variáveis | 28.239 (27,1%) | 0 |
+| Cor/raça PPI — 3 variáveis | 24.226 (23,3%) | 2 |
+
+`V01321` (cor ou raça indígena) sozinha é suprimida em 21,5% dos setores, o que significa
+que em um a cada cinco setores a proporção PPI é medida sem a parcela indígena.
+
+**O viés é sempre para baixo e é limitado**, porque o IBGE só suprime contagem pequena.
+Supondo que cada célula sigilosa valha de 1 a 4 domicílios, a média da água sobe de 0,0696
+para algo entre 0,0723 e 0,0800 (+3,9% a +14,9%); o esgoto sobe entre 3,2% e 12,5%; o lixo,
+entre 2,0% e 7,9%.
+
+**A alternativa é pior, e por isso a escolha foi esta.** Exigir todas as parcelas
+(`min_count` igual ao número de variáveis) trocaria um viés pequeno por perda de 29,1% dos
+setores no indicador de água. Entre subestimar pouco e perder quase um terço da base, optei
+por subestimar — mas é escolha, não neutralidade, e é isso que esta seção registra.
+
+**Consequência para a leitura das distribuições.** Um setor com `pct_agua_inad = 0` e
+alguma parcela sigilosa não é um setor comprovadamente adequado: é um setor **sem
+inadequação medida**. Entre os setores que aparecem com zero, têm ao menos uma parcela
+sigilosa 22,6% (água), 22,1% (esgoto) e 30,5% (lixo). A afirmação "em mais da metade dos
+setores urbanos o saneamento é integralmente adequado" precisa dessa ressalva.
+
 
 ## 15. Próximos Passos
 

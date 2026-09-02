@@ -157,7 +157,7 @@ O grafo tinha 16 comunidades rotuladas. Estas devem mudar de conteúdo:
 |---|---|---|
 | 1 | Variáveis-Componente e Decisões Metodológicas | ganha os 16 indicadores complementares |
 | 4 | Pipeline de Dados e Histórico do Projeto | ganha `src/` e `scripts/` |
-| 5 | Testes da Pipeline (Fase 3) | de 16 para 43 testes, em dois arquivos |
+| 5 | Testes da Pipeline (Fase 3) | de 16 para 63 testes, em dois arquivos |
 | 6 a 8, 11 | as quatro figuras | regeneradas sobre o recorte urbano |
 | 9 | Redação e Saídas da EDA | relatório reescrito, 12 CSVs novos |
 | 12 | Regra IQR e Tratamento de Outliers | segue válida, mas agora sobre 104.108 setores |

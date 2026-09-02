@@ -185,7 +185,7 @@ limitações do artigo.
 
 O Censo 2022 substituiu "aglomerado subnormal" por **Favela e Comunidade Urbana**,
 marcada em `CD_TIPO = 1` (com `CD_FCU`/`NM_FCU` identificando a comunidade). No recorte
-ELSI são **19.507 setores (17,9%)**, distribuídos em 5.903 FCUs distintas de 42 dos 70
+ELSI são **19.452 setores no recorte de análise (18,7% dos 104.108 urbanos elegíveis)** — 19.507 (17,9%) se o denominador for a base completa de 109.032 setores, que é onde as tabelas de FCU são calculadas. Os 55 de diferença estão em setores ZERADO ou SIGILOSO; nenhum é rural, porque favela é urbana por definição. São 5.899 FCUs distintas no recorte, 5.903 na base, de 42 dos 70
 municípios, abrigando 10,07 milhões de pessoas.
 
 ---
@@ -212,10 +212,10 @@ comum, para as fórmulas não existirem em duas versões.
 | Onde | O que é |
 |---|---|
 | `src/ivs_censo/fontes.py` | Os 8 arquivos do Censo, a chave do setor em cada um e quais variáveis o projeto lê. É a fonte da coluna "arquivo-fonte" da tabela de variáveis. |
-| `src/ivs_censo/indicadores.py` | Definição declarativa dos 23 indicadores (numerador, denominador, escala) + `calcular_indicadores` e `classificar_dados_sig`. |
+| `src/ivs_censo/indicadores.py` | Definição declarativa dos 26 indicadores (numerador, denominador, escala) + `calcular_indicadores` e `classificar_dados_sig`. |
 | `src/ivs_censo/dicionario.py` | Lê os dicionários oficiais do IBGE e monta a tabela de variáveis. |
 | `scripts/gerar_tabela_variaveis.py` | Gera `Dicionario_Variaveis_Projeto.{csv,xlsx}`. |
-| `scripts/gerar_entrega_orientadora.py` | Regenera o pacote de entrega (CSV + SQLite, 95 colunas, 3 tabelas). Antes disso os `.db` vinham de um script ad-hoc não versionado. |
+| `scripts/gerar_entrega_orientadora.py` | Regenera o pacote de entrega (CSV + SQLite, 104 colunas, 3 tabelas). Antes disso os `.db` vinham de um script ad-hoc não versionado. |
 | `scripts/proporcoes_brasil.py` | Calcula os indicadores para os ~468 mil setores do Brasil e compara com os 70 municípios ELSI. |
 | `scripts/gerar_tabelas_auditoria.py` | Regenera as 9 tabelas de auditoria/apresentação de `banco_de_dados/eda/` (cobertura de saneamento, morfologia, sigilo em V00901, responsáveis por sexo). Antes vinham de código ad-hoc não versionado — eram os "CSVs órfãos". Usam o recorte com rurais (106.281 setores). |
 
@@ -420,7 +420,7 @@ eles seguem o critério oficial.
 **✅ Validada setor a setor contra a lista oficial (21/08/2026).** O IBGE publica
 `FavelaseComunidadesUrbanas2022Setores_20250417.xlsx` (33.272 setores, 12.348 FCU, 656
 municípios — bate com a publicação). Cruzando com a nossa base: dos 109.032 setores do
-recorte ELSI, **19.507 estão na lista oficial e são exatamente os 19.507 com `CD_TIPO = 1`**
+recorte ELSI, **19.507 estão na lista oficial e são exatamente os 19.507 com `CD_TIPO = 1`** — zero falso positivo, zero omissão. Note que a conferência é contra a **lista oficial**, e não contra o campo `NM_FCU`: esse diverge, são 19.532 no recorte e 33.321 no país contra 33.272 da lista. Os 25 divergentes não constam da lista oficial
 — zero falso positivo, zero omissão, **100,00% de concordância**. Os 25 setores com `NM_FCU`
 preenchido e `CD_TIPO ≠ 1` não estão na lista oficial: são setores minúsculos (845 pessoas
 somadas) que apenas fazem divisa com uma FCU. `NM_FCU` é atributo descritivo; `CD_TIPO` é a
@@ -557,11 +557,11 @@ subseções acima; o processo de execução, na §12 do relatório da EDA.
 | # | Demanda | Decisão principal | Resultado |
 |---|---|---|---|
 | 1 | Ajustar o índice de envelhecimento | Denominador passa a ser menores de 15 (§6.2.7) | IEP 92,7 no recorte |
-| 2 | Tabela de variáveis com a fonte | Descrições do dicionário oficial, com coluna de procedência | 67 variáveis, 8 arquivos |
+| 2 | Tabela de variáveis com a fonte | Descrições do dicionário oficial, com coluna de procedência | 72 variáveis, 8 arquivos |
 | 3 | Excluir setores rurais | Filtro na análise, não na extração (§6.2.5) | 104.108 setores; 2,04% excluídos |
 | 4 | Agrupar moradias convencionais | Critério de adequação da edificação | 99,19% convencionais |
 | 5 | Indicador de apartamento | Fora do índice, por falta de direção (§6.2.11) | média de 31,5% |
-| 6 | Contagem de vilas e favelas | Critério `CD_TIPO = 1` (§6.2.8) | 19.507 setores (17,9%) |
+| 6 | Contagem de vilas e favelas | Critério `CD_TIPO = 1` (§6.2.8) | 19.452 no recorte (18,7%); 19.507 na base (17,9%) |
 | 7 | Proporções para o Brasil todo | Módulo compartilhado (§6.2.12) | população confere: 203.080.756 |
 
 Pendente: a **redação das limitações** com Lima-Costa & Barreto (2003) — falácia ecológica,
@@ -629,7 +629,7 @@ Projeto_IVS_Censo22/
 │
 ├── src/ivs_censo/                     Código compartilhado (fontes, indicadores, dicionário)
 ├── scripts/                           gerar_tabela_variaveis · gerar_entrega_orientadora · proporcoes_brasil · gerar_tabelas_auditoria
-└── tests/                             test_pipeline_fase3.py + test_ivs_censo.py (43 testes)
+└── tests/                             test_pipeline_fase3.py + test_ivs_censo.py (65 testes)
 ```
 
 ### Os 8 arquivos-fonte do Censo 2022
