@@ -90,7 +90,16 @@ ARQUIVOS_CENSO: dict[str, FonteCenso] = {
         arquivo='Agregados_por_setores_renda_responsavel_BR.csv',
         chave='CD_SETOR',
         tema='Renda do Responsável',
-        variaveis=['V06004'],
+        # V06004 é a média que entra no IVS. V06001 e V06005 não entram em indicador
+        # nenhum: existem para AUDITAR o V06004, e foram acrescentadas em 24/08/2026
+        # porque sem elas não dá para distinguir "setor rico" de "setor com uma
+        # declaração enorme". V06005 é a variância — com ela, CV = √V06005/V06004
+        # mostra que os setores de renda absurda têm CV de 5 a 11 contra mediana
+        # nacional de 0,78, ou seja, média puxada por poucos casos, e não erro de
+        # digitação de fator 100. V06001 dá quantas pessoas sustentam cada média.
+        # V06006 (rendimento mediano) está no dicionário do IBGE mas NÃO existe nesta
+        # versão do CSV — o cabeçalho tem só V06001 a V06005.
+        variaveis=['V06001', 'V06004', 'V06005'],
     ),
     'demog': FonteCenso(
         rotulo='Demografia',
