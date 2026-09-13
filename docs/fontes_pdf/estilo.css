@@ -1,0 +1,296 @@
+/* Identidade do Projeto IVS — paleta de papel, serifada nos títulos, sans no corpo,
+   tabelas no padrão booktabs (três filetes, sem preenchimento).
+   Extraída de scripts/gerar_pdf_outliers_renda.py e scripts/gerar_resumo_eda_central.py. */
+
+@page {
+  size: A4;
+  margin: 20mm 18mm 18mm 18mm;
+}
+
+:root {
+  --tinta:  #1A1A1A;
+  --petrol: #1F4E4A;
+  --clay:   #A83A2C;
+  --cinza:  #666666;
+  --linha:  #C8C8C8;
+  --fundo:  #F2F0EC;
+  --serif:  "Liberation Serif", "DejaVu Serif", Georgia, serif;
+  --sans:   "Liberation Sans", "DejaVu Sans", Arial, sans-serif;
+  --mono:   "Liberation Mono", "DejaVu Sans Mono", monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--sans);
+  font-size: 9.6pt;
+  line-height: 1.48;
+  color: var(--tinta);
+  margin: 0;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  text-align: justify;
+}
+
+/* ── Folha de rosto ─────────────────────────────────────────────── */
+.rosto { margin-bottom: 14mm; }
+.rosto .etiqueta {
+  font-family: var(--sans);
+  font-size: 7.6pt;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--clay);
+  margin-bottom: 5mm;
+}
+.rosto h1 {
+  font-family: var(--serif);
+  font-size: 25pt;
+  line-height: 1.14;
+  font-weight: 700;
+  color: var(--tinta);
+  margin: 0 0 3mm;
+  text-align: left;
+  letter-spacing: -.01em;
+}
+.rosto .sub {
+  font-family: var(--serif);
+  font-size: 12.4pt;
+  line-height: 1.34;
+  font-style: italic;
+  color: var(--petrol);
+  margin: 0 0 6mm;
+  text-align: left;
+  max-width: 148mm;
+}
+.regua { border: 0; border-top: .6pt solid var(--linha); margin: 5mm 0; }
+.regua-forte { border: 0; border-top: 1.6pt solid var(--tinta); margin: 4mm 0 5mm; }
+
+.ficha {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.6pt;
+  margin-top: 2mm;
+}
+.ficha td { padding: 1.1mm 0; vertical-align: top; text-align: left; }
+.ficha td:first-child {
+  width: 34mm;
+  color: var(--cinza);
+  font-size: 7.6pt;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  padding-right: 4mm;
+}
+
+/* ── Títulos ────────────────────────────────────────────────────── */
+h2 {
+  font-family: var(--serif);
+  font-size: 15pt;
+  font-weight: 700;
+  color: var(--tinta);
+  margin: 11mm 0 1mm;
+  padding-bottom: 1.6mm;
+  border-bottom: 1.2pt solid var(--tinta);
+  text-align: left;
+  page-break-after: avoid;
+}
+h2 .num {
+  color: var(--clay);
+  font-size: 11pt;
+  margin-right: 3mm;
+  font-weight: 700;
+}
+h3 {
+  font-family: var(--serif);
+  font-size: 11.6pt;
+  font-weight: 700;
+  color: var(--petrol);
+  margin: 7mm 0 1.6mm;
+  text-align: left;
+  page-break-after: avoid;
+}
+h4 {
+  font-family: var(--sans);
+  font-size: 8.4pt;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--cinza);
+  margin: 5mm 0 1.4mm;
+  text-align: left;
+  page-break-after: avoid;
+}
+p { margin: 0 0 2.6mm; orphans: 2; widows: 2; }
+strong { font-weight: 700; }
+em { font-style: italic; }
+a { color: var(--petrol); text-decoration: none; }
+
+ul, ol { margin: 0 0 2.8mm; padding-left: 5.2mm; }
+li { margin-bottom: 1.3mm; }
+
+code, .mono {
+  font-family: var(--mono);
+  font-size: 8.4pt;
+  background: var(--fundo);
+  padding: .3mm .9mm;
+  border-radius: 1px;
+}
+
+/* ── Tabelas booktabs ───────────────────────────────────────────── */
+table.bt {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 8.4pt;
+  margin: 3mm 0 4.5mm;
+  page-break-inside: avoid;
+  text-align: left;
+}
+table.bt caption {
+  caption-side: top;
+  text-align: left;
+  font-family: var(--sans);
+  font-size: 7.6pt;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--cinza);
+  padding-bottom: 1.8mm;
+}
+table.bt thead th {
+  border-top: 1.3pt solid var(--tinta);
+  border-bottom: .6pt solid var(--tinta);
+  padding: 1.7mm 2.4mm 1.7mm 0;
+  font-weight: 700;
+  vertical-align: bottom;
+  text-align: left;
+  font-size: 8.2pt;
+}
+table.bt tbody td {
+  border-bottom: .4pt solid var(--linha);
+  padding: 1.7mm 2.4mm 1.7mm 0;
+  vertical-align: top;
+}
+table.bt tbody tr:last-child td { border-bottom: 1.3pt solid var(--tinta); }
+table.bt td.num, table.bt th.num { text-align: right; padding-right: 3mm; font-variant-numeric: tabular-nums; }
+table.bt .dest { font-weight: 700; }
+table.bt .fraco { color: var(--cinza); }
+table.bt .clay { color: var(--clay); font-weight: 700; }
+table.bt .petrol { color: var(--petrol); font-weight: 700; }
+
+/* ── Blocos de destaque ─────────────────────────────────────────── */
+.bloco {
+  background: var(--fundo);
+  border-left: 2.2pt solid var(--petrol);
+  padding: 3.2mm 4mm 2.4mm;
+  margin: 3.5mm 0 4mm;
+  page-break-inside: avoid;
+}
+.bloco.alerta { border-left-color: var(--clay); }
+.bloco .rot {
+  font-family: var(--sans);
+  font-size: 7.4pt;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--petrol);
+  margin-bottom: 1.6mm;
+}
+.bloco.alerta .rot { color: var(--clay); }
+.bloco p:last-child { margin-bottom: 0; }
+
+/* Fichas de leitura por seção do livro */
+.secao-livro {
+  page-break-inside: avoid;
+  margin: 0 0 6mm;
+  border-top: .6pt solid var(--linha);
+  padding-top: 2.6mm;
+}
+.secao-livro .cab {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 6mm;
+  margin-bottom: 1.8mm;
+}
+.secao-livro .titulo {
+  font-family: var(--serif);
+  font-size: 11.2pt;
+  font-weight: 700;
+  color: var(--tinta);
+}
+.secao-livro .paginas {
+  font-family: var(--mono);
+  font-size: 7.8pt;
+  color: var(--clay);
+  white-space: nowrap;
+  font-weight: 700;
+}
+.rotulo-inline {
+  font-family: var(--sans);
+  font-size: 7.2pt;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--cinza);
+  display: block;
+  margin-top: 2.4mm;
+  margin-bottom: .8mm;
+}
+.pergunta {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 10pt;
+  color: var(--petrol);
+  border-left: 1.6pt solid var(--linha);
+  padding-left: 3.4mm;
+  margin: 1mm 0 2mm;
+  text-align: left;
+}
+
+.quebra { page-break-before: always; }
+.nao-quebra { page-break-inside: avoid; }
+
+.rodape-doc {
+  margin-top: 10mm;
+  padding-top: 2.4mm;
+  border-top: .6pt solid var(--linha);
+  font-size: 7.8pt;
+  color: var(--cinza);
+  text-align: left;
+}
+
+/* Prompt: bloco de código longo */
+pre.prompt {
+  font-family: var(--mono);
+  font-size: 7.9pt;
+  line-height: 1.42;
+  background: var(--fundo);
+  border: .5pt solid var(--linha);
+  border-left: 2.2pt solid var(--tinta);
+  padding: 3.6mm 4mm;
+  margin: 3mm 0 4mm;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  text-align: left;
+  page-break-inside: auto;
+}
+pre.prompt b { font-weight: 700; color: var(--tinta); }
+
+/* Correções de composição */
+table.bt .mono,
+table.bt code {
+  background: transparent;
+  padding: 0;
+  font-size: 8.1pt;
+}
+h2 .num { font-size: 12.5pt; }
+.secao-livro .paginas { letter-spacing: -.01em; }
+
+/* Quebra de página: permitir que fichas e tabelas longas se dividam, mantendo
+   linhas e cabeçalhos íntegros. Sem isso, blocos altos empurram inteiros e
+   deixam meia página em branco. */
+.secao-livro { page-break-inside: auto; }
+.secao-livro .cab { page-break-after: avoid; }
+table.bt { page-break-inside: auto; }
+table.bt tr { page-break-inside: avoid; }
+table.bt thead { display: table-header-group; }
+table.bt caption { page-break-after: avoid; }
