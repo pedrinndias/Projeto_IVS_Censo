@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Implementação da Análise Fatorial no Projeto IVS — Brainstorm e Prompt</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<!-- ══════════════════ ROSTO ══════════════════ -->
+<div class="rosto">
+  <div class="etiqueta">Brainstorm de implementação · Notebook 04</div>
+  <h1>Da leitura ao código</h1>
+  <p class="sub">Inventário de ideias para implementar a análise fatorial no IVS, a arquitetura recomendada para o Notebook 04, e o prompt pronto para executá-la</p>
+  <hr class="regua-forte">
+  <table class="ficha">
+    <tr><td>Projeto</td><td>Índice de Vulnerabilidade à Saúde (IVS) intraurbano — Censo Demográfico 2022 / ELSI-Brasil</td></tr>
+    <tr><td>Instituição</td><td>Fiocruz Minas — Instituto René Rachou (IRR) · Iniciação Científica</td></tr>
+    <tr><td>Pesquisador</td><td>Pedro Dias Soares</td></tr>
+    <tr><td>Base metodológica</td><td>MATOS &amp; RODRIGUES, <em>Análise fatorial</em> (Enap, 2019) · FIGUEIREDO &amp; SILVA (2010)</td></tr>
+    <tr><td>Etapa</td><td>Notebook 04 — estrutura latente e definição dos pesos</td></tr>
+    <tr><td>Documento irmão</td><td>Guia de leitura do livro da Enap (este pacote)</td></tr>
+  </table>
+  <hr class="regua">
+</div>
+
+<!-- ══════════════════ 0 ══════════════════ -->
+<h2><span class="num">0</span>O que este documento é</h2>
+
+<p>Três coisas, nesta ordem. Primeiro, um <strong>inventário de ideias</strong> — dezesseis, agrupadas em quatro famílias — com custo, risco e veredito para cada uma, para que a escolha do que entra no Notebook 04 seja deliberada e não acidental. Segundo, a <strong>arquitetura recomendada</strong>: o que fazer, em que ordem, com que saídas. Terceiro, um <strong>prompt executável</strong>, pronto para ser colado numa sessão nova, que implementa a recomendação e produz o relatório.</p>
+
+<p>Nada aqui parte do zero. O projeto já tem a etapa meio andada, e o primeiro passo é dizer exatamente quanto.</p>
+
+<h3>O que já existe e não deve ser reescrito</h3>
+
+<table class="bt">
+  <caption>Tabela 1 — Inventário de reuso</caption>
+  <thead><tr><th style="width:54mm">Ativo</th><th>O que já resolve</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="mono dest">scripts/diagnostico_fatorial.py</td>
+      <td>219 linhas em numpy puro, sem dependência nova: KMO e MSA por matriz anti-imagem, Bartlett com cauda por Wilson–Hilferty, autovalores, análise paralela de Horn, ACP e rotação Varimax. Roda seis cenários e grava CSVs. <strong>É a base do Notebook 04, não um rascunho a descartar.</strong></td>
+    </tr>
+    <tr>
+      <td class="mono dest">banco_de_dados/eda/fatorial/</td>
+      <td>19 CSVs com os resultados dos seis cenários já calculados, incluindo <code>resumo_adequabilidade.csv</code>. Serve de referência para conferir que qualquer reimplementação reproduz os mesmos números.</td>
+    </tr>
+    <tr>
+      <td class="mono dest">entrega_orientadora/*.db</td>
+      <td>SQLite <strong>versionado</strong>, tabela <code>setores_censitarios</code> com 109.032 linhas × 104 colunas, as 7 variáveis já calculadas. Ao contrário dos CSVs do Censo, está no repositório — o Notebook 04 roda sem os 2,4 GB de dados brutos.</td>
+    </tr>
+    <tr>
+      <td class="mono dest">src/ivs_censo/indicadores.py</td>
+      <td>Definição canônica dos indicadores, com <code>INDICADORES_IVS</code> separado de <code>INDICADORES_COMPLEMENTARES</code>. O Notebook 04 deve importar daqui, como o NB02 já faz — nunca redefinir fórmulas.</td>
+    </tr>
+    <tr>
+      <td class="mono dest">docs/Analise_Fatorial_...md</td>
+      <td>A interpretação dos seis cenários, o diagnóstico do lixo, a convergência 65/35 × 60/40 e o checklist de 15 passos com status. Os itens 13, 14 e 15 são o escopo do Notebook 04.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="bloco">
+  <div class="rot">Consequência para o escopo</div>
+  <p>O Notebook 04 <strong>não é uma análise fatorial nova</strong>. É a consolidação da que existe, acrescida das quatro extensões que a leitura do livro da Enap tornou necessárias (rotação oblíqua, fatoração do eixo principal, escores refinados, diagnóstico de multicolinearidade) e da decisão sobre os pesos. Tratá-lo como implementação do zero é a forma mais rápida de perder duas semanas e chegar aos mesmos números.</p>
+</div>
+
+<!-- ══════════════════ 1 ══════════════════ -->
+<h2 class="quebra"><span class="num">1</span>Inventário de ideias</h2>
+
+<p>Cada ideia tem um veredito: <span class="mono" style="color:#1F4E4A;font-weight:700">ENTRA</span> no Notebook 04, <span class="mono" style="color:#666;font-weight:700">DEPOIS</span> (Notebook 05 ou geoprocessamento), ou <span class="mono" style="color:#A83A2C;font-weight:700">FORA</span> do escopo. Custo é tempo de implementação em horas de trabalho efetivo.</p>
+
+<h3>Família A — Extensões do método</h3>
+<p>Decorrem diretamente das cinco revisões apontadas pelo guia de leitura. São o núcleo do Notebook 04.</p>
+
+<table class="bt">
+  <caption>Tabela 2 — Extensões do método</caption>
+  <thead><tr><th style="width:5mm">#</th><th style="width:38mm">Ideia</th><th style="width:56mm">O que responde</th><th class="num" style="width:13mm">Custo</th><th style="width:15mm">Veredito</th><th>Observação</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="num">A1</td><td class="dest">Rotação oblíqua (<code>promax</code>)</td>
+      <td>Os dois fatores do IVS são correlacionados? Quanto? A repartição 65/35 sobrevive?</td>
+      <td class="num">3–4 h</td><td class="petrol">ENTRA</td>
+      <td>Prioridade máxima. <code>promax</code> é Varimax seguido de transformação oblíqua por mínimos quadrados — reaproveita o código existente. Produz a matriz de correlação entre fatores, que hoje não existe.</td>
+    </tr>
+    <tr>
+      <td class="num">A2</td><td class="dest">Fatoração do eixo principal</td>
+      <td>ACP e AF divergem nos seus dados, como a regra de Stevens sugere?</td>
+      <td class="num">2–3 h</td><td class="petrol">ENTRA</td>
+      <td>É ACP iterada com comunalidades na diagonal. Se as cargas baterem com a ACP, uma frase encerra a questão no artigo.</td>
+    </tr>
+    <tr>
+      <td class="num">A3</td><td class="dest">Escores pelo método da regressão</td>
+      <td>O índice 0–1 ponderado ordena os setores como o escore refinado ordenaria?</td>
+      <td class="num">2 h</td><td class="petrol">ENTRA</td>
+      <td><code>B = R⁻¹A</code> — três linhas de numpy. O produto é a correlação de Spearman entre os dois rankings: acima de 0,95 valida o índice 0–1.</td>
+    </tr>
+    <tr>
+      <td class="num">A4</td><td class="dest">SMC e diagnóstico de multicolinearidade</td>
+      <td>Renda × cor/raça a −0,811 compromete a separação dos pesos?</td>
+      <td class="num">1 h</td><td class="petrol">ENTRA</td>
+      <td>SMC é <code>1 − 1/diag(R⁻¹)</code>. Barato e responde a uma objeção previsível de parecerista.</td>
+    </tr>
+    <tr>
+      <td class="num">A5</td><td class="dest">Bootstrap das cargas</td>
+      <td>Os pesos são estáveis, ou dependem da amostra?</td>
+      <td class="num">3 h</td><td class="petrol">ENTRA</td>
+      <td>Não está em nenhuma das duas referências, e é a resposta direta à crítica de instabilidade que o livro faz aos métodos não refinados. Com 87 mil setores, 1.000 reamostragens rodam em minutos e dão intervalo de confiança para cada peso. <strong>É o maior ganho de credibilidade por hora investida em todo o inventário.</strong></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Família B — Decisões de composição</h3>
+<p>Questões travadas que precisam de número para serem decididas. O Notebook 04 deve produzir a evidência, não necessariamente a decisão — três delas são da orientadora.</p>
+
+<table class="bt">
+  <caption>Tabela 3 — Decisões de composição</caption>
+  <thead><tr><th style="width:5mm">#</th><th style="width:38mm">Ideia</th><th style="width:56mm">O que responde</th><th class="num" style="width:13mm">Custo</th><th style="width:15mm">Veredito</th><th>Observação</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="num">B1</td><td class="dest">Ordem NB03 ↔ NB04</td>
+      <td>Fatorar antes ou depois da normalização municipal?</td>
+      <td class="num">0 h</td><td class="petrol">ENTRA</td>
+      <td>Já medido: normalizar antes derruba o KMO de 0,783 para 0,720 e muda os pesos de 65/35 para 56/44. A recomendação (fatorar sobre brutos) só precisa ser registrada como decisão no GUIA §6.2.</td>
+    </tr>
+    <tr>
+      <td class="num">B2</td><td class="dest">Um fator ou dois</td>
+      <td>Manter a estrutura de duas dimensões do IVS-BH ou aceitar a solução unifatorial?</td>
+      <td class="num">1 h</td><td class="petrol">ENTRA</td>
+      <td>Kaiser e Horn apontam <strong>um</strong> fator na solução sem lixo. Calcular o índice nas duas versões e comparar as classificações em 4 faixas dá à orientadora o custo concreto da escolha.</td>
+    </tr>
+    <tr>
+      <td class="num">B3</td><td class="dest">Transformar as variáveis antes de fatorar</td>
+      <td>Log, posto ou winsorização resolvem a assimetria melhor do que Spearman?</td>
+      <td class="num">4 h</td><td>DEPOIS</td>
+      <td>O relatório da EDA (§13) já lista isso como pendência. Mas usar Spearman <em>é</em> uma padronização por posto embutida; fazer as duas coisas é redundante. Tratar no NB03, junto com a normalização.</td>
+    </tr>
+    <tr>
+      <td class="num">B4</td><td class="dest">Política do sigilo no analfabetismo</td>
+      <td>Os 16.563 setores perdidos enviesam a solução?</td>
+      <td class="num">2 h</td><td class="petrol">ENTRA</td>
+      <td>Parcialmente medido: o cenário sem analfabetismo mostra que a <em>estrutura</em> não muda. Falta comparar as cargas nos dois conjuntos de setores para quantificar o viés. O livro da Enap não oferece nada sobre faltantes — é lacuna a declarar.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Família C — Validação</h3>
+<p>É o que separa um índice defensável de um índice calculado. Boa parte é barata e o projeto tem um ativo raro: um marcador externo de vulnerabilidade.</p>
+
+<table class="bt">
+  <caption>Tabela 4 — Validação</caption>
+  <thead><tr><th style="width:5mm">#</th><th style="width:38mm">Ideia</th><th style="width:56mm">O que responde</th><th class="num" style="width:13mm">Custo</th><th style="width:15mm">Veredito</th><th>Observação</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="num">C1</td><td class="dest">Validação externa contra setores de favela</td>
+      <td>O IVS separa os 19.452 setores de FCU dos demais?</td>
+      <td class="num">2 h</td><td class="petrol">ENTRA</td>
+      <td><strong>A validação mais forte disponível ao projeto.</strong> <code>CD_TIPO = 1</code> é um marcador independente, oficial, com 100% de concordância já verificada. Uma curva ROC e a diferença de medianas entre os grupos valem mais do que qualquer estatística interna à fatorial.</td>
+    </tr>
+    <tr>
+      <td class="num">C2</td><td class="dest">Sensibilidade dos pesos</td>
+      <td>A classificação em 4 faixas muda se os pesos forem 60/40 em vez de 65/35?</td>
+      <td class="num">2 h</td><td class="petrol">ENTRA</td>
+      <td>Tabela de contingência entre as duas classificações. Se a concordância for alta, a decisão nº 1 do GUIA deixa de ser crítica — e isso é um resultado publicável, não um detalhe técnico.</td>
+    </tr>
+    <tr>
+      <td class="num">C3</td><td class="dest">Estabilidade por subamostra</td>
+      <td>A estrutura fatorial se mantém entre municípios e regiões?</td>
+      <td class="num">3 h</td><td>DEPOIS</td>
+      <td>Rodar a fatorial por região e comparar cargas. Interessante, mas 14 dos 70 municípios perdem mais da metade dos setores no recorte urbano — a instabilidade encontrada pode ser de amostra, não de estrutura. Melhor depois do piso mínimo definido.</td>
+    </tr>
+    <tr>
+      <td class="num">C4</td><td class="dest">I de Moran dos escores</td>
+      <td>Qual o tamanho da dependência espacial que a fatorial ignora?</td>
+      <td class="num">—</td><td>DEPOIS</td>
+      <td>Depende da malha de setores, que é da etapa de geoprocessamento. Registrar como limitação declarada no NB04 e medir no QGIS.</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3>Família D — Engenharia</h3>
+
+<table class="bt">
+  <caption>Tabela 5 — Decisões de engenharia</caption>
+  <thead><tr><th style="width:5mm">#</th><th style="width:38mm">Questão</th><th style="width:56mm">Opções</th><th class="num" style="width:13mm">Custo</th><th style="width:15mm">Veredito</th><th>Observação</th></tr></thead>
+  <tbody>
+    <tr>
+      <td class="num">D1</td><td class="dest">Dependências</td>
+      <td>Manter numpy puro × adicionar <code>factor_analyzer</code> e <code>scipy</code></td>
+      <td class="num">—</td><td class="petrol">numpy</td>
+      <td>O <code>requirements.txt</code> tem cinco pacotes e o script existente foi escrito para não crescer essa lista. Tudo que o NB04 precisa — promax, eixo principal, escores por regressão, SMC, bootstrap — é álgebra linear que o numpy já faz. Adicionar <code>factor_analyzer</code> traria conveniência e um risco de reprodutibilidade desproporcional.</td>
+    </tr>
+    <tr>
+      <td class="num">D2</td><td class="dest">Onde mora o código</td>
+      <td>Notebook × módulo em <code>src/</code> × script</td>
+      <td class="num">2 h</td><td class="petrol">módulo + notebook</td>
+      <td>Seguir o padrão já consolidado: a matemática vai para <code>src/ivs_censo/fatorial.py</code>, com testes em <code>tests/</code>; o notebook chama, interpreta e produz figuras. Foi exatamente a correção feita no NB02 em 20/08/2026, quando as fórmulas duplicadas viraram módulo compartilhado.</td>
+    </tr>
+    <tr>
+      <td class="num">D3</td><td class="dest">Figuras</td>
+      <td>Scree plot, mapa de cargas, diagrama de fatores</td>
+      <td class="num">2 h</td><td class="petrol">ENTRA</td>
+      <td>Matplotlib puro, na paleta do projeto, dpi 150, em <code>banco_de_dados/eda/fatorial/figuras/</code>. O scree plot com a linha de Horn sobreposta é a figura que vai para o artigo.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══════════════════ 2 ══════════════════ -->
+<h2 class="quebra"><span class="num">2</span>Arquitetura recomendada do Notebook 04</h2>
+
+<p>Onze itens do inventário entram: A1 a A5, B1, B2, B4, C1, C2 e D3, sobre a estrutura de D1 e D2. Estimativa total entre 20 e 26 horas de trabalho efetivo. A ordem abaixo importa — cada bloco consome o anterior.</p>
+
+<table class="bt">
+  <caption>Tabela 6 — Blocos do Notebook 04, em ordem de execução</caption>
+  <thead><tr><th style="width:6mm">§</th><th style="width:40mm">Bloco</th><th style="width:70mm">O que faz</th><th>Saída</th></tr></thead>
+  <tbody>
+    <tr><td class="num">1</td><td class="dest">Carga e recorte</td>
+      <td>Lê o <code>.db</code> da entrega, aplica <code>urbano = 1 AND Dados_sig = 'OK'</code>, importa os indicadores de <code>src/ivs_censo</code>, inverte a renda. Confere que reproduz os 104.108 setores e os 87.545 completos.</td>
+      <td>Conferência impressa</td></tr>
+    <tr><td class="num">2</td><td class="dest">Adequabilidade</td>
+      <td>Reproduz o diagnóstico existente — matriz de correlação, KMO, MSA, Bartlett — e acrescenta a <strong>SMC por variável</strong> (A4). Confere contra <code>resumo_adequabilidade.csv</code>: os números têm de bater exatamente.</td>
+      <td class="mono">nb04_adequabilidade.csv</td></tr>
+    <tr><td class="num">3</td><td class="dest">Número de fatores</td>
+      <td>Autovalores, Kaiser, Horn e variância acumulada, com o <strong>scree plot</strong> (D3). Registra explicitamente que Kaiser retém um fator na solução sem lixo e que o segundo se sustenta na teoria.</td>
+      <td class="mono">scree_horn.png</td></tr>
+    <tr><td class="num">4</td><td class="dest">Extração comparada</td>
+      <td>ACP e <strong>fatoração do eixo principal</strong> (A2) sobre a mesma matriz. Tabela lado a lado das cargas e a maior diferença absoluta entre elas.</td>
+      <td class="mono">nb04_extracao_comparada.csv</td></tr>
+    <tr><td class="num">5</td><td class="dest">Rotação comparada</td>
+      <td>Varimax e <strong>promax</strong> (A1). Publica a <strong>matriz de correlação entre os fatores</strong> e recalcula a repartição dos pesos na solução oblíqua. Verifica se alguma carga passa de 1 e, se passar, confere a variância residual.</td>
+      <td class="mono">nb04_cargas_{varimax,promax}.csv</td></tr>
+    <tr><td class="num">6</td><td class="dest">Estabilidade</td>
+      <td><strong>Bootstrap</strong> de 1.000 reamostragens (A5): intervalo de confiança de 95% para cada carga e para a repartição entre dimensões.</td>
+      <td class="mono">nb04_bootstrap_cargas.csv</td></tr>
+    <tr><td class="num">7</td><td class="dest">Pesos e escores</td>
+      <td>Fixa os pesos a partir da solução escolhida. Calcula as <strong>duas versões</strong>: índice 0–1 por média ponderada e <strong>escore pelo método da regressão</strong> (A3). Reporta a correlação de Spearman entre os dois rankings.</td>
+      <td class="mono">nb04_pesos.csv · escores</td></tr>
+    <tr><td class="num">8</td><td class="dest">Cenários de decisão</td>
+      <td>Índice calculado sob: um fator × dois fatores (B2); pesos empíricos × 60/40 do IVS-BH (C2); com e sem os setores de sigilo (B4). Tabelas de contingência entre as classificações em 4 faixas.</td>
+      <td class="mono">nb04_cenarios.csv</td></tr>
+    <tr><td class="num">9</td><td class="dest">Validação externa</td>
+      <td><strong>Separação dos setores de FCU</strong> (C1): distribuição do índice nos 19.452 setores de favela contra os demais, diferença de medianas e curva ROC.</td>
+      <td class="mono">nb04_validacao_fcu.{csv,png}</td></tr>
+    <tr><td class="num">10</td><td class="dest">Síntese e decisões</td>
+      <td>Tabela final de pesos, o que fica decidido, o que vai para a orientadora, e as limitações declaradas: Bartlett vazio, ACP de postos, multicolinearidade renda × cor/raça, viés do sigilo, dependência espacial, falácia ecológica.</td>
+      <td>Seção do relatório</td></tr>
+  </tbody>
+</table>
+
+<div class="bloco alerta">
+  <div class="rot">O que não fazer</div>
+  <p><strong>Não recalcular os indicadores.</strong> Eles vêm de <code>src/ivs_censo/indicadores.py</code>; redefini-los no notebook recria a dívida que o NB02 levou meses para pagar. <strong>Não decidir sozinho o que é da orientadora</strong> — o destino do lixo, o número de fatores e a política do sigilo são decisões dela; o notebook produz a evidência e apresenta o custo de cada opção. <strong>Não adicionar dependências</strong> sem necessidade demonstrada. E <strong>não calcular o IVS final</strong>: isso é o Notebook 05, depois da normalização municipal do Notebook 03.</p>
+</div>
+
+<!-- ══════════════════ 3 ══════════════════ -->
+<h2 class="quebra"><span class="num">3</span>O prompt</h2>
+
+<p>Abaixo, o prompt para executar a recomendação. Foi escrito para ser colado numa sessão nova, com o repositório aberto e o PDF do livro disponível. Ele é deliberadamente longo: prompts curtos para tarefas metodológicas produzem código que roda e análise que não se sustenta.</p>
+
+<p>Três observações antes de usá-lo. Primeiro, ele pede que a sessão <strong>estude antes de implementar</strong> — a ordem importa, e a leitura dos documentos existentes evita reescrever o que já está pronto. Segundo, ele separa o que é decisão técnica do que é decisão da orientadora, e proíbe a sessão de fechar a segunda. Terceiro, ele exige que os números do diagnóstico existente sejam <strong>reproduzidos exatamente</strong> antes de qualquer extensão — é a trava que impede uma reimplementação silenciosamente diferente.</p>
+
+<h4>Como usar</h4>
+<ul>
+  <li>Abrir uma sessão nova no repositório <code>Projeto_IVS_Censo</code>.</li>
+  <li>Anexar o PDF do livro da Enap e, se disponível, este documento e o guia de leitura.</li>
+  <li>Colar o texto abaixo integralmente.</li>
+  <li>Reservar a sessão: a execução completa é longa e não deve ser interrompida no meio do bloco 5.</li>
+</ul>
+
+<pre class="prompt">Você vai implementar o Notebook 04 do Projeto IVS — a análise fatorial que define
+os pesos do índice. Trabalhe em português. Não comece a escrever código antes de
+concluir a FASE 1.
+
+═══════════════════════════════════════════════════════════════════════
+FASE 1 — ESTUDO (não escreva código nesta fase)
+═══════════════════════════════════════════════════════════════════════
+
+Leia, nesta ordem, e me diga ao final o que entendeu de cada um em 3 linhas:
+
+  1. O PDF anexo: MATOS &amp; RODRIGUES, "Análise fatorial" (Enap, 2019), 74 p.
+     Preste atenção especial em: p. 22-26 (escores fatoriais, métodos refinados
+     e não refinados), p. 26-28 (AF x ACP e a regra de Stevens), p. 34-39
+     (rotação; a recomendação contra Varimax em Ciências Humanas), p. 43
+     (Bartlett em amostras grandes), p. 58 (a comunalidade de 0,50 não é corte
+     rígido) e p. 67-71 (Exemplo 2: índice de NSE a partir de itens do IBGE —
+     é o molde do nosso caso).
+
+  2. docs/Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md
+     Documento do projeto, de 24/08/2026. Traz a análise já rodada e o
+     checklist de 15 passos. Os itens 13, 14 e 15 são o nosso escopo.
+
+  3. scripts/diagnostico_fatorial.py
+     219 linhas em numpy puro. JÁ IMPLEMENTA: KMO, MSA por matriz anti-imagem,
+     Bartlett, autovalores, análise paralela de Horn, ACP e rotação Varimax.
+     Esta é a base do trabalho. Não reescreva o que já está aqui.
+
+  4. banco_de_dados/eda/fatorial/resumo_adequabilidade.csv
+     Os seis cenários já calculados. São a referência de conferência.
+
+  5. src/ivs_censo/indicadores.py — definição canônica dos 7 indicadores.
+     GUIA_DO_PROJETO.md §6.3 — as quatro decisões em aberto.
+
+Ao final da FASE 1, apresente: (a) os 3 pontos em que o livro da Enap diverge
+do artigo de Figueiredo; (b) o que o diagnostico_fatorial.py já resolve;
+(c) o que falta. Só então siga.
+
+═══════════════════════════════════════════════════════════════════════
+FASE 2 — ARQUITETURA
+═══════════════════════════════════════════════════════════════════════
+
+Crie src/ivs_censo/fatorial.py, seguindo o padrão de src/ivs_censo/indicadores.py
+(docstring extenso, funções puras, nomes em português, comentários que explicam
+a decisão e não o óbvio). Migre para lá o que está em scripts/diagnostico_fatorial.py
+e acrescente o que falta:
+
+  - rotacao_promax(cargas, kappa=4)    -> cargas padrão, cargas de estrutura,
+                                          matriz de correlação entre fatores
+  - fatoracao_eixo_principal(R, k)     -> ACP iterada com comunalidades na
+                                          diagonal, critério de parada e máximo
+                                          de iterações explícitos
+  - escores_regressao(R, cargas)       -> B = R^-1 A
+  - smc(R)                             -> 1 - 1/diag(R^-1)
+  - bootstrap_cargas(X, k, n_rep=1000, seed=42)
+
+RESTRIÇÃO FIRME: apenas numpy e pandas. Não adicione scipy, sklearn nem
+factor_analyzer ao requirements.txt. Tudo acima é álgebra linear que o numpy
+faz. Se julgar que alguma função é inviável sem dependência nova, PARE e me
+pergunte em vez de instalar.
+
+Escreva testes em tests/test_fatorial.py. No mínimo: (a) a ACP + Varimax do
+módulo novo reproduz ivs7_spearman_cargas.csv com tolerância de 1e-6;
+(b) promax sobre fatores ortogonais por construção devolve correlação ~0 entre
+eles; (c) os escores por regressão têm variância ~1.
+
+═══════════════════════════════════════════════════════════════════════
+FASE 3 — O NOTEBOOK
+═══════════════════════════════════════════════════════════════════════
+
+Crie notebooks/Fase3_EDA_ELSI/04_Analise_Fatorial.ipynb com dez blocos, nesta
+ordem. Cada bloco: uma célula markdown explicando a decisão metodológica com a
+página do livro que a sustenta, depois o código, depois a leitura do resultado.
+Siga o estilo do 02_Analises_Descritivas.ipynb.
+
+ 1. CARGA — lê banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db,
+    tabela setores_censitarios, filtro urbano=1 AND Dados_sig='OK'. Importa os
+    indicadores de src/ivs_censo. Inverte a renda. CONFIRA: 104.108 setores no
+    recorte, 87.545 completos nas 7 variáveis. Se não bater, pare e investigue.
+
+ 2. ADEQUABILIDADE — matriz de correlação (Spearman; Pearson como sensibilidade),
+    KMO, MSA, Bartlett, e acrescente a SMC por variável. TRAVA: os valores têm de
+    reproduzir resumo_adequabilidade.csv exatamente (KMO 0,7826; MSA mín 0,6995;
+    Bartlett 235084,38). Se divergirem, pare — há erro na migração.
+    Na leitura, registre que renda x cor/raça = -0,811 está acima do limiar de
+    multicolinearidade de 0,80 (livro, p. 42).
+
+ 3. NÚMERO DE FATORES — autovalores, Kaiser, Horn, variância acumulada. Figura:
+    scree plot com a linha de Horn sobreposta. Registre explicitamente que na
+    solução sem lixo o Kaiser retém UM fator (2º autovalor = 0,9585) e que a
+    retenção do segundo se apoia na razão teórica (livro, p. 32).
+
+ 4. EXTRAÇÃO COMPARADA — ACP e fatoração do eixo principal. Tabela lado a lado
+    e a maior diferença absoluta entre as cargas. Contexto: com 6 variáveis e
+    comunalidade mínima de 0,380, duas das três condições de convergência de
+    Stevens falham; por isso o teste é necessário.
+
+ 5. ROTAÇÃO COMPARADA — Varimax e promax. Publique a matriz de correlação entre
+    os fatores (só existe na solução oblíqua). Recalcule a repartição dos pesos
+    entre as dimensões na solução oblíqua e compare com os 65/35 da ortogonal.
+    Verifique se alguma carga passa de 1; se passar, confira a variância residual
+    (livro, p. 22: residual negativa = solução inadmissível).
+
+ 6. ESTABILIDADE — bootstrap de 1.000 reamostragens, IC de 95% para cada carga e
+    para a repartição entre dimensões. É a resposta à crítica de instabilidade
+    que o livro faz aos métodos não refinados (p. 23).
+
+ 7. PESOS E ESCORES — fixe os pesos. Calcule as DUAS versões: (a) índice 0-1 por
+    média ponderada das variáveis padronizadas; (b) escore pelo método da
+    regressão. Reporte a correlação de Spearman entre os dois rankings. Acima de
+    0,95, o índice 0-1 está validado apesar de ser "não refinado".
+
+ 8. CENÁRIOS — calcule o índice sob: 1 fator x 2 fatores; pesos empíricos x 60/40
+    do IVS-BH; com e sem os setores de sigilo. Tabelas de contingência entre as
+    classificações em 4 faixas (quartis). Objetivo: mostrar o custo concreto de
+    cada escolha, não escolher.
+
+ 9. VALIDAÇÃO EXTERNA — separação dos 19.452 setores de FCU (CD_TIPO = 1) contra
+    os demais: distribuição do índice, diferença de medianas, curva ROC. É a
+    validação mais forte disponível, porque o marcador é externo ao índice.
+
+10. SÍNTESE — tabela final de pesos; o que fica decidido; o que vai para a
+    orientadora; e as limitações declaradas: Bartlett vazio nesta escala,
+    ACP sobre matriz de Spearman é ACP de postos, multicolinearidade
+    renda x cor/raça, viés não aleatório do sigilo (16.563 setores, 15,9%),
+    dependência espacial não tratada, falácia ecológica.
+
+Saídas em banco_de_dados/eda/fatorial/, prefixo nb04_, sep=';', encoding
+utf-8-sig. Figuras em .../figuras/, dpi 150, matplotlib puro, paleta do projeto
+(tinta #1A1A1A, petrol #1F4E4A, clay #A83A2C, cinza #666666).
+
+═══════════════════════════════════════════════════════════════════════
+FASE 4 — RELATÓRIO
+═══════════════════════════════════════════════════════════════════════
+
+Escreva docs/Relatorio_Analise_Fatorial_NB04.md e gere também o PDF, seguindo a
+identidade dos documentos do projeto: serifada nos títulos, sans no corpo,
+tabelas booktabs (três filetes, sem preenchimento), a paleta acima.
+
+Estrutura: sumário executivo com os achados numerados; método e as decisões
+tomadas com a página do livro que sustenta cada uma; resultados bloco a bloco;
+as decisões que vão para a orientadora com o custo de cada opção; limitações;
+e reprodutibilidade (como rodar, o que sai onde).
+
+═══════════════════════════════════════════════════════════════════════
+REGRAS QUE VALEM O TEMPO TODO
+═══════════════════════════════════════════════════════════════════════
+
+• NÃO decida o que é da orientadora. O destino do indicador de lixo, o número de
+  fatores e a política do sigilo são decisões dela. Produza a evidência e o custo
+  de cada opção; não feche a questão.
+
+• NÃO calcule o IVS final. Isso é o Notebook 05, depois da normalização municipal
+  do Notebook 03. Aqui o produto são os PESOS e a estrutura.
+
+• NÃO redefina os indicadores. Importe de src/ivs_censo/indicadores.py.
+
+• NÃO invente número. Todo valor citado sai de um arquivo gerado por código
+  versionado. Se precisar de um dado que não existe, calcule-o e diga onde
+  gravou.
+
+• Se um resultado contrariar o que os documentos do projeto afirmam, PARE e me
+  avise antes de seguir. Pode ser descoberta, pode ser erro de migração — e a
+  diferença importa.
+
+• Fatorar sobre os indicadores BRUTOS, não sobre os normalizados por município.
+  Já está medido que normalizar antes derruba o KMO de 0,783 para 0,720 e muda
+  os pesos de 65/35 para 56/44.
+
+Comece pela FASE 1 e me apresente o resultado dela antes de seguir para a FASE 2.</pre>
+
+<!-- ══════════════════ 4 ══════════════════ -->
+<h2><span class="num">4</span>O que esperar do resultado</h2>
+
+<p>Vale registrar de antemão o que a execução provavelmente vai encontrar, para que a surpresa — se houver — seja informativa.</p>
+
+<table class="bt">
+  <caption>Tabela 7 — Previsões</caption>
+  <thead><tr><th style="width:44mm">Bloco</th><th style="width:56mm">Resultado esperado</th><th>Se der diferente</th></tr></thead>
+  <tbody>
+    <tr><td class="dest">Extração comparada (§4)</td>
+      <td>Cargas próximas entre ACP e eixo principal, com diferenças maiores nas variáveis de comunalidade baixa — água e razão de moradores.</td>
+      <td>Divergência acima de 0,10 em variável de comunalidade alta indica erro de implementação, não achado.</td></tr>
+    <tr><td class="dest">Rotação (§5)</td>
+      <td>Correlação entre os dois fatores entre 0,30 e 0,55, positiva. Repartição dos pesos deslocando-se de 65/35 na direção de 60/40.</td>
+      <td class="clay">Correlação acima de 0,70 sugere que a solução de dois fatores não se sustenta e reabre B2 com força.</td></tr>
+    <tr><td class="dest">Bootstrap (§6)</td>
+      <td>Intervalos estreitos — com 87 mil casos, a incerteza amostral das cargas é pequena. O peso de cada dimensão deve variar menos de 3 pontos percentuais.</td>
+      <td>Intervalos largos seriam achado importante e mudariam a conversa sobre pesos.</td></tr>
+    <tr><td class="dest">Escores (§7)</td>
+      <td>Spearman acima de 0,97 entre o índice 0–1 e o escore refinado.</td>
+      <td class="clay">Abaixo de 0,90 obrigaria a adotar o escore refinado como índice oficial, com custo de interpretabilidade.</td></tr>
+    <tr><td class="dest">Validação FCU (§9)</td>
+      <td>Separação nítida; área sob a curva ROC acima de 0,75.</td>
+      <td class="clay">Abaixo de 0,65 seria um problema sério de validade do índice, e teria de ser enfrentado antes de qualquer mapa.</td></tr>
+  </tbody>
+</table>
+
+<div class="bloco">
+  <div class="rot">O critério de sucesso</div>
+  <p>O Notebook 04 terá cumprido seu papel quando for possível responder, com um número e a referência que o sustenta, a estas três perguntas: <strong>quais são os pesos do IVS e por quê</strong>; <strong>quão sensível é a classificação dos setores a essa escolha</strong>; e <strong>o índice separa os territórios que sabidamente são vulneráveis</strong>. Tudo o mais é instrumentação.</p>
+</div>
+
+<div class="rodape-doc">
+  <p>Documentos do projeto citados: <code>GUIA_DO_PROJETO.md</code> (§3, §6.2, §6.3, §8) · <code>docs/Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md</code> · <code>docs/Relatorio_EDA_Fase3_IVS_ELSI.md</code> (§13, §15) · <code>scripts/diagnostico_fatorial.py</code> · <code>src/ivs_censo/indicadores.py</code> · <code>banco_de_dados/eda/fatorial/</code>.</p>
+  <p>Estimativas de custo são de trabalho efetivo e pressupõem o reuso do <code>diagnostico_fatorial.py</code>. Os resultados esperados na Tabela 7 são previsões deste documento, não medições — servem para calibrar a leitura, e devem ser confrontados com o que a execução produzir.</p>
+</div>
+
+</body>
+</html>
