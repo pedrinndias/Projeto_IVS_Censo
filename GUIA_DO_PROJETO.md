@@ -78,6 +78,8 @@ unidade territorial do IBGE — o que permite enxergar desigualdades *dentro* de
 - **Caiaffa et al. (2021)** e **Buss & Pellegrini Filho (2007)** — determinantes sociais
   e territoriais da saúde.
 - **Matos & Rodrigues (2019)** — referência sobre análise fatorial.
+  Estudada em detalhe em [`docs/Analise_Fatorial_Enap2019_Guia_de_Leitura.md`](docs/Analise_Fatorial_Enap2019_Guia_de_Leitura.md); o material da etapa está indexado
+  em [`docs/Analise_Fatorial_LEIAME.md`](docs/Analise_Fatorial_LEIAME.md).
 
 **A lacuna:** não existe um IVS padronizado e atualizado com dados do **Censo 2022** para o
 conjunto de municípios do ELSI-Brasil. Os estudos anteriores usaram o Censo 2010.
@@ -661,7 +663,7 @@ Projeto_IVS_Censo22/
 | Linha de base nacional (~468 mil setores) | ✅ `scripts/proporcoes_brasil.py` → `banco_de_dados/nacional/` |
 | Normalização de renda por município | 🔴 Pendente |
 | Validação das variáveis de esgoto | ✅ Concluída — V00312–V00316 confirmado no dicionário oficial do IBGE |
-| Análise fatorial / pesos / cálculo do IVS final | 🔴 Pendente |
+| Análise fatorial / pesos / cálculo do IVS final | 🔴 Pendente — estudo e plano de implementação prontos em `docs/Analise_Fatorial_LEIAME.md`; execução não iniciada |
 | Categorização em 4 faixas de risco | 🔴 Pendente |
 | Mapas temáticos (QGIS) | 🔴 Pendente |
 | Redação do artigo científico | 🟡 Plano preenchido, redação pendente |
