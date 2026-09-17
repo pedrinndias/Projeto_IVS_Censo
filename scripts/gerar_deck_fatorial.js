@@ -26,22 +26,50 @@ const FAT = path.join(RAIZ, 'banco_de_dados/eda/fatorial');
 const FIG = path.join(FAT, 'figuras');
 
 // ── Leitura dos CSVs do projeto: ';' como separador, utf-8-sig ──────────────
+/**
+ * Divide uma linha respeitando aspas. O `to_csv` do pandas ENVOLVE em aspas o campo que
+ * contém o separador, em vez de escapá-lo — então dividir direto no ';' desloca todas as
+ * colunas seguintes no dia em que um rótulo ou um nome de município trouxer um ponto e
+ * vírgula. Quebra de linha dentro de campo continua fora do alcance daqui; se algum dia
+ * aparecer, é caso de ler o CSV em Python e emitir JSON, como faz a EDA Central.
+ */
+function dividir(linha) {
+  const campos = [];
+  let campo = '', aspas = false;
+  for (let i = 0; i < linha.length; i++) {
+    const ch = linha[i];
+    if (aspas) {
+      if (ch !== '"') campo += ch;
+      else if (linha[i + 1] === '"') { campo += '"'; i++; }   // aspas duplicada = literal
+      else aspas = false;
+    } else if (ch === '"') aspas = true;
+    else if (ch === ';') { campos.push(campo); campo = ''; }
+    else campo += ch;
+  }
+  campos.push(campo);
+  return campos;
+}
+
 function lerCsv(nome) {
   const txt = fs.readFileSync(path.join(FAT, nome), 'utf8').replace(/^﻿/, '').trim();
   const [cab, ...linhas] = txt.split(/\r?\n/);
-  const cols = cab.split(';').map((c, i) => c === '' ? 'idx' : c);
+  const cols = dividir(cab).map(c => c === '' ? 'idx' : c);
   return linhas.map(l => {
-    const v = l.split(';');
+    const v = dividir(l);
     return Object.fromEntries(cols.map((c, i) => [c, v[i]]));
   });
 }
 const num = (o, c) => Number(o[c]);
-/** Número em português: vírgula decimal, ponto de milhar. */
+// Formatação em português SEM `toLocaleString`. Num Node compilado com small-icu o
+// locale 'pt-BR' cai silenciosamente para en-US e o deck inteiro sai com ponto decimal,
+// sem que nada falhe — a mesma armadilha do caminho fixo que gerar_deck_eda_central.js
+// chama de bomba-relógio. `toFixed` e a expressão do milhar não dependem de ICU.
+/** Número em português: vírgula decimal, casas fixas. */
 function n(v, casas) {
-  return Number(v).toLocaleString('pt-BR', { minimumFractionDigits: casas === undefined ? 3 : casas,
-                                             maximumFractionDigits: casas === undefined ? 3 : casas });
+  return Number(v).toFixed(casas === undefined ? 3 : casas).replace('.', ',');
 }
-const inteiro = v => Number(v).toLocaleString('pt-BR');
+/** Inteiro com ponto de milhar. */
+const inteiro = v => Math.round(Number(v)).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 
 // ── Os dados ────────────────────────────────────────────────────────────────
 const RESUMO = lerCsv('resumo_adequabilidade.csv');
@@ -58,6 +86,8 @@ const EXTRA = lerCsv('nb04_extracao_comparada.csv');
 const ADEQ = lerCsv('nb04_adequabilidade.csv');
 const AUTOV = lerCsv('nb04_autovalores.csv');
 const CORR7 = lerCsv('nb04_correlacao_ivs7_spearman.csv');
+const RENDA = lerCsv('nb04_renda_sem_extremo.csv');
+const RENDA_CARGAS = lerCsv('nb04_renda_sem_extremo_cargas.csv');
 
 const phi = Math.abs(num(PHI[0], 'Fator 2'));
 const cenPor = k => CENARIOS.find(r => r.cenario === k);
@@ -67,6 +97,10 @@ const ex = c => EXTRA.filter(r => r.cenario === c);
 const ad = c => ADEQ.filter(r => r.cenario === c);
 const lixoEx = ex('ivs7_spearman').find(r => r.variavel === 'Lixo inadequado');
 const rendaRaca = Math.abs(num(CORR7.find(r => r.idx === 'Renda (invertida)'), 'Cor/raça PPI'));
+const linhaRenda = m => RENDA.find(r => r.medida === m);
+const rendaMuda = num(linhaRenda('setores que mudam de faixa'), 'com renda_media_sem_extremo');
+const rendaRho = num(linhaRenda('Spearman entre os ordenamentos'), 'com renda_media_sem_extremo');
+const rendaDif = Math.max(...RENDA_CARGAS.flatMap(r => [num(r, 'dif_1'), num(r, 'dif_2')]));
 
 // repartição entre as dimensões, somada dos pesos (não digitada)
 const pesoDim = d => PESOS.filter(r => r.dimensao === d).reduce((a, r) => a + num(r, 'peso'), 0);
@@ -75,7 +109,7 @@ const pSocio = 100 * pesoDim('Socioeconômica'), pSanea = 100 * pesoDim('Saneame
 // ── O deck ──────────────────────────────────────────────────────────────────
 const d = criarDeck({ titulo: 'Análise fatorial e os pesos do IVS — Notebook 04' });
 const { p, S, titulo, secao, bloco, numero, tabela, legendaTabela, legendaFigura,
-        anotar, procedencia, capa, regua } = d;
+        capa, regua, codigo, codigoComentado } = d;
 const { TINTA, CINZA, ACENTO } = d.cores;
 const { W, H, M } = d.geo;
 const marca = t => ({ text: t, options: { color: ACENTO, bold: true } });
@@ -140,6 +174,15 @@ const marca = t => ({ text: t, options: { color: ACENTO, bold: true } });
   bloco(s, M, yt + 3.0, W - 2*M, 'O preço.',
     'Decompor uma matriz de Spearman é fazer análise de componentes principais sobre os POSTOS, não sobre os valores. As cargas se referem a posições relativas. Isso volta a aparecer, com consequência concreta, no slide dos escores.', false, 1.1);
   s.addNotes('A justificativa é a não-normalidade já documentada: assimetria de 3,42 na água e 3,74 na renda, curtose de 49,5 na renda. O livro não lista Spearman entre as correlações que discute — ele trata de escalas Likert, não de proporções infladas de zero. É preciso justificar uma escolha que a referência não contempla.');
+}
+
+{ const s = S();
+  titulo(s, 'A matriz de correlação, as sete variáveis',
+    'É a Tabela 1 do livro (p. 15) nos dados do projeto — e ela já mostra a estrutura antes de fatorar.');
+  s.addImage({ path: path.join(FIG, 'nb04_matriz_correlacao.png'), x: 3.35, y: 1.48, w: 6.06, h: 4.83 });
+  legendaFigura(s, 6.40, 'Matriz-R de Spearman, sete componentes, 87.545 setores.',
+    'Fonte: figuras/nb04_matriz_correlacao.png, bloco 2 do Notebook 04.');
+  s.addNotes('Vale conduzir a leitura por três lugares. Primeiro, o retângulo escuro no canto inferior direito: analfabetismo, renda e cor/raça a 0,63, 0,76 e 0,78 — o bloco socioeconômico. Segundo, água e esgoto a 0,41 — o bloco de saneamento, mais fraco. Terceiro, a linha do lixo, que é a mais clara da matriz inteira: 0,10 com a água e −0,05 com a razão de moradores. O livro diz, na p. 16, que já na exploração inicial dá para ter dicas sobre a variável que não vai se comportar bem. Esta é a dica.');
 }
 
 { const s = S();
@@ -266,6 +309,15 @@ const marca = t => ({ text: t, options: { color: ACENTO, bold: true } });
   s.addNotes('Nenhuma variável carrega acima de 0,40 em dois fatores — a estrutura simples do livro está atendida nas duas rotações. Fator 1 é socioeconômico: renda, analfabetismo, cor/raça e densidade. Fator 2 é saneamento: água e esgoto. É a estrutura do IVS-BH 2012, recuperada dos dados.');
 }
 
+{ const s = S();
+  titulo(s, 'O plano dos fatores',
+    'A Figura 2 do livro (p. 17): os fatores como eixos, cada variável plotada nas suas duas cargas.');
+  s.addImage({ path: path.join(FIG, 'nb04_plano_fatorial.png'), x: 0.85, y: 1.52, w: 11.63, h: 4.63 });
+  legendaFigura(s, 6.28, 'Representação gráfica dos fatores, com e sem o indicador de lixo.',
+    'Fonte: figuras/nb04_plano_fatorial.png, bloco 5 do Notebook 04.');
+  s.addNotes('Este é o slide para mostrar quando a pergunta for "por que tirar o lixo?". No painel da esquerda ele está sozinho no alto, longe de todo o resto — exatamente o que o livro descreve para o item 7 do exemplo dele: "se encontra espacialmente distante dos dois grupos". No painel da direita, sem ele, as seis variáveis se organizam em dois braços: saneamento subindo pelo eixo vertical, socioeconômico avançando pelo horizontal. Os eixos vão de −1 a 1 de propósito, que são os limites do coeficiente de correlação; encolher os eixos para caber os dados faria carga média parecer carga alta.');
+}
+
 // ═════════ 5. OS PESOS ═════════
 { const s = S(); secao(s, '5', 'Os pesos',
     'O produto deste notebook: quanto cada indicador pesa, e com que margem.');
@@ -351,8 +403,269 @@ const marca = t => ({ text: t, options: { color: ACENTO, bold: true } });
   s.addNotes('O objetivo deste bloco é mostrar o custo, não escolher. Se a orientadora preferir 60/40 pela comparabilidade com o IVS-BH, agora se sabe exatamente o que isso custa: 2.196 setores mudam de faixa. Antes, a escolha seria feita no escuro.');
 }
 
-// ═════════ 7. DECISÕES ═════════
-{ const s = S(); secao(s, '7', 'O que vai para a orientação',
+// ═════════ 7. DUAS PERGUNTAS EM ABERTO ═════════
+{ const s = S(); secao(s, '7', 'Duas perguntas que sobraram',
+    'Uma se respondeu rodando. A outra não se responde com dados.');
+  s.addNotes('A primeira é a renda sem o extremo, que era dívida da 2ª rodada da EDA. A segunda é conceitual e é a mais séria em aberto no projeto inteiro.');
+}
+
+{ const s = S();
+  const y = titulo(s, 'A renda sem o extremo não muda nada',
+    'A 2ª rodada da EDA recalculou tudo com renda_media_sem_extremo. A fatorial é anterior a essa coluna.');
+  const yt = legendaTabela(s, y, 'A mesma fatorial, trocando só a coluna de renda.',
+    'Fonte: nb04_renda_sem_extremo.csv. Mesmas seis variáveis, mesmo recorte, mesma rotação.');
+  tabela(s, ['Medida', 'com renda_media', 'sem o extremo', 'diferença'],
+    ['KMO', 'MSA mínimo', 'peso socioeconômico (%)', 'peso saneamento (%)'].map(k => {
+      const r = RENDA.find(x => x.medida === k);
+      const casas = k.includes('%') ? 3 : 4;
+      return [k, n(r['com renda_media'], casas), n(r['com renda_media_sem_extremo'], casas),
+              n(r['diferença'], 5)];
+    }), { y: yt, colW: [4.2, 2.6, 2.6, 2.23], rowH: 0.44, fontSize: 11.5 });
+  numero(s, M, yt + 2.3, 3.6, n(rendaDif, 4), 'maior diferença entre as cargas');
+  numero(s, M + 4.2, yt + 2.3, 3.6, inteiro(rendaMuda), 'setores que mudam de faixa, de 87.544');
+  numero(s, M + 8.4, yt + 2.3, 3.2, n(rendaRho, 6), 'Spearman entre os dois índices', true);
+  s.addNotes('A resposta é clara: trocar a coluna não muda a estrutura, não muda os pesos e quase não muda a classificação. As cargas batem até a quarta casa decimal. É o resultado que se esperava de um setor em 87 mil, mas ele precisava ser medido, porque a renda é a variável de maior carga do índice e o extremo foi grande o bastante para justificar uma rodada inteira da EDA. Fica registrado que a fatorial pode continuar sobre renda_media sem prejuízo, ou migrar sem custo — a decisão deixa de importar.');
+}
+
+{ const s = S();
+  const y = titulo(s, 'O IVS é construto reflexivo ou índice formativo?',
+    'A objeção conceitual mais séria em aberto. Ela decide se a análise fatorial é o instrumento certo.');
+  bloco(s, M, y + 0.2, 5.6, 'Reflexivo — o latente CAUSA os indicadores.',
+    'A vulnerabilidade existiria como propriedade do território e se manifestaria em renda baixa, analfabetismo, saneamento precário. Os indicadores são intercambiáveis, devem correlacionar-se alto, e retirar um não muda o significado. É o modelo que a análise fatorial pressupõe.', false, 2.0);
+  bloco(s, M + 6.1, y + 0.2, 5.6, 'Formativo — os indicadores CONSTITUEM o índice.',
+    'Vulnerabilidade É a combinação de privações. Cada indicador é faceta definidora, não precisam correlacionar-se, e retirar um muda o significado. Os pesos viriam de teoria ou de política pública, não da covariância.', true, 2.0);
+  tabela(s, ['Resultado deste trabalho', 'Leitura reflexiva', 'Leitura formativa'], [
+    ['Lixo com comunalidade 0,052', 'não pertence: retirar', marca('faceta que falta: manter')],
+    ['Renda × cor/raça a 0,784', 'bloco coeso, evidência do construto', 'multicolinearidade, atrapalha'],
+    ['KMO 0,783 e Bartlett', 'provam adequabilidade', marca('não se aplicam')],
+    ['Pesos 65/35 empíricos', 'saem da estrutura latente', 'teriam de sair de teoria'],
+  ], { y: y + 2.45, colW: [4.2, 3.6, 3.83], rowH: 0.42, fontSize: 11 });
+  s.addNotes('O ponto que não pode passar batido: a decisão sobre o lixo SE INVERTE entre as duas leituras. Sob a leitura reflexiva, comunalidade de 0,052 manda tirar. Sob a formativa, o lixo é a única variável que cobre destino de resíduo, e tirá-la remove uma faceta do que se quer medir. Não é preciosismo terminológico — é a diferença entre dois índices diferentes.');
+}
+
+{ const s = S();
+  const y = titulo(s, 'A saída que os dados sugerem', 'Um híbrido — e ele explica uma coisa que estava sem explicação.');
+  bloco(s, M, y + 0.25, W - 2*M, 'Dentro de cada dimensão, o comportamento é reflexivo.',
+    'Renda, analfabetismo e cor/raça correlacionam-se de 0,63 a 0,78 e claramente manifestam uma mesma posição social do território. Água e esgoto, a 0,41, manifestam infraestrutura de saneamento. Nos dois blocos, os indicadores parecem efeitos de uma causa comum.', false, 1.3);
+  bloco(s, M, y + 1.75, W - 2*M, 'Entre as duas dimensões, a composição é formativa.',
+    'Não há razão para supor um latente único que cause tanto a falta de água quanto o analfabetismo. A correlação entre os fatores, Φ = 0,52, é consistente com isso: alta o bastante para justificar a rotação oblíqua, longe o bastante de 1 para não sugerir um fator só.', true, 1.3);
+  bloco(s, M, y + 3.25, W - 2*M, 'A consequência, e ela já está medida.',
+    'A análise fatorial é legítima para obter os pesos DENTRO de cada bloco. A repartição ENTRE blocos — o 65/35 — é decisão formativa, que os dados não têm como arbitrar. É isso que explica por que a escolha entre 65/35 e 60/40 custa apenas 2,5% dos setores: ela nunca foi uma questão empírica.', false, 1.4);
+  s.addNotes('Esta é uma proposta, não um resultado — e precisa de aval. O que falta é literatura: Bollen & Lennox (1991) é a formulação canônica da distinção, e Diamantopoulos & Winklhofer (2001) e Edwards (2011) completam o núcleo. Nenhum está lido no projeto. Valeria também descobrir se o IVS-BH 2012 e o ISU de Passarelli-Araujo declaram a posição deles — provavelmente não declaram, e isso é comum na área.');
+}
+
+// ═════════ 8. O CÓDIGO ═════════
+{ const s = S(); secao(s, '8', 'O código, por dentro',
+    'Como a análise foi construída em Python, linha a linha, e como se faria em R.');
+  s.addNotes('Esta seção existe para que a análise seja defensável linha a linha. Álgebra linear escrita à mão precisa disso.');
+}
+
+{ const s = S();
+  const y = titulo(s, 'Por que numpy puro, e não uma biblioteca pronta',
+    'A pergunta aparece sempre, e a resposta é de engenharia — mas teve um efeito colateral melhor.');
+  bloco(s, M, y + 0.25, 5.7, 'A razão declarada.',
+    'O requirements.txt tem cinco pacotes. Acrescentar factor_analyzer traria conveniência e traria uma dependência a mais para instalar, versionar e justificar numa dissertação — por um ganho de digitação, não de método. Tudo que a análise precisa é álgebra linear que o numpy já faz.', false, 2.0);
+  bloco(s, M + 6.2, y + 0.25, 5.7, 'A razão que apareceu depois.',
+    'Quem escreve a conta à mão precisa saber a conta. Foi escrevendo o KMO que ficou claro que ele se apoia na matriz anti-imagem; foi escrevendo o promax que ficou claro por que existem DUAS matrizes de carga numa solução oblíqua. Nenhuma das duas coisas se aprende chamando uma função.', true, 2.0);
+  bloco(s, M, y + 2.6, W - 2*M, 'Em R a escolha seria outra, e razoável.',
+    'O pacote psych é o padrão da área, está em toda a bibliografia — inclusive nos exemplos do livro da Enap, que são em R — e não é dependência exótica. Os próximos slides mostram a correspondência função a função, e o script completo.', false, 1.2);
+  s.addNotes('Se a orientadora perguntar se não teria sido mais rápido usar uma biblioteca: teria, e o resultado seria o mesmo. O que se ganhou foi poder responder a qualquer pergunta sobre o método sem dizer "a biblioteca faz". Numa iniciação científica isso vale mais do que as horas economizadas.');
+}
+
+{ const s = S();
+  const y = titulo(s, 'O caminho, em nove passos', 'Cada passo, a função que o faz aqui e a que o faria em R.');
+  tabela(s, ['#', 'Passo', 'Neste projeto (numpy)', 'Em R'], [
+    ['1', 'Matriz de correlação', 'X.corr(method=’spearman’)', 'cor(X, method = "spearman")'],
+    ['2', 'KMO e MSA', 'kmo(R)', 'psych::KMO(R)'],
+    ['3', 'Teste de Bartlett', 'bartlett(R, n)', 'psych::cortest.bartlett(R, n)'],
+    ['4', 'Multicolinearidade', 'smc(R)', 'psych::smc(R)'],
+    ['5', 'Número de fatores', 'acp(R, k) · horn(n, p)', 'eigen(R) · psych::fa.parallel()'],
+    ['6', 'Extração por eixo principal', 'fatoracao_eixo_principal(R, k)', 'psych::fa(R, fm = "pa")'],
+    ['7', 'Rotação ortogonal', 'varimax(cargas)', 'stats::varimax(L, normalize = FALSE)'],
+    ['8', 'Rotação oblíqua', 'rotacao_promax(cargas)', 'stats::promax(L, m = 4)'],
+    ['9', 'Escores refinados', 'escores_regressao(R, A)', 'psych::factor.scores()'],
+  ], { y, colW: [0.6, 3.5, 3.9, 3.63], rowH: 0.46, fontSize: 11 });
+  s.addNotes('Vale dizer em voz alta que a coluna da direita é mais curta — em R, cada passo é uma chamada. O projeto escreveu as nove à mão, em 457 linhas de módulo com 9 testes. O passo 7 tem uma armadilha que aparece daqui a três slides: a varimax do R normaliza por padrão e a nossa não.');
+}
+
+{ const s = S();
+  const y = titulo(s, 'O KMO, linha a linha', 'Compara a correlação bruta entre duas variáveis com o que sobra dela depois de descontar as outras.');
+  codigoComentado(s, y + 0.1, [
+    ['def kmo(R):', ''],
+    ['    Rinv = np.linalg.inv(R)', 'A inversa da matriz de correlação. É dela que saem as correlações parciais — não é óbvio, e é o coração do procedimento.'],
+    ['', ''],
+    ['    d = np.sqrt(np.diag(Rinv))', 'Raiz da diagonal: o fator de padronização.'],
+    ['    parcial = -Rinv / np.outer(d, d)', 'A fórmula da correlação parcial sobre a inversa. O sinal negativo não é detalhe: sem ele toda a matriz anti-imagem inverte.'],
+    ['', ''],
+    ['    np.fill_diagonal(parcial, 0.0)', 'A correlação de uma variável com ela mesma é 1 e inflaria as somas. Zera dos dois lados.'],
+    ['    R0 = R.copy()', ''],
+    ['    np.fill_diagonal(R0, 0.0)', ''],
+    ['', ''],
+    ['    soma_r = (R0 ** 2).sum()', ''],
+    ['    soma_p = (parcial ** 2).sum()', ''],
+    ['    return soma_r / (soma_r + soma_p)', 'O KMO global: a fração da associação que NÃO é parcial. Trocando .sum() por .sum(axis=0) sai o MSA de cada variável.'],
+  ], { larguraCodigo: 5.3, alturaLinha: 0.315, fonte: 10 });
+  s.addNotes('O resultado do projeto é 0,783, que na escala de Friel é a faixa "mediano", bem acima do piso de 0,50 de Hair. Se perguntarem o que o KMO mede em uma frase: se duas variáveis continuam associadas depois de descontar todas as outras, elas têm algo próprio entre si e não um fator comum — e é isso que derruba o KMO.');
+}
+
+{ const s = S();
+  const y = titulo(s, 'A extração, linha a linha', 'Quatro linhas, e a terceira é a que transforma álgebra em interpretação.');
+  const yFim = codigoComentado(s, y + 0.15, [
+    ['def acp(R, k):', ''],
+    ['    val, vec = np.linalg.eigh(R)', 'Autovalores e autovetores. O "h" é de hermitian — a versão para matriz simétrica, mais rápida e mais estável. Matriz de correlação é sempre simétrica.'],
+    ['', ''],
+    ['    ordem = np.argsort(val)[::-1]', 'O eigh devolve em ordem CRESCENTE e a análise fatorial lê em decrescente. Sem esta linha, o "primeiro fator" seria o menos importante.'],
+    ['    val = val[ordem]', ''],
+    ['    vec = vec[:, ordem]', ''],
+    ['', ''],
+    ['    cargas = vec[:, :k] * np.sqrt(', 'A carga fatorial é o autovetor escalado pela raiz do autovalor. Sem o escalonamento os autovetores têm norma 1 e não se leem como correlação.'],
+    ['        np.maximum(val[:k], 0))', 'O maximum corta em zero: autovalor negativo por erro numérico viraria raiz de número negativo.'],
+    ['', ''],
+    ['    return val, cargas', ''],
+  ], { larguraCodigo: 5.3, alturaLinha: 0.33, fonte: 10 });
+  bloco(s, M, yFim + 0.18, W - 2*M, 'Uma advertência que vale para toda a análise.',
+    'O sinal de cada autovetor é ARBITRÁRIO — o LAPACK escolhe um e o oposto seria igualmente válido. Por isso as cargas são viradas na leitura, para que positivo queira dizer "mais vulnerável". Os CSVs guardam o sinal cru.', true, 1.1);
+  s.addNotes('Se a orientadora quiser entender a diferença entre ACP e análise fatorial em uma frase, ela cabe aqui: é o que vai na diagonal da matriz antes de decompor. A ACP põe 1 e usa toda a variância; a análise fatorial põe a comunalidade e usa só a compartilhada. O resto do procedimento é idêntico.');
+}
+
+{ const s = S();
+  const y = titulo(s, 'A rotação Varimax, linha a linha', 'Girar os eixos sem mudar as distâncias: a variância total não muda, só a repartição entre fatores.');
+  const yFim = codigoComentado(s, y + 0.1, [
+    ['R = np.eye(k)', 'Começa sem girar nada.'],
+    ['for _ in range(maxiter):', ''],
+    ['    Lam = L @ R', 'As cargas com a rotação atual.'],
+    ['', ''],
+    ['    u, s, vt = np.linalg.svd(', 'O truque do procedimento: a matriz ortogonal mais próxima de uma matriz qualquer é u @ vt da sua SVD. É o que garante que a rotação continue ortogonal a cada passo.'],
+    ['      L.T @ (Lam ** 3 - Lam @', 'O gradiente do critério Varimax. O cubo vem da derivada da soma dos quadrados dos quadrados; o segundo termo subtrai a média por fator.'],
+    ['      np.diag(np.diag(Lam.T @ Lam)) / p))', ''],
+    ['', ''],
+    ['    R = u @ vt', ''],
+    ['    if d / d_ant < 1 + tol: break', 'Para quando o critério deixa de crescer.'],
+    ['', ''],
+    ['return L @ R', 'As cargas rotacionadas.'],
+  ], { larguraCodigo: 5.3, alturaLinha: 0.28, fonte: 10 });
+  bloco(s, M, yFim + 0.18, W - 2*M, 'A armadilha ao reproduzir em R.',
+    'stats::varimax aplica normalização de Kaiser POR PADRÃO: divide cada linha pela raiz da comunalidade antes de girar e desfaz depois. É defensável, é o que o SPSS faz — e produz cargas diferentes. Para reproduzir estes números em R é preciso varimax(L, normalize = FALSE).', true, 1.2);
+  s.addNotes('O critério da Varimax é maximizar a variância dos quadrados das cargas dentro de cada fator, o que empurra cada carga para perto de 0 ou de 1 — é assim que se obtém a "estrutura simples" de que o livro fala. A armadilha da normalização é o tipo de coisa que faz alguém achar que errou quando só usou o padrão de outra ferramenta.');
+}
+
+{ const s = S();
+  const y = titulo(s, 'A rotação promax, linha a linha', 'Parte da Varimax e deixa os eixos se inclinarem. O procedimento é engenhoso.');
+  codigoComentado(s, y + 0.12, [
+    ['V = varimax(cargas)', 'Ponto de partida ortogonal.'],
+    ['', ''],
+    ['alvo = np.sign(V) * np.abs(V) ** kappa', 'Constrói um alvo EXAGERADO: com kappa = 4, uma carga de 0,9 vira 0,66 e uma de 0,3 vira 0,008. O contraste entre alto e baixo é ampliado.'],
+    ['', ''],
+    ['U, *_ = np.linalg.lstsq(V, alvo)', 'Acha por mínimos quadrados a transformação que leva V o mais perto possível do alvo. É aqui que a ortogonalidade se perde — e é isso que se quer.'],
+    ['', ''],
+    ['d = np.diag(np.linalg.inv(U.T @ U))', 'Escala as colunas para que Φ saia com diagonal 1. Sem este passo Φ é covariância entre fatores, não correlação, e a comunalidade vaza.'],
+    ['U = U @ np.diag(np.sqrt(d))', ''],
+    ['', ''],
+    ['padrao = V @ U', 'A matriz PADRÃO: coeficientes de regressão. É dela que saem os pesos.'],
+    ['phi = np.linalg.inv(U.T @ U)', 'A correlação entre os fatores — o objeto que a solução ortogonal não pode produzir.'],
+    ['estrutura = padrao @ phi', 'A matriz de ESTRUTURA: correlações entre variável e fator.'],
+  ], { larguraCodigo: 5.3, alturaLinha: 0.315, fonte: 10 });
+  s.addNotes('A checagem que precisa acompanhar: numa solução oblíqua uma carga padrão pode passar de 1 sem ser erro, porque é coeficiente de regressão e não correlação — está na p. 22 do livro. Se passar, testa-se a variância residual da variável; negativa, a solução é inadmissível e sugere fatores demais. No nosso caso a maior carga deu 0,999 e a menor variância residual, 0,144.');
+}
+
+{ const s = S();
+  const y = titulo(s, 'A mesma análise em R — parte 1', 'Dados e adequabilidade da base.');
+  codigo(s, M, y + 0.2, W - 2*M, [
+    '# Pacotes — uma vez só',
+    'install.packages(c("psych", "GPArotation", "DBI", "RSQLite"))',
+    'library(psych); library(GPArotation); library(DBI); library(RSQLite)',
+    '',
+    '# 1. Dados: o mesmo banco que o notebook usa',
+    'con <- dbConnect(SQLite(),',
+    '  "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db")',
+    'd <- dbGetQuery(con, "SELECT pct_agua_inad, pct_esgoto_inad, razao_moradores,',
+    '                             pct_analfab, renda_media, pct_raca_pretpardind',
+    '                      FROM setores_censitarios',
+    "                      WHERE urbano = 1 AND Dados_sig = 'OK'\")",
+    'dbDisconnect(con)',
+    '',
+    'd$renda_inv <- -d$renda_media          # sentido único: maior = mais vulnerável',
+    'X <- na.omit(d[, c("pct_agua_inad", "pct_esgoto_inad", "razao_moradores",',
+    '                   "pct_analfab", "renda_inv", "pct_raca_pretpardind")])',
+    'nrow(X)                                # esperado: 87545',
+    '',
+    '# 2. Matriz de correlação e adequabilidade',
+    'R <- cor(X, method = "spearman")',
+    'KMO(R)                                 # global e por variável',
+    'cortest.bartlett(R, n = nrow(X))       # com a ressalva de amostra grande',
+    'smc(R)                                 # multicolinearidade, livro p. 42',
+  ], 10);
+  s.addNotes('Vale rodar este bloco na frente dela se houver computador: KMO(R) devolve o global e os individuais de uma vez, e o resultado tem de bater com 0,787 e 0,715 da solução de seis variáveis. Se bater, está provado que as duas implementações concordam no que importa. na.omit é a exclusão por lista — com use = "pairwise.complete.obs" no cor() seria a versão par a par, que é a que NÃO se quer aqui.');
+}
+
+{ const s = S();
+  const y = titulo(s, 'A mesma análise em R — parte 2', 'Número de fatores, extração e rotação.');
+  codigo(s, M, y + 0.2, W - 2*M, [
+    '# 3. Quantos fatores',
+    'eigen(R)$values                                    # critério de Kaiser',
+    'fa.parallel(X, fm = "pa", fa = "fa", n.iter = 50)  # análise paralela de Horn',
+    '',
+    '# 4. Extração: as duas técnicas, como manda a regra de Stevens',
+    'acp <- principal(R, nfactors = 2, rotate = "varimax", n.obs = nrow(X))',
+    'paf <- fa(R, nfactors = 2, fm = "pa", rotate = "varimax", n.obs = nrow(X))',
+    'round(cbind(acp$loadings[, 1:2], paf$loadings[, 1:2]), 3)',
+    '',
+    '# ATENÇÃO: para reproduzir as cargas deste projeto, a Varimax não pode',
+    '#          normalizar — o padrão do R é normalize = TRUE',
+    'acp0 <- principal(R, nfactors = 2, rotate = "none", n.obs = nrow(X))',
+    'varimax(acp0$loadings[, 1:2], normalize = FALSE)',
+    '',
+    '# 5. Rotação oblíqua — é a que o livro recomenda (p. 38)',
+    'obl <- fa(R, nfactors = 2, fm = "pa", rotate = "promax", n.obs = nrow(X))',
+    'obl$loadings     # matriz padrão — é dela que saem os pesos',
+    'obl$Structure    # matriz de estrutura',
+    'obl$Phi          # correlação entre os fatores: esperado ~0,52',
+  ], 10);
+  s.addNotes('O bloco do meio é o mais importante deste slide. A varimax do R normaliza por padrão e a nossa não, então rodar principal(rotate = "varimax") dá cargas parecidas mas não idênticas. Para bater número a número é preciso extrair sem rotação e chamar varimax(normalize = FALSE) à parte. Quem não souber disso vai achar que uma das duas implementações está errada.');
+}
+
+{ const s = S();
+  const y = titulo(s, 'A mesma análise em R — parte 3', 'Pesos, escores e as duas figuras que esta apresentação mostrou.');
+  codigo(s, M, y + 0.2, W - 2*M, [
+    '# 6. Pesos: soma dos quadrados das cargas, por fator',
+    'ss <- colSums(acp$loadings[, 1:2]^2)',
+    'round(100 * ss / sum(ss), 1)           # a repartição entre as dimensões',
+    '',
+    '# 7. Escores refinados (método da regressão, livro p. 25)',
+    'esc <- factor.scores(as.matrix(X), acp, method = "regression")$scores',
+    'apply(esc, 2, var)                     # ~1 quando as cargas vêm de ACP',
+    '',
+    '# 8. O plano dos fatores — a Figura 2 do livro, em cinco linhas',
+    'L <- acp$loadings[, 1:2]',
+    'plot(L[, 1], L[, 2], xlim = c(-1, 1), ylim = c(-1, 1), pch = 19, asp = 1,',
+    '     xlab = "Fator 1", ylab = "Fator 2")',
+    'abline(h = 0, v = 0, col = "grey60")',
+    'text(L[, 1], L[, 2], labels = rownames(L), pos = 4, cex = 0.8)',
+    '',
+    '# 9. A matriz de correlação como figura',
+    'cor.plot(R, numbers = TRUE, main = "Matriz de correlação de Spearman")',
+  ], 10);
+  bloco(s, M, y + 3.95, W - 2*M, 'O script inteiro, comentado, está versionado.',
+    'docs/Codigo_Analise_Fatorial_Comentado.md traz este código com a explicação linha a linha de cada função em Python ao lado da equivalente em R, e a tabela das cinco diferenças a esperar entre as duas implementações.', false, 1.1);
+  s.addNotes('As linhas 8 e 9 reproduzem em R as duas figuras que esta apresentação mostrou. O plot básico do R faz a Figura 2 do livro em cinco linhas — vale mostrar isso, porque desfaz a impressão de que a figura exigiu ferramenta especial.');
+}
+
+{ const s = S();
+  const y = titulo(s, 'O que esperar de diferente entre as duas', 'Cinco pontos. Divergência além destes é problema real, não diferença de linguagem.');
+  tabela(s, ['Ponto', 'Python (aqui)', 'R (psych)', 'O que fazer'], [
+    ['Normalização da Varimax', 'sem normalização', 'normalize = TRUE', marca('use normalize = FALSE')],
+    ['Sinal dos fatores', 'o que o LAPACK der', 'vira para soma positiva', 'compare valores absolutos'],
+    ['Ordem dos fatores', 'autovalor decrescente', 'pode reordenar após girar', 'confira pelo padrão de cargas'],
+    ['Análise paralela de Horn', '50 simulações, normal', 'reamostra os dados', 'o nº de fatores não deve mudar'],
+    ['Spearman', 'pandas, posto médio', 'cor(), posto médio', 'idênticos'],
+  ], { y, colW: [3.3, 2.9, 2.9, 3.53], rowH: 0.50, fontSize: 11 });
+  bloco(s, M, y + 3.1, W - 2*M, 'A regra para usar isto.',
+    'Se os números divergirem além destes cinco pontos, o problema é real e vale investigar — não atribua à diferença de linguagem sem antes conferir a lista. Rodar a mesma análise em duas implementações independentes é, ele próprio, um teste: se as duas concordam, é improvável que ambas estejam erradas do mesmo jeito.', true, 1.4);
+  s.addNotes('Este slide é o que transforma a versão em R de curiosidade em ferramenta: ela vira uma segunda opinião sobre os números do projeto. A convergência entre duas implementações independentes é o argumento mais forte disponível quando não há um valor de referência externo para conferir.');
+}
+
+// ═════════ 9. DECISÕES ═════════
+{ const s = S(); secao(s, '9', 'O que vai para a orientação',
     'Seis decisões, cada uma com o custo medido. Nenhuma foi fechada aqui.');
   s.addNotes('Fechar estas decisões não era papel do notebook. O papel dele era tirá-las do terreno da opinião.');
 }

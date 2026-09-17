@@ -36,7 +36,14 @@ Dez achados, numerados para referência no artigo.
 
 9. **Nenhum par da matriz fatorada cruza o limiar de multicolinearidade.** Renda × cor/raça dá **0,784** na matriz listwise de 87.545 setores, abaixo dos 0,80 da p. 42. O −0,811 que os documentos do projeto citam é a correlação par a par da EDA, calculada sobre os 104.108 setores do recorte.
 
-10. **A base é adequada, e a adequação depende da escolha por Spearman.** KMO 0,783 e MSA mínimo 0,700 com Spearman; com Pearson, KMO 0,732, MSA mínimo 0,542 e apenas 33,3% dos coeficientes acima de 0,30 — a base reprovaria em dois critérios da Etapa 1.
+10. **Trocar a renda pela versão sem o valor extremo não muda a análise.** Com
+    `renda_media_sem_extremo`, o KMO varia em 0,00003, as cargas batem até a quarta casa
+    decimal (maior diferença 0,0000), a repartição dos pesos muda 0,0004 ponto percentual
+    e **278 setores** dos 87.544 comparáveis mudam de faixa — 0,32%, com Spearman de
+    0,999976 entre os dois índices. A pendência da 2ª rodada da EDA fica resolvida: a
+    fatorial pode continuar sobre `renda_media` ou migrar, sem consequência.
+
+11. **A base é adequada, e a adequação depende da escolha por Spearman.** KMO 0,783 e MSA mínimo 0,700 com Spearman; com Pearson, KMO 0,732, MSA mínimo 0,542 e apenas 33,3% dos coeficientes acima de 0,30 — a base reprovaria em dois critérios da Etapa 1.
 
 ---
 
@@ -197,12 +204,60 @@ Nenhuma foi fechada aqui. O custo de cada opção está medido.
 5. **Dependência espacial não tratada.** A análise fatorial pressupõe unidades independentes; setores vizinhos não são. A autocorrelação infla a covariação e, com ela, autovalores e cargas. O I de Moran dos escores, na etapa de geoprocessamento, dará a medida.
 6. **Falácia ecológica.** As unidades são territórios. Toda carga descreve covariação entre setores e nada afirma sobre indivíduos.
 7. **A padronização usada aqui é min-max global e provisória.** A normalização por município é do Notebook 03.
-8. **`renda_media_sem_extremo` não entrou.** Toda a análise usa `renda_media`, como os CSVs de referência de agosto. Refazer a fatorial sobre a renda sem o extremo é trabalho de uma rodada, e a decisão está pendente.
-9. **Reflexivo ou formativo.** Se o IVS é um construto que causa os indicadores — o que a análise fatorial pressupõe — ou um índice composto por eles, em que a fatorial não seria o instrumento adequado, é questão conceitual em aberto.
+8. **Reflexivo ou formativo** — tratado na §5 abaixo. A análise fatorial pressupõe o modelo reflexivo; se o IVS for formativo, parte dos diagnósticos deste relatório não se aplica e a decisão sobre o lixo se inverte.
 
 ---
 
-## 5. Reprodutibilidade
+## 5. O IVS é construto reflexivo ou índice formativo?
+
+É a objeção conceitual mais séria em aberto, e não se resolve com mais dados. Ela decide se
+a análise fatorial é o instrumento certo.
+
+**Num construto reflexivo, o latente causa os indicadores.** A vulnerabilidade existiria
+como propriedade do território e se manifestaria em renda baixa, analfabetismo, saneamento
+precário. Os indicadores são intercambiáveis, devem correlacionar-se alto, e retirar um não
+muda o que o construto significa. É esse o modelo que a análise fatorial pressupõe — dele
+vêm o KMO, o Bartlett, a comunalidade e a própria ideia de carga.
+
+**Num índice formativo, os indicadores constituem o índice.** Vulnerabilidade *é* a
+combinação de privações; cada indicador é uma faceta definidora. Eles não precisam
+correlacionar-se, retirar um muda o significado, e os pesos viriam de teoria ou de decisão
+política. Bollen & Lennox (1991) é a formulação canônica; o manual da OCDE/JRC (Nardo et
+al., 2008), referência para indicadores compostos, os trata como formativos por padrão.
+
+| Resultado deste relatório | Leitura reflexiva | Leitura formativa |
+|---|---|---|
+| Lixo com comunalidade 0,052 | não pertence ao construto: **retirar** | faceta de saneamento que as outras não cobrem: **manter** |
+| Renda × cor/raça a 0,784 | bloco coeso, evidência do construto | multicolinearidade: atrapalha separar as contribuições |
+| KMO 0,783 e Bartlett | provam adequabilidade | **não se aplicam** — não há modelo de fator comum a testar |
+| Pesos 65/35 empíricos | saem da estrutura latente | teriam de sair de teoria ou de política pública |
+
+**A decisão sobre o lixo se inverte entre as duas leituras.** É o exemplo mais claro de que
+isto não é preciosismo terminológico.
+
+### A saída que os dados sugerem
+
+A estrutura encontrada aponta para um híbrido, e ele é defensável. *Dentro* de cada
+dimensão o modelo se comporta como reflexivo: renda, analfabetismo e cor/raça
+correlacionam-se de 0,63 a 0,78 e manifestam uma mesma posição social do território; água e
+esgoto, a 0,41, manifestam infraestrutura de saneamento. *Entre* as duas dimensões a
+composição é formativa: não há razão para supor um latente único que cause tanto a falta de
+água quanto o analfabetismo — e a correlação Φ de 0,522 entre os fatores, longe de 1, é
+consistente com isso.
+
+Se esse for o modelo, a consequência já está medida neste relatório: a análise fatorial é
+legítima para obter os pesos **dentro** de cada bloco, e a repartição **entre** blocos — o
+65/35 — é decisão formativa, que os dados não têm como arbitrar. Isso explica, e justifica,
+por que a escolha entre 65/35 e 60/40 custa apenas 2,5% dos setores: ela nunca foi uma
+questão empírica.
+
+**O que falta:** literatura própria. Bollen & Lennox (1991), Diamantopoulos & Winklhofer
+(2001) e Edwards (2011) são o núcleo da discussão, e nenhum está lido no projeto. Nem o
+IVS-BH 2012 nem o ISU de Passarelli-Araujo (2023) declaram a posição deles.
+
+---
+
+## 6. Reprodutibilidade
 
 ```
 src/ivs_censo/fatorial.py          a matemática: KMO, MSA, Bartlett, Horn, ACP,
@@ -223,6 +278,9 @@ Saídas em `banco_de_dados/eda/fatorial/`, prefixo `nb04_`, separador `;`, codif
 jupyter execute notebooks/Fase3_EDA_ELSI/04_Analise_Fatorial.ipynb
 ```
 
+O código está comentado linha a linha, com a tradução para R, em
+[`Codigo_Analise_Fatorial_Comentado.md`](Codigo_Analise_Fatorial_Comentado.md).
+
 O notebook trava em três pontos: o recorte de 104.108 setores, os 87.545 completos, e os valores de KMO, MSA e Bartlett do diagnóstico de agosto. Se qualquer um divergir, ele para.
 
 ---
@@ -238,6 +296,10 @@ HORN, J. L. A rationale and test for the number of factors in factor analysis. *
 STEVENS, J. P. **Applied Multivariate Statistics for the Social Sciences**. 2. ed. Hillsdale: Erlbaum, 1992.
 
 TABACHNICK, B. G.; FIDELL, L. S. **Using Multivariate Statistics**. Needham Heights: Allyn & Bacon, 2007.
+
+BOLLEN, K.; LENNOX, R. Conventional wisdom on measurement: a structural equation perspective. **Psychological Bulletin**, v. 110, n. 2, p. 305–314, 1991.
+
+DIAMANTOPOULOS, A.; WINKLHOFER, H. M. Index construction with formative indicators: an alternative to scale development. **Journal of Marketing Research**, v. 38, n. 2, p. 269–277, 2001.
 
 HENDRICKSON, A. E.; WHITE, P. O. Promax: a quick method for rotation to oblique simple structure. **British Journal of Statistical Psychology**, v. 17, n. 1, p. 65–70, 1964.
 
