@@ -1,5 +1,5 @@
 /**
- * Gera a EDA Central — docs/Apresentacoes_IVS/EDA_Central_IVS_2026-09_rev2.pptx
+ * Gera a EDA Central — docs/Apresentacoes_IVS/complementos/EDA_Central_IVS_2026-09_rev2.pptx
  *
  * Por que este script existe
  * --------------------------
@@ -18,7 +18,7 @@
  *
  * Ordem de execução:
  *     ./.venv/bin/python scripts/eda_central_dados.py banco_de_dados/eda/dados_deck.json
- *     node scripts/gerar_deck_eda_central.js docs/Apresentacoes_IVS/EDA_Central_IVS_2026-09_rev2.pptx
+ *     node scripts/gerar_deck_eda_central.js docs/Apresentacoes_IVS/complementos/EDA_Central_IVS_2026-09_rev2.pptx
  *
  * Uso:
  *     node scripts/gerar_deck_eda_central.js <saida.pptx> [dados_deck.json]
