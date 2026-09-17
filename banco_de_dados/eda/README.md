@@ -58,8 +58,38 @@ foram montados — o NB02, da seção 3b em diante, trabalha com os 104.108 urba
 > **Resolvidos em 09/08/2026:** os três `situacao_urbano_rural_*` — agora saem da célula
 > `filtro-urbano` do NB02, com o mesmo esquema de colunas de antes.
 
+### ✅ Gerados por [`scripts/auditoria_renda.py`](../../scripts/auditoria_renda.py)
+
+A auditoria da renda de 02/09/2026, que produziu o critério de outlier e a coluna
+`renda_media_sem_extremo`. A regra que estas tabelas descrevem vive em
+[`src/ivs_censo/renda.py`](../../src/ivs_censo/renda.py), e o script a importa de lá —
+o texto nunca descreve uma versão diferente da que roda.
+
+| Arquivo | O que traz |
+|---|---|
+| `renda_outliers_rastreados.csv` | uma linha por setor avaliado, com a classe e os motivos |
+| `renda_classes_resumo.csv` | quantos setores em cada classe (NORMAL, SUSPEITO, EXTREMO) |
+| `renda_criterio_global_vs_municipal.csv` | o corte de Tukey por município contra o global |
+| `renda_setores_pequenos.csv` | os municípios abaixo do piso mínimo de setores |
+| `renda_extremos_por_regiao.csv` | onde os extremos se concentram |
+| `renda_eda_com_vs_sem.csv` | as descritivas com e sem os suspeitos |
+| `renda_correlacao_com_vs_sem.csv` | o efeito nas correlações |
+| `renda_normalizacao_impacto.csv` | o efeito na normalização |
+
+> **Registrados em 17/09/2026.** Estas oito tabelas estavam em `eda/` desde 02/09 sem
+> entrada neste README — a auditoria integral as classificou como sem procedência
+> declarada. O código que as gera sempre existiu; o que faltava era o registro.
+
 ## Outras pastas de saída
 
+- **[`eda/fatorial/`](fatorial/)** — as 37 tabelas da análise fatorial, de duas gerações:
+  o diagnóstico de 24/08 (`scripts/diagnostico_fatorial.py`) e o Notebook 04 de 17/09
+  (prefixo `nb04_`). Índice próprio em [`fatorial/README.md`](fatorial/README.md).
+- **[`eda/atualizada/`](atualizada/)** — as 16 tabelas da 2ª rodada da EDA, recalculadas
+  com `renda_media_sem_extremo` (`scripts/eda_atualizada.py`). **Atenção:** os arquivos
+  têm os mesmos nomes dos daqui e as linhas continuam rotuladas como `renda_media` — a
+  única marca é o nome da pasta. Índice e a armadilha explicada em
+  [`atualizada/README.md`](atualizada/README.md).
 - **`banco_de_dados/nacional/`** — resultados do Brasil inteiro
   (`scripts/proporcoes_brasil.py`): proporções por recorte, região, UF e município, o
   comparativo Brasil × 70 municípios ELSI e a tabela de representatividade da amostra.
