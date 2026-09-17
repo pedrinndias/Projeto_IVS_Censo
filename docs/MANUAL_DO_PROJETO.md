@@ -123,8 +123,10 @@ copiar código.
 banco_de_dados/
 ├── Base_ELSI_Bruta_Censo2022.csv       saída do NB01 · 109.032 × 68 · não versionado
 ├── eda/                                 saídas do NB02
-│   ├── figuras/                         os 4 PNGs da apresentação
-│   └── (34 CSVs)                        tabelas descritivas
+│   ├── figuras/                         7 PNGs da EDA
+│   ├── fatorial/                        37 CSVs + 5 PNGs da análise fatorial
+│   ├── atualizada/                      16 CSVs + 5 PNGs da 2ª rodada (renda sem extremo)
+│   └── (61 CSVs)                        tabelas descritivas e de auditoria
 ├── nacional/                            saídas do cálculo Brasil inteiro
 └── entrega_orientadora/                 o pacote de entrega
 ```
@@ -207,7 +209,7 @@ docs/
 python -m pytest tests/ -v
 ```
 
-São 65 testes. Se todos passam, a pipeline está íntegra.
+São **74 testes**. Se todos passam, a pipeline está íntegra.
 
 ### `Backup/` — legado
 
@@ -222,7 +224,7 @@ Se alguém perguntar "de onde saiu esse número", esta é a tabela.
 | Slide | Número | Arquivo de origem |
 |---|---|---|
 | 3 | 70 municípios · 104.108 setores · 26 indicadores | `exclusao_rural_conferencia.csv` · `src/ivs_censo/indicadores.py` |
-| 3 | 65 testes | `pytest tests/` |
+| 3 | 74 testes | `pytest tests/` |
 | 7 | Tamanho dos 8 arquivos | `dados/` |
 | 8 e 9 | As 28 variáveis e seus arquivos | `Dicionario_Variaveis_Projeto.csv` |
 | 11 | Elegibilidade (1.736 / 1.015 / 0 / 106.281) | `elegibilidade_setores.csv` |
@@ -639,7 +641,7 @@ bruta preserva todos os setores para auditoria.
 outro: 15,9% dos setores não têm a taxa de analfabetismo, e de forma não aleatória.
 
 **"O que garante que a sua pipeline está certa?"**
-Três coisas: 65 testes automatizados; a soma das faixas etárias reproduzir exatamente a
+Três coisas: 74 testes automatizados; a soma das faixas etárias reproduzir exatamente a
 população em todos os setores comparáveis; e o cálculo nacional reproduzir o índice de
 envelhecimento publicado pelo IBGE (79,99 contra 80,0) e a população do Censo
 (203.080.756, exato).

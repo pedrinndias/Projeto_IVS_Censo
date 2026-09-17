@@ -180,7 +180,7 @@ Projeto_IVS_Censo22/
 │   ├── ETL/, formatar/, banco_de_dados/
 │   └── DIAGNOSTICO_COMPLETO_PROJETO.md
 │
-└── tests/                             65 testes (artefatos da pipeline + fórmulas dos indicadores)
+└── tests/                             74 testes (artefatos, fórmulas e a álgebra da fatorial)
 ```
 
 ## Problemas Conhecidos
