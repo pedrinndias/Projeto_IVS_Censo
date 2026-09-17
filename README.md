@@ -9,6 +9,7 @@ O projeto faz parte de uma **Iniciação Científica** vinculada à **Fiocruz Mi
 > **Documento mestre:** [`GUIA_DO_PROJETO.md`](GUIA_DO_PROJETO.md) — versão atualizada e canônica de objetivos, metodologia, estado e plano.
 > **Manual de uso:** [`docs/MANUAL_DO_PROJETO.md`](docs/MANUAL_DO_PROJETO.md) — onde achar cada arquivo, de onde vem cada número e como apresentar o projeto.
 > **Diagnóstico técnico mais recente:** [`docs/Relatorio_Integridade_Projeto.md`](docs/Relatorio_Integridade_Projeto.md).
+> **Análise fatorial (Notebook 04):** [`docs/Analise_Fatorial_LEIAME.md`](docs/Analise_Fatorial_LEIAME.md) — índice do estudo do livro da Enap, do plano de implementação e do prompt de execução.
 
 ## Status Atual
 
@@ -25,7 +26,7 @@ A pipeline ativa é a **Fase 3 (`notebooks/Fase3_EDA_ELSI/`)**, que aplica o fil
 | Demandas da orientadora (jul/2026) — 7 itens | ✅ Concluídas (ver abaixo) |
 | Linha de base nacional (~468 mil setores) | ✅ [`scripts/proporcoes_brasil.py`](scripts/proporcoes_brasil.py) |
 | Normalização de renda por município | 🔴 Pendente (a fazer no Notebook 03) |
-| Análise fatorial / ACP — definição dos pesos | 🔴 Pendente (Notebook 04) |
+| Análise fatorial / ACP — definição dos pesos | 🔴 Pendente (Notebook 04) — estudo e plano prontos: [`docs/Analise_Fatorial_LEIAME.md`](docs/Analise_Fatorial_LEIAME.md) |
 | Cálculo do IVS final + categorização em 4 faixas | 🔴 Pendente (Notebook 05) |
 | Mapas temáticos (QGIS 3.x) | 🔴 Pendente |
 | Redação do artigo científico | 🟡 Plano preenchido em `docs/Plano_Artigo_Cientifico_IC_Preenchido.docx` |

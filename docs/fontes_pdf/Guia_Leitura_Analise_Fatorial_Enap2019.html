@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Guia de Leitura — Análise Fatorial (Enap, 2019)</title>
+<link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+
+<!-- ══════════════════ ROSTO ══════════════════ -->
+<div class="rosto">
+  <div class="etiqueta">Guia de leitura · Documento de apoio metodológico</div>
+  <h1>Análise fatorial, de Matos&nbsp;&amp;&nbsp;Rodrigues</h1>
+  <p class="sub">Um guia para ler o livro da Enap com o Projeto IVS aberto ao lado — o que observar em cada seção, o que já está medido nos seus dados, e as cinco decisões que a leitura obriga a rever</p>
+  <hr class="regua-forte">
+  <table class="ficha">
+    <tr><td>Obra</td><td>MATOS, Daniel Abud Seabra; RODRIGUES, Erica Castilho. <em>Análise fatorial</em>. Brasília: Enap, 2019. 74&nbsp;p. Coleção Metodologias de Pesquisa. ISBN 978-85-256-0118-6.</td></tr>
+    <tr><td>Projeto</td><td>Índice de Vulnerabilidade à Saúde (IVS) intraurbano — Censo Demográfico 2022 / ELSI-Brasil</td></tr>
+    <tr><td>Instituição</td><td>Fiocruz Minas — Instituto René Rachou (IRR) · Iniciação Científica</td></tr>
+    <tr><td>Pesquisador</td><td>Pedro Dias Soares</td></tr>
+    <tr><td>Etapa alvo</td><td>Notebook 04 — análise fatorial, definição dos pesos do índice</td></tr>
+    <tr><td>Documento irmão</td><td><code>docs/Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md</code> (24/08/2026)</td></tr>
+  </table>
+  <hr class="regua">
+</div>
+
+<!-- ══════════════════ 0. COMO USAR ══════════════════ -->
+<h2><span class="num">0</span>Como usar este guia</h2>
+
+<p>O livro da Enap tem 74 páginas e é curto o bastante para ser lido inteiro. Este guia, portanto, <strong>não é um resumo</strong> — resumir um livro de 74 páginas seria trocar a leitura por uma leitura pior. Ele é um <strong>companheiro de margem</strong>: para cada seção do livro, diz o que observar, qual pergunta carregar, e qual número do seu próprio projeto colocar ao lado do que está sendo lido.</p>
+
+<p>A diferença importa porque você não chega neste livro do zero. O projeto já tem a análise fatorial <strong>rodada</strong>: <code>scripts/diagnostico_fatorial.py</code> produziu KMO, Bartlett, autovalores, análise paralela de Horn, comunalidades e cargas rotacionadas para seis cenários, e <code>docs/Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md</code> já discutiu o que saiu dali. Ler o livro da Enap como se fosse a primeira exposição ao método desperdiça a posição privilegiada em que você está: a de quem pode conferir cada regra do livro contra um resultado já calculado.</p>
+
+<div class="bloco">
+  <div class="rot">A tese deste guia</div>
+  <p>O livro da Enap não repete Figueiredo&nbsp;&amp;&nbsp;Silva (2010) — ele <strong>discorda</strong> dele em três pontos que mudam o que o Notebook 04 deve fazer: a rotação deve ser oblíqua e não Varimax; a técnica deve ser análise fatorial e não componentes principais; e a regra de comunalidade de 0,50 não deve ser aplicada como corte rígido. Nos três casos, o livro dá razão ao que os seus dados já indicavam. Ler para confirmar isso é o objetivo.</p>
+</div>
+
+<h3>Roteiro em três sessões</h3>
+
+<table class="bt">
+  <caption>Tabela 1 — Divisão sugerida da leitura</caption>
+  <thead>
+    <tr><th style="width:14mm">Sessão</th><th style="width:26mm">Páginas do livro</th><th style="width:17mm">Tempo</th><th>O que extrair</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="dest">1ª</td><td class="mono">7–26</td><td>~50 min</td>
+      <td>O vocabulário: variável latente, fator, carga fatorial, escore fatorial, comunalidade. Meta: entender por que uma carga fatorial pode ser uma correlação <em>ou</em> um coeficiente de regressão — isso decide qual matriz você reporta.</td>
+    </tr>
+    <tr>
+      <td class="dest">2ª</td><td class="mono">26–46</td><td>~60 min</td>
+      <td>O núcleo de decisão: AF × ACP, número de fatores, extração, <strong>rotação</strong>, e as duas tabelas-síntese (Tabelas 7 e 8, p.&nbsp;44 e 46). É aqui que o livro contradiz o que o projeto fez. Leia com o <code>resumo_adequabilidade.csv</code> impresso ao lado.</td>
+    </tr>
+    <tr>
+      <td class="dest">3ª</td><td class="mono">46–71</td><td>~55 min</td>
+      <td>Os dois exemplos aplicados. O Exemplo&nbsp;2 (p.&nbsp;67–71) é o <strong>molde exato</strong> do seu caso: índice socioeconômico latente construído a partir de itens do IBGE, com escores usados depois em outro modelo. Leia-o como especificação, não como ilustração.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p class="fraco" style="font-size:8.4pt;color:#666">As páginas citadas ao longo deste guia são as <strong>do livro</strong> (numeração impressa). No arquivo PDF, some 1: a página 9 do livro é a página 10 do PDF.</p>
+
+<!-- ══════════════════ 1. O QUE ACRESCENTA ══════════════════ -->
+<h2><span class="num">1</span>O que este livro acrescenta ao que o projeto já fez</h2>
+
+<p>O documento sobre Figueiredo&nbsp;&amp;&nbsp;Silva (2010) já cobriu adequabilidade da base, número de fatores, o diagnóstico do lixo e a convergência dos pesos com o IVS-BH. Ler a Enap para reconfirmar isso é perda de tempo. O valor está nos cinco territórios que o artigo de 2010 não pisa.</p>
+
+<table class="bt">
+  <caption>Tabela 2 — Onde a leitura tem retorno</caption>
+  <thead>
+    <tr><th style="width:42mm">Tema</th><th style="width:20mm">Páginas</th><th style="width:50mm">O que o projeto fez</th><th>O que o livro acrescenta</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="dest">Rotação oblíqua</td><td class="mono">34–39</td>
+      <td>Varimax (ortogonal), seguindo Figueiredo</td>
+      <td class="clay">Diz que Varimax em Ciências Humanas e Sociais “não parece ter nenhum sentido” sem evidência forte de que os fatores são independentes. Os seus não são.</td>
+    </tr>
+    <tr>
+      <td class="dest">AF × ACP</td><td class="mono">26–28</td>
+      <td>ACP sobre a matriz de correlação</td>
+      <td class="clay">Com menos de 20 variáveis e comunalidades baixas, as duas técnicas <em>divergem</em> (Stevens, 1992). Você tem 6–7 variáveis e uma comunalidade de 0,380.</td>
+    </tr>
+    <tr>
+      <td class="dest">Escores fatoriais</td><td class="mono">22–26, 69–71</td>
+      <td>Ainda não calculados; o plano é média ponderada das variáveis padronizadas</td>
+      <td class="clay">Classifica a média ponderada pelas cargas como método <strong>“não refinado”</strong> e instável, e ensina o método da regressão como alternativa.</td>
+    </tr>
+    <tr>
+      <td class="dest">Matriz padrão × estrutura</td><td class="mono">21–22</td>
+      <td>Não se aplicava (solução ortogonal)</td>
+      <td>Com rotação oblíqua surgem duas matrizes de cargas com leituras diferentes. Define qual reportar.</td>
+    </tr>
+    <tr>
+      <td class="dest">Regra da comunalidade</td><td class="mono">26, 58</td>
+      <td>Descobriu empiricamente que o corte de 0,50 excluiria a variável errada (a água)</td>
+      <td class="petrol">Dá respaldo bibliográfico: o próprio livro diz que o critério “não deve ser utilizado isoladamente e de maneira muito rígida”.</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="bloco">
+  <div class="rot">Ganho imediato</div>
+  <p>A última linha da tabela vale por si só. O achado mais forte do documento sobre Figueiredo — que aplicar o corte de comunalidade mecanicamente teria custado ao índice o indicador de água — aparecia até agora como <em>crítica sua ao artigo</em>. Com a página 58 da Enap na mão, passa a ser <em>convergência com a literatura</em>. É a diferença entre um parecerista ler aquilo como ousadia e ler como domínio da bibliografia.</p>
+</div>
+
+<!-- ══════════════════ 2. COMPANHEIRO ══════════════════ -->
+<h2 class="quebra"><span class="num">2</span>Companheiro de leitura, seção por seção</h2>
+
+<p>Cada ficha abaixo cobre um bloco do livro. <strong>O que o livro faz</strong> resume o conteúdo em duas ou três linhas, apenas para localizar. <strong>Leia com esta pergunta</strong> é o que carregar na cabeça durante aquelas páginas. <strong>No seu projeto</strong> traz o número correspondente, já calculado, para você conferir enquanto lê.</p>
+
+<!-- A -->
+<div class="secao-livro">
+  <div class="cab">
+    <span class="titulo">A. Introdução e o que é análise fatorial</span>
+    <span class="paginas">p. 7–11</span>
+  </div>
+  <p>Apresenta variáveis latentes e construtos, define fator como combinação linear das variáveis originais, distingue técnicas de <em>dependência</em> (regressão) de <em>interdependência</em> (AF) e separa uso exploratório de confirmatório.</p>
+  <span class="rotulo-inline">Leia com esta pergunta</span>
+  <p class="pergunta">O IVS é uma AFE ou uma AFC? E se a resposta honesta for “nenhuma das duas exatamente”, como isso se escreve na dissertação?</p>
+  <span class="rotulo-inline">No seu projeto</span>
+  <p>Na página 9 o livro lista “vulnerabilidade social” entre os exemplos de variável latente, ao lado de inteligência e nível socioeconômico. Cite isso: é o seu construto nomeado pela referência. Quanto à postura, o projeto está no mesmo lugar ambíguo do artigo de Figueiredo — duas dimensões (saneamento e socioeconômica) vêm <em>a priori</em> do IVS-BH 2012, mas a estimação é exploratória. O livro é útil aqui por ser mais rigoroso que o artigo: ele reserva “AFC” para modelagem de equações estruturais e deixa fora do escopo. Isso confirma a correção já registrada na §5.4 do documento irmão — escreva <strong>“análise fatorial exploratória com número de fatores orientado pela teoria”</strong>, nunca “AFC”.</p>
+</div>
+
+<!-- B -->
+<div class="secao-livro">
+  <div class="cab">
+    <span class="titulo">B. Níveis de mensuração e tipos de correlação</span>
+    <span class="paginas">p. 11–15</span>
+  </div>
+  <p>Escalas nominal, ordinal, intervalar e de razão; e a correlação que cada combinação pede: Pearson, bisserial, policórica, polisserial, tetracórica.</p>
+  <span class="rotulo-inline">Leia com esta pergunta</span>
+  <p class="pergunta">O livro oferece cinco correlações — e nenhuma delas é a que eu uso. O que isso significa?</p>
+  <span class="rotulo-inline">No seu projeto</span>
+  <p>Esta é a primeira lacuna real do livro diante do seu caso, e é bom percebê-la cedo. As cinco correlações do catálogo resolvem combinações de variáveis <em>categóricas</em>. As suas sete variáveis são contínuas — proporções, uma razão e uma renda em reais — o que pelo catálogo levaria a Pearson. Mas o projeto decidiu usar <strong>Spearman</strong>, e por um motivo que o livro não contempla: assimetria de 3,42 na água, 3,74 na renda e curtose de 49,5 na renda. Spearman não é uma das cinco opções porque o livro trata de escalas Likert, não de proporções infladas de zeros.</p>
+  <p>O efeito dessa escolha já está medido e é grande. Vale ter o quadro à mão ao ler estas páginas:</p>
+  <table class="bt">
+    <caption>Tabela 3 — O que muda entre Pearson e Spearman nos seus dados (7 componentes, n = 87.545)</caption>
+    <thead><tr><th>Critério</th><th class="num">Pearson</th><th class="num">Spearman</th><th style="width:52mm">Leitura</th></tr></thead>
+    <tbody>
+      <tr><td>KMO global</td><td class="num">0,732</td><td class="num dest">0,783</td><td>Sobe de “bom” para melhor dentro de “bom” na escala do livro (Tabela 6, p.&nbsp;43)</td></tr>
+      <tr><td>MSA mínimo</td><td class="num">0,542</td><td class="num dest">0,700</td><td>Sai da zona “medíocre”</td></tr>
+      <tr><td>Coeficientes |r| ≥ 0,30</td><td class="num clay">33,3%</td><td class="num dest">57,1%</td><td>Com Pearson a base <strong>reprova</strong> no critério da “maioria acima de 0,30” (p.&nbsp;42)</td></tr>
+      <tr><td>Fatores por Kaiser</td><td class="num">3</td><td class="num dest">2</td><td>Solução mais parcimoniosa</td></tr>
+      <tr><td>Variância acumulada</td><td class="num clay">53,6%</td><td class="num dest">62,1%</td><td>Só Spearman cruza o patamar de 60% de Hair</td></tr>
+    </tbody>
+  </table>
+  <p>Ou seja: com Pearson, a sua base seria <em>reprovada</em> em dois dos critérios de adequabilidade da Etapa 1 do livro. A escolha por Spearman não é cosmética — é o que torna a análise defensável. Ao ler a página 14, anote que precisará justificar uma correlação que o livro não lista, e que a justificativa é a não-normalidade documentada na §9 do relatório da EDA.</p>
+</div>
+
+<!-- C -->
+<div class="secao-livro">
+  <div class="cab">
+    <span class="titulo">C. Fatores, formas de representação e cargas fatoriais</span>
+    <span class="paginas">p. 15–22</span>
+  </div>
+  <p>A matriz-R, a representação gráfica dos fatores como eixos, a equação linear, e a definição de carga fatorial. Termina distinguindo a matriz de estrutura da matriz padrão.</p>
+  <span class="rotulo-inline">Leia com esta pergunta</span>
+  <p class="pergunta">Se eu adotar rotação oblíqua, qual das duas matrizes de cargas vira o peso do meu índice?</p>
+  <span class="rotulo-inline">No seu projeto</span>
+  <p>O exemplo didático da Tabela 1 (p.&nbsp;15) tem sete itens, sendo que o <strong>item 7 se correlaciona fracamente com todos os outros</strong> e o livro anuncia, já ali, que ele provavelmente terá de sair. Você tem exatamente essa figura: o <code>pct_lixo_inad</code> se correlaciona entre 0,10 e 0,24 com todas as demais. A diferença — e é uma diferença que enriquece a sua discussão — é que no seu caso o lixo <em>não</em> ficou com comunalidade baixa: ele ficou com 0,859, porque formou um fator só dele. O livro não tem esse caso; o seu projeto tem. Anote como contribuição própria.</p>
+  <p>O ponto denso destas páginas está na 21–22: quando os fatores são correlacionados, a carga deixa de ser uma correlação e passa a ser um <strong>coeficiente de regressão</strong>, e surgem duas matrizes — a <em>matriz de estrutura</em> (correlações entre variáveis e fatores) e a <em>matriz padrão</em> (coeficientes de regressão). O livro registra que a maior parte dos pesquisadores interpreta a matriz padrão, por ser mais simples. Hoje isso não afeta o projeto, porque a solução Varimax é ortogonal e as duas matrizes coincidem. Se a seção H convencer você a migrar para oblíqua — e ela deve —, esta é a página a reler: os pesos passam a sair da matriz padrão, e isso precisa ser dito explicitamente.</p>
+  <div class="bloco alerta">
+    <div class="rot">Armadilha a evitar</div>
+    <p>Ainda na página 22, o livro avisa que uma carga fatorial oblíqua <strong>pode passar de 1</strong>, por ser coeficiente de regressão — e que, se isso ocorrer, é preciso checar a variância residual: se for negativa, a solução é inadmissível e sugere fatores demais extraídos. Guarde esse teste. Você vai rodar soluções oblíquas com 6 e 7 variáveis e 2 fatores em uma matriz mal condicionada por renda × cor/raça a −0,811; é justamente o terreno onde isso aparece.</p>
+  </div>
+</div>
+
+<!-- D -->
+<div class="secao-livro">
+  <div class="cab">
+    <span class="titulo">D. Escores fatoriais e o método da regressão</span>
+    <span class="paginas">p. 22–26</span>
+  </div>
+  <p>Define escore fatorial como média ponderada das variáveis pelas cargas, separa métodos “não refinados” de “refinados” e detalha o método da regressão, em que os pesos saem de <code>B = R⁻¹A</code>.</p>
+  <span class="rotulo-inline">Leia com esta pergunta</span>
+  <p class="pergunta">O IVS que eu planejo calcular é, na classificação deste livro, um método não refinado. Isso é um problema?</p>
+  <span class="rotulo-inline">No seu projeto</span>
+  <p>Estas quatro páginas contêm a crítica mais direta ao plano atual do projeto, e é preciso encará-la de frente. O GUIA (§3, item 4) prevê o IVS como “média ponderada das variáveis padronizadas”, com pesos vindos da fatorial. Na taxonomia da página 23, isso é um <strong>método não refinado</strong> — e o livro lhe atribui três defeitos: depende da escala das variáveis originais, depende da rotação escolhida, e “é muito instável por depender fortemente da amostra em particular que está sendo analisada”. Os métodos refinados (regressão, Bartlett, Anderson-Rubin) não têm esses problemas.</p>
+  <p>Mas há uma tensão real, e ela não se resolve simplesmente aceitando o conselho do livro:</p>
+  <table class="bt">
+    <caption>Tabela 4 — O dilema dos escores no IVS</caption>
+    <thead><tr><th style="width:44mm">Critério</th><th>Escore refinado (regressão)</th><th>Média ponderada 0–1 (não refinado)</th></tr></thead>
+    <tbody>
+      <tr><td>Estabilidade estatística</td><td class="petrol">Alta — é o que o livro recomenda</td><td class="clay">Baixa — instável entre amostras</td></tr>
+      <tr><td>Escala resultante</td><td>Padronizada, aprox. −3 a +3</td><td class="petrol">0 a 1, diretamente interpretável</td></tr>
+      <tr><td>Categorização em 4 faixas</td><td>Possível, mas por quantis de um escore abstrato</td><td class="petrol">Natural e comunicável ao gestor</td></tr>
+      <tr><td>Comparabilidade com o IVS-BH 2012</td><td class="clay">Perdida — o IVS-BH é média ponderada</td><td class="petrol">Preservada</td></tr>
+      <tr><td>Reprodutibilidade por terceiros</td><td class="clay">Exige a matriz <code>R⁻¹</code> e os dados completos</td><td class="petrol">Sete pesos numa tabela bastam</td></tr>
+    </tbody>
+  </table>
+  <p>A saída mais defensável não é escolher: é <strong>calcular os dois e usar a concordância como validação</strong>. Se o escore refinado e o índice 0–1 ponderado classificarem os setores na mesma ordem — correlação de Spearman entre eles acima de, digamos, 0,95 —, a instabilidade que o livro teme não se materializou na sua amostra, e você reporta o índice 0–1 com a consciência tranquila e a evidência no apêndice. Se divergirem, você descobriu algo importante antes de publicar. Essa comparação é barata e é o principal item novo que esta seção põe no Notebook 04.</p>
+  <p>Anote também a frase da página 24: os escores fatoriais servem como <em>substitutos das variáveis originais</em> em análises posteriores, inclusive para resolver multicolinearidade em regressões. Isso é munição para a fase de modelagem do artigo, quando o IVS for cruzado com desfechos do ELSI.</p>
+</div>
+
+<!-- E -->
+<div class="secao-livro">
+  <div class="cab">
+    <span class="titulo">E. Comunalidade, análise fatorial e componentes principais</span>
+    <span class="paginas">p. 26–28</span>
+  </div>
+  <p>Separa variância comum, específica e de erro; define comunalidade e propõe o mínimo de 0,50; e distingue AF de ACP — a ACP usa toda a variância, a AF apenas a compartilhada.</p>
+  <span class="rotulo-inline">Leia com esta pergunta</span>
+  <p class="pergunta">Rodei ACP. O livro diz que, no meu tamanho de problema, a AF daria outro resultado. Daria?</p>
+  <span class="rotulo-inline">No seu projeto</span>
+  <p>São as três páginas mais consequentes do livro para o Notebook 04, e por uma razão aritmética simples. O livro traz a regra de convergência de Hair (as duas técnicas dão o mesmo com mais de 30 variáveis ou comunalidades acima de 0,60) e, logo depois, a advertência de Stevens (1992): <strong>com menos de 20 variáveis e comunalidades baixas, abaixo de 0,4, os resultados podem divergir</strong>. Confira contra os seus números:</p>
+  <table class="bt">
+    <caption>Tabela 5 — A condição de Stevens aplicada ao IVS (solução sem lixo, Spearman)</caption>
+    <thead><tr><th>Condição para AF ≈ ACP</th><th class="num" style="width:30mm">Limiar</th><th class="num" style="width:30mm">Seu caso</th><th class="num" style="width:24mm">Situação</th></tr></thead>
+    <tbody>
+      <tr><td>Número de variáveis</td><td class="num">&gt; 30</td><td class="num">6</td><td class="num clay">falha</td></tr>
+      <tr><td>Comunalidade da maioria</td><td class="num">&gt; 0,60</td><td class="num">4 de 6 acima</td><td class="num">limítrofe</td></tr>
+      <tr><td>Comunalidade mínima</td><td class="num">&gt; 0,40</td><td class="num">0,380 <span class="fraco">(razão de moradores)</span></td><td class="num clay">falha</td></tr>
+    </tbody>
+  </table>
+  <p>Duas das três condições falham. Não se pode mais afirmar que “ACP e AF dariam a mesma coisa” — isso virou uma hipótese a testar, não um pressuposto. E o teste é barato: rodar a mesma matriz por fatoração do eixo principal ou máxima verossimilhança e comparar as cargas. Se forem próximas, uma frase resolve a questão no artigo; se não forem, você precisa escolher com argumento, e o argumento está na citação de Tabachnick e Fidell que o livro traz na página 27 — análise fatorial para uma solução teórica não contaminada por erro, componentes principais para um resumo empírico. O IVS quer estimar um construto teórico. Isso aponta para AF.</p>
+  <div class="bloco">
+    <div class="rot">Volte a estas páginas depois</div>
+    <p>Guarde a definição de comunalidade como “proporção de variância explicada pelos fatores <em>retidos</em>”. Ela é a base lógica do seu achado sobre a água: 0,253 com sete variáveis, 0,822 sem o lixo. A comunalidade é propriedade da <em>solução</em>, não da variável — e a página 27 sustenta isso ao dizer que novas comunalidades são calculadas depois que os fatores são extraídos.</p>
+  </div>
+</div>
+
+<!-- F -->
+<div class="secao-livro">
+  <div class="cab">
+    <span class="titulo">F. Autovalores, diagrama de declividade e variância acumulada</span>
+    <span class="paginas">p. 28–32</span>
+  </div>
+  <p>Os três critérios para decidir quantos fatores reter — Kaiser (autovalor &gt; 1), <em>scree test</em> de Cattell e patamar de 60% de variância acumulada — com a instrução de usá-los em conjunto e a advertência de que costumam discordar.</p>
+  <span class="rotulo-inline">Leia com esta pergunta</span>
+  <p class="pergunta">Meu segundo autovalor é 1,049 e o terceiro é 0,958. O critério de Kaiser está decidindo com folga de 0,09 — ele tem autoridade para isso com 7 variáveis?</p>
+  <span class="rotulo-inline">No seu projeto</span>
+  <p>Não tem, e o livro diz isso em letras claras. Na página 29 ele registra que o critério de Kaiser funciona melhor quando se analisam <strong>entre 20 e 50 variáveis</strong> (Tabachnick&nbsp;&amp;&nbsp;Fidell) e que é mais preciso com comunalidades após a extração todas acima de 0,7 (Stevens). Você tem 6 ou 7 variáveis e comunalidades a partir de 0,380. O critério de Kaiser, no seu caso, é o mais fraco dos três — o que é desconfortável, porque é justamente ele que sustenta o segundo fator.</p>
+  <p>Isso importa mais do que parece por causa de um detalhe já medido: na solução recomendada, sem o lixo, <strong>o critério de Kaiser retém apenas um fator</strong> — o segundo autovalor é 0,9585. A retenção do segundo fator (o de saneamento) se apoia hoje na razão teórica. Estas páginas do livro dão o respaldo para isso, quando afirmam que a decisão final pode acabar sendo teórica e que a pergunta certa é “teoricamente faz mais sentido essas variáveis estarem agrupadas em quantos fatores?”. Marque a página 32: é a citação que legitima a sua escolha, e ela precisa aparecer no texto do artigo.</p>
+  <p>Note também que a análise paralela de Horn, que o seu script já implementa e que é um critério mais moderno e mais robusto que Kaiser, <strong>não está neste livro</strong>. Ela está em nota de rodapé no artigo de Figueiredo. Você está usando um critério melhor que o da sua referência principal — diga isso.</p>
+</div>
+
+<!-- G -->
+<div class="secao-livro">
+  <div class="cab">
+    <span class="titulo">G. Extração de fatores</span>
+    <span class="paginas">p. 32–34</span>
+  </div>
+  <p>Cinco métodos: componentes principais, fatores principais, máxima verossimilhança, mínimos quadrados ordinários e generalizados.</p>
+  <span class="rotulo-inline">Leia com esta pergunta</span>
+  <p class="pergunta">Qual desses métodos eu consigo implementar sem adicionar dependência nova ao projeto?</p>
+  <span class="rotulo-inline">No seu projeto</span>
+  <p>Leitura rápida, com uma consequência prática. O livro observa, citando Tabachnick&nbsp;&amp;&nbsp;Fidell, que com um número razoável de observações e variáveis os métodos de extração <strong>não devem divergir muito entre si</strong> — e que essa convergência é, ela própria, uma forma de validar as estimativas e mostrar que os resultados são estáveis. Com 87 mil setores, rodar dois métodos de extração e mostrar que as cargas batem é uma análise de sensibilidade barata e convincente.</p>
+  <p>A restrição é de engenharia: o projeto mantém <code>requirements.txt</code> em pandas, numpy e matplotlib, e o <code>diagnostico_fatorial.py</code> implementou KMO, Bartlett, Horn, ACP e Varimax à mão em numpy exatamente para não quebrar isso. A fatoração do eixo principal é implementável em numpy em poucas linhas — é ACP iterada sobre a matriz com comunalidades estimadas na diagonal. Máxima verossimilhança já pede otimização numérica. Isso vira uma decisão de arquitetura, tratada no documento de implementação que acompanha este guia.</p>
+</div>
+
+<!-- H -->
+<div class="secao-livro">
+  <div class="cab">
+    <span class="titulo">H. Rotação de fatores e a escolha do método</span>
+    <span class="paginas">p. 34–39</span>
+  </div>
+  <p>Por que rotacionar, a diferença entre rotação ortogonal e oblíqua, os métodos disponíveis em cada família, e uma recomendação bastante direta sobre qual usar.</p>
+  <span class="rotulo-inline">Leia com esta pergunta</span>
+  <p class="pergunta">Tenho evidência forte de que os dois fatores do IVS são independentes? Se não tenho, por que usei Varimax?</p>
+  <div class="bloco alerta">
+    <div class="rot">A passagem mais importante do livro para este projeto</div>
+    <p>Página 38: “usar rotação ortogonal com dados de Ciências Humanas e Sociais não parece ter nenhum sentido. Nessas áreas, as variáveis quase sempre são correlacionadas. Assim, existem autores que defendem que esse tipo de rotação fatorial nunca deveria ser utilizado em Ciências Humanas e Sociais. Portanto, para usar rotação ortogonal, o pesquisador precisaria ter evidências teóricas ou empíricas muito fortes de que os fatores não são correlacionados.”</p>
+  </div>
+  <span class="rotulo-inline">No seu projeto</span>
+  <p>O <code>diagnostico_fatorial.py</code> usa Varimax, herdado de Figueiredo&nbsp;&amp;&nbsp;Silva (2010), que também o usa “por ser a mais comum”. O livro da Enap trata essa escolha como o caminho que exige prova — e a prova que ele pede é de que os fatores <em>não</em> se correlacionam. No IVS, a hipótese de independência entre a dimensão socioeconômica e a de saneamento é implausível à primeira vista: territórios pobres têm pior saneamento, e as suas próprias correlações mostram isso — esgoto inadequado com analfabetismo a 0,429 e com renda a −0,454, em Spearman.</p>
+  <p>A consequência é concreta e vai além do rigor formal. A rotação oblíqua produz uma <strong>matriz de correlação entre os fatores</strong>, que a solução ortogonal, por construção, não pode produzir. E essa matriz é evidência que o projeto hoje não tem:</p>
+  <ul>
+    <li><strong>Valida a estrutura.</strong> No Exemplo 1 do livro (p.&nbsp;66), a interpretação das correlações entre os três fatores — negativas entre concepções opostas, positiva entre concepções afins — é usada como confirmação de que a solução faz sentido teórico. Se os seus dois fatores se correlacionarem positivamente e com magnitude moderada, isso é exatamente o que a teoria da vulnerabilidade prevê, e vira um parágrafo de validação no artigo.</li>
+    <li><strong>Afeta os pesos.</strong> A repartição 65/35 entre as dimensões foi calculada por soma dos quadrados das cargas <em>ortogonais</em>. Com fatores correlacionados, parte da variância é compartilhada entre eles, e a repartição muda. O número que hoje converge tão bem com os 60/40 do IVS-BH precisa ser recalculado antes de virar o peso oficial.</li>
+    <li><strong>Justifica a escolha <em>a posteriori</em>.</strong> Ainda na página 67, o livro registra que “as correlações encontradas entre os fatores evidenciam que a escolha por uma rotação oblíqua foi acertada”. É um argumento circular fraco em abstrato, mas é o padrão da área e será esperado de você.</li>
+  </ul>
+  <p>Quanto ao método: o livro nomeia <code>oblimin</code> como a rotação oblíqua geralmente mais indicada e <code>promax</code> como a alternativa rápida para bases muito grandes. Com 87 mil casos, <code>promax</code> é a escolha pragmática — e tem a vantagem de ser implementável em numpy sem grande esforço, já que é uma rotação Varimax seguida de uma transformação oblíqua por mínimos quadrados. Isso preserva o compromisso de não adicionar dependências.</p>
+  <p class="pergunta">Decisão a levar para a orientadora: a solução oficial do IVS será ortogonal ou oblíqua? A oblíqua é a recomendada pela referência que o próprio GUIA lista, e produz uma evidência de validação que hoje falta.</p>
+</div>
+
+<!-- I -->
+<div class="secao-livro">
+  <div class="cab">
+    <span class="titulo">I. Planejamento e etapas da AFE</span>
+    <span class="paginas">p. 39–46</span>
+  </div>
+  <p>Consolida tudo em duas etapas: verificação da adequação da base (amostra, mensuração, matriz de correlações, Bartlett, KMO) e a análise propriamente dita (número de fatores, extração, rotação, interpretação). Fecha com as Tabelas 7 e 8, que são as duas listas de verificação do livro.</p>
+  <span class="rotulo-inline">Leia com esta pergunta</span>
+  <p class="pergunta">Em quais itens dessas duas tabelas o meu projeto já passou, e em quais ainda não?</p>
+  <span class="rotulo-inline">No seu projeto</span>
+  <p>Aqui a leitura é de conferência. Coloque a Tabela 7 (p.&nbsp;44) ao lado do <code>resumo_adequabilidade.csv</code>:</p>
+  <table class="bt">
+    <caption>Tabela 6 — A Etapa 1 do livro conferida contra os seus resultados (7 componentes, Spearman)</caption>
+    <thead><tr><th style="width:46mm">Critério do livro (p.&nbsp;44)</th><th style="width:40mm">Patamar</th><th style="width:34mm">Seu resultado</th><th>Situação</th></tr></thead>
+    <tbody>
+      <tr><td>Tamanho da amostra</td><td>&gt; 100 e ≥ 5 obs. por variável</td><td class="dest">87.545 · 12.506:1</td><td class="petrol">Atendido com folga</td></tr>
+      <tr><td>Nível de mensuração</td><td>Definir o tipo de correlação</td><td>Contínuas · Spearman</td><td>Atendido, com justificativa fora do catálogo do livro</td></tr>
+      <tr><td>Matriz de correlação</td><td>Maioria dos coeficientes &gt; 0,30</td><td class="dest">57,1% — e 80,0% sem o lixo</td><td class="petrol">Atendido</td></tr>
+      <tr><td>Teste de Bartlett</td><td>p &lt; 0,05</td><td>χ² = 235.084 · gl 21 · p ≈ 0</td><td class="clay">Atendido, mas vazio — ver abaixo</td></tr>
+      <tr><td>KMO</td><td>≥ 0,50; ideal a partir de 0,70</td><td class="dest">0,783 · MSA mín. 0,700</td><td class="petrol">Atendido</td></tr>
+    </tbody>
+  </table>
+  <div class="bloco">
+    <div class="rot">Achado: o livro dá razão à sua ressalva sobre o Bartlett</div>
+    <p>A §5.1 do documento sobre Figueiredo critica o artigo de 2010 por apresentar o Bartlett sem ressalva sobre sensibilidade ao tamanho da amostra. Na página 43, a Enap faz exatamente essa ressalva: o teste “depende muito do tamanho amostral e tende a rejeitar a hipótese nula para amostras grandes”, e por isso “a significância desse teste não é uma garantia de que todas as variáveis vão se agrupar em fatores”. A sua crítica deixa de ser sua e passa a ser citável. Troque a formulação no artigo: em vez de “o Bartlett é vazio nesta escala”, escreva “conforme adverte Matos&nbsp;&amp;&nbsp;Rodrigues (2019, p.&nbsp;43), o teste tende a rejeitar H₀ em amostras grandes; a conclusão de adequabilidade se apoia no KMO e nos MSA individuais”.</p>
+  </div>
+  <p>Há ainda um segundo ganho nestas páginas, na 42: o livro fixa em <strong>0,80</strong> o limiar a partir do qual correlações altas passam a indicar multicolinearidade, que “fica inviável separar o peso delas em cada um dos fatores”. A sua correlação de Spearman entre renda e cor/raça é <strong>−0,811</strong>. Está acima do limiar, por pouco. Isso não invalida nada, mas é um ponto que um parecerista atento levantará, e é melhor que apareça declarado na seção de limitações do que como descoberta alheia. A mesma página sugere o cálculo da SMC por variável como diagnóstico complementar — é uma linha de numpy e vale acrescentar ao script.</p>
+</div>
+
+<!-- J -->
+<div class="secao-livro">
+  <div class="cab">
+    <span class="titulo">J. Exemplo 1 — concepções de avaliação, os nove passos</span>
+    <span class="paginas">p. 46–67</span>
+  </div>
+  <p>O percurso completo em R sobre um questionário de 12 itens e 756 respondentes: amostra, mensuração, matriz de correlações, Bartlett, KMO, número de fatores, extração, rotação e interpretação.</p>
+  <span class="rotulo-inline">Leia com esta pergunta</span>
+  <p class="pergunta">Como o livro trata a variável problemática — e a minha se comporta igual?</p>
+  <span class="rotulo-inline">No seu projeto</span>
+  <p>Leia esta parte pelo <strong>item 12</strong>, que é o personagem central do exemplo. Ele aparece como suspeito já na matriz de correlações (passo 3), confirma-se na rotação com carga de 0,182 em todos os fatores (passo 8), tem comunalidade de 0,036, é excluído, e o modelo reajustado sobe de 53,6% para 58,1% de variância explicada. É a mesma sequência que você percorreu com o lixo — inclusive na ordem: suspeita na matriz de correlações, confirmação na solução rotacionada, exclusão, ganho de variância (62,1% para 70,0%).</p>
+  <p>Duas passagens específicas merecem marcação:</p>
+  <ul>
+    <li><strong>Página 58.</strong> “O critério da comunalidade maior do que 0,5 não deve ser utilizado isoladamente e de maneira muito rígida” — e o livro mantém no modelo um item com comunalidade abaixo do corte porque ele tem carga fatorial alta. Esta é a frase que resolve o caso pendente da <code>razao_moradores</code>, com comunalidade de 0,380 e carga de 0,532. Você tem agora respaldo bibliográfico para mantê-la, desde que reporte os dois números.</li>
+    <li><strong>Página 59.</strong> O procedimento de exclusão: identificar problemáticas por indeterminação fatorial <em>e</em> comunalidade baixa, excluir <strong>poucas por vez</strong>, reajustar, repetir. É o protocolo formal do que o projeto fez informalmente com o lixo. Cite-o no Notebook 04 para que a exclusão apareça como procedimento, não como conveniência.</li>
+  </ul>
+  <p>Observe, de passagem, uma diferença de escala que convém não esconder: o exemplo tem 756 casos e 12 itens; você tem 87.545 setores e 6 variáveis. A razão casos por variável do livro é de 63:1; a sua é de 14.590:1. Nenhum dos critérios de amostra do livro chega perto de ser exigente para o seu caso — o que significa que eles não informam nada sobre a qualidade da sua solução. O que limita a sua análise não é o <em>n</em>, é o número pequeno de variáveis. O livro, escrito para questionários com dezenas de itens, não trata desse problema.</p>
+</div>
+
+<!-- K -->
+<div class="secao-livro">
+  <div class="cab">
+    <span class="titulo">K. Exemplo 2 — o índice de nível socioeconômico</span>
+    <span class="paginas">p. 67–71</span>
+  </div>
+  <p>Construção de um indicador de NSE a partir de 13 itens do questionário contextual da Prova Brasil (2.497.431 alunos), com um único fator, e uso dos escores como variável explicativa num modelo multinível.</p>
+  <span class="rotulo-inline">Leia com esta pergunta</span>
+  <p class="pergunta">Se este exemplo é o molde do meu problema, em que pontos eu me afasto dele — e por quê?</p>
+  <span class="rotulo-inline">No seu projeto</span>
+  <p>Estas cinco páginas são a parte mais diretamente aproveitável do livro inteiro. O desenho é o seu desenho: construto socioeconômico latente, itens do IBGE sobre bens e escolaridade, amostra enorme, escores fatoriais reaproveitados a jusante. Vale ler linha a linha e anotar cada divergência.</p>
+  <table class="bt">
+    <caption>Tabela 7 — Exemplo 2 do livro × Notebook 04 do IVS</caption>
+    <thead><tr><th style="width:36mm">Aspecto</th><th style="width:52mm">Exemplo 2 (NSE, Prova Brasil)</th><th>Projeto IVS</th></tr></thead>
+    <tbody>
+      <tr><td>Unidade</td><td>Aluno</td><td class="clay">Setor censitário — a carga descreve covariação entre territórios, não entre pessoas</td></tr>
+      <tr><td>Variáveis</td><td>13 itens categóricos</td><td>6 ou 7 proporções contínuas</td></tr>
+      <tr><td>Correlação</td><td>Policórica</td><td>Spearman</td></tr>
+      <tr><td>Nº de fatores</td><td class="dest">1 — e o livro nota que a rotação então não é necessária</td><td>2, sendo o segundo sustentado pela teoria</td></tr>
+      <tr><td>Variância explicada</td><td>66%</td><td class="dest">70,0% (sem o lixo)</td></tr>
+      <tr><td>Escores</td><td>Método da regressão</td><td class="clay">A definir — ver seção D</td></tr>
+      <tr><td>Uso a jusante</td><td>Preditor em modelo multinível</td><td>Índice 0–1, 4 faixas, mapas e cruzamento com o ELSI</td></tr>
+    </tbody>
+  </table>
+  <p>Duas frases das páginas 69 e 71 para transcrever no caderno. A primeira: “a rotação não precisa ser executada quando encontramos apenas 1 fator”. Isso é diretamente relevante, porque na sua solução sem o lixo o critério de Kaiser aponta um único fator — se a orientadora preferir a solução unifatorial, toda a discussão de rotação desaparece e o índice fica mais simples de defender, ao custo de abandonar a estrutura de duas dimensões do IVS-BH. É uma alternativa legítima que merece ser posta na mesa.</p>
+  <p>A segunda, da página 71, é o argumento central a favor de pesos fatoriais, e o livro o formula melhor do que qualquer paráfrase: os fatores mantêm a representatividade das variáveis originais, de modo que “os itens contribuem de maneira desigual para o fator: quanto maior a carga fatorial, maior a contribuição do item”, e “isso não acontece em outras técnicas mais simples de elaboração de índices”, que pressupõem contribuição igual. É exatamente a justificativa que falta na decisão nº 1 do GUIA — a de que pesos iguais dariam “três votos” à posição social sem escolha deliberada. Use esta passagem: ela é a formulação canônica do seu argumento.</p>
+</div>
+
+<!-- ══════════════════ 3. CONTRADIÇÕES ══════════════════ -->
+<h2 class="quebra"><span class="num">3</span>Os cinco pontos em que a leitura obriga a revisitar o que já está feito</h2>
+
+<p>Consolidação do que as fichas acima levantaram. Nenhum destes pontos invalida o trabalho existente; todos alteram o que o Notebook 04 deve produzir.</p>
+
+<table class="bt">
+  <caption>Tabela 8 — Revisões decorrentes da leitura</caption>
+  <thead>
+    <tr><th style="width:6mm">#</th><th style="width:36mm">Ponto</th><th style="width:44mm">Situação atual</th><th>O que fazer</th></tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="num dest">1</td><td class="dest">Rotação</td>
+      <td>Varimax (ortogonal), herdado de Figueiredo (2010)</td>
+      <td>Rodar <code>promax</code> ou <code>oblimin</code> e reportar a matriz de correlação entre fatores. Recalcular a repartição 65/35 na solução oblíqua antes de fixá-la como peso.</td>
+    </tr>
+    <tr>
+      <td class="num dest">2</td><td class="dest">Técnica de extração</td>
+      <td>ACP; a equivalência com AF era pressuposta</td>
+      <td>Duas das três condições de Stevens falham. Rodar fatoração do eixo principal e comparar cargas como análise de sensibilidade.</td>
+    </tr>
+    <tr>
+      <td class="num dest">3</td><td class="dest">Escores do índice</td>
+      <td>Plano: média ponderada 0–1 das variáveis padronizadas</td>
+      <td>É “não refinado” pelo livro. Calcular também o escore pelo método da regressão e reportar a correlação entre os dois rankings como validação.</td>
+    </tr>
+    <tr>
+      <td class="num dest">4</td><td class="dest">Multicolinearidade</td>
+      <td>Renda × cor/raça a −0,811, tratada como argumento a favor de pesos empíricos</td>
+      <td>Está acima do limiar de 0,80 da p.&nbsp;42. Declarar na seção de limitações e acrescentar o diagnóstico de SMC por variável.</td>
+    </tr>
+    <tr>
+      <td class="num dest">5</td><td class="dest">Comunalidade da razão de moradores</td>
+      <td>0,380 — decisão pendente entre manter e excluir</td>
+      <td>A p.&nbsp;58 autoriza manter variável abaixo de 0,50 quando a carga é alta (a sua é 0,532). Decidir por manter, citando a passagem, e reportar os dois números.</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- ══════════════════ 4. LIMITES ══════════════════ -->
+<h2><span class="num">4</span>Onde o livro não alcança o projeto</h2>
+
+<p>O documento sobre Figueiredo já registrou três descompassos daquele artigo. Dois deles o livro da Enap resolve — ele adverte sobre o Bartlett em amostras grandes (p.&nbsp;43) e é mais rigoroso na nomenclatura da AFC. Restam quatro lacunas, e duas são novas.</p>
+
+<h3>4.1 O livro mede um construto; o projeto precisa compor um índice</h3>
+<p>É o mesmo limite do artigo de 2010, e continua de pé. O livro termina nos escores fatoriais usados como variável em outro modelo. O projeto precisa de um índice 0–1, com pesos explícitos, categorizado em quatro faixas e mapeável. Normalização, forma de agregação (aritmética ou geométrica), tratamento de faltantes na composição e análise de sensibilidade dos pesos ficam fora. A referência para isso permanece Nardo et al. (2008), o manual da OCDE/JRC, somado ao que o IVS-BH 2012 e o ISU de Passarelli-Araujo (2023) já resolveram.</p>
+
+<h3>4.2 Dados faltantes não aparecem no livro</h3>
+<p>Lacuna nova e relevante. O livro não discute dados faltantes em nenhuma das 74 páginas — seus exemplos são questionários com resposta completa. O projeto perde <strong>16.563 setores (15,9%)</strong> na exclusão por lista, quase todos pelo sigilo do analfabetismo, e o GUIA (§6.2.6) já documenta que esse sigilo <strong>não é aleatório</strong>: incide nos setores de melhor situação. A amostra de 87.545 casos é, portanto, enviesada para os setores mais vulneráveis. O livro não oferece nada sobre isso. O cenário sem o analfabetismo, já rodado, mostra que a estrutura fatorial não muda — o que é um bom argumento —, mas o tratamento adequado exigirá literatura de dados faltantes que o projeto ainda não tem.</p>
+
+<h3>4.3 Dependência espacial</h3>
+<p>Segunda lacuna nova, e a mais séria do ponto de vista estatístico. A análise fatorial pressupõe unidades amostrais independentes. Setores censitários vizinhos não são independentes — vulnerabilidade se agrupa no espaço, e o projeto já prevê calcular o I de Moran na etapa de geoprocessamento. Autocorrelação espacial infla a covariação observada e, portanto, também os autovalores e as cargas. Nada no livro toca nisso, porque ele foi escrito para respondentes de questionário. Não há solução simples, e não é preciso resolvê-la nesta etapa; é preciso <strong>declará-la</strong> nas limitações, e o I de Moran dos escores fatoriais, quando calculado, dará a medida do problema.</p>
+
+<h3>4.4 Falácia ecológica</h3>
+<p>Já registrada no projeto, e vale repetir porque a leitura do Exemplo 2 tende a induzir ao erro: lá as unidades são alunos, e o NSE é um atributo de pessoas. Aqui as unidades são territórios. Toda carga fatorial do IVS descreve covariação <strong>entre setores</strong> e nada afirma sobre indivíduos.</p>
+
+<!-- ══════════════════ 5. FICHA ══════════════════ -->
+<h2><span class="num">5</span>Ficha de leitura — o que levar para a orientação</h2>
+
+<p>Seis perguntas que a leitura produz e que não se resolvem sozinhas. Sugere-se anotá-las durante a leitura e levá-las fechadas à próxima reunião.</p>
+
+<table class="bt">
+  <caption>Tabela 9 — Perguntas em aberto após a leitura</caption>
+  <thead><tr><th style="width:6mm">#</th><th style="width:60mm">Pergunta</th><th style="width:20mm">Origem</th><th>Recomendação deste guia</th></tr></thead>
+  <tbody>
+    <tr><td class="num">1</td><td>A solução oficial será ortogonal ou oblíqua?</td><td class="mono">p. 37–39</td><td class="petrol">Oblíqua (<code>promax</code>), pela recomendação do livro e pela evidência de validação que produz</td></tr>
+    <tr><td class="num">2</td><td>ACP ou análise fatorial propriamente dita?</td><td class="mono">p. 26–28</td><td class="petrol">Rodar as duas; reportar AF como principal se divergirem, pela citação de Tabachnick&nbsp;&amp;&nbsp;Fidell</td></tr>
+    <tr><td class="num">3</td><td>Um fator ou dois?</td><td class="mono">p. 28–32</td><td>Dois, por razão teórica declarada — mas registrar que Kaiser e Horn apontam um na solução sem lixo</td></tr>
+    <tr><td class="num">4</td><td>O índice será escore fatorial ou média ponderada 0–1?</td><td class="mono">p. 22–26</td><td class="petrol">Média ponderada 0–1 como índice oficial, com o escore refinado no apêndice como validação</td></tr>
+    <tr><td class="num">5</td><td>A <code>razao_moradores</code> fica no índice com comunalidade 0,380?</td><td class="mono">p. 58</td><td class="petrol">Sim, citando a passagem que relativiza o corte, e reportando carga e comunalidade juntas</td></tr>
+    <tr><td class="num">6</td><td>A fatorial roda antes ou depois da normalização municipal do NB03?</td><td class="fraco">fora do livro</td><td>Antes, sobre os brutos — recomendação já registrada na §4.4 do documento irmão</td></tr>
+  </tbody>
+</table>
+
+<div class="bloco">
+  <div class="rot">Uma nota sobre a ordem de leitura</div>
+  <p>Se o tempo for curto e for preciso escolher, leia nesta ordem: <strong>páginas 37–39</strong> (rotação — muda uma decisão já tomada), <strong>67–71</strong> (Exemplo 2 — é o molde do seu caso), <strong>26–28</strong> (AF × ACP — muda outra decisão já tomada) e <strong>22–26</strong> (escores — muda o que o Notebook 05 vai calcular). São dezesseis páginas e cobrem quatro das cinco revisões da Tabela 8.</p>
+</div>
+
+<!-- ══════════════════ REFERÊNCIAS ══════════════════ -->
+<h2><span class="num">6</span>Referências</h2>
+
+<p>MATOS, D. A. S.; RODRIGUES, E. C. <strong>Análise fatorial</strong>. Brasília: Enap, 2019. 74 p. (Coleção Metodologias de Pesquisa).</p>
+<p>FIGUEIREDO FILHO, D. B.; SILVA JÚNIOR, J. A. Visão além do alcance: uma introdução à análise fatorial. <strong>Opinião Pública</strong>, Campinas, v. 16, n. 1, p. 160–185, jun. 2010.</p>
+<p>HAIR, J. F. et al. <strong>Análise multivariada de dados</strong>. 5. ed. Porto Alegre: Bookman, 2005.</p>
+<p>TABACHNICK, B. G.; FIDELL, L. S. <strong>Using Multivariate Statistics</strong>. Needham Heights: Allyn &amp; Bacon, 2007.</p>
+<p>STEVENS, J. P. <strong>Applied Multivariate Statistics for the Social Sciences</strong>. 2. ed. Hillsdale: Erlbaum, 1992.</p>
+<p>FIELD, A.; MILES, J.; FIELD, Z. <strong>Discovering Statistics Using R</strong>. London: Sage, 2012.</p>
+<p>DISTEFANO, C.; ZHU, M.; MINDRILA, D. Understanding and using factor scores: considerations for the applied researcher. <strong>Practical Assessment, Research &amp; Evaluation</strong>, v. 14, n. 20, p. 1–11, 2009.</p>
+<p>NARDO, M. et al. <strong>Handbook on Constructing Composite Indicators</strong>: methodology and user guide. Paris: OECD/JRC, 2008.</p>
+<p>SECRETARIA MUNICIPAL DE SAÚDE DE BELO HORIZONTE. <strong>Índice de Vulnerabilidade à Saúde 2012</strong>. Belo Horizonte: SMS-BH, 2013.</p>
+
+<div class="rodape-doc">
+  <p>Documentos do projeto citados: <code>GUIA_DO_PROJETO.md</code> (§3, §4, §6.2.6, §6.3, §8) · <code>docs/Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md</code> (§3.2, §4.4, §5.1, §5.4) · <code>docs/Relatorio_EDA_Fase3_IVS_ELSI.md</code> (§9, §13, §15) · <code>scripts/diagnostico_fatorial.py</code> · <code>banco_de_dados/eda/fatorial/resumo_adequabilidade.csv</code>.</p>
+  <p>Todos os números do projeto citados neste guia vêm de <code>banco_de_dados/eda/fatorial/</code> e de <code>banco_de_dados/eda/correlacao_spearman.csv</code>, gerados por scripts versionados. Nenhum número foi recalculado para este documento.</p>
+</div>
+
+</body>
+</html>
