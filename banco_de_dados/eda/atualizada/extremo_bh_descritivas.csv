@@ -1,0 +1,15 @@
+﻿recorte;medida;com_extremo;sem_extremo;variacao_pct
+Belo Horizonte;n;5113.0;5112.0;-0.0196
+Belo Horizonte;media;4682.3015;4649.8806;-0.6924
+Belo Horizonte;mediana;3060.31;3058.235;-0.0678
+Belo Horizonte;dp;4491.5805;3847.4451;-14.341
+Belo Horizonte;cv_pct;95.9268;82.7429;-13.7437
+Belo Horizonte;p99;18232.28;18160.3653;-0.3944
+Belo Horizonte;max;170418.06;45385.44;-73.3682
+70 municípios ELSI;n;104096.0;104095.0;-0.001
+70 municípios ELSI;media;4187.4094;4185.8124;-0.0381
+70 municípios ELSI;mediana;2572.39;2572.39;0.0
+70 municípios ELSI;dp;4150.6562;4118.5739;-0.7729
+70 municípios ELSI;cv_pct;99.1223;98.3937;-0.7351
+70 municípios ELSI;p99;19771.7935;19771.5784;-0.0011
+70 municípios ELSI;max;170418.06;140172.64;-17.7478

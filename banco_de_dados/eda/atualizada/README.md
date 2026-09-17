@@ -39,4 +39,27 @@ na última execução, `correlacao_spearman` foi a única inalterada.
 sobre `renda_media`, e o efeito da troca está medido no bloco 8b do Notebook 04 —
 278 setores de 87.544 mudam de faixa.
 
+## Os quatro arquivos `extremo_bh_*`, que têm outro dono
+
+**Gerados por:** `scripts/eda_extremo_belo_horizonte.py` — **não** por `eda_atualizada.py`.
+Moram aqui porque tratam do mesmo setor, mas são uma análise posterior e de outro recorte.
+
+A 2ª rodada mediu o efeito do extremo no **agregado dos 70 municípios**, onde ele é quase
+nulo (a média cai 0,04%). Estes quatro medem o efeito **dentro de Belo Horizonte**, que é
+onde o setor está — e lá ele derruba o desvio-padrão em 14,34% e o máximo em 73,37%.
+
+| Arquivo | O que traz |
+|---|---|
+| `extremo_bh_descritivas.csv` | as cinco medidas com e sem o setor, nos dois recortes, e a variação percentual |
+| `extremo_bh_normalizacao.csv` | o achado: a escala min-max **municipal** com e sem o extremo, e quantos setores de BH ficam comprimidos contra o zero |
+| `extremo_bh_ranking.csv` | o ranking dos 70 municípios por renda média, com e sem — nenhum troca de posição |
+| `figuras/extremo_bh.png` | a renda de BH e a escala normalizada, lado a lado |
+
+O número que importa está no segundo: sob a normalização municipal, **1.909 setores de
+Belo Horizonte** saem de baixo de 0,05 na escala quando o extremo é retirado. O agregado
+era robusto; o intramunicipal não era.
+
+Os slides correspondentes saem de `scripts/gerar_slides_extremo_bh.js` e estão anexados
+ao fim de `Analise_Fatorial_NB04_2026-09.pptx`.
+
 Formato: separador `;`, codificação `utf-8-sig`.

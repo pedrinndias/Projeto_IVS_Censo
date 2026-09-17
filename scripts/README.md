@@ -1,6 +1,6 @@
 # `scripts/` — os executáveis versionados
 
-Dezoito scripts. A pipeline de análise **são os notebooks**; estes existem para o que
+Dezenove scripts. A pipeline de análise **são os notebooks**; estes existem para o que
 precisa rodar fora deles — o Brasil inteiro, o pacote de entrega, os decks e os
 documentos.
 
@@ -18,6 +18,7 @@ documentos.
 | [`gerar_tabelas_auditoria.py`](gerar_tabelas_auditoria.py) | as 9 tabelas que eram "CSVs órfãos" até 20/08/2026 | sim |
 | [`auditoria_renda.py`](auditoria_renda.py) | as 8 tabelas `renda_*` e o critério de outlier | sim |
 | [`eda_atualizada.py`](eda_atualizada.py) | `eda/atualizada/` — a EDA recalculada com a renda sem o extremo | sim |
+| [`eda_extremo_belo_horizonte.py`](eda_extremo_belo_horizonte.py) | `eda/atualizada/extremo_bh_*` — o mesmo extremo olhado de dentro de Belo Horizonte, e o efeito dele na normalização municipal | sim · ~3 s |
 | [`diagnostico_fatorial.py`](diagnostico_fatorial.py) | `eda/fatorial/` — os seis cenários da adequabilidade | sim · ~3 s |
 | [`dados_criterio_renda.py`](dados_criterio_renda.py) | o JSON que alimenta o deck do critério de renda | sim |
 | [`eda_central_dados.py`](eda_central_dados.py) | o JSON que alimenta o deck e o resumo da EDA Central | sim |
