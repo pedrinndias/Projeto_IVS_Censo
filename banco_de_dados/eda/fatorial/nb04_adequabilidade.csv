@@ -1,0 +1,14 @@
+﻿variavel;MSA;SMC;cenario
+Água inadequada;0.7526;0.222;ivs7_spearman
+Esgoto inadequado;0.8337;0.3333;ivs7_spearman
+Lixo inadequado;0.6995;0.1056;ivs7_spearman
+Razão de moradores;0.8572;0.2608;ivs7_spearman
+Analfabetismo 15+;0.8186;0.5965;ivs7_spearman
+Renda (invertida);0.7244;0.7356;ivs7_spearman
+Cor/raça PPI;0.7819;0.6531;ivs7_spearman
+Água inadequada;0.7454;0.222;ivs6_sem_lixo_spearman
+Esgoto inadequado;0.8495;0.3165;ivs6_sem_lixo_spearman
+Razão de moradores;0.9129;0.2326;ivs6_sem_lixo_spearman
+Analfabetismo 15+;0.8152;0.5965;ivs6_sem_lixo_spearman
+Renda (invertida);0.7153;0.7352;ivs6_sem_lixo_spearman
+Cor/raça PPI;0.7797;0.6482;ivs6_sem_lixo_spearman
