@@ -15,9 +15,9 @@ Nada aqui parte do zero. A análise fatorial já foi rodada uma vez.
 
 | Onde | O que é |
 |---|---|
-| `docs/Analise_Fatorial_Enap2019_Guia_de_Leitura.md` | O estudo do livro da Enap, seção por seção, com os números do projeto ao lado. **As cinco revisões que a leitura obriga estão na §4.** |
-| `docs/Analise_Fatorial_NB04_Plano_de_Implementacao.md` | As 16 ideias com custo e veredito, a arquitetura em 10 blocos, os resultados esperados. |
-| `docs/Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md` | A análise já rodada e interpretada, com checklist de 15 passos. Itens 13, 14 e 15 = escopo do NB04. |
+| `docs/metodologia/Analise_Fatorial_Enap2019_Guia_de_Leitura.md` | O estudo do livro da Enap, seção por seção, com os números do projeto ao lado. **As cinco revisões que a leitura obriga estão na §4.** |
+| `docs/metodologia/Analise_Fatorial_NB04_Plano_de_Implementacao.md` | As 16 ideias com custo e veredito, a arquitetura em 10 blocos, os resultados esperados. |
+| `docs/metodologia/Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md` | A análise já rodada e interpretada, com checklist de 15 passos. Itens 13, 14 e 15 = escopo do NB04. |
 | `scripts/diagnostico_fatorial.py` | 219 linhas em numpy puro: KMO, MSA, Bartlett, Horn, ACP, Varimax. **É a base do trabalho.** |
 | `banco_de_dados/eda/fatorial/` | 19 CSVs com os seis cenários já calculados. `resumo_adequabilidade.csv` é a referência de conferência. |
 | `banco_de_dados/entrega_orientadora/*.db` | SQLite versionado com as 7 variáveis calculadas. O NB04 roda sem os 2,4 GB do Censo. |
@@ -47,15 +47,15 @@ FASE 1 — ESTUDO (não escreva código nesta fase)
 
 Leia, nesta ordem:
 
-  1. docs/Analise_Fatorial_Enap2019_Guia_de_Leitura.md
+  1. docs/metodologia/Analise_Fatorial_Enap2019_Guia_de_Leitura.md
      O estudo do livro da Enap feito para este projeto. A §4 lista as cinco revisões
      que a leitura obriga; a §5 lista os cinco limites do livro diante do projeto.
 
-  2. docs/Analise_Fatorial_NB04_Plano_de_Implementacao.md
+  2. docs/metodologia/Analise_Fatorial_NB04_Plano_de_Implementacao.md
      As 16 ideias com veredito, a arquitetura em 10 blocos, e os resultados esperados
      (§3) — use-os para saber se um resultado é achado ou é bug.
 
-  3. docs/Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md
+  3. docs/metodologia/Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md
      A análise já rodada. Checklist de 15 passos; itens 13, 14 e 15 são o escopo.
 
   4. scripts/diagnostico_fatorial.py
@@ -171,7 +171,7 @@ Para as figuras, use a skill /dataviz antes de escrever o código dos gráficos.
 FASE 4 — RELATÓRIO E APRESENTAÇÃO
 ═══════════════════════════════════════════════════════════════════════
 
-4a. docs/Relatorio_Analise_Fatorial_NB04.md — sumário executivo com os achados
+4a. docs/relatorios/Relatorio_Analise_Fatorial_NB04.md — sumário executivo com os achados
     numerados; método e as decisões com a página do livro que sustenta cada uma;
     resultados bloco a bloco; decisões que vão para a orientadora com o custo de cada
     opção; limitações; reprodutibilidade.
@@ -253,7 +253,7 @@ tests/test_fatorial.py                             3 testes no mínimo
 notebooks/Fase3_EDA_ELSI/04_Analise_Fatorial.ipynb 10 blocos
 banco_de_dados/eda/fatorial/nb04_*.csv             saídas
 banco_de_dados/eda/fatorial/figuras/*.png          scree plot, cargas, ROC
-docs/Relatorio_Analise_Fatorial_NB04.md            relatório
+docs/relatorios/Relatorio_Analise_Fatorial_NB04.md            relatório
 scripts/gerar_deck_fatorial.js                     gerador do deck
 docs/Apresentacoes_IVS/Analise_Fatorial_NB04_*.pptx  deck
 ```

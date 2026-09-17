@@ -3,7 +3,7 @@
 ## E como a mesma análise se faz em R
 
 **Projeto:** Índice de Vulnerabilidade à Saúde (IVS) intraurbano — Censo 2022 / ELSI-Brasil
-**Módulo comentado:** [`src/ivs_censo/fatorial.py`](../src/ivs_censo/fatorial.py)
+**Módulo comentado:** [`src/ivs_censo/fatorial.py`](../../src/ivs_censo/fatorial.py)
 **Data:** 17 de setembro de 2026
 
 > **Para que serve este documento.** Duas coisas. Primeiro, permitir explicar em reunião o
@@ -439,7 +439,7 @@ cor.plot(R, numbers = TRUE, main = "Matriz de correlação de Spearman")
 
 | Arquivo | O que tem |
 |---|---|
-| [`src/ivs_censo/fatorial.py`](../src/ivs_censo/fatorial.py) | Todas as funções comentadas aqui |
-| [`tests/test_fatorial.py`](../tests/test_fatorial.py) | 9 testes, incluindo a reprodução exata dos CSVs de agosto |
-| [`notebooks/Fase3_EDA_ELSI/04_Analise_Fatorial.ipynb`](../notebooks/Fase3_EDA_ELSI/04_Analise_Fatorial.ipynb) | O uso: dez blocos, da carga à validação |
-| [`scripts/diagnostico_fatorial.py`](../scripts/diagnostico_fatorial.py) | A interface de linha de comando, seis cenários |
+| [`src/ivs_censo/fatorial.py`](../../src/ivs_censo/fatorial.py) | Todas as funções comentadas aqui |
+| [`tests/test_fatorial.py`](../../tests/test_fatorial.py) | 9 testes, incluindo a reprodução exata dos CSVs de agosto |
+| [`notebooks/Fase3_EDA_ELSI/04_Analise_Fatorial.ipynb`](../../notebooks/Fase3_EDA_ELSI/04_Analise_Fatorial.ipynb) | O uso: dez blocos, da carga à validação |
+| [`scripts/diagnostico_fatorial.py`](../../scripts/diagnostico_fatorial.py) | A interface de linha de comando, seis cenários |

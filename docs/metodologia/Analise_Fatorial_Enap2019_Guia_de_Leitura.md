@@ -324,6 +324,6 @@ SECRETARIA MUNICIPAL DE SAÚDE DE BELO HORIZONTE. **Índice de Vulnerabilidade �
 
 ---
 
-*Documentos do projeto citados: `GUIA_DO_PROJETO.md` (§3, §4, §6.2.6, §6.3, §8) · `docs/Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md` (§3.2, §4.4, §5.1, §5.4) · `docs/Relatorio_EDA_Fase3_IVS_ELSI.md` (§9, §13, §15) · `scripts/diagnostico_fatorial.py` · `banco_de_dados/eda/fatorial/resumo_adequabilidade.csv`.*
+*Documentos do projeto citados: `GUIA_DO_PROJETO.md` (§3, §4, §6.2.6, §6.3, §8) · `docs/metodologia/Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md` (§3.2, §4.4, §5.1, §5.4) · `docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md` (§9, §13, §15) · `scripts/diagnostico_fatorial.py` · `banco_de_dados/eda/fatorial/resumo_adequabilidade.csv`.*
 
 *Todos os números do projeto citados vêm de `banco_de_dados/eda/fatorial/` e `banco_de_dados/eda/correlacao_spearman.csv`, gerados por scripts versionados. Nenhum foi recalculado para este documento.*

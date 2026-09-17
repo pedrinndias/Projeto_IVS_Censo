@@ -2,7 +2,7 @@
 
 > **Nota de revisão (09/08/2026):** a pipeline mudou depois deste diagnóstico, ao atender
 > às demandas da orientadora. O que aqui estiver em conflito com os números abaixo está
-> desatualizado — a fonte da verdade é o [`GUIA_DO_PROJETO.md`](../GUIA_DO_PROJETO.md).
+> desatualizado — a fonte da verdade é o [`GUIA_DO_PROJETO.md`](../../GUIA_DO_PROJETO.md).
 >
 > | O que mudou | Antes | Agora |
 > |---|---|---|
@@ -21,8 +21,8 @@
 > **Nota de revisão (12/06/2026):** o diagnóstico original é de 19/05/2026. Os achados de
 > denominador, taxa de analfabetismo, regra `Dados_sig` e os números das tabelas foram
 > **atualizados para a metodologia consolidada em 22/05/2026** (denominador **V00001** +
-> taxa `V00901 / (V00900 + V00901)`). Fonte da verdade: [`GUIA_DO_PROJETO.md`](../GUIA_DO_PROJETO.md)
-> e [`banco_de_dados/entrega_orientadora/README.md`](../banco_de_dados/entrega_orientadora/README.md).
+> taxa `V00901 / (V00900 + V00901)`). Fonte da verdade: [`GUIA_DO_PROJETO.md`](../../GUIA_DO_PROJETO.md)
+> e [`banco_de_dados/entrega_orientadora/README.md`](../../banco_de_dados/entrega_orientadora/README.md).
 
 > **Tipo:** Diagnóstico técnico — auditoria de notebooks, variáveis e outputs
 > **Data:** 19 de maio de 2026 (revisado em 12/06/2026 para a metodologia V00001)
@@ -33,13 +33,13 @@
 
 | Item | Ação | Resultado |
 |---|---|---|
-| C1 — Clipping silencioso | Diagnóstico adicionado **antes** do clipping no Notebook 02 (célula `step4`); exporta [`diagnostico_proporcoes_fora_intervalo.csv`](../banco_de_dados/eda/diagnostico_proporcoes_fora_intervalo.csv) | ✅ Resolvido. **Achado (pós-revisão V00001):** com o denominador V00001 e a taxa de analfabetismo `V00901 / (V00900 + V00901)`, **nenhuma** proporção ultrapassa 1,0 (0 setores em todas as variáveis). Os 10 setores `pct_analfab > 1` que existiam eram artefato da fórmula antiga `V00901 / V00900`. |
-| C2 — Variáveis de esgoto | Célula `step4b` adicionada com comparação empírica V00249–V00253 vs V00312–V00316; exporta [`diagnostico_esgoto_312_vs_249.csv`](../banco_de_dados/eda/diagnostico_esgoto_312_vs_249.csv) | ✅ **Resolvido.** O dicionário oficial do IBGE (versionado em `dados/` e no recorte de `docs/Apresentacoes_IVS/`) confirma **V00312–V00316** como esgoto inadequado (fossa rudimentar, vala, rio/lago/mar, outra forma, inexistente); V00309–V00311 são adequadas. Bloco V00312–V00316 mantido. |
+| C1 — Clipping silencioso | Diagnóstico adicionado **antes** do clipping no Notebook 02 (célula `step4`); exporta [`diagnostico_proporcoes_fora_intervalo.csv`](../../banco_de_dados/eda/diagnostico_proporcoes_fora_intervalo.csv) | ✅ Resolvido. **Achado (pós-revisão V00001):** com o denominador V00001 e a taxa de analfabetismo `V00901 / (V00900 + V00901)`, **nenhuma** proporção ultrapassa 1,0 (0 setores em todas as variáveis). Os 10 setores `pct_analfab > 1` que existiam eram artefato da fórmula antiga `V00901 / V00900`. |
+| C2 — Variáveis de esgoto | Célula `step4b` adicionada com comparação empírica V00249–V00253 vs V00312–V00316; exporta [`diagnostico_esgoto_312_vs_249.csv`](../../banco_de_dados/eda/diagnostico_esgoto_312_vs_249.csv) | ✅ **Resolvido.** O dicionário oficial do IBGE (versionado em `dados/` e no recorte de `docs/Apresentacoes_IVS`) confirma **V00312–V00316** como esgoto inadequado (fossa rudimentar, vala, rio/lago/mar, outra forma, inexistente); V00309–V00311 são adequadas. Bloco V00312–V00316 mantido. |
 | C3 — README desatualizado | Reescrito para refletir Fase 3 ativa, **V00001 como denominador**, status real das etapas | ✅ Resolvido. |
-| R4 — Extremos de razão de moradores | Diagnóstico no Notebook 02 (célula `step4`); exporta [`extremos_razao_moradores.csv`](../banco_de_dados/eda/extremos_razao_moradores.csv) | ✅ **Achados (pós-revisão V00001):** com o denominador `(V00001 + V00002)` o mínimo passou a **1,00** — o setor de Brasília com razão 0,17 era artefato do V01042 e deixou de existir. Persiste o máximo de 8,79 em Portel/PA (verificar população coletiva). |
+| R4 — Extremos de razão de moradores | Diagnóstico no Notebook 02 (célula `step4`); exporta [`extremos_razao_moradores.csv`](../../banco_de_dados/eda/extremos_razao_moradores.csv) | ✅ **Achados (pós-revisão V00001):** com o denominador `(V00001 + V00002)` o mínimo passou a **1,00** — o setor de Brasília com razão 0,17 era artefato do V01042 e deixou de existir. Persiste o máximo de 8,79 em Portel/PA (verificar população coletiva). |
 | R5 — Regra COLETIVO | Regra ancorada em **`V00001 == 0` com `v0001 > 0`** (toda a população em domicílios coletivos) | ✅ Resolvido. **Achado:** 0 setores COLETIVO dentro dos 70 municípios ELSI (os candidatos caem em SIGILOSO, com `V00001` sigiloso). |
-| R6 — IQR não informativa | Adicionadas colunas `p95`, `n_acima_p95`, `pct_acima_p95`, `iqr_nao_informativo` em [`outliers.csv`](../banco_de_dados/eda/outliers.csv) | ✅ Resolvido. **Confirma:** água/esgoto/lixo flagrados como IQR não-informativo. |
-| Testes sanity | Criado [`tests/test_pipeline_fase3.py`](../tests/test_pipeline_fase3.py) (16 testes) | ✅ 16 passam quando a base bruta foi gerada localmente; se a base (~17 MB, não versionada) estiver ausente, 15 passam + 1 skipped (esperado). |
+| R6 — IQR não informativa | Adicionadas colunas `p95`, `n_acima_p95`, `pct_acima_p95`, `iqr_nao_informativo` em [`outliers.csv`](../../banco_de_dados/eda/outliers.csv) | ✅ Resolvido. **Confirma:** água/esgoto/lixo flagrados como IQR não-informativo. |
+| Testes sanity | Criado [`tests/test_pipeline_fase3.py`](../../tests/test_pipeline_fase3.py) (16 testes) | ✅ 16 passam quando a base bruta foi gerada localmente; se a base (~17 MB, não versionada) estiver ausente, 15 passam + 1 skipped (esperado). |
 
 **Pendências carregadas para a próxima fase (Notebook 03+):**
 - R2 — Normalização de renda por município.
@@ -178,7 +178,7 @@ As colunas-chave têm grafias diferentes entre os 8 CSVs do IBGE (`CD_SETOR`, `C
 **C1. Clipping de proporções em [0, 1] — resolvido com V00001** ✅
 - Local: [02_Analises_Descritivas.ipynb](notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb), célula `step4`, linha
   `df_ok[c] = df_ok[c].clip(lower=0, upper=1)`, precedida do diagnóstico que exporta
-  [`diagnostico_proporcoes_fora_intervalo.csv`](../banco_de_dados/eda/diagnostico_proporcoes_fora_intervalo.csv).
+  [`diagnostico_proporcoes_fora_intervalo.csv`](../../banco_de_dados/eda/diagnostico_proporcoes_fora_intervalo.csv).
 - O `max=1,0000` exato em água/esgoto/lixo/raça é **legítimo** (existem setores 100% inadequados),
   não um valor truncado: o diagnóstico confirma **0 setores com proporção > 1** em todas as variáveis.
 - Os 10 setores `pct_analfab > 1` (máx 5,33) que motivaram este achado eram artefato da fórmula
@@ -193,7 +193,7 @@ As colunas-chave têm grafias diferentes entre os 8 CSVs do IBGE (`CD_SETOR`, `C
 - `README.md`, `GUIA_DO_PROJETO.md` e `estrutura_projeto.md` foram alinhados à metodologia
   consolidada em 22/05/2026: filtro ELSI aplicado (Fase 3), **denominador V00001** (V01042 descartado),
   taxa de analfabetismo `V00901 / (V00900 + V00901)` e Fase 3 como pipeline ativa.
-- A fonte da verdade da operacionalização é [`banco_de_dados/entrega_orientadora/README.md`](../banco_de_dados/entrega_orientadora/README.md).
+- A fonte da verdade da operacionalização é [`banco_de_dados/entrega_orientadora/README.md`](../../banco_de_dados/entrega_orientadora/README.md).
 
 ### 🟡 RELEVANTE
 
@@ -230,7 +230,7 @@ As colunas-chave têm grafias diferentes entre os 8 CSVs do IBGE (`CD_SETOR`, `C
 - **M1.** `requirements.txt` está adequado para a Fase 3 (não falta nada). Os módulos built-in citados como problema no GUIA (`sqlite3`, `os`) já foram removidos.
 - **M2.** Saídas CSV usam `utf-8-sig` (BOM) — bom para Excel; verificar se o QGIS lê corretamente quando importar shapefiles cruzados com esses CSVs (preferir sem BOM se houver problemas).
 - **M3.** `Backup/Fase2_IVS_Multidimensional/` ainda contém legados que duplicam ~200 MB em `Backup/banco_de_dados/`. Não impacta a Fase 3, mas justifica limpeza futura.
-- **M4.** ~~Nenhum teste unitário (`tests/` vazio)~~ — **resolvido**: [`tests/test_pipeline_fase3.py`](../tests/test_pipeline_fase3.py) traz 16 testes sanity-check dos artefatos (incluindo "70 municípios encontrados" e as contagens de setores); ver item "Testes sanity" na tabela do §0.
+- **M4.** ~~Nenhum teste unitário (`tests/` vazio)~~ — **resolvido**: [`tests/test_pipeline_fase3.py`](../../tests/test_pipeline_fase3.py) traz 16 testes sanity-check dos artefatos (incluindo "70 municípios encontrados" e as contagens de setores); ver item "Testes sanity" na tabela do §0.
 
 ---
 

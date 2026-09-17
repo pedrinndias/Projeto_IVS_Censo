@@ -3,8 +3,8 @@
 ## IVS intraurbano — Censo Demográfico 2022 / ELSI-Brasil
 
 > **Documento:** relatório técnico-interpretativo da análise exploratória da Fase 3.
-> **Pipeline:** [`notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb`](../notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb)
-> **Insumos:** CSVs e figuras em [`banco_de_dados/eda/`](../banco_de_dados/eda/)
+> **Pipeline:** [`notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb`](../../notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb)
+> **Insumos:** CSVs e figuras em [`banco_de_dados/eda/`](../../banco_de_dados/eda)
 > **Data:** 9 de agosto de 2026 (reescrito sobre o recorte urbano)
 > **Pesquisador:** Pedro Dias Soares — IC Fiocruz Minas / IRR
 
@@ -73,7 +73,7 @@ responder a três perguntas que determinam como o índice poderá ser construíd
 - **As sete variáveis medem construtos distintos?** Define se a ponderação pode ser
   empírica (análise fatorial) e quantos fatores esperar.
 
-O referencial de organização é o framework de EDA da FIOCRUZ (`docs/guia_analises.docx`):
+O referencial de organização é o framework de EDA da FIOCRUZ (`docs/referencias/guia_analises.docx`):
 medidas de tendência central e dispersão, gráficos de distribuição, análise de outliers,
 análise de dados faltantes e estrutura de correlação.
 

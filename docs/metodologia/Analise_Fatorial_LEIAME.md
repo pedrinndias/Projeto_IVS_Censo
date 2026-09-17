@@ -16,7 +16,7 @@ do livro da Enap.
 
 ## Se você vai implementar
 
-Abra [`prompt_nb04_analise_fatorial.md`](prompt_nb04_analise_fatorial.md) e siga.
+Abra [`prompt_nb04_analise_fatorial.md`](../prompts/prompt_nb04_analise_fatorial.md) e siga.
 Ele diz o que ler, em que ordem, o que construir e com quais skills.
 
 ## Se você vai apresentar para a orientadora
@@ -32,7 +32,7 @@ Os dois PDFs diagramados, e a Parte 4b do prompt, que gera o deck.
 | **[`Analise_Fatorial_LEIAME.md`](Analise_Fatorial_LEIAME.md)** | Este índice | Para achar o resto |
 | [`Analise_Fatorial_Enap2019_Guia_de_Leitura.md`](Analise_Fatorial_Enap2019_Guia_de_Leitura.md) | **O estudo do livro da Enap**, seção por seção, com os números do projeto ao lado de cada regra. Traz as cinco revisões que a leitura obriga (§4) e os cinco limites do livro diante do projeto (§5) | Ao ler o livro; ao justificar uma decisão metodológica |
 | [`Analise_Fatorial_NB04_Plano_de_Implementacao.md`](Analise_Fatorial_NB04_Plano_de_Implementacao.md) | **As 16 ideias** com custo e veredito, a arquitetura em 10 blocos, os resultados esperados e a prioridade se só der para fazer três | Ao planejar o trabalho; ao decidir o que entra no escopo |
-| [`prompt_nb04_analise_fatorial.md`](prompt_nb04_analise_fatorial.md) | **O prompt** para colar numa sessão do Claude Code, com as skills por fase | Ao começar a implementar |
+| [`prompt_nb04_analise_fatorial.md`](../prompts/prompt_nb04_analise_fatorial.md) | **O prompt** para colar numa sessão do Claude Code, com as skills por fase | Ao começar a implementar |
 | [`Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md`](Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md) | A análise **já rodada** nos dados, interpretada contra Figueiredo & Silva (2010). Checklist de 15 passos com status | Para saber o que já foi medido e o que ele significa |
 
 ### Versões em PDF
@@ -43,7 +43,7 @@ Para uma sessão de Claude Code, prefira os `.md` — são greppáveis.
 - [`Guia_Leitura_Analise_Fatorial_Enap2019.pdf`](Guia_Leitura_Analise_Fatorial_Enap2019.pdf)
 - [`Implementacao_Fatorial_NB04_Brainstorm_e_Prompt.pdf`](Implementacao_Fatorial_NB04_Brainstorm_e_Prompt.pdf)
 
-As fontes que os geram estão em [`fontes_pdf/`](fontes_pdf/) — os PDFs são **gerados**,
+As fontes que os geram estão em [`fontes_pdf/`](fontes_pdf) — os PDFs são **gerados**,
 não editados à mão. Mudanças permanentes vão nas fontes.
 
 ---

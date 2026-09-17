@@ -8,7 +8,7 @@ documentos — antes de uma entrega, de uma submissão de artigo ou de uma reuni
 a leitura crítica dos documentos é a parte cara. Reserve a sessão.
 
 **O que já existe e não deve ser refeito do zero.** O
-[`Relatorio_Integridade_Projeto.md`](Relatorio_Integridade_Projeto.md) é a auditoria de
+[`Relatorio_Integridade_Projeto.md`](../relatorios/Relatorio_Integridade_Projeto.md) é a auditoria de
 19/05/2026, revisada em 12/06 e 09/08. Ele resolveu C1 a C5 e R1 a R5. Esta auditoria parte
 dele: o que lá está marcado como resolvido é para **reconferir por amostragem**, não para
 reinvestigar.
@@ -56,7 +56,7 @@ Leia, nesta ordem:
 
   1. GUIA_DO_PROJETO.md — o documento mestre. É a fonte da verdade declarada.
   2. docs/MANUAL_DO_PROJETO.md — o mapa do repositório e de onde vem cada número.
-  3. docs/Relatorio_Integridade_Projeto.md — a auditoria anterior e o que ela resolveu.
+  3. docs/relatorios/Relatorio_Integridade_Projeto.md — a auditoria anterior e o que ela resolveu.
   4. README.md e estrutura_projeto.md.
   5. git log --oneline -40, para saber o que mudou por último.
 
@@ -133,8 +133,8 @@ FASE 5 — AS ANÁLISES E AS INTERPRETAÇÕES
 Esta é a fase que importa mais e a que é mais fácil pular.
 
 Para CADA afirmação interpretativa dos documentos — GUIA_DO_PROJETO.md,
-docs/Relatorio_EDA_Fase3_IVS_ELSI.md, docs/Analise_Fatorial_*.md,
-docs/Relatorio_Analise_Fatorial_NB04.md — faça três perguntas:
+docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md, docs/Analise_Fatorial_*.md,
+docs/relatorios/Relatorio_Analise_Fatorial_NB04.md — faça três perguntas:
 
   1. De qual arquivo gerado sai o número que a sustenta?
   2. A afirmação é do tamanho da evidência? ("indica" × "prova"; "sugere" × "demonstra")
@@ -157,7 +157,7 @@ FASE 6 — COERÊNCIA ENTRE DOCUMENTOS
 ═══════════════════════════════════════════════════════════════════════
 
 Monte uma tabela dos números-chave e onde cada um aparece: nos documentos, nos decks de
-docs/Apresentacoes_IVS/ e nos CSVs. Pelo menos: os quatro tamanhos de recorte, KMO,
+docs/Apresentacoes_IVS e nos CSVs. Pelo menos: os quatro tamanhos de recorte, KMO,
 Bartlett, as correlações do bloco socioeconômico, a repartição dos pesos, o AUC da
 validação, as contagens de favela e de sigilo.
 

@@ -1,7 +1,7 @@
 # Fontes dos PDFs de metodologia
 
 Os dois PDFs sobre análise fatorial em `docs/` são **gerados**, não editados à mão —
-mesma política da pasta `docs/Apresentacoes_IVS/`. Mudanças permanentes vão nestes
+mesma política da pasta `docs/Apresentacoes_IVS`. Mudanças permanentes vão nestes
 arquivos-fonte, nunca no PDF.
 
 | Fonte | PDF gerado |
@@ -17,7 +17,7 @@ Qualquer Chromium/Chrome em modo headless serve:
 ```bash
 chromium --headless --disable-gpu --allow-file-access-from-files \
   --no-pdf-header-footer \
-  --print-to-pdf="docs/Guia_Leitura_Analise_Fatorial_Enap2019.pdf" \
+  --print-to-pdf="docs/metodologia/Guia_Leitura_Analise_Fatorial_Enap2019.pdf" \
   "file://$PWD/docs/fontes_pdf/Guia_Leitura_Analise_Fatorial_Enap2019.html"
 ```
 

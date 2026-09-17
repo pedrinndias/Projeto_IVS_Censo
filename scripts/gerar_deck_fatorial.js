@@ -646,7 +646,7 @@ const marca = t => ({ text: t, options: { color: ACENTO, bold: true } });
     'cor.plot(R, numbers = TRUE, main = "Matriz de correlação de Spearman")',
   ], 10);
   bloco(s, M, y + 3.95, W - 2*M, 'O script inteiro, comentado, está versionado.',
-    'docs/Codigo_Analise_Fatorial_Comentado.md traz este código com a explicação linha a linha de cada função em Python ao lado da equivalente em R, e a tabela das cinco diferenças a esperar entre as duas implementações.', false, 1.1);
+    'docs/metodologia/Codigo_Analise_Fatorial_Comentado.md traz este código com a explicação linha a linha de cada função em Python ao lado da equivalente em R, e a tabela das cinco diferenças a esperar entre as duas implementações.', false, 1.1);
   s.addNotes('As linhas 8 e 9 reproduzem em R as duas figuras que esta apresentação mostrou. O plot básico do R faz a Figura 2 do livro em cinco linhas — vale mostrar isso, porque desfaz a impressão de que a figura exigiu ferramenta especial.');
 }
 

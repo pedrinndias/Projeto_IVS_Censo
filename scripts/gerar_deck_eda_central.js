@@ -705,7 +705,7 @@ if (ALT) {
   stat(s, M + 7.8, 3.95, 4.3, '0,50 p.p.', 'largura da faixa', PETROL);
   s.addText('Meio ponto percentual de largura — estreito o bastante para nenhuma conclusão do estudo depender de qual ponto se adote. Nenhuma imputação serve: preencher com zero achata o gradiente nas áreas menos vulneráveis; imputar pela mediana municipal transfere aos setores ricos o perfil dos pobres.',
     { x: M, y: 5.65, w: W - 2*M, h: 0.85, fontFace: SANS, fontSize: 13, color: INK });
-  nota(s, 'Redação completa em docs/Relatorio_EDA_Fase3_IVS_ELSI.md, seção 14.1. Decisão registrada no GUIA §6.2.6.');
+  nota(s, 'Redação completa em docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md, seção 14.1. Decisão registrada no GUIA §6.2.6.');
 }
 
 { const s = S();
