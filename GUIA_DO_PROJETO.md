@@ -198,12 +198,16 @@ A **pipeline ativa** vive em `notebooks/Fase3_EDA_ELSI/` e finalmente aplica o
 recorte dos 70 municípios ELSI. As versões anteriores foram movidas para `Backup/`.
 
 ### Fase 3 — EDA com filtro ELSI *(ativa)*
-`notebooks/Fase3_EDA_ELSI/` — 2 notebooks (01→02).
+`notebooks/Fase3_EDA_ELSI/` — 3 notebooks (01→02→04). **Não existe um 03:** a
+normalização min-max por município, que seria dele, ainda não foi feita, e o 04 foi
+construído antes de propósito — está medido que normalizar antes de fatorar derruba
+o KMO de 0,783 para 0,720 e muda os pesos de 65/35 para 56/44.
 
 | Notebook | O que faz |
 |---|---|
 | `01_Extracao_Filtragem_ELSI` | Lê os 8 CSVs do Censo, cruza por (UF + nome normalizado) com `dados/municipios_elsi_brasil.csv`, filtra apenas os setores dos 70 municípios, faz o merge unificado, classifica morfologia urbana e roda auditoria de integridade. Saída: `banco_de_dados/Base_ELSI_Bruta_Censo2022.csv`. |
 | `02_Analises_Descritivas` | EDA completa seguindo o framework FIOCRUZ: tipagem com sigilo → `Dados_sig` → **recorte urbano** → 7 proporções brutas com denominador **V00001** → descritivas globais/municípios/regiões → blocos complementares (habitação precária, banheiro, chefia feminina, **envelhecimento**, **tipo de domicílio**, **favelas**) → histogramas → boxplots por região → outliers (IQR) → mapa de missing → matriz de correlação (Pearson + Spearman). Saídas: CSVs e PNGs em `banco_de_dados/eda/`. |
+| `04_Analise_Fatorial` | A estrutura latente e os **pesos** do índice, em 10 blocos: adequabilidade (KMO, MSA, Bartlett, SMC) → número de fatores (Kaiser, Horn, scree) → extração comparada (ACP × eixo principal) → rotação comparada (Varimax × promax, com Φ) → bootstrap de 1.000 reamostragens → pesos e escores → cenários de decisão → validação contra os setores de favela. Lê o `.db` da entrega, **não** os 8 GB do Censo. Matemática em `src/ivs_censo/fatorial.py`. Saídas: `eda/fatorial/nb04_*`. |
 
 ### Código compartilhado e scripts *(criados em 09/08/2026)*
 
@@ -215,6 +219,7 @@ comum, para as fórmulas não existirem em duas versões.
 |---|---|
 | `src/ivs_censo/fontes.py` | Os 8 arquivos do Censo, a chave do setor em cada um e quais variáveis o projeto lê. É a fonte da coluna "arquivo-fonte" da tabela de variáveis. |
 | `src/ivs_censo/indicadores.py` | Definição declarativa dos 26 indicadores (numerador, denominador, escala) + `calcular_indicadores` e `classificar_dados_sig`. |
+| `src/ivs_censo/fatorial.py` | A álgebra da análise fatorial em numpy puro: KMO por matriz anti-imagem, Bartlett, análise paralela de Horn, ACP, fatoração do eixo principal, Varimax, promax, SMC, escores por regressão e bootstrap. Sem dependência nova. |
 | `src/ivs_censo/dicionario.py` | Lê os dicionários oficiais do IBGE e monta a tabela de variáveis. |
 | `scripts/gerar_tabela_variaveis.py` | Gera `Dicionario_Variaveis_Projeto.{csv,xlsx}`. |
 | `scripts/gerar_entrega_orientadora.py` | Regenera o pacote de entrega (CSV + SQLite, 104 colunas, 3 tabelas). Antes disso os `.db` vinham de um script ad-hoc não versionado. |
@@ -234,9 +239,13 @@ elegibilidade, recorte urbano, tratamento do sigilo — estão consolidadas na
 - `Backup/ETL/`, `Backup/formatar/`, `Backup/banco_de_dados/` — scripts auxiliares e bases intermediárias antigas.
 - `Backup/DIAGNOSTICO_COMPLETO_PROJETO.md` — diagnóstico histórico.
 
-> ⚠️ **O que ainda falta para o IVS final:** análise fatorial (pesos), composição
-> ponderada das duas dimensões e categorização em 4 faixas de risco. O notebook 02
-> entrega as descritivas necessárias para alimentar essa próxima etapa.
+> ⚠️ **O que ainda falta para o IVS final:** a normalização min-max **por município**
+> (Notebook 03) e o cálculo do índice com a categorização em 4 faixas de risco
+> (Notebook 05). A análise fatorial foi concluída em 17/09/2026 e entregou a estrutura e
+> os pesos — **65,0% socioeconômica / 35,0% saneamento**, contra os 60/40 do IVS-BH 2012.
+> Seis decisões metodológicas saíram dela para a orientação, cada uma com o custo medido
+> em quantos setores mudam de faixa; estão na §3 do
+> [`docs/relatorios/Relatorio_Analise_Fatorial_NB04.md`](docs/relatorios/Relatorio_Analise_Fatorial_NB04.md).
 
 ---
 
@@ -542,6 +551,15 @@ em dois lugares — o notebook e `fontes.py` — ou eles divergem.
 
 ### 6.3 Decisões em aberto
 
+> **Atualização de 17/09/2026.** O Notebook 04 não fechou nenhuma destas — não era o
+> papel dele —, mas mediu o **custo de cada opção** em quantos setores mudam de faixa de
+> risco. A decisão 1 deixou de ser crítica: os pesos empíricos (65/35) e os da literatura
+> (60/40) convergem, e trocar um pelo outro move 2,5% dos setores. A 2 ganhou evidência
+> forte: pelo eixo principal, a comunalidade do lixo é 0,052. A 3 está medida: retirar o
+> analfabetismo recupera 16.548 setores e move 7,5%. Detalhe e as duas decisões novas
+> (rotação; índice 0–1 ou escore refinado) na §3 do
+> [`docs/relatorios/Relatorio_Analise_Fatorial_NB04.md`](docs/relatorios/Relatorio_Analise_Fatorial_NB04.md).
+
 Quatro pontos dependem de definição com a orientação e travam etapas seguintes:
 
 | # | Decisão | O que ela trava | Elementos para decidir |
@@ -631,7 +649,7 @@ Projeto_IVS_Censo22/
 │
 ├── src/ivs_censo/                     Código compartilhado (fontes, indicadores, dicionário)
 ├── scripts/                           gerar_tabela_variaveis · gerar_entrega_orientadora · proporcoes_brasil · gerar_tabelas_auditoria
-└── tests/                             test_pipeline_fase3.py + test_ivs_censo.py (65 testes)
+└── tests/                             test_pipeline_fase3.py + test_ivs_censo.py + test_fatorial.py (74 testes)
 ```
 
 ### Os 8 arquivos-fonte do Censo 2022
@@ -663,7 +681,8 @@ Projeto_IVS_Censo22/
 | Linha de base nacional (~468 mil setores) | ✅ `scripts/proporcoes_brasil.py` → `banco_de_dados/nacional/` |
 | Normalização de renda por município | 🔴 Pendente |
 | Validação das variáveis de esgoto | ✅ Concluída — V00312–V00316 confirmado no dicionário oficial do IBGE |
-| Análise fatorial / pesos / cálculo do IVS final | 🔴 Pendente — estudo e plano de implementação prontos em `docs/metodologia/Analise_Fatorial_LEIAME.md`; execução não iniciada |
+| Análise fatorial — estrutura e pesos | ✅ Concluída em 17/09/2026 — [`notebooks/Fase3_EDA_ELSI/04_Analise_Fatorial.ipynb`](notebooks/Fase3_EDA_ELSI/04_Analise_Fatorial.ipynb), com relatório em [`docs/relatorios/`](docs/relatorios/) e deck em [`docs/Apresentacoes_IVS/`](docs/Apresentacoes_IVS/). Pesos 65/35; AUC 0,813 na validação contra os setores de favela |
+| Cálculo do IVS final (Notebook 05) | 🔴 Pendente — depende da normalização municipal do NB03 |
 | Categorização em 4 faixas de risco | 🔴 Pendente |
 | Mapas temáticos (QGIS) | 🔴 Pendente |
 | Redação do artigo científico | 🟡 Plano preenchido, redação pendente |

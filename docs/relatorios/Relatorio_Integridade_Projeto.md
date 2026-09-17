@@ -176,7 +176,7 @@ As colunas-chave têm grafias diferentes entre os 8 CSVs do IBGE (`CD_SETOR`, `C
 ### 🔴 CRÍTICO
 
 **C1. Clipping de proporções em [0, 1] — resolvido com V00001** ✅
-- Local: [02_Analises_Descritivas.ipynb](notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb), célula `step4`, linha
+- Local: [02_Analises_Descritivas.ipynb](../../notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb), célula `step4`, linha
   `df_ok[c] = df_ok[c].clip(lower=0, upper=1)`, precedida do diagnóstico que exporta
   [`diagnostico_proporcoes_fora_intervalo.csv`](../../banco_de_dados/eda/diagnostico_proporcoes_fora_intervalo.csv).
 - O `max=1,0000` exato em água/esgoto/lixo/raça é **legítimo** (existem setores 100% inadequados),
