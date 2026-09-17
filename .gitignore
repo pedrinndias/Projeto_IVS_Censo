@@ -1,5 +1,10 @@
 # Ignorar arquivos grandes e temporários de base de dados
-banco_de_dados/*.csv
+banco_de_# Legado da Fase 2, arquivado em 17/09/2026: 302 MB de bases cuja metodologia foi
+# abandonada (denominador V01042). Ficam no disco como histórico, fora do git.
+Backup/banco_de_dados/fase2_bases/*.csv
+Backup/banco_de_dados/fase2_bases/*.xlsx
+
+dados/*.csv
 banco_de_dados/*.xlsx
 banco_de_dados/*.db
 banco_de_dados/~*
