@@ -5,11 +5,25 @@ já foi apresentado e ficou para trás — não use como fonte de número.
 
 ```
 Apresentacoes_IVS/
-├── EDA_Central_IVS_2026-09_rev2.pptx   ← A APRESENTAÇÃO. É a única coisa na raiz.
-├── complementos/                        ← documentos de apoio do deck atual
-├── historico/                           ← 11 decks fora de circulação, em ordem cronológica
-└── dicionarios/                         ← planilhas de variáveis (não são apresentações)
+├── Analise_Fatorial_NB04_2026-09.pptx   ← A APRESENTAÇÃO. É a única coisa na raiz.
+├── complementos/                         ← apoio do deck atual, e o deck da EDA avulso
+├── historico/                            ← 11 decks fora de circulação, em ordem cronológica
+└── dicionarios/                          ← planilhas de variáveis (não são apresentações)
 ```
+
+> **Mudança de 17/09/2026.** A apresentação atual passou a ser a da **análise fatorial**,
+> e ela tem 94 slides: os 43 dela mais os 51 da EDA Central anexados ao fim, a partir do
+> slide 44. Se a orientação pedir um número da EDA no meio da reunião, basta descer os
+> slides.
+>
+> Por isso o `EDA_Central_IVS_2026-09_rev2.pptx` saiu da raiz e foi para
+> `complementos/`: ele **não** saiu de circulação — está inteiro dentro do deck atual.
+> Continua ali como versão avulsa, para quem precisar só da EDA, e porque é ele que o
+> `gerar_deck_eda_central.js` produz.
+>
+> Os slides da EDA mantêm a numeração original impressa neles (1 a 51), então o slide 59
+> do arquivo mostra "16" no rodapé. Na prática ajuda: se a citação for "o slide 16 da
+> EDA", é esse.
 
 **A raiz tem um arquivo só, e é de propósito.** Quem abre a pasta com pressa pega o que está
 na raiz; se houver quatro arquivos ali, um deles vai ser aberto por engano. Foi o que
@@ -43,7 +57,7 @@ Para regerar a **2ª rodada** (renda sem o extremo), a sequência inteira é:
 ./.venv/bin/python scripts/auditoria_renda.py --sem-extremo
 ./.venv/bin/python scripts/eda_atualizada.py
 ./.venv/bin/python scripts/eda_central_dados.py banco_de_dados/eda/dados_deck_atualizado.json --atualizada
-node scripts/gerar_deck_eda_central.js docs/Apresentacoes_IVS/EDA_Central_IVS_2026-09_rev2.pptx banco_de_dados/eda/dados_deck_atualizado.json
+node scripts/gerar_deck_eda_central.js docs/Apresentacoes_IVS/complementos/EDA_Central_IVS_2026-09_rev2.pptx banco_de_dados/eda/dados_deck_atualizado.json
 ```
 
 **É um gerador só para os dois decks.** O que muda é o JSON: `--atualizada` faz cada tabela
