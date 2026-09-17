@@ -1,4 +1,4 @@
-"""Diagnóstico de adequabilidade dos dados à análise fatorial (Figueiredo Filho & Silva Júnior, 2010).
+"""Diagnóstico de adequabilidade dos dados à análise fatorial.
 
 Roda os testes do **primeiro e do segundo estágio** do planejamento de uma análise
 fatorial sobre os 7 componentes do IVS, no recorte de análise (urbano + `Dados_sig = OK`):
@@ -9,6 +9,14 @@ fatorial sobre os 7 componentes do IVS, no recorte de análise (urbano + `Dados_
   4. Bartlett Test of Sphericity;
   5. autovalores, variância acumulada, critério de Kaiser, análise paralela de Horn;
   6. comunalidades e cargas fatoriais (ACP), sem e com rotação Varimax.
+
+Referências: FIGUEIREDO FILHO & SILVA JÚNIOR (2010), que deu a sequência dos testes, e
+MATOS & RODRIGUES, *Análise fatorial* (Enap, 2019), que a revisou em três pontos — ver o
+docstring de `ivs_censo.fatorial`.
+
+A matemática vive em `src/ivs_censo/fatorial.py` desde 16/09/2026; este script é a
+interface de linha de comando e a definição dos cenários. A separação segue o padrão do
+Notebook 02: fórmula em módulo testado, uso no script ou no notebook.
 
 É **diagnóstico**, não o cálculo do IVS: roda sobre os indicadores brutos, antes da
 padronização min-max por município (Notebook 03) e da definição dos pesos (Notebook 04).
@@ -21,147 +29,19 @@ Depende apenas de pandas e numpy (as mesmas do `requirements.txt`).
 """
 from __future__ import annotations
 
-import math
+import sys
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 
 RAIZ = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(RAIZ / 'src'))
+
+from ivs_censo.fatorial import IVS7, diagnosticar  # noqa: E402
+
 BASE = RAIZ / 'banco_de_dados' / 'entrega_orientadora' / 'Base_ELSI_70Municipios_Censo2022.csv'
 SAIDA = RAIZ / 'banco_de_dados' / 'eda' / 'fatorial'
-
-# Os 7 componentes do IVS. A renda entra invertida (−renda) para que todas as variáveis
-# apontem no mesmo sentido: valor maior = mais vulnerável. A inversão não muda |r|,
-# autovalores, KMO nem comunalidades — muda só o sinal das cargas, e por isso a leitura.
-IVS7 = ['pct_agua_inad', 'pct_esgoto_inad', 'pct_lixo_inad', 'razao_moradores',
-        'pct_analfab', 'renda_media', 'pct_raca_pretpardind']
-ROTULOS = {
-    'pct_agua_inad': 'Água inadequada',
-    'pct_esgoto_inad': 'Esgoto inadequado',
-    'pct_lixo_inad': 'Lixo inadequado',
-    'razao_moradores': 'Razão de moradores',
-    'pct_analfab': 'Analfabetismo 15+',
-    'renda_inv': 'Renda (invertida)',
-    'pct_raca_pretpardind': 'Cor/raça PPI',
-}
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Estatísticas
-# ─────────────────────────────────────────────────────────────────────────────
-def chi2_sf(x: float, k: int) -> float:
-    """Cauda superior da qui-quadrado por Wilson–Hilferty (exata o bastante com df alto)."""
-    z = ((x / k) ** (1 / 3) - (1 - 2 / (9 * k))) / math.sqrt(2 / (9 * k))
-    return 0.5 * math.erfc(z / math.sqrt(2))
-
-
-def bartlett(R: np.ndarray, n: int) -> tuple[float, int, float]:
-    """BTS: testa H0 de que a matriz de correlação é a identidade."""
-    p = R.shape[0]
-    sinal, logdet = np.linalg.slogdet(R)
-    qui = -(n - 1 - (2 * p + 5) / 6) * logdet
-    gl = p * (p - 1) // 2
-    return qui, gl, chi2_sf(qui, gl)
-
-
-def kmo(R: np.ndarray) -> tuple[float, np.ndarray]:
-    """KMO global e MSA por variável, a partir das correlações parciais (anti-imagem)."""
-    Rinv = np.linalg.inv(R)
-    d = np.sqrt(np.diag(Rinv))
-    parcial = -Rinv / np.outer(d, d)          # correlações parciais
-    np.fill_diagonal(parcial, 0.0)
-    R0 = R.copy()
-    np.fill_diagonal(R0, 0.0)
-    soma_r, soma_p = (R0 ** 2).sum(), (parcial ** 2).sum()
-    msa = (R0 ** 2).sum(axis=0) / ((R0 ** 2).sum(axis=0) + (parcial ** 2).sum(axis=0))
-    return soma_r / (soma_r + soma_p), msa
-
-
-def varimax(cargas: np.ndarray, tol: float = 1e-6, maxiter: int = 500) -> np.ndarray:
-    """Rotação ortogonal Varimax (Kaiser), sem normalização."""
-    L = cargas.copy()
-    p, k = L.shape
-    if k < 2:
-        return L
-    R = np.eye(k)
-    d_ant = 0.0
-    for _ in range(maxiter):
-        Lam = L @ R
-        u, s, vt = np.linalg.svd(
-            L.T @ (Lam ** 3 - Lam @ np.diag(np.diag(Lam.T @ Lam)) / p))
-        R = u @ vt
-        d = s.sum()
-        if d_ant != 0 and d / d_ant < 1 + tol:
-            break
-        d_ant = d
-    return L @ R
-
-
-def acp(R: np.ndarray, k: int) -> tuple[np.ndarray, np.ndarray]:
-    """Componentes principais a partir da matriz de correlação: autovalores e cargas."""
-    val, vec = np.linalg.eigh(R)
-    ordem = np.argsort(val)[::-1]
-    val, vec = val[ordem], vec[:, ordem]
-    cargas = vec[:, :k] * np.sqrt(np.maximum(val[:k], 0))
-    return val, cargas
-
-
-def horn(n: int, p: int, sims: int = 50, semente: int = 42) -> np.ndarray:
-    """Análise paralela de Horn (1965): autovalores médios de dados aleatórios n × p."""
-    rng = np.random.default_rng(semente)
-    acc = np.zeros(p)
-    for _ in range(sims):
-        X = rng.standard_normal((n, p))
-        acc += np.sort(np.linalg.eigvalsh(np.corrcoef(X, rowvar=False)))[::-1]
-    return acc / sims
-
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Um cenário = um conjunto de variáveis × um tipo de correlação
-# ─────────────────────────────────────────────────────────────────────────────
-def diagnosticar(dados: pd.DataFrame, colunas: list[str], metodo: str, k: int, nome: str) -> dict:
-    X = dados[colunas].dropna()
-    n, p = X.shape
-    R = X.corr(method=metodo).to_numpy()
-
-    fora = R[~np.eye(p, dtype=bool)]
-    acima30 = float((np.abs(fora) >= 0.30).mean())
-
-    kmo_global, msa = kmo(R)
-    qui, gl, pval = bartlett(R, n)
-    val, cargas = acp(R, k)
-    comun = (cargas ** 2).sum(axis=1)
-    rot = varimax(cargas)
-    hval = horn(min(n, 20000), p)
-
-    rot_nomes = [ROTULOS.get(c.removesuffix('_mm'), c.removesuffix('_mm')) for c in colunas]
-    tabelas = {
-        f'{nome}_correlacao': pd.DataFrame(R, index=rot_nomes, columns=rot_nomes).round(3),
-        f'{nome}_autovalores': pd.DataFrame({
-            'componente': np.arange(1, p + 1),
-            'autovalor': val.round(4),
-            'pct_variancia': (100 * val / p).round(2),
-            'pct_acumulado': (100 * np.cumsum(val) / p).round(2),
-            'autovalor_aleatorio_horn': hval.round(4),
-        }),
-        f'{nome}_cargas': pd.DataFrame(
-            np.column_stack([cargas, rot, comun, msa]),
-            index=rot_nomes,
-            columns=[f'CP{i+1}' for i in range(k)] + [f'Varimax{i+1}' for i in range(k)]
-                    + ['comunalidade', 'MSA']).round(3),
-    }
-    return {
-        'nome': nome, 'n': n, 'p': p, 'razao_casos_var': n / p,
-        'metodo': metodo, 'pct_corr_acima_030': acima30,
-        'kmo': kmo_global, 'msa_min': float(msa.min()),
-        'bartlett_qui2': qui, 'bartlett_gl': gl, 'bartlett_p': pval,
-        'autovalores_acima_1': int((val > 1).sum()),
-        'autovalores_acima_horn': int((val > hval).sum()),
-        'var_acumulada_k': float(100 * val[:k].sum() / p),
-        'comunalidade_min': float(comun.min()),
-        'tabelas': tabelas,
-    }
 
 
 def main() -> None:
