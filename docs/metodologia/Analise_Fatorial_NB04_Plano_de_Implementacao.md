@@ -154,4 +154,4 @@ Se só der para fazer três coisas:
 
 ---
 
-*Documentos citados: `GUIA_DO_PROJETO.md` (§3, §6.2, §6.3, §8) · `docs/Analise_Fatorial_Enap2019_Guia_de_Leitura.md` · `docs/Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md` · `docs/Relatorio_EDA_Fase3_IVS_ELSI.md` (§13, §15) · `scripts/diagnostico_fatorial.py` · `src/ivs_censo/indicadores.py`.*
+*Documentos citados: `GUIA_DO_PROJETO.md` (§3, §6.2, §6.3, §8) · `docs/metodologia/Analise_Fatorial_Enap2019_Guia_de_Leitura.md` · `docs/metodologia/Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md` · `docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md` (§13, §15) · `scripts/diagnostico_fatorial.py` · `src/ivs_censo/indicadores.py`.*

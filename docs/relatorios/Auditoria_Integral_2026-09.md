@@ -69,7 +69,7 @@ novo.
 | F6 † | `banco_de_dados/eda/fatorial/nb04_escores.csv` | 6,5 MB, uma linha por setor — exatamente a forma que o `.gitignore` exclui pela regra `*_por_setor.csv`. Escapou pelo nome, não por decisão |
 | F7 | `entrega_orientadora/Base_*.csv` | 72 MB e 3,5 MB **versionados**, apesar da regra `banco_de_dados/**/Base_*.csv` do `.gitignore` — que não desversiona o que já foi commitado |
 | F8 | `scripts/atualizar_roteiro_2a_rodada.py` | Migração de mão única da 1ª para a 2ª rodada, não idempotente por desenho. **Não foi executado nesta auditoria**, e corretamente: rodá-lo de novo corromperia o roteiro escrito à mão. A consequência é que o roteiro em circulação não tem verificação de reprodutibilidade possível |
-| F9 † | `docs/Apresentacoes_IVS/` | Dois decks na raiz — `EDA_Central_IVS_2026-09_rev2.pptx` e `Analise_Fatorial_NB04_2026-09.pptx` — contra a regra do próprio README daquela pasta: "A raiz tem um arquivo só, e é de propósito" |
+| F9 † | `docs/Apresentacoes_IVS` | Dois decks na raiz — `EDA_Central_IVS_2026-09_rev2.pptx` e `Analise_Fatorial_NB04_2026-09.pptx` — contra a regra do próprio README daquela pasta: "A raiz tem um arquivo só, e é de propósito" |
 
 ### LACUNA — falta uma verificação que deveria existir
 
@@ -139,7 +139,7 @@ leitura individual nem verbo que afirme mais do que a evidência sustenta.
    contra o livro da Enap ao escrevê-las, e os testes checam propriedades algébricas — mas
    uma conferência contra uma implementação independente (`psych` em R) **não foi feita**.
    É o teste mais forte disponível e está documentado em
-   [`Codigo_Analise_Fatorial_Comentado.md`](Codigo_Analise_Fatorial_Comentado.md); ninguém
+   [`Codigo_Analise_Fatorial_Comentado.md`](../metodologia/Codigo_Analise_Fatorial_Comentado.md); ninguém
    rodou.
 4. **Os `.docx` e `.pdf` em `complementos/`** além do resumo e do critério de renda — não
    têm gerador reexecutável ou não foram abertos.

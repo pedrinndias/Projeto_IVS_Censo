@@ -126,7 +126,7 @@ se sobrou resíduo da versão anterior no grafo.
 
 `GUIA_DO_PROJETO.md` · `README.md` · `estrutura_projeto.md` ·
 `banco_de_dados/eda/README.md` · `banco_de_dados/entrega_orientadora/README.md` ·
-`docs/Relatorio_EDA_Fase3_IVS_ELSI.md` (reescrito) · `docs/Relatorio_Integridade_Projeto.md` ·
+`docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md` (reescrito) · `docs/relatorios/Relatorio_Integridade_Projeto.md` ·
 `notebooks/Fase3_EDA_ELSI/README.md` · `tests/test_pipeline_fase3.py` ·
 as quatro figuras de `banco_de_dados/eda/figuras/` (regeneradas sobre o recorte urbano).
 

@@ -6,7 +6,7 @@
 >
 > **Atualizado em:** 10 de agosto de 2026
 > **Documento mestre (o porquê científico):** [`GUIA_DO_PROJETO.md`](../GUIA_DO_PROJETO.md)
-> **Relatório técnico da EDA:** [`Relatorio_EDA_Fase3_IVS_ELSI.md`](Relatorio_EDA_Fase3_IVS_ELSI.md)
+> **Relatório técnico da EDA:** [`Relatorio_EDA_Fase3_IVS_ELSI.md`](relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md)
 
 ---
 
@@ -30,7 +30,7 @@
 |---|---|
 | Relembrar o projeto inteiro | `GUIA_DO_PROJETO.md` |
 | Encontrar um arquivo | este manual, Parte A.2 |
-| Entender um resultado da EDA | `docs/Relatorio_EDA_Fase3_IVS_ELSI.md` |
+| Entender um resultado da EDA | `docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md` |
 | Saber o que uma variável do Censo significa | `banco_de_dados/entrega_orientadora/Dicionario_Variaveis_Projeto.xlsx` |
 | Ver como um indicador é calculado | `src/ivs_censo/indicadores.py` |
 | Saber por que uma decisão foi tomada, e como refazê-la | este manual, Parte C |
@@ -170,18 +170,31 @@ SELECT * FROM setores_censitarios WHERE Dados_sig = 'OK' AND urbano = 1;
 
 ### `docs/` — documentação e fontes
 
-| Arquivo | O que é |
+Organizada em 17/09/2026 por **tipo de uso**, e não por formato: a pergunta que leva a
+uma pasta é "o que eu quero fazer", não "que extensão é o arquivo". Cada subpasta tem o
+seu próprio `README.md` com a tabela do que há dentro.
+
+```
+docs/
+├── MANUAL_DO_PROJETO.md      este documento — o único na raiz, de propósito
+├── metodologia/              o PORQUÊ das decisões (9 itens + fontes_pdf/)
+├── relatorios/               o que o projeto PRODUZIU (5 itens)
+├── referencias/              material de TERCEIROS, não editável (7 itens)
+├── prompts/                  prompts executáveis, versionados como registro (3)
+└── Apresentacoes_IVS/        os decks, o histórico e os complementos
+```
+
+| Se você quer… | Vá em |
 |---|---|
-| `MANUAL_DO_PROJETO.md` | Este documento |
-| `Relatorio_EDA_Fase3_IVS_ELSI.md` | Relatório técnico da EDA, reescrito sobre o recorte urbano |
-| `Relatorio_EDA_Fase3_IVS_ELSI.docx` | ⚠️ Versão antiga, ainda sobre o recorte com rurais |
-| `Relatorio_Integridade_Projeto.md` | Diagnóstico técnico de maio, com nota de revisão no topo |
-| `Cálculo IVS2012.docx` | **Metodologia-fonte.** Define denominadores, `Dados_sig` e quais formas são inadequadas |
-| `indice_vulnerabilidade2012 (2).pdf` | IVS-BH 2012 oficial |
-| `guia_analises.docx` | Framework FIOCRUZ de EDA |
-| `Plano_Artigo_Cientifico_IC_Preenchido.docx` | Plano do artigo, por fases |
-| `Plano de trabalho.pdf` | Cronograma da IC |
-| `Apresentacoes_IVS/` | Apresentação atual na raiz + `historico/` e `dicionarios/`. Índice em `Apresentacoes_IVS/README.md` |
+| justificar uma decisão metodológica | [`metodologia/`](metodologia/) — comece pelo `Analise_Fatorial_LEIAME.md` |
+| um número, ou saber o que já foi medido | [`relatorios/`](relatorios/) |
+| a metodologia-fonte do IVS-BH, o ELSI ou o framework FIOCRUZ | [`referencias/`](referencias/) |
+| reexecutar uma etapa inteira numa sessão nova | [`prompts/`](prompts/) |
+| apresentar para a orientação | [`Apresentacoes_IVS/`](Apresentacoes_IVS/) |
+
+> **Por que o MANUAL fica sozinho na raiz de `docs/`:** pela mesma razão que
+> `Apresentacoes_IVS/` tem um deck só na raiz — quem abre a pasta com pressa pega o que
+> está no primeiro nível, e o que está ali tem de ser o ponto de entrada.
 
 ### `tests/`
 
@@ -238,7 +251,7 @@ de auditoria: 218 valores checados, nenhuma divergência.
 
 # Parte C — Como cada demanda foi feita: decisão, arquivos e reprodução
 
-> **Este documento e o relatório se dividem assim.** A [seção 12 do relatório da EDA](Relatorio_EDA_Fase3_IVS_ELSI.md)
+> **Este documento e o relatório se dividem assim.** A [seção 12 do relatório da EDA](relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md)
 > traz a *argumentação*: por que decidi como decidi, quais alternativas descartei e o que
 > verifiquei. Esta parte traz a *operação*: quais arquivos foram tocados, qual célula faz o
 > quê, como reproduzir e como conferir. Se a pergunta é "por quê", vá ao relatório; se é

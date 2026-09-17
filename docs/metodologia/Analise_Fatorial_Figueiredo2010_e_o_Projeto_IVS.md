@@ -369,4 +369,4 @@ IBGE. **Censo Demográfico 2022**: Favelas e Comunidades Urbanas — resultados 
 
 ---
 
-*Documentos do projeto citados: `GUIA_DO_PROJETO.md` (§6.2.6, §6.2.8, §6.2.10, §6.3, §8) · `docs/Relatorio_EDA_Fase3_IVS_ELSI.md` (§9, §13, §15) · `src/ivs_censo/indicadores.py`.*
+*Documentos do projeto citados: `GUIA_DO_PROJETO.md` (§6.2.6, §6.2.8, §6.2.10, §6.3, §8) · `docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md` (§9, §13, §15) · `src/ivs_censo/indicadores.py`.*

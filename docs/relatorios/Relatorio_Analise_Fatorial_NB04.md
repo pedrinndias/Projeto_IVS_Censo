@@ -279,7 +279,7 @@ jupyter execute notebooks/Fase3_EDA_ELSI/04_Analise_Fatorial.ipynb
 ```
 
 O código está comentado linha a linha, com a tradução para R, em
-[`Codigo_Analise_Fatorial_Comentado.md`](Codigo_Analise_Fatorial_Comentado.md).
+[`Codigo_Analise_Fatorial_Comentado.md`](../metodologia/Codigo_Analise_Fatorial_Comentado.md).
 
 O notebook trava em três pontos: o recorte de 104.108 setores, os 87.545 completos, e os valores de KMO, MSA e Bartlett do diagnóstico de agosto. Se qualquer um divergir, ele para.
 
@@ -309,4 +309,4 @@ SECRETARIA MUNICIPAL DE SAÚDE DE BELO HORIZONTE. **Índice de Vulnerabilidade �
 
 ---
 
-*Documentos do projeto citados: `GUIA_DO_PROJETO.md` (§6.2.6, §6.2.8, §6.2.10, §6.3) · `docs/Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md` · `docs/Relatorio_EDA_Fase3_IVS_ELSI.md` (§9, §13, §15).*
+*Documentos do projeto citados: `GUIA_DO_PROJETO.md` (§6.2.6, §6.2.8, §6.2.10, §6.3) · `docs/metodologia/Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md` · `docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md` (§9, §13, §15).*

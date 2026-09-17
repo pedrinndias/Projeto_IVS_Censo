@@ -12,7 +12,7 @@ Este projeto constrói um **Índice de Vulnerabilidade à Saúde (IVS)** intraur
 **Dependências:** ver [`requirements.txt`](requirements.txt) (`pandas`, `numpy`, `matplotlib`, `openpyxl`, `xlsxwriter`)
 
 > **Documento mestre:** [`GUIA_DO_PROJETO.md`](GUIA_DO_PROJETO.md) — objetivos, metodologia, estado e plano (canônico).
-> **Diagnóstico técnico:** [`docs/Relatorio_Integridade_Projeto.md`](docs/Relatorio_Integridade_Projeto.md).
+> **Diagnóstico técnico:** [`docs/relatorios/Relatorio_Integridade_Projeto.md`](docs/relatorios/Relatorio_Integridade_Projeto.md).
 
 ---
 
@@ -205,7 +205,7 @@ do país (é mais urbana, mais rica e concentra 58,6% dos setores de favela do B
 
 ## Problemas Conhecidos e Pendências
 
-Detalhamento em [`docs/Relatorio_Integridade_Projeto.md`](docs/Relatorio_Integridade_Projeto.md).
+Detalhamento em [`docs/relatorios/Relatorio_Integridade_Projeto.md`](docs/relatorios/Relatorio_Integridade_Projeto.md).
 
 | # | Problema | Status |
 |---|---|---|

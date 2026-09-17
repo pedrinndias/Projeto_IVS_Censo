@@ -11,7 +11,7 @@
 > **Documentos relacionados no repositório:** [`docs/MANUAL_DO_PROJETO.md`](docs/MANUAL_DO_PROJETO.md) ·
 > [`README.md`](README.md) ·
 > [`estrutura_projeto.md`](estrutura_projeto.md) ·
-> [`docs/Relatorio_Integridade_Projeto.md`](docs/Relatorio_Integridade_Projeto.md) ·
+> [`docs/relatorios/Relatorio_Integridade_Projeto.md`](docs/relatorios/Relatorio_Integridade_Projeto.md) ·
 > [`Backup/DIAGNOSTICO_COMPLETO_PROJETO.md`](Backup/DIAGNOSTICO_COMPLETO_PROJETO.md) *(histórico)*
 
 ---
@@ -78,8 +78,8 @@ unidade territorial do IBGE — o que permite enxergar desigualdades *dentro* de
 - **Caiaffa et al. (2021)** e **Buss & Pellegrini Filho (2007)** — determinantes sociais
   e territoriais da saúde.
 - **Matos & Rodrigues (2019)** — referência sobre análise fatorial.
-  Estudada em detalhe em [`docs/Analise_Fatorial_Enap2019_Guia_de_Leitura.md`](docs/Analise_Fatorial_Enap2019_Guia_de_Leitura.md); o material da etapa está indexado
-  em [`docs/Analise_Fatorial_LEIAME.md`](docs/Analise_Fatorial_LEIAME.md).
+  Estudada em detalhe em [`docs/metodologia/Analise_Fatorial_Enap2019_Guia_de_Leitura.md`](docs/metodologia/Analise_Fatorial_Enap2019_Guia_de_Leitura.md); o material da etapa está indexado
+  em [`docs/metodologia/Analise_Fatorial_LEIAME.md`](docs/metodologia/Analise_Fatorial_LEIAME.md).
 
 **A lacuna:** não existe um IVS padronizado e atualizado com dados do **Censo 2022** para o
 conjunto de municípios do ELSI-Brasil. Os estudos anteriores usaram o Censo 2010.
@@ -249,7 +249,7 @@ Se algum documento do repositório divergir daqui, **vale esta seção**.
 O detalhamento operacional de cada decisão — qual célula, qual comando, como desfazer —
 está na Parte C de [`docs/MANUAL_DO_PROJETO.md`](docs/MANUAL_DO_PROJETO.md). A argumentação
 estendida, com o passo a passo de execução, está na §12 de
-[`docs/Relatorio_EDA_Fase3_IVS_ELSI.md`](docs/Relatorio_EDA_Fase3_IVS_ELSI.md).
+[`docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md`](docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md).
 
 ### 6.1 Os três princípios que orientam as decisões
 
@@ -371,7 +371,7 @@ contra 60,6%. O sigilo cai monotonicamente com o porte do setor: 44,1% onde há 
 pessoas alfabetizadas, 3,3% acima de mil. Como o IBGE reporta os zeros (9.268 setores
 declaram `V00901 = 0`), o valor suprimido é ≥ 1 — e isso limita a média verdadeira da
 amostra ao intervalo **3,14% a 3,64%**, faixa estreita o bastante para não mudar nenhuma
-conclusão. Detalhamento em `docs/Relatorio_EDA_Fase3_IVS_ELSI.md`, seção 14.1.
+conclusão. Detalhamento em `docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md`, seção 14.1.
 
 **Decisão de agosto de 2026 (orientadora).** A limitação é **aceita e declarada**, sem
 imputação. A alternativa antes cogitada — imputar pela mediana municipal com indicador de
@@ -431,7 +431,7 @@ classificação. Planilha em `dados/`.
 **Fonte oficial localizada em 21/08/2026.** IBGE. *Censo Demográfico 2022: Favelas e
 Comunidades Urbanas — Resultados do universo.* Rio de Janeiro: IBGE, 2024, 171 p. A
 definição e os quatro critérios de identificação estão transcritos em
-`docs/Relatorio_EDA_Fase3_IVS_ELSI.md`, seção 14.2.
+`docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md`, seção 14.2.
 
 **⚠️ Limitação estrutural revelada pela fonte (nota 7, p. 75).** Além das 12.348 FCU
 classificadas, o IBGE identificou **2.298 FCU com 21 a 50 domicílios que não receberam
@@ -574,7 +574,7 @@ viés de sobrevivência e exclusão de institucionalizados.
 | Documento | O que traz | Quando consultar |
 |---|---|---|
 | **Esta seção** | A decisão canônica, a justificativa e o status | "O que foi decidido, afinal?" |
-| [`docs/Relatorio_EDA_Fase3_IVS_ELSI.md`](docs/Relatorio_EDA_Fase3_IVS_ELSI.md), §12 | A argumentação estendida, alternativas descartadas e passo a passo da execução | "Por que, e como foi feito?" |
+| [`docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md`](docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md), §12 | A argumentação estendida, alternativas descartadas e passo a passo da execução | "Por que, e como foi feito?" |
 | [`docs/MANUAL_DO_PROJETO.md`](docs/MANUAL_DO_PROJETO.md), Parte C | Arquivos e células tocados, comandos, como conferir e como desfazer | "Onde está e como rodo de novo?" |
 
 ---
@@ -663,7 +663,7 @@ Projeto_IVS_Censo22/
 | Linha de base nacional (~468 mil setores) | ✅ `scripts/proporcoes_brasil.py` → `banco_de_dados/nacional/` |
 | Normalização de renda por município | 🔴 Pendente |
 | Validação das variáveis de esgoto | ✅ Concluída — V00312–V00316 confirmado no dicionário oficial do IBGE |
-| Análise fatorial / pesos / cálculo do IVS final | 🔴 Pendente — estudo e plano de implementação prontos em `docs/Analise_Fatorial_LEIAME.md`; execução não iniciada |
+| Análise fatorial / pesos / cálculo do IVS final | 🔴 Pendente — estudo e plano de implementação prontos em `docs/metodologia/Analise_Fatorial_LEIAME.md`; execução não iniciada |
 | Categorização em 4 faixas de risco | 🔴 Pendente |
 | Mapas temáticos (QGIS) | 🔴 Pendente |
 | Redação do artigo científico | 🟡 Plano preenchido, redação pendente |
@@ -675,7 +675,7 @@ aplica o recorte dos 70 municípios. As Fases 1 e 2 ficam preservadas como hist�
 
 ## 9. Problemas Conhecidos
 
-Detalhamento completo em [`Backup/DIAGNOSTICO_COMPLETO_PROJETO.md`](Backup/DIAGNOSTICO_COMPLETO_PROJETO.md) *(histórico)* e em [`docs/Relatorio_Integridade_Projeto.md`](docs/Relatorio_Integridade_Projeto.md).
+Detalhamento completo em [`Backup/DIAGNOSTICO_COMPLETO_PROJETO.md`](Backup/DIAGNOSTICO_COMPLETO_PROJETO.md) *(histórico)* e em [`docs/relatorios/Relatorio_Integridade_Projeto.md`](docs/relatorios/Relatorio_Integridade_Projeto.md).
 
 | # | Problema | Gravidade |
 |---|---|---|
@@ -685,7 +685,7 @@ Detalhamento completo em [`Backup/DIAGNOSTICO_COMPLETO_PROJETO.md`](Backup/DIAGN
 | **3** | ~~Denominadores divergentes~~ — **resolvido em 22/05/2026**: consolidado **V00001** (Dom. Particulares Permanentes Ocupados) como denominador domiciliar, padrão do IVS-BH 2012. O **V01042 foi descartado** (é contagem de pessoas, não de domicílios). Decisão empiricamente validada: com V00001 nenhuma proporção de saneamento estoura 1,0. | ✅ Resolvido |
 | **4** | ~~Duas pipelines paralelas~~ — **resolvido**: a Fase 3 é a oficial; as Fases 1 e 2 foram arquivadas em `Backup/` como histórico. | ✅ Resolvido |
 | **5** | **~8 GB de dados duplicados/obsoletos** espalhados pelo projeto. | 🟡 Organizacional |
-| **6** | ~~README/docs parcialmente desatualizados~~ — **resolvido**: `docs/Relatorio_EDA_Fase3_IVS_ELSI.md` foi regerado em 12/06/2026 sobre a metodologia V00001 e está consistente com os CSVs atuais; `Relatorio_Integridade_Projeto.md` revisado na mesma data. | ✅ Resolvido |
+| **6** | ~~README/docs parcialmente desatualizados~~ — **resolvido**: `docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md` foi regerado em 12/06/2026 sobre a metodologia V00001 e está consistente com os CSVs atuais; `Relatorio_Integridade_Projeto.md` revisado na mesma data. | ✅ Resolvido |
 | **7** | ~~requirements.txt incorreto~~ — **resolvido**: lista `pandas`, `numpy`, `matplotlib`, `openpyxl`, `xlsxwriter`; sem módulos built-in. Em 20/08/2026 ganhou `ipykernel`/`nbclient`: a pipeline **são** os notebooks, e sem kernel não havia como executá-los. | ✅ Resolvido |
 | **8** | **Código duplicado nos notebooks** — função `ler_csv_padronizado` definida duas vezes na Fase 2; auditoria duplicada na Fase 1. | 🟢 Menor |
 | **9** | ~~Entregáveis sem código-fonte~~ — os `.db`/`.csv` de `entrega_orientadora/` vinham de script ad-hoc não versionado. **Resolvido em 09/08/2026**: `scripts/gerar_entrega_orientadora.py`. | ✅ Resolvido |
