@@ -1,6 +1,6 @@
 # `scripts/` — os executáveis versionados
 
-Dezenove scripts. A pipeline de análise **são os notebooks**; estes existem para o que
+Vinte scripts. A pipeline de análise **são os notebooks**; estes existem para o que
 precisa rodar fora deles — o Brasil inteiro, o pacote de entrega, os decks e os
 documentos.
 
@@ -31,6 +31,7 @@ documentos.
 | [`gerar_deck_fatorial.js`](gerar_deck_fatorial.js) | o deck da análise fatorial | `pptxgenjs` |
 | [`gerar_deck_eda_central.js`](gerar_deck_eda_central.js) | o deck da EDA Central, 1ª e 2ª rodadas | `pptxgenjs` |
 | [`gerar_deck_criterio_renda.js`](gerar_deck_criterio_renda.js) | o deck do critério de outliers de renda | `pptxgenjs` |
+| [`gerar_slides_extremo_bh.js`](gerar_slides_extremo_bh.js) | os 4 slides do extremo de BH, que são **anexados** ao deck da fatorial, não regeram ele | `pptxgenjs` |
 
 > `deck_comum.js` é usado **só** pelo gerador da fatorial. Os dois mais antigos carregam
 > cada um a sua cópia dos mesmos helpers — migrá-los exige regerar os dois decks e

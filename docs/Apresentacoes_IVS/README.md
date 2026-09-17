@@ -12,9 +12,9 @@ Apresentacoes_IVS/
 ```
 
 > **Mudança de 17/09/2026.** A apresentação atual passou a ser a da **análise fatorial**,
-> e ela tem 94 slides: os 43 dela mais os 51 da EDA Central anexados ao fim, a partir do
-> slide 44. Se a orientação pedir um número da EDA no meio da reunião, basta descer os
-> slides.
+> e ela tem 98 slides, em três blocos: os 43 dela, os 51 da EDA Central anexados a partir
+> do slide 44, e os 4 do extremo de Belo Horizonte a partir do slide 95. Se a orientação
+> pedir um número da EDA no meio da reunião, basta descer os slides.
 >
 > Por isso o `EDA_Central_IVS_2026-09_rev2.pptx` saiu da raiz e foi para
 > `complementos/`: ele **não** saiu de circulação — está inteiro dentro do deck atual.
@@ -24,6 +24,11 @@ Apresentacoes_IVS/
 > Os slides da EDA mantêm a numeração original impressa neles (1 a 51), então o slide 59
 > do arquivo mostra "16" no rodapé. Na prática ajuda: se a citação for "o slide 16 da
 > EDA", é esse.
+>
+> Cada bloco anexado mantém a numeração impressa dele: o slide 59 mostra "16" no rodapé
+> (é o 16 da EDA) e o slide 96 mostra "2" (é o 2 do bloco do extremo). Os três blocos vêm
+> de geradores diferentes e são juntados, não regerados — por isso os slides removidos à
+> mão e as 21 marcações "EXPLICAR SLIDE" sobrevivem a cada anexação.
 
 **A raiz tem um arquivo só, e é de propósito.** Quem abre a pasta com pressa pega o que está
 na raiz; se houver quatro arquivos ali, um deles vai ser aberto por engano. Foi o que
