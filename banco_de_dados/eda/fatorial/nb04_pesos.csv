@@ -1,0 +1,7 @@
+﻿variavel;coluna;dimensao;carga;peso
+Água inadequada;pct_agua_inad;2;0.902507;0.223215
+Esgoto inadequado;pct_esgoto_inad;2;0.679158;0.126405
+Razão de moradores;razao_moradores;1;0.532182;0.071707
+Analfabetismo 15+;pct_analfab;1;0.86839;0.190928
+Renda (invertida);renda_inv;1;0.915218;0.212075
+Cor/raça PPI;pct_raca_pretpardind;1;0.832968;0.17567
