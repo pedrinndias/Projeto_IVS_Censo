@@ -87,6 +87,13 @@ def bartlett(R: np.ndarray, n: int) -> tuple[float, int, float]:
     """
     p = R.shape[0]
     sinal, logdet = np.linalg.slogdet(R)
+    # Matriz não positiva definida devolve sinal <= 0 e logdet infinito ou nulo — e daí
+    # sai um qui-quadrado sem significado, que iria para o CSV como se fosse número. Uma
+    # matriz de Spearman com muitos empates, ou montada por exclusão par a par, pode cair
+    # nesse caso. Melhor parar aqui do que publicar o resultado.
+    if sinal <= 0 or not np.isfinite(logdet):
+        raise ValueError('matriz de correlação não é positiva definida: '
+                         f'sinal do determinante = {sinal}, log|R| = {logdet}')
     qui = -(n - 1 - (2 * p + 5) / 6) * logdet
     gl = p * (p - 1) // 2
     return qui, gl, chi2_sf(qui, gl)
@@ -155,6 +162,8 @@ def fatoracao_eixo_principal(R: np.ndarray, k: int, tol: float = 1e-7,
     convergiu = False
     delta = np.inf
     it = 0
+    cargas = np.zeros((p, k))
+    val = np.zeros(p)
     for it in range(1, maxiter + 1):
         np.fill_diagonal(Rr, h)
         val, vec = np.linalg.eigh(Rr)
@@ -170,11 +179,6 @@ def fatoracao_eixo_principal(R: np.ndarray, k: int, tol: float = 1e-7,
         if delta < tol:
             convergiu = True
             break
-    np.fill_diagonal(Rr, h)
-    val, vec = np.linalg.eigh(Rr)
-    ordem = np.argsort(val)[::-1]
-    val, vec = val[ordem], vec[:, ordem]
-    cargas = vec[:, :k] * np.sqrt(np.maximum(val[:k], 0))
     info = {'convergiu': convergiu, 'iteracoes': it, 'delta': delta,
             'heywood': heywood, 'autovalores': val, 'p': p}
     return cargas, h, info
@@ -303,6 +307,13 @@ def postos(X: np.ndarray) -> np.ndarray:
     empates são muitos: as proporções de saneamento têm massa concentrada em zero.
     """
     X = np.asarray(X, dtype=float)
+    if not np.isfinite(X).all():
+        # `argsort` joga NaN para o fim e o posto sairia como se fosse o maior valor —
+        # uma matriz de correlação plausível e errada, que é o pior defeito possível aqui.
+        # O projeto trata faltante por exclusão de casos antes de chegar na álgebra; se
+        # chegou faltante até aqui, é engano de quem chamou.
+        raise ValueError('há valores ausentes ou infinitos: trate-os antes '
+                         '(o projeto usa exclusão por lista) — o posto de NaN não existe')
     n = X.shape[0]
     saida = np.empty_like(X)
     for j in range(X.shape[1]):

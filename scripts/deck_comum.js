@@ -39,6 +39,7 @@ const REGUA_F = 'E6E4DE';
 const ACENTO  = '8C2F27';   // vermelho de correção — usado com parcimônia
 const PAPEL   = 'FFFFFF';
 const FONTE   = 'Cambria';  // serifada em tudo, como num artigo
+const MONO    = 'Courier New';   // só para código
 
 const W = 13.33, H = 7.5, M = 0.85;
 
@@ -177,6 +178,56 @@ function criarDeck(meta) {
       fontSize: 9.5, color: CINZA_C, italic: true, margin: 0 });
   }
 
+  /**
+   * Código com o comentário ao lado, linha a linha.
+   *
+   * `pares` é uma lista [codigo, comentario]. O código vai em monoespaçada à esquerda; o
+   * comentário, em serifada à direita, na mesma altura. Comentário vazio deixa a linha de
+   * código sozinha — serve para continuação e para linha em branco.
+   *
+   * Existe porque explicar álgebra linear escrita à mão exige mostrar a linha e a razão
+   * dela ao mesmo tempo; pôr o código num slide e a explicação no seguinte obriga o
+   * leitor a guardar as duas coisas na cabeça.
+   */
+  function codigoComentado(s, y, pares, o) {
+    o = Object.assign({ larguraCodigo: 5.5, alturaLinha: 0.30, fonte: 10 }, o || {});
+    const xCom = M + o.larguraCodigo + 0.45;
+    const larguraCom = W - M - xCom - M;
+    // Quantos caracteres cabem numa linha do comentário, e quanto uma linha ocupa. Sem
+    // isto, comentário de três linhas transborda sobre o próximo — foi o que aconteceu
+    // na primeira versão do slide da Varimax.
+    const porLinha = Math.floor(larguraCom / ((o.fonte + 0.5) * 0.0068));
+    const alturaCom = 0.185;
+    let yy = y;
+    pares.forEach(([cod, com]) => {
+      const linhas = com ? Math.max(1, Math.ceil(com.length / porLinha)) : 1;
+      const avanco = Math.max(o.alturaLinha, linhas * alturaCom);
+      if (cod !== '') {
+        s.addText(cod, { x: M, y: yy, w: o.larguraCodigo, h: o.alturaLinha,
+          fontFace: MONO, fontSize: o.fonte, color: TINTA, margin: 0, valign: 'top' });
+      }
+      if (com) {
+        s.addText(com, { x: xCom, y: yy - 0.02, w: larguraCom, h: linhas * alturaCom + 0.06,
+          fontFace: FONTE, fontSize: o.fonte + 0.5, color: CINZA, margin: 0,
+          valign: 'top', lineSpacing: 12.5 });
+      }
+      yy += avanco;
+    });
+    return yy;
+  }
+
+  /** Bloco de código sem comentário ao lado — para o script inteiro. */
+  function codigo(s, x, y, w, linhas, tam) {
+    const alt = (tam || 9.5) * 0.0216;      // proporcional ao corpo, para caber no slide
+    linhas.forEach((ln, i) => {
+      const destacada = ln.startsWith('#');
+      s.addText(ln === '' ? ' ' : ln, { x, y: y + i * alt, w, h: alt,
+        fontFace: MONO, fontSize: tam || 9.5, color: destacada ? ACENTO : TINTA,
+        margin: 0, valign: 'top' });
+    });
+    return y + linhas.length * alt;
+  }
+
   /** Capa: folha de rosto, não banner. */
   function capa(s, kicker, tit, sub, rodape) {
     s.addText(kicker, { x: M, y: 1.35, w: W - 2*M, h: 0.34, fontFace: FONTE, fontSize: 11.5,
@@ -192,8 +243,8 @@ function criarDeck(meta) {
   }
 
   return { p, S, regua, titulo, secao, bloco, numero, tabela, legendaTabela,
-           legendaFigura, anotar, procedencia, capa,
-           cores: { TINTA, CINZA, CINZA_C, REGUA, REGUA_F, ACENTO, PAPEL, FONTE },
+           legendaFigura, anotar, procedencia, capa, codigo, codigoComentado,
+           cores: { TINTA, CINZA, CINZA_C, REGUA, REGUA_F, ACENTO, PAPEL, FONTE, MONO },
            geo: { W, H, M } };
 }
 

@@ -173,18 +173,42 @@ def test_eixo_principal_recupera_as_comunalidades_do_modelo():
     np.testing.assert_allclose((cargas ** 2).sum(axis=1), comun, atol=1e-4)
 
 
-def test_eixo_principal_difere_da_acp_quando_a_comunalidade_e_baixa():
-    """A advertência de Stevens (1992) tem de aparecer: com comunalidade baixa, divergem.
+def test_acp_superestima_a_comunalidade_que_o_eixo_principal_acerta():
+    """A advertência de Stevens (1992), em forma verificável.
 
-    A ACP põe 1 na diagonal e a AF põe a comunalidade; quanto mais longe de 1 estiver a
-    comunalidade, maior a diferença. Se este teste passasse a falhar, seria sinal de que o
-    eixo principal virou ACP disfarçada — e o bloco 4 do Notebook 04 perderia o sentido.
+    Sobre uma matriz gerada por um modelo fatorial exato, a comunalidade verdadeira é
+    conhecida. O eixo principal a recupera; a ACP a **superestima**, variável por variável,
+    porque põe 1 na diagonal e conta também a variância específica. A comparação é por
+    variável, e não pela soma: comparar somas passaria mesmo se o eixo principal virasse
+    uma ACP multiplicada por uma constante, que é justamente a regressão que este teste
+    tem de pegar.
     """
     R, _, comun = _matriz_fatorial()
     _, cargas_acp = acp(R, 2)
-    cargas_paf, _, _ = fatoracao_eixo_principal(R, 2)
-    assert comun.min() < 0.8
-    assert (cargas_acp ** 2).sum() > (cargas_paf ** 2).sum()
+    cargas_paf, h_paf, _ = fatoracao_eixo_principal(R, 2)
+    comun_acp = (cargas_acp ** 2).sum(axis=1)
+
+    np.testing.assert_allclose(h_paf, comun, atol=1e-4)
+    assert (comun_acp > comun + 0.05).all(), (
+        f'a ACP deveria superestimar todas as comunalidades; folga mínima '
+        f'{(comun_acp - comun).min():.4f}')
+    # e a superestimação é maior onde a variável compartilha menos com as demais
+    ordem_smc = np.argsort(smc(R))
+    excesso = comun_acp - comun
+    assert excesso[ordem_smc[0]] > excesso[ordem_smc[-1]]
+
+
+def test_postos_recusa_valor_ausente():
+    """NaN não tem posto, e ordená-lo como o maior valor daria uma correlação plausível.
+
+    É o pior defeito possível neste módulo: nada falha, e o número sai errado. A guarda
+    existe porque `postos` é público e o resto do projeto tolera faltante.
+    """
+    X = np.array([[1.0, 2.0], [np.nan, 3.0], [3.0, 4.0]])
+    with pytest.raises(ValueError, match='ausentes'):
+        postos(X)
+    with pytest.raises(ValueError, match='ausentes'):
+        matriz_correlacao(X, 'spearman')
 
 
 def test_smc_bate_com_o_r_quadrado_da_regressao():
