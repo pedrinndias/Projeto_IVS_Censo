@@ -1,0 +1,17 @@
+Bases da Fase 2 (pipeline multidimensional, sem filtro ELSI) — ARQUIVO MORTO.
+
+Vieram de banco_de_dados/ em 17/09/2026, para que a pasta ativa contenha apenas o que
+a Fase 3 usa. Nenhuma delas está versionada no git (o .gitignore as exclui por tamanho)
+e nenhum código ativo as lê.
+
+A metodologia que as produziu foi ABANDONADA: usava V01042 (contagem de pessoas) como
+denominador domiciliar, o que fazia proporções passarem de 1,0. Desde 22/05/2026 o
+denominador é V00001. Os números destes arquivos NÃO se comparam com os da Fase 3.
+
+  Base_Analitica_Multidimensional_Calculada.csv     73,7 MB
+  Base_Auditoria_Todos_Setores.csv                 103,7 MB
+  Base_Bruta_Multidimensional_Censo2022.csv         67,2 MB
+  Base_IVS_Multidimensional_Formatada.xlsx          57,3 MB
+  Relatorio_Metodologico_Fase2_Atualizado.xlsx      12 KB
+
+Os notebooks que as geraram estão em Backup/Fase2_IVS_Multidimensional/.
