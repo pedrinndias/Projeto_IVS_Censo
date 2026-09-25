@@ -6132,14 +6132,14 @@
       "source_location": "L326"
     },
     {
-      "id": "docs_relatorios_revisao_geral_2026_09_nb4_11_bloco_8b_sem_consequ\u00eancia_x_commit_694c306_sob_a_normaliza\u00e7\u00e3o_municipal_do_ivs_a_troca_de_renda_pesa_em_bh",
-      "label": "NB4-11 \u2014 Bloco 8b 'sem consequ\u00eancia' x commit 694c306: sob a normaliza\u00e7\u00e3o municipal do IVS, a troca de renda pesa em BH",
+      "id": "docs_relatorios_revisao_geral_2026_09_nb4_11_bloco_8b_sem_consequ\u00eancia_x_commit_f6fd79a_sob_a_normaliza\u00e7\u00e3o_municipal_do_ivs_a_troca_de_renda_pesa_em_bh",
+      "label": "NB4-11 \u2014 Bloco 8b 'sem consequ\u00eancia' x commit f6fd79a: sob a normaliza\u00e7\u00e3o municipal do IVS, a troca de renda pesa em BH",
       "_origin": "ast",
       "community": 20,
       "community_name": "Notebook 04 e relat\u00f3rio (NB4)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "nb4-11 \u2014 bloco 8b 'sem consequencia' x commit 694c306: sob a normalizacao municipal do ivs, a troca de renda pesa em bh",
+      "norm_label": "nb4-11 \u2014 bloco 8b 'sem consequencia' x commit f6fd79a: sob a normalizacao municipal do ivs, a troca de renda pesa em bh",
       "source_file": "docs/relatorios/Revisao_Geral_2026-09.md",
       "source_location": "L335"
     },
@@ -6468,14 +6468,14 @@
       "source_location": "L898"
     },
     {
-      "id": "docs_relatorios_revisao_geral_2026_09_hig_14_a_auditoria_e_o_commit_4c476de_dizem_que_o_gitignore_exclui_o_base_csv_da_entrega_a_linha_45_o_reinclui_de_prop\u00f3sito",
-      "label": "HIG-14 \u2014 A auditoria e o commit 4c476de dizem que o .gitignore exclui o Base_*.csv da entrega; a linha 45 o reinclui de prop\u00f3sito",
+      "id": "docs_relatorios_revisao_geral_2026_09_hig_14_a_auditoria_e_o_commit_0b94c96_dizem_que_o_gitignore_exclui_o_base_csv_da_entrega_a_linha_45_o_reinclui_de_prop\u00f3sito",
+      "label": "HIG-14 \u2014 A auditoria e o commit 0b94c96 dizem que o .gitignore exclui o Base_*.csv da entrega; a linha 45 o reinclui de prop\u00f3sito",
       "_origin": "ast",
       "community": 21,
       "community_name": "Higiene do reposit\u00f3rio e legado (HIG)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "hig-14 \u2014 a auditoria e o commit 4c476de dizem que o .gitignore exclui o base_*.csv da entrega; a linha 45 o reinclui de proposito",
+      "norm_label": "hig-14 \u2014 a auditoria e o commit 0b94c96 dizem que o .gitignore exclui o base_*.csv da entrega; a linha 45 o reinclui de proposito",
       "source_file": "docs/relatorios/Revisao_Geral_2026-09.md",
       "source_location": "L882"
     },
@@ -7566,14 +7566,14 @@
       "source_location": "L30"
     },
     {
-      "id": "docs_relatorios_revisao_geral_2026_09_aud_01_4c476de_corrompeu_a_linha_2_do_gitignore_e_apagou_a_regra_banco_de_dados_csv",
-      "label": "AUD-01 \u2014 4c476de corrompeu a linha 2 do .gitignore e apagou a regra banco_de_dados/*.csv",
+      "id": "docs_relatorios_revisao_geral_2026_09_aud_01_0b94c96_corrompeu_a_linha_2_do_gitignore_e_apagou_a_regra_banco_de_dados_csv",
+      "label": "AUD-01 \u2014 0b94c96 corrompeu a linha 2 do .gitignore e apagou a regra banco_de_dados/*.csv",
       "_origin": "ast",
       "community": 29,
       "community_name": "Commits posteriores \u00e0 auditoria (AUD)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "aud-01 \u2014 4c476de corrompeu a linha 2 do .gitignore e apagou a regra banco_de_dados/*.csv",
+      "norm_label": "aud-01 \u2014 0b94c96 corrompeu a linha 2 do .gitignore e apagou a regra banco_de_dados/*.csv",
       "source_file": "docs/relatorios/Revisao_Geral_2026-09.md",
       "source_location": "L808"
     },
@@ -7590,26 +7590,26 @@
       "source_location": "L818"
     },
     {
-      "id": "docs_relatorios_revisao_geral_2026_09_aud_03_o_readme_de_apresentacoes_ivs_se_contradiz_depois_de_356c32b_e_9452c32",
-      "label": "AUD-03 \u2014 O README de Apresentacoes_IVS se contradiz depois de 356c32b e 9452c32",
+      "id": "docs_relatorios_revisao_geral_2026_09_aud_03_o_readme_de_apresentacoes_ivs_se_contradiz_depois_de_7345386_e_fa6f3b4",
+      "label": "AUD-03 \u2014 O README de Apresentacoes_IVS se contradiz depois de 7345386 e fa6f3b4",
       "_origin": "ast",
       "community": 29,
       "community_name": "Commits posteriores \u00e0 auditoria (AUD)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "aud-03 \u2014 o readme de apresentacoes_ivs se contradiz depois de 356c32b e 9452c32",
+      "norm_label": "aud-03 \u2014 o readme de apresentacoes_ivs se contradiz depois de 7345386 e fa6f3b4",
       "source_file": "docs/relatorios/Revisao_Geral_2026-09.md",
       "source_location": "L727"
     },
     {
-      "id": "docs_relatorios_revisao_geral_2026_09_aud_04_4fb9afe_reescreveu_caminhos_nos_geradores_mas_o_deck_e_o_pdf_em_circula\u00e7\u00e3o_ainda_citam_caminhos_que_n\u00e3o_existem",
-      "label": "AUD-04 \u2014 4fb9afe reescreveu caminhos nos geradores, mas o deck e o PDF em circula\u00e7\u00e3o ainda citam caminhos que n\u00e3o existem",
+      "id": "docs_relatorios_revisao_geral_2026_09_aud_04_8d33c3e_reescreveu_caminhos_nos_geradores_mas_o_deck_e_o_pdf_em_circula\u00e7\u00e3o_ainda_citam_caminhos_que_n\u00e3o_existem",
+      "label": "AUD-04 \u2014 8d33c3e reescreveu caminhos nos geradores, mas o deck e o PDF em circula\u00e7\u00e3o ainda citam caminhos que n\u00e3o existem",
       "_origin": "ast",
       "community": 29,
       "community_name": "Commits posteriores \u00e0 auditoria (AUD)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "aud-04 \u2014 4fb9afe reescreveu caminhos nos geradores, mas o deck e o pdf em circulacao ainda citam caminhos que nao existem",
+      "norm_label": "aud-04 \u2014 8d33c3e reescreveu caminhos nos geradores, mas o deck e o pdf em circulacao ainda citam caminhos que nao existem",
       "source_file": "docs/relatorios/Revisao_Geral_2026-09.md",
       "source_location": "L736"
     },
@@ -7662,14 +7662,14 @@
       "source_location": "L718"
     },
     {
-      "id": "docs_relatorios_revisao_geral_2026_09_aud_09_0bef9ed_sincronizou_s\u00f3_o_guia_5_8_o_guia_diz_que_a_fatorial_est\u00e1_conclu\u00edda_e_o_readme_o_manual_e_a_pr\u00f3pria_lista_de_prioridades_do_guia_dizem_que_est\u00e1_pendente",
-      "label": "AUD-09 \u2014 0bef9ed sincronizou s\u00f3 o GUIA \u00a75/\u00a78: o GUIA diz que a fatorial est\u00e1 conclu\u00edda e o README, o MANUAL e a pr\u00f3pria lista de prioridades do GUIA dizem que est\u00e1 pendente",
+      "id": "docs_relatorios_revisao_geral_2026_09_aud_09_8a74730_sincronizou_s\u00f3_o_guia_5_8_o_guia_diz_que_a_fatorial_est\u00e1_conclu\u00edda_e_o_readme_o_manual_e_a_pr\u00f3pria_lista_de_prioridades_do_guia_dizem_que_est\u00e1_pendente",
+      "label": "AUD-09 \u2014 8a74730 sincronizou s\u00f3 o GUIA \u00a75/\u00a78: o GUIA diz que a fatorial est\u00e1 conclu\u00edda e o README, o MANUAL e a pr\u00f3pria lista de prioridades do GUIA dizem que est\u00e1 pendente",
       "_origin": "ast",
       "community": 29,
       "community_name": "Commits posteriores \u00e0 auditoria (AUD)",
       "file_type": "document",
       "node_kind": "heading",
-      "norm_label": "aud-09 \u2014 0bef9ed sincronizou so o guia \u00a75/\u00a78: o guia diz que a fatorial esta concluida e o readme, o manual e a propria lista de prioridades do guia dizem que esta pendente",
+      "norm_label": "aud-09 \u2014 8a74730 sincronizou so o guia \u00a75/\u00a78: o guia diz que a fatorial esta concluida e o readme, o manual e a propria lista de prioridades do guia dizem que esta pendente",
       "source_file": "docs/relatorios/Revisao_Geral_2026-09.md",
       "source_location": "L745"
     },
@@ -20703,7 +20703,7 @@
     },
     {
       "source": "docs_relatorios_revisao_geral_2026_09_commits_posteriores_\u00e0_auditoria_aud",
-      "target": "docs_relatorios_revisao_geral_2026_09_aud_03_o_readme_de_apresentacoes_ivs_se_contradiz_depois_de_356c32b_e_9452c32",
+      "target": "docs_relatorios_revisao_geral_2026_09_aud_03_o_readme_de_apresentacoes_ivs_se_contradiz_depois_de_7345386_e_fa6f3b4",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -20714,7 +20714,7 @@
     },
     {
       "source": "docs_relatorios_revisao_geral_2026_09_commits_posteriores_\u00e0_auditoria_aud",
-      "target": "docs_relatorios_revisao_geral_2026_09_aud_04_4fb9afe_reescreveu_caminhos_nos_geradores_mas_o_deck_e_o_pdf_em_circula\u00e7\u00e3o_ainda_citam_caminhos_que_n\u00e3o_existem",
+      "target": "docs_relatorios_revisao_geral_2026_09_aud_04_8d33c3e_reescreveu_caminhos_nos_geradores_mas_o_deck_e_o_pdf_em_circula\u00e7\u00e3o_ainda_citam_caminhos_que_n\u00e3o_existem",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -20725,7 +20725,7 @@
     },
     {
       "source": "docs_relatorios_revisao_geral_2026_09_commits_posteriores_\u00e0_auditoria_aud",
-      "target": "docs_relatorios_revisao_geral_2026_09_aud_09_0bef9ed_sincronizou_s\u00f3_o_guia_5_8_o_guia_diz_que_a_fatorial_est\u00e1_conclu\u00edda_e_o_readme_o_manual_e_a_pr\u00f3pria_lista_de_prioridades_do_guia_dizem_que_est\u00e1_pendente",
+      "target": "docs_relatorios_revisao_geral_2026_09_aud_09_8a74730_sincronizou_s\u00f3_o_guia_5_8_o_guia_diz_que_a_fatorial_est\u00e1_conclu\u00edda_e_o_readme_o_manual_e_a_pr\u00f3pria_lista_de_prioridades_do_guia_dizem_que_est\u00e1_pendente",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -20802,7 +20802,7 @@
     },
     {
       "source": "docs_relatorios_revisao_geral_2026_09_commits_posteriores_\u00e0_auditoria_aud",
-      "target": "docs_relatorios_revisao_geral_2026_09_aud_01_4c476de_corrompeu_a_linha_2_do_gitignore_e_apagou_a_regra_banco_de_dados_csv",
+      "target": "docs_relatorios_revisao_geral_2026_09_aud_01_0b94c96_corrompeu_a_linha_2_do_gitignore_e_apagou_a_regra_banco_de_dados_csv",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -21033,7 +21033,7 @@
     },
     {
       "source": "docs_relatorios_revisao_geral_2026_09_higiene_do_reposit\u00f3rio_e_legado_hig",
-      "target": "docs_relatorios_revisao_geral_2026_09_hig_14_a_auditoria_e_o_commit_4c476de_dizem_que_o_gitignore_exclui_o_base_csv_da_entrega_a_linha_45_o_reinclui_de_prop\u00f3sito",
+      "target": "docs_relatorios_revisao_geral_2026_09_hig_14_a_auditoria_e_o_commit_0b94c96_dizem_que_o_gitignore_exclui_o_base_csv_da_entrega_a_linha_45_o_reinclui_de_prop\u00f3sito",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -21308,7 +21308,7 @@
     },
     {
       "source": "docs_relatorios_revisao_geral_2026_09_notebook_04_e_relat\u00f3rio_nb4",
-      "target": "docs_relatorios_revisao_geral_2026_09_nb4_11_bloco_8b_sem_consequ\u00eancia_x_commit_694c306_sob_a_normaliza\u00e7\u00e3o_municipal_do_ivs_a_troca_de_renda_pesa_em_bh",
+      "target": "docs_relatorios_revisao_geral_2026_09_nb4_11_bloco_8b_sem_consequ\u00eancia_x_commit_f6fd79a_sob_a_normaliza\u00e7\u00e3o_municipal_do_ivs_a_troca_de_renda_pesa_em_bh",
       "relation": "contains",
       "_origin": "ast",
       "confidence": "EXTRACTED",
@@ -29583,5 +29583,5 @@
       "source_file": "banco_de_dados/entrega_orientadora/README.md"
     }
   ],
-  "built_at_commit": "729f58e4ddc76ffe2d1967300442929c3a685d14"
+  "built_at_commit": "325d3fcb22c6d7a963e9e80e68f50df891acc6cb"
 }

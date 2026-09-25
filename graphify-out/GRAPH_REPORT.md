@@ -1,7 +1,7 @@
 # Graph Report - Projeto_IVS_Censo22  (2026-09-25)
 
 ## Corpus Check
-- 70 files · ~281,026 words
+- 70 files · ~281,031 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `729f58e4`
+- Built from commit: `325d3fcb`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -224,7 +224,7 @@ Nodes (13): bloco(), blocoTabela(), D, FIG, fs, legendaTabela(), numero(), p (+5
 
 ### Community 29 - "Commits posteriores à auditoria (AUD)"
 Cohesion: 0.12
-Nodes (16): AUD-01 — 4c476de corrompeu a linha 2 do .gitignore e apagou a regra banco_de_dados/*.csv, AUD-02 — O deck em circulação, com 98 slides, não se reproduz mais pelo gerador, e o uso documentado do gerador o sobrescreve, AUD-03 — O README de Apresentacoes_IVS se contradiz depois de 356c32b e 9452c32, AUD-04 — 4fb9afe reescreveu caminhos nos geradores, mas o deck e o PDF em circulação ainda citam caminhos que não existem, AUD-05 — O README de atualizada/ atribui a eda_atualizada.py as 8 tabelas renda_* e 2 figuras que auditoria_renda.py --sem-extremo gera; e as contagens caducaram, AUD-06 — Os três geradores novos digitam medições no texto, embora os commits digam que não, AUD-07 — Os slides do extremo de BH afirmam números errados: segundo maior 'na casa dos R$ 30 mil', '87 mil setores' e 'um quinto do município', AUD-08 — O guia de apoio diz que retirar o analfabetismo 'recupera os 16.563 setores'; o NB04 mede 16.548 (+8 more)
+Nodes (16): AUD-01 — 0b94c96 corrompeu a linha 2 do .gitignore e apagou a regra banco_de_dados/*.csv, AUD-02 — O deck em circulação, com 98 slides, não se reproduz mais pelo gerador, e o uso documentado do gerador o sobrescreve, AUD-03 — O README de Apresentacoes_IVS se contradiz depois de 7345386 e fa6f3b4, AUD-04 — 8d33c3e reescreveu caminhos nos geradores, mas o deck e o PDF em circulação ainda citam caminhos que não existem, AUD-05 — O README de atualizada/ atribui a eda_atualizada.py as 8 tabelas renda_* e 2 figuras que auditoria_renda.py --sem-extremo gera; e as contagens caducaram, AUD-06 — Os três geradores novos digitam medições no texto, embora os commits digam que não, AUD-07 — Os slides do extremo de BH afirmam números errados: segundo maior 'na casa dos R$ 30 mil', '87 mil setores' e 'um quinto do município', AUD-08 — O guia de apoio diz que retirar o analfabetismo 'recupera os 16.563 setores'; o NB04 mede 16.548 (+8 more)
 
 ### Community 30 - "atualizar_roteiro_2a_rodada.py"
 Cohesion: 0.18
@@ -407,4 +407,4 @@ _Questions this graph is uniquely positioned to answer:_
 - **Why does `Notebook 02 — Análises Descritivas (EDA)` connect `Notebook 02 — Análises Descritivas (EDA)` to `Figura: Dados faltantes (%) por município × variável (heatmap)`, `Base_ELSI_70Municipios_Censo2022 (CSV + SQLite)`, `Notebook 01 — Extração e Filtragem ELSI`, ``eda/atualizada/` — a 2ª rodada da EDA, com a renda sem o valor extremo`?**
   _High betweenness centrality (0.245) - this node is a cross-community bridge._
 - **Why does `municipios_elsi_brasil.csv — lista oficial dos 70 municípios ELSI` connect `GUIA_DO_PROJETO — documento mestre de retomada` to `Notebook 01 — Extração e Filtragem ELSI`, ``eda/atualizada/` — a 2ª rodada da EDA, com a renda sem o valor extremo`?**
-  _High betweenness centrality (0.245) - this node is a cross-community bridge._
+  _High betweenness centrality (0.240) - this node is a cross-community bridge._
