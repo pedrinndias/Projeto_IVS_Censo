@@ -105,6 +105,8 @@ procurava a apresentação.
 | `Roteiro_EDA_Central_1a_rodada.docx` / `.pdf` | O mesmo roteiro na versão de 47 slides, guardado como origem da atualização | à mão |
 | `Resumo_EDA_Central_2026-08.docx` / `.pdf` | As tabelas e figuras da EDA em texto corrido, com um comentário embaixo de cada uma | `scripts/gerar_resumo_eda_central.py` |
 | `Criterio_Outliers_Renda.pptx` / `.pdf` | Abre a regra de classificação de outlier de renda inteira: corte de Tukey por município, os três testes de coerência, os dois diagnósticos que ficam de fora de propósito | `scripts/gerar_deck_criterio_renda.js` e `scripts/gerar_pdf_outliers_renda.py` |
+| `Guia_Apoio_Analise_Fatorial.pdf` | Explica, um a um, os slides do deck da fatorial marcados "EXPLICAR SLIDE" (mais a Parte 8 inteira) para quem não acompanhou o projeto: o que está no slide, o conceito do zero, como ler os números, o que dizer se perguntarem | `scripts/gerar_pdf_guia_fatorial.py` |
+| `Plano_Emergencia_Apresentacao.pdf` | O livro da Enap condensado (com página de cada passagem citável) + roteiro de fala bloco a bloco + Q&A antecipado — para quem não vai terminar de ler o livro antes da reunião. Complementa o Guia de Apoio, não repete | `scripts/gerar_pdf_plano_emergencia.py` |
 
 > **O resumo e o critério de renda continuam na 1ª rodada.** O critério diz 66 suspeitos e
 > 3.358 setores rastreados; na 2ª rodada são 65 e 3.357, porque o setor de Belo Horizonte
