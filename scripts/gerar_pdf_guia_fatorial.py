@@ -83,6 +83,10 @@ VAR6 = RES.loc["ivs6_sem_lixo_spearman", "var_acumulada_k"]
 RM = CARG.loc["Razão de moradores"]
 RENDA_MUDA = int(RENDA.loc["setores que mudam de faixa", "com renda_media_sem_extremo"])
 RENDA_RHO = RENDA.loc["Spearman entre os ordenamentos", "com renda_media_sem_extremo"]
+ANALFAB_RECUPERA = int(RES.loc["ivs6_sem_analfab_spearman", "n"] - RES.loc["ivs7_spearman", "n"])
+MSA_MIN7 = RES.loc["ivs7_spearman", "msa_min"]
+KAISER6 = int(RES.loc["ivs6_sem_lixo_spearman", "autovalores_acima_1"])
+HORN6 = int(RES.loc["ivs6_sem_lixo_spearman", "autovalores_acima_horn"])
 
 # ── estilos ─────────────────────────────────────────────────────────────────
 E = {
@@ -216,7 +220,7 @@ S += [Spacer(1, 1.6 * cm),
 
 # ═════════ PARTE 0 — VOCABULÁRIO ═════════
 S += [P("Parte 0 — O vocabulário, em uma página", "h1"),
-      P("Seis palavras aparecem o tempo todo no deck. Se estas seis estiverem claras, o "
+      P("Nove palavras aparecem o tempo todo no deck. Se estas nove estiverem claras, o "
         "resto se lê sozinho. Nenhuma delas exige matemática para ser entendida."),
 
       P("1. VARIÁVEL LATENTE (ou CONSTRUTO)", "h2"),
@@ -262,6 +266,38 @@ S += [P("Parte 0 — O vocabulário, em uma página", "h1"),
       P("Depois de saber quanto cada indicador pesa, aplica-se isso a cada setor "
         "censitário e sai um número por setor — o escore. É o que vira o índice. O deck "
         "mostra duas maneiras de calculá-lo, e compara as duas."),
+
+      P("7. AUTOVALOR (CRITÉRIOS DE KAISER E HORN)", "h2"),
+      P("Cada fator, ao ser extraído, carrega uma quantidade de variância explicada — "
+        "o <b>autovalor</b>. Quanto maior, mais os indicadores têm em comum resumido "
+        "naquele fator. A pergunta \u201cum fator ou dois?\u201d (a quarta decisão da Parte "
+        "8) se resolve, em parte, contando autovalores: o <b>critério de Kaiser</b> "
+        "mantém todo fator com autovalor acima de 1 — o que um único indicador, "
+        "sozinho, já carregaria. A <b>análise paralela de Horn</b> é mais rigorosa: "
+        "simula muitas matrizes de dados aleatórios do mesmo tamanho e só mantém um "
+        "fator se o autovalor real superar o que o acaso produziria. "
+        f"Na solução sem o lixo, os dois concordam: Kaiser mantém {KAISER6} fator, "
+        f"Horn também {HORN6}."),
+
+      P("8. MSA (ADEQUAÇÃO POR VARIÁVEL)", "h2"),
+      P("O KMO é um número só, para a base inteira. O <b>MSA</b> é a mesma ideia "
+        "calculada <b>indicador por indicador</b>: o quanto aquela variável, sozinha, "
+        "tem correlação genuína com as outras depois de descontar o que é específico "
+        "dela. MSA baixo aponta o indicador que está puxando o KMO geral para baixo. "
+        f"No projeto, o mínimo entre os sete indicadores é o do lixo, com MSA "
+        f"{br(MSA_MIN7, 4)} — o mesmo número que aparece como \u201cMSA mínimo\u201d "
+        "nas tabelas de adequabilidade do deck."),
+
+      P("9. MATRIZ PADRÃO × MATRIZ DE ESTRUTURA", "h2"),
+      P("Só existem duas matrizes distintas quando a rotação é <b>oblíqua</b> (a promax "
+        "deste projeto) — na Varimax, ortogonal, as duas coincidem. A <b>matriz "
+        "padrão</b> dá o peso de regressão de cada indicador sobre cada fator, já "
+        "descontando a correlação entre os fatores; é a que se lê para saber a que "
+        "fator um indicador pertence. A <b>matriz de estrutura</b> dá a correlação "
+        "simples entre indicador e fator, sem descontar nada — por isso tende a "
+        "mostrar cargas cruzadas maiores. O material da fatorial ampliada (Notebook "
+        "04b) reporta as duas lado a lado, sem dizer que uma \u201caproxima\u201d ou "
+        "\u201cafasta\u201d da literatura — é uma decisão de quem orienta o projeto."),
       Spacer(1, 6),
       caixa("E A PALAVRA QUE VOCÊ VAI OUVIR MAIS: “ADEQUABILIDADE”",
             "Antes de rodar a análise, há testes que dizem se ela <b>faz sentido naqueles "
@@ -528,10 +564,10 @@ S += [PageBreak(),
       P("3 · O que fazer com o sigilo no analfabetismo?", "h2"),
       P("<b>O que está em jogo:</b> o IBGE oculta o dado de analfabetismo em setores "
         "pequenos, para proteger a identidade dos moradores. Exigir a variável custa "
-        "<b>16.563 setores</b>, que ficam sem índice.<br/>"
+        f"<b>{inteiro(ANALFAB_RECUPERA)} setores</b>, que ficam sem índice.<br/>"
         "<b>A favor de manter a variável:</b> ela é um dos três pilares do bloco "
         "socioeconômico, com carga alta.<br/>"
-        "<b>A favor de retirá-la:</b> recupera os 16.563 setores.<br/>"
+        f"<b>A favor de retirá-la:</b> recupera os {inteiro(ANALFAB_RECUPERA)} setores.<br/>"
         f"<b>O que a evidência diz:</b> retirá-la move {br(CEN.loc['sem_analfab','pct'],1)}% "
         "dos setores de faixa. E há um problema declarado: o sigilo <b>não é aleatório</b>, "
         "incide sobre os setores de melhor situação — então a base analisada é enviesada "
