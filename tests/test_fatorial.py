@@ -24,7 +24,7 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
 
-from ivs_censo.fatorial import (IVS7, ROTULOS, acp, bartlett,                    # noqa: E402
+from ivs_censo.fatorial import (IVS7, ROTULOS, acp, bartlett, chi2_sf,           # noqa: E402
                                 comunalidades_obliquas, escores_regressao,
                                 fatoracao_eixo_principal, kmo, matriz_correlacao,
                                 postos, reparticao, rodar_cenario,
@@ -208,6 +208,23 @@ def test_escores_por_regressao_tem_variancia_um():
                                    err_msg=f'variância != 1 com cargas {nome}')
 
 
+def test_escores_com_phi_em_solucao_obliqua_tem_variancia_um_e_correlacao_igual_a_phi():
+    """FAT-04: sem `phi`, a matriz padrão é usada como se fosse a de estrutura e erra.
+
+    Com `phi` (B = R⁻¹·padrão·Φ), a covariância teórica dos escores B'RB fecha
+    exatamente em Φ — diagonal 1 (padronizados), fora da diagonal igual à correlação
+    entre fatores que o promax estimou.
+    """
+    R, _, _ = _matriz_fatorial()
+    _, cargas = acp(R, 2)
+    padrao, _, phi = rotacao_promax(cargas)
+
+    B = escores_regressao(R, padrao, phi)
+    cov_escores = B.T @ R @ B
+    np.testing.assert_allclose(cov_escores, phi, atol=1e-8)
+    np.testing.assert_allclose(np.diag(cov_escores), 1.0, atol=1e-8)
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # extensões restantes: eixo principal, SMC, postos
 # ─────────────────────────────────────────────────────────────────────────────
@@ -220,6 +237,20 @@ def test_eixo_principal_recupera_as_comunalidades_do_modelo():
     assert not info['heywood']
     np.testing.assert_allclose(h, comun, atol=1e-4)
     np.testing.assert_allclose((cargas ** 2).sum(axis=1), comun, atol=1e-4)
+
+
+def test_eixo_principal_com_heywood_reescala_as_cargas_para_bater_com_h():
+    """FAT-06: com Heywood, as cargas cruas tinham soma dos quadrados > h (já cortado).
+
+    A matriz do achado (R muito colinear, k=1) força comunalidade estimada >= 1. Depois
+    da correção, a soma dos quadrados de `cargas` bate com `h`, e `info['heywood']`
+    continua `True` — reporta o caso, não esconde.
+    """
+    R = np.array([[1, .8, .7], [.8, 1, .5], [.7, .5, 1]])
+    cargas, h, info = fatoracao_eixo_principal(R, 1)
+
+    assert info['heywood'] is True
+    np.testing.assert_allclose((cargas ** 2).sum(axis=1), h, atol=1e-10)
 
 
 def test_acp_superestima_a_comunalidade_que_o_eixo_principal_acerta():
@@ -305,3 +336,20 @@ def test_rodar_cenario_orienta_sinais_e_fecha_as_contas():
     np.testing.assert_allclose((r['varimax'] ** 2).sum(axis=1), r['comunalidade'], atol=1e-10)
     np.testing.assert_allclose(r['pesos']['varimax'], reparticao(r['varimax']))
     assert rodar_cenario(X, com_horn=False)['horn_retidos'] is None
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# FAT-12: chi2_sf na cauda
+# ─────────────────────────────────────────────────────────────────────────────
+@pytest.mark.parametrize('gl, x, esperado', [
+    (21, 105, 3.73e-13),   # conferido com scipy.stats.chi2.sf fora do repo
+    (15, 75, 5.66e-10),
+    (1, 30, 4.3e-8),
+])
+def test_chi2_sf_bate_com_valor_tabelado_na_cauda(gl, x, esperado):
+    """FAT-12: Wilson–Hilferty errava por ordens de grandeza nesta região da cauda.
+
+    Com os graus de liberdade pequenos do projeto (Bartlett usa gl = p(p-1)/2), a
+    aproximação normal antiga não bate — a gama incompleta regularizada bate.
+    """
+    assert chi2_sf(x, gl) == pytest.approx(esperado, rel=1e-2)

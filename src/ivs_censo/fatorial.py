@@ -71,10 +71,60 @@ ROTULOS = {
 # ─────────────────────────────────────────────────────────────────────────────
 # Adequabilidade da base (Etapa 1 do livro, p. 39-46)
 # ─────────────────────────────────────────────────────────────────────────────
+def _gamainc_p_serie(a: float, x: float) -> float:
+    """P(a, x) = gama incompleta inferior regularizada, por série (x < a + 1)."""
+    if x <= 0:
+        return 0.0
+    termo = 1.0 / a
+    soma = termo
+    n = a
+    for _ in range(500):
+        n += 1
+        termo *= x / n
+        soma += termo
+        if abs(termo) < abs(soma) * 1e-16:
+            break
+    return soma * math.exp(-x + a * math.log(x) - math.lgamma(a))
+
+
+def _gamainc_q_fracao(a: float, x: float) -> float:
+    """Q(a, x) = gama incompleta superior regularizada, por fração contínua de Lentz
+    (x >= a + 1). Ver Numerical Recipes, cap. 6.2."""
+    minimo = 1e-300
+    b = x + 1 - a
+    c = 1 / minimo
+    d = 1 / b
+    h = d
+    for i in range(1, 500):
+        an = -i * (i - a)
+        b += 2
+        d = an * d + b
+        if abs(d) < minimo:
+            d = minimo
+        c = b + an / c
+        if abs(c) < minimo:
+            c = minimo
+        d = 1 / d
+        delta = d * c
+        h *= delta
+        if abs(delta - 1) < 1e-16:
+            break
+    return h * math.exp(-x + a * math.log(x) - math.lgamma(a))
+
+
 def chi2_sf(x: float, k: int) -> float:
-    """Cauda superior da qui-quadrado por Wilson–Hilferty (exata o bastante com df alto)."""
-    z = ((x / k) ** (1 / 3) - (1 - 2 / (9 * k))) / math.sqrt(2 / (9 * k))
-    return 0.5 * math.erfc(z / math.sqrt(2))
+    """Cauda superior da qui-quadrado: Q(k/2, x/2), gama incompleta superior regularizada.
+
+    Substitui a aproximação de Wilson–Hilferty, que errava por ordens de grandeza na
+    cauda com os graus de liberdade pequenos deste projeto (FAT-12). Série de Taylor
+    para x pequeno e fração contínua de Lentz para x grande — só `math`, sem scipy.
+    """
+    if x <= 0:
+        return 1.0
+    a, xm = k / 2, x / 2
+    if xm < a + 1:
+        return 1.0 - _gamainc_p_serie(a, xm)
+    return _gamainc_q_fracao(a, xm)
 
 
 def bartlett(R: np.ndarray, n: int) -> tuple[float, int, float]:
@@ -179,6 +229,12 @@ def fatoracao_eixo_principal(R: np.ndarray, k: int, tol: float = 1e-7,
         if delta < tol:
             convergiu = True
             break
+    if heywood:
+        # Heywood: a soma dos quadrados das cargas cruas passou de `h` (já cortado no
+        # teto_comunalidade) — reescala as linhas de `cargas` para baterem com `h`.
+        h_cru = (cargas ** 2).sum(axis=1)
+        fator = np.divide(h, h_cru, out=np.ones_like(h), where=h_cru > 0)
+        cargas = cargas * np.sqrt(fator)[:, None]
     info = {'convergiu': convergiu, 'iteracoes': it, 'delta': delta,
             'heywood': heywood, 'autovalores': val, 'p': p}
     return cargas, h, info
@@ -281,7 +337,7 @@ def comunalidades_obliquas(padrao: np.ndarray, phi: np.ndarray) -> np.ndarray:
 # ─────────────────────────────────────────────────────────────────────────────
 # Escores fatoriais (p. 22-26)
 # ─────────────────────────────────────────────────────────────────────────────
-def escores_regressao(R: np.ndarray, cargas: np.ndarray) -> np.ndarray:
+def escores_regressao(R: np.ndarray, cargas: np.ndarray, phi: np.ndarray | None = None) -> np.ndarray:
     """Coeficientes do método da regressão: B = R⁻¹A.
 
     Aplicados às variáveis **padronizadas** (Z @ B), dão os escores fatoriais pelo método
@@ -294,8 +350,14 @@ def escores_regressao(R: np.ndarray, cargas: np.ndarray) -> np.ndarray:
     principal isso não vale: a variância cai abaixo de 1 e o que ela mede é a
     determinação do escore, isto é, o quadrado da correlação entre o escore estimado e o
     fator que ele estima.
+
+    `cargas` só pode ser usada direto (matriz de estrutura) sem rotação oblíqua — ACP ou
+    Varimax. Numa rotação oblíqua (promax), `cargas` tem de ser a matriz **padrão** e
+    `phi` o Φ de `rotacao_promax`: a matriz de estrutura é `padrão·Φ`, e B = R⁻¹·estrutura.
+    Passar a matriz padrão direto, sem `phi`, dá um escore errado sem avisar.
     """
-    return np.linalg.solve(R, cargas)
+    estrutura = cargas if phi is None else cargas @ phi
+    return np.linalg.solve(R, estrutura)
 
 
 # ─────────────────────────────────────────────────────────────────────────────
