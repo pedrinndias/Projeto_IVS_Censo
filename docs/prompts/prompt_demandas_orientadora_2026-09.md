@@ -224,7 +224,7 @@ terreno para que nenhuma delas produza número errado.
    (~7 min, rode em segundo plano). Confira com um script que **só** as linhas de
    `pct_sem_agua_canalizada` mudaram nos CSVs de `nacional/`.
 5. **`.gitignore` (AUD-01).** Restaure a linha `banco_de_dados/*.csv`, corrompida em
-   `4c476de` (hoje: `banco_de_# Legado da Fase 2...`). Confira com
+   `0b94c96` (hoje: `banco_de_# Legado da Fase 2...`). Confira com
    `git status --porcelain --ignored` que nada novo passou a ser rastreado ou ignorado sem querer.
 6. **Mensagem à orientadora.** Redija no estado, na seção "Perguntas à orientadora", uma
    mensagem curta, em primeira pessoa do Pedro, com as seis ambiguidades da seção 2 e o
@@ -498,9 +498,9 @@ independente; o Pedro escolhe quais e em que ordem.
   `reportlab` e `python-docx` declarados (F4). **Antes de qualquer limpeza de worktrees
   (HIG-07), resgate o gerador do `Dicionario_Variaveis_IVS_Censo2022.xlsx`** que só existe
   numa delas (HIG-08).
-- **Fora deste prompt:** reescrever o histórico para tirar os trailers `Claude-Session` de
-  `a1b13d2` e `a6f05ca` (HIG-18). Exige `filter-branch` e novo *force push* — só com ordem
-  expressa do Pedro, numa sessão só para isso.
+- **Já feito em 25/09/2026, fora deste prompt:** a reescrita do histórico que tirou os
+  trailers `Claude-Session` de `9725a95` e `d4ad6aa` (HIG-18) e unificou o autor como
+  "Pedro Dias Soares" nos 101 commits. Os hashes citados nos documentos foram atualizados.
 
 ---
 
