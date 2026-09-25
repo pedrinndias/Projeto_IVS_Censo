@@ -39,9 +39,18 @@ raiz junto do deck.
 
 ## A apresentação atual
 
+**Arquivo:** `Analise_Fatorial_NB04_2026-09.pptx` — a única coisa na raiz desta pasta.
+**Editada à mão** (não é gerada por script): anexações de bloco usam `scripts/juntar_decks.py`, correções pontuais usam `python-pptx`. Composição e histórico de
+slides no bloco do topo deste README.
+
+## O deck complementar — EDA Central avulsa
+
+Fica em `complementos/` (não é mais a apresentação corrente — está inteira anexada dentro
+do deck acima, a partir do slide 44).
+
 | | |
 |---|---|
-| **Arquivo** | `EDA_Central_IVS_2026-09_rev2.pptx` — 51 slides |
+| **Arquivo** | `complementos/EDA_Central_IVS_2026-09_rev2.pptx` — 51 slides |
 | **O que mudou** | A EDA inteira foi recalculada com `renda_media_sem_extremo` (renda sem o setor `310620005650366`, Belo Horizonte). Os 4 slides novos, logo depois da abertura, dizem o que mudou e o que ficou igual. |
 | **1ª rodada** | `historico/2026-08-21_EDA_Central_1a_rodada.pptx` — com a renda completa |
 | **Roteiro** | `complementos/Roteiro_EDA_Central_2a_rodada.docx` — fala sugerida slide a slide, o que apontar em cada figura e as perguntas prováveis. Cobre os 51 slides |
@@ -104,7 +113,7 @@ procurava a apresentação.
 
 ### Por que o roteiro não é gerado
 
-Ele é o único artefato desta pasta escrito à mão, e é assim de propósito: o que ele tem de
+Ele é o único artefato de apoio (`complementos/`) escrito à mão, e é assim de propósito: o que ele tem de
 valioso não são os números, é o julgamento — quais slides não podem cair se o tempo apertar,
 o que dizer em cada um, que pergunta a orientadora provavelmente fará. Isso não sai de
 tabela nenhuma.
@@ -135,7 +144,7 @@ Do mais recente para o mais antigo. O prefixo é a data do arquivo.
 | `2026-06-15_EDA_Fase3_revisada_V00001.pptx` | 22 | EDA revisada sobre o denominador V00001 | Superada pela versão com demandas, três dias depois |
 | `2026-05-30_EDA_completa_corrigida.pptx` | 11 | EDA completa após as correções de maio | Superada pela revisão de junho |
 | `2026-05-30_Comparativo_EDA_antiga_vs_nova.pptx` | 16 | Comparativo entre a EDA antiga e a corrigida | Documento de transição; a EDA antiga não existe mais |
-| `2026-05-28_Correcoes_commit_2fb2e30.pptx` | 10 | Duas correções metodológicas de um commit específico | Correções já incorporadas |
+| `2026-05-28_Correcoes_commit_2fb2e30.pptx` | 10 | Duas correções metodológicas de um commit específico | Correções já incorporadas. O hash `2fb2e30` no nome é anterior à recriação do histórico (HIG-13/HIG-18) e não resolve mais com `git cat-file` — é só o nome do arquivo, não uma referência a conferir. |
 | `2026-05-22_Revisao_denominador_analfabetismo.pptx` | 13 | A correção do denominador do analfabetismo | Correção já incorporada (`V00901 / (V00900 + V00901)`) |
 | `2026-05-15_EDA_inicial_denominador_V01042.pptx` | 32 | A **primeira** EDA, sobre o denominador V01042 | **Metodologia abandonada.** V01042 é contagem de pessoas, não de domicílios — os números deste deck não valem |
 
