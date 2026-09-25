@@ -434,11 +434,32 @@ scripts). Nenhum dos quatro achados aparece nos dados publicados hoje (todos "fi
 incoerente só num caso hipotético" ou "não muda nada com os dados reais") — não há CSV,
 deck ou documento para regerar por causa deste lote.
 
-## Fase 5, lote B (testes) — sessão 1: diagnóstico, execução pendente
-Parada em 16 chamadas (80% do teto de 20 da fase), toda em leitura e diagnóstico — nenhuma
-edição de código ou teste feita ainda. Nada versionado mudou nesta sessão além deste estado.
-`pytest` não rodou (nenhum código tocado). Plano pronto para a próxima sessão executar sem
-reler nada:
+## Fase 5, lote B (testes) — sessão 2: executado (execução automática)
+Os três achados do plano abaixo foram implementados em `tests/test_fatorial.py` e
+commitados em `82a4ad4`: **FAT-07** (promax IVS-6 trava Φ=0,5215 e a repartição
+65,82/34,18 e 59,64/40,36; Bartlett agora trava `gl==21` e `pval<1e-10`, não só o
+qui-quadrado; Horn com semente fixa trava o array de `horn(100,5,sims=10,semente=99)`;
+`alinhar_cargas` provado com colunas trocadas e sinal invertido; `bootstrap_cargas`
+provado batendo com `np.percentile(..., [2.5, 97.5])` calculado à parte); **L3** (script
+de verificação avulso confirmou renda x cor/raça = 0,8106 par a par sobre 104.094 setores
+vs 0,7845 no recorte listwise de 87.545 — abaixo do limiar 0,80 —, teste novo trava os
+dois números e `abs(par - listwise) > 0.02`); **HIG-05** (`test_acp_varimax_reproduz_csv`
+normaliza o sinal de `calculado`/`ref` com `_sinal_positivo` antes do `assert_allclose`,
+em vez de depender do sinal cru que `eigh` devolve).
+
+**Desvio do plano:** era para ser um commit por achado; os três ficaram entrelaçados no
+mesmo arquivo (mesma linha de import, e FAT-07/HIG-05 na mesma função de teste), então
+saiu **um commit só** (`82a4ad4`) para os três, documentado na mensagem do commit. Nenhum
+defeito real foi encontrado nos testes novos — não houve necessidade de registrar nada em
+pendente por conta deles.
+
+`pytest -q` no repo inteiro: 90 passed (85 antes do lote + 5 testes novos: FAT-07 ganhou
+4 funções novas — a checagem de gl/pval do Bartlett entrou como 2 linhas dentro do teste
+já existente, não como função nova —, L3 ganhou 1). O "79 passed / 85 esperados" do plano
+abaixo estava desatualizado (a base já estava em 85 antes desta sessão, por trabalho de
+outras fases).
+
+Plano original desta seção (para referência; já executado):
 
 **FAT-07 — a suíte da camada fatorial deixa passar 13 mutações plausíveis** (lista completa em
 `docs/relatorios/Revisao_Geral_2026-09.md`, `grep -n -A12 '#### FAT-07'`). Cinco testes novos
