@@ -21,6 +21,7 @@ documentos.
 | [`eda_atualizada.py`](eda_atualizada.py) | `eda/atualizada/` — a EDA recalculada com a renda sem o extremo | sim |
 | [`eda_extremo_belo_horizonte.py`](eda_extremo_belo_horizonte.py) | `eda/atualizada/extremo_bh_*` — o mesmo extremo olhado de dentro de Belo Horizonte, e o efeito dele na normalização municipal | sim · ~3 s |
 | [`diagnostico_fatorial.py`](diagnostico_fatorial.py) | `eda/fatorial/` — os seis cenários da adequabilidade | sim · ~3 s |
+| [`fatorial_ampliada.py`](fatorial_ampliada.py) | `eda/fatorial_ampliada/` — a grade de cenários da fatorial ampliada, sem bootstrap (demandas 3, 5–11) | sim · ~30 s |
 | [`dados_criterio_renda.py`](dados_criterio_renda.py) | o JSON que alimenta o deck do critério de renda | sim |
 | [`eda_central_dados.py`](eda_central_dados.py) | o JSON que alimenta o deck e o resumo da EDA Central | sim |
 

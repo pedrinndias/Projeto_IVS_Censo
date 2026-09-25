@@ -1,0 +1,214 @@
+﻿cenario;municipio_fora;n;fator1_maior_carga;peso_f1_varimax;delta_varimax;peso_f1_promax_padrao;delta_promax_padrao;lixo_fator_proprio;mais_move_varimax;mais_move_promax_padrao;lixo_muda
+S0;(nenhum);87545;Renda (invertida);73.995760;0.000000;74.692486;0.000000;True;False;False;False
+S0;Ananindeua;86884;Renda (invertida);73.681008;-0.314752;74.346378;-0.346108;True;False;False;False
+S0;Anápolis;87020;Renda (invertida);73.865360;-0.130400;74.563387;-0.129099;True;False;False;False
+S0;Arara;87526;Renda (invertida);73.995875;0.000115;74.692286;-0.000201;True;False;False;False
+S0;Araçatuba;87148;Renda (invertida);74.085640;0.089880;74.775664;0.083178;True;False;False;False
+S0;Autazes;87503;Renda (invertida);73.965279;-0.030481;74.658009;-0.034477;True;False;False;False
+S0;Belo Horizonte;83581;Renda (invertida);74.549248;0.553488;75.111006;0.418520;True;False;False;False
+S0;Belém;85678;Renda (invertida);73.904368;-0.091391;74.522777;-0.169710;True;False;False;False
+S0;Brasília;83425;Renda (invertida);74.906886;0.911126;75.574266;0.881780;True;False;False;False
+S0;Cachoeiro de Itapemirim;87219;Renda (invertida);74.013654;0.017894;74.706879;0.014393;True;False;False;False
+S0;Camaragibe;87277;Renda (invertida);74.075714;0.079954;74.760617;0.068131;True;False;False;False
+S0;Campinas;85577;Renda (invertida);74.209739;0.213979;74.965167;0.272680;True;False;False;False
+S0;Campo Grande;86116;Renda (invertida);73.792817;-0.202943;74.509720;-0.182766;True;False;False;False
+S0;Canoas;87035;Renda (invertida);74.069416;0.073657;74.767572;0.075086;True;False;False;False
+S0;Capelinha;87490;Renda (invertida);74.011958;0.016198;74.710893;0.018406;True;False;False;False
+S0;Chapada dos Guimarães;87515;Renda (invertida);74.004145;0.008385;74.701530;0.009044;True;False;False;False
+S0;Charqueadas;87492;Renda (invertida);74.003673;0.007913;74.698140;0.005654;True;False;False;False
+S0;Coroaci;87534;Renda (invertida);73.994662;-0.001098;74.690830;-0.001656;True;False;False;False
+S0;Curitiba;85109;Renda (invertida);74.358533;0.362773;75.073750;0.381263;True;False;False;False
+S0;Divinópolis;87099;Renda (invertida);74.058828;0.063068;74.754668;0.062182;True;False;False;False
+S0;Duque de Caxias;85900;Renda (invertida);74.005910;0.010150;74.687224;-0.005262;True;False;False;False
+S0;Feira de Santana;86611;Renda (invertida);73.899178;-0.096582;74.612084;-0.080402;True;False;False;False
+S0;Fortaleza;83517;Renda (invertida);73.531785;-0.463975;74.343841;-0.348646;True;False;False;False
+S0;Goianésia;87459;Renda (invertida);73.962939;-0.032821;74.660613;-0.031873;True;False;False;False
+S0;Goiânia;85599;Renda (invertida);73.959128;-0.036632;74.710635;0.018149;True;False;False;False
+S0;Groaíras;87531;Renda (invertida);73.988413;-0.007346;74.683686;-0.008800;True;False;False;False
+S0;Guapiaçu;87506;Renda (invertida);74.011890;0.016130;74.708688;0.016201;True;False;False;False
+S0;Guarujá;86964;Renda (invertida);74.074694;0.078934;74.746634;0.054148;True;False;False;False
+S0;Guarulhos;85415;Renda (invertida);74.269795;0.274035;74.989341;0.296855;True;False;False;False
+S0;Ibatiba;87510;Renda (invertida);74.010516;0.014756;74.707749;0.015263;True;False;False;False
+S0;Igarapava;87489;Renda (invertida);74.008122;0.012362;74.703692;0.011206;True;False;False;False
+S0;Itajuípe;87516;Renda (invertida);73.991409;-0.004351;74.689035;-0.003451;True;False;False;False
+S0;Itapetinga;87442;Renda (invertida);74.029806;0.034046;74.728511;0.036025;True;False;False;False
+S0;Japoatã;87538;Renda (invertida);73.992838;-0.002922;74.689837;-0.002649;True;False;False;False
+S0;Jaqueira;87536;Renda (invertida);73.995915;0.000155;74.691515;-0.000971;True;False;False;False
+S0;Limoeiro do Norte;87449;Renda (invertida);73.992274;-0.003486;74.690500;-0.001986;True;False;False;False
+S0;Macaé;87032;Renda (invertida);74.050817;0.055057;74.736963;0.044476;True;False;False;False
+S0;Maceió;86105;Renda (invertida);73.854950;-0.140810;74.525051;-0.167436;True;False;False;False
+S0;Manaus;84746;Renda (invertida);72.611045;-1.384715;73.192255;-1.500231;True;False;False;False
+S0;Marechal Deodoro;87458;Renda (invertida);74.005399;0.009639;74.698074;0.005588;True;False;False;False
+S0;Mauá;86791;Renda (invertida);74.136348;0.140588;74.819706;0.127220;True;False;False;False
+S0;Natal;86523;Renda (invertida);74.044997;0.049237;74.768176;0.075690;True;False;False;False
+S0;Nova Iguaçu;86080;Renda (invertida);74.044263;0.048503;74.729971;0.037485;True;False;False;False
+S0;Orizânia;87540;Renda (invertida);73.996846;0.001086;74.693639;0.001153;True;False;False;False
+S0;Pato Branco;87423;Renda (invertida);74.025119;0.029359;74.721881;0.029394;True;False;False;False
+S0;Placas;87529;Renda (invertida);74.004652;0.008892;74.697609;0.005122;True;False;False;False
+S0;Portel;87519;Renda (invertida);73.982689;-0.013071;74.674354;-0.018133;True;False;False;False
+S0;Porto Alegre;85604;Renda (invertida);74.211620;0.215860;74.988835;0.296349;True;False;False;False
+S0;Recife;85040;Renda (invertida);73.932959;-0.062800;74.651597;-0.040889;True;False;False;False
+S0;Rio de Janeiro;76854;Renda (invertida);72.471495;-1.524265;73.149883;-1.542603;True;False;False;False
+S0;Rosário;87509;Renda (invertida);73.983236;-0.012524;74.675308;-0.017178;True;False;False;False
+S0;Salinas;87492;Renda (invertida);74.002939;0.007179;74.700266;0.007780;True;False;False;False
+S0;Salto;87366;Renda (invertida);73.942396;-0.053364;74.648498;-0.043989;True;False;False;False
+S0;Salvador;83650;Renda (invertida);71.202480;-2.793279;71.863278;-2.829208;False;True;True;True
+S0;Santa Maria do Oeste;87537;Renda (invertida);73.995368;-0.000392;74.692314;-0.000172;True;False;False;False
+S0;São Bernardo do Campo;86171;Renda (invertida);73.969264;-0.026496;74.659214;-0.033272;True;False;False;False
+S0;São Caetano do Sul;87249;Renda (invertida);73.986494;-0.009266;74.681265;-0.011222;True;False;False;False
+S0;São Gonçalo;85513;Renda (invertida);74.395597;0.399837;75.116597;0.424111;True;False;False;False
+S0;São José de Ribamar;87026;Renda (invertida);73.986046;-0.009714;74.657304;-0.035183;True;False;False;False
+S0;São José dos Pinhais;87136;Renda (invertida);74.011521;0.015761;74.715200;0.022714;True;False;False;False
+S0;São Luís;86036;Renda (invertida);73.649777;-0.345983;74.310084;-0.382402;True;False;False;False
+S0;São Paulo;66246;Renda (invertida);73.577239;-0.418521;73.069219;-1.623268;False;False;False;True
+S0;São Paulo das Missões;87540;Renda (invertida);73.997258;0.001498;74.693753;0.001267;True;False;False;False
+S0;São Pedro da Aldeia;87291;Renda (invertida);74.029789;0.034029;74.723881;0.031395;True;False;False;False
+S0;São Raimundo do Doca Bezerra;87542;Renda (invertida);73.995089;-0.000671;74.691718;-0.000769;True;False;False;False
+S0;Tabatinga;87515;Renda (invertida);74.009270;0.013510;74.705939;0.013453;True;False;False;False
+S0;Taió;87506;Renda (invertida);74.003662;0.007902;74.699960;0.007473;True;False;False;False
+S0;Teresina;86243;Renda (invertida);74.325037;0.329277;75.059933;0.367447;True;False;False;False
+S0;Urandi;87536;Renda (invertida);73.994141;-0.001619;74.690312;-0.002175;True;False;False;False
+S0;Vicentinópolis;87534;Renda (invertida);73.991706;-0.004054;74.688526;-0.003960;True;False;False;False
+S0;Água Preta;87513;Renda (invertida);73.993233;-0.002527;74.690150;-0.002336;True;False;False;False
+S1;(nenhum);87545;Renda (invertida);65.010611;0.000000;65.815818;0.000000;;False;False;False
+S1;Ananindeua;86884;Renda (invertida);65.423662;0.413051;66.312211;0.496394;;False;False;False
+S1;Anápolis;87020;Renda (invertida);65.090015;0.079403;65.924818;0.109000;;False;False;False
+S1;Arara;87526;Renda (invertida);65.012365;0.001753;65.814104;-0.001714;;False;False;False
+S1;Araçatuba;87148;Renda (invertida);65.032958;0.022347;65.832820;0.017002;;False;False;False
+S1;Autazes;87503;Renda (invertida);65.048769;0.038157;65.855368;0.039551;;False;False;False
+S1;Belo Horizonte;83581;Renda (invertida);64.918992;-0.091619;65.689955;-0.125863;;False;False;False
+S1;Belém;85678;Renda (invertida);65.561435;0.550824;66.524504;0.708686;;False;False;False
+S1;Brasília;83425;Renda (invertida);65.153045;0.142433;65.907227;0.091409;;False;False;False
+S1;Cachoeiro de Itapemirim;87219;Renda (invertida);65.053901;0.043290;65.873483;0.057666;;False;False;False
+S1;Camaragibe;87277;Renda (invertida);65.058434;0.047823;65.834968;0.019150;;False;False;False
+S1;Campinas;85577;Renda (invertida);64.821506;-0.189106;65.541847;-0.273970;;False;False;False
+S1;Campo Grande;86116;Renda (invertida);64.956816;-0.053795;65.767684;-0.048134;;False;False;False
+S1;Canoas;87035;Renda (invertida);64.967180;-0.043432;65.755912;-0.059905;;False;False;False
+S1;Capelinha;87490;Renda (invertida);65.003664;-0.006948;65.811544;-0.004274;;False;False;False
+S1;Chapada dos Guimarães;87515;Renda (invertida);65.001103;-0.009509;65.804340;-0.011477;;False;False;False
+S1;Charqueadas;87492;Renda (invertida);65.007661;-0.002950;65.811295;-0.004522;;False;False;False
+S1;Coroaci;87534;Renda (invertida);65.006833;-0.003779;65.811565;-0.004252;;False;False;False
+S1;Curitiba;85109;Renda (invertida);64.814021;-0.196590;65.546034;-0.269784;;False;False;False
+S1;Divinópolis;87099;Renda (invertida);65.000711;-0.009900;65.804567;-0.011250;;False;False;False
+S1;Duque de Caxias;85900;Renda (invertida);64.783634;-0.226978;65.501001;-0.314817;;False;False;False
+S1;Feira de Santana;86611;Renda (invertida);65.024764;0.014152;65.827212;0.011394;;False;False;False
+S1;Fortaleza;83517;Renda (invertida);64.446008;-0.564604;65.354390;-0.461427;;False;False;False
+S1;Goianésia;87459;Renda (invertida);65.019772;0.009161;65.826699;0.010881;;False;False;False
+S1;Goiânia;85599;Renda (invertida);64.878630;-0.131981;65.713321;-0.102497;;False;False;False
+S1;Groaíras;87531;Renda (invertida);65.005268;-0.005343;65.811225;-0.004593;;False;False;False
+S1;Guapiaçu;87506;Renda (invertida);65.018216;0.007604;65.823073;0.007255;;False;False;False
+S1;Guarujá;86964;Renda (invertida);64.979289;-0.031322;65.755785;-0.060033;;False;False;False
+S1;Guarulhos;85415;Renda (invertida);64.876957;-0.133655;65.644822;-0.170996;;False;False;False
+S1;Ibatiba;87510;Renda (invertida);65.010087;-0.000525;65.810779;-0.005038;;False;False;False
+S1;Igarapava;87489;Renda (invertida);65.020754;0.010142;65.827138;0.011320;;False;False;False
+S1;Itajuípe;87516;Renda (invertida);65.005573;-0.005038;65.813845;-0.001973;;False;False;False
+S1;Itapetinga;87442;Renda (invertida);65.020776;0.010164;65.839638;0.023820;;False;False;False
+S1;Japoatã;87538;Renda (invertida);65.008331;-0.002281;65.813165;-0.002653;;False;False;False
+S1;Jaqueira;87536;Renda (invertida);65.011021;0.000409;65.815595;-0.000223;;False;False;False
+S1;Limoeiro do Norte;87449;Renda (invertida);64.996807;-0.013804;65.799843;-0.015975;;False;False;False
+S1;Macaé;87032;Renda (invertida);64.997843;-0.012768;65.799683;-0.016135;;False;False;False
+S1;Maceió;86105;Renda (invertida);65.143097;0.132485;65.911286;0.095468;;False;False;False
+S1;Manaus;84746;Renda (invertida);66.581765;1.571154;67.780526;1.964708;;False;False;False
+S1;Marechal Deodoro;87458;Renda (invertida);64.991038;-0.019573;65.792957;-0.022861;;False;False;False
+S1;Mauá;86791;Renda (invertida);65.011170;0.000559;65.805774;-0.010043;;False;False;False
+S1;Natal;86523;Renda (invertida);64.772440;-0.238172;65.585436;-0.230382;;False;False;False
+S1;Nova Iguaçu;86080;Renda (invertida);64.914216;-0.096395;65.635767;-0.180050;;False;False;False
+S1;Orizânia;87540;Renda (invertida);65.011288;0.000677;65.815875;0.000058;;False;False;False
+S1;Pato Branco;87423;Renda (invertida);65.004166;-0.006445;65.806695;-0.009123;;False;False;False
+S1;Placas;87529;Renda (invertida);65.024937;0.014325;65.829705;0.013888;;False;False;False
+S1;Portel;87519;Renda (invertida);65.034956;0.024345;65.840007;0.024190;;False;False;False
+S1;Porto Alegre;85604;Renda (invertida);64.924456;-0.086155;65.632170;-0.183648;;False;False;False
+S1;Recife;85040;Renda (invertida);64.456655;-0.553956;65.192424;-0.623393;;False;False;False
+S1;Rio de Janeiro;76854;Renda (invertida);65.368539;0.357928;66.420834;0.605017;;False;False;False
+S1;Rosário;87509;Renda (invertida);65.025833;0.015221;65.827641;0.011823;;False;False;False
+S1;Salinas;87492;Renda (invertida);65.003454;-0.007157;65.814707;-0.001110;;False;False;False
+S1;Salto;87366;Renda (invertida);65.021489;0.010877;65.827619;0.011802;;False;False;False
+S1;Salvador;83650;Renda (invertida);66.101764;1.091153;67.799467;1.983649;;False;False;False
+S1;Santa Maria do Oeste;87537;Renda (invertida);65.010399;-0.000212;65.815446;-0.000372;;False;False;False
+S1;São Bernardo do Campo;86171;Renda (invertida);64.954721;-0.055890;65.730034;-0.085783;;False;False;False
+S1;São Caetano do Sul;87249;Renda (invertida);65.005841;-0.004770;65.807290;-0.008528;;False;False;False
+S1;São Gonçalo;85513;Renda (invertida);64.766805;-0.243807;65.394708;-0.421109;;False;False;False
+S1;São José de Ribamar;87026;Renda (invertida);65.101565;0.090954;65.902586;0.086769;;False;False;False
+S1;São José dos Pinhais;87136;Renda (invertida);65.016091;0.005480;65.841412;0.025595;;False;False;False
+S1;São Luís;86036;Renda (invertida);65.262752;0.252141;66.097567;0.281749;;False;False;False
+S1;São Paulo;66246;Renda (invertida);62.886464;-2.124148;63.007756;-2.808062;;True;True;False
+S1;São Paulo das Missões;87540;Renda (invertida);65.010881;0.000269;65.816139;0.000322;;False;False;False
+S1;São Pedro da Aldeia;87291;Renda (invertida);65.025517;0.014905;65.830296;0.014479;;False;False;False
+S1;São Raimundo do Doca Bezerra;87542;Renda (invertida);65.005899;-0.004713;65.810810;-0.005007;;False;False;False
+S1;Tabatinga;87515;Renda (invertida);65.014820;0.004208;65.819899;0.004082;;False;False;False
+S1;Taió;87506;Renda (invertida);64.988245;-0.022367;65.792710;-0.023107;;False;False;False
+S1;Teresina;86243;Renda (invertida);64.440410;-0.570201;65.158964;-0.656854;;False;False;False
+S1;Urandi;87536;Renda (invertida);65.003486;-0.007125;65.808489;-0.007328;;False;False;False
+S1;Vicentinópolis;87534;Renda (invertida);65.010619;0.000008;65.815443;-0.000375;;False;False;False
+S1;Água Preta;87513;Renda (invertida);65.009341;-0.001271;65.812687;-0.003130;;False;False;False
+S6;(nenhum);69458;Renda (invertida);56.448415;0.000000;55.478158;0.000000;False;False;False;False
+S6;Ananindeua;69077;Renda (invertida);56.596433;0.148018;55.639841;0.161683;False;False;False;False
+S6;Anápolis;69029;Renda (invertida);56.385025;-0.063390;55.417582;-0.060576;False;False;False;False
+S6;Arara;69448;Renda (invertida);56.457900;0.009485;55.487094;0.008936;False;False;False;False
+S6;Araçatuba;69081;Renda (invertida);56.479554;0.031139;55.516117;0.037960;False;False;False;False
+S6;Autazes;69426;Renda (invertida);56.502482;0.054067;55.535682;0.057524;False;False;False;False
+S6;Belo Horizonte;66035;Renda (invertida);56.455750;0.007336;55.491728;0.013570;False;False;False;False
+S6;Belém;68424;Renda (invertida);56.936431;0.488016;56.004916;0.526758;False;False;False;False
+S6;Brasília;65836;Renda (invertida);56.894538;0.446123;55.952487;0.474330;False;False;False;False
+S6;Cachoeiro de Itapemirim;69181;Renda (invertida);56.465365;0.016951;55.496285;0.018127;False;False;False;False
+S6;Camaragibe;69304;Renda (invertida);56.539973;0.091558;55.575798;0.097640;False;False;False;False
+S6;Campinas;67641;Renda (invertida);56.397113;-0.051302;55.434033;-0.044125;False;False;False;False
+S6;Campo Grande;68329;Renda (invertida);56.322795;-0.125619;55.352440;-0.125718;False;False;False;False
+S6;Canoas;69101;Renda (invertida);56.450511;0.002096;55.476368;-0.001790;False;False;False;False
+S6;Capelinha;69416;Renda (invertida);56.449423;0.001008;55.478920;0.000762;False;False;False;False
+S6;Chapada dos Guimarães;69433;Renda (invertida);56.442909;-0.005506;55.472294;-0.005864;False;False;False;False
+S6;Charqueadas;69416;Renda (invertida);56.455904;0.007490;55.484050;0.005892;False;False;False;False
+S6;Coroaci;69447;Renda (invertida);56.444611;-0.003804;55.473678;-0.004479;False;False;False;False
+S6;Curitiba;67310;Renda (invertida);56.450962;0.002547;55.515139;0.036981;False;False;False;False
+S6;Divinópolis;69064;Renda (invertida);56.442792;-0.005623;55.472566;-0.005592;False;False;False;False
+S6;Duque de Caxias;68426;Renda (invertida);56.437032;-0.011383;55.409102;-0.069056;False;False;False;False
+S6;Feira de Santana;68877;Renda (invertida);56.572481;0.124066;55.601890;0.123733;False;False;False;False
+S6;Fortaleza;66973;Renda (invertida);56.261003;-0.187411;55.286841;-0.191317;False;False;False;False
+S6;Goianésia;69398;Renda (invertida);56.432123;-0.016291;55.462995;-0.015163;False;False;False;False
+S6;Goiânia;67843;Renda (invertida);56.283855;-0.164560;55.327316;-0.150842;False;False;False;False
+S6;Groaíras;69450;Renda (invertida);56.451419;0.003004;55.480317;0.002159;False;False;False;False
+S6;Guapiaçu;69421;Renda (invertida);56.459101;0.010687;55.489308;0.011150;False;False;False;False
+S6;Guarujá;68959;Renda (invertida);56.461907;0.013492;55.495177;0.017020;False;False;False;False
+S6;Guarulhos;67629;Renda (invertida);56.440252;-0.008163;55.463402;-0.014756;False;False;False;False
+S6;Ibatiba;69429;Renda (invertida);56.442217;-0.006197;55.471938;-0.006220;False;False;False;False
+S6;Igarapava;69410;Renda (invertida);56.456355;0.007941;55.486466;0.008309;False;False;False;False
+S6;Itajuípe;69440;Renda (invertida);56.451076;0.002661;55.480885;0.002727;False;False;False;False
+S6;Itapetinga;69387;Renda (invertida);56.460938;0.012524;55.491563;0.013405;False;False;False;False
+S6;Japoatã;69454;Renda (invertida);56.449511;0.001096;55.479277;0.001119;False;False;False;False
+S6;Jaqueira;69451;Renda (invertida);56.451328;0.002913;55.481220;0.003062;False;False;False;False
+S6;Limoeiro do Norte;69386;Renda (invertida);56.442599;-0.005816;55.470423;-0.007734;False;False;False;False
+S6;Macaé;69052;Renda (invertida);56.450469;0.002055;55.478728;0.000570;False;False;False;False
+S6;Maceió;68391;Renda (invertida);56.040798;-0.407616;55.085122;-0.393036;False;False;False;False
+S6;Manaus;67783;Renda (invertida);56.687715;0.239300;55.778506;0.300348;False;False;False;False
+S6;Marechal Deodoro;69406;Renda (invertida);56.457171;0.008757;55.487170;0.009012;False;False;False;False
+S6;Mauá;68807;Renda (invertida);56.485956;0.037542;55.516384;0.038226;False;False;False;False
+S6;Natal;68742;Renda (invertida);56.345227;-0.103187;55.366408;-0.111750;False;False;False;False
+S6;Nova Iguaçu;68517;Renda (invertida);56.536659;0.088245;55.530600;0.052442;False;False;False;False
+S6;Orizânia;69454;Renda (invertida);56.446822;-0.001593;55.476406;-0.001752;False;False;False;False
+S6;Pato Branco;69348;Renda (invertida);56.453722;0.005308;55.483467;0.005310;False;False;False;False
+S6;Placas;69446;Renda (invertida);56.459083;0.010668;55.493045;0.014887;False;False;False;False
+S6;Portel;69438;Renda (invertida);56.489753;0.041338;55.523594;0.045436;False;False;False;False
+S6;Porto Alegre;67948;Renda (invertida);56.452387;0.003972;55.515970;0.037812;False;False;False;False
+S6;Recife;67923;Renda (invertida);56.430958;-0.017457;55.483570;0.005413;False;False;False;False
+S6;Rio de Janeiro;60578;Renda (invertida);55.929577;-0.518838;54.934756;-0.543402;False;False;False;False
+S6;Rosário;69436;Renda (invertida);56.496297;0.047883;55.528908;0.050750;False;False;False;False
+S6;Salinas;69422;Renda (invertida);56.440157;-0.008257;55.470013;-0.008144;False;False;False;False
+S6;Salto;69295;Renda (invertida);56.455520;0.007105;55.483442;0.005284;False;False;False;False
+S6;Salvador;66750;Renda (invertida);56.761544;0.313129;55.668958;0.190800;False;False;False;False
+S6;Santa Maria do Oeste;69453;Renda (invertida);56.447949;-0.000465;55.477383;-0.000775;False;False;False;False
+S6;São Bernardo do Campo;68200;Renda (invertida);56.407672;-0.040743;55.426074;-0.052084;False;False;False;False
+S6;São Caetano do Sul;69179;Renda (invertida);56.433469;-0.014945;55.469141;-0.009016;False;False;False;False
+S6;São Gonçalo;68024;Renda (invertida);56.644396;0.195981;55.618486;0.140328;False;False;False;False
+S6;São José de Ribamar;69134;Renda (invertida);56.544061;0.095646;55.594533;0.116376;False;False;False;False
+S6;São José dos Pinhais;69121;Renda (invertida);56.434710;-0.013705;55.468308;-0.009850;False;False;False;False
+S6;São Luís;68557;Renda (invertida);56.930246;0.481831;56.021593;0.543435;False;False;False;False
+S6;São Paulo;50307;Renda (invertida);55.112603;-1.335812;54.048079;-1.430079;False;True;True;False
+S6;São Paulo das Missões;69454;Renda (invertida);56.449593;0.001178;55.479226;0.001068;False;False;False;False
+S6;São Pedro da Aldeia;69273;Renda (invertida);56.458116;0.009702;55.488954;0.010796;False;False;False;False
+S6;São Raimundo do Doca Bezerra;69455;Renda (invertida);56.445305;-0.003110;55.475531;-0.002627;False;False;False;False
+S6;Tabatinga;69432;Renda (invertida);56.456767;0.008352;55.486542;0.008384;False;False;False;False
+S6;Taió;69423;Renda (invertida);56.443659;-0.004755;55.472830;-0.005328;False;False;False;False
+S6;Teresina;68579;Renda (invertida);56.332036;-0.116379;55.347627;-0.130531;False;False;False;False
+S6;Urandi;69451;Renda (invertida);56.444311;-0.004103;55.473825;-0.004333;False;False;False;False
+S6;Vicentinópolis;69447;Renda (invertida);56.444834;-0.003581;55.474066;-0.004092;False;False;False;False
+S6;Água Preta;69446;Renda (invertida);56.450213;0.001798;55.481872;0.003714;False;False;False;False

@@ -1,0 +1,61 @@
+﻿cenario;rotacao;peso_f1;peso_f2;f1_maior_carga;f2_maior_carga;phi
+S0;sem_rotacao;75.885441;24.114559;Renda (invertida);Lixo inadequado;
+S0;varimax;73.995760;26.004240;Renda (invertida);Lixo inadequado;
+S0;promax_padrao;74.692486;25.307514;Renda (invertida);Lixo inadequado;0.150561
+S0;promax_estrutura;73.403759;26.596241;Renda (invertida);Lixo inadequado;0.150561
+S1;sem_rotacao;77.165013;22.834987;Renda (invertida);Água inadequada;
+S1;varimax;65.010611;34.989389;Renda (invertida);Água inadequada;
+S1;promax_padrao;65.815818;34.184182;Renda (invertida);Água inadequada;0.521546
+S1;promax_estrutura;59.640689;40.359311;Renda (invertida);Água inadequada;0.521546
+S2;sem_rotacao;73.536476;26.463524;Renda (invertida);Água não chega;
+S2;varimax;62.740102;37.259898;Renda (invertida);Água inadequada;
+S2;promax_padrao;62.861111;37.138889;Renda (invertida);Água inadequada;0.432704
+S2;promax_estrutura;59.002246;40.997754;Renda (invertida);Água inadequada;0.432704
+S3;sem_rotacao;76.434498;23.565502;Renda (invertida);Água inadequada;
+S3;varimax;61.225136;38.774864;Renda (invertida);Água inadequada;
+S3;promax_padrao;60.616594;39.383406;Renda (invertida);Água inadequada;0.451262
+S3;promax_estrutura;56.737348;43.262652;Renda (invertida);Sem água canalizada;0.451262
+S4;sem_rotacao;75.232248;24.767752;Renda (invertida);Lixo inadequado;
+S4;varimax;66.397334;33.602666;Renda (invertida);Lixo inadequado;
+S4;promax_padrao;65.658870;34.341130;Renda (invertida);Lixo inadequado;0.393849
+S4;promax_estrutura;61.244700;38.755300;Renda (invertida);Lixo inadequado;0.393849
+S5;sem_rotacao;75.925354;24.074646;Renda (invertida);Lixo inadequado;
+S5;varimax;74.225219;25.774781;Renda (invertida);Lixo inadequado;
+S5;promax_padrao;74.747606;25.252394;Renda (invertida);Lixo inadequado;0.150597
+S5;promax_estrutura;73.461450;26.538550;Renda (invertida);Lixo inadequado;0.150597
+S6;sem_rotacao;71.146302;28.853698;Renda (invertida);Água não chega;
+S6;varimax;56.448415;43.551585;Renda (invertida);Água não chega;
+S6;promax_padrao;55.478158;44.521842;Renda (invertida);Água não chega;0.434770
+S6;promax_estrutura;53.817338;46.182662;Renda (invertida);Água não chega;0.434770
+S7;sem_rotacao;70.960726;29.039274;Renda (invertida);Água não chega;
+S7;varimax;56.627413;43.372587;Renda (invertida);Água não chega;
+S7;promax_padrao;55.898602;44.101398;Renda (invertida);Água não chega;0.429491
+S7;promax_estrutura;54.150278;45.849722;Renda (invertida);Água não chega;0.429491
+S0_renda_sem_extremo;sem_rotacao;75.885687;24.114313;Renda (invertida);Lixo inadequado;
+S0_renda_sem_extremo;varimax;73.995945;26.004055;Renda (invertida);Lixo inadequado;
+S0_renda_sem_extremo;promax_padrao;74.692647;25.307353;Renda (invertida);Lixo inadequado;0.150575
+S0_renda_sem_extremo;promax_estrutura;73.403743;26.596257;Renda (invertida);Lixo inadequado;0.150575
+S0_renda_mediana_mun;sem_rotacao;75.885589;24.114411;Renda (invertida);Lixo inadequado;
+S0_renda_mediana_mun;varimax;73.995947;26.004053;Renda (invertida);Lixo inadequado;
+S0_renda_mediana_mun;promax_padrao;74.692665;25.307335;Renda (invertida);Lixo inadequado;0.150557
+S0_renda_mediana_mun;promax_estrutura;73.403973;26.596027;Renda (invertida);Lixo inadequado;0.150557
+S0_postos_mun;sem_rotacao;72.267439;27.732561;Renda (invertida);Água inadequada;
+S0_postos_mun;varimax;68.812093;31.187907;Renda (invertida);Água inadequada;
+S0_postos_mun;promax_padrao;68.722986;31.277014;Renda (invertida);Água inadequada;0.257119
+S0_postos_mun;promax_estrutura;66.376683;33.623317;Renda (invertida);Água inadequada;0.257119
+S1_postos_mun;sem_rotacao;73.675480;26.324520;Renda (invertida);Água inadequada;
+S1_postos_mun;varimax;71.432208;28.567792;Renda (invertida);Água inadequada;
+S1_postos_mun;promax_padrao;71.509506;28.490494;Renda (invertida);Água inadequada;0.277874
+S1_postos_mun;promax_estrutura;69.062067;30.937933;Renda (invertida);Água inadequada;0.277874
+S6_renda_sem_extremo;sem_rotacao;71.146494;28.853506;Renda (invertida);Água não chega;
+S6_renda_sem_extremo;varimax;56.449137;43.550863;Renda (invertida);Água não chega;
+S6_renda_sem_extremo;promax_padrao;55.478704;44.521296;Renda (invertida);Água não chega;0.434772
+S6_renda_sem_extremo;promax_estrutura;53.817705;46.182295;Renda (invertida);Água não chega;0.434772
+S6_renda_mediana_mun;sem_rotacao;71.146153;28.853847;Renda (invertida);Água não chega;
+S6_renda_mediana_mun;varimax;56.448763;43.551237;Renda (invertida);Água não chega;
+S6_renda_mediana_mun;promax_padrao;55.478402;44.521598;Renda (invertida);Água não chega;0.434769
+S6_renda_mediana_mun;promax_estrutura;53.817526;46.182474;Renda (invertida);Água não chega;0.434769
+S6_postos_mun;sem_rotacao;62.224649;37.775351;Renda (invertida);Água não chega;
+S6_postos_mun;varimax;56.515031;43.484969;Renda (invertida);Água não chega;
+S6_postos_mun;promax_padrao;56.251682;43.748318;Renda (invertida);Água não chega;0.256888
+S6_postos_mun;promax_estrutura;55.606830;44.393170;Renda (invertida);Água não chega;0.256888

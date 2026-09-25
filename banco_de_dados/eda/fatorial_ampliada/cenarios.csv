@@ -1,0 +1,16 @@
+﻿cenario;descricao;demanda;renda;transformacao;p;n;perdidos_vs_S0;kmo;msa_min;msa_min_variavel;bartlett_qui2;bartlett_gl;det_R;autovalor_1;autovalor_2;autovalor_3;fatores_kaiser;fatores_horn;kaiser_horn_discordam;var_explicada_2f;lixo_fator_proprio_varimax
+S0;IVS-7 (referência, reproduz o NB04);—;original;empilhada;7;87545;0;0.782553;0.699547;Lixo inadequado;235084.383818;21;0.068192;3.299682;1.048559;0.957518;2;2;False;62.117739;True
+S1;IVS-6 (IVS-7 sem lixo);10;original;empilhada;6;87545;0;0.787036;0.715346;Renda (invertida);225320.176550;15;0.076239;3.239149;0.958542;0.704838;1;1;False;69.961531;
+S2;IVS-7 + não chega;5, 7;original;empilhada;8;78256;9289;0.780346;0.692864;Água inadequada;232556.074204;28;0.051206;3.441900;1.238634;1.036059;3;3;False;58.506673;False
+S3;IVS-7 + sem canalização;7;original;empilhada;8;87512;33;0.805106;0.732662;Lixo inadequado;271497.772279;28;0.044934;3.622325;1.116798;1.026901;3;3;False;59.239032;False
+S4;IVS-7 + sem banheiro (V00495);6, 7;original;empilhada;8;75955;11590;0.791505;0.690598;Lixo inadequado;211934.395217;28;0.061395;3.392757;1.116954;1.003440;3;2;True;56.371389;False
+S5;IVS-7 + não convencional;9;original;empilhada;8;87545;0;0.782633;0.699583;Lixo inadequado;235720.819048;28;0.067698;3.307229;1.048667;0.993883;2;2;False;54.448698;True
+S6;"IVS-7 + as quatro (""tudo isso"")";8;original;empilhada;11;69458;18087;0.809976;0.695047;Moradia não convencional;248210.556389;55;0.028049;3.830091;1.553311;1.035148;4;4;False;48.940016;False
+S7;S6 sem lixo;8, 10;original;empilhada;10;69458;18087;0.813332;0.701825;Moradia não convencional;240998.195573;45;0.031118;3.776516;1.545465;1.015971;3;2;True;53.219808;
+S0_renda_sem_extremo;IVS-7 (referência, reproduz o NB04), renda sem_extremo;—;sem_extremo;empilhada;7;87544;1;0.782528;0.699569;Lixo inadequado;235109.751014;21;0.068170;3.299737;1.048562;0.957520;2;2;False;62.118560;True
+S0_renda_mediana_mun;IVS-7 (referência, reproduz o NB04), renda mediana_mun;—;mediana_mun;empilhada;7;87545;0;0.782537;0.699560;Lixo inadequado;235101.491231;21;0.068179;3.299709;1.048559;0.957530;2;2;False;62.118119;True
+S0_postos_mun;IVS-7 (referência, reproduz o NB04), postos dentro do município;—;original;postos_mun;7;87545;0;0.793691;0.677839;Água inadequada;220327.594115;21;0.080713;3.062107;1.175081;0.901406;2;2;False;60.531251;False
+S1_postos_mun;IVS-6 (IVS-7 sem lixo), postos dentro do município;10;original;postos_mun;6;87545;0;0.793763;0.636101;Água inadequada;213145.706542;15;0.087615;3.004906;1.073664;0.743290;2;2;False;67.976164;
+S6_renda_sem_extremo;"IVS-7 + as quatro (""tudo isso""), renda sem_extremo";8;sem_extremo;empilhada;11;69457;18088;0.809948;0.694992;Moradia não convencional;248237.695056;55;0.028036;3.830154;1.553321;1.035150;4;4;False;48.940688;False
+S6_renda_mediana_mun;"IVS-7 + as quatro (""tudo isso""), renda mediana_mun";8;mediana_mun;empilhada;11;69458;18087;0.809957;0.695018;Moradia não convencional;248230.960646;55;0.028040;3.830118;1.553333;1.035150;4;4;False;48.940463;False
+S6_postos_mun;"IVS-7 + as quatro (""tudo isso""), postos dentro do município";8;original;postos_mun;11;69458;18087;0.768914;0.384207;Moradia não convencional;250969.789615;55;0.026956;3.308203;2.008344;1.071746;3;3;False;48.332245;False

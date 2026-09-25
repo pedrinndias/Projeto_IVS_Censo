@@ -5,7 +5,7 @@ Linha de base: commit 3c426e8 · 25/09/2026
 ## Fases
 - [x] Fase 0 — linha de base e destravamentos   (sessão de 25/09/2026, em duas partes; concluída)
 - [x] Fase 1 — demandas 1 e 2   (25/09/2026, execução automática; concluída)
-- [ ] Fase 2 — fatorial ampliada
+- [x] Fase 2 — fatorial ampliada   (25/09/2026, execução automática; concluída)
 - [ ] Fase 3 — notebook 04b e NB04
 - [ ] Fase 4 — curadoria e slides
 - [ ] Fase 5 — lotes A · B · C · D
@@ -15,15 +15,15 @@ Linha de base: commit 3c426e8 · 25/09/2026
 |---|---|---|---|---|
 | 1 | coluna de renda com a mediana | 1 | concluída | `renda_media_mediana_mun` no .db/.csv da entrega; sensibilidade em `banco_de_dados/eda/atualizada/renda_imputacao_alternativas.csv` |
 | 2 | quadro de indicadores | 1 | concluída | `banco_de_dados/entrega_orientadora/Quadro_Indicadores.{csv,xlsx,md}` |
-| 3 | fatorial sem bootstrap, sem e com rotação | 2 | | |
+| 3 | fatorial sem bootstrap, sem e com rotação | 2 | concluída | `banco_de_dados/eda/fatorial_ampliada/cargas.csv` e `pesos.csv` — sem rotação, Varimax e promax lado a lado, em todos os cenários |
 | 4 | separar útil × inútil | 4 | | |
-| 5 | comparar "não chega" | 2 | | |
-| 6 | juntar "sem banheiro" | 2 | | |
-| 7 | adicionar canalização e sem banheiro | 2 | | |
-| 8 | fatorial de tudo isso | 2 | | |
-| 9 | habitação convencional | 2 | | |
-| 10 | testar lixo | 2 | | |
-| 11 | testar as duas rotações | 2 | | |
+| 5 | comparar "não chega" | 2 | concluída (as duas leituras) | S2 na grade; `banco_de_dados/eda/fatorial_ampliada/comparacao_nao_chega_banheiro.csv` (Spearman com IVS-7 e outras categorias de água; perfil > 0 × = 0) |
+| 6 | juntar "sem banheiro" | 2 | concluída com V00495; graduada (V00237) em aberto | S4; prova V00238 ≤ V00495 no bloco `prova_juncao` de `banco_de_dados/eda/fatorial_ampliada/comparacao_nao_chega_banheiro.csv` |
+| 7 | adicionar canalização e sem banheiro | 2 | concluída | S2, S3, S4 em `banco_de_dados/eda/fatorial_ampliada/cenarios.csv` |
+| 8 | fatorial de tudo isso | 2 | concluída (leitura padrão da pergunta 6) | S6 e S7; renda em três versões (S6_renda_*); postos no município (S6_postos_mun) |
+| 9 | habitação convencional | 2 | concluída (como não convencional, sem excluir) | S5 e S6; MSA, comunalidade e % de zeros em `banco_de_dados/eda/fatorial_ampliada/cargas.csv` |
+| 10 | testar lixo | 2 | concluída | S1 e S7; `lixo_fator_proprio_varimax` em `cenarios.csv`; `lixo_muda` em `sensibilidade_municipios.csv` |
+| 11 | testar as duas rotações | 2 | concluída | `banco_de_dados/eda/fatorial_ampliada/pesos.csv` — Varimax e promax (padrão e estrutura) + Φ; figura `figuras/fa_plano_s6.png` |
 
 ## Perguntas à orientadora
 <mensagem redigida na Fase 0; respostas, quando vierem>
@@ -137,6 +137,27 @@ Abraço, Pedro
 - **Fase 1** (25/09/2026): suíte inteira `pytest -q` — **78 passed** em ~11,6s (75 + 3
   testes novos: imputação por mediana municipal, coluna no `.db`, cobertura do quadro de
   indicadores).
+- **Fase 2** (25/09/2026, execução automática): `src/ivs_censo/fatorial.py` ganhou
+  `rodar_cenario` (um cenário inteiro num dicionário, com a convenção de sinal "soma das
+  cargas positiva" em sem rotação, Varimax e promax) e `reparticao`. Teste novo
+  `test_rodar_cenario_orienta_sinais_e_fecha_as_contas`. `diagnosticar` intocada. Commit
+  `2dd246a`.
+- **Fase 2** (25/09/2026): `scripts/fatorial_ampliada.py` (novo, ~30 s) — a grade de 15
+  cenários (S0–S7; S0/S6 com renda sem extremo e mediana municipal; S0/S1/S6 com postos
+  dentro do município) e a sensibilidade de um município de fora por vez (S0, S1, S6).
+  Grava em `banco_de_dados/eda/fatorial_ampliada/`: `cenarios.csv`, `cargas.csv`,
+  `pesos.csv`, `validacao_fcu.csv`, `autovalores.csv`, `correlacao_s6.csv`,
+  `comparacao_nao_chega_banheiro.csv`, `sensibilidade_municipios.csv`, 4 figuras em
+  `figuras/` e `README.md` de procedência. Funções de figura, índice e AUC copiadas do
+  NB04 (células 3, 22, 28, 29, 39, indicadas no script); o rótulo dos eixos do plano
+  fatorial sai das cargas (NB4-08). `scripts/README.md` ganhou a linha do script.
+- **Fase 2** (25/09/2026): **travas de sanidade batidas** antes de gravar — S0 KMO 0,7826
+  (= linha de base); S1 pesos Varimax 65,01/34,99. Conferências extras, também batidas: AUC
+  do índice de S1 0,8131, renda invertida 0,8819, média de postos 0,8533 (= linha de base).
+  Verificação independente num script só (scratchpad): contagens de linhas, sinais,
+  estrutura = padrão·Φ, repartições somando 100, Kaiser/Horn contra `autovalores.csv`,
+  pesos do índice somando 1 — nenhuma falha.
+- **Fase 2** (25/09/2026): suíte inteira `pytest -q` — **79 passed** em ~12 s.
 
 ## Fase 0 — concluída (25/09/2026, sessão 2)
 Passos 2 (final), 3 e 4 fechados; suíte inteira verde (75 passed). Arquivos versionados
@@ -151,3 +172,28 @@ alterados nesta sessão: `scripts/proporcoes_brasil.py`, `src/ivs_censo/fatorial
 `banco_de_dados/nacional/proporcoes_brasil_por_uf.csv`,
 `banco_de_dados/nacional/proporcoes_por_recorte.csv` (mais `.gitignore`, da sessão 1). Nenhum
 commit feito — decisão de commitar fica para quando o Pedro revisar.
+
+## Fase 2 — concluída (25/09/2026, execução automática)
+Tudo o que a orientadora vai ver está nos CSVs de `banco_de_dados/eda/fatorial_ampliada/`;
+nenhum texto interpretativo foi escrito — o Pedro olha a grade antes (seção 2.6 do prompt).
+Nada foi para deck ou documento. Commits: `2dd246a` (módulo + teste) e o commit do motor,
+das saídas e deste estado.
+
+### Pendências e observações da Fase 2
+- **Pergunta 4 continua aberta:** a versão graduada de "sem banheiro" (V00237) exige
+  reextração no NB01; não foi feita.
+- **% de zeros da seção 1 do prompt:** os 85,7% ("não chega") e 84,4% ("sem banheiro")
+  usavam os 104.108 setores do recorte como denominador, contando o faltante como não zero.
+  Sobre os valores presentes, conferido em script de verificação: 94,5% e 95,6%.
+  `cargas.csv` usa os valores presentes da base listwise de cada cenário (dito no README).
+- **Linha de base "sem São Paulo":** os 62,91 de `linha_de_base_nb04.csv` foram calculados
+  com a Varimax antiga; com a corrigida, a rodada sem São Paulo de S1 está em
+  `sensibilidade_municipios.csv` (62,89). A linha de base não foi alterada.
+- `kaiser_horn_discordam` = verdadeiro em S4 e S7 (ver `cenarios.csv`); a solução usa
+  2 fatores em todos, como o prompt manda.
+- Em S0, `lixo_muda` = verdadeiro em duas rodadas (ver `sensibilidade_municipios.csv`).
+- Figura `fa_plano_s6.png`: o posicionador de rótulos do NB04 foi copiado sem mudança;
+  num ou noutro rótulo o fio de ligação não aparece (critério de distância do NB04). Se a
+  figura for para slide, revisar na Fase 4.
+- A leitura dos resultados (o que o índice acrescenta à renda, NB4-02; efeito da
+  estrutura municipal) fica para depois de o Pedro ver a grade.

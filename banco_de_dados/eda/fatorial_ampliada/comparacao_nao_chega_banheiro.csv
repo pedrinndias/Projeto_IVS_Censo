@@ -1,0 +1,50 @@
+﻿bloco;indicador;variavel;grupo;valor;n
+spearman;Água não chega;Água inadequada;;0.459101;94402
+spearman;Água não chega;Esgoto inadequado;;0.290623;94401
+spearman;Água não chega;Lixo inadequado;;0.109163;94402
+spearman;Água não chega;Razão de moradores;;0.142047;94402
+spearman;Água não chega;Analfabetismo 15+;;0.218464;78266
+spearman;Água não chega;Renda média;;-0.251850;94391
+spearman;Água não chega;Cor/raça PPI;;0.248583;94400
+spearman;Água não chega;Água só no terreno;;0.506319;81303
+spearman;Água não chega;Sem água canalizada;;0.513819;94368
+spearman;Água não chega;Sem banheiro;;0.386006;85098
+perfil_mediana;Água não chega;Água inadequada;> 0;0.237011;5190
+perfil_mediana;Água não chega;Água inadequada;= 0;0.000000;89212
+perfil_mediana;Água não chega;Esgoto inadequado;> 0;0.096774;5189
+perfil_mediana;Água não chega;Esgoto inadequado;= 0;0.000000;89212
+perfil_mediana;Água não chega;Lixo inadequado;> 0;0.026316;5190
+perfil_mediana;Água não chega;Lixo inadequado;= 0;0.000000;89212
+perfil_mediana;Água não chega;Razão de moradores;> 0;2.888045;5190
+perfil_mediana;Água não chega;Razão de moradores;= 0;2.687846;89212
+perfil_mediana;Água não chega;Analfabetismo 15+;> 0;0.053211;5089
+perfil_mediana;Água não chega;Analfabetismo 15+;= 0;0.023810;73177
+perfil_mediana;Água não chega;Renda média;> 0;1526.400000;5190
+perfil_mediana;Água não chega;Renda média;= 0;2830.520000;89201
+perfil_mediana;Água não chega;Cor/raça PPI;> 0;0.743755;5190
+perfil_mediana;Água não chega;Cor/raça PPI;= 0;0.533742;89210
+spearman;Sem banheiro;Água inadequada;;0.239232;91912
+spearman;Sem banheiro;Esgoto inadequado;;0.254650;91912
+spearman;Sem banheiro;Lixo inadequado;;0.118737;91912
+spearman;Sem banheiro;Razão de moradores;;0.152520;91912
+spearman;Sem banheiro;Analfabetismo 15+;;0.212448;75965
+spearman;Sem banheiro;Renda média;;-0.221151;91900
+spearman;Sem banheiro;Cor/raça PPI;;0.215266;91910
+spearman;Sem banheiro;Água só no terreno;;0.440844;79343
+spearman;Sem banheiro;Sem água canalizada;;0.332515;91877
+spearman;Sem banheiro;Água não chega;;0.386006;85098
+perfil_mediana;Sem banheiro;Água inadequada;> 0;0.057217;4048
+perfil_mediana;Sem banheiro;Água inadequada;= 0;0.000000;87864
+perfil_mediana;Sem banheiro;Esgoto inadequado;> 0;0.112302;4048
+perfil_mediana;Sem banheiro;Esgoto inadequado;= 0;0.000000;87864
+perfil_mediana;Sem banheiro;Lixo inadequado;> 0;0.038993;4048
+perfil_mediana;Sem banheiro;Lixo inadequado;= 0;0.000000;87864
+perfil_mediana;Sem banheiro;Razão de moradores;> 0;2.983007;4048
+perfil_mediana;Sem banheiro;Razão de moradores;= 0;2.686992;87864
+perfil_mediana;Sem banheiro;Analfabetismo 15+;> 0;0.057120;3948
+perfil_mediana;Sem banheiro;Analfabetismo 15+;= 0;0.023679;72017
+perfil_mediana;Sem banheiro;Renda média;> 0;1477.890000;4048
+perfil_mediana;Sem banheiro;Renda média;= 0;2822.700000;87852
+perfil_mediana;Sem banheiro;Cor/raça PPI;> 0;0.771907;4048
+perfil_mediana;Sem banheiro;Cor/raça PPI;= 0;0.539394;87862
+prova_juncao;V00238 <= V00495;setores em que vale;;90858.000000;90858
