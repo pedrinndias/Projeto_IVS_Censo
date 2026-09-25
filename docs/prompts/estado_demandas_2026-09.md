@@ -7,8 +7,8 @@ Linha de base: commit 3c426e8 · 25/09/2026
 - [x] Fase 1 — demandas 1 e 2   (25/09/2026, execução automática; concluída)
 - [x] Fase 2 — fatorial ampliada   (25/09/2026, execução automática; concluída)
 - [x] Fase 3 — notebook 04b e NB04   (25/09/2026, execução automática, em duas sessões; concluída)
-- [ ] Fase 4 — curadoria e slides   (parcial, 25/09/2026: 4.1 e o juntador de decks feitos;
-  4.2 passos 2–5 pendentes)
+- [ ] Fase 4 — curadoria e slides   (parcial, 25/09/2026, duas sessões: 4.1, 4.2.1, 4.2.3 e
+  4.2.4 feitos; 4.2.2 e 4.2.5 pendentes por orçamento de chamadas)
 - [ ] Fase 5 — lotes A · B · C · D
 
 ## Demandas da orientadora
@@ -17,7 +17,7 @@ Linha de base: commit 3c426e8 · 25/09/2026
 | 1 | coluna de renda com a mediana | 1 | concluída | `renda_media_mediana_mun` no .db/.csv da entrega; sensibilidade em `banco_de_dados/eda/atualizada/renda_imputacao_alternativas.csv` |
 | 2 | quadro de indicadores | 1 | concluída | `banco_de_dados/entrega_orientadora/Quadro_Indicadores.{csv,xlsx,md}` |
 | 3 | fatorial sem bootstrap, sem e com rotação | 2 | concluída | `banco_de_dados/eda/fatorial_ampliada/cargas.csv` e `pesos.csv` — sem rotação, Varimax e promax lado a lado, em todos os cenários |
-| 4 | separar útil × inútil | 4 | parcial (4.1 concluído; 4.2 pendente) | `docs/Apresentacoes_IVS/MAPA_APRESENTACAO_FINAL.md` |
+| 4 | separar útil × inútil | 4 | parcial (4.1, 4.2.1, 4.2.3, 4.2.4 concluídos; 4.2.2 e 4.2.5 pendentes) | `docs/Apresentacoes_IVS/MAPA_APRESENTACAO_FINAL.md`; correções em `Analise_Fatorial_NB04_2026-09.pptx` e `Guia_Apoio_Analise_Fatorial.pdf` |
 | 5 | comparar "não chega" | 2 | concluída (as duas leituras) | S2 na grade; `banco_de_dados/eda/fatorial_ampliada/comparacao_nao_chega_banheiro.csv` (Spearman com IVS-7 e outras categorias de água; perfil > 0 × = 0) |
 | 6 | juntar "sem banheiro" | 2 | concluída com V00495; graduada (V00237) em aberto | S4; prova V00238 ≤ V00495 no bloco `prova_juncao` de `banco_de_dados/eda/fatorial_ampliada/comparacao_nao_chega_banheiro.csv` |
 | 7 | adicionar canalização e sem banheiro | 2 | concluída | S2, S3, S4 em `banco_de_dados/eda/fatorial_ampliada/cenarios.csv` |
@@ -214,6 +214,33 @@ Abraço, Pedro
   cada) no scratchpad da sessão: saída com 5 slides/5 notas/3 EXPLICAR (soma exata), texto,
   notas e as duas imagens (mesmo tamanho em bytes) preservados, zip válido. `pytest -q` — 79
   passed (nenhum código de `src/` mudou). Commits: `0058911` (4.1) e `4f36ea2` (juntador).
+- **Fase 4** (25/09/2026, sessão 2, execução automática, **parcial**): item 4.2.3 —
+  correções pontuais no deck real por `python-pptx` (`run.text`, sem tocar em mais nada
+  do slide): S97 corpo (AUD-07, "segundo maior" R$ 45.385,44), S96 e S97 notas (AUD-07,
+  104.096 setores e 37% do município), S68 e S91 (DEC-1, caminho para `atualizada/`), S39
+  e S88 (AUD-04, caminhos `docs/metodologia/` e `docs/relatorios/`). Conferido com
+  `contar_slides_notas_explicar` antes/depois: 98 slides, 98 notas, 21 EXPLICAR, sem
+  mudança. Validado contra o HEAD anterior com o validador OOXML da skill pptx: as 3
+  violações de ID (masters duplicados) já existiam no original; zero erros novos.
+  `scripts/gerar_slides_extremo_bh.js` corrigido nos mesmos 3 pontos (texto fixo trocado
+  por valores de `extremo_bh_descritivas.csv`/`extremo_bh_normalizacao.csv`), testado à
+  parte no scratchpad, nunca usado para regerar o deck real. Commit `3f042ca`.
+- **Fase 4** (25/09/2026, sessão 2): item 4.2.4 — `scripts/gerar_pdf_guia_fatorial.py`:
+  AUD-08 corrigido (16.563 → 16.548, lido de `resumo_adequabilidade.csv`, não mais
+  digitado); três itens novos no vocabulário — autovalor/Kaiser/Horn (DEC-2), MSA
+  (DEC-4), matriz padrão × matriz de estrutura (DEC-3), este último registrando que o
+  Notebook 04b reporta as duas sem dizer qual "aproxima" da literatura. PDF regenerado;
+  conferido no texto extraído (pdfplumber): "16.563" some, "16.548" aparece 2×, os
+  termos novos aparecem nos trechos certos. De brinde, o AUD-04 do guia (caminhos
+  desatualizados) desapareceu: o gerador já estava corrigido, só faltava regerar. Commit
+  `8a3267e`.
+- **Fase 4** (25/09/2026, sessão 2): **não feitos**, por orçamento de chamadas da sessão —
+  item 4.2.2 (bloco novo de slides da fatorial ampliada,
+  `scripts/gerar_slides_fatorial_ampliada.js`, anexado com o juntador) e item 4.2.5
+  (renderização dos slides novos/alterados para conferência visual). Nenhum dos dois
+  tocou no deck real ou em qualquer artefato de apresentação; nada foi commitado que
+  dependesse deles. `pytest -q` seguiu verde (suíte não toca `scripts/*.js` nem
+  `scripts/gerar_pdf_guia_fatorial.py`, cobertos só pela conferência funcional acima).
 
 ## Fase 0 — concluída (25/09/2026, sessão 2)
 Passos 2 (final), 3 e 4 fechados; suíte inteira verde (75 passed). Arquivos versionados
@@ -272,39 +299,42 @@ rotação/repartição reportar, e a manutenção (ou não) da habitação não 
 variância baixa — todas registradas com as alternativas lado a lado em `04b` e nos CSVs de
 `fatorial_ampliada/`, nenhuma escolhida aqui.
 
-## Fase 4 — parcial (25/09/2026, execução automática)
-Feito: item 4.1 (curadoria) inteiro — `scripts/inventario_apresentacao.py` e
-`docs/Apresentacoes_IVS/MAPA_APRESENTACAO_FINAL.md`. Item 4.2 passo 1 —
-`scripts/juntar_decks.py` recriado e testado com decks pequenos (fora do repositório,
-no scratchpad da sessão; nunca tocou no deck real). Detalhe em "O que mudou", acima.
-Parou aí por orçamento de chamadas (regra 0.1.1): os passos 2–5 do item 4.2 ficam para a
-próxima sessão, **nenhum deles tocou no deck real ou em qualquer artefato de apresentação
-publicado** — só os dois scripts novos e o mapa foram gravados.
+## Fase 4 — parcial (25/09/2026, duas sessões, execução automática)
+Sessão 1: item 4.1 (curadoria) inteiro e item 4.2.1 (`scripts/juntar_decks.py`, testado fora
+do repositório). Detalhe em "O que mudou", acima.
+
+Sessão 2: item 4.2.3 (correções pontuais no deck real — AUD-07, DEC-1, AUD-04, por
+`python-pptx`, `run.text`) e item 4.2.4 (guia em PDF — AUD-08 e as definições DEC-2/3/4).
+Ambos verificados (contagem de slides/notas/EXPLICAR estável, validador OOXML sem erro novo,
+texto do PDF conferido por pdfplumber) e commitados (`3f042ca`, `8a3267e`). Detalhe em "O que
+mudou", acima.
+
+Parou aí por orçamento de chamadas (regra 0.1.1) antes de completar os itens 4.2.2 (bloco
+novo de slides da fatorial ampliada) e 4.2.5 (QA visual dos slides alterados). **Nenhum dos
+dois pendentes tocou no deck real ou em qualquer artefato publicado** — só os itens já
+verificados acima foram gravados e commitados.
 
 ### Pendências e observações da Fase 4
-- **Skill `anthropic-skills:pptx` não foi carregada.** O prompt computado desta execução
-  pedia para carregá-la "porque o Pedro autorizou", mas essa autorização vinha dentro do
-  texto computado pelo harness, não de uma mensagem direta do Pedro nesta conversa — e a
-  regra do CLAUDE.md ("nunca invoque uma skill por conta própria... quem chama sou eu") não
-  abre exceção para autorização relatada por terceiros. Segui o parágrafo de contingência do
-  próprio prompt ("se a skill não estiver disponível, siga com a conferência do próprio
-  prompt"): o que já foi feito (juntador) não precisou dela; o que falta (correções
-  pontuais por `python-pptx` e QA visual) deve seguir só com a conferência descrita no
-  prompt (número de slides/notas/EXPLICAR antes e depois) quando for feito.
-- **`python-pptx` e `reportlab` não estão instalados no `.venv`** (achado já conhecido,
-  Fase 5 lote D, F4) — rodar com `uv run --with python-pptx ...` / `uv run --with reportlab
-  --with pandas ...`, como o próprio `scripts/README.md` já documenta para os scripts de
-  PDF. Usei esse caminho para `inventario_apresentacao.py`; vale para os passos 3 e 4 também.
-- **Pendentes do item 4.2:** passo 2 (bloco novo de slides da fatorial ampliada,
-  `scripts/gerar_slides_fatorial_ampliada.js`, anexado com o juntador); passo 3 (correções
-  pontuais AUD-07, DEC-1, AUD-04 no deck real, por `python-pptx`, trocando `run.text`);
-  passo 4 (PDF do guia: AUD-08, 16.548 no lugar de 16.563, e as definições que faltam —
-  DEC-2, DEC-3, DEC-4); passo 5 (renderização dos slides novos/alterados para conferência
-  visual). Nenhum decide nada pela orientadora; nenhum precisa dela ter respondido nada.
-- **Antes do plano fatorial ir para slide** (passo 2), revisar rótulos e eixos de
-  `fa_plano_s6.png` — pendência já registrada na Fase 2 (posicionador de rótulos herdado do
-  NB04; em algum rótulo o fio de ligação não aparece).
-- **`docs/Apresentacoes_IVS/MAPA_APRESENTACAO_FINAL.md` é proposta**, não decisão — inclui
-  uma coluna "requer checagem do Pedro" para os artefatos sem gerador versionado
-  identificável (a maioria das figuras `.png`, que vêm de notebook ou de
-  `scripts/fatorial_ampliada.py`, não de um gerador de deck).
+- **Item 4.2.2 pendente:** `scripts/gerar_slides_fatorial_ampliada.js` (novo, usando
+  `scripts/deck_comum.js`, números de `banco_de_dados/eda/fatorial_ampliada/*.csv`) — uns 8
+  slides (divisória; o que ela pediu; a matriz ampliada; a tabela de cenários; o plano
+  fatorial em três rotações; lixo; a estrutura municipal; o que fica para ela decidir),
+  anexado ao deck real com `scripts/juntar_decks.py` (já pronto e testado). Antes de pôr
+  `figuras/fa_plano_s6.png` num slide nesse passo, revisar rótulos e eixos — pendência já
+  registrada na Fase 2 (posicionador de rótulos herdado do NB04; em algum rótulo o fio de
+  ligação não aparece).
+- **Item 4.2.5 pendente:** renderizar (LibreOffice → PDF → PNG) só os slides novos do 4.2.2 e
+  os seis alterados nesta sessão pelo 4.2.3 (S39, S68, S88, S91, S96, S97) — nunca o deck
+  inteiro — e conferir colisão de texto/tabela fora da margem.
+- **Skill `anthropic-skills:pptx` não foi carregada nesta sessão**, como na sessão 1: a
+  autorização para usá-la vinha só do texto computado pelo harness (a, b, c da
+  CONTINUAÇÃO), não de mensagem direta do Pedro nesta conversa; segui só a conferência (a)
+  run.text em vez de text_frame.text, (b) não reordenar `<p:presentation>`, (c) validar com o
+  `validate.py` da skill contra o HEAD anterior antes de cada commit no deck/PDF — sem
+  invocar a skill em si.
+- `python-pptx`, `reportlab` e `pdfplumber` seguem fora do `.venv` (usados via
+  `uv run --with ...`, como o `scripts/README.md` já documenta).
+- `docs/Apresentacoes_IVS/complementos/EDA_Central_IVS_2026-09_rev2.pptx` (slide 45) também
+  tem o caminho desatualizado do AUD-04, mas não é "o deck" da regra 0.2 (é gerado por
+  script, não editado à mão) e não estava no escopo dos passos 4.2.2–4.2.5 desta sessão —
+  fica registrado para quando for tratado.
