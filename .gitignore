@@ -77,5 +77,3 @@ __pycache__/
 
 # node_modules do gerador da apresentação (npm install pptxgenjs)
 node_modules/
-package-lock.json
-package.json
