@@ -94,7 +94,7 @@ Python: `./.venv/bin/python` (pandas 3.0.5, numpy 2.5.2). Node em `/usr/local/bi
 `pptxgenjs` em `node_modules/` (atenção: `package.json` está no `.gitignore`).
 
 **Banco.** `banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db`, tabela
-`setores_censitarios`, 109.032 setores × 104 colunas. Abra sempre em modo só leitura:
+`setores_censitarios`, 109.032 setores × 105 colunas (105 desde a Fase 1). Abra sempre em modo só leitura:
 `sqlite3.connect('file:...?mode=ro', uri=True)`. Recorte de análise: `urbano == 1` e
 `Dados_sig == 'OK'` → **104.108 setores**. Filtre `urbano` numericamente — **não** use
 `astype(str) == '1'` (achado F2 da auditoria: um nulo transforma a coluna em float e o filtro

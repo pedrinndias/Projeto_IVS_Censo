@@ -24,7 +24,7 @@ O Notebook 04 **não é uma análise fatorial nova**. É a consolidação da que
 |---|---|
 | `scripts/diagnostico_fatorial.py` | 219 linhas em numpy puro, sem dependência nova: KMO e MSA por matriz anti-imagem, Bartlett com cauda por Wilson–Hilferty, autovalores, análise paralela de Horn, ACP e rotação Varimax. Roda seis cenários e grava CSVs. **É a base, não um rascunho a descartar.** |
 | `banco_de_dados/eda/fatorial/` | 19 CSVs com os seis cenários calculados, incluindo `resumo_adequabilidade.csv`. Referência de conferência para qualquer reimplementação. |
-| `banco_de_dados/entrega_orientadora/*.db` | SQLite **versionado**, tabela `setores_censitarios`, 109.032 linhas × 104 colunas, as 7 variáveis já calculadas. O NB04 roda sem os 2,4 GB de dados brutos do Censo. |
+| `banco_de_dados/entrega_orientadora/*.db` | SQLite **versionado**, tabela `setores_censitarios`, 109.032 linhas × 105 colunas, as 7 variáveis já calculadas. O NB04 roda sem os 2,4 GB de dados brutos do Censo. |
 | `src/ivs_censo/indicadores.py` | Definição canônica dos indicadores (`INDICADORES_IVS` × `INDICADORES_COMPLEMENTARES`). O NB04 importa daqui — nunca redefine fórmulas. |
 | `docs/Analise_Fatorial_Figueiredo2010_...md` | Interpretação dos seis cenários, diagnóstico do lixo, convergência 65/35 × 60/40, e o checklist de 15 passos. Os itens 13, 14 e 15 são o escopo do NB04. |
 

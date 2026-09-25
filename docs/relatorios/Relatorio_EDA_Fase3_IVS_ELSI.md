@@ -989,7 +989,7 @@ Toda decisão acima passou por pelo menos uma verificação empírica. As princi
 | Denominador do tipo de domicílio | Soma dos tipos não pode passar de `V00001` | 0 estouros; déficit máximo de 6 por sigilo |
 | Critério de identificação de favela | `CD_TIPO = 1` contra `NM_FCU` preenchido, no país | Coincidem: 33.272 setores |
 | Equivalência `SITUACAO` × `CD_SIT` | Tabulação cruzada nos 468.099 setores | Sem exceções |
-| Reprodutibilidade dos artefatos | Suíte de testes automatizados | 65 testes |
+| Reprodutibilidade dos artefatos | Suíte de testes automatizados | 79 testes |
 | Números dos relatórios e da apresentação | Script de auditoria contra os CSVs de origem | 286 valores conferidos, 0 divergências |
 
 ---

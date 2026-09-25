@@ -222,12 +222,12 @@ comum, para as fórmulas não existirem em duas versões.
 | `src/ivs_censo/fatorial.py` | A álgebra da análise fatorial em numpy puro: KMO por matriz anti-imagem, Bartlett, análise paralela de Horn, ACP, fatoração do eixo principal, Varimax, promax, SMC, escores por regressão e bootstrap. Sem dependência nova. |
 | `src/ivs_censo/dicionario.py` | Lê os dicionários oficiais do IBGE e monta a tabela de variáveis. |
 | `scripts/gerar_tabela_variaveis.py` | Gera `Dicionario_Variaveis_Projeto.{csv,xlsx}`. |
-| `scripts/gerar_entrega_orientadora.py` | Regenera o pacote de entrega (CSV + SQLite, 104 colunas, 3 tabelas). Antes disso os `.db` vinham de um script ad-hoc não versionado. |
+| `scripts/gerar_entrega_orientadora.py` | Regenera o pacote de entrega (CSV + SQLite, 105 colunas, 3 tabelas). Antes disso os `.db` vinham de um script ad-hoc não versionado. |
 | `scripts/proporcoes_brasil.py` | Calcula os indicadores para os ~468 mil setores do Brasil e compara com os 70 municípios ELSI. |
 | `scripts/gerar_tabelas_auditoria.py` | Regenera as 9 tabelas de auditoria/apresentação de `banco_de_dados/eda/` (cobertura de saneamento, morfologia, sigilo em V00901, responsáveis por sexo). Antes vinham de código ad-hoc não versionado — eram os "CSVs órfãos". Usam o recorte com rurais (106.281 setores). |
 
-Cobertura de testes: `tests/test_pipeline_fase3.py` (artefatos) e `tests/test_ivs_censo.py`
-(fórmulas, com dados sintéticos).
+Cobertura de testes: `tests/test_pipeline_fase3.py` (artefatos), `tests/test_ivs_censo.py`
+(fórmulas, com dados sintéticos) e `tests/test_fatorial.py` (álgebra da análise fatorial).
 
 As **decisões metodológicas** que regem esta pipeline — denominador, regra de
 elegibilidade, recorte urbano, tratamento do sigilo — estão consolidadas na
@@ -543,11 +543,11 @@ saíram das células e a EDA e o cálculo nacional leem a mesma definição. Con
 notebook inteiro — as 38 tabelas se reproduzem, com desvio máximo de 1,5 × 10⁻¹⁵ (soma
 *pairwise* do numpy, não mudança de metodologia).
 
-**⚠️ Dívida remanescente.** O Notebook **01** ainda não usa o módulo: ele carrega um
-dicionário `ARQUIVOS` próprio, escrito à mão. Acrescentar variável ao projeto exige mexer
-em dois lugares — o notebook e `fontes.py` — ou eles divergem.
+**Resolvido também no Notebook 01.** Desde d71f55f (21/08/2026), o Notebook 01 também
+importa `ARQUIVOS_CENSO` de `fontes.py` — não usa mais um dicionário próprio. A duplicação
+que motivava o alerta acima não existe mais em nenhum dos dois notebooks.
 
-**Status:** 🟢 implementada no NB02; pendente no NB01.
+**Status:** 🟢 implementada no NB01 e no NB02.
 
 ### 6.3 Decisões em aberto
 
@@ -564,7 +564,7 @@ Quatro pontos dependem de definição com a orientação e travam etapas seguint
 
 | # | Decisão | O que ela trava | Elementos para decidir |
 |---|---|---|---|
-| 1 | **Critério dos pesos**: empíricos (análise fatorial) ou guiados pela literatura (60% socioeconômica / 40% saneamento, padrão IVS-BH)? | Notebooks 04 e 05 | Renda, cor/raça e analfabetismo se correlacionam a −0,81 e −0,76: pesos iguais dariam três votos à posição social sem que isso fosse escolha deliberada |
+| 1 | **Critério dos pesos**: empíricos (análise fatorial) ou guiados pela literatura (60% socioeconômica / 40% saneamento, padrão IVS-BH)? | Notebooks 04 e 05 | Renda, cor/raça e analfabetismo se correlacionam a −0,81 e −0,76 (par a par, sobre o recorte da EDA; na matriz *listwise* que a fatorial decompõe, renda × cor/raça cai a 0,784 — ver `Relatorio_Analise_Fatorial_NB04.md`): pesos iguais dariam três votos à posição social sem que isso fosse escolha deliberada |
 | 2 | **Indicador de lixo**: entra como está, ou `V00398` (caçamba) é separada das demais formas? | Composição do índice | §6.2.10 — o indicador pode estar medindo porte urbano |
 | 3 | **Política de sigilo no analfabetismo** para o cálculo final | Notebook 03 | §6.2.6 — o sigilo é informativo, não aleatório |
 | 4 | **Piso mínimo de setores** por município nas análises municipais | Tabelas municipais e mapas | §6.2.5 — 14 municípios perdem mais da metade dos setores |
@@ -746,7 +746,8 @@ Ordem sugerida de ataque ao reentrar no projeto:
       outras três.
 
 ### Prioridade 2 — Completar o cálculo do IVS
-- [ ] Implementar a **análise fatorial / ACP** para definir os pesos.
+- [x] Implementar a **análise fatorial / ACP** para definir os pesos — concluída em
+  17/09/2026 (Notebook 04).
 - [ ] Calcular o **IVS final** (média ponderada das variáveis padronizadas).
 - [ ] Categorizar os setores em 4 faixas (Baixo / Médio / Elevado / Muito Elevado).
 

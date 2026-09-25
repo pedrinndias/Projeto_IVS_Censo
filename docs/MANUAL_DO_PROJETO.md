@@ -114,7 +114,7 @@ copiar código.
 | Script | O que gera | Tempo |
 |---|---|---:|
 | `gerar_tabela_variaveis.py` | `Dicionario_Variaveis_Projeto.csv` e `.xlsx` | segundos |
-| `gerar_entrega_orientadora.py` | O pacote de entrega: CSV + SQLite com 104 colunas | ~1 min |
+| `gerar_entrega_orientadora.py` | O pacote de entrega: CSV + SQLite com 105 colunas | ~1 min |
 | `proporcoes_brasil.py` | Os indicadores para os 468 mil setores do país | ~7 min |
 
 ### `banco_de_dados/` — saídas
@@ -158,7 +158,7 @@ banco_de_dados/
 
 | Arquivo | Conteúdo |
 |---|---|
-| `Base_ELSI_70Municipios_Censo2022.csv` / `.db` | 109.032 setores × 104 colunas |
+| `Base_ELSI_70Municipios_Censo2022.csv` / `.db` | 109.032 setores × 105 colunas |
 | `Base_BeloHorizonte_Censo2022.csv` / `.db` | 5.166 setores, mesmo esquema |
 | `Dicionario_Variaveis_Projeto.csv` / `.xlsx` | As 72 variáveis com descrição oficial e arquivo-fonte |
 | `README.md` | Como abrir os `.db` e o que é cada coluna |
@@ -502,19 +502,16 @@ escolha pode estar fazendo o indicador capturar porte urbano — ver §11 e §12
 | Dicionários oficiais em `dados/` | `gerar_tabela_variaveis.py` |
 | Qualquer coisa | `python -m pytest tests/ -v` |
 
-> ⚠️ **Duplicação conhecida entre o notebook e o módulo.** O Notebook 02 **não importa**
-> `src/ivs_censo` — ele define as fórmulas nas próprias células. O módulo existe para o
-> cálculo nacional e para os scripts. Na prática isso significa que **as fórmulas vivem em
-> dois lugares**, e mudar uma sem mudar a outra faz o recorte ELSI divergir do nacional
-> em silêncio. Enquanto essa duplicação existir, toda mudança de fórmula precisa ser feita
-> nos dois. Unificar (fazer o notebook importar o módulo) é uma melhoria pendente, e o
-> teste de fórmulas em `tests/test_ivs_censo.py` cobre só o lado do módulo.
+> ✅ **Duplicação resolvida.** Desde 20/08/2026 o Notebook 02 importa `src/ivs_censo`
+> (fórmulas na célula, não mais copiadas); desde 21/08/2026 (d71f55f) o Notebook 01 também
+> importa `fontes.py` em vez de um dicionário `ARQUIVOS` próprio. Os dois notebooks e os
+> scripts leem a mesma definição — não há mais fórmula duplicada nesta pipeline.
 
 ---
 
 # Parte D — Roteiro da apresentação, slide a slide
 
-O arquivo é `docs/Apresentacoes_IVS/historico/2026-08-09_Andamento.pptx` (arquivado em 21/08/2026; a apresentação corrente é `EDA_Central_IVS_2026-09_rev2.pptx`). **Todos os 30 slides têm
+O arquivo é `docs/Apresentacoes_IVS/historico/2026-08-09_Andamento.pptx` (arquivado em 21/08/2026; a apresentação corrente é `Analise_Fatorial_NB04_2026-09.pptx` (a EDA Central e o extremo de BH vêm anexados ao fim dela)). **Todos os 30 slides têm
 notas do apresentador** — o que está abaixo é o roteiro em prosa, com o encadeamento.
 
 ## Bloco 1 · Abertura (slides 1 a 5) — 4 minutos
@@ -572,7 +569,8 @@ com pico no Nordeste e lixo plano.
 
 **Slides 17 e 18 · Correlação.** Primeiro a figura completa, depois a leitura. Este é o
 slide para provocar a discussão metodológica: se renda, cor/raça e analfabetismo se
-correlacionam a −0,81 e −0,76, elas entram no índice com três pesos ou com um?
+correlacionam a −0,81 e −0,76 (par a par; na matriz *listwise* da fatorial cai a 0,784 — ver
+`docs/relatorios/Relatorio_Analise_Fatorial_NB04.md`), elas entram no índice com três pesos ou com um?
 
 **Slide 19 · Dados faltantes.** O ponto não é "faltam 15,9%", é **onde** faltam. O sigilo é
 informativo: falta mais onde há menos analfabetos. Por isso não imputa zero.

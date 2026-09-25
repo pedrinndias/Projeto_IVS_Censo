@@ -26,7 +26,7 @@ A pipeline ativa é a **Fase 3 (`notebooks/Fase3_EDA_ELSI/`)**, que aplica o fil
 | Demandas da orientadora (jul/2026) — 7 itens | ✅ Concluídas (ver abaixo) |
 | Linha de base nacional (~468 mil setores) | ✅ [`scripts/proporcoes_brasil.py`](scripts/proporcoes_brasil.py) |
 | Normalização de renda por município | 🔴 Pendente (a fazer no Notebook 03) |
-| Análise fatorial / ACP — definição dos pesos | 🔴 Pendente (Notebook 04) — estudo e plano prontos: [`docs/metodologia/Analise_Fatorial_LEIAME.md`](docs/metodologia/Analise_Fatorial_LEIAME.md) |
+| Análise fatorial / ACP — definição dos pesos | ✅ Concluída em 17/09/2026 — [`notebooks/Fase3_EDA_ELSI/04_Analise_Fatorial.ipynb`](notebooks/Fase3_EDA_ELSI/04_Analise_Fatorial.ipynb), relatório em [`docs/relatorios/`](docs/relatorios/) |
 | Cálculo do IVS final + categorização em 4 faixas | 🔴 Pendente (Notebook 05) |
 | Mapas temáticos (QGIS 3.x) | 🔴 Pendente |
 | Redação do artigo científico | 🟡 Plano preenchido em `docs/referencias/Plano_Artigo_Cientifico_IC_Preenchido.docx` |
@@ -93,13 +93,13 @@ improvisada; (3) nenhuma decisão entra sem uma verificação que a sustente.
 | **Favela identificada por `CD_TIPO = 1`** | É o campo oficial de classificação do setor; `NM_FCU` é atributo descritivo | Os dois critérios coincidem nos 468.099 setores do país: 33.272 setores | ✅ |
 | **Caçamba (`V00398`) conta como lixo inadequado** | Fidelidade à metodologia-fonte: só a coleta porta a porta (`V00397`) é adequada | — | ⚠️ **em revisão** (ver abaixo) |
 | **Indicadores descritivos ficam fora do índice** | Um componente precisa de direção inequívoca. `pct_apartamento` não tem: verticalização aparece em área rica e em conjunto popular | Separação estrutural no código: `INDICADORES_IVS` (7) × `INDICADORES_COMPLEMENTARES` (16) | ✅ |
-| **Fórmulas em módulo compartilhado** | Copiar o código para rodar o Brasil criaria duas versões que divergem na primeira correção — e aí a comparação Brasil × ELSI deixa de ser legítima | População nacional confere: **203.080.756**, o número oficial do Censo. O NB02 passou a importar o módulo em 20/08/2026 e reproduz as 38 tabelas | ✅ no NB02 — pendente no NB01, que ainda tem lista de variáveis própria |
+| **Fórmulas em módulo compartilhado** | Copiar o código para rodar o Brasil criaria duas versões que divergem na primeira correção — e aí a comparação Brasil × ELSI deixa de ser legítima | População nacional confere: **203.080.756**, o número oficial do Censo. O NB02 passou a importar o módulo em 20/08/2026 e reproduz as 38 tabelas | ✅ no NB02 e no NB01 (desde 21/08/2026, d71f55f) |
 
 ### Em aberto — dependem de definição com a orientação
 
 | # | Decisão | O que trava |
 |---|---|---|
-| 1 | **Critério dos pesos**: empíricos (análise fatorial) ou guiados pela literatura (60% socioeconômica / 40% saneamento)? Renda, cor/raça e analfabetismo se correlacionam a −0,81 e −0,76 — pesos iguais dariam três votos à posição social sem que fosse escolha deliberada | Notebooks 04 e 05 |
+| 1 | **Critério dos pesos**: empíricos (análise fatorial) ou guiados pela literatura (60% socioeconômica / 40% saneamento)? Renda, cor/raça e analfabetismo se correlacionam a −0,81 e −0,76 (par a par; na matriz *listwise* da fatorial cai a 0,784 — ver `docs/relatorios/Relatorio_Analise_Fatorial_NB04.md`) — pesos iguais dariam três votos à posição social sem que fosse escolha deliberada | Notebooks 04 e 05 |
 | 2 | **Indicador de lixo**: entra como está, ou a caçamba é separada? É a variável menos correlacionada com todas as demais e a única em que o recorte ELSI está pior que o Brasil urbano — pode estar medindo porte urbano | Composição do índice |
 | 3 | **Política de sigilo no analfabetismo** para o cálculo final | Notebook 03 |
 | 4 | **Piso mínimo de setores** por município: 14 dos 70 perdem mais da metade dos setores no recorte urbano | Tabelas municipais e mapas |

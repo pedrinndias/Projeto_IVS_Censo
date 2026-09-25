@@ -265,7 +265,7 @@ IVS-BH 2012 nem o ISU de Passarelli-Araujo (2023) declaram a posição deles.
 src/ivs_censo/fatorial.py          a matemática: KMO, MSA, Bartlett, Horn, ACP,
                                    eixo principal, Varimax, promax, SMC, escores,
                                    bootstrap — numpy e pandas apenas
-tests/test_fatorial.py             8 testes, entre eles a reprodução exata dos CSVs
+tests/test_fatorial.py             11 testes, entre eles a reprodução exata dos CSVs
                                    de referência de agosto
 scripts/diagnostico_fatorial.py    interface de linha de comando, seis cenários
 notebooks/.../04_Analise_Fatorial.ipynb   os dez blocos deste relatório

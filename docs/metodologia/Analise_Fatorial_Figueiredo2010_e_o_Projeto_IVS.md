@@ -119,7 +119,7 @@ A §6.3 do Guia registra quatro decisões travadas. A primeira:
 
 > **Critério dos pesos**: empíricos (análise fatorial) ou guiados pela literatura (60% socioeconômica / 40% saneamento, padrão IVS-BH)?
 
-E o argumento já anotado a favor dos pesos empíricos: renda, cor/raça e analfabetismo se correlacionam a −0,81 e −0,76, de modo que pesos iguais dariam "três votos" à posição social sem que isso fosse escolha deliberada. Esse é exatamente o raciocínio do artigo — variáveis que "caminham juntas" medem em boa parte a mesma coisa, e tratá-las como informação independente é erro de medida.
+E o argumento já anotado a favor dos pesos empíricos: renda, cor/raça e analfabetismo se correlacionam a −0,81 e −0,76 (par a par; na matriz *listwise* que a fatorial decompõe, renda × cor/raça cai a 0,784 — ver `Relatorio_Analise_Fatorial_NB04.md`), de modo que pesos iguais dariam "três votos" à posição social sem que isso fosse escolha deliberada. Esse é exatamente o raciocínio do artigo — variáveis que "caminham juntas" medem em boa parte a mesma coisa, e tratá-las como informação independente é erro de medida.
 
 O artigo, porém, **não decide** entre peso empírico e peso teórico: ele mostra como extrair a estrutura. A decisão sobre pesos é do projeto, e a §5 deste documento mostra que, com os números na mesa, ela ficou bem mais fácil.
 
