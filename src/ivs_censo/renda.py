@@ -200,7 +200,7 @@ def rastrear_outliers_renda(df: pd.DataFrame, k: float = K_TUKEY) -> pd.DataFram
     # Cada teste compara o setor com o próprio município, não com o país.
     testes = pd.DataFrame(index=df.index)
     if 'CD_TIPO' in df.columns:
-        testes['e_favela'] = df['CD_TIPO'].astype(str).eq('1')
+        testes['e_favela'] = pd.to_numeric(df['CD_TIPO'], errors='coerce').eq(1)
     for col, quantil in [('pct_analfab', 0.5), ('pct_raca_pretpardind', 0.75)]:
         if col in df.columns:
             ref = df.groupby('CD_MUN')[col].transform(lambda s: s.quantile(quantil))

@@ -159,6 +159,20 @@ def test_favela_com_renda_altissima_vira_suspeito():
     assert 'e_favela' in r['motivos'].iloc[-1]
 
 
+def test_favela_numerica_com_nulo_no_meio_nao_perde_o_sinal():
+    """CD_TIPO numérico com um nulo no meio vira float64 (F2).
+
+    O padrão antigo (`astype(str).eq('1')`) comparava '1.0' com '1' e nunca batia —
+    perdia a favela sem erro. A comparação numérica tem de continuar reconhecendo 1.0.
+    """
+    cd_tipo = [0] * 20 + [None] + [0] * 19 + [1]
+    df = _cidade_sintetica('X', [1000.0] * 40 + [90000.0], favela=cd_tipo)
+    assert df['CD_TIPO'].dtype == np.float64   # o nulo no meio já basta para converter
+    r = rastrear_outliers_renda(df)
+    assert r['classe_renda'].iloc[-1] == SUSPEITO
+    assert 'e_favela' in r['motivos'].iloc[-1]
+
+
 def test_criterio_e_por_municipio_e_nao_global():
     """O mesmo valor é normal na cidade rica e extremo na cidade pobre — o IVS é intraurbano."""
     rica = _cidade_sintetica('RICA', [8000.0 + i * 100 for i in range(40)] + [12000.0])

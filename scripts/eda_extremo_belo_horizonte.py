@@ -41,7 +41,7 @@ df = pd.read_sql("""SELECT CD_SETOR, NM_MUN, urbano, Dados_sig,
                            renda_media, renda_media_sem_extremo
                     FROM setores_censitarios""", con)
 con.close()
-df = df[(df.urbano.astype(str) == '1') & (df.Dados_sig == 'OK')].copy()
+df = df[(pd.to_numeric(df.urbano, errors='coerce') == 1) & (df.Dados_sig == 'OK')].copy()
 EXCLUIDO = sorted(SETORES_RENDA_EXCLUIDA)[0]
 MUN = df.loc[df.CD_SETOR.astype(str).str.strip() == EXCLUIDO, 'NM_MUN'].iloc[0]
 print(f'setor excluído: {EXCLUIDO} · município: {MUN}')

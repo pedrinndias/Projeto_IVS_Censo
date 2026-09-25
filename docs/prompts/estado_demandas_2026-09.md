@@ -358,7 +358,18 @@ feitos e verificados.
   script, não editado à mão) e não estava no escopo dos passos 4.2.2–4.2.5 desta sessão —
   fica registrado para quando for tratado.
 
-## Fase 5, lote A (código frágil) — sessão 1: diagnóstico, execução pendente
+## Fase 5, lote A (código frágil) — sessão 2: executado
+Os quatro achados do plano abaixo (F2, FAT-04, FAT-06, FAT-12) foram aplicados como
+descrito, cada um com teste novo. `pytest -q` fechou em 85 passed (79 + 1 F2 + 1 FAT-04 +
+1 FAT-06 + 3 FAT-12 parametrizado — o plano previa 83 contando o FAT-12 como um teste só).
+`scripts/diagnostico_fatorial.py` foi rodado depois da mudança e os CSVs em
+`banco_de_dados/eda/fatorial/` não mudaram (`git status` limpo ali antes e depois).
+Pendente: `scripts/eda_extremo_belo_horizonte.py` e `scripts/auditoria_renda.py` não foram
+reexecutados nesta sessão (só o `diagnostico_fatorial.py` era obrigatório); continua
+proibido rodar `scripts/proporcoes_brasil.py` fora da fase que manda. Dois commits: um
+para `fatorial.py`/`test_fatorial.py` (FAT-04, FAT-06, FAT-12) e outro para os cinco
+lugares do F2 (scripts + notebook + `test_ivs_censo.py`). Plano original preservado abaixo:
+
 Parada em 16 chamadas (80% do teto de 20 da fase), toda em leitura — nenhuma edição de
 código feita ainda. Nada versionado mudou nesta sessão além deste estado. `pytest` não
 rodou (nenhum código tocado). Plano pronto para a próxima sessão executar sem reler nada:

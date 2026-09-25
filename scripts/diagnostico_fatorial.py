@@ -47,7 +47,7 @@ SAIDA = RAIZ / 'banco_de_dados' / 'eda' / 'fatorial'
 def main() -> None:
     uso = ['CD_SETOR', 'NM_MUN', 'urbano', 'Dados_sig'] + IVS7
     df = pd.read_csv(BASE, sep=';', usecols=uso, low_memory=False)
-    df = df[(df['urbano'].astype(str) == '1') & (df['Dados_sig'] == 'OK')].copy()
+    df = df[(pd.to_numeric(df['urbano'], errors='coerce') == 1) & (df['Dados_sig'] == 'OK')].copy()
     df['renda_inv'] = -df['renda_media']
 
     # Versão padronizada min-max **por município** — a normalização prevista para o

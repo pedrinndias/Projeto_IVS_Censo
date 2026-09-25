@@ -86,7 +86,7 @@ def tabela_rastreamento(ok: pd.DataFrame, r: pd.DataFrame) -> pd.DataFrame:
                          'renda_lim_sup_mun', 'outlier_global', 'outlier_municipio',
                          'razao_implausivel', 'cv_renda', 'motivos']],
     ], axis=1)
-    t['e_favela'] = t['CD_TIPO'].astype(str).eq('1').map({True: 'sim', False: 'não'})
+    t['e_favela'] = pd.to_numeric(t['CD_TIPO'], errors='coerce').eq(1).map({True: 'sim', False: 'não'})
     t = t.rename(columns={COLUNA_RENDA: 'renda_media_setor', 'V00001': 'n_domicilios',
                           'v0001': 'populacao'})
     t['renda_media_setor'] = t['renda_media_setor'].round(2)
@@ -254,7 +254,7 @@ def tabela_por_regiao(ok: pd.DataFrame, r: pd.DataFrame) -> pd.DataFrame:
         s = g[COLUNA_RENDA].dropna()
         n_susp = int((rg['classe_renda'] == SUSPEITO).sum())
         n_extr = int((rg['classe_renda'] == EXTREMO).sum())
-        favela_extremos = g.loc[rg['classe_renda'].isin([SUSPEITO, EXTREMO]), 'CD_TIPO'].astype(str).eq('1')
+        favela_extremos = pd.to_numeric(g.loc[rg['classe_renda'].isin([SUSPEITO, EXTREMO]), 'CD_TIPO'], errors='coerce').eq(1)
         linhas.append({
             'regiao': regiao, 'n_setores': len(g),
             'renda_mediana': round(s.median(), 2), 'renda_media': round(s.mean(), 2),

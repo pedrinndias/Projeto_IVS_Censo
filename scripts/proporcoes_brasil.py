@@ -183,7 +183,7 @@ def main() -> None:
     # ── 2. Elegibilidade e recorte urbano (mesmas regras do Notebook 02) ──────
     base['Dados_sig'] = classificar_dados_sig(base)
     base['urbano'] = base['SITUACAO'].astype(str).eq('Urbana')
-    base['is_fcu'] = base['CD_TIPO'].astype(str).eq('1')
+    base['is_fcu'] = pd.to_numeric(base['CD_TIPO'], errors='coerce').eq(1)
     print('\nElegibilidade (Brasil):')
     print(base['Dados_sig'].value_counts().rename('n_setores').to_frame()
           .assign(pct=lambda d: (d['n_setores'] / len(base) * 100).round(2)).to_string())
