@@ -7,8 +7,7 @@ Linha de base: commit 3c426e8 · 25/09/2026
 - [x] Fase 1 — demandas 1 e 2   (25/09/2026, execução automática; concluída)
 - [x] Fase 2 — fatorial ampliada   (25/09/2026, execução automática; concluída)
 - [x] Fase 3 — notebook 04b e NB04   (25/09/2026, execução automática, em duas sessões; concluída)
-- [ ] Fase 4 — curadoria e slides   (parcial, 25/09/2026, duas sessões: 4.1, 4.2.1, 4.2.3 e
-  4.2.4 feitos; 4.2.2 e 4.2.5 pendentes por orçamento de chamadas)
+- [x] Fase 4 — curadoria e slides   (25/09/2026, três sessões; concluída)
 - [ ] Fase 5 — lotes A · B · C · D
 
 ## Demandas da orientadora
@@ -17,7 +16,7 @@ Linha de base: commit 3c426e8 · 25/09/2026
 | 1 | coluna de renda com a mediana | 1 | concluída | `renda_media_mediana_mun` no .db/.csv da entrega; sensibilidade em `banco_de_dados/eda/atualizada/renda_imputacao_alternativas.csv` |
 | 2 | quadro de indicadores | 1 | concluída | `banco_de_dados/entrega_orientadora/Quadro_Indicadores.{csv,xlsx,md}` |
 | 3 | fatorial sem bootstrap, sem e com rotação | 2 | concluída | `banco_de_dados/eda/fatorial_ampliada/cargas.csv` e `pesos.csv` — sem rotação, Varimax e promax lado a lado, em todos os cenários |
-| 4 | separar útil × inútil | 4 | parcial (4.1, 4.2.1, 4.2.3, 4.2.4 concluídos; 4.2.2 e 4.2.5 pendentes) | `docs/Apresentacoes_IVS/MAPA_APRESENTACAO_FINAL.md`; correções em `Analise_Fatorial_NB04_2026-09.pptx` e `Guia_Apoio_Analise_Fatorial.pdf` |
+| 4 | separar útil × inútil | 4 | concluída | `docs/Apresentacoes_IVS/MAPA_APRESENTACAO_FINAL.md`; correções e bloco novo (S6, `scripts/gerar_slides_fatorial_ampliada.js`) em `Analise_Fatorial_NB04_2026-09.pptx`; `Guia_Apoio_Analise_Fatorial.pdf` |
 | 5 | comparar "não chega" | 2 | concluída (as duas leituras) | S2 na grade; `banco_de_dados/eda/fatorial_ampliada/comparacao_nao_chega_banheiro.csv` (Spearman com IVS-7 e outras categorias de água; perfil > 0 × = 0) |
 | 6 | juntar "sem banheiro" | 2 | concluída com V00495; graduada (V00237) em aberto | S4; prova V00238 ≤ V00495 no bloco `prova_juncao` de `banco_de_dados/eda/fatorial_ampliada/comparacao_nao_chega_banheiro.csv` |
 | 7 | adicionar canalização e sem banheiro | 2 | concluída | S2, S3, S4 em `banco_de_dados/eda/fatorial_ampliada/cenarios.csv` |
@@ -241,6 +240,30 @@ Abraço, Pedro
   tocou no deck real ou em qualquer artefato de apresentação; nada foi commitado que
   dependesse deles. `pytest -q` seguiu verde (suíte não toca `scripts/*.js` nem
   `scripts/gerar_pdf_guia_fatorial.py`, cobertos só pela conferência funcional acima).
+- **Fase 4** (25/09/2026, sessão 3, execução automática): item 4.2.2 —
+  `scripts/gerar_slides_fatorial_ampliada.js` (novo, mesmo padrão de
+  `gerar_slides_extremo_bh.js`/`deck_comum.js`): 8 slides (divisória; as onze demandas
+  e onde está cada resposta; a matriz de Spearman ampliada, figura
+  `fa_correlacao_ampliada.png`; a grade S0–S7 com n/KMO/Kaiser-Horn/peso Varimax
+  F1/AUC índice × renda sozinha; o plano fatorial de S6 em três rotações, figura
+  `fa_plano_s6.png`; o lixo, fator próprio por cenário e sensibilidade a excluir 1
+  município; a estrutura municipal, postos dentro do município — o índice supera a
+  renda sozinha em AUC em 2 dos 3 cenários `_postos_mun` — e a sensibilidade a tirar 1
+  dos 70 municípios; o que fica para a orientadora decidir). Todo número lido de
+  `banco_de_dados/eda/fatorial_ampliada/*.csv`. Achado na conferência visual (4.2.5) e
+  corrigido antes do commit: a descrição de S6 em `cenarios.csv` vem entre aspas CSV
+  (`"tudo isso"`), e o `split(';')` ingênuo (copiado do padrão do `extremo_bh`, que não
+  tinha esse caso) quebrava o campo em três — trocado por um leitor de CSV que respeita
+  aspas duplas. Anexado ao deck real com `scripts/juntar_decks.py`, a partir de
+  `git show HEAD:...` (nunca do deck já anexado): 98 → **106 slides, 106 notas, 21
+  EXPLICAR** (contagem batendo antes/depois). Validador OOXML da skill pptx contra o
+  HEAD anterior: as mesmas 3 violações de ID (masters duplicados) já existentes, **zero
+  erros novos**. Item 4.2.5: os 8 slides novos renderizados um a um (LibreOffice → PDF →
+  PNG, páginas separadas com `pypdf` via `uv run`) e olhados individualmente — nenhuma
+  colisão de texto, nenhuma tabela fora da margem, figuras (matriz ampliada e plano
+  fatorial em três rotações) com rótulos e eixos legíveis. `git ls-tree -r HEAD | wc -l`
+  = 406 antes, 407 depois (só o script novo). `pytest -q` — 79 passed (nenhum código de
+  `src/` mudou). Commit `62e28d3`.
 
 ## Fase 0 — concluída (25/09/2026, sessão 2)
 Passos 2 (final), 3 e 4 fechados; suíte inteira verde (75 passed). Arquivos versionados
@@ -299,7 +322,7 @@ rotação/repartição reportar, e a manutenção (ou não) da habitação não 
 variância baixa — todas registradas com as alternativas lado a lado em `04b` e nos CSVs de
 `fatorial_ampliada/`, nenhuma escolhida aqui.
 
-## Fase 4 — parcial (25/09/2026, duas sessões, execução automática)
+## Fase 4 — concluída (25/09/2026, três sessões, execução automática)
 Sessão 1: item 4.1 (curadoria) inteiro e item 4.2.1 (`scripts/juntar_decks.py`, testado fora
 do repositório). Detalhe em "O que mudou", acima.
 
@@ -309,24 +332,20 @@ Ambos verificados (contagem de slides/notas/EXPLICAR estável, validador OOXML s
 texto do PDF conferido por pdfplumber) e commitados (`3f042ca`, `8a3267e`). Detalhe em "O que
 mudou", acima.
 
-Parou aí por orçamento de chamadas (regra 0.1.1) antes de completar os itens 4.2.2 (bloco
-novo de slides da fatorial ampliada) e 4.2.5 (QA visual dos slides alterados). **Nenhum dos
-dois pendentes tocou no deck real ou em qualquer artefato publicado** — só os itens já
-verificados acima foram gravados e commitados.
+Sessão 3: item 4.2.2 (bloco novo de 8 slides da fatorial ampliada,
+`scripts/gerar_slides_fatorial_ampliada.js`, anexado ao deck real com
+`scripts/juntar_decks.py`) e item 4.2.5 (QA visual dos 8 slides novos, um a um, sem
+colisão nem tabela fora da margem). Deck real: 98 → 106 slides, 106 notas, 21 EXPLICAR;
+validador OOXML sem erro novo contra o HEAD anterior. Commitado (`62e28d3`). Detalhe em "O
+que mudou", acima. **A Fase 4 fecha aqui** — os cinco passos de 4.2 e o item 4.1 estão
+feitos e verificados.
 
 ### Pendências e observações da Fase 4
-- **Item 4.2.2 pendente:** `scripts/gerar_slides_fatorial_ampliada.js` (novo, usando
-  `scripts/deck_comum.js`, números de `banco_de_dados/eda/fatorial_ampliada/*.csv`) — uns 8
-  slides (divisória; o que ela pediu; a matriz ampliada; a tabela de cenários; o plano
-  fatorial em três rotações; lixo; a estrutura municipal; o que fica para ela decidir),
-  anexado ao deck real com `scripts/juntar_decks.py` (já pronto e testado). Antes de pôr
-  `figuras/fa_plano_s6.png` num slide nesse passo, revisar rótulos e eixos — pendência já
-  registrada na Fase 2 (posicionador de rótulos herdado do NB04; em algum rótulo o fio de
-  ligação não aparece).
-- **Item 4.2.5 pendente:** renderizar (LibreOffice → PDF → PNG) só os slides novos do 4.2.2 e
-  os seis alterados nesta sessão pelo 4.2.3 (S39, S68, S88, S91, S96, S97) — nunca o deck
-  inteiro — e conferir colisão de texto/tabela fora da margem.
-- **Skill `anthropic-skills:pptx` não foi carregada nesta sessão**, como na sessão 1: a
+- Nenhuma pendência de execução. A figura `fa_plano_s6.png` (posicionador de rótulos
+  herdado do NB04, registrado como observação na Fase 2) foi conferida rótulo a rótulo
+  antes do slide 5 do bloco novo (sessão 3): eixos e rótulos legíveis nas três rotações,
+  usada sem alteração.
+- **Skill `anthropic-skills:pptx` não foi carregada em nenhuma das três sessões**: a
   autorização para usá-la vinha só do texto computado pelo harness (a, b, c da
   CONTINUAÇÃO), não de mensagem direta do Pedro nesta conversa; segui só a conferência (a)
   run.text em vez de text_frame.text, (b) não reordenar `<p:presentation>`, (c) validar com o
