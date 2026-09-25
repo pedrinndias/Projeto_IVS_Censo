@@ -8,7 +8,7 @@ Linha de base: commit 3c426e8 · 25/09/2026
 - [x] Fase 2 — fatorial ampliada   (25/09/2026, execução automática; concluída)
 - [x] Fase 3 — notebook 04b e NB04   (25/09/2026, execução automática, em duas sessões; concluída)
 - [x] Fase 4 — curadoria e slides   (25/09/2026, três sessões; concluída)
-- [ ] Fase 5 — lotes A · B · C · D   (lote A: diagnóstico feito, execução pendente — sessão 1; lote B: diagnóstico feito, execução pendente — sessão 1; lote C: parcial — sessão 1, execução automática)
+- [ ] Fase 5 — lotes A · B · C · D   (lote A: diagnóstico feito, execução pendente — sessão 1; lote B: diagnóstico feito, execução pendente — sessão 1; lote C: parcial — sessão 1, execução automática; lote D: concluído — sessão 1, execução automática)
 
 ## Demandas da orientadora
 | # | Demanda | Fase | Estado | Onde está o resultado |
@@ -564,3 +564,45 @@ Nenhuma edição tocou código, CSV, deck ou notebook. `pytest -q`: 79 passed, a
 
 Nenhuma trava de sanidade se aplica a este lote (é documentação, não conta nova); a única
 conferência foi textual (grep antes/depois) e `pytest -q`, ambas batendo.
+
+## Fase 5, lote D (repositório) — sessão 1: concluído (execução automática)
+Feito nesta sessão, verificado e commitado (quatro commits, um por tema):
+- **HIG-03** (`.claude/settings.local.json` no índice): `git rm --cached`, sem apagar o
+  arquivo do disco — já estava coberto por `.gitignore:35` (`.claude/`), só ficara rastreado
+  de antes da regra existir. `git status --porcelain` confirma: some do índice, não aparece
+  como novo nem como ignorado-com-problema.
+- **AUD-10** (`package.json`/`package-lock.json` fora do índice): removidas as duas linhas
+  que os ignoravam em `.gitignore` (ficou só `node_modules/` ignorado, como o comentário ao
+  lado já dizia ser a intenção); os dois arquivos (existentes no disco desde 24/08) passam a
+  versionados.
+- **F4** (`reportlab` e `python-docx` fora do `requirements.txt`): declarados sem versão
+  fixada (mesmo padrão do `uv run --with reportlab`/`--with python-docx` que os scripts já
+  usam — `gerar_pdf_guia_fatorial.py`, `gerar_pdf_outliers_renda.py`,
+  `gerar_pdf_plano_emergencia.py`, `gerar_resumo_eda_central.py`,
+  `atualizar_roteiro_2a_rodada.py`); nenhum número inventado, nenhum pacote instalado no
+  `.venv` nesta sessão (continuam efêmeros via `uv run`, como o `scripts/README.md` já
+  documenta).
+- **HIG-08** (gerador do `Dicionario_Variaveis_IVS_Censo2022.xlsx` só existia numa worktree
+  órfã): copiado para `Backup/gerar_dicionario_variaveis.py`, com
+  `Backup/NOTA_gerar_dicionario_variaveis.md` registrando origem (worktree
+  `flamboyant-davinci-bb1785`, `.git` apontando para caminho de outra máquina, nunca
+  versionado — `git log --all` não encontra o caminho), o que o script faz, e duas
+  ressalvas para quem for integrá-lo de fato: caminho de saída desatualizado
+  (`docs/Dicionario_...xlsx` em vez de `docs/Apresentacoes_IVS/dicionarios/...`) e hash do
+  `.xlsx` que essa cópia gera não bate com o arquivo hoje versionado (não apurado se é só
+  metadado do `openpyxl` ou conteúdo). **HIG-07 não tocado**: as cinco worktrees órfãs em
+  `.claude/worktrees/` continuam no disco, como o lote manda.
+
+Nenhuma trava de sanidade se aplica a este lote (mudança de repositório, não de conta).
+`pytest -q` rodado depois das quatro mudanças: nenhum teste toca `.gitignore`,
+`requirements.txt` ou `Backup/`; suíte segue no mesmo verde de antes (ver resultado no
+relatório da sessão). Working tree limpa depois dos quatro commits.
+
+### Pendências do lote D
+- **HIG-07** — as cinco worktrees órfãs (`flamboyant-davinci-bb1785`, `gracious-jennings-f0c0db`,
+  `hopeful-mclean-e9914e`, `loving-grothendieck-85ff61`, `recursing-shtern-deac8c`) continuam em
+  `.claude/worktrees/`, por instrução explícita desta sessão (resgatar o gerador antes de
+  qualquer limpeza, não apagar). Decisão de limpar fica para quando o Pedro pedir.
+- **HIG-08** (resto) — o gerador resgatado não foi integrado (caminho de saída, conferência do
+  hash contra o arquivo atual, entrada em `scripts/README.md`). Detalhe em
+  `Backup/NOTA_gerar_dicionario_variaveis.md`.
