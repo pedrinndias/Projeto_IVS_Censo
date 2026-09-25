@@ -269,7 +269,9 @@ A pipeline da Fase 3 está **tecnicamente sólida**: o filtro ELSI funciona, a b
 
 Para apresentar com segurança:
 - Os números do §4 são **defensáveis**.
-- A correlação Spearman renda × raça/cor = −0,81 e a estrutura geral das correlações sustentam o desenho da análise fatorial.
+- A correlação Spearman renda × raça/cor = −0,81 (par a par; na matriz *listwise* que a
+  fatorial decompõe cai a 0,784 — ver `Relatorio_Analise_Fatorial_NB04.md`) e a estrutura
+  geral das correlações sustentam o desenho da análise fatorial.
 - O bloqueante histórico do projeto (ausência do filtro ELSI) está **resolvido e reproduzível**.
 - O próximo marco mensurável é o Notebook 03 (normalização por município).
 

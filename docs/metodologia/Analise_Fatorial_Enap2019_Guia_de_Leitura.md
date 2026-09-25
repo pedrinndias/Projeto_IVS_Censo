@@ -197,7 +197,7 @@ Duas etapas: adequação da base (amostra, mensuração, matriz de correlações
 >
 > **Como reportar:** em vez de "o Bartlett é vazio nesta escala", escrever *"conforme advertem Matos & Rodrigues (2019, p. 43), o teste tende a rejeitar H₀ em amostras grandes; a conclusão de adequabilidade se apoia no KMO e nos MSA individuais"*.
 
-Segundo ganho, na p. 42: o livro fixa em **0,80** o limiar a partir do qual correlações altas indicam multicolinearidade, em que "fica inviável separar o peso delas em cada um dos fatores". A correlação de Spearman entre renda e cor/raça é **−0,811**. Está acima do limiar, por pouco. Não invalida nada, mas um parecerista atento levantará — melhor que apareça declarado. A mesma página sugere a **SMC por variável** como diagnóstico complementar; é uma linha de numpy.
+Segundo ganho, na p. 42: o livro fixa em **0,80** o limiar a partir do qual correlações altas indicam multicolinearidade, em que "fica inviável separar o peso delas em cada um dos fatores". A correlação de Spearman entre renda e cor/raça é **−0,811** par a par, sobre os 104.108 setores do recorte. Está acima do limiar, por pouco — mas na matriz *listwise* que a fatorial decompõe (87.545 setores) cai a 0,784, abaixo do limiar (ver `docs/relatorios/Relatorio_Analise_Fatorial_NB04.md`). Não invalida nada, mas um parecerista atento levantará — melhor que apareça declarado. A mesma página sugere a **SMC por variável** como diagnóstico complementar; é uma linha de numpy.
 
 ### J. Exemplo 1 — os nove passos — p. 46–67
 

@@ -47,8 +47,10 @@ variáveis-componente do IVS e mais dezesseis indicadores descritivos.
    setores de menor vulnerabilidade educacional. Imputar zero enviesaria o índice.
 
 4. **Renda, cor/raça e analfabetismo são fortemente colineares** (Spearman de −0,81 e
-   −0,76 com a renda). A análise fatorial provavelmente extrairá um fator socioeconômico
-   dominante carregado por essas três variáveis.
+   −0,76 com a renda, par a par; na matriz *listwise* que a fatorial decompõe, renda ×
+   cor/raça cai a 0,784 — ver `Relatorio_Analise_Fatorial_NB04.md`). A análise fatorial
+   provavelmente extrairá um fator socioeconômico dominante carregado por essas três
+   variáveis.
 
 5. **O lixo inadequado se comporta de forma independente das demais** (correlações de
    0,10 a 0,20, e −0,06 com a razão de moradores) e é a única variável em que o recorte
