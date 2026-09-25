@@ -8,7 +8,7 @@ Linha de base: commit 3c426e8 · 25/09/2026
 - [x] Fase 2 — fatorial ampliada   (25/09/2026, execução automática; concluída)
 - [x] Fase 3 — notebook 04b e NB04   (25/09/2026, execução automática, em duas sessões; concluída)
 - [x] Fase 4 — curadoria e slides   (25/09/2026, três sessões; concluída)
-- [ ] Fase 5 — lotes A · B · C · D
+- [ ] Fase 5 — lotes A · B · C · D   (lote A: diagnóstico feito, execução pendente — sessão 1)
 
 ## Demandas da orientadora
 | # | Demanda | Fase | Estado | Onde está o resultado |
@@ -357,3 +357,68 @@ feitos e verificados.
   tem o caminho desatualizado do AUD-04, mas não é "o deck" da regra 0.2 (é gerado por
   script, não editado à mão) e não estava no escopo dos passos 4.2.2–4.2.5 desta sessão —
   fica registrado para quando for tratado.
+
+## Fase 5, lote A (código frágil) — sessão 1: diagnóstico, execução pendente
+Parada em 16 chamadas (80% do teto de 20 da fase), toda em leitura — nenhuma edição de
+código feita ainda. Nada versionado mudou nesta sessão além deste estado. `pytest` não
+rodou (nenhum código tocado). Plano pronto para a próxima sessão executar sem reler nada:
+
+**F2 — `astype(str) == '1'`/`.eq('1')` num inteiro que pode virar float com um nulo, e o
+filtro zera sem erro.** Correção já usada como padrão em `scripts/fatorial_ampliada.py:231`
+(`pd.to_numeric(col, errors='coerce') == 1`). Cinco lugares a trocar:
+- `src/ivs_censo/renda.py:203` — `testes['e_favela'] = df['CD_TIPO'].astype(str).eq('1')`
+  → `pd.to_numeric(df['CD_TIPO'], errors='coerce').eq(1)`. Teste: acrescentar em
+  `tests/test_ivs_censo.py` (perto de `test_favela_com_renda_altissima_vira_suspeito`,
+  linha 153) um caso com `CD_TIPO` numérico e um nulo no meio (vira float64) — o padrão
+  antigo dava `'1.0' != '1'` e perdia a favela.
+- `scripts/proporcoes_brasil.py:186` — `base['is_fcu'] = base['CD_TIPO'].astype(str).eq('1')`
+  → mesma troca. (Linha 185, `base['urbano'] = ...eq('Urbana')`, não é o padrão frágil —
+  compara string com string, não sobra dessa.)
+- `scripts/diagnostico_fatorial.py:50` — `df[(df['urbano'].astype(str) == '1') & ...]` →
+  igual à linha já corrigida em `fatorial_ampliada.py:231`.
+- `scripts/eda_extremo_belo_horizonte.py:44` — `df[(df.urbano.astype(str) == '1') & ...]` →
+  mesma troca.
+- `scripts/auditoria_renda.py:89` e `:257` — dois `CD_TIPO.astype(str).eq('1')` (mesmo
+  arquivo, um "lugar" só na contagem do prompt) → mesma troca.
+Scripts (fora de `renda.py`) não têm teste unitário da linha de filtro em si — só
+conferência de ponta a ponta contra os CSVs que geram, em `tests/test_pipeline_fase3.py`
+(pulada quando o CSV não existe local). Não rodar `scripts/proporcoes_brasil.py` (7 min,
+proibido fora da fase que manda); os outros três são rápidos e podem ser rodados para
+conferir que a saída não muda (urbano/CD_TIPO hoje são int64 sem nulo, então o resultado
+tem que ser bit a bit igual ao de antes).
+
+**FAT-04 — `escores_regressao` (fatorial.py:284) aceita a matriz padrão numa solução
+oblíqua e erra o escore sem avisar.** Correção sugerida no relatório: parâmetro `phi`
+opcional. `escores_regressao` não é chamada por `rodar_cenario` nem `diagnosticar` (só por
+`tests/test_fatorial.py:206` e pelo NB04, que usa Varimax — não quebra nada hoje).
+Assinatura nova: `escores_regressao(R, cargas, phi=None)`; corpo:
+`estrutura = cargas if phi is None else cargas @ phi; return np.linalg.solve(R, estrutura)`.
+Docstring ganha o aviso (matriz padrão só sem rotação oblíqua; com promax, `cargas` deve
+ser a matriz padrão e `phi` o Φ de `rotacao_promax`, para dar B = R⁻¹·padrão·Φ = R⁻¹·estrutura).
+Teste novo em `tests/test_fatorial.py`: com `rotacao_promax` sobre ACP, escore com `phi`
+tem variância 1 e correlação = Φ (replica a evidência do achado).
+
+**FAT-06 — `fatoracao_eixo_principal` (fatorial.py:138-184) marca `convergiu=True` num
+caso de Heywood com cargas incoerentes (soma dos quadrados > h cortado).** Correção: depois
+do laço (antes de montar `info`, linha ~182), se `heywood`, reescalar as linhas de `cargas`
+para que a soma dos quadrados bata com `h` (já cortado): `fator = np.divide(h, h_cru,
+out=np.ones_like(h), where=h_cru>0); cargas = cargas * np.sqrt(fator)[:, None]`, com
+`h_cru = (cargas**2).sum(axis=1)`. Teste novo com a matriz do achado (`R = [[1,.8,.7],
+[.8,1,.5],[.7,.5,1]]`, k=1): depois da correção, soma dos quadrados de `cargas` bate com
+`h` e `info['heywood'] is True` (mata a mutação "heywood = False" que hoje sobrevive).
+
+**FAT-12 — `chi2_sf` (fatorial.py:74-77, Wilson–Hilferty) erra por ordens de grandeza na
+cauda com os graus de liberdade pequenos do projeto.** Correção: gama incompleta superior
+regularizada Q(k/2, x/2) por série (x < a+1) ou fração contínua de Lentz (x ≥ a+1), só com
+`math` (sem scipy). Conferir num script `uv run --with scipy` fora do repo contra os três
+pares do achado (gl=21,x=105→3,73e-13; gl=15,x=75→5,66e-10; gl=1,x=30→4,3e-8) antes de
+trocar. Teste novo em `tests/test_fatorial.py` com esses pares (tolerância relativa
+pequena) — o teste antigo que só checa contra Bartlett real (qui² grande, p≈0) continua
+batendo, então precisa de um caso de cauda para pegar a regressão.
+
+**Depois de aplicar:** `pytest -q` tem que fechar em 79 passed + os testes novos (F2×1,
+FAT-04×1, FAT-06×1, FAT-12×1 ⇒ 83 passed esperados). Um commit por achado (ou um só para os
+quatro de `fatorial.py`, que é o mesmo arquivo/tema, e outro para os cinco do F2, que são
+scripts). Nenhum dos quatro achados aparece nos dados publicados hoje (todos "fica
+incoerente só num caso hipotético" ou "não muda nada com os dados reais") — não há CSV,
+deck ou documento para regerar por causa deste lote.
