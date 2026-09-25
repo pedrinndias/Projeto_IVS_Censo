@@ -1,0 +1,12 @@
+medida;valor;origem
+kmo;0.7826;banco_de_dados/eda/fatorial/resumo_adequabilidade.csv (ivs7_spearman)
+msa_minimo;0.6995;banco_de_dados/eda/fatorial/resumo_adequabilidade.csv (ivs7_spearman, var=Lixo inadequado)
+bartlett_qui2;235084.3838;banco_de_dados/eda/fatorial/resumo_adequabilidade.csv (ivs7_spearman)
+pesos_ivs6_varimax_saneamento;34.9620;banco_de_dados/eda/fatorial/nb04_sintese_pesos.csv (soma Saneamento)
+pesos_ivs6_varimax_socioeconomica;65.0380;banco_de_dados/eda/fatorial/nb04_sintese_pesos.csv (soma Socioeconomica)
+phi_promax;0.5215;banco_de_dados/eda/fatorial/nb04_phi_ivs6_sem_lixo.csv
+auc_indice;0.8131;banco_de_dados/eda/fatorial/nb04_validacao_fcu.csv (indice 0-1)
+auc_renda_invertida_sozinha;0.8819;recalculado em /tmp/fase0b/linha_base.py
+auc_media_postos_pesos_iguais;0.8533;recalculado em /tmp/fase0b/linha_base.py
+pesos_sem_sao_paulo;62.9131;recalculado em /tmp/fase0b/linha_base.py (F1 socioeconomico, o maior; F2 saneamento = 37.0869)
+reparticao_matriz_estrutura;59.6438;recalculado em /tmp/fase0b/linha_base.py (F1 socioeconomico via Estrutura1, o maior; F2 saneamento = 40.3562)
