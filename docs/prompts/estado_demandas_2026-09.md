@@ -7,7 +7,8 @@ Linha de base: commit 3c426e8 · 25/09/2026
 - [x] Fase 1 — demandas 1 e 2   (25/09/2026, execução automática; concluída)
 - [x] Fase 2 — fatorial ampliada   (25/09/2026, execução automática; concluída)
 - [x] Fase 3 — notebook 04b e NB04   (25/09/2026, execução automática, em duas sessões; concluída)
-- [ ] Fase 4 — curadoria e slides
+- [ ] Fase 4 — curadoria e slides   (parcial, 25/09/2026: 4.1 e o juntador de decks feitos;
+  4.2 passos 2–5 pendentes)
 - [ ] Fase 5 — lotes A · B · C · D
 
 ## Demandas da orientadora
@@ -16,7 +17,7 @@ Linha de base: commit 3c426e8 · 25/09/2026
 | 1 | coluna de renda com a mediana | 1 | concluída | `renda_media_mediana_mun` no .db/.csv da entrega; sensibilidade em `banco_de_dados/eda/atualizada/renda_imputacao_alternativas.csv` |
 | 2 | quadro de indicadores | 1 | concluída | `banco_de_dados/entrega_orientadora/Quadro_Indicadores.{csv,xlsx,md}` |
 | 3 | fatorial sem bootstrap, sem e com rotação | 2 | concluída | `banco_de_dados/eda/fatorial_ampliada/cargas.csv` e `pesos.csv` — sem rotação, Varimax e promax lado a lado, em todos os cenários |
-| 4 | separar útil × inútil | 4 | | |
+| 4 | separar útil × inútil | 4 | parcial (4.1 concluído; 4.2 pendente) | `docs/Apresentacoes_IVS/MAPA_APRESENTACAO_FINAL.md` |
 | 5 | comparar "não chega" | 2 | concluída (as duas leituras) | S2 na grade; `banco_de_dados/eda/fatorial_ampliada/comparacao_nao_chega_banheiro.csv` (Spearman com IVS-7 e outras categorias de água; perfil > 0 × = 0) |
 | 6 | juntar "sem banheiro" | 2 | concluída com V00495; graduada (V00237) em aberto | S4; prova V00238 ≤ V00495 no bloco `prova_juncao` de `banco_de_dados/eda/fatorial_ampliada/comparacao_nao_chega_banheiro.csv` |
 | 7 | adicionar canalização e sem banheiro | 2 | concluída | S2, S3, S4 em `banco_de_dados/eda/fatorial_ampliada/cenarios.csv` |
@@ -199,6 +200,20 @@ Abraço, Pedro
   depois da execução). `pytest -q` — 79 passed (suíte não toca notebook; nenhum código de
   `src/` ou `scripts/` mudou nesta sessão). `git ls-tree -r HEAD | wc -l` = 402 antes e depois
   (sem queda). Fase 3 **fecha** — 3.1 e 3.2 concluídos.
+- **Fase 4** (25/09/2026, execução automática, **parcial**): `scripts/inventario_apresentacao.py`
+  (novo, item 4.1) classifica os 51 artefatos de apresentação (pptx/pdf/docx de
+  `docs/Apresentacoes_IVS/` + figuras de `banco_de_dados/eda/`) em ATUAL (27), SUPERADO (13,
+  sucessor citado) ou HISTÓRICO (11, pasta `historico/`) por critério explícito — sem mover
+  nem apagar nada — e escreve `docs/Apresentacoes_IVS/MAPA_APRESENTACAO_FINAL.md`, com o
+  roteiro proposto citando os slides existentes pelo número. Trava batida na hora: deck atual
+  = 98 slides, 98 notas, 21 EXPLICAR (bate com a seção 1 do prompt). `scripts/juntar_decks.py`
+  (novo, item 4.2 passo 1) recria o juntador perdido — copia, do deck anexo, slide + layout +
+  master + tema + mídia (renumerados) + notas para o fim do deck base, direto no zip OOXML
+  (`zipfile` + regex nos `.rels`/`presentation.xml`), sem tocar em mais nada da base. Testado
+  com dois decks pequenos (pptxgenjs, 3 + 2 slides, 1 imagem e 1 nota cada, uma "EXPLICAR"
+  cada) no scratchpad da sessão: saída com 5 slides/5 notas/3 EXPLICAR (soma exata), texto,
+  notas e as duas imagens (mesmo tamanho em bytes) preservados, zip válido. `pytest -q` — 79
+  passed (nenhum código de `src/` mudou). Commits: `0058911` (4.1) e `4f36ea2` (juntador).
 
 ## Fase 0 — concluída (25/09/2026, sessão 2)
 Passos 2 (final), 3 e 4 fechados; suíte inteira verde (75 passed). Arquivos versionados
@@ -256,3 +271,40 @@ graduada de "sem banheiro" (V00237, pergunta 4), qual renda entra no índice fin
 rotação/repartição reportar, e a manutenção (ou não) da habitação não convencional apesar da
 variância baixa — todas registradas com as alternativas lado a lado em `04b` e nos CSVs de
 `fatorial_ampliada/`, nenhuma escolhida aqui.
+
+## Fase 4 — parcial (25/09/2026, execução automática)
+Feito: item 4.1 (curadoria) inteiro — `scripts/inventario_apresentacao.py` e
+`docs/Apresentacoes_IVS/MAPA_APRESENTACAO_FINAL.md`. Item 4.2 passo 1 —
+`scripts/juntar_decks.py` recriado e testado com decks pequenos (fora do repositório,
+no scratchpad da sessão; nunca tocou no deck real). Detalhe em "O que mudou", acima.
+Parou aí por orçamento de chamadas (regra 0.1.1): os passos 2–5 do item 4.2 ficam para a
+próxima sessão, **nenhum deles tocou no deck real ou em qualquer artefato de apresentação
+publicado** — só os dois scripts novos e o mapa foram gravados.
+
+### Pendências e observações da Fase 4
+- **Skill `anthropic-skills:pptx` não foi carregada.** O prompt computado desta execução
+  pedia para carregá-la "porque o Pedro autorizou", mas essa autorização vinha dentro do
+  texto computado pelo harness, não de uma mensagem direta do Pedro nesta conversa — e a
+  regra do CLAUDE.md ("nunca invoque uma skill por conta própria... quem chama sou eu") não
+  abre exceção para autorização relatada por terceiros. Segui o parágrafo de contingência do
+  próprio prompt ("se a skill não estiver disponível, siga com a conferência do próprio
+  prompt"): o que já foi feito (juntador) não precisou dela; o que falta (correções
+  pontuais por `python-pptx` e QA visual) deve seguir só com a conferência descrita no
+  prompt (número de slides/notas/EXPLICAR antes e depois) quando for feito.
+- **`python-pptx` e `reportlab` não estão instalados no `.venv`** (achado já conhecido,
+  Fase 5 lote D, F4) — rodar com `uv run --with python-pptx ...` / `uv run --with reportlab
+  --with pandas ...`, como o próprio `scripts/README.md` já documenta para os scripts de
+  PDF. Usei esse caminho para `inventario_apresentacao.py`; vale para os passos 3 e 4 também.
+- **Pendentes do item 4.2:** passo 2 (bloco novo de slides da fatorial ampliada,
+  `scripts/gerar_slides_fatorial_ampliada.js`, anexado com o juntador); passo 3 (correções
+  pontuais AUD-07, DEC-1, AUD-04 no deck real, por `python-pptx`, trocando `run.text`);
+  passo 4 (PDF do guia: AUD-08, 16.548 no lugar de 16.563, e as definições que faltam —
+  DEC-2, DEC-3, DEC-4); passo 5 (renderização dos slides novos/alterados para conferência
+  visual). Nenhum decide nada pela orientadora; nenhum precisa dela ter respondido nada.
+- **Antes do plano fatorial ir para slide** (passo 2), revisar rótulos e eixos de
+  `fa_plano_s6.png` — pendência já registrada na Fase 2 (posicionador de rótulos herdado do
+  NB04; em algum rótulo o fio de ligação não aparece).
+- **`docs/Apresentacoes_IVS/MAPA_APRESENTACAO_FINAL.md` é proposta**, não decisão — inclui
+  uma coluna "requer checagem do Pedro" para os artefatos sem gerador versionado
+  identificável (a maioria das figuras `.png`, que vêm de notebook ou de
+  `scripts/fatorial_ampliada.py`, não de um gerador de deck).
