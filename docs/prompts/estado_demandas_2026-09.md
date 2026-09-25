@@ -8,7 +8,7 @@ Linha de base: commit 3c426e8 · 25/09/2026
 - [x] Fase 2 — fatorial ampliada   (25/09/2026, execução automática; concluída)
 - [x] Fase 3 — notebook 04b e NB04   (25/09/2026, execução automática, em duas sessões; concluída)
 - [x] Fase 4 — curadoria e slides   (25/09/2026, três sessões; concluída)
-- [ ] Fase 5 — lotes A · B · C · D   (lote A: diagnóstico feito, execução pendente — sessão 1; lote B: diagnóstico feito, execução pendente — sessão 1)
+- [ ] Fase 5 — lotes A · B · C · D   (lote A: diagnóstico feito, execução pendente — sessão 1; lote B: diagnóstico feito, execução pendente — sessão 1; lote C: parcial — sessão 1, execução automática)
 
 ## Demandas da orientadora
 | # | Demanda | Fase | Estado | Onde está o resultado |
@@ -493,3 +493,74 @@ novos (FAT-07 × 5, L3 × 1 ⇒ 85 passed esperados; HIG-05 não soma teste, só
 robusto a sinal). Um commit por achado (FAT-07, L3, HIG-05). Nenhum dos três mexe em CSV, deck
 ou documento publicado — é só `tests/test_fatorial.py` (e, se a normalização do HIG-05 exigir,
 duas linhas a mais no teste existente).
+
+## Fase 5, lote C (documentação) — sessão 1: parcial (execução automática)
+Feito nesta sessão, verificado e commitado (dois commits, `e79b534` e `5ffd1cb`):
+- **AUD-09** (GUIA × README × MANUAL contradiziam o status da fatorial): sincronizados
+  README.md:29, o checklist de prioridades do GUIA, a tabela de notebooks do README da
+  Fase 3 e o README da Fase 3 (ordem de execução) — todos passam a dizer concluída,
+  como o GUIA já dizia desde 17/09.
+- **AUD-12** ("NB01/NB02 não importam o módulo"): GUIA §6, MANUAL (aviso de duplicação) e
+  README.md:96 corrigidos — as duas importações existem desde `d71f55f` (21/08), antes da
+  auditoria. README da Fase 3 ganhou a ressalva de que o NB04 guarda saída (ao contrário do
+  01/02).
+- **AUD-13** (contagens): GUIA passou a citar `test_fatorial.py` na cobertura; corrigidos
+  "65 testes" → "79" em `Relatorio_EDA_Fase3_IVS_ELSI.md:992` e "8 testes" → "11" em
+  `Relatorio_Analise_Fatorial_NB04.md:266` (contagem real conferida com
+  `grep -c '^def test_' tests/test_fatorial.py` = 11 e `pytest -q` = 79 passed antes de
+  editar). "104 colunas" (adiado da Fase 1): corrigido para 105 em GUIA, MANUAL (duas
+  tabelas), `docs/metodologia/Analise_Fatorial_NB04_Plano_de_Implementacao.md` e no próprio
+  prompt (`prompt_demandas_orientadora_2026-09.md`, seção 1).
+- **D4** (renda × cor/raça: −0,81 par a par × 0,784 listwise, só o relatório do NB04
+  registrava os dois): acrescentada a nota do valor listwise em GUIA, README, MANUAL e
+  `docs/metodologia/Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md` — 4 dos 7 documentos
+  do achado (número já publicado em `Relatorio_Analise_Fatorial_NB04.md`, não recalculado
+  aqui).
+- **AUD-03** (README de Apresentacoes_IVS apontava o deck avulso como "a apresentação
+  atual"): seção reescrita para o deck da fatorial (editado à mão); a seção antiga virou "O
+  deck complementar — EDA Central avulsa", mesmo conteúdo; corrigidos `MANUAL_DO_PROJETO.md:517`
+  e a frase "único artefato desta pasta escrito à mão" (não vale mais — o deck principal
+  também é editado à mão).
+- **HIG-13** (parcial): corrigido o commit inexistente do D5 na auditoria (`7df66c4` →
+  `5aa975d`, o commit real conferido com `git rev-parse`/`git log`); anotado no README de
+  Apresentacoes_IVS que o hash `2fb2e30` no nome do arquivo histórico é anterior à recriação
+  do histórico (HIG-18) e não resolve mais — sem afirmar qual commit é o equivalente (a
+  correção sugerida marcava isso como "a confirmar").
+
+Nenhuma edição tocou código, CSV, deck ou notebook. `pytest -q`: 79 passed, antes e depois
+(conferido nas duas pontas). Working tree limpa depois dos dois commits.
+
+### Pendências do lote C (não feitas nesta sessão, por orçamento de chamadas)
+- **HIG-11** — `estrutura_projeto.md` (árvore e status desatualizados desde antes da
+  reorganização de docs/ e do NB04). Diagnosticado, não corrigido. A correção sugerida no
+  relatório aceita reduzir o arquivo a um ponteiro para a arquitetura do GUIA em vez de
+  regerar a árvore inteira a partir de `git ls-files` — caminho mais barato para a próxima
+  sessão.
+- **HIG-09** — dicionário `docs/Apresentacoes_IVS/dicionarios/Dicionario_Variaveis_IVS_Censo2022.xlsx`
+  descreve V00398 como "queimado" (é caçamba de serviço de limpeza; V00399 é que é
+  queimado — confirmado contra `indicadores.py:80` e o dicionário oficial do IBGE nesta
+  sessão, com `openpyxl` em modo leitura, disponível no `.venv`). Não editado: faltou
+  conferir as linhas de V00399–V00402 na aba `Componentes_IVS` antes de corrigir, para não
+  arriscar trocar uma descrição errada por outra. Abas do arquivo: `Inicio`,
+  `Componentes_IVS`, `Variaveis_Brutas_Censo`, `Variaveis_Derivadas`, `Guia_por_Arquivo`,
+  `De_Para_2010_2022`, `Decisoes_Metodologicas`.
+- **HIG-13** (resto) — `graphify-out/graph.json` (`built_at_commit`) não foi conferido nem
+  tocado: é saída gerada por skill, não mantida à mão: mexer nela é decisão de quem tratar o
+  achado, não deste lote.
+- **NBS-1** — `notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb`, célula markdown 27:
+  "106 mil setores elegíveis" → deveria ser "104 mil setores urbanos elegíveis" (df_ok já
+  filtrado para urbano desde a célula 8). Não editado.
+- **NBS-3** — mesmo notebook: `desc_grupo`/`_desc_long` (células 16, 18, 20, 22, 24, 26, 28,
+  32) tiram a média das proporções por setor, não a razão agregada, e isso só é declarado
+  explicitamente nas seções 7e e 7h. Correção sugerida: uma frase no markdown das seções 5-7,
+  7b-7d e 7f, no mesmo padrão de 7e/7h. Não editado.
+- **NBS-4** — mesmo notebook, célula markdown 41 (seção 12): a matriz de correlação usa
+  `.corr()` par a par (não listwise), sem declarar — efeito de até 0,033 frente ao listwise
+  (82,8% das linhas completas). Correção sugerida: uma frase na célula 41. Não editado.
+  NBS-1/3/4 ficaram de fora porque editar `.ipynb` markdown com segurança pede reabrir o
+  notebook com `nbformat`, editar a célula certa e reexecutar com `nbclient` para conferir
+  que nada quebrou (como a Fase 3 fez para o NB04) — não coube no orçamento restante desta
+  sessão.
+
+Nenhuma trava de sanidade se aplica a este lote (é documentação, não conta nova); a única
+conferência foi textual (grep antes/depois) e `pytest -q`, ambas batendo.
