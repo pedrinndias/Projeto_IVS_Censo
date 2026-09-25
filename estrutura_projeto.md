@@ -1,6 +1,6 @@
 # 🏗️ Arquitetura e Estrutura do Projeto IVS — Censo 2022
 
-> Última atualização: 09/08/2026 (demandas da orientadora: recorte urbano, envelhecimento, tipo de domicílio, favelas, tabela de variáveis e cálculo nacional)
+> Última atualização: 25/09/2026 (Fase 5, lote C, HIG-11: árvore regerada por script a partir de `git ls-files`, desatualizada desde antes da reorganização de `docs/` e da chegada do NB04)
 
 ---
 
@@ -18,79 +18,55 @@ Este projeto constrói um **Índice de Vulnerabilidade à Saúde (IVS)** intraur
 
 ## Árvore de Diretórios (estado atual)
 
+> Gerada por script a partir de `git ls-files` (só o que está versionado; `dados/` bruto do
+> IBGE, `.venv/`, `.claude/` e `node_modules/` ficam de fora por não serem versionados ou por
+> serem internos de ferramenta). Profundidade limitada a 3 níveis, com contagem de arquivos
+> por pasta em vez de listar cada um — para o conteúdo linha a linha de uma pasta, `git
+> ls-files <pasta>`. Total: 410 arquivos versionados em 25/09/2026.
+
 ```
 Projeto_IVS_Censo22/
-│
-├── 📄 README.md                       Apresentação geral do projeto
-├── 📄 GUIA_DO_PROJETO.md              Documento mestre de retomada (canônico)
-├── 📄 estrutura_projeto.md            Este documento
-├── 📄 requirements.txt                Dependências Python
-├── 📄 LICENSE                         Licença MIT
-│
-├── 📂 dados/                          DADOS BRUTOS DO IBGE (~2.4 GB, não versionados)
-│   ├── Agregados_por_setores_*.csv    8 CSVs oficiais do Censo 2022 (baixar do IBGE)
-│   └── municipios_elsi_brasil.csv     Lista oficial dos 70 municípios ELSI (versionada)
-│
-├── 📂 notebooks/Fase3_EDA_ELSI/       PIPELINE ATIVA
-│   ├── 01_Extracao_Filtragem_ELSI.ipynb     Extrai os 8 CSVs, filtra os 70 municípios
-│   ├── 02_Analises_Descritivas.ipynb        EDA completa (descritivas, correlações, missing)
-│   └── README.md
-│
-├── 📂 src/ivs_censo/                  CÓDIGO COMPARTILHADO (importável por scripts)
-│   ├── fontes.py                      Os 8 arquivos do Censo e o que se lê de cada um
-│   ├── indicadores.py                 Os 26 indicadores: fórmula, escala, elegibilidade
-│   ├── dicionario.py                  Tabela de variáveis (descrição IBGE + arquivo-fonte)
-│   └── __init__.py
-│
-├── 📂 scripts/                        EXECUTÁVEIS VERSIONADOS
-│   ├── gerar_tabela_variaveis.py      Dicionário de variáveis (CSV + XLSX)
-│   ├── gerar_entrega_orientadora.py   Pacote de entrega (CSV + SQLite, 104 colunas)
-│   └── proporcoes_brasil.py           Indicadores do Brasil inteiro + comparativo ELSI
-│
-├── 📂 banco_de_dados/                 OUTPUTS DA PIPELINE ATIVA (Fase 3)
-│   ├── Base_ELSI_Bruta_Censo2022.csv  Saída do Notebook 01 (filtrada por ELSI, ~23 MB)
-│   ├── 📂 nacional/                   Saídas do cálculo Brasil inteiro
-│   │   ├── proporcoes_por_recorte.csv          Brasil todo / Brasil urbano / ELSI urbano
-│   │   ├── proporcoes_brasil_por_{regiao,uf,municipio}.csv
-│   │   ├── comparativo_brasil_vs_elsi.csv      ← entregável central da demanda 7
-│   │   └── representatividade_elsi_no_brasil.csv
-│   ├── 📂 eda/                        Saídas do Notebook 02 (descritivas + figuras)
-│   │   ├── descritivas_globais.csv
-│   │   ├── descritivas_por_municipio.csv
-│   │   ├── descritivas_por_regiao.csv
-│   │   ├── outliers.csv
-│   │   ├── missing_por_municipio.csv
-│   │   ├── correlacao_pearson.csv  ·  correlacao_spearman.csv
-│   │   ├── elegibilidade_setores.csv
-│   │   ├── diagnostico_proporcoes_fora_intervalo.csv   (auditoria C1)
-│   │   ├── diagnostico_esgoto_312_vs_249.csv           (auditoria C2)
-│   │   ├── extremos_razao_moradores.csv                (auditoria R4)
-│   │   ├── auditoria_analfabetismo_municipio.csv
-│   │   └── 📂 figuras/               histogramas, boxplots, correlação, missing (PNG)
-│   └── 📂 entrega_orientadora/        Bases entregues à orientadora (CSV + SQLite .db)
-│       ├── Base_ELSI_70Municipios_Censo2022.{csv,db}
-│       ├── Base_BeloHorizonte_Censo2022.{csv,db}
-│       └── README.md                 ← fonte da verdade da metodologia atual
-│
-├── 📂 docs/                           DOCUMENTAÇÃO-FONTE E RELATÓRIOS
-│   ├── Cálculo IVS2012.docx           Metodologia operacional do IVS-BH
-│   ├── guia_analises.docx             Framework FIOCRUZ de EDA
-│   ├── indice_vulnerabilidade2012 (2).pdf   IVS-BH 2012 oficial
-│   ├── Estudo Longitudinal da Saúde dos Idosos Brasileiros.docx
-│   ├── Plano de trabalho.pdf  ·  Plano_Artigo_Cientifico_IC_Preenchido.docx
-│   ├── Relatorio_EDA_Fase3_IVS_ELSI.{md,docx}     Relatório técnico-interpretativo da EDA
-│   ├── Relatorio_Integridade_Projeto.md           Diagnóstico técnico
-│   └── 📂 Apresentacoes_IVS/          Apresentação corrente + roteiro · historico/ · dicionarios/
-│
-├── 📂 Backup/                         LEGADOS — Fases 1 e 2, scripts antigos
-│   ├── Fase1_IVS_Basico/              5 notebooks (sem filtro ELSI)
-│   ├── Fase2_IVS_Multidimensional/    4 notebooks (sem filtro ELSI, com V01042)
-│   ├── ETL/  ·  formatar/  ·  banco_de_dados/
-│   └── DIAGNOSTICO_COMPLETO_PROJETO.md
-│
-└── 📂 tests/                          Testes sanity-check da pipeline
-    ├── test_pipeline_fase3.py         Sanity-check dos artefatos gerados
-    └── test_ivs_censo.py              Fórmulas dos indicadores (dados sintéticos)
+├── .gitignore · GUIA_DO_PROJETO.md · LICENSE · README.md · estrutura_projeto.md ·
+│   graphify.md · package.json · package-lock.json · requirements.txt
+├── .vscode/  (1 arquivo)
+├── Backup/  (17 arquivos)                    LEGADO — Fases 1 e 2, pré-filtro ELSI
+│   ├── ETL/  (1 arquivo)
+│   ├── Fase1_IVS_Basico/  (5 arquivos)
+│   ├── Fase2_IVS_Multidimensional/  (4 arquivos)
+│   ├── banco_de_dados/  (1 arquivo)
+│   │   └── fase2_bases/  (1 arquivo)
+│   └── formatar/  (3 arquivos)
+├── banco_de_dados/  (170 arquivos)           OUTPUTS DA PIPELINE
+│   ├── eda/  (153 arquivos)
+│   │   ├── atualizada/  (27 arquivos)
+│   │   ├── fatorial/  (43 arquivos)
+│   │   ├── fatorial_ampliada/  (14 arquivos)
+│   │   └── figuras/  (7 arquivos)
+│   ├── entrega_orientadora/  (10 arquivos)
+│   └── nacional/  (7 arquivos)
+├── dados/  (4 arquivos)                      só `municipios_elsi_brasil.csv` e afins; os
+│                                              8 CSVs brutos do IBGE não são versionados
+├── docs/  (61 arquivos)                      DOCUMENTAÇÃO
+│   ├── Apresentacoes_IVS/  (26 arquivos)
+│   │   ├── complementos/  (10 arquivos)
+│   │   ├── dicionarios/  (2 arquivos)
+│   │   └── historico/  (11 arquivos)
+│   ├── metodologia/  (13 arquivos)
+│   │   └── fontes_pdf/  (4 arquivos)
+│   ├── prompts/  (6 arquivos)
+│   ├── referencias/  (8 arquivos)
+│   └── relatorios/  (7 arquivos)
+├── graphify-out/  (108 arquivos)             grafo de conhecimento — gerado por skill, não
+│   ├── cache/  (86 arquivos)                 mantido à mão (HIG-13)
+│   │   ├── ast/  (58 arquivos)
+│   │   └── semantic/  (27 arquivos)
+│   └── converted/  (12 arquivos)
+├── notebooks/  (5 arquivos)
+│   └── Fase3_EDA_ELSI/  (5 arquivos)         01, 02, 04, 04b + README — PIPELINE ATIVA
+├── scripts/  (26 arquivos)                   EXECUTÁVEIS VERSIONADOS
+├── src/  (6 arquivos)
+│   └── ivs_censo/  (6 arquivos)              CÓDIGO COMPARTILHADO (importável por scripts)
+└── tests/  (3 arquivos)                      testes sanity-check e de fórmulas
 ```
 
 ---
@@ -133,8 +109,9 @@ dados/*.csv (8 arquivos) + dados/municipios_elsi_brasil.csv
   │   outliers (IQR + P95), missing, correlações (Pearson + Spearman)
   │   Saída → banco_de_dados/eda/*.csv + figuras/*.png (104.108 setores urbanos OK)
   │
-  ▼  (a criar) Notebook 03+ → normalização por município, análise fatorial,
-                              IVS final, categorização em 4 faixas, mapas (QGIS)
+  ▼  04_Analise_Fatorial.ipynb / 04b_Analise_Fatorial_Ampliada.ipynb → análise fatorial
+     (concluída — ver GUIA_DO_PROJETO.md); IVS final, categorização e mapas (QGIS) seguem
+     como próxima etapa
 ```
 
 ### Linha lateral — cálculo nacional (não é recorte de análise)
@@ -213,7 +190,7 @@ Detalhamento em [`docs/relatorios/Relatorio_Integridade_Projeto.md`](docs/relato
 | 2 | Normalização de renda por município (no Notebook 03 a criar) | 🟡 Próxima fase |
 | 3 | ~~Relatórios em `docs/` com números da era V01042~~ — regerados em 12/06/2026 sobre a metodologia V00001 | ✅ Resolvido |
 | 4 | ~8 GB de dados duplicados/obsoletos em `Backup/` | 🟢 Limpeza opcional |
-| 5 | Análise fatorial + cálculo do IVS final + categorização | 🔴 Pendente |
+| 5 | Análise fatorial — **concluída** (NB04/04b); cálculo do IVS final + categorização | 🔴 Pendente |
 
 ---
 
