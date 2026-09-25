@@ -13,8 +13,9 @@ documentos.
 | Script | O que gera | Reexecutável? |
 |---|---|---|
 | [`proporcoes_brasil.py`](proporcoes_brasil.py) | `banco_de_dados/nacional/` — os indicadores para os ~468 mil setores do Brasil | sim · ~6,7 min |
-| [`gerar_entrega_orientadora.py`](gerar_entrega_orientadora.py) | o pacote de entrega: CSV + SQLite, 104 colunas, 3 tabelas | sim · ~2 min |
+| [`gerar_entrega_orientadora.py`](gerar_entrega_orientadora.py) | o pacote de entrega: CSV + SQLite, 105 colunas, 3 tabelas | sim · ~2 min |
 | [`gerar_tabela_variaveis.py`](gerar_tabela_variaveis.py) | `Dicionario_Variaveis_Projeto.{csv,xlsx}` | sim |
+| [`gerar_quadro_indicadores.py`](gerar_quadro_indicadores.py) | `Quadro_Indicadores.{csv,xlsx,md}` | sim |
 | [`gerar_tabelas_auditoria.py`](gerar_tabelas_auditoria.py) | as 9 tabelas que eram "CSVs órfãos" até 20/08/2026 | sim |
 | [`auditoria_renda.py`](auditoria_renda.py) | as 8 tabelas `renda_*` e o critério de outlier | sim |
 | [`eda_atualizada.py`](eda_atualizada.py) | `eda/atualizada/` — a EDA recalculada com a renda sem o extremo | sim |

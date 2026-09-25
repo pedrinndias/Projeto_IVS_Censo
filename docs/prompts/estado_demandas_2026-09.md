@@ -4,7 +4,7 @@ Linha de base: commit 3c426e8 · 25/09/2026
 
 ## Fases
 - [x] Fase 0 — linha de base e destravamentos   (sessão de 25/09/2026, em duas partes; concluída)
-- [ ] Fase 1 — demandas 1 e 2
+- [x] Fase 1 — demandas 1 e 2   (25/09/2026, execução automática; concluída)
 - [ ] Fase 2 — fatorial ampliada
 - [ ] Fase 3 — notebook 04b e NB04
 - [ ] Fase 4 — curadoria e slides
@@ -13,8 +13,8 @@ Linha de base: commit 3c426e8 · 25/09/2026
 ## Demandas da orientadora
 | # | Demanda | Fase | Estado | Onde está o resultado |
 |---|---|---|---|---|
-| 1 | coluna de renda com a mediana | 1 | | |
-| 2 | quadro de indicadores | 1 | | |
+| 1 | coluna de renda com a mediana | 1 | concluída | `renda_media_mediana_mun` no .db/.csv da entrega; sensibilidade em `banco_de_dados/eda/atualizada/renda_imputacao_alternativas.csv` |
+| 2 | quadro de indicadores | 1 | concluída | `banco_de_dados/entrega_orientadora/Quadro_Indicadores.{csv,xlsx,md}` |
 | 3 | fatorial sem bootstrap, sem e com rotação | 2 | | |
 | 4 | separar útil × inútil | 4 | | |
 | 5 | comparar "não chega" | 2 | | |
@@ -102,6 +102,41 @@ Abraço, Pedro
   células/27 linhas, `proporcoes_por_recorte.csv` 3 células/3 linhas. Razão agregada nova do
   ELSI urbano: 0,013767 (era 0,986233).
 - **Fase 0** (25/09/2026, sessão 2): suíte inteira `pytest -q` — 75 passed em 11,61s.
+- **Fase 1** (25/09/2026, execução automática): `src/ivs_censo/renda.py` ganhou
+  `renda_imputada_mediana_municipal` — imputa, nos setores de `SETORES_RENDA_EXCLUIDA`, a
+  mediana do próprio município (sem eles), no recorte `urbano==1` e `Dados_sig=='OK'`.
+  Testada com município sintético (mediana de {1000,2000,3000} sem o excluído = 2000,
+  outro município intacto) e contra o `.db` real (1 setor difere de `renda_media`, valor
+  3.058,235).
+- **Fase 1** (25/09/2026): `scripts/gerar_entrega_orientadora.py` grava a coluna nova
+  `renda_media_mediana_mun` ao lado de `renda_media_sem_extremo`. Entrega regenerada
+  (~2 min): banco passa de 104 para **105 colunas** (109.032 × 105 e 5.166 × 105).
+  `banco_de_dados/entrega_orientadora/README.md` atualizado (104→105 + parágrafo da coluna
+  nova).
+- **Fase 1** (25/09/2026): `scripts/eda_extremo_belo_horizonte.py` ganhou a seção de
+  sensibilidade da demanda 1 —
+  `banco_de_dados/eda/atualizada/renda_imputacao_alternativas.csv` com as três alternativas
+  (mediana de BH sem o setor R$ 3.058,235, com o setor R$ 3.060,31, dos 70 municípios sem o
+  setor R$ 2.572,39) e, para cada uma, média/desvio/máximo em BH e no agregado. Reaproveita
+  `descrever()`, já existente no script — não reescreveu a lógica.
+- **Fase 1** (25/09/2026): `scripts/gerar_quadro_indicadores.py` (novo) monta
+  `banco_de_dados/entrega_orientadora/Quadro_Indicadores.{csv,xlsx,md}` a partir de
+  `TODOS_INDICADORES` — 26 linhas (7 do IVS-7, 19 complementares), com numerador,
+  denominador e descrição oficial do IBGE por código V.
+- **Fase 1** (25/09/2026): IND-3 (parcial) — `scripts/gerar_tabela_variaveis.py` passou a
+  concatenar as 9 colunas derivadas (`DESC_DERIVADAS`, reaproveitado de
+  `gerar_entrega_orientadora.py`, sem duplicar) ao `Dicionario_Variaveis_Projeto.csv/.xlsx`,
+  que só tinha as 70 variáveis brutas do Censo (72 linhas → 81). Os 26 indicadores ficam no
+  `Quadro_Indicadores.csv` novo, não duplicados aqui. `scripts/README.md` ganhou a linha do
+  script novo e 104→105.
+- **Fase 1** (25/09/2026): `git grep -n "104 colunas\|× 104\|x 104"` — 9 ocorrências;
+  corrigidos os dois READMEs (`banco_de_dados/entrega_orientadora/README.md`,
+  `scripts/README.md`). `GUIA_DO_PROJETO.md`, `docs/MANUAL_DO_PROJETO.md`,
+  `docs/metodologia/...`, `docs/relatorios/...` e o próprio prompt ficam para a Fase 5,
+  lote C, como o prompt manda.
+- **Fase 1** (25/09/2026): suíte inteira `pytest -q` — **78 passed** em ~11,6s (75 + 3
+  testes novos: imputação por mediana municipal, coluna no `.db`, cobertura do quadro de
+  indicadores).
 
 ## Fase 0 — concluída (25/09/2026, sessão 2)
 Passos 2 (final), 3 e 4 fechados; suíte inteira verde (75 passed). Arquivos versionados

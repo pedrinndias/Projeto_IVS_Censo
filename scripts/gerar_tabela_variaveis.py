@@ -22,6 +22,9 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))  # torna o 
 from ivs_censo import ARQUIVOS_CENSO, encontrar_raiz, tabela_variaveis  # noqa: E402
 from ivs_censo.indicadores import TODOS_INDICADORES                      # noqa: E402
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))                 # scripts/, p/ reaproveitar DESC_DERIVADAS
+from gerar_entrega_orientadora import DESC_DERIVADAS                     # noqa: E402
+
 
 def main() -> None:
     raiz = encontrar_raiz(Path(__file__).resolve().parent)
@@ -29,6 +32,20 @@ def main() -> None:
     destino.mkdir(parents=True, exist_ok=True)
 
     tabela = tabela_variaveis(raiz / 'dados')
+
+    # IND-3 (revisão geral): o dicionário cobria só as variáveis brutas do Censo — as
+    # colunas derivadas pela pipeline (urbano, is_fcu, renda_media_sem_extremo...) ficavam
+    # de fora. Os 26 indicadores calculados agora têm quadro próprio
+    # (Quadro_Indicadores.csv, scripts/gerar_quadro_indicadores.py); aqui entram só as
+    # derivadas, reaproveitando as descrições já escritas em gerar_entrega_orientadora.py.
+    derivadas = pd.DataFrame([{
+        'variavel': col, 'descricao_oficial': desc, 'tema_ibge': '(derivado)',
+        'bloco_do_projeto': 'Colunas derivadas pela pipeline', 'arquivo_fonte': '(derivado)',
+        'chave_do_setor_no_arquivo': '', 'usada_nos_indicadores': '(identificação/auxiliar)',
+        'origem_da_descricao': 'Documentação do projeto (gerar_entrega_orientadora.py)',
+    } for col, desc in DESC_DERIVADAS.items()])
+    tabela = pd.concat([tabela, derivadas], ignore_index=True)
+
     print(f'Tabela de variáveis: {len(tabela)} linhas, {tabela["arquivo_fonte"].nunique()} arquivos do Censo')
     print(tabela.groupby(['bloco_do_projeto', 'arquivo_fonte']).size().rename('n_variaveis').to_string())
 
