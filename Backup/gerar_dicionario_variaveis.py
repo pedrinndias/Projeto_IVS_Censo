@@ -450,7 +450,7 @@ VARS_BRUTAS = [
     ('V00316', 'caracteristicas_domicilio2', 'Destinação do esgoto — categoria inadequada 5.',
      'NUMERADOR de pct_esgoto_inad.', 'pct_esgoto_inad', '—'),
 
-    ('V00398', 'caracteristicas_domicilio2', 'Destino do lixo — categoria inadequada 1 (queimado, etc.).',
+    ('V00398', 'caracteristicas_domicilio2', 'Destino do lixo — categoria inadequada 1 (caçamba de serviço de limpeza, etc.).',
      'NUMERADOR de pct_lixo_inad.', 'pct_lixo_inad', '—'),
     ('V00399', 'caracteristicas_domicilio2', 'Destino do lixo — categoria inadequada 2.',
      'NUMERADOR de pct_lixo_inad.', 'pct_lixo_inad', '—'),
