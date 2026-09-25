@@ -24,9 +24,10 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
 
-from ivs_censo.fatorial import (IVS7, ROTULOS, acp, bartlett, chi2_sf,           # noqa: E402
+from ivs_censo.fatorial import (IVS7, ROTULOS, _sinal_positivo, acp, alinhar_cargas,  # noqa: E402
+                                bartlett, bootstrap_cargas, chi2_sf,
                                 comunalidades_obliquas, escores_regressao,
-                                fatoracao_eixo_principal, kmo, matriz_correlacao,
+                                fatoracao_eixo_principal, horn, kmo, matriz_correlacao,
                                 postos, reparticao, rodar_cenario,
                                 rotacao_promax, smc, varimax)
 
@@ -81,19 +82,28 @@ def test_acp_varimax_reproduz_csv():
     rot = varimax(cargas)
     comun = (cargas ** 2).sum(axis=1)
     kmo_global, msa = kmo(R)
-    qui, gl, _ = bartlett(R, len(X))
+    qui, gl, pval = bartlett(R, len(X))
 
     # os três números que o Notebook 04 usa como trava do bloco de adequabilidade
     assert round(kmo_global, 4) == 0.7826
     assert round(float(msa.min()), 4) == 0.6995
     assert round(qui, 4) == 235084.3838
+    # FAT-07: só o qui-quadrado estava travado; gl e p-valor também mudam se a fórmula mudar.
+    assert gl == 21                             # p(p-1)/2 com p=7, não p(p+1)/2
+    assert pval < 1e-10                          # com 87 mil casos, rejeita H0 por construção
 
     ref = pd.read_csv(CARGAS_REF, sep=';', index_col=0, encoding='utf-8-sig')
     calculado = pd.DataFrame(np.column_stack([cargas, rot, comun, msa]),
                              index=[ROTULOS.get(c, c) for c in colunas],
                              columns=list(ref.columns)).round(3)
     assert list(calculado.index) == list(ref.index)
-    np.testing.assert_allclose(calculado.to_numpy(), ref.to_numpy(), atol=1e-6)
+    # HIG-05: numpy>=1.26 pode devolver o sinal cru de `eigh` trocado (documentado em
+    # `acp`); normaliza pela mesma convenção do resto do projeto (soma da coluna > 0 →
+    # sinal +1, como em `rodar_cenario`/`_sinal_positivo`) em vez de exigir uma versão
+    # mínima de numpy testada.
+    calc_arr = calculado.to_numpy() * _sinal_positivo(calculado.to_numpy())
+    ref_arr = ref.to_numpy() * _sinal_positivo(ref.to_numpy())
+    np.testing.assert_allclose(calc_arr, ref_arr, atol=1e-6)
 
 
 def test_varimax_atinge_o_otimo_da_rotacao_2d():
@@ -181,6 +191,37 @@ def test_promax_preserva_comunalidade_e_expoe_phi():
     padrao, _, phi = rotacao_promax(cargas)
     np.testing.assert_allclose(np.diag(phi), 1.0, atol=1e-10)
     np.testing.assert_allclose(comunalidades_obliquas(padrao, phi), comun_ortogonal, atol=1e-8)
+
+
+@pytest.mark.skipif(not BANCO.exists(), reason='banco da entrega ausente')
+def test_promax_ivs6_bate_com_referencia_do_nb04():
+    """FAT-07: trava Φ e a repartição do promax sobre o IVS-6 real (linha de base do NB04).
+
+    Mesma consulta de `test_varimax_atinge_o_otimo_da_rotacao_2d` (IVS7 menos
+    `pct_lixo_inad`). Φ[0,1] não depende da ordem dos fatores que `acp`/`varimax`
+    devolvem; a repartição (65,82/34,18 no padrão e 59,64/40,36 na estrutura) também
+    não, por usar `max`. Mata "promax com kappa=2", "alvo sem o sinal" e "estrutura =
+    padrão" — mutações que passariam pelos testes de propriedade acima, que não têm
+    referência numérica externa.
+    """
+    con = sqlite3.connect(BANCO)
+    try:
+        df = pd.read_sql(
+            f"select {', '.join(['urbano', 'Dados_sig'] + IVS7)} from setores_censitarios", con)
+    finally:
+        con.close()
+    df = df[(df['urbano'].astype(str) == '1') & (df['Dados_sig'] == 'OK')].copy()
+    df['renda_inv'] = -df['renda_media']
+    colunas6 = [c if c != 'renda_media' else 'renda_inv' for c in IVS7 if c != 'pct_lixo_inad']
+    X = df[colunas6].dropna()
+
+    R = X.corr(method='spearman').to_numpy()
+    _, cargas = acp(R, 2)
+    padrao, estrutura, phi = rotacao_promax(cargas)
+
+    assert round(abs(phi[0, 1]), 4) == 0.5215
+    assert round(max(reparticao(padrao)), 4) == 0.6582
+    assert round(max(reparticao(estrutura)), 4) == 0.5964
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -336,6 +377,88 @@ def test_rodar_cenario_orienta_sinais_e_fecha_as_contas():
     np.testing.assert_allclose((r['varimax'] ** 2).sum(axis=1), r['comunalidade'], atol=1e-10)
     np.testing.assert_allclose(r['pesos']['varimax'], reparticao(r['varimax']))
     assert rodar_cenario(X, com_horn=False)['horn_retidos'] is None
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# FAT-07: Horn com semente fixa, alinhamento e percentis do bootstrap
+# ─────────────────────────────────────────────────────────────────────────────
+def test_horn_com_semente_fixa_bate_com_array_travado():
+    """`horn(100, 5, sims=10, semente=99)` trava byte a byte — array gravado à parte.
+
+    Mata "semente trocada" (mudaria o array inteiro) e "Horn devolvendo zeros" (um
+    array de zeros nunca bateria com este, que é estritamente decrescente e positivo).
+    """
+    esperado = np.array([1.29379674, 1.1380489, 0.98994011, 0.8613523, 0.71686195])
+    np.testing.assert_allclose(horn(100, 5, sims=10, semente=99), esperado, atol=1e-8)
+
+
+def test_alinhar_cargas_desfaz_sinal_e_ordem():
+    """`alinhar_cargas` tem de devolver a referência mesmo com colunas trocadas e sinal invertido.
+
+    É o que o bootstrap depende para não confundir instabilidade real com o LAPACK
+    tendo devolvido os fatores em outra ordem. Mata "sem inverter sinal".
+    """
+    _, referencia, _ = _matriz_fatorial()
+    embaralhada = referencia[:, ::-1].copy()   # troca a ordem das duas colunas
+    embaralhada[:, 0] = -embaralhada[:, 0]     # e inverte o sinal de uma delas
+
+    alinhada = alinhar_cargas(embaralhada, referencia)
+    np.testing.assert_allclose(alinhada, referencia, atol=1e-10)
+
+
+def test_bootstrap_cargas_percentis_sao_2_5_97_5():
+    """Os percentis do IC do bootstrap são 2,5/97,5, não 5/95 — e batem com o cálculo à parte.
+
+    `cargas_ic` e `np.percentile(cargas_reamostragens, [2.5, 97.5], ...)` usam a mesma
+    matriz de reamostragens devolvida: têm de bater exatamente, não só por tolerância.
+    """
+    rng = np.random.default_rng(3)
+    F = rng.standard_normal((500, 2))
+    carga_verdadeira = np.array([[0.8, 0.1], [0.7, 0.2], [0.1, 0.8], [0.2, 0.7], [0.6, 0.3]])
+    X = F @ carga_verdadeira.T + 0.5 * rng.standard_normal((500, 5))
+
+    resultado = bootstrap_cargas(X, 2, n_rep=20, seed=1, metodo='pearson')
+    lo_esperado = np.percentile(resultado['cargas_reamostragens'], 2.5, axis=0)
+    hi_esperado = np.percentile(resultado['cargas_reamostragens'], 97.5, axis=0)
+    np.testing.assert_allclose(resultado['cargas_ic'][0], lo_esperado)
+    np.testing.assert_allclose(resultado['cargas_ic'][1], hi_esperado)
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# L3: renda x cor/raça — par a par diverge do listwise (D4)
+# ─────────────────────────────────────────────────────────────────────────────
+@pytest.mark.skipif(not BANCO.exists(), reason='banco da entrega ausente')
+def test_renda_x_cor_raca_par_a_par_diverge_do_listwise():
+    """D4/L3: a correlação renda x cor/raça muda de conclusão conforme a procedência.
+
+    Par a par (só as duas variáveis sem faltante) dá 0,8106 sobre 104.094 setores;
+    dentro do recorte listwise das 7 variáveis do IVS7 (87.545 casos, o que a
+    fatorial de fato decompõe) dá 0,7845 — abaixo do limiar de multicolinearidade
+    0,80 usado no projeto. Sem este teste, nada trava que a escolha de procedência
+    muda a conclusão.
+    """
+    con = sqlite3.connect(BANCO)
+    try:
+        df = pd.read_sql(
+            f"select {', '.join(['urbano', 'Dados_sig'] + IVS7)} from setores_censitarios", con)
+    finally:
+        con.close()
+    df = df[(pd.to_numeric(df['urbano'], errors='coerce') == 1)
+           & (df['Dados_sig'] == 'OK')].copy()
+    df['renda_inv'] = -df['renda_media']
+
+    par = df[['renda_inv', 'pct_raca_pretpardind']].dropna()
+    r_par = par.corr(method='spearman').loc['renda_inv', 'pct_raca_pretpardind']
+
+    colunas7 = [c if c != 'renda_media' else 'renda_inv' for c in IVS7]
+    listwise = df[colunas7].dropna()
+    r_listwise = listwise.corr(method='spearman').loc['renda_inv', 'pct_raca_pretpardind']
+
+    assert len(par) == 104_094
+    assert len(listwise) == 87_545
+    assert round(r_par, 4) == 0.8106
+    assert round(r_listwise, 4) == 0.7845
+    assert abs(r_par - r_listwise) > 0.02, 'procedência não muda a conclusão de multicolinearidade'
 
 
 # ─────────────────────────────────────────────────────────────────────────────
