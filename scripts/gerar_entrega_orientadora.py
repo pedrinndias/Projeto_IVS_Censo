@@ -29,7 +29,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))  # torna o 
 from ivs_censo import ARQUIVOS_CENSO, encontrar_raiz, tabela_variaveis          # noqa: E402
 from ivs_censo.indicadores import (TODOS_INDICADORES, calcular_indicadores,     # noqa: E402
                                    classificar_dados_sig)
-from ivs_censo.renda import SETORES_RENDA_EXCLUIDA, renda_sem_extremos          # noqa: E402
+from ivs_censo.renda import (SETORES_RENDA_EXCLUIDA, renda_imputada_mediana_municipal,  # noqa: E402
+                             renda_sem_extremos)
 
 COLS_TEXTO = ['CD_SETOR', 'CD_UF', 'CD_MUN', 'NM_MUN', 'NM_BAIRRO', 'SITUACAO',
               'CD_SIT', 'CD_TIPO', 'CD_FCU', 'NM_FCU', 'Moradia_Predominante']
@@ -53,6 +54,10 @@ DESC_DERIVADAS = {
         'Igual a renda_media, exceto nos setores excluídos nominalmente, onde fica vazia. '
         'Hoje é um só: ' + ' | '.join(f'{k} — {v}' for k, v in SETORES_RENDA_EXCLUIDA.items())
         + ' A coluna renda_media continua ao lado, sem alteração, para a exclusão ser auditável.',
+    'renda_media_mediana_mun':
+        'Igual a renda_media, exceto nos setores de SETORES_RENDA_EXCLUIDA, onde entra a '
+        'mediana do próprio município (sem eles), no recorte urbano e Dados_sig=OK — '
+        'alternativa a deixar vazio, já que a mediana do setor (V06006) não existe no arquivo.',
 }
 
 
@@ -89,6 +94,13 @@ def preparar_base(raiz: Path) -> pd.DataFrame:
               renda_sem_extremos(df, 'renda_media'))
     n_excluidos = int((df['renda_media'].notna() & df['renda_media_sem_extremo'].isna()).sum())
 
+    # Coluna pedida pela orientadora (demanda 1, set/2026): a mesma exclusão, mas imputada
+    # pela mediana do município em vez de deixada vazia — alternativa que não perde o setor
+    # das médias e contagens que dependem de renda_media não ser nula.
+    df.insert(df.columns.get_loc('renda_media_sem_extremo') + 1, 'renda_media_mediana_mun',
+              renda_imputada_mediana_municipal(df, 'renda_media'))
+    n_imputados = int((df['renda_media'].notna() & (df['renda_media'] != df['renda_media_mediana_mun'])).sum())
+
     print(f'  elegibilidade: ' + ' | '.join(f'{k}={v:,}' for k, v in df['Dados_sig'].value_counts().items()))
     recorte = (df['Dados_sig'] == 'OK') & (df['urbano'] == 1)
     print(f'  urbanos na base: {int(df["urbano"].sum()):,} | '
@@ -98,6 +110,7 @@ def preparar_base(raiz: Path) -> pd.DataFrame:
     print(f'  indicadores calculados: {len(indicadores.columns)}')
     print(f'  renda_media_sem_extremo: {n_excluidos} setor(es) com renda excluída '
           f'de {len(SETORES_RENDA_EXCLUIDA)} listado(s)')
+    print(f'  renda_media_mediana_mun: {n_imputados} setor(es) imputado(s) pela mediana municipal')
     return df
 
 
@@ -154,6 +167,8 @@ def gravar(df: pd.DataFrame, dicionario: pd.DataFrame, destino: Path, nome: str,
          f"{int(((df['Dados_sig'] == 'OK') & (df['urbano'] == 1) & (df['is_fcu'] == 1)).sum()):,}"),
         ('setores_excluidos_de_renda_media_sem_extremo',
          ' | '.join(SETORES_RENDA_EXCLUIDA) or '(nenhum)'),
+        ('setores_imputados_de_renda_media_mediana_mun',
+         f"{int((df['renda_media'].notna() & (df['renda_media'] != df['renda_media_mediana_mun'])).sum()):,}"),
         ('denominador_domiciliar', 'V00001 — Domicílios Particulares Permanentes Ocupados'),
         ('recorte_de_analise', 'Setores urbanos (SITUACAO = Urbana) com Dados_sig = OK'),
         ('arquivos_do_censo', ' | '.join(f.arquivo for f in ARQUIVOS_CENSO.values())),

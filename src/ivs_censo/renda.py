@@ -127,6 +127,23 @@ def renda_sem_extremos(df: pd.DataFrame, coluna: str = COLUNA_RENDA) -> pd.Serie
     return df[coluna].mask(fora)
 
 
+def renda_imputada_mediana_municipal(df: pd.DataFrame, coluna: str = COLUNA_RENDA) -> pd.Series:
+    """`coluna` com os setores de `SETORES_RENDA_EXCLUIDA` substituídos pela mediana do
+    próprio município, calculada sem eles no recorte de análise (`urbano == 1` e
+    `Dados_sig == 'OK'`) — imputação por mediana municipal, porque a mediana do setor
+    (V06006) está no dicionário do IBGE mas não existe neste arquivo.
+    """
+    faltando = [c for c in ('CD_SETOR', 'CD_MUN', 'urbano', 'Dados_sig') if c not in df.columns]
+    if faltando:
+        raise KeyError(f'renda_imputada_mediana_municipal precisa de {faltando}')
+    fora = df['CD_SETOR'].astype(str).str.strip().isin(SETORES_RENDA_EXCLUIDA)
+    recorte = df['urbano'].eq(1) & df['Dados_sig'].eq('OK')
+    medianas_mun = df.loc[recorte & ~fora].groupby('CD_MUN')[coluna].median()
+    saida = df[coluna].copy()
+    saida.loc[fora] = df.loc[fora, 'CD_MUN'].map(medianas_mun)
+    return saida
+
+
 def rastrear_outliers_renda(df: pd.DataFrame, k: float = K_TUKEY) -> pd.DataFrame:
     """Rotula cada setor quanto à renda e devolve as colunas de rastreamento.
 

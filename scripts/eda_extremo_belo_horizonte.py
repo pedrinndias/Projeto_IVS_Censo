@@ -153,3 +153,31 @@ fig.savefig(FIG / 'extremo_bh.png', dpi=150, bbox_inches='tight', facecolor=SURF
 plt.close(fig)
 print(f'\nfigura: {(FIG / "extremo_bh.png").relative_to(RAIZ)}')
 print('extremo_bh_descritivas.csv · extremo_bh_normalizacao.csv · extremo_bh_ranking.csv')
+
+# ── 6. Sensibilidade: alternativas de imputação da renda (demanda 1) ────────
+# Não é o critério que a coluna da entrega usa (mediana de BH sem o setor); é o registro
+# do efeito das alternativas, pedido no padrão da Fase 0 enquanto a orientadora não escolhe.
+alvo_idx = alvo.index[0]
+alternativas = [
+    ('mediana de BH sem o setor', bh_sem.renda_media.median()),
+    ('mediana de BH com o setor', bh.renda_media.median()),
+    ('mediana dos 70 municípios sem o setor',
+     df.loc[df.CD_SETOR.astype(str).str.strip() != EXCLUIDO, 'renda_media'].median()),
+]
+linhas_sens = []
+for nome, valor in alternativas:
+    ajustada = df.renda_media.copy()
+    ajustada.loc[alvo_idx] = valor
+    linha = {'alternativa': nome, 'valor_imputado': valor}
+    for rotulo, serie in (('bh', ajustada.loc[bh.index]), ('agregado', ajustada)):
+        d = descrever(serie)
+        linha[f'{rotulo}_media'] = d['media']
+        linha[f'{rotulo}_dp'] = d['dp']
+        linha[f'{rotulo}_max'] = d['max']
+    linhas_sens.append(linha)
+sens = pd.DataFrame(linhas_sens)
+sens.round(4).to_csv(SAIDA / 'renda_imputacao_alternativas.csv', sep=';', index=False,
+                     encoding='utf-8-sig')
+print('\nsensibilidade das alternativas de imputação (renda_imputacao_alternativas.csv):')
+print(sens.round(2).to_string(index=False))
+

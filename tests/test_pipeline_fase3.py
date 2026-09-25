@@ -538,3 +538,84 @@ def test_renda_sem_extremos_nao_zera_nem_derruba_linhas():
 
     with pytest.raises(KeyError):
         renda_sem_extremos(df.drop(columns='CD_SETOR'))
+
+
+def test_renda_imputada_mediana_municipal_usa_mediana_sem_o_excluido():
+    """A imputação usa a mediana do MESMO município, calculada sem os setores excluídos,
+    e não mexe nos demais setores nem no recorte de outros municípios."""
+    import sys
+    sys.path.insert(0, str(ROOT / 'src'))
+    from ivs_censo.renda import COLUNA_RENDA, renda_imputada_mediana_municipal
+
+    df = pd.DataFrame({
+        'CD_SETOR': ['310620005650366', 'a', 'b', 'c', 'd'],
+        'CD_MUN': ['3106200', '3106200', '3106200', '3106200', '9999999'],
+        'urbano': [1, 1, 1, 1, 1],
+        'Dados_sig': ['OK', 'OK', 'OK', 'OK', 'OK'],
+        COLUNA_RENDA: [170_418.06, 1000.0, 2000.0, 3000.0, 5000.0],
+    })
+    s = renda_imputada_mediana_municipal(df)
+
+    assert len(s) == len(df), 'a função não pode remover linhas'
+    assert s.iloc[0] == 2000.0, 'mediana de {1000,2000,3000}, sem o próprio setor excluído'
+    assert s.iloc[1] == 1000.0 and s.iloc[2] == 2000.0 and s.iloc[3] == 3000.0
+    assert s.iloc[4] == 5000.0, 'outro município não pode mudar'
+
+    with pytest.raises(KeyError):
+        renda_imputada_mediana_municipal(df.drop(columns='CD_MUN'))
+
+
+def test_coluna_de_renda_com_mediana_municipal():
+    """A coluna nova (renda_media_mediana_mun) difere de renda_media em exatamente um
+    setor, e o valor imputado é a mediana de Belo Horizonte sem o setor extremo
+    (R$ 3.058,235, conferida na Fase 0 — ver docs/prompts/estado_demandas_2026-09.md)."""
+    import sqlite3
+    db = BD / 'entrega_orientadora' / 'Base_ELSI_70Municipios_Censo2022.db'
+    if not db.exists():
+        pytest.skip('Entregável não gerado — rode scripts/gerar_entrega_orientadora.py')
+
+    with sqlite3.connect(db) as con:
+        colunas = [c[1] for c in con.execute('PRAGMA table_info(setores_censitarios)')]
+        divergentes = con.execute(
+            'SELECT CD_SETOR, renda_media, renda_media_mediana_mun FROM setores_censitarios '
+            'WHERE renda_media IS NOT NULL AND renda_media != renda_media_mediana_mun'
+        ).fetchall()
+        descricao = con.execute(
+            "SELECT descricao FROM dicionario_variaveis WHERE coluna = 'renda_media_mediana_mun'"
+        ).fetchone()
+
+    assert 'renda_media_mediana_mun' in colunas
+    assert colunas.index('renda_media_mediana_mun') == colunas.index('renda_media_sem_extremo') + 1
+    assert len(divergentes) == 1, f'esperado 1 setor imputado, obtido {len(divergentes)}'
+    setor, original, imputado = divergentes[0]
+    assert setor == '310620005650366'
+    assert abs(original - 170_418.06) < 0.01
+    assert abs(imputado - 3_058.235) < 0.001
+    assert descricao and 'mediana' in descricao[0].lower()
+
+
+def test_quadro_de_indicadores_cobre_todos_os_indicadores():
+    """O quadro da orientadora (demanda 2) tem uma linha por indicador de TODOS_INDICADORES,
+    e todo código V citado nele existe no dicionário oficial do IBGE."""
+    import re
+    import sys
+    sys.path.insert(0, str(ROOT / 'src'))
+    from ivs_censo import tabela_variaveis
+    from ivs_censo.indicadores import TODOS_INDICADORES
+
+    caminho = BD / 'entrega_orientadora' / 'Quadro_Indicadores.csv'
+    if not caminho.exists():
+        pytest.skip('Quadro não gerado — rode scripts/gerar_quadro_indicadores.py')
+    quadro = _read(caminho)
+
+    esperados = {ind.nome for ind in TODOS_INDICADORES}
+    assert esperados <= set(quadro['indicador']), 'faltam indicadores no quadro'
+    assert len(quadro) == len(TODOS_INDICADORES)
+
+    oficial = set(tabela_variaveis(ROOT / 'dados')['variavel'])
+    codigos = set()
+    for col in ('numerador', 'denominador'):
+        for texto in quadro[col].dropna():
+            codigos.update(re.findall(r'\bV\d{5}\b|\bv0001\b', texto))
+    faltando = codigos - oficial
+    assert not faltando, f'códigos V do quadro sem entrada no dicionário oficial: {sorted(faltando)}'

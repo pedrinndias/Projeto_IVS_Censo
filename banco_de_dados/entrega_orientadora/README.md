@@ -47,7 +47,7 @@ df = pd.read_sql("SELECT * FROM setores_censitarios WHERE Dados_sig='OK' AND urb
 ```
 
 Cada `.db` tem 3 tabelas:
-- `setores_censitarios` — os dados (1 linha por setor, 104 colunas)
+- `setores_censitarios` — os dados (1 linha por setor, 105 colunas)
 - `dicionario_variaveis` — **o que é cada coluna, de qual arquivo do Censo ela vem e como o indicador é calculado**
 - `metadados` — fonte, data, totais, denominador adotado
 
@@ -104,6 +104,13 @@ R$ 4.649,88 (−0,69%) e o máximo passa a ser R$ 45.385,44 (Belvedere).
 > `EXTREMO` (3.292). A lista está em `SETORES_RENDA_EXCLUIDA`, em `src/ivs_censo/renda.py`,
 > e também na tabela `metadados` de cada `.db`. Excluir por classe seria outra decisão de
 > método, e mudaria a EDA inteira.
+
+**`renda_media_mediana_mun`** — pedida em 25/09/2026 (demanda 1). Mesma exclusão nominal,
+mas imputada em vez de vazia: o setor `310620005650366` entra com a **mediana de Belo
+Horizonte sem ele**, R$ 3.058,235, em vez de ficar `NULL`. As demais linhas são idênticas a
+`renda_media`. O efeito das alternativas (mediana de BH com o setor, mediana dos 70
+municípios) está em `banco_de_dados/eda/atualizada/renda_imputacao_alternativas.csv` — a
+escolha entre as três é da orientadora.
 
 **Morfologia e habitação:** `pct_moradia_convencional` (casa + vila/condomínio + apartamento), `pct_moradia_nao_convencional`, `pct_apartamento`, `pct_casa`, `pct_casa_vila_condominio`, `pct_dom_improv`, `pct_hab_precaria`.
 
