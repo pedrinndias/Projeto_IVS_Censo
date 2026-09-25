@@ -158,6 +158,28 @@ Abraço, Pedro
   estrutura = padrão·Φ, repartições somando 100, Kaiser/Horn contra `autovalores.csv`,
   pesos do índice somando 1 — nenhuma falha.
 - **Fase 2** (25/09/2026): suíte inteira `pytest -q` — **79 passed** em ~12 s.
+- **Fase 3** (25/09/2026, execução automática, **parcial**): corrigidos no
+  `notebooks/Fase3_EDA_ELSI/04_Analise_Fatorial.ipynb` os achados NB4-01, NB4-02, NB4-03,
+  NB4-04, NB4-05, NB4-06, NB4-07, NB4-08, NB4-09, NB4-10, NB4-11 e NB4-13 da revisão geral
+  (21 edições em 13 células, texto/comentário/rótulo — nenhuma conta nova além da
+  repartição pela matriz estrutura, que já existia como função e só não era chamada).
+  `docs/relatorios/Relatorio_Analise_Fatorial_NB04.md` recebeu as mesmas correções, mais
+  o 16.548 no lugar de 16.563 (AUD-08). Notebook reexecutado do zero via `nbclient`
+  (~88 s, 0 erros) com a Varimax corrigida (FAT-01, da Fase 0) — muda a 4ª casa decimal em
+  cargas e pesos, como previsto: pesos 65,01/34,99 (era 65,04/34,96; bate com a linha de
+  base da Fase 2). CSVs que mudaram (todos em `banco_de_dados/eda/fatorial/`):
+  `nb04_bootstrap_cargas.csv`, `nb04_cargas_ivs6_sem_lixo.csv`, `nb04_cargas_ivs7.csv`,
+  `nb04_cenarios.csv`, `nb04_contingencia_pesos_6040.csv`,
+  `nb04_contingencia_sem_analfab.csv`, `nb04_contingencia_um_fator.csv`,
+  `nb04_escores.csv` (as 87.545 linhas, 4ª casa), `nb04_pesos.csv`,
+  `nb04_renda_sem_extremo.csv`, `nb04_renda_sem_extremo_cargas.csv`,
+  `nb04_sintese_pesos.csv`, `nb04_validacao_fcu.csv`; e as figuras `nb04_mapa_cargas.png`,
+  `nb04_plano_fatorial.png` (rótulo do eixo corrigido, NB4-08), `nb04_roc_fcu.png`. AUC do
+  índice 0-1 continua 0,8131 (só a 4ª casa dos números auxiliares mudou). `pytest -q` — 79
+  passed (suíte não toca notebook). **Não incluído nesta sessão** (orçamento de chamadas
+  esgotado): o notebook novo `04b_Analise_Fatorial_Ampliada.ipynb` (item 3.1 do prompt, que
+  chama `rodar_cenario` e os CSVs de `fatorial_ampliada/` da Fase 2). Fase 3 **não fecha**
+  sem ele.
 
 ## Fase 0 — concluída (25/09/2026, sessão 2)
 Passos 2 (final), 3 e 4 fechados; suíte inteira verde (75 passed). Arquivos versionados
@@ -197,3 +219,25 @@ das saídas e deste estado.
   figura for para slide, revisar na Fase 4.
 - A leitura dos resultados (o que o índice acrescenta à renda, NB4-02; efeito da
   estrutura municipal) fica para depois de o Pedro ver a grade.
+
+## Fase 3 — em andamento (25/09/2026, execução automática, parcial)
+Feito (3.2, correções do NB04): os 12 achados citados no prompt (NB4-01 a NB4-13, exceto
+NB4-12, que não está na lista do prompt) mais AUD-08, todos como correção de texto,
+comentário ou rótulo — nenhum decidiu pela orientadora (a repartição oblíqua, por exemplo,
+passou a mostrar padrão **e** estrutura lado a lado, sem dizer qual "aproxima" da
+literatura). NB04 reexecutado do zero, `pytest` verde. Detalhe em "O que mudou", acima.
+
+**Não feito (3.1): o notebook `04b_Analise_Fatorial_Ampliada.ipynb`.** É o item que falta
+para fechar a Fase 3 — chama `rodar_cenario`/`reparticao` de `src/ivs_censo/fatorial.py` e
+os CSVs já prontos de `banco_de_dados/eda/fatorial_ampliada/` (Fase 2), em blocos (o que a
+orientadora pediu; os cenários; sem rotação × Varimax × promax; lixo; estrutura municipal;
+o que o índice acrescenta à renda; o que fica para ela decidir), com os cuidados de
+interpretação da seção 3.1 do prompt (AUC sem adjetivo, sensibilidade em vez de bootstrap,
+repartição com as duas métricas, citação do livro com a condição completa, zeros ao lado
+de toda carga). Parou aqui por orçamento de chamadas, não por dificuldade técnica — os
+insumos (motor da Fase 2, CSVs, texto já lapidado nas correções acima) já existem.
+
+### Pendências da Fase 3
+- Criar e executar (`nbclient`, uma vez) o `04b_Analise_Fatorial_Ampliada.ipynb`, conferir
+  os CSVs que ele gera contra os de `fatorial_ampliada/` (devem bater, é o mesmo motor).
+  Só depois disso a Fase 3 fecha.
