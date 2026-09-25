@@ -1,142 +1,614 @@
 {
   ".vscode/settings.json": {
-    "mtime": 1772837910.4788134,
+    "mtime": 1772837910.0,
+    "seen": 1790337555.486492,
     "ast_hash": "fdb8e89c302d988c6d9658561072914e",
     "semantic_hash": "fdb8e89c302d988c6d9658561072914e"
   },
   "Backup/ETL/mapeamento_variaveis.py": {
-    "mtime": 1773225521.2547226,
+    "mtime": 1773225521.0,
+    "seen": 1790337555.486495,
     "ast_hash": "1bc2f763f03649d04528bb3ce7122262",
     "semantic_hash": "1bc2f763f03649d04528bb3ce7122262"
   },
   "Backup/formatar/busca3.py": {
-    "mtime": 1773228783.6837573,
+    "mtime": 1773228783.0,
+    "seen": 1790337555.486498,
     "ast_hash": "8162c303e12bd67bced3eb9f3659c0c2",
     "semantic_hash": "8162c303e12bd67bced3eb9f3659c0c2"
   },
   "Backup/formatar/formatar3.py": {
-    "mtime": 1773226207.3661795,
+    "mtime": 1773226207.0,
+    "seen": 1790337555.4865,
     "ast_hash": "41e5514f5e33d448e6e44b170bd7ed93",
     "semantic_hash": "41e5514f5e33d448e6e44b170bd7ed93"
   },
   "tests/test_pipeline_fase3.py": {
-    "mtime": 1781891712.4637358,
-    "ast_hash": "a09ce36ef67fc69fb2f11ab324edc80a",
-    "semantic_hash": "a09ce36ef67fc69fb2f11ab324edc80a"
+    "mtime": 1788289134.714125,
+    "seen": 1790337555.486541,
+    "ast_hash": "4141503eb43d076d9b5e82d900dc8d40",
+    "semantic_hash": ""
   },
   "Backup/DIAGNOSTICO_COMPLETO_PROJETO.md": {
-    "mtime": 1778111920.8694525,
+    "mtime": 1778111920.0,
+    "seen": 1790337555.4865432,
     "ast_hash": "7a8eab93190e193decf83db4dd6a54e0",
     "semantic_hash": "7a8eab93190e193decf83db4dd6a54e0"
   },
   "GUIA_DO_PROJETO.md": {
-    "mtime": 1781889685.8942351,
-    "ast_hash": "ccd55cc139e5a9525bd4249da955226e",
-    "semantic_hash": "ccd55cc139e5a9525bd4249da955226e"
+    "mtime": 1789653331.072239,
+    "seen": 1790337555.4865458,
+    "ast_hash": "15d58b15765e4e1e10caadbc587361da",
+    "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1783367106.232422,
-    "ast_hash": "24e7afc15acada3b19c5d26c4dcae82a",
-    "semantic_hash": "24e7afc15acada3b19c5d26c4dcae82a"
+    "mtime": 1789653311.550818,
+    "seen": 1790337555.486547,
+    "ast_hash": "0eb7f1ae3318d2eccaa47b3f5c27817a",
+    "semantic_hash": ""
   },
   "banco_de_dados/eda/README.md": {
-    "mtime": 1781892103.0453448,
-    "ast_hash": "203ea4bee60d07d34a949b37900deee6",
-    "semantic_hash": "203ea4bee60d07d34a949b37900deee6"
+    "mtime": 1789653266.7902684,
+    "seen": 1790337555.486548,
+    "ast_hash": "29417201f1e6e2c7a81ff8392661e191",
+    "semantic_hash": ""
   },
   "banco_de_dados/entrega_orientadora/README.md": {
-    "mtime": 1779705830.0674882,
-    "ast_hash": "4007f9085c4dc5f1cf933b2bf4c664fb",
-    "semantic_hash": "4007f9085c4dc5f1cf933b2bf4c664fb"
-  },
-  "docs/Relatorio_EDA_Fase3_IVS_ELSI.md": {
-    "mtime": 1781783883.0080924,
-    "ast_hash": "98cc8114b7ad3eab68e84ef7a92bc9f6",
-    "semantic_hash": "98cc8114b7ad3eab68e84ef7a92bc9f6"
-  },
-  "docs/Relatorio_Integridade_Projeto.md": {
-    "mtime": 1783367147.6944754,
-    "ast_hash": "799eb4a11427da469036934e033938c9",
-    "semantic_hash": "799eb4a11427da469036934e033938c9"
+    "mtime": 1788289193.3020625,
+    "seen": 1790337555.486552,
+    "ast_hash": "cbe79094d11cff727f90d6869a654455",
+    "semantic_hash": ""
   },
   "estrutura_projeto.md": {
-    "mtime": 1783367190.7615807,
-    "ast_hash": "6248bcf734c65abf4e1f57b4236ea445",
-    "semantic_hash": "6248bcf734c65abf4e1f57b4236ea445"
-  },
-  "graphify-out/converted/C\u00e1lculo IVS2012_aef91822.md": {
-    "mtime": 1783467033.9755857,
-    "ast_hash": "caad787c2b5d379543e59e0a1527e334",
-    "semantic_hash": "caad787c2b5d379543e59e0a1527e334"
-  },
-  "graphify-out/converted/Estudo Longitudinal da Sa\u00fade dos Idosos Brasileiros_dee0030f.md": {
-    "mtime": 1783467034.2972007,
-    "ast_hash": "7095653f302f1f691c536e5f7c7c1cd0",
-    "semantic_hash": "7095653f302f1f691c536e5f7c7c1cd0"
-  },
-  "graphify-out/converted/Plano_Artigo_Cientifico_IC_Preenchido_2eadaab4.md": {
-    "mtime": 1783467035.9045002,
-    "ast_hash": "3526e590ab2a2340122b2f8323b472b0",
-    "semantic_hash": "3526e590ab2a2340122b2f8323b472b0"
-  },
-  "graphify-out/converted/Relatorio_EDA_Fase3_IVS_ELSI_129c9f1c.md": {
-    "mtime": 1783467036.5544739,
-    "ast_hash": "8fb0594ed28673c7c17f00527b575097",
-    "semantic_hash": "8fb0594ed28673c7c17f00527b575097"
-  },
-  "graphify-out/converted/dicionario_de_dados_agregados_por_setores_censitarios_20260520_af2e7b80.md": {
-    "mtime": 1783467033.2753885,
-    "ast_hash": "78c862bd1d167ac2cd8a150d08b98b1f",
-    "semantic_hash": "78c862bd1d167ac2cd8a150d08b98b1f"
-  },
-  "graphify-out/converted/dicionario_de_dados_renda_responsavel_20260508_c1bc4468.md": {
-    "mtime": 1783467033.3582783,
-    "ast_hash": "8b3975f074883bf58aa09ec78cf6ba61",
-    "semantic_hash": "8b3975f074883bf58aa09ec78cf6ba61"
-  },
-  "graphify-out/converted/guia_analises_9759ba40.md": {
-    "mtime": 1783467036.961213,
-    "ast_hash": "43caa6798582c58150fc93468de5416d",
-    "semantic_hash": "43caa6798582c58150fc93468de5416d"
+    "mtime": 1789653138.5224605,
+    "seen": 1790337555.486583,
+    "ast_hash": "d57619349fdbc9dfd2acd66b05d5c70e",
+    "semantic_hash": ""
   },
   "notebooks/Fase3_EDA_ELSI/README.md": {
-    "mtime": 1783367159.3264978,
-    "ast_hash": "440c73fba359cc88cdc75c920705706e",
-    "semantic_hash": "440c73fba359cc88cdc75c920705706e"
+    "mtime": 1786290791.0,
+    "seen": 1790337555.4865851,
+    "ast_hash": "18c1d313af8dd8a0550c4a80affccb3a",
+    "semantic_hash": ""
   },
   "requirements.txt": {
-    "mtime": 1781892084.1579847,
-    "ast_hash": "b55508354f8322c4da3ea56ee8d4a1ab",
-    "semantic_hash": "b55508354f8322c4da3ea56ee8d4a1ab"
-  },
-  "docs/Plano de trabalho.pdf": {
-    "mtime": 1772833827.6154084,
-    "ast_hash": "db0df73bc86562608d2f62da06badbe4",
-    "semantic_hash": "db0df73bc86562608d2f62da06badbe4"
-  },
-  "docs/indice_vulnerabilidade2012 (2).pdf": {
-    "mtime": 1772833648.7490945,
-    "ast_hash": "f0c780a726a1586f79a60194a1916c2b",
-    "semantic_hash": "f0c780a726a1586f79a60194a1916c2b"
+    "mtime": 1787265543.4482384,
+    "seen": 1790337555.486586,
+    "ast_hash": "694ad35f6e4f1608df19d4e657f14623",
+    "semantic_hash": ""
   },
   "banco_de_dados/eda/figuras/boxplots_por_regiao.png": {
-    "mtime": 1781815978.1619484,
-    "ast_hash": "c78d738963aad365de489c73526699f9",
-    "semantic_hash": "c78d738963aad365de489c73526699f9"
+    "mtime": 1789650041.2661781,
+    "seen": 1790337555.486615,
+    "ast_hash": "967d4c752710db219cf69a72ae5b76c5",
+    "semantic_hash": ""
   },
   "banco_de_dados/eda/figuras/histogramas.png": {
-    "mtime": 1781815975.2200131,
-    "ast_hash": "bbc05809ff831b771f3659784e9d5337",
-    "semantic_hash": "bbc05809ff831b771f3659784e9d5337"
+    "mtime": 1789650038.3703141,
+    "seen": 1790337555.4866161,
+    "ast_hash": "94b32f5772c2d76fd797424577520ce3",
+    "semantic_hash": ""
   },
   "banco_de_dados/eda/figuras/matriz_correlacao.png": {
-    "mtime": 1781815981.5186388,
-    "ast_hash": "ce34ae003ce97a5d112ab6d5ca7f9324",
-    "semantic_hash": "ce34ae003ce97a5d112ab6d5ca7f9324"
+    "mtime": 1789650045.9081895,
+    "seen": 1790337555.486617,
+    "ast_hash": "b51a1d1d58237bc4a1c85eb9d171a693",
+    "semantic_hash": ""
   },
   "banco_de_dados/eda/figuras/missing_por_municipio.png": {
-    "mtime": 1781815979.7903986,
-    "ast_hash": "4a64c74cfd65a63f79352baf820b6781",
-    "semantic_hash": "4a64c74cfd65a63f79352baf820b6781"
+    "mtime": 1789650042.9379408,
+    "seen": 1790337555.486619,
+    "ast_hash": "0e26e2e24b53ff2d7705ac01d60e5946",
+    "semantic_hash": ""
+  },
+  ".claude/settings.local.json": {
+    "mtime": 1779189324.0,
+    "seen": 1790337555.486485,
+    "ast_hash": "6bfde9f55f3c94065e5e32af946f6073",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/dados_criterio_renda.json": {
+    "mtime": 1789649892.1970685,
+    "seen": 1790337555.4865012,
+    "ast_hash": "cdebe79bd7f73a3c71581000899f2075",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/dados_deck.json": {
+    "mtime": 1789649922.9890156,
+    "seen": 1790337555.486503,
+    "ast_hash": "b6718236d93adb019dcee3b906974d3a",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/dados_deck_atualizado.json": {
+    "mtime": 1788352216.0478292,
+    "seen": 1790337555.4865038,
+    "ast_hash": "0a84d77a2ff33539c74dec86e47a01df",
+    "semantic_hash": ""
+  },
+  "scripts/atualizar_roteiro_2a_rodada.py": {
+    "mtime": 1788375676.4812355,
+    "seen": 1790337555.486506,
+    "ast_hash": "97ad8f2e94b9ce7f5e54b6382cc4b9b1",
+    "semantic_hash": ""
+  },
+  "scripts/auditoria_renda.py": {
+    "mtime": 1788349732.042449,
+    "seen": 1790337555.4865081,
+    "ast_hash": "7898c6308e6cb5836400e3656f6abf79",
+    "semantic_hash": ""
+  },
+  "scripts/dados_criterio_renda.py": {
+    "mtime": 1788279701.3484583,
+    "seen": 1790337555.486509,
+    "ast_hash": "24c5d74ff93375e408048cdd7ff7c1c0",
+    "semantic_hash": ""
+  },
+  "scripts/deck_comum.js": {
+    "mtime": 1789648618.3827794,
+    "seen": 1790337555.486511,
+    "ast_hash": "f36a60d36aa33bd3354016408627a5bc",
+    "semantic_hash": ""
+  },
+  "scripts/diagnostico_fatorial.py": {
+    "mtime": 1789565043.178752,
+    "seen": 1790337555.4865122,
+    "ast_hash": "77dfcff01fd90940c6eb1bfd654f4273",
+    "semantic_hash": ""
+  },
+  "scripts/eda_atualizada.py": {
+    "mtime": 1788349456.1867359,
+    "seen": 1790337555.486513,
+    "ast_hash": "0f79e103c284e33b7bcd2b3d0eae87de",
+    "semantic_hash": ""
+  },
+  "scripts/eda_central_dados.py": {
+    "mtime": 1788352215.557624,
+    "seen": 1790337555.486515,
+    "ast_hash": "593b9b11fec01e03550be0d0fa76dc71",
+    "semantic_hash": ""
+  },
+  "scripts/eda_extremo_belo_horizonte.py": {
+    "mtime": 1789660957.4319365,
+    "seen": 1790337555.486516,
+    "ast_hash": "58f76024559326df7b83f676c368ce2b",
+    "semantic_hash": ""
+  },
+  "scripts/gerar_deck_criterio_renda.js": {
+    "mtime": 1788373156.3493755,
+    "seen": 1790337555.486517,
+    "ast_hash": "d0c8298523661fdcc094ef0f3344820b",
+    "semantic_hash": ""
+  },
+  "scripts/gerar_deck_eda_central.js": {
+    "mtime": 1789653298.1173728,
+    "seen": 1790337555.486518,
+    "ast_hash": "2435b7e2a37baa9e11bc6b09b7e03098",
+    "semantic_hash": ""
+  },
+  "scripts/gerar_deck_fatorial.js": {
+    "mtime": 1789653138.5569773,
+    "seen": 1790337555.486519,
+    "ast_hash": "036b9839ab7616709b962b342e234809",
+    "semantic_hash": ""
+  },
+  "scripts/gerar_entrega_orientadora.py": {
+    "mtime": 1788289076.8390992,
+    "seen": 1790337555.48652,
+    "ast_hash": "314a8d864748a94cfe18f2435639c65a",
+    "semantic_hash": ""
+  },
+  "scripts/gerar_pdf_guia_fatorial.py": {
+    "mtime": 1789653138.5610964,
+    "seen": 1790337555.486521,
+    "ast_hash": "14179b8dc3c6e354bf2bfad394cc419b",
+    "semantic_hash": ""
+  },
+  "scripts/gerar_pdf_outliers_renda.py": {
+    "mtime": 1788373156.3474176,
+    "seen": 1790337555.486523,
+    "ast_hash": "19682f84a43e182a38e6aea4b1381b39",
+    "semantic_hash": ""
+  },
+  "scripts/gerar_pdf_plano_emergencia.py": {
+    "mtime": 1789652747.9796243,
+    "seen": 1790337555.4865239,
+    "ast_hash": "77bad1ce4989e7d224dc213e2b916d7c",
+    "semantic_hash": ""
+  },
+  "scripts/gerar_resumo_eda_central.py": {
+    "mtime": 1788373156.348569,
+    "seen": 1790337555.4865248,
+    "ast_hash": "42b909d50607c2bc609a0cd4db2ce8e6",
+    "semantic_hash": ""
+  },
+  "scripts/gerar_slides_extremo_bh.js": {
+    "mtime": 1789666878.7157652,
+    "seen": 1790337555.486526,
+    "ast_hash": "65b749370d666d77e5c081b5e7fd948f",
+    "semantic_hash": ""
+  },
+  "scripts/gerar_tabela_variaveis.py": {
+    "mtime": 1786290001.0,
+    "seen": 1790337555.486527,
+    "ast_hash": "16cf89db269e641e57010ee7cc062848",
+    "semantic_hash": ""
+  },
+  "scripts/gerar_tabelas_auditoria.py": {
+    "mtime": 1787266246.1214368,
+    "seen": 1790337555.486528,
+    "ast_hash": "92b23abb243acc9b9ef150b6771d1d24",
+    "semantic_hash": ""
+  },
+  "scripts/proporcoes_brasil.py": {
+    "mtime": 1787593077.1656501,
+    "seen": 1790337555.486529,
+    "ast_hash": "6580ef0041a02ffbc46f4b449d13e984",
+    "semantic_hash": ""
+  },
+  "src/ivs_censo/__init__.py": {
+    "mtime": 1787264627.9700623,
+    "seen": 1790337555.486531,
+    "ast_hash": "9724c74b52d7769832f7051a8127fec3",
+    "semantic_hash": ""
+  },
+  "src/ivs_censo/dicionario.py": {
+    "mtime": 1787593193.7835047,
+    "seen": 1790337555.4865322,
+    "ast_hash": "7bfd0d922c0a231cc5e1599ee7025352",
+    "semantic_hash": ""
+  },
+  "src/ivs_censo/fatorial.py": {
+    "mtime": 1789647674.9772258,
+    "seen": 1790337555.4865339,
+    "ast_hash": "a5b13dab365b9e1e78ebb9c49e768337",
+    "semantic_hash": ""
+  },
+  "src/ivs_censo/fontes.py": {
+    "mtime": 1787593169.7744164,
+    "seen": 1790337555.4865348,
+    "ast_hash": "d166962214d25659116704740dda771b",
+    "semantic_hash": ""
+  },
+  "src/ivs_censo/indicadores.py": {
+    "mtime": 1787593094.4140084,
+    "seen": 1790337555.486536,
+    "ast_hash": "c2a587f4535a8ec7e1260f3f8423ac65",
+    "semantic_hash": ""
+  },
+  "src/ivs_censo/renda.py": {
+    "mtime": 1788289059.583482,
+    "seen": 1790337555.486538,
+    "ast_hash": "923ae3f266ab449cdb8e14bf3aa2383b",
+    "semantic_hash": ""
+  },
+  "tests/test_fatorial.py": {
+    "mtime": 1789647689.896167,
+    "seen": 1790337555.4865391,
+    "ast_hash": "ad9a91ec7d3832482294919fad701313",
+    "semantic_hash": ""
+  },
+  "tests/test_ivs_censo.py": {
+    "mtime": 1787340142.1113298,
+    "seen": 1790337555.48654,
+    "ast_hash": "4fe3defafbf0bf5b1e2cd018de3879f5",
+    "semantic_hash": ""
+  },
+  "Backup/banco_de_dados/fase2_bases/LEIAME.txt": {
+    "mtime": 1789653207.2391288,
+    "seen": 1790337555.486544,
+    "ast_hash": "08c8eca45ee73571061b79257ea78ef1",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/atualizada/README.md": {
+    "mtime": 1789666933.4024467,
+    "seen": 1790337555.486549,
+    "ast_hash": "84b919be7a9a4e92291605b190223cec",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/fatorial/README.md": {
+    "mtime": 1789653253.2037325,
+    "seen": 1790337555.48655,
+    "ast_hash": "ce5e5932b799906ba6975efabe786d34",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/nacional/README.md": {
+    "mtime": 1787593820.3775792,
+    "seen": 1790337555.4865532,
+    "ast_hash": "cd0b1288928e6d98d4677d918c8832c0",
+    "semantic_hash": ""
+  },
+  "docs/Apresentacoes_IVS/README.md": {
+    "mtime": 1789666955.6700346,
+    "seen": 1790337555.486557,
+    "ast_hash": "8152a5df46e0f7ab1f6553bb6c91b329",
+    "semantic_hash": ""
+  },
+  "docs/MANUAL_DO_PROJETO.md": {
+    "mtime": 1789653311.5532572,
+    "seen": 1790337555.486558,
+    "ast_hash": "c99e81df3220ea8c7654c3a252ff6601",
+    "semantic_hash": ""
+  },
+  "docs/metodologia/Analise_Fatorial_Enap2019_Guia_de_Leitura.md": {
+    "mtime": 1789653138.4786303,
+    "seen": 1790337555.486559,
+    "ast_hash": "371d614faf4090f324756eab0b1a7459",
+    "semantic_hash": ""
+  },
+  "docs/metodologia/Analise_Fatorial_Figueiredo2010_e_o_Projeto_IVS.md": {
+    "mtime": 1789653138.4814548,
+    "seen": 1790337555.48656,
+    "ast_hash": "acbf73b465b3b8b3643279e0512f7600",
+    "semantic_hash": ""
+  },
+  "docs/metodologia/Analise_Fatorial_LEIAME.md": {
+    "mtime": 1789653138.4839008,
+    "seen": 1790337555.486561,
+    "ast_hash": "06cabb086130e50bd74ac1942ab8bd2a",
+    "semantic_hash": ""
+  },
+  "docs/metodologia/Analise_Fatorial_NB04_Plano_de_Implementacao.md": {
+    "mtime": 1789653138.4858825,
+    "seen": 1790337555.486562,
+    "ast_hash": "3d9458f7c12d442ab75fd7794301fd24",
+    "semantic_hash": ""
+  },
+  "docs/metodologia/Codigo_Analise_Fatorial_Comentado.md": {
+    "mtime": 1789653138.4928193,
+    "seen": 1790337555.4865642,
+    "ast_hash": "8069a30d28804e6b14a523c9fa8756cd",
+    "semantic_hash": ""
+  },
+  "docs/metodologia/README.md": {
+    "mtime": 1789653173.550394,
+    "seen": 1790337555.486565,
+    "ast_hash": "10a9202d5b70b21a20f39234f1dcf762",
+    "semantic_hash": ""
+  },
+  "docs/metodologia/fontes_pdf/Guia_Leitura_Analise_Fatorial_Enap2019.html": {
+    "mtime": 1789653073.9325912,
+    "seen": 1790337555.4865658,
+    "ast_hash": "bde83660594a7f39d5cc70959f90b205",
+    "semantic_hash": ""
+  },
+  "docs/metodologia/fontes_pdf/Implementacao_Fatorial_NB04_Brainstorm_e_Prompt.html": {
+    "mtime": 1789653138.5118027,
+    "seen": 1790337555.486567,
+    "ast_hash": "9961b22376f82cdc9f9e9b73dae8b747",
+    "semantic_hash": ""
+  },
+  "docs/metodologia/fontes_pdf/README.md": {
+    "mtime": 1789653138.5123756,
+    "seen": 1790337555.486568,
+    "ast_hash": "3f52d147720c8bdc70ae24db6589edca",
+    "semantic_hash": ""
+  },
+  "docs/prompts/README.md": {
+    "mtime": 1790337652.5231328,
+    "seen": 1790337672.449746,
+    "ast_hash": "2d75c99b0e0e5e442c2846092dd8d440",
+    "semantic_hash": ""
+  },
+  "docs/prompts/prompt_auditoria_integral.md": {
+    "mtime": 1789653138.5151389,
+    "seen": 1790337555.48657,
+    "ast_hash": "0947336317f48771c9cdbcbcba31b61d",
+    "semantic_hash": ""
+  },
+  "docs/prompts/prompt_demandas_orientadora_2026-09.md": {
+    "mtime": 1790337639.4707851,
+    "seen": 1790337672.449749,
+    "ast_hash": "4a33d982c5e900bba047faad1f6644f7",
+    "semantic_hash": ""
+  },
+  "docs/prompts/prompt_graphify_atualizacao.md": {
+    "mtime": 1789653138.5172894,
+    "seen": 1790337555.486572,
+    "ast_hash": "0fc473f69f81c4283d7e7523e600b24c",
+    "semantic_hash": ""
+  },
+  "docs/prompts/prompt_nb04_analise_fatorial.md": {
+    "mtime": 1789653138.5196273,
+    "seen": 1790337555.486573,
+    "ast_hash": "70ad4240132e167369b18c03fd2a0a3b",
+    "semantic_hash": ""
+  },
+  "docs/referencias/README.md": {
+    "mtime": 1789653173.5582976,
+    "seen": 1790337555.4865751,
+    "ast_hash": "9dd76060104293c3c0ff9ce2e9f212cb",
+    "semantic_hash": ""
+  },
+  "docs/relatorios/Auditoria_Integral_2026-09.md": {
+    "mtime": 1789653138.489079,
+    "seen": 1790337555.486576,
+    "ast_hash": "4d4d2993bae4a33fd49a9691d6e7e92d",
+    "semantic_hash": ""
+  },
+  "docs/relatorios/README.md": {
+    "mtime": 1790337652.522672,
+    "seen": 1790337672.4497569,
+    "ast_hash": "19c12fcd4cb6f765a8691d674b661474",
+    "semantic_hash": ""
+  },
+  "docs/relatorios/Relatorio_Analise_Fatorial_NB04.md": {
+    "mtime": 1789653138.4987323,
+    "seen": 1790337555.486578,
+    "ast_hash": "8f558a03f82003c0c293b658dd7f8d0b",
+    "semantic_hash": ""
+  },
+  "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md": {
+    "mtime": 1789653138.5031962,
+    "seen": 1790337555.486579,
+    "ast_hash": "3b02952ebbe05ee9a16c331d901e9f6c",
+    "semantic_hash": ""
+  },
+  "docs/relatorios/Relatorio_Integridade_Projeto.md": {
+    "mtime": 1789653349.3494503,
+    "seen": 1790337555.48658,
+    "ast_hash": "3c26d57bd533900035bd140d34a2124f",
+    "semantic_hash": ""
+  },
+  "docs/relatorios/Revisao_Geral_2026-09.md": {
+    "mtime": 1790337639.4701324,
+    "seen": 1790337672.449762,
+    "ast_hash": "fe1fe67e9f1b4f84e4bfc0a252526dbd",
+    "semantic_hash": ""
+  },
+  "graphify.md": {
+    "mtime": 1783474744.0,
+    "seen": 1790337555.486584,
+    "ast_hash": "388717c962eea138856e98aeb4516798",
+    "semantic_hash": ""
+  },
+  "scripts/README.md": {
+    "mtime": 1789666967.346898,
+    "seen": 1790337555.4865868,
+    "ast_hash": "fc7a857d720b6b729e4bb6beaccae991",
+    "semantic_hash": ""
+  },
+  "docs/Apresentacoes_IVS/complementos/Criterio_Outliers_Renda.pdf": {
+    "mtime": 1788278867.9846098,
+    "seen": 1790337555.486588,
+    "ast_hash": "e7f3b4bab6ef0cad5ec3e7c6deb14104",
+    "semantic_hash": ""
+  },
+  "docs/Apresentacoes_IVS/complementos/Guia_Apoio_Analise_Fatorial.pdf": {
+    "mtime": 1789651359.681723,
+    "seen": 1790337555.486589,
+    "ast_hash": "e73e26e758151110a3f530e2b0b65eb4",
+    "semantic_hash": ""
+  },
+  "docs/Apresentacoes_IVS/complementos/Plano_Emergencia_Apresentacao.pdf": {
+    "mtime": 1789652748.9973416,
+    "seen": 1790337555.4865909,
+    "ast_hash": "27f247bdd814c853d5f308d31be8a47d",
+    "semantic_hash": ""
+  },
+  "docs/Apresentacoes_IVS/complementos/Resumo_EDA_Central_2026-08.pdf": {
+    "mtime": 1787870943.6210768,
+    "seen": 1790337555.486592,
+    "ast_hash": "2964b5949b161a38a7b8dcec1ee7d27f",
+    "semantic_hash": ""
+  },
+  "docs/Apresentacoes_IVS/complementos/Roteiro_EDA_Central_1a_rodada.pdf": {
+    "mtime": 1787597444.434584,
+    "seen": 1790337555.486593,
+    "ast_hash": "593014fde38be933d3b646221670d300",
+    "semantic_hash": ""
+  },
+  "docs/metodologia/Guia_Leitura_Analise_Fatorial_Enap2019.pdf": {
+    "mtime": 1789653073.927399,
+    "seen": 1790337555.486594,
+    "ast_hash": "49bd17947305aa3dd4b85d4de0b21046",
+    "semantic_hash": ""
+  },
+  "docs/metodologia/Implementacao_Fatorial_NB04_Brainstorm_e_Prompt.pdf": {
+    "mtime": 1789653073.9305649,
+    "seen": 1790337555.4865952,
+    "ast_hash": "37fa6876834898608e0c92632f35b88c",
+    "semantic_hash": ""
+  },
+  "docs/referencias/IBGE_Censo2022_Favelas_e_Comunidades_Urbanas.pdf": {
+    "mtime": 1787339722.2210305,
+    "seen": 1790337555.486596,
+    "ast_hash": "0e6f2484e7af51cf2f019e01319758af",
+    "semantic_hash": ""
+  },
+  "docs/referencias/Plano de trabalho.pdf": {
+    "mtime": 1772833827.0,
+    "seen": 1790337555.486599,
+    "ast_hash": "db0df73bc86562608d2f62da06badbe4",
+    "semantic_hash": ""
+  },
+  "docs/referencias/indice_vulnerabilidade2012 (2).pdf": {
+    "mtime": 1772833648.0,
+    "seen": 1790337555.4866009,
+    "ast_hash": "f0c780a726a1586f79a60194a1916c2b",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/atualizada/figuras/boxplots_por_regiao.png": {
+    "mtime": 1789649919.2034497,
+    "seen": 1790337555.486602,
+    "ast_hash": "4349b8ae8f311940c437a256a0878408",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/atualizada/figuras/extremo_bh.png": {
+    "mtime": 1789666939.445313,
+    "seen": 1790337555.486603,
+    "ast_hash": "af2e154950b697b23131cbd3429c1dd9",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/atualizada/figuras/histogramas.png": {
+    "mtime": 1789649915.748641,
+    "seen": 1790337555.486604,
+    "ast_hash": "525743cc0acd471d8e4750aa96dbc2c9",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/atualizada/figuras/matriz_correlacao.png": {
+    "mtime": 1789649917.6492827,
+    "seen": 1790337555.4866052,
+    "ast_hash": "9b45372276f825f731ad92013e525f48",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/atualizada/figuras/renda_boxplot_por_cidade.png": {
+    "mtime": 1788349744.3202064,
+    "seen": 1790337555.486607,
+    "ast_hash": "7dd41f897609aa2084a3b11258b624d5",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/atualizada/figuras/renda_tamanho_do_setor.png": {
+    "mtime": 1788349744.9212246,
+    "seen": 1790337555.4866078,
+    "ast_hash": "dfab33b92a0bea09bcea282cb21048f5",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/fatorial/figuras/nb04_mapa_cargas.png": {
+    "mtime": 1789655214.8590972,
+    "seen": 1790337555.486609,
+    "ast_hash": "780c8d6d807e6badde0a889571766bc2",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/fatorial/figuras/nb04_matriz_correlacao.png": {
+    "mtime": 1789655213.9806366,
+    "seen": 1790337555.48661,
+    "ast_hash": "89272e16a825940555677f1d4d2b2025",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/fatorial/figuras/nb04_plano_fatorial.png": {
+    "mtime": 1789655215.418367,
+    "seen": 1790337555.486611,
+    "ast_hash": "b38500e5fc878f29625d8dbea250dcfd",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/fatorial/figuras/nb04_roc_fcu.png": {
+    "mtime": 1789655284.244192,
+    "seen": 1790337555.486612,
+    "ast_hash": "18dac35decae1c4e1ca09c32d7b93d00",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/fatorial/figuras/nb04_scree_horn.png": {
+    "mtime": 1789655214.5146663,
+    "seen": 1790337555.486613,
+    "ast_hash": "d0b6ed01fc704855efea5a8ea1a77226",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/figuras/renda_boxplot_por_cidade.png": {
+    "mtime": 1789649904.776504,
+    "seen": 1790337555.48662,
+    "ast_hash": "d6ae36d635fda9f78ba9ef2ca4d93d21",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/figuras/renda_criterio_motivos.png": {
+    "mtime": 1789650574.0428615,
+    "seen": 1790337555.486621,
+    "ast_hash": "62cdee160c915c5a2bc839f7bdc4806e",
+    "semantic_hash": ""
+  },
+  "banco_de_dados/eda/figuras/renda_tamanho_do_setor.png": {
+    "mtime": 1789649905.335803,
+    "seen": 1790337555.4866219,
+    "ast_hash": "db2705c30bb2b6c388c51ea0cb8d0a9e",
+    "semantic_hash": ""
   }
 }
