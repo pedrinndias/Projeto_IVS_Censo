@@ -8,7 +8,7 @@ Linha de base: commit 3c426e8 · 25/09/2026
 - [x] Fase 2 — fatorial ampliada   (25/09/2026, execução automática; concluída)
 - [x] Fase 3 — notebook 04b e NB04   (25/09/2026, execução automática, em duas sessões; concluída)
 - [x] Fase 4 — curadoria e slides   (25/09/2026, três sessões; concluída)
-- [ ] Fase 5 — lotes A · B · C · D   (lote A: diagnóstico feito, execução pendente — sessão 1; lote B: diagnóstico feito, execução pendente — sessão 1; lote C: parcial — sessão 1, execução automática; lote D: concluído — sessão 1, execução automática)
+- [ ] Fase 5 — lotes A · B · C · D   (lote A: diagnóstico feito, execução pendente — sessão 1; lote B: diagnóstico feito, execução pendente — sessão 1; lote C: concluído — sessão 2, execução automática; lote D: concluído — sessão 1, execução automática)
 
 ## Demandas da orientadora
 | # | Demanda | Fase | Estado | Onde está o resultado |
@@ -526,7 +526,7 @@ robusto a sinal). Um commit por achado (FAT-07, L3, HIG-05). Nenhum dos três me
 ou documento publicado — é só `tests/test_fatorial.py` (e, se a normalização do HIG-05 exigir,
 duas linhas a mais no teste existente).
 
-## Fase 5, lote C (documentação) — sessão 1: parcial (execução automática)
+## Fase 5, lote C (documentação) — sessão 1 (parcial) + sessão 2 (concluído, execução automática)
 Feito nesta sessão, verificado e commitado (dois commits, `e79b534` e `5ffd1cb`):
 - **AUD-09** (GUIA × README × MANUAL contradiziam o status da fatorial): sincronizados
   README.md:29, o checklist de prioridades do GUIA, a tabela de notebooks do README da
@@ -562,37 +562,38 @@ Feito nesta sessão, verificado e commitado (dois commits, `e79b534` e `5ffd1cb`
 Nenhuma edição tocou código, CSV, deck ou notebook. `pytest -q`: 79 passed, antes e depois
 (conferido nas duas pontas). Working tree limpa depois dos dois commits.
 
-### Pendências do lote C (não feitas nesta sessão, por orçamento de chamadas)
-- **HIG-11** — `estrutura_projeto.md` (árvore e status desatualizados desde antes da
-  reorganização de docs/ e do NB04). Diagnosticado, não corrigido. A correção sugerida no
-  relatório aceita reduzir o arquivo a um ponteiro para a arquitetura do GUIA em vez de
-  regerar a árvore inteira a partir de `git ls-files` — caminho mais barato para a próxima
-  sessão.
-- **HIG-09** — dicionário `docs/Apresentacoes_IVS/dicionarios/Dicionario_Variaveis_IVS_Censo2022.xlsx`
-  descreve V00398 como "queimado" (é caçamba de serviço de limpeza; V00399 é que é
-  queimado — confirmado contra `indicadores.py:80` e o dicionário oficial do IBGE nesta
-  sessão, com `openpyxl` em modo leitura, disponível no `.venv`). Não editado: faltou
-  conferir as linhas de V00399–V00402 na aba `Componentes_IVS` antes de corrigir, para não
-  arriscar trocar uma descrição errada por outra. Abas do arquivo: `Inicio`,
-  `Componentes_IVS`, `Variaveis_Brutas_Censo`, `Variaveis_Derivadas`, `Guia_por_Arquivo`,
-  `De_Para_2010_2022`, `Decisoes_Metodologicas`.
-- **HIG-13** (resto) — `graphify-out/graph.json` (`built_at_commit`) não foi conferido nem
-  tocado: é saída gerada por skill, não mantida à mão: mexer nela é decisão de quem tratar o
-  achado, não deste lote.
-- **NBS-1** — `notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb`, célula markdown 27:
-  "106 mil setores elegíveis" → deveria ser "104 mil setores urbanos elegíveis" (df_ok já
-  filtrado para urbano desde a célula 8). Não editado.
-- **NBS-3** — mesmo notebook: `desc_grupo`/`_desc_long` (células 16, 18, 20, 22, 24, 26, 28,
-  32) tiram a média das proporções por setor, não a razão agregada, e isso só é declarado
-  explicitamente nas seções 7e e 7h. Correção sugerida: uma frase no markdown das seções 5-7,
-  7b-7d e 7f, no mesmo padrão de 7e/7h. Não editado.
-- **NBS-4** — mesmo notebook, célula markdown 41 (seção 12): a matriz de correlação usa
-  `.corr()` par a par (não listwise), sem declarar — efeito de até 0,033 frente ao listwise
-  (82,8% das linhas completas). Correção sugerida: uma frase na célula 41. Não editado.
-  NBS-1/3/4 ficaram de fora porque editar `.ipynb` markdown com segurança pede reabrir o
-  notebook com `nbformat`, editar a célula certa e reexecutar com `nbclient` para conferir
-  que nada quebrou (como a Fase 3 fez para o NB04) — não coube no orçamento restante desta
-  sessão.
+### Sessão 2 — pendências fechadas
+- **HIG-11** — `estrutura_projeto.md`: árvore regerada por script a partir de `git
+  ls-files` (410 arquivos versionados, profundidade 3, contagem por pasta em vez de
+  listar cada arquivo); status da análise fatorial e a menção ao Notebook 03
+  inexistente também corrigidos.
+- **HIG-09** — `Backup/gerar_dicionario_variaveis.py` corrigido (V00398 era descrito
+  como "queimado"; IBGE e `src/ivs_censo/indicadores.py:80` dizem caçamba de serviço
+  de limpeza — queimado é V00399) e `Dicionario_Variaveis_IVS_Censo2022.xlsx`
+  regerado pelo script, não editado à mão. Diff célula a célula conferido contra o
+  arquivo antigo antes de substituir: só 2 células mudaram (a de V00398 e uma
+  "REJEITADA " truncada, sem relação, também corrigida pela regeneração).
+- **NBS-1, NBS-3, NBS-4** — só texto de célula markdown em
+  `notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb`, sem reexecutar: "106 mil
+  setores elegíveis" → "104 mil setores urbanos elegíveis" (NBS-1); nota de que
+  `media` é média das proporções por setor, não razão agregada, nas seções 5, 6, 7,
+  7b, 7c, 7d e 7f, no padrão já usado em 7e/7h (NBS-3); nota de que `.corr()` usa
+  exclusão par a par, com o efeito já diagnosticado (até 0,033 frente ao listwise,
+  82,8% das linhas completas) na seção 12 (NBS-4).
+- **D4 (resto)** — nota do valor listwise (0,784) acrescentada nos 3 documentos que
+  faltavam: `Relatorio_EDA_Fase3_IVS_ELSI.md`, `Relatorio_Integridade_Projeto.md` e
+  `Analise_Fatorial_Enap2019_Guia_de_Leitura.md`.
+- **AUD-03 (complemento)** — tabela de `complementos/` no README de
+  Apresentacoes_IVS ganhou as 2 linhas que faltavam: `Guia_Apoio_Analise_Fatorial.pdf`
+  e `Plano_Emergencia_Apresentacao.pdf`.
+- **HIG-13 (resto)** — não tocado, como o lote manda: `graphify-out/graph.json` é
+  saída gerada por skill.
+
+`pytest -q`: 90 passed antes e depois (a suíte já estava em 90 no início da sessão 2,
+não em 79 — cresceu no commit `82a4ad4`, fora desta sessão). Nenhuma edição tocou
+CSV, deck ou código de produção além do gerador do dicionário (HIG-09). `git ls-tree
+-r HEAD | wc -l` = 410 antes e depois de cada um dos 5 commits temáticos desta
+sessão.
 
 Nenhuma trava de sanidade se aplica a este lote (é documentação, não conta nova); a única
 conferência foi textual (grep antes/depois) e `pytest -q`, ambas batendo.
