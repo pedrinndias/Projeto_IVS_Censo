@@ -133,6 +133,8 @@ def resumir(df: pd.DataFrame, nomes: list[str]) -> pd.DataFrame:
             par = num_setor.notna() & den_setor.notna()
             num, den = num_setor[par].sum(), den_setor[par].sum()
             agregado = (num / den * ind.escala) if den else np.nan
+            if ind.complemento and not pd.isna(agregado):
+                agregado = 1 - agregado          # mesma ordem de indicadores.py: complemento antes do clip
         else:
             agregado = df[ind.numerador[0]].mean()                     # renda: média simples
         linhas.append({

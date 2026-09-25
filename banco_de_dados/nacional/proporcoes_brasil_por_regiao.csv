@@ -13,7 +13,7 @@ Centro-Oeste;pct_moradia_nao_convencional;Morfologia;False;25571;0.006292;0.0318
 Centro-Oeste;pct_apartamento;Morfologia;False;22748;0.146940;0.298773;0.000000;0.000000;0.091503;0.157416
 Centro-Oeste;pct_casa;Morfologia;False;25117;0.846408;0.283761;0.870079;0.980843;1.000000;0.837750
 Centro-Oeste;pct_casa_vila_condominio;Morfologia;False;22202;0.032939;0.123669;0.000000;0.000000;0.000000;0.034142
-Centro-Oeste;pct_sem_agua_canalizada;Saneamento;False;25557;0.013783;0.065008;0.000000;0.000000;0.005495;0.988062
+Centro-Oeste;pct_sem_agua_canalizada;Saneamento;False;25557;0.013783;0.065008;0.000000;0.000000;0.005495;0.011938
 Centro-Oeste;pct_agua_nao_encanada;Saneamento;False;23069;0.003337;0.035910;0.000000;0.000000;0.000000;0.002524
 Centro-Oeste;pct_agua_so_terreno;Saneamento;False;20456;0.010971;0.061015;0.000000;0.000000;0.000000;0.010235
 Centro-Oeste;pct_sem_banheiro;Saneamento;False;22612;0.001306;0.022387;0.000000;0.000000;0.000000;0.000823
@@ -39,7 +39,7 @@ Nordeste;pct_moradia_nao_convencional;Morfologia;False;75119;0.001660;0.015018;0
 Nordeste;pct_apartamento;Morfologia;False;66727;0.122122;0.267793;0.000000;0.000000;0.071006;0.131605
 Nordeste;pct_casa;Morfologia;False;74102;0.872398;0.254294;0.899123;0.984615;1.000000;0.864312
 Nordeste;pct_casa_vila_condominio;Morfologia;False;66231;0.030111;0.110587;0.000000;0.000000;0.000000;0.031222
-Nordeste;pct_sem_agua_canalizada;Saneamento;False;75035;0.049155;0.117625;0.000000;0.008584;0.037037;0.955943
+Nordeste;pct_sem_agua_canalizada;Saneamento;False;75035;0.049155;0.117625;0.000000;0.008584;0.037037;0.044057
 Nordeste;pct_agua_nao_encanada;Saneamento;False;58096;0.026247;0.091205;0.000000;0.000000;0.014440;0.022856
 Nordeste;pct_agua_so_terreno;Saneamento;False;56967;0.033455;0.087100;0.000000;0.000000;0.026201;0.031533
 Nordeste;pct_sem_banheiro;Saneamento;False;57808;0.015861;0.054985;0.000000;0.000000;0.000000;0.014177
@@ -65,7 +65,7 @@ Norte;pct_moradia_nao_convencional;Morfologia;False;21862;0.004093;0.021654;0.00
 Norte;pct_apartamento;Morfologia;False;19544;0.081664;0.197841;0.000000;0.000000;0.063843;0.091788
 Norte;pct_casa;Morfologia;False;21706;0.883072;0.202878;0.867311;0.962424;1.000000;0.871878
 Norte;pct_casa_vila_condominio;Morfologia;False;18668;0.049911;0.113309;0.000000;0.000000;0.053927;0.053736
-Norte;pct_sem_agua_canalizada;Saneamento;False;21830;0.063920;0.132609;0.000000;0.013953;0.059524;0.943304
+Norte;pct_sem_agua_canalizada;Saneamento;False;21830;0.063920;0.132609;0.000000;0.013953;0.059524;0.056696
 Norte;pct_agua_nao_encanada;Saneamento;False;17243;0.022397;0.085878;0.000000;0.000000;0.000000;0.018470
 Norte;pct_agua_so_terreno;Saneamento;False;16789;0.055580;0.114555;0.000000;0.013453;0.056995;0.051414
 Norte;pct_sem_banheiro;Saneamento;False;16727;0.036632;0.098305;0.000000;0.000000;0.027424;0.030892
@@ -91,7 +91,7 @@ Sudeste;pct_moradia_nao_convencional;Morfologia;False;175076;0.003635;0.032287;0
 Sudeste;pct_apartamento;Morfologia;False;159438;0.218825;0.353672;0.000000;0.012048;0.275000;0.220211
 Sudeste;pct_casa;Morfologia;False;170110;0.787913;0.334088;0.735757;0.973811;1.000000;0.788169
 Sudeste;pct_casa_vila_condominio;Morfologia;False;156623;0.031850;0.123590;0.000000;0.000000;0.000000;0.030208
-Sudeste;pct_sem_agua_canalizada;Saneamento;False;175000;0.010795;0.061001;0.000000;0.000000;0.000000;0.990857
+Sudeste;pct_sem_agua_canalizada;Saneamento;False;175000;0.010795;0.061001;0.000000;0.000000;0.000000;0.009143
 Sudeste;pct_agua_nao_encanada;Saneamento;False;163344;0.003658;0.039876;0.000000;0.000000;0.000000;0.002998
 Sudeste;pct_agua_so_terreno;Saneamento;False;152266;0.006617;0.048915;0.000000;0.000000;0.000000;0.005891
 Sudeste;pct_sem_banheiro;Saneamento;False;159794;0.000624;0.010722;0.000000;0.000000;0.000000;0.000543
@@ -117,7 +117,7 @@ Sul;pct_moradia_nao_convencional;Morfologia;False;49771;0.000882;0.010294;0.0000
 Sul;pct_apartamento;Morfologia;False;44409;0.198093;0.309408;0.000000;0.033784;0.251337;0.219229
 Sul;pct_casa;Morfologia;False;49028;0.816420;0.289369;0.776892;0.965517;1.000000;0.795870
 Sul;pct_casa_vila_condominio;Morfologia;False;43736;0.017369;0.080815;0.000000;0.000000;0.000000;0.019602
-Sul;pct_sem_agua_canalizada;Saneamento;False;49764;0.004808;0.032523;0.000000;0.000000;0.000000;0.996407
+Sul;pct_sem_agua_canalizada;Saneamento;False;49764;0.004808;0.032523;0.000000;0.000000;0.000000;0.003593
 Sul;pct_agua_nao_encanada;Saneamento;False;46075;0.001572;0.023472;0.000000;0.000000;0.000000;0.001106
 Sul;pct_agua_so_terreno;Saneamento;False;42787;0.001998;0.024607;0.000000;0.000000;0.000000;0.001555
 Sul;pct_sem_banheiro;Saneamento;False;43637;0.001374;0.017478;0.000000;0.000000;0.000000;0.001155

@@ -389,12 +389,15 @@ def test_razao_agregada_mede_numerador_e_denominador_nos_mesmos_setores():
 
     # pct_apartamento e pct_sem_banheiro são os que mais sofriam: numerador de uma
     # variável só, que o IBGE sigila com frequência
-    for nome in ['pct_apartamento', 'pct_sem_banheiro', 'pct_casa_vila_condominio', 'pct_agua_inad']:
+    for nome in ['pct_apartamento', 'pct_sem_banheiro', 'pct_casa_vila_condominio', 'pct_agua_inad',
+                 'pct_sem_agua_canalizada']:
         ind = INDICADORES_POR_NOME[nome]
         n = ok[ind.numerador].sum(axis=1, min_count=1)
         d = ok[ind.denominador].sum(axis=1, min_count=ind.min_count_den)
         par = n.notna() & d.notna()
         esperado = n[par].sum() / d[par].sum()
+        if ind.complemento:
+            esperado = 1 - esperado
         obtido = elsi.loc[nome, 'razao_agregada']
         assert abs(obtido - esperado) < 1e-6, (
             f'{nome}: razão agregada {obtido:.6f} != {esperado:.6f} medido nos mesmos setores')

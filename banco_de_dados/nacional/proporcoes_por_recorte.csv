@@ -13,7 +13,7 @@ Brasil (todos os setores elegíveis);pct_moradia_nao_convencional;Morfologia;Fal
 Brasil (todos os setores elegíveis);pct_apartamento;Morfologia;False;413233;0.137523;0.290900;0.000000;0.000000;0.072816;0.163245
 Brasil (todos os setores elegíveis);pct_casa;Morfologia;False;442578;0.859894;0.277538;0.896552;0.992754;1.000000;0.837752
 Brasil (todos os setores elegíveis);pct_casa_vila_condominio;Morfologia;False;405031;0.023971;0.102663;0.000000;0.000000;0.000000;0.027192
-Brasil (todos os setores elegíveis);pct_sem_agua_canalizada;Saneamento;False;447417;0.066959;0.181886;0.000000;0.000000;0.021739;0.958389
+Brasil (todos os setores elegíveis);pct_sem_agua_canalizada;Saneamento;False;447417;0.066959;0.181886;0.000000;0.000000;0.021739;0.041611
 Brasil (todos os setores elegíveis);pct_agua_nao_encanada;Saneamento;False;394481;0.042392;0.156352;0.000000;0.000000;0.000000;0.023263
 Brasil (todos os setores elegíveis);pct_agua_so_terreno;Saneamento;False;373826;0.036235;0.115908;0.000000;0.000000;0.000000;0.025015
 Brasil (todos os setores elegíveis);pct_sem_banheiro;Saneamento;False;385939;0.041510;0.147382;0.000000;0.000000;0.000000;0.020859
@@ -39,7 +39,7 @@ Brasil (apenas urbanos);pct_moradia_nao_convencional;Morfologia;False;347399;0.0
 Brasil (apenas urbanos);pct_apartamento;Morfologia;False;312866;0.181463;0.322136;0.000000;0.000000;0.163717;0.186351
 Brasil (apenas urbanos);pct_casa;Morfologia;False;340063;0.820827;0.303298;0.817568;0.975827;1.000000;0.816764
 Brasil (apenas urbanos);pct_casa_vila_condominio;Morfologia;False;307460;0.030591;0.115225;0.000000;0.000000;0.000000;0.030628
-Brasil (apenas urbanos);pct_sem_agua_canalizada;Saneamento;False;347186;0.021788;0.082550;0.000000;0.000000;0.007634;0.980313
+Brasil (apenas urbanos);pct_sem_agua_canalizada;Saneamento;False;347186;0.021788;0.082550;0.000000;0.000000;0.007634;0.019687
 Brasil (apenas urbanos);pct_agua_nao_encanada;Saneamento;False;307827;0.008635;0.055657;0.000000;0.000000;0.000000;0.007566
 Brasil (apenas urbanos);pct_agua_so_terreno;Saneamento;False;289265;0.014369;0.063979;0.000000;0.000000;0.000000;0.013781
 Brasil (apenas urbanos);pct_sem_banheiro;Saneamento;False;300578;0.005719;0.036788;0.000000;0.000000;0.000000;0.005262
@@ -65,7 +65,7 @@ ELSI 70 municípios (apenas urbanos);pct_moradia_nao_convencional;Morfologia;Fal
 ELSI 70 municípios (apenas urbanos);pct_apartamento;Morfologia;False;95005;0.314759;0.404848;0.000000;0.052133;0.760870;0.314656
 ELSI 70 municípios (apenas urbanos);pct_casa;Morfologia;False;99642;0.694712;0.379734;0.383750;0.914414;0.993789;0.692867
 ELSI 70 municípios (apenas urbanos);pct_casa_vila_condominio;Morfologia;False;91304;0.044262;0.129730;0.000000;0.000000;0.021944;0.045896
-ELSI 70 municípios (apenas urbanos);pct_sem_agua_canalizada;Saneamento;False;104067;0.014965;0.068538;0.000000;0.000000;0.004808;0.986233
+ELSI 70 municípios (apenas urbanos);pct_sem_agua_canalizada;Saneamento;False;104067;0.014965;0.068538;0.000000;0.000000;0.004808;0.013767
 ELSI 70 municípios (apenas urbanos);pct_agua_nao_encanada;Saneamento;False;94402;0.004700;0.040561;0.000000;0.000000;0.000000;0.004263
 ELSI 70 municípios (apenas urbanos);pct_agua_so_terreno;Saneamento;False;88211;0.010505;0.057620;0.000000;0.000000;0.000000;0.010106
 ELSI 70 municípios (apenas urbanos);pct_sem_banheiro;Saneamento;False;91912;0.002346;0.021435;0.000000;0.000000;0.000000;0.002082
