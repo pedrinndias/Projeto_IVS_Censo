@@ -8,7 +8,7 @@ Linha de base: commit 3c426e8 · 25/09/2026
 - [x] Fase 2 — fatorial ampliada   (25/09/2026, execução automática; concluída)
 - [x] Fase 3 — notebook 04b e NB04   (25/09/2026, execução automática, em duas sessões; concluída)
 - [x] Fase 4 — curadoria e slides   (25/09/2026, três sessões; concluída)
-- [ ] Fase 5 — lotes A · B · C · D   (lote A: diagnóstico feito, execução pendente — sessão 1)
+- [ ] Fase 5 — lotes A · B · C · D   (lote A: diagnóstico feito, execução pendente — sessão 1; lote B: diagnóstico feito, execução pendente — sessão 1)
 
 ## Demandas da orientadora
 | # | Demanda | Fase | Estado | Onde está o resultado |
@@ -422,3 +422,74 @@ quatro de `fatorial.py`, que é o mesmo arquivo/tema, e outro para os cinco do F
 scripts). Nenhum dos quatro achados aparece nos dados publicados hoje (todos "fica
 incoerente só num caso hipotético" ou "não muda nada com os dados reais") — não há CSV,
 deck ou documento para regerar por causa deste lote.
+
+## Fase 5, lote B (testes) — sessão 1: diagnóstico, execução pendente
+Parada em 16 chamadas (80% do teto de 20 da fase), toda em leitura e diagnóstico — nenhuma
+edição de código ou teste feita ainda. Nada versionado mudou nesta sessão além deste estado.
+`pytest` não rodou (nenhum código tocado). Plano pronto para a próxima sessão executar sem
+reler nada:
+
+**FAT-07 — a suíte da camada fatorial deixa passar 13 mutações plausíveis** (lista completa em
+`docs/relatorios/Revisao_Geral_2026-09.md`, `grep -n -A12 '#### FAT-07'`). Cinco testes novos
+cobrem a correção sugerida:
+- **Referência IVS6 do promax** (Φ, matriz padrão, matriz estrutura): reaproveitar a consulta
+  de `test_varimax_atinge_o_otimo_da_rotacao_2d` (IVS7 menos `pct_lixo_inad`, urbano==1 e
+  Dados_sig=='OK', spearman), `_, cargas = acp(R, 2)`, `padrao, estrutura, phi =
+  rotacao_promax(cargas)`. Travar `round(phi[0,1], 4) == 0.5215` (linha de base do NB04) e,
+  por não depender da ordem dos fatores, `round(max(reparticao(padrao)), 4) == 0.6582` e
+  `round(max(reparticao(estrutura)), 4) == 0.5964` (65,82/34,18 e 59,64/40,36 da linha de
+  base). Mata os mutantes "promax com kappa=2", "alvo sem o sinal" e "estrutura = padrão".
+- **Bartlett gl e p-valor:** hoje só `qui` está travado em `test_acp_varimax_reproduz_csv`.
+  Acrescentar ali (2 linhas): `assert gl == 21` (p=7 → 7·6/2) e `assert pval < 1e-10` —
+  conferir o valor exato de `pval` antes de travar (rodar o teste isolado primeiro). Mata
+  "gl = p(p+1)/2" e "p-valor fixo em 1".
+- **Horn com semente fixa:** rodar `horn(100, 5, sims=10, semente=99)` uma vez num script à
+  parte, gravar o array no teste novo com `np.testing.assert_allclose(..., atol=1e-10)`. Mata
+  "semente trocada" e "Horn devolvendo zeros" (zeros não bateria com o array travado).
+- **`alinhar_cargas` desfaz sinal e ordem:** pegar uma referência de `_matriz_fatorial()`,
+  permutar as duas colunas e inverter o sinal de uma, chamar `alinhar_cargas(embaralhada,
+  referencia)` e comparar com a referência original (`atol` pequeno). Mata "sem inverter
+  sinal" e cobre o alinhamento que o bootstrap usa.
+- **Percentis do bootstrap são 2,5/97,5, não 5/95:** chamar `bootstrap_cargas` com `n_rep`
+  pequeno (≈20) sobre dados sintéticos determinísticos (padrão de
+  `test_escores_por_regressao_tem_variancia_um`) e comparar `cargas_ic` com
+  `np.percentile(cargas_reamostragens, [2.5, 97.5], axis=0)` calculado à parte — os dois têm
+  que bater exatamente, porque usam a mesma matriz de reamostragens devolvida.
+- **Não coberto nesta lista** (fica como item futuro, não bloqueante): um teste de
+  `bootstrap_cargas` que force troca de sinal/ordem *dentro* do laço real de reamostragem —
+  exigiria uma amostra quase singular; o teste de `alinhar_cargas` acima cobre a função em si.
+
+**L3 — nenhum teste trava o par renda × cor/raça nem compara par a par × listwise** (D4:
+`docs/relatorios/Auditoria_Integral_2026-09.md` linhas 47 e 80; valores aproximados citados
+lá: −0,81 par a par sobre 104.108 setores, 0,784 na matriz listwise de 87.545 que a fatorial
+decompõe — abaixo do limiar de multicolinearidade 0,80). Antes de escrever o teste, rodar UM
+script de verificação (regra "uma verificação = um script") que:
+1. Lê `renda_media`, `pct_raca_pretpardind` e as demais colunas do IVS7 do `.db`, filtra
+   `urbano` numericamente (`pd.to_numeric(..., errors='coerce') == 1`) e `Dados_sig=='OK'`;
+2. Calcula a correlação de Spearman par a par (`df[['renda_inv',
+   'pct_raca_pretpardind']].dropna()`, deve dar perto de 104.108 casos) e a mesma correlação
+   dentro do recorte listwise das 7 variáveis (87.545 casos, IVS7 completo);
+3. Imprime os dois valores com 4 casas — são os números que o teste novo vai travar
+   (arredondados), ao lado de `assert abs(par - listwise) > 0.02` para provar que a
+   procedência muda a conclusão, o ponto do achado D4/L3.
+Guardar o teste em `tests/test_fatorial.py`, com o mesmo `skipif` de banco ausente das outras
+conferências contra o `.db`.
+
+**HIG-05 — piso `numpy>=1.26` quebra `test_acp_varimax_reproduz_csv` por troca de sinal**
+(`requirements.txt:9`; evidência completa em `grep -n -A12 '#### HIG-05'
+docs/relatorios/Revisao_Geral_2026-09.md`). `acp()` devolve o sinal cru de `np.linalg.eigh`
+(documentado na própria função); com numpy 1.26/Python 3.10-3.12 o sinal de CP2/Varimax2 pode
+sair trocado e o teste falha, mesmo com o cálculo correto. Correção dentro do escopo do lote B
+(teste, não o CSV publicado nem `requirements.txt`, que são Lote D): antes do `assert_allclose`
+em `test_acp_varimax_reproduz_csv`, normalizar o sinal de cada coluna de `calculado` e de `ref`
+pela mesma convenção do resto do projeto (`_sinal_positivo`, soma da coluna > 0 → sinal +1,
+como em `rodar_cenario`) — assim o teste passa com qualquer sinal que o LAPACK escolher, em vez
+de exigir uma versão mínima de numpy testada. Regenerar o CSV de referência ou subir o piso do
+`requirements.txt` fica para quem tratar o Lote D (F4), se for o caso — não é necessário depois
+desse ajuste no teste.
+
+**Depois de aplicar os três achados:** `pytest -q` tem que fechar em 79 passed + os testes
+novos (FAT-07 × 5, L3 × 1 ⇒ 85 passed esperados; HIG-05 não soma teste, só torna o existente
+robusto a sinal). Um commit por achado (FAT-07, L3, HIG-05). Nenhum dos três mexe em CSV, deck
+ou documento publicado — é só `tests/test_fatorial.py` (e, se a normalização do HIG-05 exigir,
+duas linhas a mais no teste existente).
