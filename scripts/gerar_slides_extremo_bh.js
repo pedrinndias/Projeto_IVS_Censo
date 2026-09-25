@@ -67,7 +67,7 @@ const marca = t => ({ text: t, options: { color: ACENTO, bold: true } });
   numero(s, M, yt + 2.95, 4.0, 'R$ ' + inteiro(170418), 'a renda do setor, por responsável', true);
   numero(s, M + 4.6, yt + 2.95, 4.0, 'R$ ' + inteiro(3058), 'a mediana de Belo Horizonte sem ele');
   numero(s, M + 9.2, yt + 2.95, 2.4, '56×', 'a razão entre as duas');
-  s.addNotes('A leitura é esta: o efeito de um único setor depende inteiramente do recorte em que se olha. Em 87 mil setores ele move a média em 0,04% e por isso a 2ª rodada concluiu, com razão, que o agregado é robusto. Mas dentro de Belo Horizonte ele derruba o desvio-padrão em 14% e o máximo em 73%. A mediana quase não se move nos dois casos, o que é a assinatura de um outlier: ele desloca média e dispersão, não o centro.');
+  s.addNotes(`A leitura é esta: o efeito de um único setor depende inteiramente do recorte em que se olha. Em ${inteiro(elsi('n','com_extremo'))} setores ele move a média em 0,04% e por isso a 2ª rodada concluiu, com razão, que o agregado é robusto. Mas dentro de Belo Horizonte ele derruba o desvio-padrão em 14% e o máximo em 73%. A mediana quase não se move nos dois casos, o que é a assinatura de um outlier: ele desloca média e dispersão, não o centro.`);
 }
 
 // ── slide 2: a consequência metodológica ────────────────────────────────────
@@ -75,7 +75,7 @@ const marca = t => ({ text: t, options: { color: ACENTO, bold: true } });
   const y = titulo(s, 'A consequência que ninguém tinha medido',
     'O IVS normaliza a renda por min-max DENTRO de cada município. Um máximo distorcido comprime todo o resto.');
   bloco(s, M, y + 0.2, W - 2*M, 'Por que isto importa mais do que a descritiva.',
-    'O índice é intraurbano: cada variável é posta numa escala de 0 a 1 usando o mínimo e o máximo DAQUELE município. Se o máximo de Belo Horizonte é R$ 170 mil e o segundo maior está na casa dos R$ 30 mil, todos os outros 5 mil setores são empurrados contra o zero — e deixam de se distinguir entre si.', true, 1.15);
+    `O índice é intraurbano: cada variável é posta numa escala de 0 a 1 usando o mínimo e o máximo DAQUELE município. Se o máximo de Belo Horizonte é R$ 170 mil e o segundo maior é R$ ${Number(bh('max','sem_extremo')).toLocaleString('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}, todos os outros 5 mil setores são empurrados contra o zero — e deixam de se distinguir entre si.`, true, 1.15);
   numero(s, M, y + 1.6, 3.8, n(NORM.norm_media_com, 4).replace('0,', '0,'),
     'renda normalizada média em BH, COM o extremo');
   numero(s, M + 4.3, y + 1.6, 3.8, n(NORM.norm_media_sem, 4),
@@ -92,7 +92,7 @@ const marca = t => ({ text: t, options: { color: ACENTO, bold: true } });
       'R$ ' + inteiro(NORM.amplitude_usada_com), 'R$ ' + inteiro(NORM.amplitude_usada_sem),
       `−${n(100*(1 - Number(NORM.amplitude_usada_sem)/Number(NORM.amplitude_usada_com)), 0)}%`],
   ], { y: yt, colW: [4.8, 2.4, 2.4, 2.03], rowH: 0.42, fontSize: 11.5 });
-  s.addNotes('Este é o achado da análise, e ele é metodológico, não descritivo. Um único dado provavelmente errado estava achatando a escala de renda de 1.909 setores de Belo Horizonte — que apareciam como se tivessem renda praticamente idêntica quando não têm. Como o IVS classifica território em quatro faixas, achatar a escala de um quinto do município tem consequência direta sobre quem seria apontado como vulnerável. Vale dizer também o que NÃO muda: no ranking dos 70 municípios por renda média, Belo Horizonte continua em 7º e nenhum município troca de posição. O agregado é robusto; o intramunicipal não era.');
+  s.addNotes(`Este é o achado da análise, e ele é metodológico, não descritivo. Um único dado provavelmente errado estava achatando a escala de renda de ${inteiro(NORM.setores_abaixo_de_0_05_com - NORM.setores_abaixo_de_0_05_sem)} setores de Belo Horizonte — que apareciam como se tivessem renda praticamente idêntica quando não têm. Como o IVS classifica território em quatro faixas, achatar a escala de ${n(100*(NORM.setores_abaixo_de_0_05_com - NORM.setores_abaixo_de_0_05_sem)/NORM.setores_de_bh, 0)}% do município tem consequência direta sobre quem seria apontado como vulnerável. Vale dizer também o que NÃO muda: no ranking dos 70 municípios por renda média, Belo Horizonte continua em 7º e nenhum município troca de posição. O agregado é robusto; o intramunicipal não era.`);
 }
 
 // ── slide 3: a figura ───────────────────────────────────────────────────────
