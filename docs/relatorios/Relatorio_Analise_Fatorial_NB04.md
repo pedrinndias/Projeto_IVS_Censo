@@ -20,15 +20,15 @@ Dez achados, numerados para referência no artigo.
 
 1. **Os pesos do IVS são 65,0% para a dimensão socioeconômica e 35,0% para saneamento**, contra os 60/40 do IVS-BH 2012. Cinco pontos percentuais de diferença entre o peso empírico e o da literatura.
 
-2. **Esses pesos são estáveis.** Mil reamostragens com reposição devolvem intervalo de confiança de 95% entre 64,7% e 65,3% — amplitude de 0,59 ponto percentual. A crítica de instabilidade que o livro faz aos índices por média ponderada (p. 23) não se materializa nesta amostra.
+2. **Esses pesos são estáveis à reamostragem de setores, sensíveis ao conjunto de municípios.** Mil reamostragens com reposição (setores, iid) devolvem intervalo de confiança de 95% entre 64,7% e 65,3% — amplitude de 0,59 ponto percentual. Mas os 87.545 setores vêm de 70 municípios, a unidade amostral do ELSI, e a sensibilidade por município (deixar um de fora por vez, no notebook 04b) mostra oscilação maior: só tirar São Paulo já leva o peso a 62,9/37,1. A crítica de instabilidade do livro (p. 23) não se materializa na reamostragem por setor, mas fica em aberto na reamostragem por município.
 
 3. **A escolha entre 65/35 e 60/40 quase não importa para a classificação.** Trocando um pelo outro, 2.196 setores mudam de faixa — 2,5% dos 87.545. A correlação de Spearman entre as duas ordenações é 0,9993. A decisão nº 1 da §6.3 do `GUIA_DO_PROJETO.md` deixa de ser crítica.
 
-4. **O índice separa os territórios sabidamente vulneráveis.** Contra os 18.901 setores de Favela e Comunidade Urbana presentes no conjunto completo, a área sob a curva ROC é **0,813** para o índice 0–1 e **0,862** para o escore refinado. O marcador é externo ao índice: nenhuma das seis variáveis foi usada para construí-lo.
+4. **O conjunto de variáveis separa os territórios sabidamente vulneráveis; a AUC não valida o esquema de pesos.** Contra os 18.901 setores de Favela e Comunidade Urbana presentes no conjunto completo, a área sob a curva ROC é **0,813** para o índice 0–1 e **0,862** para o escore refinado. Como linha de base (Fase 0): a renda invertida sozinha tem AUC 0,8819 e a média de postos com pesos iguais tem AUC 0,8533 — as duas acima do índice oficial. O marcador é externo ao índice (nenhuma das seis variáveis foi usada para construí-lo), mas a AUC mede conteúdo socioeconômico, não confirma a estrutura fatorial nem os pesos 65/35.
 
 5. **Os dois fatores são correlacionados a 0,522.** A rotação oblíqua, recomendada pela p. 38 do livro, produz a matriz Φ que a solução ortogonal não pode produzir. A magnitude é moderada e positiva, que é o que a teoria da vulnerabilidade prevê — territórios pobres têm pior saneamento.
 
-6. **A rotação oblíqua afasta os pesos da literatura, não os aproxima.** A repartição passa de 65,0/35,0 para 65,8/34,2. A convergência com o IVS-BH, portanto, não depende da escolha de rotação.
+6. **A repartição da rotação oblíqua não tem uma única resposta.** Pela matriz padrão, a repartição passa de 65,0/35,0 (ortogonal) para 65,8/34,2; pela matriz estrutura, para 59,6/40,4 — mais perto dos 60/40 do IVS-BH. Nenhuma das duas somas de quadrados é partição aditiva com fatores correlacionados, e não se conclui que a oblíqua "afasta" nem que "aproxima" os pesos da literatura.
 
 7. **A concordância entre o índice 0–1 e o escore refinado é 0,924**, abaixo do corte de 0,95 fixado como validação. A causa é de escala, não de amostra: o índice é min-max de valores brutos e o modelo fatorial foi estimado sobre postos. O escore calculado sobre valores brutos — que é o incoerente — dá 0,945. Quanto mais coerente o escore fica com o modelo, mais se afasta do índice planejado.
 
@@ -40,10 +40,12 @@ Dez achados, numerados para referência no artigo.
     `renda_media_sem_extremo`, o KMO varia em 0,00003, as cargas batem até a quarta casa
     decimal (maior diferença 0,0000), a repartição dos pesos muda 0,0004 ponto percentual
     e **278 setores** dos 87.544 comparáveis mudam de faixa — 0,32%, com Spearman de
-    0,999976 entre os dois índices. A pendência da 2ª rodada da EDA fica resolvida: a
-    fatorial pode continuar sobre `renda_media` ou migrar, sem consequência.
+    0,999976 entre os dois índices. A pendência da 2ª rodada da EDA fica resolvida **para a
+    fatorial**: Spearman é invariante a essa escala. Sob a normalização MUNICIPAL que o IVS
+    vai usar (Notebook 03, não este), o efeito não é o mesmo: 774 de 87.544 setores mudam de
+    faixa (NB4-11). Qual renda entra no índice final continua pendente.
 
-11. **A base é adequada, e a adequação depende da escolha por Spearman.** KMO 0,783 e MSA mínimo 0,700 com Spearman; com Pearson, KMO 0,732, MSA mínimo 0,542 e apenas 33,3% dos coeficientes acima de 0,30 — a base reprovaria em dois critérios da Etapa 1.
+11. **A base é adequada, e a adequação depende da escolha por Spearman.** KMO 0,783 e MSA mínimo 0,700 com Spearman; com Pearson, KMO 0,732 (passa, até no patamar "ideal" da Tabela 7), MSA mínimo 0,542 (passa) e apenas 33,3% dos coeficientes acima de 0,30 — a base reprovaria no critério da maioria acima de 0,30 (Etapa 1) e ficaria abaixo dos 60% de variância acumulada (Etapa 2, que a Tabela 7 não traz).
 
 ---
 
@@ -56,7 +58,7 @@ Cada decisão com a passagem que a sustenta. As páginas são as da numeração 
 | Recorte | `urbano = 1` e `Dados_sig = 'OK'`; exclusão de casos por lista | §6.2.6 do Guia; o livro não trata de faltantes |
 | Correlação | Spearman como referência, Pearson como sensibilidade | Fora do catálogo da p. 11–15, justificado pela assimetria documentada na §9 do relatório da EDA |
 | Adequabilidade | KMO e MSA como base da conclusão; Bartlett citado por convenção | p. 43 — o teste "tende a rejeitar a hipótese nula para amostras grandes" |
-| Número de fatores | Dois, por razão teórica declarada | p. 32 — a decisão final pode ser teórica; Kaiser é fraco com poucas variáveis (p. 29) |
+| Número de fatores | Dois, por razão teórica declarada | p. 32 — a decisão final pode ser teórica; p. 29 — Kaiser é mais preciso com n > 250 e comunalidade média ≥ 0,6 (as duas satisfeitas aqui); Tabachnick & Fidell recomendam Kaiser entre 20 e 50 variáveis (não é o caso, são 6–7) |
 | Extração | ACP como principal, eixo principal como sensibilidade | p. 27 — a regra de Stevens (1992) exige o teste quando há menos de 20 variáveis e comunalidades baixas |
 | Rotação | Varimax e promax lado a lado, com Φ publicada | p. 38 — rotação ortogonal em Ciências Humanas exige prova de independência |
 | Comunalidade | `razao_moradores` mantida com 0,380 | p. 58 — o corte de 0,50 "não deve ser utilizado isoladamente e de maneira muito rígida" |
@@ -107,7 +109,7 @@ Na solução de sete variáveis, Kaiser e Horn retêm dois — mas a decisão se
 
 ### Bloco 4 — Extração comparada
 
-Duas das três condições de convergência entre ACP e análise fatorial falham: são 6 variáveis (não mais de 30) e a comunalidade mínima é 0,380 (abaixo de 0,4). O teste era obrigatório.
+Pela regra de Hair (acima de 30 variáveis, ou comunalidades acima de 0,60 na maioria) esperava-se convergência: 5 das 6 comunalidades passam de 0,60. Pela contagem de variáveis de Stevens (30 ou mais), esperava-se divergência. O teste, portanto, não era dispensável, e o resultado (abaixo) cai do lado da divergência, na água.
 
 | Variável | ACP fator 2 | Eixo principal fator 2 | Diferença | Comunalidade ACP | Comunalidade AF |
 |---|---:|---:|---:|---:|---:|
@@ -140,7 +142,7 @@ Repartição do peso: **65,0 / 35,0** na ortogonal, **65,8 / 34,2** na oblíqua,
 
 Mil reamostragens, semente 42. A carga mais instável é a da razão de moradores no segundo fator, com intervalo de 0,293 a 0,334 — amplitude de 0,041. Todas as demais têm amplitude abaixo de 0,026. A repartição entre dimensões fica em **[64,7; 65,3]**.
 
-Com 87 mil setores a incerteza amostral é desprezível. O que limita esta análise não é o *n* — é o número pequeno de variáveis, e o livro, escrito para questionários com dezenas de itens, não trata desse problema.
+A incerteza por reamostragem de SETORES é desprezível. Mas os 87 mil setores vêm de 70 municípios, e a sensibilidade por município (04b) mostra oscilação maior no peso — o IC por município chega a incluir o 60/40 da literatura. O que limita esta análise não é só o número pequeno de variáveis: é também a unidade de reamostragem.
 
 ### Bloco 7 — Pesos e escores
 
@@ -188,9 +190,9 @@ Nenhuma foi fechada aqui. O custo de cada opção está medido.
 |---|---|---|
 | 1 | **Pesos empíricos ou 60/40 da literatura** | Convergem. Trocar um pelo outro move 2,5% dos setores de faixa. O argumento a favor dos empíricos está na p. 71: itens contribuem de forma desigual, e pesos iguais dariam "três votos" à posição social sem escolha deliberada. O argumento a favor de 60/40 é a comparabilidade com o IVS-BH 2012 |
 | 2 | **Destino do indicador de lixo** | Fora do índice: a variância acumulada sobe de 62,1% para 70,0%, a estrutura teórica aparece limpa, e a água sai de comunalidade 0,253 para 0,822. Dentro: fidelidade literal ao `Cálculo IVS2012.docx`, ao custo de dar peso a uma dimensão que não é vulnerabilidade — comunalidade de 0,052 pelo eixo principal |
-| 3 | **Política do sigilo no analfabetismo** | Manter a variável: 16.563 setores ficam sem índice. Retirá-la: recupera-os, ao custo de 7,5% dos setores mudando de faixa e da perda de um componente do bloco socioeconômico |
+| 3 | **Política do sigilo no analfabetismo** | Manter a variável: 16.548 setores ficam sem índice. Retirá-la: recupera-os, ao custo de 7,5% dos setores mudando de faixa e da perda de um componente do bloco socioeconômico |
 | 4 | **Um fator ou dois** | Um: é o que Kaiser e Horn indicam na solução sem lixo, e dispensa toda a discussão de rotação (p. 69). Dois: preserva a estrutura do IVS-BH e a leitura por dimensões. Custo da troca: 8,8% dos setores mudam de faixa |
-| 5 | **Rotação ortogonal ou oblíqua** | Oblíqua é a recomendada pela p. 38 e produz Φ = 0,522 como evidência de validação. Ortogonal é mais simples de reportar e é o que a literatura do IVS usa. Custo: 0,8 ponto percentual na repartição dos pesos |
+| 5 | **Rotação ortogonal ou oblíqua** | Oblíqua é a recomendada pela p. 38 e produz Φ = 0,522 como evidência de validação. Ortogonal é mais simples de reportar e é o que a literatura do IVS usa. Custo não bem definido: 0,8 p.p. no sentido oposto ao 60/40 pela matriz padrão, ou 5,4 p.p. no sentido do 60/40 pela matriz estrutura |
 | 6 | **Índice 0–1 ou escore refinado** | O 0–1 é interpretável, comparável com o IVS-BH e reproduzível com sete números numa tabela. O refinado é estável e separa melhor as favelas (AUC 0,862 contra 0,813). A concordância de 0,924 ficou abaixo do corte que validaria o primeiro sem ressalva |
 
 ---

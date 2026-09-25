@@ -1,7 +1,7 @@
 ﻿variavel;coluna;dimensao;carga;peso;peso_pct
-Água inadequada;pct_agua_inad;Saneamento;0.902507;0.223215;22.321481
-Esgoto inadequado;pct_esgoto_inad;Saneamento;0.679158;0.126405;12.640463
-Razão de moradores;razao_moradores;Socioeconômica;0.532182;0.071707;7.170688
-Analfabetismo 15+;pct_analfab;Socioeconômica;0.86839;0.190928;19.092845
-Renda (invertida);renda_inv;Socioeconômica;0.915218;0.212075;21.207517
-Cor/raça PPI;pct_raca_pretpardind;Socioeconômica;0.832968;0.17567;17.567006
+Água inadequada;pct_agua_inad;Saneamento;0.902559;0.223343;22.334292
+Esgoto inadequado;pct_esgoto_inad;Saneamento;0.679395;0.126551;12.655097
+Razão de moradores;razao_moradores;Socioeconômica;0.531993;0.071646;7.164616
+Analfabetismo 15+;pct_analfab;Socioeconômica;0.868313;0.190869;19.086865
+Renda (invertida);renda_inv;Socioeconômica;0.915135;0.212008;21.200777
+Cor/raça PPI;pct_raca_pretpardind;Socioeconômica;0.83282;0.175584;17.558353
