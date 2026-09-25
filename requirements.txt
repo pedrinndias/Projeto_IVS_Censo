@@ -18,3 +18,9 @@ pytest>=8.0
 #   jupyter execute notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb
 ipykernel>=6.29
 nbclient>=0.10
+
+# Geração de PDF/DOCX de entregáveis (scripts/gerar_pdf_guia_fatorial.py,
+# scripts/gerar_pdf_outliers_renda.py, scripts/gerar_pdf_plano_emergencia.py,
+# scripts/gerar_resumo_eda_central.py, scripts/atualizar_roteiro_2a_rodada.py)
+reportlab
+python-docx
