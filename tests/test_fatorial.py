@@ -27,7 +27,8 @@ sys.path.insert(0, str(ROOT / 'src'))
 from ivs_censo.fatorial import (IVS7, ROTULOS, acp, bartlett,                    # noqa: E402
                                 comunalidades_obliquas, escores_regressao,
                                 fatoracao_eixo_principal, kmo, matriz_correlacao,
-                                postos, rotacao_promax, smc, varimax)
+                                postos, reparticao, rodar_cenario,
+                                rotacao_promax, smc, varimax)
 
 BANCO = ROOT / 'banco_de_dados' / 'entrega_orientadora' / 'Base_ELSI_70Municipios_Censo2022.db'
 CARGAS_REF = ROOT / 'banco_de_dados' / 'eda' / 'fatorial' / 'ivs7_spearman_cargas.csv'
@@ -280,3 +281,27 @@ def test_postos_com_empates_batem_com_o_pandas():
     np.testing.assert_allclose(postos(X), esperado)
     np.testing.assert_allclose(matriz_correlacao(X, 'spearman'),
                                pd.DataFrame(X).corr(method='spearman').to_numpy(), atol=1e-12)
+
+
+def test_rodar_cenario_orienta_sinais_e_fecha_as_contas():
+    # Duas dimensões latentes, três variáveis cada; uma coluna entra com o sinal trocado
+    # para que o autovetor possa sair em qualquer sentido.
+    rng = np.random.default_rng(7)
+    f = rng.standard_normal((3000, 2))
+    X = np.column_stack([f[:, 0] + 0.6 * rng.standard_normal(3000) for _ in range(3)]
+                        + [f[:, 1] + 0.6 * rng.standard_normal(3000) for _ in range(3)])
+    r = rodar_cenario(-X, k=2)
+    for chave in ('sem_rotacao', 'varimax', 'promax_padrao'):
+        assert (r[chave].sum(axis=0) > 0).all(), chave
+    np.testing.assert_allclose(r['promax_estrutura'], r['promax_padrao'] @ r['phi'], atol=1e-12)
+    np.testing.assert_allclose(np.diag(r['phi']), 1.0, atol=1e-12)
+    for rep in r['pesos'].values():
+        assert rep.sum() == pytest.approx(1.0)
+    R = matriz_correlacao(-X)
+    assert r['kmo'] == pytest.approx(kmo(R)[0])
+    assert r['kaiser'] == int((np.linalg.eigvalsh(R) > 1).sum()) == 2
+    assert r['horn_retidos'] == 2
+    # Varimax e sem rotação têm a mesma comunalidade: a rotação ortogonal não a muda.
+    np.testing.assert_allclose((r['varimax'] ** 2).sum(axis=1), r['comunalidade'], atol=1e-10)
+    np.testing.assert_allclose(r['pesos']['varimax'], reparticao(r['varimax']))
+    assert rodar_cenario(X, com_horn=False)['horn_retidos'] is None

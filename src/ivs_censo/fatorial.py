@@ -467,3 +467,62 @@ def diagnosticar(dados: pd.DataFrame, colunas: list[str], metodo: str, k: int, n
         'comunalidade_min': float(comun.min()),
         'tabelas': tabelas,
     }
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Um cenário da fatorial ampliada, de ponta a ponta
+# ─────────────────────────────────────────────────────────────────────────────
+def _sinal_positivo(M: np.ndarray) -> np.ndarray:
+    """+1 ou −1 por coluna, para que a soma das cargas de cada fator fique positiva."""
+    return np.where(M.sum(axis=0) < 0, -1.0, 1.0)
+
+
+def reparticao(M: np.ndarray) -> np.ndarray:
+    """Quanto cada fator pesa: soma dos quadrados das cargas, normalizada (NB04)."""
+    ss = (M ** 2).sum(axis=0)
+    return ss / ss.sum()
+
+
+def rodar_cenario(X: np.ndarray, k: int = 2, metodo: str = 'spearman',
+                  com_horn: bool = True) -> dict:
+    """Roda um cenário da fatorial com a receita do NB04 e devolve tudo num dicionário.
+
+    `X` chega sem faltantes (a exclusão por lista é de quem chama, por cenário). Extração
+    por ACP; a solução tem `k` fatores sem rotação, em Varimax e em promax (padrão,
+    estrutura e Φ). **Sem bootstrap.**
+
+    Convenção de sinal, em todas as soluções: cada fator com soma das cargas positiva,
+    como o NB04 faz — assim dois CSVs não publicam a mesma carga com sinais opostos
+    (achados FAT-10 e NB4-20). Na promax o sinal vai para padrão e estrutura, e Φ recebe
+    sᵢ·sⱼ.
+    """
+    X = np.asarray(X, dtype=float)
+    n, p = X.shape
+    R = matriz_correlacao(X, metodo)
+    kmo_global, msa = kmo(R)
+    qui, gl, _ = bartlett(R, n)
+    val, cargas = acp(R, k)
+    vmax = varimax(cargas)
+    padrao, estrutura, phi = rotacao_promax(cargas)
+
+    cargas = cargas * _sinal_positivo(cargas)
+    vmax = vmax * _sinal_positivo(vmax)
+    s = _sinal_positivo(padrao)
+    padrao, estrutura, phi = padrao * s, estrutura * s, phi * np.outer(s, s)
+
+    hval = horn(min(n, 20000), p) if com_horn else np.full(p, np.nan)   # 20 mil: como o NB04
+    return {
+        'n': n, 'p': p, 'R': R, 'kmo': kmo_global, 'msa': msa,
+        'bartlett_qui2': qui, 'bartlett_gl': gl, 'det_R': float(np.linalg.det(R)),
+        'autovalores': val, 'horn': hval,
+        'kaiser': int((val > 1).sum()),
+        'horn_retidos': int((val > hval).sum()) if com_horn else None,
+        'var_explicada_k': float(100 * val[:k].sum() / p),
+        'sem_rotacao': cargas, 'varimax': vmax,
+        'promax_padrao': padrao, 'promax_estrutura': estrutura, 'phi': phi,
+        'comunalidade': (cargas ** 2).sum(axis=1),
+        'comunalidade_obliqua': comunalidades_obliquas(padrao, phi),
+        'pesos': {'sem_rotacao': reparticao(cargas), 'varimax': reparticao(vmax),
+                  'promax_padrao': reparticao(padrao),
+                  'promax_estrutura': reparticao(estrutura)},
+    }
