@@ -95,6 +95,54 @@ def test_acp_varimax_reproduz_csv():
     np.testing.assert_allclose(calculado.to_numpy(), ref.to_numpy(), atol=1e-6)
 
 
+def test_varimax_atinge_o_otimo_da_rotacao_2d():
+    """O critério de parada (razão entre somas de valores singulares) pode parar cedo.
+
+    Conferência independente: numa matriz real (IVS-6), o ângulo que o Varimax escolhe
+    tem de bater com o ótimo achado por busca em grade + seção áurea no próprio ângulo
+    de rotação — sem usar o algoritmo de Kaiser. Referência medida: critério do Varimax
+    0,19070539 contra ótimo 0,19070564.
+    """
+    con = sqlite3.connect(BANCO)
+    try:
+        df = pd.read_sql(
+            f"select {', '.join(['urbano', 'Dados_sig'] + IVS7)} from setores_censitarios", con)
+    finally:
+        con.close()
+    df = df[(df['urbano'].astype(str) == '1') & (df['Dados_sig'] == 'OK')].copy()
+    df['renda_inv'] = -df['renda_media']
+    colunas6 = [c if c != 'renda_media' else 'renda_inv' for c in IVS7 if c != 'pct_lixo_inad']
+    X = df[colunas6].dropna()
+
+    R = X.corr(method='spearman').to_numpy()
+    _, cargas = acp(R, 2)
+    L = varimax(cargas)
+
+    def crit(mat):
+        return np.sum(np.var(mat ** 2, axis=0))
+
+    def crit_theta(theta):
+        rot = np.array([[np.cos(theta), -np.sin(theta)], [np.sin(theta), np.cos(theta)]])
+        return crit(cargas @ rot)
+
+    grade = np.linspace(0, np.pi / 2, 20_001)
+    i = int(np.argmax([crit_theta(t) for t in grade]))
+    a, b = grade[max(i - 1, 0)], grade[min(i + 1, len(grade) - 1)]
+
+    razao = (np.sqrt(5) - 1) / 2                                      # seção áurea, maximização
+    c, d = b - razao * (b - a), a + razao * (b - a)
+    while abs(b - a) > 1e-12:
+        if crit_theta(c) > crit_theta(d):
+            b = d
+        else:
+            a = c
+        c, d = b - razao * (b - a), a + razao * (b - a)
+    crit_otimo = crit_theta((a + b) / 2)
+
+    assert abs(crit(L) - crit_otimo) < 1e-9, (
+        f'varimax não achou o ótimo: {crit(L):.8f} vs {crit_otimo:.8f}')
+
+
 # ─────────────────────────────────────────────────────────────────────────────
 # (b) promax
 # ─────────────────────────────────────────────────────────────────────────────

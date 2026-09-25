@@ -202,27 +202,28 @@ def horn(n: int, p: int, sims: int = 50, semente: int = 42) -> np.ndarray:
 # ─────────────────────────────────────────────────────────────────────────────
 # Rotação (Etapa 3 do livro, p. 34-39)
 # ─────────────────────────────────────────────────────────────────────────────
-def varimax(cargas: np.ndarray, tol: float = 1e-6, maxiter: int = 500) -> np.ndarray:
+def varimax(cargas: np.ndarray, tol: float = 1e-10, maxiter: int = 10_000) -> np.ndarray:
     """Rotação ortogonal Varimax (Kaiser), sem normalização.
 
     Mantida por reprodutibilidade — é o que gerou os CSVs de referência — e como termo de
     comparação. Para a solução oficial, ver `rotacao_promax` e a p. 38.
+
+    Parada pela variação da própria rotação R (não pela razão de valores singulares,
+    que estabilizava cedo demais e deixava erro de 5,5e-4 nas cargas em 6 variáveis).
     """
     L = cargas.copy()
     p, k = L.shape
     if k < 2:
         return L
     R = np.eye(k)
-    d_ant = 0.0
     for _ in range(maxiter):
+        R_ant = R
         Lam = L @ R
         u, s, vt = np.linalg.svd(
             L.T @ (Lam ** 3 - Lam @ np.diag(np.diag(Lam.T @ Lam)) / p))
         R = u @ vt
-        d = s.sum()
-        if d_ant != 0 and d / d_ant < 1 + tol:
+        if np.max(np.abs(R - R_ant)) < tol:
             break
-        d_ant = d
     return L @ R
 
 
