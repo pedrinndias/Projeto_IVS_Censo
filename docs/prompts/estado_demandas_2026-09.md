@@ -6,7 +6,7 @@ Linha de base: commit 3c426e8 · 25/09/2026
 - [x] Fase 0 — linha de base e destravamentos   (sessão de 25/09/2026, em duas partes; concluída)
 - [x] Fase 1 — demandas 1 e 2   (25/09/2026, execução automática; concluída)
 - [x] Fase 2 — fatorial ampliada   (25/09/2026, execução automática; concluída)
-- [ ] Fase 3 — notebook 04b e NB04
+- [x] Fase 3 — notebook 04b e NB04   (25/09/2026, execução automática, em duas sessões; concluída)
 - [ ] Fase 4 — curadoria e slides
 - [ ] Fase 5 — lotes A · B · C · D
 
@@ -176,10 +176,29 @@ Abraço, Pedro
   `nb04_sintese_pesos.csv`, `nb04_validacao_fcu.csv`; e as figuras `nb04_mapa_cargas.png`,
   `nb04_plano_fatorial.png` (rótulo do eixo corrigido, NB4-08), `nb04_roc_fcu.png`. AUC do
   índice 0-1 continua 0,8131 (só a 4ª casa dos números auxiliares mudou). `pytest -q` — 79
-  passed (suíte não toca notebook). **Não incluído nesta sessão** (orçamento de chamadas
-  esgotado): o notebook novo `04b_Analise_Fatorial_Ampliada.ipynb` (item 3.1 do prompt, que
-  chama `rodar_cenario` e os CSVs de `fatorial_ampliada/` da Fase 2). Fase 3 **não fecha**
-  sem ele.
+  passed (suíte não toca notebook). **Não incluído naquela sessão** (orçamento de chamadas
+  esgotado): o notebook novo `04b_Analise_Fatorial_Ampliada.ipynb` (item 3.1 do prompt).
+- **Fase 3** (25/09/2026, sessão 2, execução automática): criado
+  `notebooks/Fase3_EDA_ELSI/04b_Analise_Fatorial_Ampliada.ipynb` (item 3.1) — 44 células,
+  montadas por um script com `nbformat` a partir das funções de `scripts/fatorial_ampliada.py`
+  e `src/ivs_censo/fatorial.py` (`rodar_cenario`); nenhuma conta reescrita, só chamada. Sete
+  blocos: o que a orientadora pediu item por item (com a comparação das demandas 5 e 6); os
+  cenários (trava de sanidade contra a linha de base do NB04 antes de interpretar); sem
+  rotação × Varimax × promax (demandas 3 e 11, repartição oblíqua com as duas métricas,
+  padrão e estrutura, sem dizer qual "afasta" da literatura); lixo (demanda 10); a estrutura
+  municipal (postos dentro do município — o único ponto em que o índice supera a renda
+  invertida sozinha em AUC, em 2 dos 3 casos); o que o índice acrescenta à renda (NB4-02: a
+  renda invertida sozinha tem AUC maior que o índice nos oito cenários S0–S7, sem adjetivo);
+  o que fica para a orientadora (as três versões de renda, a rotação, a repartição oblíqua, a
+  versão graduada de "sem banheiro", a habitação não convencional mantida na grade). Todo
+  número do texto sai de uma célula de código imediatamente anterior — nenhum digitado de
+  memória; os % de zeros das quatro variáveis novas (77–96%) vêm de `cargas.csv` (base
+  listwise de S6), não da seção 1 do prompt. Executado do zero com `nbclient` (~25 s, 0
+  erros); os CSVs que a execução regrava em `banco_de_dados/eda/fatorial_ampliada/` saem
+  **idênticos** aos da Fase 2 (`git status --porcelain` vazio na pasta, conferido antes e
+  depois da execução). `pytest -q` — 79 passed (suíte não toca notebook; nenhum código de
+  `src/` ou `scripts/` mudou nesta sessão). `git ls-tree -r HEAD | wc -l` = 402 antes e depois
+  (sem queda). Fase 3 **fecha** — 3.1 e 3.2 concluídos.
 
 ## Fase 0 — concluída (25/09/2026, sessão 2)
 Passos 2 (final), 3 e 4 fechados; suíte inteira verde (75 passed). Arquivos versionados
@@ -220,24 +239,20 @@ das saídas e deste estado.
 - A leitura dos resultados (o que o índice acrescenta à renda, NB4-02; efeito da
   estrutura municipal) fica para depois de o Pedro ver a grade.
 
-## Fase 3 — em andamento (25/09/2026, execução automática, parcial)
-Feito (3.2, correções do NB04): os 12 achados citados no prompt (NB4-01 a NB4-13, exceto
-NB4-12, que não está na lista do prompt) mais AUD-08, todos como correção de texto,
+## Fase 3 — concluída (25/09/2026, execução automática, em duas sessões)
+Feito (3.2, correções do NB04, sessão 1): os 12 achados citados no prompt (NB4-01 a NB4-13,
+exceto NB4-12, que não está na lista do prompt) mais AUD-08, todos como correção de texto,
 comentário ou rótulo — nenhum decidiu pela orientadora (a repartição oblíqua, por exemplo,
 passou a mostrar padrão **e** estrutura lado a lado, sem dizer qual "aproxima" da
 literatura). NB04 reexecutado do zero, `pytest` verde. Detalhe em "O que mudou", acima.
 
-**Não feito (3.1): o notebook `04b_Analise_Fatorial_Ampliada.ipynb`.** É o item que falta
-para fechar a Fase 3 — chama `rodar_cenario`/`reparticao` de `src/ivs_censo/fatorial.py` e
-os CSVs já prontos de `banco_de_dados/eda/fatorial_ampliada/` (Fase 2), em blocos (o que a
-orientadora pediu; os cenários; sem rotação × Varimax × promax; lixo; estrutura municipal;
-o que o índice acrescenta à renda; o que fica para ela decidir), com os cuidados de
-interpretação da seção 3.1 do prompt (AUC sem adjetivo, sensibilidade em vez de bootstrap,
-repartição com as duas métricas, citação do livro com a condição completa, zeros ao lado
-de toda carga). Parou aqui por orçamento de chamadas, não por dificuldade técnica — os
-insumos (motor da Fase 2, CSVs, texto já lapidado nas correções acima) já existem.
+Feito (3.1, sessão 2): `notebooks/Fase3_EDA_ELSI/04b_Analise_Fatorial_Ampliada.ipynb` criado,
+executado (`nbclient`, uma vez, 0 erros) e conferido — os CSVs que ele regrava em
+`fatorial_ampliada/` saem idênticos aos da Fase 2. Detalhe em "O que mudou", acima.
 
 ### Pendências da Fase 3
-- Criar e executar (`nbclient`, uma vez) o `04b_Analise_Fatorial_Ampliada.ipynb`, conferir
-  os CSVs que ele gera contra os de `fatorial_ampliada/` (devem bater, é o mesmo motor).
-  Só depois disso a Fase 3 fecha.
+Nenhuma. As pendências que restam são decisões da orientadora, não deste executor: a versão
+graduada de "sem banheiro" (V00237, pergunta 4), qual renda entra no índice final, qual
+rotação/repartição reportar, e a manutenção (ou não) da habitação não convencional apesar da
+variância baixa — todas registradas com as alternativas lado a lado em `04b` e nos CSVs de
+`fatorial_ampliada/`, nenhuma escolhida aqui.
