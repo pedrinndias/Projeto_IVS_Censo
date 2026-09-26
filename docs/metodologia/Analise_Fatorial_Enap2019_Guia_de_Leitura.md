@@ -102,7 +102,7 @@ A matriz-R, a representação gráfica dos fatores como eixos, a equação linea
 
 O ponto denso está nas páginas 21–22: quando os fatores são correlacionados, a carga deixa de ser correlação e passa a ser **coeficiente de regressão**, e surgem duas matrizes — *estrutura* (correlações) e *padrão* (coeficientes de regressão). O livro registra que a maioria interpreta a **padrão**. Hoje isso não afeta o projeto, porque a solução Varimax é ortogonal e as duas coincidem. Se a seção H convencer a migrar para oblíqua, os pesos passam a sair da matriz padrão — e isso precisa ser dito explicitamente.
 
-> **Armadilha (p. 22).** Uma carga oblíqua **pode passar de 1**, por ser coeficiente de regressão. Se isso ocorrer, checar a variância residual: se for negativa, a solução é inadmissível e sugere fatores demais. Vale guardar o teste — a matriz do IVS é mal condicionada por renda × cor/raça a −0,811.
+> **Armadilha (p. 22).** Uma carga oblíqua **pode passar de 1**, por ser coeficiente de regressão. Se isso ocorrer, checar a variância residual: se for negativa, a solução é inadmissível e sugere fatores demais. Vale guardar o teste — a matriz do IVS é mal condicionada por renda × cor/raça a −0,811 (par a par; na matriz *listwise* que a fatorial decompõe cai a 0,784 — ver `Relatorio_Analise_Fatorial_NB04.md`).
 
 ### D. Escores fatoriais e o método da regressão — p. 22–26
 
@@ -261,7 +261,7 @@ O IVS pode não funcionar assim. Vulnerabilidade não *causa* esgoto inadequado 
 
 - remover uma variável **muda a definição do construto**, em vez de apenas melhorar a medida;
 - as cargas não são pesos legítimos — são correlações com o eixo de variância dominante;
-- renda × cor/raça a −0,811 deixaria de ser "multicolinearidade a declarar" e passaria a ser duas dimensões substantivas a manter deliberadamente;
+- renda × cor/raça a −0,811 (par a par; 0,784 na matriz *listwise* que a fatorial decompõe) deixaria de ser "multicolinearidade a declarar" e passaria a ser duas dimensões substantivas a manter deliberadamente;
 - o lixo com fator próprio deixaria de ser anomalia a excluir e passaria a ser evidência de que coleta de lixo é uma dimensão politicamente distinta — e excluí-la seria deixar a matriz de correlação decidir a política pública.
 
 Se essa leitura se sustentar, a consequência é reenquadrar o Notebook 04: a fatorial vira **diagnóstico de redundância**, não motor de ponderação, e os pesos 60/40 vêm da teoria, defendidos como escolha normativa explícita.

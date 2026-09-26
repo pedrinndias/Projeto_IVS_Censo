@@ -456,7 +456,7 @@ Figura: `figuras/matriz_correlacao.png`.
 ### 9.1 Leitura
 
 **Um bloco socioeconômico muito coeso.** Renda, cor/raça e analfabetismo formam um
-triângulo de correlações fortes: −0,81, −0,76 e 0,63. As três medem, em boa parte, o mesmo
+triângulo de correlações fortes: −0,81 (0,784 na matriz *listwise* que a fatorial decompõe — ver `Relatorio_Analise_Fatorial_NB04.md`), −0,76 e 0,63. As três medem, em boa parte, o mesmo
 construto latente de posição social do território.
 
 **Um bloco de saneamento moderado.** Água e esgoto se correlacionam a 0,42, e ambos se
