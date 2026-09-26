@@ -8,7 +8,7 @@ Brasil inteiro).
 
 | # | Notebook | O que faz |
 |---|---|---|
-| 01 | [`01_Extracao_Filtragem_ELSI.ipynb`](01_Extracao_Filtragem_ELSI.ipynb) | Lê os 8 CSVs do Censo 2022, cruza com `dados/municipios_elsi_brasil.csv`, filtra apenas os setores dos 70 municípios e exporta `banco_de_dados/Base_ELSI_Bruta_Censo2022.csv` (109.032 setores × 68 colunas). |
+| 01 | [`01_Extracao_Filtragem_ELSI.ipynb`](01_Extracao_Filtragem_ELSI.ipynb) | Lê os 8 CSVs do Censo 2022, cruza com `dados/municipios_elsi_brasil.csv`, filtra apenas os setores dos 70 municípios e exporta `banco_de_dados/Base_ELSI_Bruta_Censo2022.csv` (109.032 setores × 74 colunas). |
 | 02 | [`02_Analises_Descritivas.ipynb`](02_Analises_Descritivas.ipynb) | EDA completa da base filtrada — tipagem e sigilo, elegibilidade (`Dados_sig`), **recorte urbano**, cálculo das 7 proporções (denominador V00001), descritivas globais/por município/por região, variáveis complementares (habitação precária, banheiro, chefia feminina, envelhecimento, tipo de domicílio, favelas), histogramas, boxplots, outliers (IQR), missing e correlações (Pearson + Spearman). Exporta os CSVs e figuras de `banco_de_dados/eda/`. |
 | 04 | [`04_Analise_Fatorial.ipynb`](04_Analise_Fatorial.ipynb) | Análise fatorial sobre os 87.545 setores completos do IVS-7: KMO, Bartlett, Horn, ACP, Varimax/promax, escores e validação contra favela (FCU). Importa `src/ivs_censo/fatorial.py`. Exporta CSVs e figuras de `banco_de_dados/eda/fatorial/`. |
 

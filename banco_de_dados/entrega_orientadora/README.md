@@ -47,7 +47,7 @@ df = pd.read_sql("SELECT * FROM setores_censitarios WHERE Dados_sig='OK' AND urb
 ```
 
 Cada `.db` tem 3 tabelas:
-- `setores_censitarios` — os dados (1 linha por setor, 105 colunas)
+- `setores_censitarios` — os dados (1 linha por setor, 108 colunas)
 - `dicionario_variaveis` — **o que é cada coluna, de qual arquivo do Censo ela vem e como o indicador é calculado**
 - `metadados` — fonte, data, totais, denominador adotado
 
@@ -71,14 +71,14 @@ Todas com descrição oficial e arquivo-fonte na tabela `dicionario_variaveis`. 
 
 - População: `v0001` · Domicílios: `V00001` (DPPO — **denominador padrão**), `V00002`, `V00005`, `V00006`
 - Tipo de domicílio: `V00047`–`V00052` (permanentes) e `V00053`–`V00058` (improvisados)
-- Água: `V00112`–`V00118` · Esgoto: `V00312`–`V00316` · Lixo: `V00398`–`V00402` · Banheiro: `V00236`, `V00238`, `V00495`
+- Água: `V00112`–`V00118` · Esgoto: `V00312`–`V00316` · Lixo: `V00398`–`V00402` · Banheiro: `V00236`, `V00237`, `V00238`, `V00495`
 - Alfabetização 15+: `V00900` (sabem ler), `V00901` (não sabem)
 - Cor/raça: `V01318` (preta), `V01320` (parda), `V01321` (indígena)
 - Renda: `V06004` (rendimento médio dos responsáveis, R$), `V06001` (nº de responsáveis) e `V06005` (variância do rendimento) — as duas últimas servem para auditar a primeira
 - Demografia: `V01031`–`V01041` (pirâmide etária completa, de 0–4 a 70+)
 - Parentesco: `V01042` (pessoas responsáveis — *não* é denominador), `V01062`/`V01063` (responsáveis por sexo)
 
-### Indicadores calculados (26)
+### Indicadores calculados (28)
 
 **Os 7 componentes do IVS:**
 
@@ -114,7 +114,7 @@ escolha entre as três é da orientadora.
 
 **Morfologia e habitação:** `pct_moradia_convencional` (casa + vila/condomínio + apartamento), `pct_moradia_nao_convencional`, `pct_apartamento`, `pct_casa`, `pct_casa_vila_condominio`, `pct_dom_improv`, `pct_hab_precaria`.
 
-**Banheiro:** `pct_sem_banheiro`, `pct_sem_banheiro_nem_sanitario`.
+**Banheiro:** `pct_sem_banheiro`, `pct_sem_banheiro_nem_sanitario`, `pct_so_sanitario`, `pct_banheiro_comum`.
 
 **Sociodemográficos:** `pct_resp_feminino`, `pct_crianca_0a4`, `pct_pop_0a14`, `pct_idoso_60mais`.
 

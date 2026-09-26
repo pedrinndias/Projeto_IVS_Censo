@@ -218,11 +218,11 @@ comum, para as fórmulas não existirem em duas versões.
 | Onde | O que é |
 |---|---|
 | `src/ivs_censo/fontes.py` | Os 8 arquivos do Censo, a chave do setor em cada um e quais variáveis o projeto lê. É a fonte da coluna "arquivo-fonte" da tabela de variáveis. |
-| `src/ivs_censo/indicadores.py` | Definição declarativa dos 26 indicadores (numerador, denominador, escala) + `calcular_indicadores` e `classificar_dados_sig`. |
+| `src/ivs_censo/indicadores.py` | Definição declarativa dos 28 indicadores (numerador, denominador, escala) + `calcular_indicadores` e `classificar_dados_sig`. |
 | `src/ivs_censo/fatorial.py` | A álgebra da análise fatorial em numpy puro: KMO por matriz anti-imagem, Bartlett, análise paralela de Horn, ACP, fatoração do eixo principal, Varimax, promax, SMC, escores por regressão e bootstrap. Sem dependência nova. |
 | `src/ivs_censo/dicionario.py` | Lê os dicionários oficiais do IBGE e monta a tabela de variáveis. |
 | `scripts/gerar_tabela_variaveis.py` | Gera `Dicionario_Variaveis_Projeto.{csv,xlsx}`. |
-| `scripts/gerar_entrega_orientadora.py` | Regenera o pacote de entrega (CSV + SQLite, 105 colunas, 3 tabelas). Antes disso os `.db` vinham de um script ad-hoc não versionado. |
+| `scripts/gerar_entrega_orientadora.py` | Regenera o pacote de entrega (CSV + SQLite, 108 colunas, 3 tabelas). Antes disso os `.db` vinham de um script ad-hoc não versionado. |
 | `scripts/proporcoes_brasil.py` | Calcula os indicadores para os ~468 mil setores do Brasil e compara com os 70 municípios ELSI. |
 | `scripts/gerar_tabelas_auditoria.py` | Regenera as 9 tabelas de auditoria/apresentação de `banco_de_dados/eda/` (cobertura de saneamento, morfologia, sigilo em V00901, responsáveis por sexo). Antes vinham de código ad-hoc não versionado — eram os "CSVs órfãos". Usam o recorte com rurais (106.281 setores). |
 

@@ -120,7 +120,7 @@ dados/*.csv (8 arquivos) + dados/municipios_elsi_brasil.csv
 dados/*.csv (8 arquivos, sem filtro de município)
   │
   ▼  scripts/proporcoes_brasil.py   (usa src/ivs_censo — mesmas fórmulas do NB02)
-  │   468.099 setores → elegibilidade → recorte urbano → 26 indicadores
+  │   468.099 setores → elegibilidade → recorte urbano → 28 indicadores
   │   Agrega por Brasil / região / UF / município e compara com os 70 ELSI
   │   Saída → banco_de_dados/nacional/*.csv        (~10 min de execução)
 ```

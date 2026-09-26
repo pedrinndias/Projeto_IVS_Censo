@@ -131,7 +131,7 @@ Projeto_IVS_Censo22/
 ├── src/ivs_censo/                     Código compartilhado (procedência das variáveis,
 │   │                                  fórmulas dos indicadores, regra de elegibilidade)
 │   ├── fontes.py                      Os 8 arquivos do Censo e o que se lê de cada um
-│   ├── indicadores.py                 Definição e cálculo dos 26 indicadores
+│   ├── indicadores.py                 Definição e cálculo dos 28 indicadores
 │   └── dicionario.py                  Tabela de variáveis (descrição IBGE + arquivo-fonte)
 │
 ├── scripts/                           Executáveis versionados
@@ -247,7 +247,7 @@ pipeline ainda roda de ponta a ponta):
 ./.venv/bin/jupyter execute notebooks/Fase3_EDA_ELSI/01_Extracao_Filtragem_ELSI.ipynb notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb
 ```
 
-- **Notebook 01:** extrai e filtra → produz `banco_de_dados/Base_ELSI_Bruta_Censo2022.csv` (109.032 setores × 68 colunas, ~24 MB).
+- **Notebook 01:** extrai e filtra → produz `banco_de_dados/Base_ELSI_Bruta_Censo2022.csv` (109.032 setores × 74 colunas, ~24 MB).
 - **Notebook 02:** EDA completa → produz as tabelas-resumo (CSVs) e 4 figuras em `banco_de_dados/eda/` — a procedência arquivo a arquivo está em [`banco_de_dados/eda/README.md`](banco_de_dados/eda/README.md).
 
 > A execução completa consome bastante RAM e tempo (~2.4 GB de CSVs brutos). Os notebooks leem apenas as colunas necessárias e processam os arquivos maiores em chunks.
