@@ -10,6 +10,7 @@ recuperável.
 | [`prompt_auditoria_integral.md`](prompt_auditoria_integral.md) | A auditoria do projeto de ponta a ponta, em sete fases | sessão longa; roda a pipeline inteira |
 | [`prompt_graphify_atualizacao.md`](prompt_graphify_atualizacao.md) | A atualização do grafo do repositório em `graphify-out/` | a parte de **código** foi atualizada em 25/09/2026 com `graphify update .`, sem custo de modelo; a leitura semântica dos **documentos** continua a de agosto |
 | [`prompt_demandas_orientadora_2026-09.md`](prompt_demandas_orientadora_2026-09.md) | As 11 demandas da orientadora de setembro e as correções da revisão geral, em seis fases com teto de chamadas | uma sessão por fase; **não executado** |
+| [`prompt_nb05_ivs_final_2026-09.md`](prompt_nb05_ivs_final_2026-09.md) | Os testes de especificação (renda, rotação, pesos na oblíqua, lixo, banheiro graduado, o que o índice acrescenta à renda) e o NB05, em quatro fases | um agente por fase; em execução a partir de 26/09/2026 |
 
 > Prompt executado é registro, não receita a repetir. O do NB04 descreve a etapa como
 > pendente porque é anterior à execução — o que saiu dela está em
