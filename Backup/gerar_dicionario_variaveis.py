@@ -921,7 +921,7 @@ def main():
     here = Path(__file__).resolve()
     # scripts/ está na raiz do projeto
     root = here.parent.parent
-    out = root / 'docs' / 'Dicionario_Variaveis_IVS_Censo2022.xlsx'
+    out = root / 'docs' / 'Apresentacoes_IVS' / 'dicionarios' / 'Dicionario_Variaveis_IVS_Censo2022.xlsx'
     out.parent.mkdir(parents=True, exist_ok=True)
     wb.save(out)
     print(f'OK -> {out}')

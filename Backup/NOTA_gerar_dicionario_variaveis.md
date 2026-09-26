@@ -12,7 +12,7 @@ De_Para_2010_2022, Decisoes_Metodologicas) — as mesmas abas do arquivo hoje em
 `docs/Apresentacoes_IVS/dicionarios/Dicionario_Variaveis_IVS_Censo2022.xlsx`.
 
 **Estado ao ser resgatado (só copiado para cá, nada executado nem integrado):**
-- Caminho de saída no script é `docs/Dicionario_Variaveis_IVS_Censo2022.xlsx` (raiz de `docs/`),
+- Caminho de saída no script era `docs/Dicionario_Variaveis_IVS_Censo2022.xlsx` (raiz de `docs/`),
   desatualizado frente à localização atual do arquivo
   (`docs/Apresentacoes_IVS/dicionarios/`) — a reorganização de `docs/` é posterior a este script.
 - O hash do `.xlsx` gerado por esta cópia do script (visto numa das worktrees órfãs) **não bate**
@@ -22,3 +22,15 @@ De_Para_2010_2022, Decisoes_Metodologicas) — as mesmas abas do arquivo hoje em
   (caminho de saída, conferência de conteúdo, teste) fica para quem tratar o achado HIG-08 de
   fato, fora do escopo do Lote D (que só pedia resgatar antes de qualquer limpeza de worktrees,
   HIG-07 — as worktrees órfãs em `.claude/worktrees` não foram apagadas).
+
+**Atualização (Fase A do prompt NB05, 2026-09) — item 8.1:**
+- Caminho de saída corrigido para `docs/Apresentacoes_IVS/dicionarios/Dicionario_Variaveis_IVS_Censo2022.xlsx`,
+  mantendo o script em `Backup/` (não entra em `scripts/`).
+- Rodado gravando em `/tmp`; diff célula a célula contra o `.xlsx` hoje versionado (openpyxl,
+  todas as 7 abas): **0 diferenças de conteúdo**. O gerador (já com V00398 corrigido pelo
+  HIG-09) reproduz exatamente o arquivo versionado.
+- Isso resolve a dúvida acima sobre o hash: a divergência de hash relatada ao resgatar o script
+  era mesmo só metadado do `openpyxl`/zip (ex.: timestamp de criação do arquivo), nunca
+  conteúdo — confirmado agora por comparação célula a célula, não apurado antes.
+- Segue em aberto, fora do escopo da Fase A: entrada em `scripts/README.md` e wiring como
+  script chamável (o pedido desta fase era só corrigir o caminho e conferir).
