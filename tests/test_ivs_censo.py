@@ -246,3 +246,37 @@ def test_canalizacao_tem_procedencia_declarada():
     de variáveis da orientadora sai com procedência em branco."""
     for var in ('V00199', 'V00200', 'V00201'):
         assert MAPA_VARIAVEL_ARQUIVO.get(var) == 'dom2'
+
+
+# ─────────────────────────────────────────────────────────────────────────────
+# Banheiro graduado (V00237), acrescentada em 26/09/2026 — Fase B do NB05
+# ─────────────────────────────────────────────────────────────────────────────
+def test_pct_so_sanitario_e_pct_banheiro_comum():
+    """As duas frações novas, no mesmo padrão dos outros indicadores de banheiro."""
+    df = _linha_sintetica(V00001=100.0, V00236=10.0, V00237=5.0, V00238=2.0)
+    nomes = ['pct_so_sanitario', 'pct_banheiro_comum']
+    r = calcular_indicadores(df, [INDICADORES_POR_NOME[n] for n in nomes]).iloc[0]
+    assert r['pct_so_sanitario'] == pytest.approx(0.05)      # V00237/V00001
+    assert r['pct_banheiro_comum'] == pytest.approx(0.10)    # V00236/V00001
+
+
+def test_banheiro_graduado_fica_entre_0_e_1_e_zera_sem_banheiro():
+    """O banheiro graduado é definido no motor da Fase C, não neste módulo — mas a
+    fórmula (1·V00236 + 2·V00237 + 3·V00238) / (3·V00001) precisa fechar em [0, 1] e
+    zerar exatamente onde V00495 (= V00236+V00237+V00238) é zero, antes de ir pra lá."""
+    sintetico = pd.DataFrame({
+        'V00001':  [100.0, 100.0, 100.0, 100.0, 50.0],
+        'V00236':  [0.0,   100.0, 0.0,   30.0,  0.0],
+        'V00237':  [0.0,   0.0,   0.0,   20.0,  0.0],
+        'V00238':  [0.0,   0.0,   100.0, 10.0,  0.0],
+    })
+    graduado = (1 * sintetico['V00236'] + 2 * sintetico['V00237'] + 3 * sintetico['V00238']) \
+        / (3 * sintetico['V00001'])
+    v00495 = sintetico['V00236'] + sintetico['V00237'] + sintetico['V00238']
+
+    assert (graduado >= 0).all() and (graduado <= 1).all()
+    assert graduado[v00495 == 0].eq(0).all()
+    assert graduado.iloc[0] == pytest.approx(0.0)                          # ninguém sem banheiro adequado
+    assert graduado.iloc[1] == pytest.approx(1 / 3)                        # todos só no "uso comum"
+    assert graduado.iloc[2] == pytest.approx(1.0)                          # todos sem nada (pior caso)
+    assert graduado.iloc[3] == pytest.approx((1 * 30 + 2 * 20 + 3 * 10) / (3 * 100))  # mistura dos três graus

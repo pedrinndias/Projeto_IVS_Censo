@@ -63,7 +63,7 @@ ARQUIVOS_CENSO: dict[str, FonteCenso] = {
             'V00112', 'V00113', 'V00114', 'V00115', 'V00116', 'V00117', 'V00118',  # água inadequada
             'V00312', 'V00313', 'V00314', 'V00315', 'V00316',                       # esgoto inadequado
             'V00398', 'V00399', 'V00400', 'V00401', 'V00402',                       # lixo inadequado
-            'V00236', 'V00238', 'V00495',                                           # banheiro
+            'V00236', 'V00237', 'V00238', 'V00495',                                # banheiro
             # Canalização da água — eixo DIFERENTE do bloco V00112-V00118, que é a
             # *fonte* (poço, rio, carro-pipa). Aqui é a *entrega*: um domicílio pode ter
             # rede geral e ainda assim receber água só no terreno. Acrescentadas em

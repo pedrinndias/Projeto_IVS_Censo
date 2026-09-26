@@ -166,6 +166,12 @@ INDICADORES_COMPLEMENTARES: list[Indicador] = [
               'Saneamento'),
     Indicador('pct_sem_banheiro_nem_sanitario', ['V00238'], ['V00001'],
               'Proporção de domicílios sem banheiro nem sanitário', 'Saneamento'),
+    # V00237 = apenas sanitário ou buraco para dejeções (grau intermediário do banheiro graduado, Fase C)
+    Indicador('pct_so_sanitario', ['V00237'], ['V00001'],
+              'Proporção de domicílios com apenas sanitário ou buraco para dejeções', 'Saneamento'),
+    # V00236 = apenas banheiro de uso comum (grau mais leve do banheiro graduado, Fase C)
+    Indicador('pct_banheiro_comum', ['V00236'], ['V00001'],
+              'Proporção de domicílios com apenas banheiro de uso comum', 'Saneamento'),
     # -- sociodemográficos --
     Indicador('pct_resp_feminino', ['V01063'], ['V01062', 'V01063'],
               'Proporção de domicílios com pessoa responsável do sexo feminino', 'Socioeconômica'),
