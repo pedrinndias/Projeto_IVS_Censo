@@ -7,6 +7,7 @@ versionado; quando não sair, é achado e está marcado como tal.
 |---|---|---|
 | [`Relatorio_EDA_Fase3_IVS_ELSI.md`](Relatorio_EDA_Fase3_IVS_ELSI.md) | O relatório técnico da análise exploratória, sobre o recorte urbano | 12/06/2026 |
 | [`Relatorio_Analise_Fatorial_NB04.md`](Relatorio_Analise_Fatorial_NB04.md) | Os dez achados da análise fatorial, os pesos, as seis decisões em aberto e nove limitações | 17/09/2026 |
+| [`Relatorio_IVS_Final_NB05.md`](Relatorio_IVS_Final_NB05.md) | Os achados dos testes de especificação do IVS, a referência proposta e as alternativas lado a lado, e as perguntas que continuam da orientadora | 27/09/2026 |
 | [`Relatorio_Integridade_Projeto.md`](Relatorio_Integridade_Projeto.md) | A primeira auditoria técnica, com notas de revisão de junho e agosto no topo | 19/05/2026 |
 | [`Auditoria_Integral_2026-09.md`](Auditoria_Integral_2026-09.md) | Auditoria de ponta a ponta: reprodutibilidade, dados, código, interpretações e coerência entre documentos | 17/09/2026 |
 | [`Revisao_Geral_2026-09.md`](Revisao_Geral_2026-09.md) | Revisão geral do repositório inteiro: 83 achados em oito frentes, prioridades antes da apresentação, estado dos 22 achados da auditoria e apêndice com a evidência de cada um | 25/09/2026 |

@@ -682,6 +682,7 @@ Projeto_IVS_Censo22/
 | Normalização de renda por município | 🔴 Pendente |
 | Validação das variáveis de esgoto | ✅ Concluída — V00312–V00316 confirmado no dicionário oficial do IBGE |
 | Análise fatorial — estrutura e pesos | ✅ Concluída em 17/09/2026 — [`notebooks/Fase3_EDA_ELSI/04_Analise_Fatorial.ipynb`](notebooks/Fase3_EDA_ELSI/04_Analise_Fatorial.ipynb), com relatório em [`docs/relatorios/`](docs/relatorios/) e deck em [`docs/Apresentacoes_IVS/`](docs/Apresentacoes_IVS/). Pesos 65/35; AUC 0,813 na validação contra os setores de favela |
+| IVS final — testes de especificação | **Em andamento** — [`notebooks/Fase3_EDA_ELSI/05_Calculo_IVS_Final.ipynb`](notebooks/Fase3_EDA_ELSI/05_Calculo_IVS_Final.ipynb) e [`docs/relatorios/Relatorio_IVS_Final_NB05.md`](docs/relatorios/Relatorio_IVS_Final_NB05.md) prontos; 192 de 324 especificações elegíveis; escolha final e slides pendentes |
 | Cálculo do IVS final (Notebook 05) | 🔴 Pendente — depende da normalização municipal do NB03 |
 | Categorização em 4 faixas de risco | 🔴 Pendente |
 | Mapas temáticos (QGIS) | 🔴 Pendente |
