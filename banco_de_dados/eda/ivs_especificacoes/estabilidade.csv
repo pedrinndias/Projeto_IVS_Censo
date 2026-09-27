@@ -1,0 +1,97 @@
+renda,lixo,banheiro,rotacao,metodo,rodadas,peso_f1_cheio,peso_f1_min,peso_f1_max,amp_peso_f1,fora_no_min,fora_no_max,amp_peso_var_max,variavel_amp_max
+original,com,v00495,varimax,ss,70,66.39733368,65.17954131,73.81840609,8.638864781,Fortaleza,São Paulo,16.88604855,Lixo inadequado
+original,com,v00495,varimax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,36.65217848,Lixo inadequado
+original,com,v00495,varimax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,29.32174278,Lixo inadequado
+original,com,v00495,promax,ss_padrao,70,65.6588699,64.14983685,74.25764979,10.10781294,Fortaleza,São Paulo,15.18688342,Lixo inadequado
+original,com,v00495,promax,ss_estrutura,70,61.24470046,59.98900145,73.16522443,13.17622298,Fortaleza,São Paulo,15.05422202,Lixo inadequado
+original,com,v00495,promax,comunalidades,70,60.7353634,59.97323354,81.19102673,21.21779319,Rio de Janeiro,São Paulo,7.15048717,Lixo inadequado
+original,com,v00495,promax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,35.27835598,Lixo inadequado
+original,com,v00495,promax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,28.22268479,Lixo inadequado
+original,sem,fora,varimax,ss,70,65.01061148,62.88646355,66.58176517,3.695301614,São Paulo,Manaus,4.138111914,Razão de moradores
+original,sem,fora,varimax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,6.550051241,Água inadequada
+original,sem,fora,varimax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,5.240040992,Água inadequada
+original,sem,fora,promax,ss_padrao,70,65.81581765,63.0077558,67.79946667,4.791710866,São Paulo,Salvador,5.51646381,Razão de moradores
+original,sem,fora,promax,ss_estrutura,70,59.64068936,58.08817318,61.66603535,3.577862177,São Paulo,Manaus,4.149259897,Razão de moradores
+original,sem,fora,promax,comunalidades,70,65.76472706,57.13581841,66.2665509,9.130732487,São Paulo,São Gonçalo,4.583906667,Razão de moradores
+original,sem,fora,promax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,5.862194055,Água inadequada
+original,sem,fora,promax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,4.689755244,Água inadequada
+original,sem,v00495,varimax,ss,70,64.60469111,62.06501369,65.75174101,3.686727329,São Paulo,Manaus,4.800296408,Razão de moradores
+original,sem,v00495,varimax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,4.615570732,Sem banheiro
+original,sem,v00495,varimax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,4.106765436,Razão de moradores
+original,sem,v00495,promax,ss_padrao,70,64.2574359,61.17166225,65.63584491,4.464182659,São Paulo,Manaus,6.774365039,Razão de moradores
+original,sem,v00495,promax,ss_estrutura,70,59.27898211,56.88604948,60.76070566,3.874656184,São Paulo,Manaus,6.171560304,Razão de moradores
+original,sem,v00495,promax,comunalidades,70,62.15475514,61.76460812,62.50025208,0.7356439595,Fortaleza,Salvador,6.209010431,Razão de moradores
+original,sem,v00495,promax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,5.985354467,Sem banheiro
+original,sem,v00495,promax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,5.960106629,Razão de moradores
+original,sem,graduado,varimax,ss,70,67.20634155,63.94413282,68.50097094,4.556838113,São Paulo,Salvador,4.872646461,Razão de moradores
+original,sem,graduado,varimax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,7.331905841,Banheiro graduado
+original,sem,graduado,varimax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,5.865524673,Banheiro graduado
+original,sem,graduado,promax,ss_padrao,70,66.79448774,63.07030827,68.42662108,5.356312806,São Paulo,Salvador,6.719400679,Razão de moradores
+original,sem,graduado,promax,ss_estrutura,70,62.16778893,58.9146816,63.99488565,5.080204048,São Paulo,Manaus,6.220250908,Razão de moradores
+original,sem,graduado,promax,comunalidades,70,63.46512853,63.15236407,64.11128135,0.9589172755,Fortaleza,São Paulo,6.4085979,Banheiro graduado
+original,sem,graduado,promax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,8.675359415,Banheiro graduado
+original,sem,graduado,promax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,6.940287532,Banheiro graduado
+sem_extremo,com,v00495,varimax,ss,70,66.39799064,65.1803132,73.81720472,8.63689152,Fortaleza,São Paulo,16.88705465,Lixo inadequado
+sem_extremo,com,v00495,varimax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,36.65160217,Lixo inadequado
+sem_extremo,com,v00495,varimax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,29.32128174,Lixo inadequado
+sem_extremo,com,v00495,promax,ss_padrao,70,65.65948693,64.15055373,74.25630859,10.10575487,Fortaleza,São Paulo,15.18797607,Lixo inadequado
+sem_extremo,com,v00495,promax,ss_estrutura,70,61.2451393,59.9894952,73.16123227,13.17173707,Fortaleza,São Paulo,15.0578466,Lixo inadequado
+sem_extremo,com,v00495,promax,comunalidades,70,60.73583075,59.97376823,81.19210225,21.21833402,Rio de Janeiro,São Paulo,7.149049866,Lixo inadequado
+sem_extremo,com,v00495,promax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,35.27771495,Lixo inadequado
+sem_extremo,com,v00495,promax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,28.22217196,Lixo inadequado
+sem_extremo,sem,fora,varimax,ss,70,65.01098299,62.88689041,66.58221287,3.695322466,São Paulo,Manaus,4.137319605,Razão de moradores
+sem_extremo,sem,fora,varimax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,6.550570977,Água inadequada
+sem_extremo,sem,fora,varimax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,5.240456781,Água inadequada
+sem_extremo,sem,fora,promax,ss_padrao,70,65.81594429,63.00791357,67.79965989,4.791746323,São Paulo,Salvador,5.51536785,Razão de moradores
+sem_extremo,sem,fora,promax,ss_estrutura,70,59.64061826,58.08816031,61.66596946,3.577809149,São Paulo,Manaus,4.149063193,Razão de moradores
+sem_extremo,sem,fora,promax,comunalidades,70,65.76533769,57.13669694,66.26715734,9.130460403,São Paulo,São Gonçalo,4.582885012,Razão de moradores
+sem_extremo,sem,fora,promax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,5.86282933,Água inadequada
+sem_extremo,sem,fora,promax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,4.690263464,Água inadequada
+sem_extremo,sem,v00495,varimax,ss,70,64.60523755,62.06560981,65.7523529,3.686743092,São Paulo,Manaus,4.800322749,Razão de moradores
+sem_extremo,sem,v00495,varimax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,4.615656625,Sem banheiro
+sem_extremo,sem,v00495,varimax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,4.10677454,Razão de moradores
+sem_extremo,sem,v00495,promax,ss_padrao,70,64.2577558,61.1719259,65.63625213,4.464326229,São Paulo,Manaus,6.774398319,Razão de moradores
+sem_extremo,sem,v00495,promax,ss_estrutura,70,59.27907025,56.88610529,60.76085392,3.87474863,São Paulo,Manaus,6.17157322,Razão de moradores
+sem_extremo,sem,v00495,promax,comunalidades,70,62.15540691,61.76529242,62.50088007,0.7355876489,Fortaleza,Salvador,6.209079473,Razão de moradores
+sem_extremo,sem,v00495,promax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,5.985431597,Sem banheiro
+sem_extremo,sem,v00495,promax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,5.960135081,Razão de moradores
+sem_extremo,sem,graduado,varimax,ss,70,67.20684436,63.94470762,68.50155171,4.556844088,São Paulo,Salvador,4.872711316,Razão de moradores
+sem_extremo,sem,graduado,varimax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,7.332141068,Banheiro graduado
+sem_extremo,sem,graduado,varimax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,5.865712855,Banheiro graduado
+sem_extremo,sem,graduado,promax,ss_padrao,70,66.79480578,63.07060384,68.42703448,5.35643064,São Paulo,Salvador,6.719520684,Razão de moradores
+sem_extremo,sem,graduado,promax,ss_estrutura,70,62.16784997,58.91471432,63.99504341,5.080329096,São Paulo,Manaus,6.220343919,Razão de moradores
+sem_extremo,sem,graduado,promax,comunalidades,70,63.46582292,63.1530906,64.11238304,0.959292438,Fortaleza,São Paulo,6.408770135,Banheiro graduado
+sem_extremo,sem,graduado,promax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,8.675609744,Banheiro graduado
+sem_extremo,sem,graduado,promax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,6.940487795,Banheiro graduado
+mediana_mun,com,v00495,varimax,ss,70,66.39701652,65.17936699,73.81908699,8.639719999,Fortaleza,São Paulo,16.88669528,Lixo inadequado
+mediana_mun,com,v00495,varimax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,36.65415168,Lixo inadequado
+mediana_mun,com,v00495,varimax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,29.32332134,Lixo inadequado
+mediana_mun,com,v00495,promax,ss_padrao,70,65.65815249,64.14933119,74.25836194,10.10903074,Fortaleza,São Paulo,15.18776115,Lixo inadequado
+mediana_mun,com,v00495,promax,ss_estrutura,70,61.24412175,59.98858465,73.16671177,13.17812713,Fortaleza,São Paulo,15.05455252,Lixo inadequado
+mediana_mun,com,v00495,promax,comunalidades,70,60.73587955,59.97386204,81.19096031,21.21709826,Rio de Janeiro,São Paulo,7.152625731,Lixo inadequado
+mediana_mun,com,v00495,promax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,35.28078099,Lixo inadequado
+mediana_mun,com,v00495,promax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,28.22462479,Lixo inadequado
+mediana_mun,sem,fora,varimax,ss,70,65.01077616,62.88673762,66.5819513,3.695213682,São Paulo,Manaus,4.137689586,Razão de moradores
+mediana_mun,sem,fora,varimax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,6.55006185,Água inadequada
+mediana_mun,sem,fora,varimax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,5.24004948,Água inadequada
+mediana_mun,sem,fora,promax,ss_padrao,70,65.81579622,63.00789121,67.79939138,4.791500166,São Paulo,Salvador,5.51575518,Razão de moradores
+mediana_mun,sem,fora,promax,ss_estrutura,70,59.64069582,58.08832292,61.66598703,3.577664111,São Paulo,Manaus,4.148940099,Razão de moradores
+mediana_mun,sem,fora,promax,comunalidades,70,65.76514004,57.13632023,66.26696492,9.130644692,São Paulo,São Gonçalo,4.583307936,Razão de moradores
+mediana_mun,sem,fora,promax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,5.862258186,Água inadequada
+mediana_mun,sem,fora,promax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,4.689806549,Água inadequada
+mediana_mun,sem,v00495,varimax,ss,70,64.60486042,62.06532094,65.751947,3.686626059,São Paulo,Manaus,4.800074879,Razão de moradores
+mediana_mun,sem,v00495,varimax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,4.615315614,Sem banheiro
+mediana_mun,sem,v00495,varimax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,4.106574676,Razão de moradores
+mediana_mun,sem,v00495,promax,ss_padrao,70,64.25742571,61.17182272,65.63587131,4.464048589,São Paulo,Manaus,6.77397624,Razão de moradores
+mediana_mun,sem,v00495,promax,ss_estrutura,70,59.27898057,56.88621353,60.76071507,3.874501539,São Paulo,Manaus,6.171205846,Razão de moradores
+mediana_mun,sem,v00495,promax,comunalidades,70,62.15527011,61.76515134,62.50075307,0.7356017305,Fortaleza,Salvador,6.208715193,Razão de moradores
+mediana_mun,sem,v00495,promax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,5.985014132,Sem banheiro
+mediana_mun,sem,v00495,promax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,5.959782506,Razão de moradores
+mediana_mun,sem,graduado,varimax,ss,70,67.20631828,63.94437114,68.50089659,4.556525459,São Paulo,Salvador,4.87246192,Razão de moradores
+mediana_mun,sem,graduado,varimax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,7.331360693,Banheiro graduado
+mediana_mun,sem,graduado,varimax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,5.865088554,Banheiro graduado
+mediana_mun,sem,graduado,promax,ss_padrao,70,66.79430259,63.07044616,68.42635385,5.355907688,São Paulo,Salvador,6.719090373,Razão de moradores
+mediana_mun,sem,graduado,promax,ss_estrutura,70,62.16758796,58.91480855,63.99467818,5.079869632,São Paulo,Manaus,6.219956754,Razão de moradores
+mediana_mun,sem,graduado,promax,comunalidades,70,63.46576457,63.15302183,64.11203728,0.9590154543,Fortaleza,São Paulo,6.408042609,Banheiro graduado
+mediana_mun,sem,graduado,promax,50_50,70,50,50,50,0,Ananindeua,Ananindeua,8.674718338,Banheiro graduado
+mediana_mun,sem,graduado,promax,60_40,70,60,60,60,0,Ananindeua,Ananindeua,6.93977467,Banheiro graduado
