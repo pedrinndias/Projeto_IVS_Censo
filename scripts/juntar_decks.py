@@ -241,6 +241,140 @@ def ordem_dos_slides(z):
     return caminhos
 
 
+def proximo_rid_livre(rels_texto):
+    """Menor rIdN livre (maior Id="rIdN" já usado no .rels, mais 1)."""
+    usados = [int(n) for n in re.findall(r'Id="rId(\d+)"', rels_texto)]
+    return (max(usados) + 1) if usados else 1
+
+
+def consertar_estrutura(caminho_entrada, caminho_saida):
+    """Torna canônica a estrutura de masters e layouts de um .pptx.
+
+    Conserta três defeitos que um deck pode carregar (herdados de edição manual ou
+    de uma junção anterior): master repetido em <p:sldMasterIdLst>; layout "órfão"
+    — cujo .rels aponta para um master que não o lista de volta; e IDs de master ou
+    layout colididos (sldMasterId e sldLayoutId dividem um único espaço de
+    numeração, que tem de ser único e >= 2147483648). Não toca em slide, nota,
+    mídia ou tema. Edita o XML como texto (regex nos elementos certos) — nunca por
+    ElementTree/minidom, que reescreve prefixo de namespace e corrompe o pacote.
+
+    Grava sempre um zip novo, com as mesmas entradas do original na mesma ordem;
+    caminho_entrada pode ser igual a caminho_saida (passa por um arquivo
+    temporário, para não ler e escrever o mesmo zip ao mesmo tempo).
+    """
+    caminho_entrada = Path(caminho_entrada)
+    caminho_saida = Path(caminho_saida)
+
+    with zipfile.ZipFile(caminho_entrada) as z:
+        nomes = z.namelist()
+        pres = ler(z, "ppt/presentation.xml")
+        pres_rels_caminho = "ppt/_rels/presentation.xml.rels"
+        pres_rels_texto = ler(z, pres_rels_caminho)
+        pres_rels = parse_rels(pres_rels_texto)
+
+        # (a) desduplica <p:sldMasterId>: o primeiro r:id que aponta para cada
+        # master fica; um repetido (mesmo master de novo) sai, junto com a
+        # relationship que só ele usava.
+        vistos = set()
+        mantidos = []  # (r:id, caminho do master)
+        rids_removidos = []
+        for tag in re.findall(r"<p:sldMasterId[^>]*/>", pres):
+            rid = re.search(r'r:id="([^"]+)"', tag).group(1)
+            alvo = resolver_target("ppt/presentation.xml", pres_rels[rid][1])
+            if alvo in vistos:
+                rids_removidos.append(rid)
+            else:
+                vistos.add(alvo)
+                mantidos.append((rid, alvo))
+
+        pres_rels_texto_novo = pres_rels_texto
+        for rid in rids_removidos:
+            pres_rels_texto_novo = re.sub(
+                rf'<Relationship\s+Id="{re.escape(rid)}"[^/]*/>', "", pres_rels_texto_novo
+            )
+
+        # (b) carrega cada master mantido: XML, .rels e a lista, na ordem em que já
+        # aparecem, dos layouts que ele já reconhece.
+        masters = {}
+        for _, alvo in mantidos:
+            rels_caminho = rels_de(z, alvo)
+            rels_texto = ler(z, rels_caminho)
+            rels = parse_rels(rels_texto)
+            xml_texto = ler(z, alvo)
+            ordem = []
+            for tag in re.findall(r"<p:sldLayoutId[^>]*/>", xml_texto):
+                rid_layout = re.search(r'r:id="([^"]+)"', tag).group(1)
+                ordem.append([rid_layout, resolver_target(alvo, rels[rid_layout][1])])
+            masters[alvo] = {
+                "xml": xml_texto, "rels_caminho": rels_caminho,
+                "rels": rels_texto, "ordem": ordem,
+            }
+
+        # todo layout do pacote cujo .rels aponte para um master mantido, mas que
+        # esse master ainda não liste, é órfão: ganha relationship nova no master
+        # (o próximo rId livre) e entra no fim da lista de layouts dele.
+        caminhos_layout = sorted(
+            (n for n in nomes if re.match(r"ppt/slideLayouts/slideLayout\d+\.xml$", n)),
+            key=lambda n: int(re.search(r"\d+", n).group()),
+        )
+        for caminho_layout in caminhos_layout:
+            rels_layout = parse_rels(ler(z, rels_de(z, caminho_layout)))
+            alvo_rel = next(tg for tp, tg in rels_layout.values() if tp.endswith("/slideMaster"))
+            caminho_master = resolver_target(caminho_layout, alvo_rel)
+            info = masters.get(caminho_master)
+            if info is None or any(c == caminho_layout for _, c in info["ordem"]):
+                continue
+            novo_rid = f"rId{proximo_rid_livre(info['rels'])}"
+            info["rels"] = info["rels"].replace(
+                "</Relationships>",
+                f'<Relationship Id="{novo_rid}" Type="{RELTYPE}/slideLayout" '
+                f'Target="../slideLayouts/{caminho_layout.rsplit("/", 1)[-1]}"/></Relationships>',
+            )
+            info["ordem"].append([novo_rid, caminho_layout])
+
+        # (c) renumera tudo, únicos a partir de 2147483648: master 1, os layouts
+        # dele, master 2, os layouts dele, e assim por diante.
+        contador = 2147483648
+        novas_tags_master = []
+        for rid, alvo in mantidos:
+            novas_tags_master.append(f'<p:sldMasterId id="{contador}" r:id="{rid}"/>')
+            contador += 1
+            info = masters[alvo]
+            tags_layout = []
+            for rid_layout, _ in info["ordem"]:
+                tags_layout.append(f'<p:sldLayoutId id="{contador}" r:id="{rid_layout}"/>')
+                contador += 1
+            info["xml"] = re.sub(
+                r"<p:sldLayoutIdLst>.*?</p:sldLayoutIdLst>",
+                "<p:sldLayoutIdLst>" + "".join(tags_layout) + "</p:sldLayoutIdLst>",
+                info["xml"], count=1, flags=re.S,
+            )
+
+        pres_novo = re.sub(
+            r"<p:sldMasterIdLst>.*?</p:sldMasterIdLst>",
+            "<p:sldMasterIdLst>" + "".join(novas_tags_master) + "</p:sldMasterIdLst>",
+            pres, count=1, flags=re.S,
+        )
+
+        substituicoes = {"ppt/presentation.xml": pres_novo, pres_rels_caminho: pres_rels_texto_novo}
+        for alvo, info in masters.items():
+            substituicoes[alvo] = info["xml"]
+            substituicoes[info["rels_caminho"]] = info["rels"]
+
+        # (d) zip novo com as mesmas entradas e a mesma ordem do original, só
+        # trocando as partes mexidas; grava num temporário porque caminho_entrada
+        # pode ser o próprio caminho_saida.
+        saida_tmp = caminho_saida.with_name(caminho_saida.name + ".tmp")
+        with zipfile.ZipFile(saida_tmp, "w", zipfile.ZIP_DEFLATED) as zs:
+            for item in z.infolist():
+                dados = z.read(item.filename)
+                if item.filename in substituicoes:
+                    dados = substituicoes[item.filename].encode("utf-8")
+                zs.writestr(item, dados)
+
+    saida_tmp.replace(caminho_saida)
+
+
 def main():
     if len(sys.argv) != 4:
         sys.exit("uso: juntar_decks.py <base.pptx> <anexo.pptx> <saida.pptx>")
@@ -307,6 +441,10 @@ def main():
                 zs.writestr(item, dados)
             for caminho, dados in m.novos.items():
                 zs.writestr(caminho, dados)
+
+    # o próprio juntador pode repetir um master (quando base e anexo usam o mesmo)
+    # ou deixar layout anexado sem o master reconhecer: sempre confere.
+    consertar_estrutura(saida_p, saida_p)
 
     print(f"anexados {len(novos_caminhos_slide)} slides de {anexo_p.name} ao fim de "
           f"{base_p.name} -> {saida_p}")
