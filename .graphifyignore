@@ -1,0 +1,29 @@
+# Dados e saídas geradas: o grafo lê o código e os READMEs que os descrevem
+banco_de_dados/**/*.csv
+banco_de_dados/**/*.db
+banco_de_dados/**/*.json
+dados/
+
+# Imagens: cada uma custaria um subagente; os relatórios já descrevem cada figura
+**/*.png
+**/*.jpg
+**/*.jpeg
+
+# Office e decks: os geradores e os .md dizem o mesmo
+*.pptx
+*.docx
+*.xlsx
+
+# PDFs gerados a partir de fontes que já estão no repositório
+docs/Apresentacoes_IVS/**/*.pdf
+docs/metodologia/*.pdf
+docs/metodologia/fontes_pdf/
+
+# Material de terceiros pesado e de pouco valor para o contexto
+docs/referencias/IBGE_Censo2022_Favelas_e_Comunidades_Urbanas.pdf
+
+# Legado de metodologia abandonada (denominador V01042)
+Backup/
+
+# O próprio grafo
+graphify-out/

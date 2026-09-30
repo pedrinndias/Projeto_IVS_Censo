@@ -1,25 +1,25 @@
-# Graph Report - Projeto_IVS_Censo22  (2026-09-25)
+# Graph Report - Projeto_IVS_Censo22  (2026-09-30)
 
 ## Corpus Check
-- 70 files · ~281,031 words
+- 96 files · ~368,235 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1086 nodes · 1454 edges · 72 communities (64 shown, 5 thin omitted)
-- Extraction: 95% EXTRACTED · 5% INFERRED · 0% AMBIGUOUS · INFERRED: 68 edges (avg confidence: 0.84)
+- 1521 nodes · 2114 edges · 121 communities (94 shown, 23 thin omitted)
+- Extraction: 96% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 73 edges (avg confidence: 0.84)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `325d3fcb`
+- Built from commit: `9924cb5d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
 - fatorial.py
 - Notebook 02 — Análises Descritivas (EDA)
-- GUIA_DO_PROJETO — documento mestre de retomada
+- MANUAL_DO_PROJETO.md
 - test_ivs_censo.py
-- test_pipeline_fase3.py
+- _read
 - __init__.py
 - Figura: Boxplots por regiao - variaveis-componente do IVS (setores urbanos elegiveis)
 - Figura: Histogramas das 7 variaveis-componente do IVS (setores urbanos elegiveis, 70 municipios ELSI)
@@ -50,7 +50,7 @@
 - gerar_resumo_eda_central.py
 - `eda/atualizada/` — a 2ª rodada da EDA, com a renda sem o valor extremo
 - gerar_pdf_outliers_renda.py
-- A.2 Pasta por pasta
+- gerar_slides_ivs_final.js
 - gerar_pdf_guia_fatorial.py
 - 12. Memória das decisões: como cada demanda foi atendida
 - Apresentações — Projeto IVS Censo 2022
@@ -72,7 +72,7 @@
 - Diagnóstico Completo do Projeto (histórico, 06/05/2026)
 - Base_ELSI_70Municipios_Censo2022 (CSV + SQLite)
 - 10. Blocos Descritivos Complementares
-- classificar_dados_sig
+- ivs_especificacoes.py
 - 3. Tratamento e Elegibilidade
 - Deck e PDFs de apoio (DEC)
 - Fontes dos PDFs de metodologia
@@ -82,32 +82,80 @@
 - 9. Estrutura de Correlações
 - referencias/README.md
 - Estudo ecológico com dados agregados
-- test_toda_variavel_de_indicador_tem_arquivo_fonte
+- Estado — NB05 (IVS final), 2026-09
+- test_fatorial.py
+- fatorial_ampliada.py
 - Inconsistência histórica das variáveis de esgoto (V00312-V00316 vs V00249-V00253)
+- juntar_decks.py
+- gerar_slides_fatorial_ampliada.js
+- Estado — demandas da orientadora (set/2026)
+- gerar_slides_extremo_bh.js
+- Prompt de execução — testes de especificação e o NB05 (IVS final)
+- test_ivs_especificacoes.py
+- gerar_dicionario_variaveis.py
+- test_pipeline_fase3.py
+- GUIA_DO_PROJETO — documento mestre de retomada
+- test_juntar_decks.py
+- prompts/README.md
+- Prompt — uso inteligente de tokens e de modelos no Claude Code
+- Prompt — atualizar o grafo de contexto do projeto (graphify), com custo controlado
+- gerar_quadro_indicadores.py
+- inventario_apresentacao.py
+- chi2_sf
+- gerar_notebook_ivs_final.py
+- alinhar_cargas
+- Fatorial ampliada, sem bootstrap — procedência
+- Mapa da apresentação final
+- Prompt para implementar o Notebook 04 — análise fatorial e pesos do IVS
+- Relatório — Notebook 05: Cálculo do IVS final
+- Motor de especificações do IVS (NB05, Fase C) — procedência
+- Analise_Fatorial_LEIAME.md
+- gerar_relatorio_ivs_final.py
+- Nota — arquivo resgatado da worktree órfã `flamboyant-davinci-bb1785`
+- Nota — arquivo resgatado da worktree órfã `gracious-jennings-f0c0db`
+- dependencies
+- NOTA_gerar_dicionario_variaveis.md
+- test_base_bruta_tem_colunas_territoriais_e_pirâmide_etaria
+- test_elegibilidade_separa_zerado_de_sigiloso
+- test_recorte_urbano_mantem_os_70_municipios
+- test_indice_de_envelhecimento_usa_denominador_0a14
+- test_contagem_de_setores_de_favela
+- test_calculo_nacional_bate_com_o_censo
+- test_tipo_domicilio_soma_coerente
+- test_tabelas_de_auditoria_usam_o_recorte_com_rurais
+- test_cobertura_de_saneamento_e_internamente_coerente
+- test_particao_da_agua_canalizada_fecha
+- test_agua_canalizada_exportada_e_coerente
+- test_razao_agregada_mede_numerador_e_denominador_nos_mesmos_setores
+- test_entrega_separa_urbanos_da_base_do_recorte_de_analise
+- test_coluna_de_renda_sem_o_extremo_de_belo_horizonte
+- test_renda_sem_extremos_nao_zera_nem_derruba_linhas
+- test_renda_imputada_mediana_municipal_usa_mediana_sem_o_excluido
+- test_quadro_de_indicadores_cobre_todos_os_indicadores
 
 ## God Nodes (most connected - your core abstractions)
 1. `Notebook 04 e relatório (NB4)` - 25 edges
 2. `Higiene do repositório e legado (HIG)` - 24 edges
-3. `calcular_indicadores()` - 20 edges
-4. `Relatório de Análise Exploratória de Dados (EDA)` - 20 edges
-5. `_read()` - 19 edges
-6. `criarDeck()` - 17 edges
-7. `Figura: Boxplots por regiao - variaveis-componente do IVS (setores urbanos elegiveis)` - 17 edges
-8. `Commits posteriores à auditoria (AUD)` - 16 edges
-9. `main()` - 15 edges
-10. `Prompt de execução — demandas da orientadora (setembro/2026) e correções da revisão geral` - 15 edges
+3. `main()` - 23 edges
+4. `calcular_indicadores()` - 21 edges
+5. `_read()` - 20 edges
+6. `Relatório de Análise Exploratória de Dados (EDA)` - 20 edges
+7. `criarDeck()` - 19 edges
+8. `rodar_cenario()` - 19 edges
+9. `Figura: Boxplots por regiao - variaveis-componente do IVS (setores urbanos elegiveis)` - 17 edges
+10. `Commits posteriores à auditoria (AUD)` - 16 edges
 
 ## Surprising Connections (you probably didn't know these)
 - `Notebook 02 — Análises Descritivas (EDA)` --shares_data_with--> `Base analítica: 104.108 setores censitários urbanos elegíveis (70 municípios ELSI-Brasil, Censo 2022)`  [EXTRACTED]
   notebooks/Fase3_EDA_ELSI/README.md → banco_de_dados/eda/figuras/missing_por_municipio.png
 - `Notebook 02 — Análises Descritivas (EDA)` --implements--> `Figura: Dados faltantes (%) por município × variável (heatmap)`  [EXTRACTED]
   notebooks/Fase3_EDA_ELSI/README.md → banco_de_dados/eda/figuras/missing_por_municipio.png
+- `main()` --calls--> `encontrar_raiz()`  [INFERRED]
+  scripts/auditoria_banheiro_particao.py → src/ivs_censo/fontes.py
 - `carregar()` --calls--> `calcular_indicadores()`  [INFERRED]
   scripts/auditoria_renda.py → src/ivs_censo/indicadores.py
 - `carregar()` --calls--> `classificar_dados_sig()`  [INFERRED]
   scripts/auditoria_renda.py → src/ivs_censo/indicadores.py
-- `main()` --calls--> `encontrar_raiz()`  [INFERRED]
-  scripts/auditoria_renda.py → src/ivs_censo/fontes.py
 
 ## Import Cycles
 - None detected.
@@ -116,31 +164,31 @@
 - **Fluxo de dados da pipeline Fase 3** — estrutura_projeto_8_csvs_censo2022, dados_municipios_elsi_brasil, notebooks_fase3_eda_elsi_01_extracao_filtragem_elsi, banco_de_dados_base_elsi_bruta_censo2022, notebooks_fase3_eda_elsi_02_analises_descritivas, banco_de_dados_eda_readme_saidas_eda [EXTRACTED 1.00]
 - **As 7 variáveis-componente do IVS** — banco_de_dados_entrega_orientadora_readme_pct_agua_inad, banco_de_dados_entrega_orientadora_readme_pct_esgoto_inad, banco_de_dados_entrega_orientadora_readme_pct_lixo_inad, banco_de_dados_entrega_orientadora_readme_razao_moradores, banco_de_dados_entrega_orientadora_readme_pct_analfab, banco_de_dados_entrega_orientadora_readme_renda_media, banco_de_dados_entrega_orientadora_readme_pct_raca_pretpardind, readme_ivs_intraurbano [EXTRACTED 1.00]
 
-## Communities (72 total, 5 thin omitted)
+## Communities (121 total, 23 thin omitted)
 
 ### Community 0 - "fatorial.py"
-Cohesion: 0.06
-Nodes (59): ndarray, main(), Diagnóstico de adequabilidade dos dados à análise fatorial. Roda os testes do…, skipif, acp(), alinhar_cargas(), bartlett(), bootstrap_cargas() (+51 more)
+Cohesion: 0.10
+Nodes (36): main(), Diagnóstico de adequabilidade dos dados à análise fatorial. Roda os testes do…, bartlett(), comunalidades_obliquas(), diagnosticar(), horn(), kmo(), matriz_correlacao() (+28 more)
 
 ### Community 1 - "Notebook 02 — Análises Descritivas (EDA)"
 Cohesion: 0.29
 Nodes (12): pct_agua_inad — % domicílios com água inadequada, pct_analfab — taxa de analfabetismo 15+, pct_esgoto_inad — % domicílios com esgoto inadequado, pct_lixo_inad — % domicílios com lixo inadequado, pct_raca_pretpardind — % pretos, pardos e indígenas, razao_moradores — razão de moradores por domicílio, renda_media — rendimento médio mensal dos responsáveis (V06004), Denominador domiciliar V00001 (DPP Ocupados) (+4 more)
 
-### Community 2 - "GUIA_DO_PROJETO — documento mestre de retomada"
-Cohesion: 0.05
-Nodes (38): municipios_elsi_brasil.csv — lista oficial dos 70 municípios ELSI, Bloco 1 · Abertura (slides 1 a 5) — 4 minutos, Bloco 2 · Dados e método (slides 6 a 11) — 5 minutos, Bloco 3 · A análise exploratória (slides 12 a 20) — 8 minutos, Bloco 4 · Os achados (slides 21 a 25) — 6 minutos, Bloco 5 · Demandas e caminho (slides 26 a 30) — 5 minutos, C.1 Demanda 1 — Índice de envelhecimento, C.2 Demanda 2 — Tabela de variáveis com significado e fonte (+30 more)
+### Community 2 - "MANUAL_DO_PROJETO.md"
+Cohesion: 0.06
+Nodes (34): A.1 Por onde começar, dependendo do que você precisa, A.2 Pasta por pasta, `Backup/` — legado, `banco_de_dados/` — saídas, Bloco 1 · Abertura (slides 1 a 5) — 4 minutos, Bloco 2 · Dados e método (slides 6 a 11) — 5 minutos, Bloco 3 · A análise exploratória (slides 12 a 20) — 8 minutos, Bloco 4 · Os achados (slides 21 a 25) — 6 minutos (+26 more)
 
 ### Community 3 - "test_ivs_censo.py"
-Cohesion: 0.14
-Nodes (24): calcular_indicadores(), Calcula os indicadores pedidos e devolve um DataFrame com uma coluna por…, _linha_sintetica(), Testes do módulo compartilhado `src/ivs_censo`. Diferente de…, O caso inverso do teste acima: V00900 sigiloso e V00901 presente. Descoberto…, `complemento=True` devolve 1 - num/den. É o que permite medir 'a água não chega…, A trinca é partição de V00001, então o complemento de V00199 tem que dar…, Se o clip [0,1] viesse antes, o complemento devolveria o valor invertido… (+16 more)
+Cohesion: 0.11
+Nodes (30): calcular_indicadores(), Calcula os indicadores pedidos e devolve um DataFrame com uma coluna por…, _linha_sintetica(), Testes do módulo compartilhado `src/ivs_censo`. Diferente de…, Nenhum indicador pode depender de variável sem procedência declarada., O caso inverso do teste acima: V00900 sigiloso e V00901 presente. Descoberto…, `complemento=True` devolve 1 - num/den. É o que permite medir 'a água não chega…, A trinca é partição de V00001, então o complemento de V00199 tem que dar… (+22 more)
 
-### Community 4 - "test_pipeline_fase3.py"
-Cohesion: 0.05
-Nodes (48): parametrize, DataFrame, Path, Testes sanity-check da pipeline Fase 3. Executar: python -m pytest tests/ -v…, A base do NB01 precisa trazer a classificação territorial (favelas/rural) e as…, Setores sem população têm que aparecer como ZERADO, não como SIGILOSO., O filtro rural não pode zerar nenhum município da amostra ELSI., IEP = 60+ / menores de 15 (Galvão et al., 2025). Recalcula a partir das… (+40 more)
+### Community 4 - "_read"
+Cohesion: 0.17
+Nodes (12): DataFrame, Path, n_validos = n_setores - n_sigilo em todo município, e a tabela por porte de…, O arquivo existe por causa dos suspeitos — eles têm que estar no topo. Ordenar…, _read(), test_auditoria_de_analfabetismo_fecha_as_contagens(), test_auditoria_de_renda_poe_os_suspeitos_primeiro_e_expoe_a_magnitude(), test_comparativo_brasil_vs_elsi_cobre_os_indicadores() (+4 more)
 
 ### Community 5 - "__init__.py"
-Cohesion: 0.13
-Nodes (18): main(), Gera a tabela de variáveis do projeto com descrição oficial do IBGE e arquivo-…, carregar_dicionario_oficial(), DataFrame, Path, Tabela de variáveis do projeto: descrição oficial do IBGE + arquivo-fonte.…, Lê os dois dicionários oficiais do IBGE e devolve `[variavel, tema, descricao]`., Monta a tabela final: cada variável usada pelo projeto, o que ela significa, de… (+10 more)
+Cohesion: 0.12
+Nodes (20): main(), B.2 do prompt NB05 — testa se V00495 é exatamente a soma de…, main(), Gera a tabela de variáveis do projeto com descrição oficial do IBGE e arquivo-…, carregar_dicionario_oficial(), DataFrame, Path, Tabela de variáveis do projeto: descrição oficial do IBGE + arquivo-fonte.… (+12 more)
 
 ### Community 6 - "Figura: Boxplots por regiao - variaveis-componente do IVS (setores urbanos elegiveis)"
 Cohesion: 0.22
@@ -160,7 +208,7 @@ Nodes (14): ler_arquivo_nacional(), main(), montar_base_nacional(), _para_numero
 
 ### Community 10 - "main"
 Cohesion: 0.06
-Nodes (45): carregar(), _descritivas(), figura_boxplot_cidades(), figura_tamanho_vs_renda(), main(), DataFrame, Path, Rastreia os valores extremos de renda e roda a EDA duas vezes: com e sem eles.… (+37 more)
+Nodes (47): carregar(), _descritivas(), figura_boxplot_cidades(), figura_tamanho_vs_renda(), main(), DataFrame, Path, Rastreia os valores extremos de renda e roda a EDA duas vezes: com e sem eles.… (+39 more)
 
 ### Community 11 - "gerar_entrega_orientadora.py"
 Cohesion: 0.33
@@ -179,8 +227,8 @@ Cohesion: 0.06
 Nodes (33): 1.1 O problema que ele ataca, 1.2 Duas distinções que o artigo faz e que importam aqui, 1.3 Os três estágios do planejamento, 1.4 As estatísticas de leitura dos resultados, 1.5 O exemplo e a conclusão, 1. O artigo em síntese, 2.1 Ele é o manual da etapa que falta, 2.2 A correspondência é estrutural, não analógica (+25 more)
 
 ### Community 18 - "criarDeck"
-Cohesion: 0.08
-Nodes (18): criarDeck(), bloco(), capa(), numero(), regua(), secao(), titulo(), ATU (+10 more)
+Cohesion: 0.17
+Nodes (7): criarDeck(), bloco(), capa(), numero(), regua(), secao(), titulo()
 
 ### Community 19 - "3. Companheiro de leitura, seção por seção"
 Cohesion: 0.07
@@ -258,9 +306,9 @@ Nodes (11): A armadilha desta pasta, e ela é real, `eda/atualizada/` — a 2ª 
 Cohesion: 0.15
 Nodes (7): br(), figura_motivos(), ler(), DataFrame, Path, Gera o PDF que destrincha o critério de outlier de renda. O deck da EDA Central…, Formata número no padrão brasileiro.
 
-### Community 38 - "A.2 Pasta por pasta"
-Cohesion: 0.17
-Nodes (12): A.1 Por onde começar, dependendo do que você precisa, A.2 Pasta por pasta, `Backup/` — legado, `banco_de_dados/` — saídas, `dados/` — entrada bruta do IBGE, `docs/` — documentação e fontes, `notebooks/Fase3_EDA_ELSI/` — a pipeline ativa, Parte A — Mapa do repositório (+4 more)
+### Community 38 - "gerar_slides_ivs_final.js"
+Cohesion: 0.05
+Nodes (42): RFC-4180, ACR, acrProposta, ampIvs6Max, ampIvs6Min, ampIvs7vMax, ampIvs7vMin, basesElegiveis (+34 more)
 
 ### Community 39 - "gerar_pdf_guia_fatorial.py"
 Cohesion: 0.20
@@ -271,12 +319,12 @@ Cohesion: 0.18
 Nodes (11): 12.10 Resumo das verificações, 12.1 Os três princípios que segui, 12.2 Demanda 1 — Ajustar o índice de envelhecimento, 12.3 Demanda 2 — Tabela de variáveis com o significado e a fonte, 12.4 Demanda 3 — Excluir setores rurais, 12.5 Demanda 4 — Agrupar as moradias convencionais, 12.6 Demanda 5 — Criar um indicador de apartamento, 12.7 Demanda 6 — Quantos setores são de vilas e favelas (+3 more)
 
 ### Community 41 - "Apresentações — Projeto IVS Censo 2022"
-Cohesion: 0.20
-Nodes (9): A apresentação atual, Apresentações — Projeto IVS Censo 2022, `complementos/` — apoio, não são a apresentação, Cuidado ao consultar o histórico, De onde vieram os nomes antigos, Dicionários, Histórico, Onde guardar a próxima apresentação (+1 more)
+Cohesion: 0.18
+Nodes (10): A apresentação atual, Apresentações — Projeto IVS Censo 2022, `complementos/` — apoio, não são a apresentação, Cuidado ao consultar o histórico, De onde vieram os nomes antigos, Dicionários, Histórico, O deck complementar — EDA Central avulsa (+2 more)
 
 ### Community 42 - "rastrear_outliers_renda"
-Cohesion: 0.19
-Nodes (14): rastrear_outliers_renda(), Rotula cada setor quanto à renda e devolve as colunas de rastreamento. Espera…, _cidade_sintetica(), Um município com N setores, para conferir a regra na mão., Renda alta num setor sem nenhum sinal contrário é EXTREMO, não erro de dado., O caso de Belo Horizonte: extremo de renda num setor de favela é incoerente., O mesmo valor é normal na cidade rica e extremo na cidade pobre — o IVS é…, Com menos de 20 setores o quartil do município não sustenta o corte. (+6 more)
+Cohesion: 0.17
+Nodes (16): rastrear_outliers_renda(), Rotula cada setor quanto à renda e devolve as colunas de rastreamento. Espera…, _cidade_sintetica(), Um município com N setores, para conferir a regra na mão., Renda alta num setor sem nenhum sinal contrário é EXTREMO, não erro de dado., O caso de Belo Horizonte: extremo de renda num setor de favela é incoerente., CD_TIPO numérico com um nulo no meio vira float64 (F2). O padrão antigo…, O mesmo valor é normal na cidade rica e extremo na cidade pobre — o IVS é… (+8 more)
 
 ### Community 43 - "Auditoria integral do Projeto IVS — Censo 2022 / ELSI-Brasil"
 Cohesion: 0.20
@@ -287,7 +335,7 @@ Cohesion: 0.22
 Nodes (9): Análise fatorial no Projeto IVS — por onde começar, As decisões em aberto, O estado da questão, em cinco linhas, Os dados e o código, Os documentos, Se você tem 5 minutos, Se você vai apresentar para a orientadora, Se você vai implementar (+1 more)
 
 ### Community 45 - "Parte 2 — Inventário do que mudou"
-Cohesion: 0.22
+Cohesion: 0.25
 Nodes (8): Arquivos indexados que foram modificados, Arquivos novos, Arquivos que nunca foram indexados, Comunidades do grafo antigo, Custo da execução anterior, Parte 1 — O prompt, Parte 2 — Inventário do que mudou, Prompt para atualizar o grafo do graphify
 
 ### Community 46 - "Notebooks 01 e 02 (NBS)"
@@ -303,8 +351,8 @@ Cohesion: 0.27
 Nodes (11): Figura: Dados faltantes (%) por município × variável (heatmap), Base analítica: 104.108 setores censitários urbanos elegíveis (70 municípios ELSI-Brasil, Censo 2022), Achado: gradiente urbano — capitais e municípios ricos com muito missing, municípios pequenos com quase zero, Método: heatmap município × variável de % faltante (7 variáveis IVS, 70 municípios ELSI), Implicação metodológica: imputar/tratar pct_analfab com cuidado; excluir enviesaria contra setores de baixo analfabetismo, Índice de Vulnerabilidade à Saúde (IVS) intraurbano, Conceito: o missing NÃO é aleatório (não é MCAR), Achado: Porto Alegre e São Caetano do Sul lideram o missing (~25-28%) (+3 more)
 
 ### Community 49 - "indicadores.py"
-Cohesion: 0.25
-Nodes (7): Indicador, Definição e cálculo dos indicadores do projeto, em um só lugar. As fórmulas…, Divide evitando divisão por zero: onde `den <= 0` ou é nulo, devolve `NaN`., Um indicador = numerador / denominador, com metadados para as tabelas., safe_div(), Denominador zero ou negativo devolve NaN — nunca inf, nunca zero silencioso., test_safe_div_nao_estoura_com_zero()
+Cohesion: 0.14
+Nodes (13): classificar_dados_sig(), Indicador, DataFrame, Series, Definição e cálculo dos indicadores do projeto, em um só lugar. As fórmulas…, Classifica a elegibilidade de cada setor (regra do `Cálculo IVS2012.docx`).…, Divide evitando divisão por zero: onde `den <= 0` ou é nulo, devolve `NaN`., Um indicador = numerador / denominador, com metadados para as tabelas. (+5 more)
 
 ### Community 50 - "Revisão geral do Projeto IVS — Censo 2022 / ELSI-Brasil"
 Cohesion: 0.20
@@ -342,9 +390,9 @@ Nodes (6): Base_ELSI_Bruta_Censo2022.csv (109.032 setores × 47 colunas), README
 Cohesion: 0.33
 Nodes (6): 10.1 Habitação precária e banheiro, 10.2 Pessoa responsável do sexo feminino, 10.3 Indicadores de envelhecimento, 10.4 Tipo de domicílio, 10.5 Setores de favela e comunidade urbana, 10. Blocos Descritivos Complementares
 
-### Community 60 - "classificar_dados_sig"
-Cohesion: 0.33
-Nodes (6): classificar_dados_sig(), DataFrame, Series, Classifica a elegibilidade de cada setor (regra do `Cálculo IVS2012.docx`).…, Setor sem população com V00001 vazio é ZERADO (massa d'água), não SIGILOSO., test_classificar_dados_sig_prioriza_populacao_zero()
+### Community 60 - "ivs_especificacoes.py"
+Cohesion: 0.09
+Nodes (45): auc_estratos(), auc_grupos(), auc_municipal(), banheiro_graduado(), bases(), carregar_base(), elegibilidade(), estabilidade() (+37 more)
 
 ### Community 61 - "3. Tratamento e Elegibilidade"
 Cohesion: 0.40
@@ -374,6 +422,126 @@ Nodes (3): FonteCenso, Um dos arquivos `Agregados_por_setores_*.csv` do Censo 20
 Cohesion: 0.67
 Nodes (3): 9.1 Leitura, 9.2 Implicações para a análise fatorial, 9. Estrutura de Correlações
 
+### Community 70 - "Estado — NB05 (IVS final), 2026-09"
+Cohesion: 0.05
+Nodes (36): A.7 — pytest, B.1 — Extração de V00237 e regeneração da entrega, B.2 — A partição do banheiro, B.3 — Os indicadores e o teste do graduado, B.4 — Regeneração dos geradores e das contagens citadas, C.1 — Leitura (só o que o bloco manda), C.2 — O motor: `scripts/ivs_especificacoes.py`, C.3 — Item 6: o que o índice acrescenta à renda (`acrescimo_renda.csv`) (+28 more)
+
+### Community 71 - "test_fatorial.py"
+Cohesion: 0.08
+Nodes (36): acp(), escores_regressao(), fatoracao_eixo_principal(), *Squared Multiple Correlation* por variável: 1 − 1/diag(R⁻¹). Quanto da…, Componentes principais a partir da matriz de correlação: autovalores e cargas., Fatoração do eixo principal: ACP iterada com as comunalidades na diagonal. A…, Coeficientes do método da regressão: B = R⁻¹A. Aplicados às variáveis…, smc() (+28 more)
+
+### Community 72 - "fatorial_ampliada.py"
+Cohesion: 0.09
+Nodes (31): auc_postos(), carregar(), comparacao(), figuras(), gravar(), indice_01(), lixo_fator_proprio(), main() (+23 more)
+
+### Community 74 - "juntar_decks.py"
+Cohesion: 0.18
+Nodes (19): consertar_estrutura(), ler(), main(), Merge, ordem_dos_slides(), parse_rels(), proximo_indice(), proximo_rid_livre() (+11 more)
+
+### Community 75 - "gerar_slides_fatorial_ampliada.js"
+Cohesion: 0.10
+Nodes (13): CARGAS, CENARIOS, { criarDeck }, d, FAT, FCU, fs, lerCsv() (+5 more)
+
+### Community 76 - "Estado — demandas da orientadora (set/2026)"
+Cohesion: 0.10
+Nodes (19): Decisões tomadas (por quem, quando), Demandas da orientadora, Estado — demandas da orientadora (set/2026), Fase 0 — concluída (25/09/2026, sessão 2), Fase 2 — concluída (25/09/2026, execução automática), Fase 3 — concluída (25/09/2026, execução automática, em duas sessões), Fase 4 — concluída (25/09/2026, três sessões, execução automática), Fase 5, lote A (código frágil) — sessão 2: executado (+11 more)
+
+### Community 77 - "gerar_slides_extremo_bh.js"
+Cohesion: 0.14
+Nodes (11): ATU, bh(), { criarDeck }, d, DESC, elsi(), fs, path (+3 more)
+
+### Community 78 - "Prompt de execução — testes de especificação e o NB05 (IVS final)"
+Cohesion: 0.13
+Nodes (15): 0.1 Orçamento, 0.2 Projeto, 0. Regras, 1. Fatos verificados — não redescobrir, 2.1 As dimensões de especificação que o NB05 testa, 2.2 Critérios da especificação de referência — fixados ANTES de rodar, 2.3 Perguntas que continuam dela, 2. Decisões e critérios (+7 more)
+
+### Community 79 - "test_ivs_especificacoes.py"
+Cohesion: 0.18
+Nodes (9): _dados(), skipif, Testes do motor de especificações do IVS (scripts/ivs_especificacoes.py)., Seis variáveis de dois fatores latentes, em dois municípios., IVS-6 sem lixo, renda original, Varimax SS, normalização global = o índice do…, test_indice_entre_0_e_1(), test_indice_municipal_usa_min_max_de_cada_municipio(), test_pesos_somam_1() (+1 more)
+
+### Community 80 - "gerar_dicionario_variaveis.py"
+Cohesion: 0.49
+Nodes (12): aba_componentes(), aba_de_para(), aba_decisoes(), aba_guia_por_arquivo(), aba_inicio(), aba_variaveis_brutas(), aba_variaveis_derivadas(), main() (+4 more)
+
+### Community 81 - "test_pipeline_fase3.py"
+Cohesion: 0.17
+Nodes (8): parametrize, Testes sanity-check da pipeline Fase 3. Executar: python -m pytest tests/ -v…, `CD_TIPO = 1` tem que reproduzir a lista oficial de setores de FCU do IBGE. A…, A coluna nova (renda_media_mediana_mun) difere de renda_media em exatamente um…, test_arquivos_eda_existem(), test_artefatos_das_demandas_existem(), test_coluna_de_renda_com_mediana_municipal(), test_marcacao_de_favela_bate_com_a_lista_oficial_do_ibge()
+
+### Community 82 - "GUIA_DO_PROJETO — documento mestre de retomada"
+Cohesion: 0.29
+Nodes (5): municipios_elsi_brasil.csv — lista oficial dos 70 municípios ELSI, `docs/relatorios/` — o que o projeto produziu, estrutura_projeto — arquitetura técnica do repositório, GUIA_DO_PROJETO — documento mestre de retomada, Mapas temáticos no QGIS 3.x
+
+### Community 83 - "test_juntar_decks.py"
+Cohesion: 0.32
+Nodes (11): _gravar_pacote(), _ids_e_layouts_por_master(), _master_xml(), _pacote_defeituoso(), Testes de scripts/juntar_decks.py — sobretudo de consertar_estrutura. Monta, em…, Lê o pacote e devolve (lista de todos os ids usados, lista dos masters citados…, Dict (ordenado) caminho -> texto, com os três defeitos., _rels() (+3 more)
+
+### Community 84 - "prompts/README.md"
+Cohesion: 0.22
+Nodes (4): Depois de rodar, O prompt, Prompt para auditar o projeto de ponta a ponta, `docs/prompts/` — prompts executáveis
+
+### Community 85 - "Prompt — uso inteligente de tokens e de modelos no Claude Code"
+Cohesion: 0.18
+Nodes (11): 1. Sessão, 2. Chamadas de ferramenta — a alavanca principal, 3. Modelo — escolher pelo tipo de trabalho, 4. Subagentes e workflows, 5. O que pesa em toda chamada, 6. Resposta, 7. Quando o limite bater, 8. Antes de começar qualquer tarefa grande — 30 segundos (+3 more)
+
+### Community 86 - "Prompt — atualizar o grafo de contexto do projeto (graphify), com custo controlado"
+Cohesion: 0.18
+Nodes (11): Como usar o grafo depois — é para isto que ele existe, Onde está o custo — leia antes de rodar, Passo 1 — o que é de graça, Passo 2 — dizer ao grafo o que não ler, Passo 3 — pré-voo: quanto vai custar, Passo 4 — extração semântica, em ondas, Passo 5 — montar o grafo, Passo 6 — conferir (+3 more)
+
+### Community 87 - "gerar_quadro_indicadores.py"
+Cohesion: 0.29
+Nodes (10): _descrever_codigos(), main(), montar_quadro(), _para_markdown(), DataFrame, Path, Gera o quadro de indicadores pedido pela orientadora, a partir do código.…, V00112 — descrição do IBGE | V00113 — ...', na ordem do indicador. (+2 more)
+
+### Community 88 - "inventario_apresentacao.py"
+Cohesion: 0.50
+Nodes (8): classificar(), contar_slides_notas_explicar(), extrair_texto_pptx(), linha(), listar(), main(), Path, Inventário dos artefatos de apresentação (Fase 4, item 4.1). Lista cada .pptx…
+
+### Community 89 - "chi2_sf"
+Cohesion: 0.22
+Nodes (9): chi2_sf(), _gamainc_p_serie(), _gamainc_q_fracao(), Cauda superior da qui-quadrado: Q(k/2, x/2), gama incompleta superior…, P(a, x) = gama incompleta inferior regularizada, por série (x < a + 1)., Q(a, x) = gama incompleta superior regularizada, por fração contínua de Lentz…, parametrize, FAT-12: Wilson–Hilferty errava por ordens de grandeza nesta região da cauda.… (+1 more)
+
+### Community 90 - "gerar_notebook_ivs_final.py"
+Cohesion: 0.36
+Nodes (5): NotebookNode, main(), montar_notebook(), preencher_numeros_de_celula(), Gera o Notebook 05 (IVS final, item 9 do pedido) por nbformat e executa com…
+
+### Community 91 - "alinhar_cargas"
+Cohesion: 0.25
+Nodes (8): alinhar_cargas(), bootstrap_cargas(), Põe as colunas de `cargas` na ordem e no sinal de `referencia`. Sem isso o…, Intervalo de confiança das cargas e da repartição dos pesos, por reamostragem.…, `alinhar_cargas` tem de devolver a referência mesmo com colunas trocadas e…, Os percentis do IC do bootstrap são 2,5/97,5, não 5/95 — e batem com o cálculo…, test_alinhar_cargas_desfaz_sinal_e_ordem(), test_bootstrap_cargas_percentis_sao_2_5_97_5()
+
+### Community 92 - "Fatorial ampliada, sem bootstrap — procedência"
+Cohesion: 0.29
+Nodes (6): Arquivos, Cenários, Fatorial ampliada, sem bootstrap — procedência, Método (igual ao NB04, para ser comparável), Observação sobre o % de zeros, Trava de sanidade
+
+### Community 93 - "Mapa da apresentação final"
+Cohesion: 0.29
+Nodes (6): ATUAL, Critério de classificação, HISTÓRICO, Mapa da apresentação final, Roteiro proposto para a apresentação final, SUPERADO
+
+### Community 94 - "Prompt para implementar o Notebook 04 — análise fatorial e pesos do IVS"
+Cohesion: 0.29
+Nodes (6): Parte 1 — O que já existe (leia antes de colar), Parte 2 — O prompt, Parte 3 — Skills, por fase, Parte 4 — Como conferir que deu certo, Prompt para implementar o Notebook 04 — análise fatorial e pesos do IVS, Skills a não usar aqui
+
+### Community 95 - "Relatório — Notebook 05: Cálculo do IVS final"
+Cohesion: 0.29
+Nodes (6): A referência proposta e as alternativas (seção 2.2 do prompt), Achados, Limitações, Método, Perguntas à orientadora, Relatório — Notebook 05: Cálculo do IVS final
+
+### Community 96 - "Motor de especificações do IVS (NB05, Fase C) — procedência"
+Cohesion: 0.33
+Nodes (5): A grade, Arquivos, Motor de especificações do IVS (NB05, Fase C) — procedência, Método, Trava (C.5)
+
+### Community 98 - "gerar_relatorio_ivs_final.py"
+Cohesion: 0.47
+Nodes (5): main(), num(), pct(), Gera docs/relatorios/Relatorio_IVS_Final_NB05.md (item 9, D.2 do prompt de…, Formata como o resto do projeto: vírgula decimal.
+
+### Community 99 - "Nota — arquivo resgatado da worktree órfã `flamboyant-davinci-bb1785`"
+Cohesion: 0.50
+Nodes (3): Nota — arquivo resgatado da worktree órfã `flamboyant-davinci-bb1785`, O que a comparação célula a célula mostrou (openpyxl, mesmo método do item 8.1), Por que foi copiado para cá
+
+### Community 100 - "Nota — arquivo resgatado da worktree órfã `gracious-jennings-f0c0db`"
+Cohesion: 0.50
+Nodes (3): Contexto, Nota — arquivo resgatado da worktree órfã `gracious-jennings-f0c0db`, Por que foi copiado para cá
+
+### Community 101 - "dependencies"
+Cohesion: 0.50
+Nodes (3): dependencies, pptxgenjs, pptxgenjs
+
 ## Ambiguous Edges - Review These
 - `Achado: gradiente urbano — capitais e municípios ricos com muito missing, municípios pequenos com quase zero` → `Mecanismo: supressão do IBGE de contagens pequenas gera o missing`  [AMBIGUOUS]
   banco_de_dados/eda/figuras/missing_por_municipio.png · relation: rationale_for
@@ -387,9 +555,9 @@ Nodes (3): 9.1 Leitura, 9.2 Implicações para a análise fatorial, 9. Estrutura
   banco_de_dados/eda/figuras/matriz_correlacao.png · relation: conceptually_related_to
 
 ## Knowledge Gaps
-- **433 isolated node(s):** `path`, `fs`, `RAIZ`, `FIG`, `D` (+428 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 653 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **580 isolated node(s):** `pptxgenjs`, `path`, `fs`, `RAIZ`, `FIG` (+575 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 907 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **23 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
@@ -405,6 +573,6 @@ _Questions this graph is uniquely positioned to answer:_
 - **What is the exact relationship between `Implicacao: bloco de saneamento (agua, esgoto, lixo) forma fator secundario fraco e pouco coeso` and `Indicador pct_lixo_inad (destino do lixo inadequado)`?**
   _Edge tagged AMBIGUOUS (relation: conceptually_related_to) - confidence is low._
 - **Why does `Notebook 02 — Análises Descritivas (EDA)` connect `Notebook 02 — Análises Descritivas (EDA)` to `Figura: Dados faltantes (%) por município × variável (heatmap)`, `Base_ELSI_70Municipios_Censo2022 (CSV + SQLite)`, `Notebook 01 — Extração e Filtragem ELSI`, ``eda/atualizada/` — a 2ª rodada da EDA, com a renda sem o valor extremo`?**
-  _High betweenness centrality (0.245) - this node is a cross-community bridge._
-- **Why does `municipios_elsi_brasil.csv — lista oficial dos 70 municípios ELSI` connect `GUIA_DO_PROJETO — documento mestre de retomada` to `Notebook 01 — Extração e Filtragem ELSI`, ``eda/atualizada/` — a 2ª rodada da EDA, com a renda sem o valor extremo`?**
-  _High betweenness centrality (0.240) - this node is a cross-community bridge._
+  _High betweenness centrality (0.142) - this node is a cross-community bridge._
+- **Why does `municipios_elsi_brasil.csv — lista oficial dos 70 municípios ELSI` connect `GUIA_DO_PROJETO — documento mestre de retomada` to `Notebook 01 — Extração e Filtragem ELSI`, `Analise_Fatorial_LEIAME.md`, `MANUAL_DO_PROJETO.md`, ``eda/atualizada/` — a 2ª rodada da EDA, com a renda sem o valor extremo`?**
+  _High betweenness centrality (0.133) - this node is a cross-community bridge._
