@@ -27,3 +27,8 @@ Backup/
 
 # O próprio grafo
 graphify-out/
+
+# PDFs exportados dos decks do relatório descritivo (os .md descrevem o mesmo)
+relatorio_descritivo/*.pdf
+# Versões intermediárias do relatório parcial: fica só o final
+relatorio_parcial_raic/*_v1*.pdf

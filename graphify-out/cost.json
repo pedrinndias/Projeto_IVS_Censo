@@ -19,7 +19,13 @@
       "output_tokens": 0,
       "files": 44,
       "subagent_tokens": 1098975,
-      "nota": "update semântico: 44 documentos em 6 lotes, 3 ondas de 2 subagentes Sonnet, um fragmento por documento; tokens = total dos subagentes"
+      "nota": "update sem\u00e2ntico: 44 documentos em 6 lotes, 3 ondas de 2 subagentes Sonnet, um fragmento por documento; tokens = total dos subagentes"
+    },
+    {
+      "date": "2026-10-18T21:34:41.882473+00:00",
+      "input_tokens": 385328,
+      "output_tokens": 0,
+      "files": 77
     }
   ],
   "total_input_tokens": 690744,
