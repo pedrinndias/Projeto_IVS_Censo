@@ -151,14 +151,15 @@ function criarDeck(meta) {
     return y + (fonte ? 0.60 : 0.36);
   }
 
-  /** Legenda de figura — vai ABAIXO dela. */
-  function legendaFigura(s, y, texto, fonte) {
+  /** Legenda de figura — vai ABAIXO dela. `x` e `w` alinham a legenda a uma figura que
+   *  não ocupa a largura toda (sem eles, vale a margem a margem de sempre). */
+  function legendaFigura(s, y, texto, fonte, x, w) {
     nFigura++;
     s.addText([
       { text: `Figura ${nFigura} — `, options: { bold: true } },
       { text: texto + (fonte ? `  ${fonte}` : ''), options: {} },
-    ], { x: M, y, w: W - 2*M, h: 0.34, fontFace: FONTE, fontSize: 10.5, color: CINZA,
-         margin: 0 });
+    ], { x: x === undefined ? M : x, y, w: w === undefined ? W - 2*M : w, h: 0.34,
+         fontFace: FONTE, fontSize: 10.5, color: CINZA, margin: 0, valign: 'top' });
   }
 
   /** Anotação à mão: elipse vazada em torno de um valor, com nota puxada por uma linha. */
@@ -242,8 +243,140 @@ function criarDeck(meta) {
       color: CINZA, margin: 0 });
   }
 
+  /**
+   * Altura que um texto ocupa numa caixa de largura `w` (pol.), no corpo `fs` (pt).
+   *
+   * Estimativa, não medida: a Cambria tem largura média um pouco abaixo de meio corpo
+   * por caractere, então uma linha comporta cerca de w·72/(fs·0,45) caracteres. Erra para
+   * mais, de propósito — sobra de espaço é melhor do que texto por cima do bloco seguinte.
+   */
+  function alturaTexto(txt, w, fs, entrelinha) {
+    const porLinha = Math.max(6, Math.floor(w * 72 / (fs * 0.45)));
+    // Quebra por palavra, como o PowerPoint: palavra que não cabe vai inteira para a
+    // linha de baixo (e uma palavra maior que a linha ocupa as linhas que precisar).
+    const linhasDe = par => {
+      let n = 1, usado = 0;
+      par.split(/\s+/).filter(Boolean).forEach(p => {
+        const t = p.length;
+        if (usado === 0) { n += Math.floor((t - 1) / porLinha); usado = ((t - 1) % porLinha) + 1; }
+        else if (usado + 1 + t <= porLinha) usado += 1 + t;
+        else { n += 1 + Math.floor((t - 1) / porLinha); usado = ((t - 1) % porLinha) + 1; }
+      });
+      return n;
+    };
+    const n = String(txt).split('\n').reduce((tot, par) => tot + linhasDe(par), 0);
+    return n * (entrelinha || fs * 1.25) / 72;
+  }
+
+  /**
+   * Tabela booktabs com a altura de cada linha estimada pelo texto mais longo dela.
+   *
+   * Mesma aparência de `tabela`. Existe porque `tabela` supõe linhas de altura fixa: uma
+   * célula que quebra em duas linhas empurra a tabela por cima do que vem abaixo, e o y
+   * devolvido deixa de valer. Aqui `colW` é obrigatório — sem a largura de cada coluna
+   * não há como estimar a quebra. Devolve o y logo abaixo do último filete.
+   */
+  function tabelaAjustada(s, cab, linhas, o) {
+    o = Object.assign({ x: M, y: 2.0, fontSize: 11, rowH: 0.3 }, o || {});
+    const w = o.colW.reduce((a, b) => a + b, 0);
+    const texto = c => (c !== null && typeof c === 'object') ? String(c.text)
+                                                                : String(c === null ? '—' : c);
+    // 0,2 pol. de margem interna por célula (o padrão do pptxgenjs: 0,1 de cada lado).
+    const altura = (ln, fs) => Math.max(o.rowH, ...ln.map((c, j) =>
+      alturaTexto(texto(c), o.colW[j] - 0.22, fs, fs * 1.22) + 0.1));
+    const alturas = [altura(cab, o.fontSize - 0.5), ...linhas.map(ln => altura(ln, o.fontSize))];
+    const head = cab.map(t => ({ text: t, options: { bold: true, color: TINTA,
+      fontFace: FONTE, fontSize: o.fontSize - 0.5, valign: 'bottom',
+      border: [{ pt: 1.25, color: TINTA }, { type: 'none' },
+               { pt: 0.75, color: TINTA }, { type: 'none' }] } }));
+    const ult = linhas.length - 1;
+    const corpo = linhas.map((ln, i) => ln.map(c => {
+      const cel = (c !== null && typeof c === 'object')
+        ? { text: String(c.text), options: Object.assign({}, c.options) }
+        : { text: texto(c), options: {} };
+      cel.options = Object.assign({ fontFace: FONTE, fontSize: o.fontSize, color: TINTA,
+        border: [{ type: 'none' }, { type: 'none' },
+          i === ult ? { pt: 1.25, color: TINTA } : { pt: 0.5, color: REGUA_F }, { type: 'none' }] },
+        cel.options);
+      return cel;
+    }));
+    s.addTable([head, ...corpo], { x: o.x, y: o.y, w, colW: o.colW, autoPage: false,
+      rowH: alturas, valign: 'middle' });
+    return o.y + alturas.reduce((a, b) => a + b, 0);
+  }
+
+  /**
+   * Diário: entradas datadas em duas colunas — a data no acento, à esquerda; o fato em
+   * negrito e o detalhe em cinza, à direita — abrindo slide novo sozinho quando o atual
+   * enche.
+   *
+   * `entradas` é uma lista de { data, fato, detalhe, nota }. A `nota` não vai ao slide:
+   * vai às anotações do apresentador, com o fato e o detalhe, para quem precisar do
+   * caminho até a fonte. `o.fonte` vai ao pé de cada slide. Devolve os slides criados.
+   *
+   * A paginação é equilibrada: primeiro conta quantos slides o diário pede (k), depois
+   * procura a menor altura de página que ainda cabe em k slides e quebra por ela — assim
+   * nenhum slide fica com uma entrada só no fim enquanto o anterior vai cheio.
+   */
+  function diario(tit, sub, entradas, o) {
+    o = Object.assign({ fonte: null, abertura: null }, o || {});
+    const xD = M, wD = 1.15, xT = M + 1.35, wT = W - M - xT;
+    const FF = 14.5, EF = 18, FD = 12.5, ED = 15.5, FOLGA = 0.18;
+    const alturas = entradas.map(e => alturaTexto(e.fato, wT, FF, EF)
+      + (e.detalhe ? alturaTexto(e.detalhe, wT, FD, ED) + 0.04 : 0) + FOLGA);
+    // y do corpo depois do título com subtítulo, e o limite acima da procedência.
+    const topo = 1.84, fim = H - 0.82, util = fim - topo;
+    const paginar = limite => {
+      const quebras = [];
+      let usado = 0;
+      alturas.forEach((h, i) => {
+        if (usado > 0 && usado + h > limite) { quebras.push(i); usado = 0; }
+        usado += h;
+      });
+      return quebras;
+    };
+    const k = paginar(util).length + 1;
+    let lo = Math.max(...alturas), hi = Math.max(util, lo);
+    for (let it = 0; it < 40; it++) {
+      const meio = (lo + hi) / 2;
+      if (paginar(meio).length + 1 <= k) hi = meio; else lo = meio;
+    }
+    const quebras = paginar(hi);
+
+    const slides = [];
+    let s = null, y = 0, notas = [];
+    const fechar = () => { if (s) s.addNotes(notas.join('\n\n')); };
+    const abrir = () => {
+      fechar();
+      s = S();
+      slides.push(s);
+      y = titulo(s, slides.length === 1 ? tit : `${tit} (continuação)`, sub) + 0.06;
+      if (o.fonte) procedencia(s, o.fonte);
+      notas = o.abertura ? [o.abertura] : [];
+    };
+    abrir();
+    entradas.forEach((e, i) => {
+      if (quebras.includes(i)) abrir();
+      const hF = alturaTexto(e.fato, wT, FF, EF);
+      const hD = e.detalhe ? alturaTexto(e.detalhe, wT, FD, ED) : 0;
+      s.addText(e.data, { x: xD, y: y + 0.02, w: wD, h: 0.3, fontFace: FONTE, fontSize: 13.5,
+        bold: true, color: ACENTO, margin: 0, valign: 'top' });
+      s.addText(e.fato, { x: xT, y, w: wT, h: hF, fontFace: FONTE, fontSize: FF, bold: true,
+        color: TINTA, margin: 0, valign: 'top', lineSpacing: EF });
+      if (e.detalhe) s.addText(e.detalhe, { x: xT, y: y + hF + 0.04, w: wT, h: hD,
+        fontFace: FONTE, fontSize: FD, color: CINZA, margin: 0, valign: 'top', lineSpacing: ED });
+      y += alturas[i];
+      regua(s, y - 0.12, 0.5, REGUA_F, xD, W - 2*M);
+      notas.push(`${e.data} — ${e.fato}` + (e.detalhe ? `\n${e.detalhe}` : '')
+                 + (e.nota ? `\n${e.nota}` : ''));
+    });
+    fechar();
+    return slides;
+  }
+
   return { p, S, regua, titulo, secao, bloco, numero, tabela, legendaTabela,
            legendaFigura, anotar, procedencia, capa, codigo, codigoComentado,
+           alturaTexto, tabelaAjustada, diario,
            cores: { TINTA, CINZA, CINZA_C, REGUA, REGUA_F, ACENTO, PAPEL, FONTE, MONO },
            geo: { W, H, M } };
 }
