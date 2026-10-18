@@ -77,3 +77,6 @@ __pycache__/
 
 # node_modules do gerador da apresentação (npm install pptxgenjs)
 node_modules/
+
+# base nacional da versão A6_brasil (gerada por scripts/base_nacional_versoes.py)
+banco_de_dados/nacional/*.db
