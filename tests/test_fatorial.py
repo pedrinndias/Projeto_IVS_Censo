@@ -476,3 +476,38 @@ def test_chi2_sf_bate_com_valor_tabelado_na_cauda(gl, x, esperado):
     aproximação normal antiga não bate — a gama incompleta regularizada bate.
     """
     assert chi2_sf(x, gl) == pytest.approx(esperado, rel=1e-2)
+
+
+def test_maxima_verossimilhanca_recupera_o_modelo_de_um_fator():
+    from ivs_censo.fatorial import fatoracao_maxima_verossimilhanca
+    lam = np.array([0.9, 0.8, 0.7, 0.6, 0.5])
+    R = np.outer(lam, lam)
+    np.fill_diagonal(R, 1.0)
+    cargas, h, info = fatoracao_maxima_verossimilhanca(R, 1)
+    assert info['convergiu']
+    np.testing.assert_allclose(np.abs(cargas[:, 0]), lam, atol=1e-4)
+    np.testing.assert_allclose(h, lam ** 2, atol=1e-4)
+
+
+def test_rodar_cenario_extracao_padrao_continua_acp():
+    from ivs_censo.fatorial import rodar_cenario
+    rng = np.random.default_rng(1)
+    X = rng.normal(size=(500, 5)) + rng.normal(size=(500, 1))
+    a = rodar_cenario(X, com_horn=False)
+    b = rodar_cenario(X, com_horn=False, extracao='acp')
+    np.testing.assert_allclose(a['sem_rotacao'], b['sem_rotacao'])
+    c = rodar_cenario(X, com_horn=False, extracao='maxima_verossimilhanca')
+    assert (c['comunalidade'] < a['comunalidade']).all()   # a ACP superestima a comunalidade
+
+
+def test_variancia_explicada_segue_a_extracao():
+    """Na ACP, autovalores; no eixo principal e na MV, a soma das comunalidades."""
+    from ivs_censo.fatorial import rodar_cenario
+    rng = np.random.default_rng(2)
+    X = rng.normal(size=(500, 5)) + rng.normal(size=(500, 1))
+    a = rodar_cenario(X, com_horn=False)
+    assert a['var_explicada_k'] == pytest.approx(100 * a['autovalores'][:2].sum() / 5)
+    for extracao in ('eixo_principal', 'maxima_verossimilhanca'):
+        c = rodar_cenario(X, com_horn=False, extracao=extracao)
+        assert c['var_explicada_k'] == pytest.approx(100 * c['comunalidade'].sum() / 5)
+        assert c['var_explicada_k'] < a['var_explicada_k']

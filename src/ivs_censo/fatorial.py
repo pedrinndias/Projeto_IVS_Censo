@@ -534,6 +534,37 @@ def diagnosticar(dados: pd.DataFrame, colunas: list[str], metodo: str, k: int, n
 # ─────────────────────────────────────────────────────────────────────────────
 # Um cenário da fatorial ampliada, de ponta a ponta
 # ─────────────────────────────────────────────────────────────────────────────
+def fatoracao_maxima_verossimilhanca(R: np.ndarray, k: int, tol: float = 1e-8,
+                                     maxiter: int = 5000) -> tuple[np.ndarray, np.ndarray, dict]:
+    """Fatoração por máxima verossimilhança, pelo algoritmo EM (Rubin e Thayer, 1982).
+
+    Modelo: R = ΛΛᵀ + Ψ, com Ψ diagonal (as unicidades). Cada passo calcula o que os
+    fatores "explicam" de cada variável dado Λ e Ψ atuais (passo E) e reestima Λ e Ψ por
+    regressão (passo M). Sem scipy: só álgebra matricial. Começa pela SMC, como o eixo
+    principal. Devolve `(cargas, comunalidades, info)`, no mesmo formato de
+    `fatoracao_eixo_principal`.
+    """
+    p = R.shape[0]
+    psi = np.clip(1 - smc(R), 0.005, 1.0)
+    _, cargas = acp(R, k)
+    convergiu, delta, it = False, np.inf, 0
+    for it in range(1, maxiter + 1):
+        sigma = cargas @ cargas.T + np.diag(psi)
+        beta = cargas.T @ np.linalg.inv(sigma)                     # k × p
+        ezz = np.eye(k) - beta @ cargas + beta @ R @ beta.T        # E[zzᵀ]
+        novas = R @ beta.T @ np.linalg.inv(ezz)
+        psi_nova = np.clip(np.diag(R - novas @ beta @ R), 0.005, 1.0)
+        delta = float(max(np.abs(novas - cargas).max(), np.abs(psi_nova - psi).max()))
+        cargas, psi = novas, psi_nova
+        if delta < tol:
+            convergiu = True
+            break
+    h = (cargas ** 2).sum(axis=1)
+    info = {'convergiu': convergiu, 'iteracoes': it, 'delta': delta,
+            'heywood': bool((psi <= 0.005).any()), 'p': p}
+    return cargas, h, info
+
+
 def _sinal_positivo(M: np.ndarray) -> np.ndarray:
     """+1 ou −1 por coluna, para que a soma das cargas de cada fator fique positiva."""
     return np.where(M.sum(axis=0) < 0, -1.0, 1.0)
@@ -546,7 +577,7 @@ def reparticao(M: np.ndarray) -> np.ndarray:
 
 
 def rodar_cenario(X: np.ndarray, k: int = 2, metodo: str = 'spearman',
-                  com_horn: bool = True) -> dict:
+                  com_horn: bool = True, extracao: str = 'acp') -> dict:
     """Roda um cenário da fatorial com a receita do NB04 e devolve tudo num dicionário.
 
     `X` chega sem faltantes (a exclusão por lista é de quem chama, por cenário). Extração
@@ -563,7 +594,11 @@ def rodar_cenario(X: np.ndarray, k: int = 2, metodo: str = 'spearman',
     R = matriz_correlacao(X, metodo)
     kmo_global, msa = kmo(R)
     qui, gl, _ = bartlett(R, n)
-    val, cargas = acp(R, k)
+    val, cargas = acp(R, k)          # os autovalores (Kaiser, Horn) são sempre os da ACP
+    if extracao == 'eixo_principal':
+        cargas = fatoracao_eixo_principal(R, k)[0]
+    elif extracao == 'maxima_verossimilhanca':
+        cargas = fatoracao_maxima_verossimilhanca(R, k)[0]
     vmax = varimax(cargas)
     padrao, estrutura, phi = rotacao_promax(cargas)
 
@@ -579,7 +614,9 @@ def rodar_cenario(X: np.ndarray, k: int = 2, metodo: str = 'spearman',
         'autovalores': val, 'horn': hval,
         'kaiser': int((val > 1).sum()),
         'horn_retidos': int((val > hval).sum()) if com_horn else None,
-        'var_explicada_k': float(100 * val[:k].sum() / p),
+        # na ACP, a soma dos k primeiros autovalores; no eixo principal e na máxima
+        # verossimilhança, a soma das comunalidades (só a variância comum)
+        'var_explicada_k': float(100 * (val[:k].sum() if extracao == 'acp' else (cargas ** 2).sum()) / p),
         'sem_rotacao': cargas, 'varimax': vmax,
         'promax_padrao': padrao, 'promax_estrutura': estrutura, 'phi': phi,
         'comunalidade': (cargas ** 2).sum(axis=1),
