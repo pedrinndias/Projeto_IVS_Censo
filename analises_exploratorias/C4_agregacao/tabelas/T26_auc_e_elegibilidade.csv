@@ -1,0 +1,12 @@
+medida,valor,detalhe
+AUC global contra FCU,0.7646348728669792,
+AUC municipal (mediana),0.7502347133468609,
+municípios na AUC municipal,31.0,ao menos 30 setores de FCU e fora
+peso da dimensão F1 (socioeconômica) (%),60.0,
+"KMO ≥ 0,70",1.0,sim
+"MSA ≥ 0,50 em todas",1.0,sim
+comunalidade mínima,0.37547298016183445,Razão de moradores
+"comunalidade ≥ 0,30 em todas",1.0,sim
+maior carga mínima,0.5245410428770614,Esgoto inadequado
+"carga ≥ 0,40 em todas",1.0,sim
+elegível pelos critérios do NB05,1.0,sim

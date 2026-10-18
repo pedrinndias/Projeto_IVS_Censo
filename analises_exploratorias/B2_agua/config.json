@@ -1,0 +1,88 @@
+{
+  "versao": "B2_agua",
+  "titulo": "As definições de água",
+  "pergunta": "O que muda no índice quando a água inadequada é trocada por outra definição de falta de água?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null
+  },
+  "indicadores": [
+    "pct_agua_inad",
+    "pct_sem_agua_canalizada",
+    "pct_agua_nao_encanada",
+    "pct_agua_so_terreno"
+  ],
+  "indice": {
+    "colunas": [
+      "pct_sem_agua_canalizada",
+      "pct_esgoto_inad",
+      "razao_moradores",
+      "pct_analfab",
+      "renda_inv",
+      "pct_raca_pretpardind",
+      "banheiro_graduado"
+    ],
+    "renda": "original",
+    "rotacao": "promax",
+    "metodo": "60_40",
+    "normalizacao": "municipal"
+  },
+  "blocos": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    9,
+    10,
+    13
+  ],
+  "sensibilidade": [
+    {
+      "rotulo": "água não chega ao domicílio",
+      "indice": {
+        "colunas": [
+          "pct_agua_nao_encanada",
+          "pct_esgoto_inad",
+          "razao_moradores",
+          "pct_analfab",
+          "renda_inv",
+          "pct_raca_pretpardind",
+          "banheiro_graduado"
+        ]
+      }
+    },
+    {
+      "rotulo": "água só no terreno",
+      "indice": {
+        "colunas": [
+          "pct_agua_so_terreno",
+          "pct_esgoto_inad",
+          "razao_moradores",
+          "pct_analfab",
+          "renda_inv",
+          "pct_raca_pretpardind",
+          "banheiro_graduado"
+        ]
+      }
+    },
+    {
+      "rotulo": "água inadequada (referência)",
+      "indice": {
+        "colunas": [
+          "pct_agua_inad",
+          "pct_esgoto_inad",
+          "razao_moradores",
+          "pct_analfab",
+          "renda_inv",
+          "pct_raca_pretpardind",
+          "banheiro_graduado"
+        ]
+      }
+    }
+  ]
+}

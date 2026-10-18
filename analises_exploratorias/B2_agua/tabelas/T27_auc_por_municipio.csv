@@ -1,0 +1,71 @@
+NM_MUN,auc,n1,n0,entra_na_mediana
+Salto,0.9880239520958084,1.0,167.0,False
+Pato Branco,0.9819819819819819,1.0,111.0,False
+Campo Grande,0.9748645528022026,9.0,1251.0,False
+Campinas,0.9580115647417334,264.0,1601.0,True
+Canoas,0.953551912568306,10.0,366.0,False
+Guarujá,0.9525666606203519,149.0,370.0,True
+São Paulo,0.9510114935843629,3107.0,16325.0,True
+Mauá,0.946543704522428,168.0,517.0,True
+Guarulhos,0.9446944779358573,319.0,1625.0,True
+Anápolis,0.9414847161572052,10.0,458.0,False
+Marechal Deodoro,0.9347826086956522,1.0,46.0,False
+São Bernardo do Campo,0.9291114807128906,256.0,1024.0,True
+Belo Horizonte,0.9258729441683816,522.0,2977.0,True
+Porto Alegre,0.9223584108199493,156.0,1365.0,True
+Limoeiro do Norte,0.9111111111111111,3.0,75.0,False
+Brasília,0.9100183486238532,250.0,3488.0,True
+Teresina,0.908287060611204,177.0,699.0,True
+Curitiba,0.9072749355347273,189.0,2017.0,True
+Ananindeua,0.8920593368237347,240.0,191.0,True
+Maceió,0.8820823902218198,235.0,940.0,True
+São Luís,0.8818886140314712,198.0,588.0,True
+Rio de Janeiro,0.8741753073169389,2195.0,7284.0,True
+Ibatiba,0.8735632183908046,3.0,29.0,False
+Fortaleza,0.8626129274901152,928.0,2189.0,True
+São José dos Pinhais,0.8539423076923077,32.0,325.0,True
+Goiânia,0.8483642457249495,62.0,1694.0,True
+Recife,0.8475953034718596,445.0,1334.0,True
+Nova Iguaçu,0.8474748759699784,42.0,1123.0,True
+Belém,0.8465738272621165,577.0,539.0,True
+Macaé,0.8402976009717583,89.0,370.0,True
+Divinópolis,0.8206951026856241,6.0,422.0,False
+Manaus,0.8068247610130899,967.0,877.0,True
+Feira de Santana,0.8038011273305391,44.0,629.0,True
+Camaragibe,0.803030303030303,33.0,160.0,True
+Salvador,0.8000236267489164,1310.0,1777.0,True
+Cachoeiro de Itapemirim,0.7892506690454951,57.0,236.0,True
+Duque de Caxias,0.7855975526305197,105.0,1183.0,True
+Natal,0.7831753802380803,141.0,678.0,True
+São Gonçalo,0.7755346476919925,78.0,1627.0,True
+São Pedro da Aldeia,0.7405106970324362,14.0,207.0,False
+São José de Ribamar,0.6855380820228184,69.0,235.0,True
+Arara,,0.0,12.0,False
+Araçatuba,,0.0,384.0,False
+Autazes,,0.0,21.0,False
+Capelinha,,0.0,43.0,False
+Chapada dos Guimarães,,0.0,25.0,False
+Charqueadas,,0.0,43.0,False
+Coroaci,,0.0,11.0,False
+Goianésia,,0.0,68.0,False
+Groaíras,,0.0,5.0,False
+Guapiaçu,,0.0,37.0,False
+Igarapava,,0.0,51.0,False
+Itajuípe,,0.0,16.0,False
+Itapetinga,,0.0,78.0,False
+Japoatã,,0.0,4.0,False
+Jaqueira,,0.0,6.0,False
+Orizânia,,0.0,4.0,False
+Placas,,0.0,5.0,False
+Portel,,0.0,17.0,False
+Rosário,,0.0,15.0,False
+Salinas,,0.0,38.0,False
+Santa Maria do Oeste,,0.0,5.0,False
+São Caetano do Sul,,0.0,280.0,False
+São Paulo das Missões,,0.0,4.0,False
+São Raimundo do Doca Bezerra,,0.0,1.0,False
+Tabatinga,,0.0,27.0,False
+Taió,,0.0,37.0,False
+Urandi,,0.0,7.0,False
+Vicentinópolis,,0.0,11.0,False
+Água Preta,,0.0,18.0,False

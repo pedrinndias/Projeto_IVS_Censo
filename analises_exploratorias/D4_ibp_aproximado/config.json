@@ -1,0 +1,50 @@
+{
+  "versao": "D4_ibp_aproximado",
+  "titulo": "IBP aproximado",
+  "pergunta": "Como fica uma réplica aproximada do Índice Brasileiro de Privação (Allik et al., 2020) com os agregados por setor do Censo 2022?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null
+  },
+  "indicadores": "todos",
+  "indice": {
+    "colunas": [
+      "renda_inv",
+      "pct_analfab",
+      "ibp_saneamento"
+    ],
+    "renda": "original",
+    "rotacao": "promax",
+    "metodo": "60_40",
+    "normalizacao": "z_global",
+    "pesos": "iguais"
+  },
+  "blocos": [
+    10,
+    11,
+    12,
+    13
+  ],
+  "indicadores_derivados": [
+    {
+      "nome": "ibp_saneamento",
+      "rotulo": "Saneamento (IBP)",
+      "dimensao": "Saneamento",
+      "media_de": [
+        "pct_agua_inad",
+        "pct_esgoto_inad",
+        "pct_lixo_inad",
+        "pct_sem_banheiro"
+      ],
+      "o_que_mede": "Média das proporções de domicílios com água, esgoto e lixo inadequados e sem banheiro (aproxima o componente de saneamento do IBP)",
+      "numerador_curto": "média de 4 proporções",
+      "denominador_curto": "V00001"
+    }
+  ],
+  "parametros_exploratorios": {
+    "variáveis do IBP aproximado": "renda média do responsável (invertida) no lugar de % com renda per capita até ½ salário mínimo; analfabetismo 15+ no lugar de 7+; saneamento como média de água, esgoto, lixo e banheiro"
+  }
+}

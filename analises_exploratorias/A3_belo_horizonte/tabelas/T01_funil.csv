@@ -1,0 +1,5 @@
+etapa,setores,saem,motivo_da_saida
+Base completa,5166,0,
+Setores urbanos,5166,0,setor rural
+Dados_sig = OK,5113,53,setor sem dados divulgados (sigilo ou sem domicílio ocupado)
+Componentes do índice completos,3499,1614,faltante em algum componente do índice (exclusão por lista)

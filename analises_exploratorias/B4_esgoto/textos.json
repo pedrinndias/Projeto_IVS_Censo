@@ -1,0 +1,10 @@
+{
+  "pergunta": "O que muda no índice se o esgoto for medido por V00249–V00253 em vez de V00312–V00316?",
+  "o_que_muda": "O componente de esgoto do índice: a soma de V00249 a V00253 entra no lugar de V00312 a V00316. Atenção: pelo dicionário oficial do IBGE, V00249–V00253 é tipologia de habitação, não esgoto (Relatório de Integridade do projeto). A versão mostra o efeito de usar a definição descartada; o esgoto da referência está na tabela T34.",
+  "sintese": "Com V00249–V00253 no lugar do esgoto, o índice se afasta muito da referência: a correlação de postos cai e quase três em cada dez setores mudam de faixa. A AUC contra as favelas também cai, e a variável sozinha tem AUC abaixo de 0,5, isto é, é maior fora das favelas — coerente com ela não medir esgoto. A versão confirma, pelos dados, a escolha de V00312–V00316 feita pelo dicionário.",
+  "limitacoes": [
+    "V00249–V00253 não é esgoto segundo o dicionário oficial do IBGE; a versão existe para documentar o efeito da troca, não como alternativa.",
+    "As somas de V00249–V00253 vêm do diagnóstico já gravado em banco_de_dados/eda/diagnostico_esgoto_312_vs_249.csv; as variáveis não estão na base da entrega.",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista); trocar um componente muda também a amostra."
+  ]
+}

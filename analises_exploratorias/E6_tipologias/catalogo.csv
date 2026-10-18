@@ -1,0 +1,8 @@
+id,tipo,bloco,chave,titulo,o_que_mostra,arquivo,fonte,campos,slide
+T53,tabela,19,e6_sil_setores,A silhueta indica 4 grupos de setores,"Maior silhueta: k = 4 (0,3631).",tabelas/T53_silhueta_setores.csv,T53,"{""k"": ""4"", ""sil"": ""0,3631""}",5
+T54,tabela,19,e6_perfis_setores,"O grupo 3 concentra as favelas (50,7% dos setores em FCU)","Com k = 4, o grupo 3 tem 50,7% dos setores em FCU e reúne 6,8% dos setores.",tabelas/T54_perfis_grupos_setores.csv,T54,"{""grupo"": ""3"", ""pct_fcu"": ""50,7%"", ""pct_setores"": ""6,8%""}",6
+T55,tabela,19,e6_sil_mun,A silhueta indica 4 grupos de municípios,"Maior silhueta: k = 4 (0,3389).",tabelas/T55_silhueta_municipios.csv,T55,"{""k"": ""4"", ""sil"": ""0,3389""}",7
+T56,tabela,19,e6_municipios,Os municípios em 4 grupos de perfil,Agrupamento com k = 4.,tabelas/T56_grupos_de_municipios.csv,T56,"{""k"": ""4""}",8
+T57,tabela,19,e6_perfis_mun,Os perfis dos 4 grupos de municípios,k = 4; o maior grupo tem 33 municípios.,tabelas/T57_perfis_grupos_municipios.csv,T57,"{""k"": ""4"", ""n_max"": ""33""}",12
+F48,figura,19,e6_fig_setores,Os perfis dos 4 grupos de setores,"O grupo 3 tem 50,7% dos setores em FCU.",figuras/F48_perfis_grupos_setores.png,T54,"{""grupo"": ""3"", ""pct_fcu"": ""50,7%"", ""pct_setores"": ""6,8%""}",13
+F49,figura,19,e6_fig_mun,Os grupos de municípios por região,Agrupamento com k = 4.,figuras/F49_grupos_de_municipios.png,T56,"{""k"": ""4""}",14

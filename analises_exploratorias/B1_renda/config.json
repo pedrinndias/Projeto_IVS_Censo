@@ -1,0 +1,57 @@
+{
+  "versao": "B1_renda",
+  "titulo": "As três rendas",
+  "pergunta": "O que muda no índice com cada uma das três rendas: a original, a sem o extremo e a com o extremo trocado pela mediana do município?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null
+  },
+  "indicadores": [
+    "renda_media",
+    "renda_media_sem_extremo",
+    "renda_media_mediana_mun"
+  ],
+  "indice": {
+    "colunas": [
+      "pct_agua_inad",
+      "pct_esgoto_inad",
+      "razao_moradores",
+      "pct_analfab",
+      "renda_inv",
+      "pct_raca_pretpardind",
+      "banheiro_graduado"
+    ],
+    "renda": "sem_extremo",
+    "rotacao": "promax",
+    "metodo": "60_40",
+    "normalizacao": "municipal"
+  },
+  "blocos": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    9,
+    10,
+    13
+  ],
+  "sensibilidade": [
+    {
+      "rotulo": "renda com a mediana do município",
+      "indice": {
+        "renda": "mediana_mun"
+      }
+    },
+    {
+      "rotulo": "renda original (referência)",
+      "indice": {
+        "renda": "original"
+      }
+    }
+  ]
+}

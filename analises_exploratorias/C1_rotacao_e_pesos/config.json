@@ -1,0 +1,93 @@
+{
+  "versao": "C1_rotacao_e_pesos",
+  "titulo": "Rotação e esquemas de peso",
+  "pergunta": "O que muda no índice com outra rotação e com cada um dos 9 esquemas de peso entre as dimensões?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null
+  },
+  "indicadores": "todos",
+  "indice": {
+    "colunas": [
+      "pct_agua_inad",
+      "pct_esgoto_inad",
+      "razao_moradores",
+      "pct_analfab",
+      "renda_inv",
+      "pct_raca_pretpardind",
+      "banheiro_graduado"
+    ],
+    "renda": "original",
+    "rotacao": "varimax",
+    "metodo": "60_40",
+    "normalizacao": "municipal"
+  },
+  "blocos": [
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "sensibilidade": [
+    {
+      "rotulo": "sem rotação, um fator",
+      "indice": {
+        "rotacao": "sem_rotacao",
+        "metodo": "unico"
+      }
+    },
+    {
+      "rotulo": "Varimax, soma dos quadrados",
+      "indice": {
+        "rotacao": "varimax",
+        "metodo": "ss"
+      }
+    },
+    {
+      "rotulo": "Varimax, 50/50",
+      "indice": {
+        "rotacao": "varimax",
+        "metodo": "50_50"
+      }
+    },
+    {
+      "rotulo": "promax, soma dos quadrados (padrão)",
+      "indice": {
+        "rotacao": "promax",
+        "metodo": "ss_padrao"
+      }
+    },
+    {
+      "rotulo": "promax, soma dos quadrados (estrutura)",
+      "indice": {
+        "rotacao": "promax",
+        "metodo": "ss_estrutura"
+      }
+    },
+    {
+      "rotulo": "promax, comunalidades",
+      "indice": {
+        "rotacao": "promax",
+        "metodo": "comunalidades"
+      }
+    },
+    {
+      "rotulo": "promax, 50/50",
+      "indice": {
+        "rotacao": "promax",
+        "metodo": "50_50"
+      }
+    },
+    {
+      "rotulo": "promax, 60/40 (referência)",
+      "indice": {
+        "rotacao": "promax",
+        "metodo": "60_40"
+      }
+    }
+  ]
+}

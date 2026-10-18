@@ -1,0 +1,48 @@
+{
+  "versao": "C2_extracao",
+  "titulo": "Método de extração",
+  "pergunta": "O que muda no índice quando os fatores são extraídos pelo eixo principal ou por máxima verossimilhança, em vez de componentes principais?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null
+  },
+  "indicadores": "todos",
+  "indice": {
+    "colunas": [
+      "pct_agua_inad",
+      "pct_esgoto_inad",
+      "razao_moradores",
+      "pct_analfab",
+      "renda_inv",
+      "pct_raca_pretpardind",
+      "banheiro_graduado"
+    ],
+    "renda": "original",
+    "rotacao": "promax",
+    "metodo": "60_40",
+    "normalizacao": "municipal",
+    "extracao": "eixo_principal"
+  },
+  "blocos": [
+    9,
+    10,
+    13
+  ],
+  "sensibilidade": [
+    {
+      "rotulo": "máxima verossimilhança",
+      "indice": {
+        "extracao": "maxima_verossimilhanca"
+      }
+    },
+    {
+      "rotulo": "componentes principais (referência)",
+      "indice": {
+        "extracao": "acp"
+      }
+    }
+  ]
+}

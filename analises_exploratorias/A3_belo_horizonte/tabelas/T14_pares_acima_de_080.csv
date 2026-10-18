@@ -1,0 +1,23 @@
+a,b,rotulo_a,rotulo_b,spearman,pearson
+renda_media_sem_extremo,renda_media_mediana_mun,Renda sem o extremo,Renda (mediana mun.),1.0,1.0
+renda_media,renda_media_sem_extremo,Renda média,Renda sem o extremo,1.0,1.0
+pct_sem_banheiro,banheiro_graduado,Sem banheiro,Banheiro graduado,0.9999999956850216,0.999004960611287
+pct_banheiro_comum,banheiro_graduado,Banheiro de uso comum,Banheiro graduado,0.999997432587853,0.9959999492158761
+renda_media,renda_media_mediana_mun,Renda média,Renda (mediana mun.),0.9997066301581958,0.8535060434489082
+pct_idoso_60mais,rdi_setor,Pessoas 60+,Dependência idosa,0.9944648251163181,0.9704666266275507
+pct_hab_precaria,pct_moradia_nao_convencional,Habitação precária,Moradia não convencional,0.9824284863129217,0.9978686515208436
+pct_sem_banheiro,pct_banheiro_comum,Sem banheiro,Banheiro de uso comum,0.9817604046451435,0.9953439728462278
+pct_idoso_60mais,iep_setor,Pessoas 60+,Índice de envelhecimento,0.9476668852729091,0.7302499267575545
+pct_pop_0a14,iep_setor,População 0–14,Índice de envelhecimento,-0.9316246918147039,-0.754447624276065
+pct_raca_pretpardind,renda_media_sem_extremo,Cor/raça PPI,Renda sem o extremo,-0.920618239808504,-0.8662040154152729
+pct_raca_pretpardind,renda_media_mediana_mun,Cor/raça PPI,Renda (mediana mun.),-0.9205000930697548,-0.8661894363964769
+renda_media,pct_raca_pretpardind,Renda média,Cor/raça PPI,-0.9198511979093279,-0.734941081094683
+iep_setor,rdi_setor,Índice de envelhecimento,Dependência idosa,0.915766572462373,0.6922669615571228
+pct_apartamento,pct_casa,Apartamento,Casa,-0.915583526567268,-0.9460538284066871
+pct_crianca_0a4,pct_pop_0a14,Crianças 0–4,População 0–14,0.8070028022850365,0.8141660953563561
+pct_analfab,renda_media_sem_extremo,Analfabetismo 15+,Renda sem o extremo,-0.8024816908898641,-0.4864670729611747
+pct_analfab,renda_media_mediana_mun,Analfabetismo 15+,Renda (mediana mun.),-0.8021159080317097,-0.4864112508312943
+pct_analfab,renda_media,Analfabetismo 15+,Renda média,-0.8013004387252707,-0.3708381989359868
+pct_sem_agua_canalizada,pct_agua_so_terreno,Sem água canalizada,Água só no terreno,0.6630801393913873,0.9872327860322361
+pct_moradia_convencional,pct_moradia_nao_convencional,Moradia convencional,Moradia não convencional,-0.5472716007332699,-0.9866754200370168
+pct_hab_precaria,pct_moradia_convencional,Habitação precária,Moradia convencional,-0.5405641659957946,-0.9850399816798977

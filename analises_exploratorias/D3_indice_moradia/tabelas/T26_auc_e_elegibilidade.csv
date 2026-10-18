@@ -1,0 +1,12 @@
+medida,valor,detalhe
+AUC global contra FCU,0.6623329949738327,
+AUC municipal (mediana),0.6775804274955378,
+municípios na AUC municipal,31.0,ao menos 30 setores de FCU e fora
+peso da dimensão F1 (%),64.78035490942958,
+"KMO ≥ 0,70",0.0,não
+"MSA ≥ 0,50 em todas",0.0,não
+comunalidade mínima,0.09496939721439594,Domicílio improvisado
+"comunalidade ≥ 0,30 em todas",0.0,não
+maior carga mínima,0.2976029006860757,Domicílio improvisado
+"carga ≥ 0,40 em todas",0.0,não
+elegível pelos critérios do NB05,0.0,não

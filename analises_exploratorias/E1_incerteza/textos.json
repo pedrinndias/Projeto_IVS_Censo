@@ -1,0 +1,9 @@
+{
+  "pergunta": "Em quantas versões elegíveis cada setor fica em risco elevado?",
+  "o_que_muda": "Não é uma versão do índice: cruza as versões elegíveis já geradas (com o índice por setor) e conta, para cada setor da referência, em quantas ele fica em risco elevado ou muito elevado.",
+  "sintese": "Pouco mais da metade dos setores nunca fica em risco elevado, e cerca de um em cada dez fica sempre: esses são o núcleo robusto da vulnerabilidade, que não depende das escolhas de método. Mais de um terço dos setores muda de situação conforme a versão — a classificação deles é incerta e deve ser lida com cautela. A incerteza varia bastante entre municípios.",
+  "limitacoes": [
+    "Só entram as versões elegíveis; as versões por estrato contam apenas para os setores que cobrem.",
+    "Risco elevado é a soma das faixas elevado e muito elevado pela regra do IVS-BH; outra regra mudaria as contas (ver C5)."
+  ]
+}

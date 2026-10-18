@@ -1,0 +1,248 @@
+indicador,rotulo,CD_SETOR,NM_MUN,valor,mediana_global
+pct_sem_agua_canalizada,Sem água canalizada,130260305100279,Manaus,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,150140250000167,Belém,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330170220000079,Duque de Caxias,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330240305020038,Macaé,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330240305030085,Macaé,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330350005110218,Nova Iguaçu,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330350005180204,Nova Iguaçu,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330350005210075,Nova Iguaçu,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330490420000373,São Gonçalo,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,355030881000551,São Paulo,1.0,0.0
+pct_agua_nao_encanada,Água não chega,330170220000079,Duque de Caxias,1.0,0.0
+pct_agua_nao_encanada,Água não chega,330350005180204,Nova Iguaçu,1.0,0.0
+pct_agua_nao_encanada,Água não chega,330350005110218,Nova Iguaçu,0.994475138121547,0.0
+pct_agua_nao_encanada,Água não chega,130260305100207,Manaus,0.9933333333333333,0.0
+pct_agua_nao_encanada,Água não chega,351870110000014,Guarujá,0.9919354838709677,0.0
+pct_agua_nao_encanada,Água não chega,330350005110170,Nova Iguaçu,0.9904761904761905,0.0
+pct_agua_nao_encanada,Água não chega,130260305140512,Manaus,0.9861111111111112,0.0
+pct_agua_nao_encanada,Água não chega,330350005210074,Nova Iguaçu,0.9859154929577465,0.0
+pct_agua_nao_encanada,Água não chega,330350005110254,Nova Iguaçu,0.9827586206896551,0.0
+pct_agua_nao_encanada,Água não chega,350950205001497,Campinas,0.9802631578947368,0.0
+pct_agua_so_terreno,Água só no terreno,130260305100279,Manaus,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,330350005210075,Nova Iguaçu,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,330490420000373,São Gonçalo,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,355030881000551,São Paulo,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,530010805110354,Brasília,0.9925925925925926,0.0
+pct_agua_so_terreno,Água só no terreno,330350005200123,Nova Iguaçu,0.9865470852017937,0.0
+pct_agua_so_terreno,Água só no terreno,330170215000106,Duque de Caxias,0.9847328244274809,0.0
+pct_agua_so_terreno,Água só no terreno,330350005190146,Nova Iguaçu,0.9845679012345679,0.0
+pct_agua_so_terreno,Água só no terreno,130260305130159,Manaus,0.9840637450199203,0.0
+pct_agua_so_terreno,Água só no terreno,150140255000386,Belém,0.9829545454545454,0.0
+pct_sem_banheiro,Sem banheiro,261160605230797,Recife,0.9627329192546584,0.0
+pct_sem_banheiro,Sem banheiro,410690205090296,Curitiba,0.9333333333333333,0.0
+pct_sem_banheiro,Sem banheiro,500270405110448,Campo Grande,0.9111111111111111,0.0
+pct_sem_banheiro,Sem banheiro,130260305130192,Manaus,0.8648648648648649,0.0
+pct_sem_banheiro,Sem banheiro,520870705410055,Goiânia,0.8636363636363636,0.0
+pct_sem_banheiro,Sem banheiro,270430205120370,Maceió,0.8511326860841424,0.0
+pct_sem_banheiro,Sem banheiro,355030825000435,São Paulo,0.8333333333333334,0.0
+pct_sem_banheiro,Sem banheiro,310620005670397,Belo Horizonte,0.7727272727272727,0.0
+pct_sem_banheiro,Sem banheiro,211130005001435,São Luís,0.7592592592592593,0.0
+pct_sem_banheiro,Sem banheiro,330455705070029,Rio de Janeiro,0.7441860465116279,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,150140260000260,Belém,0.5348837209302325,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,261160605190415,Recife,0.41379310344827586,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,130260305000269,Manaus,0.35294117647058826,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,150140250000167,Belém,0.35294117647058826,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,211130005001730,São Luís,0.33962264150943394,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,150080005000883,Ananindeua,0.319672131147541,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,211130005001662,São Luís,0.2857142857142857,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,261160605230795,Recife,0.2647058823529412,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,211130005001432,São Luís,0.2391304347826087,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,211130005001435,São Luís,0.2222222222222222,0.0
+pct_so_sanitario,Só sanitário,500270405110448,Campo Grande,0.8444444444444444,0.0
+pct_so_sanitario,Só sanitário,130260305130192,Manaus,0.7657657657657657,0.0
+pct_so_sanitario,Só sanitário,355030830001613,São Paulo,0.6086956521739131,0.0
+pct_so_sanitario,Só sanitário,330170205000764,Duque de Caxias,0.5569620253164557,0.0
+pct_so_sanitario,Só sanitário,210960105000080,Rosário,0.526829268292683,0.0
+pct_so_sanitario,Só sanitário,150565005000045,Placas,0.5,0.0
+pct_so_sanitario,Só sanitário,150580905000085,Portel,0.4787234042553192,0.0
+pct_so_sanitario,Só sanitário,261160605180168,Recife,0.46835443037974683,0.0
+pct_so_sanitario,Só sanitário,211120110000517,São José de Ribamar,0.44329896907216493,0.0
+pct_so_sanitario,Só sanitário,130260305140410,Manaus,0.43425076452599387,0.0
+pct_banheiro_comum,Banheiro de uso comum,261160605230797,Recife,0.9565217391304348,0.0
+pct_banheiro_comum,Banheiro de uso comum,410690205090296,Curitiba,0.9333333333333333,0.0
+pct_banheiro_comum,Banheiro de uso comum,520870705410055,Goiânia,0.8636363636363636,0.0
+pct_banheiro_comum,Banheiro de uso comum,270430205120370,Maceió,0.8511326860841424,0.0
+pct_banheiro_comum,Banheiro de uso comum,355030825000435,São Paulo,0.8111111111111111,0.0
+pct_banheiro_comum,Banheiro de uso comum,310620005670397,Belo Horizonte,0.7727272727272727,0.0
+pct_banheiro_comum,Banheiro de uso comum,330455705070029,Rio de Janeiro,0.7441860465116279,0.0
+pct_banheiro_comum,Banheiro de uso comum,355030833000229,São Paulo,0.5833333333333334,0.0
+pct_banheiro_comum,Banheiro de uso comum,351880010001010,Guarulhos,0.5353535353535354,0.0
+pct_banheiro_comum,Banheiro de uso comum,150140275000344,Belém,0.5,0.0
+banheiro_graduado,Banheiro graduado,150140260000260,Belém,0.6124031007751938,0.0
+banheiro_graduado,Banheiro graduado,130260305130192,Manaus,0.5435435435435435,0.0
+banheiro_graduado,Banheiro graduado,211130005001435,São Luís,0.5,0.0
+banheiro_graduado,Banheiro graduado,355030830001613,São Paulo,0.4927536231884058,0.0
+banheiro_graduado,Banheiro graduado,330170205000764,Duque de Caxias,0.4388185654008439,0.0
+banheiro_graduado,Banheiro graduado,130260305000269,Manaus,0.4117647058823529,0.0
+banheiro_graduado,Banheiro graduado,291080005110167,Feira de Santana,0.4114114114114114,0.0
+banheiro_graduado,Banheiro graduado,150080005000883,Ananindeua,0.3989071038251366,0.0
+banheiro_graduado,Banheiro graduado,211130005001432,São Luís,0.39855072463768115,0.0
+banheiro_graduado,Banheiro graduado,211120110000517,São José de Ribamar,0.3917525773195876,0.0
+razao_moradores,Razão de moradores,330455705080087,Rio de Janeiro,6.913461538461538,2.712665122662549
+razao_moradores,Razão de moradores,330455705080105,Rio de Janeiro,6.657894736842105,2.712665122662549
+razao_moradores,Razão de moradores,351880005001175,Guarulhos,5.918918918918919,2.712665122662549
+razao_moradores,Razão de moradores,351880005000809,Guarulhos,5.379746835443038,2.712665122662549
+razao_moradores,Razão de moradores,351880005001456,Guarulhos,5.239837398373984,2.712665122662549
+razao_moradores,Razão de moradores,330455705220027,Rio de Janeiro,5.1835443037974684,2.712665122662549
+razao_moradores,Razão de moradores,330455705080106,Rio de Janeiro,5.043956043956044,2.712665122662549
+razao_moradores,Razão de moradores,330455705220065,Rio de Janeiro,5.0285714285714285,2.712665122662549
+razao_moradores,Razão de moradores,150580905000065,Portel,4.981132075471698,2.712665122662549
+razao_moradores,Razão de moradores,355030887000074,São Paulo,4.955555555555556,2.712665122662549
+pct_analfab,Analfabetismo 15+,292740805180776,Salvador,0.7254901960784313,0.027196652719665274
+pct_analfab,Analfabetismo 15+,270430205090227,Maceió,0.5175438596491229,0.027196652719665274
+pct_analfab,Analfabetismo 15+,310620025610648,Belo Horizonte,0.48148148148148145,0.027196652719665274
+pct_analfab,Analfabetismo 15+,230440005140173,Fortaleza,0.40350877192982454,0.027196652719665274
+pct_analfab,Analfabetismo 15+,270430205090119,Maceió,0.38095238095238093,0.027196652719665274
+pct_analfab,Analfabetismo 15+,261160605190415,Recife,0.37777777777777777,0.027196652719665274
+pct_analfab,Analfabetismo 15+,355030881000187,São Paulo,0.373015873015873,0.027196652719665274
+pct_analfab,Analfabetismo 15+,270430205090228,Maceió,0.36923076923076925,0.027196652719665274
+pct_analfab,Analfabetismo 15+,270430205070114,Maceió,0.3674418604651163,0.027196652719665274
+pct_analfab,Analfabetismo 15+,250090805000001,Arara,0.35390946502057613,0.027196652719665274
+renda_media,Renda média,310620005650366,Belo Horizonte,170418.06,2576.92
+renda_media,Renda média,355030832000202,São Paulo,140172.64,2576.92
+renda_media,Renda média,150140255000432,Belém,78444.47,2576.92
+renda_media,Renda média,355030868000461,São Paulo,77468.68,2576.92
+renda_media,Renda média,355030883000206,São Paulo,73198.95,2576.92
+renda_media,Renda média,261160605200257,Recife,67237.29,2576.92
+renda_media,Renda média,351880005000793,Guarulhos,65031.76,2576.92
+renda_media,Renda média,292740805090354,Salvador,61671.36,2576.92
+renda_media,Renda média,354520905000248,Salto,60597.49,2576.92
+renda_media,Renda média,330455705110034,Rio de Janeiro,54926.08,2576.92
+pct_resp_feminino,Responsável mulher,292740805220226,Salvador,0.0,0.5339805825242718
+pct_resp_feminino,Responsável mulher,320120916000006,Cachoeiro de Itapemirim,0.0,0.5339805825242718
+pct_resp_feminino,Responsável mulher,330455705310073,Rio de Janeiro,0.0,0.5339805825242718
+pct_resp_feminino,Responsável mulher,330455705370383,Rio de Janeiro,0.0,0.5339805825242718
+pct_resp_feminino,Responsável mulher,530010805060049,Brasília,0.0,0.5339805825242718
+pct_resp_feminino,Responsável mulher,330455705090009,Rio de Janeiro,0.01680672268907563,0.5339805825242718
+pct_resp_feminino,Responsável mulher,330455705320047,Rio de Janeiro,0.02727272727272727,0.5339805825242718
+pct_resp_feminino,Responsável mulher,330520805070089,São Pedro da Aldeia,0.027777777777777776,0.5339805825242718
+pct_resp_feminino,Responsável mulher,330455705370433,Rio de Janeiro,0.030973451327433628,0.5339805825242718
+pct_resp_feminino,Responsável mulher,530010805060275,Brasília,0.03225806451612903,0.5339805825242718
+renda_media_sem_extremo,Renda sem o extremo,355030832000202,São Paulo,140172.64,2576.91
+renda_media_sem_extremo,Renda sem o extremo,150140255000432,Belém,78444.47,2576.91
+renda_media_sem_extremo,Renda sem o extremo,355030868000461,São Paulo,77468.68,2576.91
+renda_media_sem_extremo,Renda sem o extremo,355030883000206,São Paulo,73198.95,2576.91
+renda_media_sem_extremo,Renda sem o extremo,261160605200257,Recife,67237.29,2576.91
+renda_media_sem_extremo,Renda sem o extremo,351880005000793,Guarulhos,65031.76,2576.91
+renda_media_sem_extremo,Renda sem o extremo,292740805090354,Salvador,61671.36,2576.91
+renda_media_sem_extremo,Renda sem o extremo,354520905000248,Salto,60597.49,2576.91
+renda_media_sem_extremo,Renda sem o extremo,330455705110034,Rio de Janeiro,54926.08,2576.91
+renda_media_sem_extremo,Renda sem o extremo,130260305110044,Manaus,50802.73,2576.91
+renda_media_mediana_mun,Renda (mediana mun.),355030832000202,São Paulo,140172.64,2576.92
+renda_media_mediana_mun,Renda (mediana mun.),150140255000432,Belém,78444.47,2576.92
+renda_media_mediana_mun,Renda (mediana mun.),355030868000461,São Paulo,77468.68,2576.92
+renda_media_mediana_mun,Renda (mediana mun.),355030883000206,São Paulo,73198.95,2576.92
+renda_media_mediana_mun,Renda (mediana mun.),261160605200257,Recife,67237.29,2576.92
+renda_media_mediana_mun,Renda (mediana mun.),351880005000793,Guarulhos,65031.76,2576.92
+renda_media_mediana_mun,Renda (mediana mun.),292740805090354,Salvador,61671.36,2576.92
+renda_media_mediana_mun,Renda (mediana mun.),354520905000248,Salto,60597.49,2576.92
+renda_media_mediana_mun,Renda (mediana mun.),330455705110034,Rio de Janeiro,54926.08,2576.92
+renda_media_mediana_mun,Renda (mediana mun.),130260305110044,Manaus,50802.73,2576.92
+pct_dom_improv,Domicílio improvisado,330455705300460,Rio de Janeiro,0.9725274725274725,0.0
+pct_dom_improv,Domicílio improvisado,330455705060007,Rio de Janeiro,0.9523809523809523,0.0
+pct_dom_improv,Domicílio improvisado,355030870000056,São Paulo,0.9378531073446328,0.0
+pct_dom_improv,Domicílio improvisado,355030809000108,São Paulo,0.9308755760368663,0.0
+pct_dom_improv,Domicílio improvisado,355030846000656,São Paulo,0.9251336898395722,0.0
+pct_dom_improv,Domicílio improvisado,355030878000054,São Paulo,0.8836206896551724,0.0
+pct_dom_improv,Domicílio improvisado,355030804000188,São Paulo,0.85,0.0
+pct_dom_improv,Domicílio improvisado,330455705060109,Rio de Janeiro,0.8363636363636363,0.0
+pct_dom_improv,Domicílio improvisado,355030866000345,São Paulo,0.8333333333333334,0.0
+pct_dom_improv,Domicílio improvisado,351880005001892,Guarulhos,0.8153846153846154,0.0
+pct_hab_precaria,Habitação precária,310620060660397,Belo Horizonte,1.0,0.0
+pct_hab_precaria,Habitação precária,330455705210578,Rio de Janeiro,1.0,0.0
+pct_hab_precaria,Habitação precária,330455705210589,Rio de Janeiro,1.0,0.0
+pct_hab_precaria,Habitação precária,330455705211468,Rio de Janeiro,1.0,0.0
+pct_hab_precaria,Habitação precária,330455705211579,Rio de Janeiro,1.0,0.0
+pct_hab_precaria,Habitação precária,355030849000117,São Paulo,1.0,0.0
+pct_hab_precaria,Habitação precária,354870805001806,São Bernardo do Campo,0.99,0.0
+pct_hab_precaria,Habitação precária,354870805001805,São Bernardo do Campo,0.9880239520958084,0.0
+pct_hab_precaria,Habitação precária,330455705210942,Rio de Janeiro,0.9777777777777777,0.0
+pct_hab_precaria,Habitação precária,330455705070029,Rio de Janeiro,0.9767441860465116,0.0
+pct_moradia_convencional,Moradia convencional,310620060660397,Belo Horizonte,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705070029,Rio de Janeiro,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705210578,Rio de Janeiro,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705210589,Rio de Janeiro,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705211468,Rio de Janeiro,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705211579,Rio de Janeiro,0.0,1.0
+pct_moradia_convencional,Moradia convencional,354870805001805,São Bernardo do Campo,0.0,1.0
+pct_moradia_convencional,Moradia convencional,354870805001806,São Bernardo do Campo,0.0,1.0
+pct_moradia_convencional,Moradia convencional,355030849000117,São Paulo,0.0,1.0
+pct_moradia_convencional,Moradia convencional,520870705410055,Goiânia,0.0,1.0
+pct_moradia_nao_convencional,Moradia não convencional,310620060660397,Belo Horizonte,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705210578,Rio de Janeiro,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705210589,Rio de Janeiro,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705211468,Rio de Janeiro,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705211579,Rio de Janeiro,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,355030849000117,São Paulo,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,354870805001806,São Bernardo do Campo,0.99,0.0
+pct_moradia_nao_convencional,Moradia não convencional,354870805001805,São Bernardo do Campo,0.9880239520958084,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705210942,Rio de Janeiro,0.9777777777777777,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705070029,Rio de Janeiro,0.9767441860465116,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,130260305110210,Manaus,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,130260305110375,Manaus,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,130260305130062,Manaus,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,130260305130143,Manaus,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000509,Ananindeua,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000536,Ananindeua,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000555,Ananindeua,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000636,Ananindeua,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000894,Ananindeua,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000895,Ananindeua,1.0,0.0
+pct_crianca_0a4,Crianças 0–4,350950235000156,Campinas,0.22580645161290322,0.052083333333333336
+pct_crianca_0a4,Crianças 0–4,130260305130082,Manaus,0.21153846153846154,0.052083333333333336
+pct_crianca_0a4,Crianças 0–4,351880010000334,Guarulhos,0.20224719101123595,0.052083333333333336
+pct_crianca_0a4,Crianças 0–4,500270405080206,Campo Grande,0.2,0.052083333333333336
+pct_crianca_0a4,Crianças 0–4,130260305100279,Manaus,0.19767441860465115,0.052083333333333336
+pct_crianca_0a4,Crianças 0–4,270430205090184,Maceió,0.19718309859154928,0.052083333333333336
+pct_crianca_0a4,Crianças 0–4,330455705300470,Rio de Janeiro,0.19626168224299065,0.052083333333333336
+pct_crianca_0a4,Crianças 0–4,330455705370432,Rio de Janeiro,0.19558359621451105,0.052083333333333336
+pct_crianca_0a4,Crianças 0–4,330455705080087,Rio de Janeiro,0.19471488178025034,0.052083333333333336
+pct_crianca_0a4,Crianças 0–4,221100105080351,Teresina,0.19270833333333334,0.052083333333333336
+pct_pop_0a14,População 0–14,530010805060487,Brasília,0.484375,0.1721170395869191
+pct_pop_0a14,População 0–14,412550605000474,São José dos Pinhais,0.47,0.1721170395869191
+pct_pop_0a14,População 0–14,330350005110227,Nova Iguaçu,0.4666666666666667,0.1721170395869191
+pct_pop_0a14,População 0–14,500270405080206,Campo Grande,0.46382978723404256,0.1721170395869191
+pct_pop_0a14,População 0–14,355030843000657,São Paulo,0.46153846153846156,0.1721170395869191
+pct_pop_0a14,População 0–14,150580905000085,Portel,0.45054945054945056,0.1721170395869191
+pct_pop_0a14,População 0–14,330490420000473,São Gonçalo,0.44724770642201833,0.1721170395869191
+pct_idoso_60mais,Pessoas 60+,530010805140094,Brasília,0.8571428571428571,0.16584280589954356
+pct_idoso_60mais,Pessoas 60+,330455705150066,Rio de Janeiro,0.8238341968911918,0.16584280589954356
+pct_idoso_60mais,Pessoas 60+,230440005140173,Fortaleza,0.811965811965812,0.16584280589954356
+pct_idoso_60mais,Pessoas 60+,355030812000016,São Paulo,0.7311320754716981,0.16584280589954356
+pct_idoso_60mais,Pessoas 60+,355030880000294,São Paulo,0.6875,0.16584280589954356
+pct_idoso_60mais,Pessoas 60+,350950205000193,Campinas,0.6666666666666666,0.16584280589954356
+pct_idoso_60mais,Pessoas 60+,355030881000187,São Paulo,0.6296296296296297,0.16584280589954356
+pct_idoso_60mais,Pessoas 60+,310620025610648,Belo Horizonte,0.6222222222222222,0.16584280589954356
+pct_idoso_60mais,Pessoas 60+,310620005620349,Belo Horizonte,0.6210873146622735,0.16584280589954356
+pct_idoso_60mais,Pessoas 60+,355030866000176,São Paulo,0.6165413533834586,0.16584280589954356
+iep_setor,Índice de envelhecimento,230440005140173,Fortaleza,4750.0,96.36363636363636
+iep_setor,Índice de envelhecimento,330455705100218,Rio de Janeiro,4400.0,96.36363636363636
+iep_setor,Índice de envelhecimento,431490205001784,Porto Alegre,4050.0,96.36363636363636
+iep_setor,Índice de envelhecimento,355030812000016,São Paulo,3875.0,96.36363636363636
+iep_setor,Índice de envelhecimento,431490205000044,Porto Alegre,3366.6666666666665,96.36363636363636
+iep_setor,Índice de envelhecimento,330455705090507,Rio de Janeiro,3166.666666666667,96.36363636363636
+iep_setor,Índice de envelhecimento,530010805320018,Brasília,3166.666666666667,96.36363636363636
+iep_setor,Índice de envelhecimento,355030877000028,São Paulo,3100.0,96.36363636363636
+iep_setor,Índice de envelhecimento,530010805140094,Brasília,3000.0,96.36363636363636
+iep_setor,Índice de envelhecimento,330455705090205,Rio de Janeiro,2900.0,96.36363636363636
+rdi_setor,Dependência idosa,530010805140094,Brasília,1000.0,25.165562913907287
+rdi_setor,Dependência idosa,330455705150066,Rio de Janeiro,722.7272727272727,25.165562913907287
+rdi_setor,Dependência idosa,230440005140173,Fortaleza,527.7777777777777,25.165562913907287
+rdi_setor,Dependência idosa,355030812000016,São Paulo,329.7872340425532,25.165562913907287
+rdi_setor,Dependência idosa,355030880000294,São Paulo,308.0,25.165562913907287
+rdi_setor,Dependência idosa,350950205000193,Campinas,241.26984126984127,25.165562913907287
+rdi_setor,Dependência idosa,310620025610648,Belo Horizonte,233.33333333333334,25.165562913907287
+rdi_setor,Dependência idosa,355030881000187,São Paulo,217.94871794871793,25.165562913907287
+rdi_setor,Dependência idosa,310620005620349,Belo Horizonte,194.3298969072165,25.165562913907287
+rdi_setor,Dependência idosa,310620005680362,Belo Horizonte,184.04255319148936,25.165562913907287
+prop_70mais_entre_60mais,70+ entre 60+,130260305080037,Manaus,100.0,42.857142857142854
+prop_70mais_entre_60mais,70+ entre 60+,130260305100238,Manaus,100.0,42.857142857142854
+prop_70mais_entre_60mais,70+ entre 60+,130260305100274,Manaus,100.0,42.857142857142854
+prop_70mais_entre_60mais,70+ entre 60+,130260305120754,Manaus,100.0,42.857142857142854
+prop_70mais_entre_60mais,70+ entre 60+,130260305120900,Manaus,100.0,42.857142857142854
+prop_70mais_entre_60mais,70+ entre 60+,130260305130188,Manaus,100.0,42.857142857142854
+prop_70mais_entre_60mais,70+ entre 60+,130260305140048,Manaus,100.0,42.857142857142854
+prop_70mais_entre_60mais,70+ entre 60+,130260305140375,Manaus,100.0,42.857142857142854
+prop_70mais_entre_60mais,70+ entre 60+,130260305140502,Manaus,100.0,42.857142857142854
+prop_70mais_entre_60mais,70+ entre 60+,150080005000680,Ananindeua,100.0,42.857142857142854

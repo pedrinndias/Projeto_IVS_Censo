@@ -1,0 +1,173 @@
+indicador,rotulo,CD_SETOR,NM_MUN,valor,mediana_global
+pct_agua_inad,Água inadequada,310620060660300,Belo Horizonte,1.0,0.0
+pct_agua_inad,Água inadequada,310620060660391,Belo Horizonte,1.0,0.0
+pct_agua_inad,Água inadequada,310620060660393,Belo Horizonte,1.0,0.0
+pct_agua_inad,Água inadequada,310620060660430,Belo Horizonte,1.0,0.0
+pct_agua_inad,Água inadequada,310620005650425,Belo Horizonte,0.9803921568627451,0.0
+pct_agua_inad,Água inadequada,310620060660431,Belo Horizonte,0.975609756097561,0.0
+pct_agua_inad,Água inadequada,310620060660299,Belo Horizonte,0.9634146341463414,0.0
+pct_agua_inad,Água inadequada,310620060660390,Belo Horizonte,0.9615384615384616,0.0
+pct_agua_inad,Água inadequada,310620025610247,Belo Horizonte,0.9411764705882353,0.0
+pct_agua_inad,Água inadequada,310620060660363,Belo Horizonte,0.8937329700272479,0.0
+pct_sem_agua_canalizada,Sem água canalizada,310620025610247,Belo Horizonte,0.9117647058823529,0.0
+pct_sem_agua_canalizada,Sem água canalizada,310620005670397,Belo Horizonte,0.8181818181818181,0.0
+pct_sem_agua_canalizada,Sem água canalizada,310620060640346,Belo Horizonte,0.7333333333333334,0.0
+pct_sem_agua_canalizada,Sem água canalizada,310620060660397,Belo Horizonte,0.4347826086956522,0.0
+pct_sem_agua_canalizada,Sem água canalizada,310620060660395,Belo Horizonte,0.40816326530612246,0.0
+pct_sem_agua_canalizada,Sem água canalizada,310620060640442,Belo Horizonte,0.3846153846153846,0.0
+pct_sem_agua_canalizada,Sem água canalizada,310620060660433,Belo Horizonte,0.33333333333333337,0.0
+pct_sem_agua_canalizada,Sem água canalizada,310620005680139,Belo Horizonte,0.3214285714285714,0.0
+pct_sem_agua_canalizada,Sem água canalizada,310620060640420,Belo Horizonte,0.28205128205128205,0.0
+pct_sem_agua_canalizada,Sem água canalizada,310620060660434,Belo Horizonte,0.2698412698412699,0.0
+pct_agua_nao_encanada,Água não chega,310620060690400,Belo Horizonte,0.19047619047619047,0.0
+pct_agua_so_terreno,Água só no terreno,310620025610247,Belo Horizonte,0.9117647058823529,0.0
+pct_agua_so_terreno,Água só no terreno,310620005670397,Belo Horizonte,0.8181818181818182,0.0
+pct_agua_so_terreno,Água só no terreno,310620060640346,Belo Horizonte,0.6666666666666666,0.0
+pct_agua_so_terreno,Água só no terreno,310620060660397,Belo Horizonte,0.42028985507246375,0.0
+pct_agua_so_terreno,Água só no terreno,310620060660395,Belo Horizonte,0.40816326530612246,0.0
+pct_agua_so_terreno,Água só no terreno,310620060660433,Belo Horizonte,0.3333333333333333,0.0
+pct_agua_so_terreno,Água só no terreno,310620005680139,Belo Horizonte,0.32142857142857145,0.0
+pct_agua_so_terreno,Água só no terreno,310620060640442,Belo Horizonte,0.3076923076923077,0.0
+pct_agua_so_terreno,Água só no terreno,310620060640420,Belo Horizonte,0.28205128205128205,0.0
+pct_agua_so_terreno,Água só no terreno,310620060660434,Belo Horizonte,0.2698412698412698,0.0
+pct_sem_banheiro,Sem banheiro,310620005670397,Belo Horizonte,0.7727272727272727,0.0
+pct_sem_banheiro,Sem banheiro,310620005640243,Belo Horizonte,0.10497237569060773,0.0
+pct_sem_banheiro,Sem banheiro,310620005650617,Belo Horizonte,0.08108108108108109,0.0
+pct_banheiro_comum,Banheiro de uso comum,310620005670397,Belo Horizonte,0.7727272727272727,0.0
+pct_banheiro_comum,Banheiro de uso comum,310620005640243,Belo Horizonte,0.10497237569060773,0.0
+pct_banheiro_comum,Banheiro de uso comum,310620005650617,Belo Horizonte,0.08108108108108109,0.0
+banheiro_graduado,Banheiro graduado,310620005670397,Belo Horizonte,0.25757575757575757,0.0
+banheiro_graduado,Banheiro graduado,310620005640243,Belo Horizonte,0.034990791896869246,0.0
+banheiro_graduado,Banheiro graduado,310620060640291,Belo Horizonte,0.028400597907324365,0.0
+banheiro_graduado,Banheiro graduado,310620005650617,Belo Horizonte,0.02702702702702703,0.0
+razao_moradores,Razão de moradores,310620005670260,Belo Horizonte,4.328571428571428,2.635294117647059
+razao_moradores,Razão de moradores,310620005620280,Belo Horizonte,1.1879194630872483,2.635294117647059
+razao_moradores,Razão de moradores,310620005620281,Belo Horizonte,1.1910828025477707,2.635294117647059
+razao_moradores,Razão de moradores,310620005620717,Belo Horizonte,1.2035398230088497,2.635294117647059
+pct_analfab,Analfabetismo 15+,310620025610648,Belo Horizonte,0.48148148148148145,0.020287419399094526
+pct_analfab,Analfabetismo 15+,310620060660001,Belo Horizonte,0.22857142857142856,0.020287419399094526
+pct_analfab,Analfabetismo 15+,310620060660238,Belo Horizonte,0.18888888888888888,0.020287419399094526
+pct_analfab,Analfabetismo 15+,310620060640284,Belo Horizonte,0.1792452830188679,0.020287419399094526
+pct_analfab,Analfabetismo 15+,310620060640175,Belo Horizonte,0.1746031746031746,0.020287419399094526
+pct_analfab,Analfabetismo 15+,310620005630338,Belo Horizonte,0.17391304347826086,0.020287419399094526
+pct_analfab,Analfabetismo 15+,310620005650516,Belo Horizonte,0.1694915254237288,0.020287419399094526
+pct_analfab,Analfabetismo 15+,310620060690466,Belo Horizonte,0.16923076923076924,0.020287419399094526
+pct_analfab,Analfabetismo 15+,310620060640159,Belo Horizonte,0.15950920245398773,0.020287419399094526
+pct_analfab,Analfabetismo 15+,310620005670450,Belo Horizonte,0.15789473684210525,0.020287419399094526
+renda_media,Renda média,310620005650366,Belo Horizonte,170418.06,3060.31
+renda_media,Renda média,310620005620422,Belo Horizonte,45385.44,3060.31
+renda_media,Renda média,310620005620528,Belo Horizonte,29327.0,3060.31
+renda_media,Renda média,310620005620088,Belo Horizonte,28000.11,3060.31
+renda_media,Renda média,310620005620585,Belo Horizonte,26856.85,3060.31
+renda_media,Renda média,310620005620423,Belo Horizonte,25270.47,3060.31
+renda_media,Renda média,310620005620359,Belo Horizonte,25206.01,3060.31
+renda_media,Renda média,310620005620525,Belo Horizonte,24942.24,3060.31
+renda_media,Renda média,310620005620415,Belo Horizonte,24793.6,3060.31
+renda_media,Renda média,310620005620421,Belo Horizonte,24630.59,3060.31
+pct_resp_feminino,Responsável mulher,310620005630485,Belo Horizonte,1.0,0.5175097276264592
+pct_resp_feminino,Responsável mulher,310620060690239,Belo Horizonte,1.0,0.5175097276264592
+pct_resp_feminino,Responsável mulher,310620060690263,Belo Horizonte,1.0,0.5175097276264592
+renda_media_sem_extremo,Renda sem o extremo,310620005620422,Belo Horizonte,45385.44,3058.2349999999997
+renda_media_sem_extremo,Renda sem o extremo,310620005620528,Belo Horizonte,29327.0,3058.2349999999997
+renda_media_sem_extremo,Renda sem o extremo,310620005620088,Belo Horizonte,28000.11,3058.2349999999997
+renda_media_sem_extremo,Renda sem o extremo,310620005620585,Belo Horizonte,26856.85,3058.2349999999997
+renda_media_sem_extremo,Renda sem o extremo,310620005620423,Belo Horizonte,25270.47,3058.2349999999997
+renda_media_sem_extremo,Renda sem o extremo,310620005620359,Belo Horizonte,25206.01,3058.2349999999997
+renda_media_sem_extremo,Renda sem o extremo,310620005620525,Belo Horizonte,24942.24,3058.2349999999997
+renda_media_sem_extremo,Renda sem o extremo,310620005620415,Belo Horizonte,24793.6,3058.2349999999997
+renda_media_sem_extremo,Renda sem o extremo,310620005620421,Belo Horizonte,24630.59,3058.2349999999997
+renda_media_sem_extremo,Renda sem o extremo,310620005620002,Belo Horizonte,22980.25,3058.2349999999997
+renda_media_mediana_mun,Renda (mediana mun.),310620005620422,Belo Horizonte,45385.44,3058.2349999999997
+renda_media_mediana_mun,Renda (mediana mun.),310620005620528,Belo Horizonte,29327.0,3058.2349999999997
+renda_media_mediana_mun,Renda (mediana mun.),310620005620088,Belo Horizonte,28000.11,3058.2349999999997
+renda_media_mediana_mun,Renda (mediana mun.),310620005620585,Belo Horizonte,26856.85,3058.2349999999997
+renda_media_mediana_mun,Renda (mediana mun.),310620005620423,Belo Horizonte,25270.47,3058.2349999999997
+renda_media_mediana_mun,Renda (mediana mun.),310620005620359,Belo Horizonte,25206.01,3058.2349999999997
+renda_media_mediana_mun,Renda (mediana mun.),310620005620525,Belo Horizonte,24942.24,3058.2349999999997
+renda_media_mediana_mun,Renda (mediana mun.),310620005620415,Belo Horizonte,24793.6,3058.2349999999997
+renda_media_mediana_mun,Renda (mediana mun.),310620005620421,Belo Horizonte,24630.59,3058.2349999999997
+renda_media_mediana_mun,Renda (mediana mun.),310620005620002,Belo Horizonte,22980.25,3058.2349999999997
+pct_dom_improv,Domicílio improvisado,310620005650617,Belo Horizonte,0.2127659574468085,0.0
+pct_hab_precaria,Habitação precária,310620060660397,Belo Horizonte,1.0,0.0
+pct_hab_precaria,Habitação precária,310620025610171,Belo Horizonte,0.9027237354085603,0.0
+pct_hab_precaria,Habitação precária,310620060660385,Belo Horizonte,0.8867924528301887,0.0
+pct_hab_precaria,Habitação precária,310620060660386,Belo Horizonte,0.8787878787878788,0.0
+pct_hab_precaria,Habitação precária,310620060660396,Belo Horizonte,0.8640776699029126,0.0
+pct_hab_precaria,Habitação precária,310620060660382,Belo Horizonte,0.8571428571428571,0.0
+pct_hab_precaria,Habitação precária,310620060660383,Belo Horizonte,0.8076923076923077,0.0
+pct_hab_precaria,Habitação precária,310620025610418,Belo Horizonte,0.782608695652174,0.0
+pct_hab_precaria,Habitação precária,310620025610172,Belo Horizonte,0.7702702702702703,0.0
+pct_hab_precaria,Habitação precária,310620060690137,Belo Horizonte,0.7281553398058253,0.0
+pct_moradia_convencional,Moradia convencional,310620060660397,Belo Horizonte,0.0,1.0
+pct_moradia_convencional,Moradia convencional,310620025610171,Belo Horizonte,0.0933852140077821,1.0
+pct_moradia_convencional,Moradia convencional,310620060660385,Belo Horizonte,0.11320754716981132,1.0
+pct_moradia_convencional,Moradia convencional,310620060660386,Belo Horizonte,0.12121212121212122,1.0
+pct_moradia_convencional,Moradia convencional,310620060660396,Belo Horizonte,0.13592233009708737,1.0
+pct_moradia_convencional,Moradia convencional,310620060660382,Belo Horizonte,0.14285714285714285,1.0
+pct_moradia_convencional,Moradia convencional,310620060660383,Belo Horizonte,0.19230769230769232,1.0
+pct_moradia_convencional,Moradia convencional,310620025610418,Belo Horizonte,0.21739130434782608,1.0
+pct_moradia_convencional,Moradia convencional,310620025610172,Belo Horizonte,0.22072072072072071,1.0
+pct_moradia_convencional,Moradia convencional,310620060690137,Belo Horizonte,0.27184466019417475,1.0
+pct_moradia_nao_convencional,Moradia não convencional,310620060660397,Belo Horizonte,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,310620025610171,Belo Horizonte,0.9027237354085603,0.0
+pct_moradia_nao_convencional,Moradia não convencional,310620060660385,Belo Horizonte,0.8867924528301887,0.0
+pct_moradia_nao_convencional,Moradia não convencional,310620060660386,Belo Horizonte,0.8787878787878788,0.0
+pct_moradia_nao_convencional,Moradia não convencional,310620060660396,Belo Horizonte,0.8640776699029126,0.0
+pct_moradia_nao_convencional,Moradia não convencional,310620060660382,Belo Horizonte,0.8571428571428571,0.0
+pct_moradia_nao_convencional,Moradia não convencional,310620060660383,Belo Horizonte,0.8076923076923077,0.0
+pct_moradia_nao_convencional,Moradia não convencional,310620025610418,Belo Horizonte,0.782608695652174,0.0
+pct_moradia_nao_convencional,Moradia não convencional,310620025610172,Belo Horizonte,0.7702702702702703,0.0
+pct_moradia_nao_convencional,Moradia não convencional,310620060690137,Belo Horizonte,0.7281553398058253,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,310620060640027,Belo Horizonte,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,310620060690378,Belo Horizonte,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,310620060690468,Belo Horizonte,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,310620025610477,Belo Horizonte,0.9923664122137404,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,310620005650322,Belo Horizonte,0.9777777777777777,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,310620005650711,Belo Horizonte,0.9775280898876404,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,310620005670121,Belo Horizonte,0.968944099378882,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,310620005680127,Belo Horizonte,0.9651898734177216,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,310620060690090,Belo Horizonte,0.9574468085106383,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,310620005680130,Belo Horizonte,0.9545454545454546,0.0
+pct_crianca_0a4,Crianças 0–4,310620025610341,Belo Horizonte,0.22857142857142856,0.045709062418386
+pct_crianca_0a4,Crianças 0–4,310620005670397,Belo Horizonte,0.16260162601626016,0.045709062418386
+pct_crianca_0a4,Crianças 0–4,310620005680257,Belo Horizonte,0.15789473684210525,0.045709062418386
+pct_crianca_0a4,Crianças 0–4,310620060660381,Belo Horizonte,0.15,0.045709062418386
+pct_crianca_0a4,Crianças 0–4,310620060660385,Belo Horizonte,0.1476510067114094,0.045709062418386
+pct_crianca_0a4,Crianças 0–4,310620025610638,Belo Horizonte,0.14367816091954022,0.045709062418386
+pct_crianca_0a4,Crianças 0–4,310620005630412,Belo Horizonte,0.14285714285714285,0.045709062418386
+pct_crianca_0a4,Crianças 0–4,310620005670834,Belo Horizonte,0.14285714285714285,0.045709062418386
+pct_crianca_0a4,Crianças 0–4,310620005680044,Belo Horizonte,0.14,0.045709062418386
+pct_crianca_0a4,Crianças 0–4,310620005670615,Belo Horizonte,0.1368421052631579,0.045709062418386
+pct_idoso_60mais,Pessoas 60+,310620025610648,Belo Horizonte,0.6222222222222222,0.2
+pct_idoso_60mais,Pessoas 60+,310620005620349,Belo Horizonte,0.6210873146622735,0.2
+pct_idoso_60mais,Pessoas 60+,310620005680362,Belo Horizonte,0.6091549295774648,0.2
+iep_setor,Índice de envelhecimento,310620005620692,Belo Horizonte,2700.0,135.239651416122
+iep_setor,Índice de envelhecimento,310620005620216,Belo Horizonte,2433.333333333333,135.239651416122
+iep_setor,Índice de envelhecimento,310620005620209,Belo Horizonte,1900.0,135.239651416122
+iep_setor,Índice de envelhecimento,310620005620207,Belo Horizonte,1860.0000000000002,135.239651416122
+iep_setor,Índice de envelhecimento,310620005620628,Belo Horizonte,1833.3333333333333,135.239651416122
+iep_setor,Índice de envelhecimento,310620005620715,Belo Horizonte,1733.3333333333333,135.239651416122
+iep_setor,Índice de envelhecimento,310620005620768,Belo Horizonte,1600.0,135.239651416122
+iep_setor,Índice de envelhecimento,310620005630069,Belo Horizonte,1512.5,135.239651416122
+iep_setor,Índice de envelhecimento,310620005620181,Belo Horizonte,1407.142857142857,135.239651416122
+iep_setor,Índice de envelhecimento,310620005620820,Belo Horizonte,1366.6666666666665,135.239651416122
+rdi_setor,Dependência idosa,310620025610648,Belo Horizonte,233.33333333333334,30.76923076923077
+rdi_setor,Dependência idosa,310620005620349,Belo Horizonte,194.3298969072165,30.76923076923077
+rdi_setor,Dependência idosa,310620005680362,Belo Horizonte,184.04255319148936,30.76923076923077
+rdi_setor,Dependência idosa,310620005630306,Belo Horizonte,141.1764705882353,30.76923076923077
+rdi_setor,Dependência idosa,310620005620574,Belo Horizonte,121.42857142857142,30.76923076923077
+rdi_setor,Dependência idosa,310620005680229,Belo Horizonte,121.05263157894737,30.76923076923077
+rdi_setor,Dependência idosa,310620005620703,Belo Horizonte,116.92307692307693,30.76923076923077
+rdi_setor,Dependência idosa,310620005620546,Belo Horizonte,116.66666666666667,30.76923076923077
+rdi_setor,Dependência idosa,310620005680363,Belo Horizonte,115.57377049180329,30.76923076923077
+rdi_setor,Dependência idosa,310620005650065,Belo Horizonte,109.57446808510637,30.76923076923077
+prop_70mais_entre_60mais,70+ entre 60+,310620005630483,Belo Horizonte,100.0,45.85244648318043
+prop_70mais_entre_60mais,70+ entre 60+,310620005640034,Belo Horizonte,100.0,45.85244648318043
+prop_70mais_entre_60mais,70+ entre 60+,310620005670397,Belo Horizonte,100.0,45.85244648318043
+prop_70mais_entre_60mais,70+ entre 60+,310620005670450,Belo Horizonte,100.0,45.85244648318043
+prop_70mais_entre_60mais,70+ entre 60+,310620005680054,Belo Horizonte,100.0,45.85244648318043
+prop_70mais_entre_60mais,70+ entre 60+,310620060640327,Belo Horizonte,100.0,45.85244648318043
+prop_70mais_entre_60mais,70+ entre 60+,310620060690239,Belo Horizonte,100.0,45.85244648318043
+prop_70mais_entre_60mais,70+ entre 60+,310620060690263,Belo Horizonte,100.0,45.85244648318043
+prop_70mais_entre_60mais,70+ entre 60+,310620060690466,Belo Horizonte,100.0,45.85244648318043
+prop_70mais_entre_60mais,70+ entre 60+,310620060690563,Belo Horizonte,100.0,45.85244648318043

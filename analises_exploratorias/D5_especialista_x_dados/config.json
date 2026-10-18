@@ -1,0 +1,54 @@
+{
+  "versao": "D5_especialista_x_dados",
+  "titulo": "Pesos de especialista × pesos dos dados",
+  "pergunta": "O que muda quando o peso das dimensões vem dos dados (fatorial) em vez da regra de especialista do IVS-BH (60/40), como em Gioia et al. (2020)?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null
+  },
+  "indicadores": "todos",
+  "indice": {
+    "colunas": [
+      "pct_agua_inad",
+      "pct_esgoto_inad",
+      "razao_moradores",
+      "pct_analfab",
+      "renda_inv",
+      "pct_raca_pretpardind",
+      "banheiro_graduado"
+    ],
+    "renda": "original",
+    "rotacao": "promax",
+    "metodo": "ss_padrao",
+    "normalizacao": "municipal"
+  },
+  "blocos": [
+    10,
+    11,
+    12,
+    13
+  ],
+  "sensibilidade": [
+    {
+      "rotulo": "dados: soma dos quadrados (estrutura)",
+      "indice": {
+        "metodo": "ss_estrutura"
+      }
+    },
+    {
+      "rotulo": "dados: comunalidades",
+      "indice": {
+        "metodo": "comunalidades"
+      }
+    },
+    {
+      "rotulo": "especialista: 60/40 (referência)",
+      "indice": {
+        "metodo": "60_40"
+      }
+    }
+  ]
+}

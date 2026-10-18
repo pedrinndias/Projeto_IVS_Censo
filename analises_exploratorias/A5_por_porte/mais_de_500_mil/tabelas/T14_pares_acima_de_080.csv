@@ -1,0 +1,21 @@
+a,b,rotulo_a,rotulo_b,spearman,pearson
+renda_media_sem_extremo,renda_media_mediana_mun,Renda sem o extremo,Renda (mediana mun.),1.0,1.0
+renda_media,renda_media_sem_extremo,Renda média,Renda sem o extremo,1.0,1.0
+pct_sem_banheiro,banheiro_graduado,Sem banheiro,Banheiro graduado,0.999993116272905,0.9333401058160545
+renda_media,renda_media_mediana_mun,Renda média,Renda (mediana mun.),0.999988993019073,0.9919004971628227
+pct_idoso_60mais,rdi_setor,Pessoas 60+,Dependência idosa,0.9956788769670251,0.9555283446894451
+pct_hab_precaria,pct_moradia_nao_convencional,Habitação precária,Moradia não convencional,0.9646965318023789,0.9344725481508316
+pct_idoso_60mais,iep_setor,Pessoas 60+,Índice de envelhecimento,0.9574724339890726,0.7486553483249051
+pct_banheiro_comum,banheiro_graduado,Banheiro de uso comum,Banheiro graduado,0.9385782493569622,0.5667137105657624
+iep_setor,rdi_setor,Índice de envelhecimento,Dependência idosa,0.931472535838436,0.7333795925663691
+pct_sem_banheiro,pct_banheiro_comum,Sem banheiro,Banheiro de uso comum,0.9292854829370074,0.8253888307122285
+pct_pop_0a14,iep_setor,População 0–14,Índice de envelhecimento,-0.9184169733111828,-0.7277342432606679
+pct_apartamento,pct_casa,Apartamento,Casa,-0.905472710933913,-0.9519847872633331
+pct_crianca_0a4,pct_pop_0a14,Crianças 0–4,População 0–14,0.8470385761748096,0.8428938484157728
+pct_sem_agua_canalizada,pct_agua_so_terreno,Sem água canalizada,Água só no terreno,0.8209533837481466,0.8699784884116323
+pct_raca_pretpardind,renda_media_sem_extremo,Cor/raça PPI,Renda sem o extremo,-0.8197148905866887,-0.7018914221377576
+pct_raca_pretpardind,renda_media_mediana_mun,Cor/raça PPI,Renda (mediana mun.),-0.819704808834669,-0.701890556594417
+renda_media,pct_raca_pretpardind,Renda média,Cor/raça PPI,-0.8196741928609357,-0.6958826859050234
+pct_crianca_0a4,iep_setor,Crianças 0–4,Índice de envelhecimento,-0.8134966124863175,-0.6347592821290036
+pct_moradia_convencional,pct_moradia_nao_convencional,Moradia convencional,Moradia não convencional,-0.5137336538914992,-0.9785614252989241
+pct_hab_precaria,pct_moradia_convencional,Habitação precária,Moradia convencional,-0.49858107330530443,-0.9185187931249664

@@ -1,0 +1,6 @@
+indicador,rotulo,criterio,limite_inferior,limite_superior,n_validos,pct_zeros,n_extremos,pct_extremos
+pct_sem_banheiro,Sem banheiro,inflação de zeros: Tukey k=3 só entre os valores acima de zero,,0.1521276595744681,91912,95.59578727478457,271,0.2948472451910523
+banheiro_graduado,Banheiro graduado,inflação de zeros: Tukey k=3 só entre os valores acima de zero,,0.07663149350649351,89816,97.82666785427986,163,0.18148214126658946
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,inflação de zeros: Tukey k=3 só entre os valores acima de zero,,0.132911521168596,101139,99.65097539030442,22,0.021752241964029702
+pct_so_sanitario,Só sanitário,inflação de zeros: Tukey k=3 só entre os valores acima de zero,,0.22216141160855926,100297,98.95709742066063,51,0.05084897853375475
+pct_banheiro_comum,Banheiro de uso comum,inflação de zeros: Tukey k=3 só entre os valores acima de zero,,0.11791476355774795,94414,97.30760268604233,143,0.15146058847204863

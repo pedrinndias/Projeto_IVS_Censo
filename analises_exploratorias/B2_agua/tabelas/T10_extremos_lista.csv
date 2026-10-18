@@ -1,0 +1,31 @@
+indicador,rotulo,CD_SETOR,NM_MUN,valor,mediana_global
+pct_sem_agua_canalizada,Sem água canalizada,130260305100279,Manaus,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,150140250000167,Belém,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,150580905000077,Portel,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,292740805260240,Salvador,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330170220000079,Duque de Caxias,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330240305020038,Macaé,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330240305030085,Macaé,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330350005110218,Nova Iguaçu,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330350005180204,Nova Iguaçu,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330350005210075,Nova Iguaçu,1.0,0.0
+pct_agua_nao_encanada,Água não chega,150580905000077,Portel,1.0,0.0
+pct_agua_nao_encanada,Água não chega,330170220000079,Duque de Caxias,1.0,0.0
+pct_agua_nao_encanada,Água não chega,330350005180204,Nova Iguaçu,1.0,0.0
+pct_agua_nao_encanada,Água não chega,330455705140350,Rio de Janeiro,1.0,0.0
+pct_agua_nao_encanada,Água não chega,330490410000042,São Gonçalo,1.0,0.0
+pct_agua_nao_encanada,Água não chega,330350005110218,Nova Iguaçu,0.994475138121547,0.0
+pct_agua_nao_encanada,Água não chega,130260305100207,Manaus,0.9933333333333333,0.0
+pct_agua_nao_encanada,Água não chega,351870110000014,Guarujá,0.9919354838709677,0.0
+pct_agua_nao_encanada,Água não chega,330350005110170,Nova Iguaçu,0.9904761904761905,0.0
+pct_agua_nao_encanada,Água não chega,130260305140512,Manaus,0.9861111111111112,0.0
+pct_agua_so_terreno,Água só no terreno,130260305100279,Manaus,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,330350005210075,Nova Iguaçu,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,330490420000373,São Gonçalo,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,355030881000551,São Paulo,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,530010805110354,Brasília,0.9925925925925926,0.0
+pct_agua_so_terreno,Água só no terreno,330350005200123,Nova Iguaçu,0.9865470852017937,0.0
+pct_agua_so_terreno,Água só no terreno,330170215000106,Duque de Caxias,0.9847328244274809,0.0
+pct_agua_so_terreno,Água só no terreno,330350005190146,Nova Iguaçu,0.9845679012345679,0.0
+pct_agua_so_terreno,Água só no terreno,130260305130159,Manaus,0.9840637450199203,0.0
+pct_agua_so_terreno,Água só no terreno,150140255000386,Belém,0.9829545454545454,0.0

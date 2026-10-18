@@ -1,0 +1,9 @@
+{
+  "pergunta": "O que muda quando o peso das dimensões vem dos dados (fatorial) em vez da regra de especialista do IVS-BH (60/40), como em Gioia et al. (2020)?",
+  "o_que_muda": "O peso das dimensões vem dos dados (soma dos quadrados das cargas padrão da promax), em vez da regra de especialista do IVS-BH (60% socioeconômica, 40% saneamento). As outras repartições pelos dados (estrutura, comunalidades) e a regra 60/40 da referência estão na tabela T34.",
+  "sintese": "Os dados dão à dimensão socioeconômica um peso um pouco maior que os 60% da regra do IVS-BH. O índice quase não muda: correlação de postos praticamente 1 e poucas trocas de faixa, com AUC municipal um pouco maior. Pesos de especialista e pesos dos dados levam, aqui, a resultados muito próximos.",
+  "limitacoes": [
+    "Os pesos pelos dados dependem da amostra do índice e do número de variáveis em cada dimensão.",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista)."
+  ]
+}

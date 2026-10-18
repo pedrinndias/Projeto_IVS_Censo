@@ -1,0 +1,10 @@
+{
+  "pergunta": "O que muda no índice se o lixo inadequado volta a ser componente, como no IVS-BH e no NB04?",
+  "o_que_muda": "O lixo inadequado volta a ser componente do índice (oito componentes), como no IVS-BH 2012 e no NB04. O índice sem lixo da referência está na tabela T34.",
+  "sintese": "Com o lixo, Kaiser e Horn pedem três fatores (o terceiro autovalor fica logo acima do limiar). O lixo carrega bem no fator de saneamento, mas a versão não é elegível: com oito componentes, a comunalidade do banheiro graduado cai para logo abaixo de 0,30. A AUC contra as favelas sobe um pouco, e o índice se afasta da referência: cerca de um em cada quatro setores muda de faixa.",
+  "limitacoes": [
+    "O lixo em caçamba conta como inadequado, como no IVS-BH 2012; essa definição pesa muito em cidades com coleta por caçamba.",
+    "O índice usa dois fatores fixos; o terceiro fator que Kaiser e Horn indicam fica de fora.",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista); trocar um componente muda também a amostra."
+  ]
+}

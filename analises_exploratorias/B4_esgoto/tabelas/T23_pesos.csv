@@ -1,0 +1,8 @@
+variavel,rotulo,dimensao,carga,peso_dimensao,peso
+pct_agua_inad,Água inadequada,F2 (saneamento),0.6134878245856236,40.0,14.786172416893228
+pct_esgoto_249,Esgoto (V00249–V00253),F1 (socioeconômica),-0.6819881949603406,60.0,9.230751350000547
+razao_moradores,Razão de moradores,F1 (socioeconômica),0.6695558233325496,60.0,8.89727309798761
+pct_analfab,Analfabetismo 15+,F1 (socioeconômica),0.8434564545164455,60.0,14.119153834341938
+renda_inv,Renda (invertida),F1 (socioeconômica),0.8753846617102397,60.0,15.208318653897049
+pct_raca_pretpardind,Cor/raça PPI,F1 (socioeconômica),0.7950328284929536,60.0,12.544503063772861
+banheiro_graduado,Banheiro graduado,F2 (saneamento),0.8011197792311218,40.0,25.21382758310678

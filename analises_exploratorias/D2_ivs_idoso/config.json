@@ -1,0 +1,68 @@
+{
+  "versao": "D2_ivs_idoso",
+  "titulo": "IVS-Idoso",
+  "pergunta": "Como fica um IVS com uma terceira dimensão de envelhecimento (IEP, RDI e % de 60+), com pesos pela fatorial?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null
+  },
+  "indicadores": "todos",
+  "indice": {
+    "colunas": [
+      "pct_agua_inad",
+      "pct_esgoto_inad",
+      "razao_moradores",
+      "pct_analfab",
+      "renda_inv",
+      "pct_raca_pretpardind",
+      "banheiro_graduado",
+      "pct_idoso_60mais",
+      "iep_setor",
+      "rdi_setor"
+    ],
+    "renda": "original",
+    "rotacao": "promax",
+    "metodo": "ss_padrao",
+    "normalizacao": "municipal",
+    "k": 3
+  },
+  "blocos": [
+    8,
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "parametros_exploratorios": {
+    "composição do IVS-Idoso": "os 7 componentes da referência + % de 60+, IEP e RDI; 3 fatores; pesos pela soma dos quadrados das cargas (promax)"
+  },
+  "sensibilidade": [
+    {
+      "rotulo": "mesmos 10 componentes com 2 fatores",
+      "indice": {
+        "k": 2,
+        "metodo": "ss_padrao"
+      }
+    },
+    {
+      "rotulo": "referência (sem envelhecimento)",
+      "indice": {
+        "colunas": [
+          "pct_agua_inad",
+          "pct_esgoto_inad",
+          "razao_moradores",
+          "pct_analfab",
+          "renda_inv",
+          "pct_raca_pretpardind",
+          "banheiro_graduado"
+        ],
+        "k": 2,
+        "metodo": "60_40"
+      }
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "pergunta": "O que muda no índice com cada uma das três rendas: a original, a sem o extremo e a com o extremo trocado pela mediana do município?",
+  "o_que_muda": "O componente de renda do índice: a renda sem o valor extremo de Belo Horizonte entra no lugar da renda original. A renda com o extremo trocado pela mediana do município e a original (referência) estão na tabela T34. Os blocos 2 a 7 descrevem só as três rendas.",
+  "sintese": "As três rendas diferem num único setor (o extremo de Belo Horizonte), e isso quase não mexe no índice: a correlação de postos com a referência é praticamente 1, a AUC não muda e quase nenhum setor troca de faixa. Com a renda sem o extremo ou com a mediana do município, o resultado é o mesmo. A escolha entre as três rendas importa para as descritivas da renda (média, desvio-padrão, extremos), não para o índice.",
+  "limitacoes": [
+    "As variantes de renda tratam só o setor extremo de Belo Horizonte já identificado; outros setores com renda suspeita (bloco 5) continuam na base.",
+    "A renda sem o extremo deixa o setor sem renda e, por isso, fora da amostra do índice; a variante da mediana municipal o mantém.",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista); trocar um componente muda também a amostra."
+  ]
+}

@@ -1,0 +1,20 @@
+a,b,rotulo_a,rotulo_b,spearman,pearson
+renda_media_sem_extremo,renda_media_mediana_mun,Renda sem o extremo,Renda (mediana mun.),1.0,1.0
+renda_media,renda_media_mediana_mun,Renda média,Renda (mediana mun.),1.0,1.0
+renda_media,renda_media_sem_extremo,Renda média,Renda sem o extremo,1.0,1.0
+pct_sem_banheiro,banheiro_graduado,Sem banheiro,Banheiro graduado,0.9999952056716572,0.9463040685572449
+pct_idoso_60mais,rdi_setor,Pessoas 60+,Dependência idosa,0.9937899932363454,0.9675155207267107
+pct_banheiro_comum,banheiro_graduado,Banheiro de uso comum,Banheiro graduado,0.9787794047856668,0.8210955077167703
+pct_sem_banheiro,pct_banheiro_comum,Sem banheiro,Banheiro de uso comum,0.9647186145501307,0.9456709270814043
+pct_apartamento,pct_casa,Apartamento,Casa,-0.9400458166111894,-0.9675538174092958
+pct_hab_precaria,pct_moradia_nao_convencional,Habitação precária,Moradia não convencional,0.9398139824072161,0.9630415313471989
+pct_pop_0a14,iep_setor,População 0–14,Índice de envelhecimento,-0.9360599951250825,-0.7590086058405918
+pct_idoso_60mais,iep_setor,Pessoas 60+,Índice de envelhecimento,0.934201459602283,0.7233629151376983
+iep_setor,rdi_setor,Índice de envelhecimento,Dependência idosa,0.8960758326327138,0.6856265081687496
+pct_crianca_0a4,pct_pop_0a14,Crianças 0–4,População 0–14,0.8562793195339664,0.8526695799603765
+pct_crianca_0a4,iep_setor,Crianças 0–4,Índice de envelhecimento,-0.8348430911116638,-0.662409484939401
+pct_raca_pretpardind,renda_media_mediana_mun,Cor/raça PPI,Renda (mediana mun.),-0.8307346847063979,-0.6650878798865745
+renda_media,pct_raca_pretpardind,Renda média,Cor/raça PPI,-0.8307346847063979,-0.6650878798865745
+pct_raca_pretpardind,renda_media_sem_extremo,Cor/raça PPI,Renda sem o extremo,-0.8307346847063979,-0.6650878798865745
+pct_sem_agua_canalizada,pct_agua_so_terreno,Sem água canalizada,Água só no terreno,0.6481502461956183,0.8085618396960955
+pct_sem_agua_canalizada,pct_agua_nao_encanada,Sem água canalizada,Água não chega,0.3368434522161102,0.8248745581049791

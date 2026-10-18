@@ -1,0 +1,20 @@
+a,b,rotulo_a,rotulo_b,spearman,pearson
+renda_media_sem_extremo,renda_media_mediana_mun,Renda sem o extremo,Renda (mediana mun.),1.0,1.0
+renda_media,renda_media_mediana_mun,Renda média,Renda (mediana mun.),1.0,1.0
+renda_media,renda_media_sem_extremo,Renda média,Renda sem o extremo,1.0,1.0
+pct_sem_banheiro,banheiro_graduado,Sem banheiro,Banheiro graduado,0.9999656056583887,0.9729171150521876
+pct_idoso_60mais,rdi_setor,Pessoas 60+,Dependência idosa,0.9958038375869237,0.9651577461965497
+pct_idoso_60mais,iep_setor,Pessoas 60+,Índice de envelhecimento,0.9718226765034355,0.821928177652009
+pct_hab_precaria,pct_moradia_nao_convencional,Habitação precária,Moradia não convencional,0.9508612263413089,0.8695559278545917
+iep_setor,rdi_setor,Índice de envelhecimento,Dependência idosa,0.9493349335628726,0.8535923849868972
+pct_pop_0a14,iep_setor,População 0–14,Índice de envelhecimento,-0.9088435900911391,-0.7268246083126892
+pct_sem_banheiro,pct_banheiro_comum,Sem banheiro,Banheiro de uso comum,0.8634123510646051,0.7506313942574271
+pct_crianca_0a4,pct_pop_0a14,Crianças 0–4,População 0–14,0.8546653642930128,0.8486458723174805
+pct_banheiro_comum,banheiro_graduado,Banheiro de uso comum,Banheiro graduado,0.85366294674359,0.5902824456438411
+pct_apartamento,pct_casa,Apartamento,Casa,-0.8476453662746459,-0.9400614777364947
+pct_sem_agua_canalizada,pct_agua_so_terreno,Sem água canalizada,Água só no terreno,0.8354232880035004,0.9122309428411151
+pct_crianca_0a4,iep_setor,Crianças 0–4,Índice de envelhecimento,-0.8188743923269183,-0.6618111099908957
+pct_sem_banheiro,pct_so_sanitario,Sem banheiro,Só sanitário,0.7755116073736092,0.8686581981543425
+pct_so_sanitario,banheiro_graduado,Só sanitário,Banheiro graduado,0.7051259204813373,0.8694865959525118
+pct_moradia_convencional,pct_moradia_nao_convencional,Moradia convencional,Moradia não convencional,-0.47831127594378187,-0.9321634928103798
+pct_hab_precaria,pct_moradia_convencional,Habitação precária,Moradia convencional,-0.4573696783563434,-0.8113322106213122

@@ -1,0 +1,9 @@
+{
+  "pergunta": "Os pesos e as faixas da referência mudam se um município sai ou se os setores são reamostrados?",
+  "o_que_muda": "Não é uma versão do índice: reestima os pesos da referência 70 vezes, cada vez sem um município, e 1.000 vezes em reamostragens dos setores com reposição (semente 42, parâmetro exploratório), e recalcula o índice de todos os setores com cada conjunto de pesos.",
+  "sintese": "Os pesos da referência são muito estáveis: nas reamostragens, o peso de cada componente varia menos de dois pontos percentuais, e o banheiro graduado é o que mais varia. A AUC municipal e o KMO quase não se movem, e a ordem dos setores praticamente não muda. Tirar um município da estimação também mexe pouco; o maior efeito, de longe, é o de São Paulo, o município com mais setores — e mesmo assim poucos setores mudam de faixa.",
+  "limitacoes": [
+    "A reamostragem mede a variação pelo acaso da amostra de setores, não pelas escolhas de método (essas estão nas versões A a D e na E1).",
+    "O número de reamostragens é parâmetro exploratório — não é decisão."
+  ]
+}

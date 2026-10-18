@@ -1,0 +1,4 @@
+indicador,rotulo,criterio,limite_inferior,limite_superior,n_validos,pct_zeros,n_extremos,pct_extremos
+pct_resp_feminino,Responsável mulher,Tukey k=3 (intervalo interquartil),0.13183333333333336,0.9301249999999999,103961,0.023085580169486634,160,0.15390386779657755
+pct_crianca_0a4,Crianças 0–4,Tukey k=3 (intervalo interquartil),-0.0474014408186974,0.15306469222926805,102288,0.5152119505709369,119,0.11633818238698576
+pct_pop_0a14,População 0–14,Tukey k=3 (intervalo interquartil),-0.09242618741976891,0.43639281129653396,103850,0.496870486278286,11,0.01059220028887819

@@ -1,0 +1,35 @@
+{
+  "versao": "E6_tipologias",
+  "titulo": "Tipologias",
+  "pergunta": "Que perfis aparecem quando se agrupam setores e municípios?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null
+  },
+  "indicadores": "todos",
+  "indice": {
+    "colunas": [
+      "pct_agua_inad",
+      "pct_esgoto_inad",
+      "razao_moradores",
+      "pct_analfab",
+      "renda_inv",
+      "pct_raca_pretpardind",
+      "banheiro_graduado"
+    ],
+    "renda": "original",
+    "rotacao": "promax",
+    "metodo": "60_40",
+    "normalizacao": "municipal"
+  },
+  "blocos": [
+    19
+  ],
+  "analise": "E6",
+  "parametros_exploratorios": {
+    "número de grupos": "o da silhueta entre 3 e 6, e sempre 4"
+  }
+}

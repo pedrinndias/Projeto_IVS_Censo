@@ -1,0 +1,5 @@
+indicador,rotulo,criterio,limite_inferior,limite_superior,n_validos,pct_zeros,n_extremos,pct_extremos
+pct_agua_inad,Água inadequada,inflação de zeros: Tukey k=3 só entre os valores acima de zero,,1.5275058148969545,104108,74.24501479233105,0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,inflação de zeros: Tukey k=3 só entre os valores acima de zero,,0.12058999402033055,104067,69.7022110755571,2886,2.7732134105912536
+pct_agua_nao_encanada,Água não chega,inflação de zeros: Tukey k=3 só entre os valores acima de zero,,0.24642857142857144,94402,94.50223512213725,416,0.44066862990190886
+pct_agua_so_terreno,Água só no terreno,inflação de zeros: Tukey k=3 só entre os valores acima de zero,,0.2873838200516967,88211,88.28377413247782,765,0.8672387797440229

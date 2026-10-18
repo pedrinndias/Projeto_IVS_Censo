@@ -1,0 +1,10 @@
+{
+  "pergunta": "Como ficam os dois subíndices — socioeconômico e de saneamento — calculados separadamente?",
+  "o_que_muda": "Em vez de um índice só, o subíndice socioeconômico: só os componentes do fator socioeconômico (razão de moradores, analfabetismo, renda e cor ou raça), com os pesos da referência renormalizados. O subíndice de saneamento e o índice completo da referência estão na tabela T34.",
+  "sintese": "O subíndice socioeconômico separa as favelas melhor do que o índice completo (AUC municipal maior), mas reclassifica cerca de um em cada cinco setores. O subíndice de saneamento sozinho separa mal as favelas e ordena os setores de um jeito muito diferente: as duas dimensões medem coisas distintas, e a soma das duas dilui a dimensão que mais discrimina as favelas.",
+  "limitacoes": [
+    "Os subíndices herdam os pesos internos da fatorial da referência; não foram reestimados separadamente.",
+    "A AUC contra as favelas mede só uma face da vulnerabilidade; o saneamento pode ser decisivo para outros desfechos (saúde, por exemplo).",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista)."
+  ]
+}

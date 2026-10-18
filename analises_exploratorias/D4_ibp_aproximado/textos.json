@@ -1,0 +1,12 @@
+{
+  "pergunta": "Como fica uma réplica aproximada do Índice Brasileiro de Privação (Allik et al., 2020) com os agregados por setor do Censo 2022?",
+  "o_que_muda": "Uma réplica aproximada do Índice Brasileiro de Privação (Allik et al., 2020): três componentes — renda (invertida), analfabetismo e saneamento — padronizados em escore z sobre todos os setores e somados com pesos iguais, sem fatorial. Os componentes são aproximações (parâmetro exploratório): a renda per capita até meio salário mínimo e o analfabetismo de 7 anos ou mais não existem nos agregados por setor de 2022.",
+  "sintese": "O IBP aproximado separa as favelas melhor do que a referência (AUC municipal maior), mas reclassifica cerca de um em cada quatro setores. Com só três componentes, a fatorial não serve para nada aqui (KMO abaixo de 0,70, um fator só) — e nem é usada, porque o IBP soma escores z com pesos iguais. Variáveis do IBP ausentes nos agregados de 2022: proporção de pessoas com renda domiciliar per capita até meio salário mínimo, analfabetismo a partir de 7 anos e a contagem por pessoas (os agregados contam domicílios).",
+  "limitacoes": [
+    "O componente de renda usa a renda média do responsável, não a proporção de pessoas com renda per capita até meio salário mínimo.",
+    "O analfabetismo é o de 15 anos ou mais; o IBP usa 7 anos ou mais.",
+    "O saneamento é a média de quatro proporções de domicílios; o IBP conta pessoas com pelo menos uma inadequação.",
+    "O escore z é calculado sobre os setores do ELSI, não sobre o país.",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista)."
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "pergunta": "O que muda no índice quando os fatores são extraídos pelo eixo principal ou por máxima verossimilhança, em vez de componentes principais?",
+  "o_que_muda": "O método de extração dos fatores: fatoração do eixo principal no lugar de componentes principais (ACP), com a mesma rotação promax e os mesmos pesos 60/40. A máxima verossimilhança e a ACP da referência estão na tabela T34. Os autovalores para Kaiser e Horn continuam os da ACP. A variância explicada da tabela T19 é a soma das comunalidades do eixo principal, só a variância comum, e por isso fica abaixo da da ACP; as duas não se comparam diretamente.",
+  "sintese": "Com o eixo principal ou a máxima verossimilhança, a versão deixa de ser elegível: esses métodos estimam só a variância compartilhada, e o banheiro graduado, que divide pouca variância com os demais componentes, fica com comunalidade e carga muito baixas. A ACP superestima essa comunalidade. O índice muda pouco na ordenação, mas cerca de um em cada dez setores troca de faixa em relação à referência, e a AUC municipal cai um pouco.",
+  "limitacoes": [
+    "A máxima verossimilhança foi implementada pelo algoritmo EM, sem os testes de ajuste (qui-quadrado) que os pacotes estatísticos reportam.",
+    "Os critérios de elegibilidade do NB05 foram pensados para a ACP; com extração de fatores comuns, comunalidades menores são esperadas.",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista)."
+  ]
+}

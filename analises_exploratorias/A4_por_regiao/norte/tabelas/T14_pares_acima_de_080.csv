@@ -1,0 +1,21 @@
+a,b,rotulo_a,rotulo_b,spearman,pearson
+renda_media,renda_media_sem_extremo,Renda média,Renda sem o extremo,1.0,1.0
+renda_media_sem_extremo,renda_media_mediana_mun,Renda sem o extremo,Renda (mediana mun.),1.0,1.0
+renda_media,renda_media_mediana_mun,Renda média,Renda (mediana mun.),1.0,1.0
+pct_sem_banheiro,banheiro_graduado,Sem banheiro,Banheiro graduado,0.9997406420290395,0.9562573785127478
+pct_idoso_60mais,rdi_setor,Pessoas 60+,Dependência idosa,0.9962420948332344,0.9926948051833521
+pct_hab_precaria,pct_moradia_nao_convencional,Habitação precária,Moradia não convencional,0.983436022516274,0.9349262444715057
+pct_idoso_60mais,iep_setor,Pessoas 60+,Índice de envelhecimento,0.9808319147412251,0.9346330688589564
+pct_sem_banheiro,pct_banheiro_comum,Sem banheiro,Banheiro de uso comum,0.9651081144411208,0.734026914050602
+pct_banheiro_comum,banheiro_graduado,Banheiro de uso comum,Banheiro graduado,0.9648301818292189,0.47356469771729093
+iep_setor,rdi_setor,Índice de envelhecimento,Dependência idosa,0.9621003301236657,0.928660937082918
+pct_pop_0a14,iep_setor,População 0–14,Índice de envelhecimento,-0.9209214889895487,-0.8082453962441044
+pct_crianca_0a4,pct_pop_0a14,Crianças 0–4,População 0–14,0.8839503569316801,0.8772242989904491
+pct_sem_agua_canalizada,pct_agua_so_terreno,Sem água canalizada,Água só no terreno,0.8817248988279383,0.8686656818025238
+pct_crianca_0a4,iep_setor,Crianças 0–4,Índice de envelhecimento,-0.8438333038642848,-0.703085293650368
+pct_pop_0a14,pct_idoso_60mais,População 0–14,Pessoas 60+,-0.8347909480386068,-0.8048827296795634
+pct_apartamento,pct_casa,Apartamento,Casa,-0.7564392801085636,-0.8905580718468358
+pct_moradia_convencional,pct_moradia_nao_convencional,Moradia convencional,Moradia não convencional,-0.6073363355135646,-0.9504990080900542
+pct_hab_precaria,pct_moradia_convencional,Habitação precária,Moradia convencional,-0.6017484054801783,-0.8925017722917058
+pct_sem_banheiro,pct_so_sanitario,Sem banheiro,Só sanitário,0.5456539374435296,0.8376602625803812
+pct_so_sanitario,banheiro_graduado,Só sanitário,Banheiro graduado,0.46736901656760604,0.8279564849503611

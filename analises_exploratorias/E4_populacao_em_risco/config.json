@@ -1,0 +1,32 @@
+{
+  "versao": "E4_populacao_em_risco",
+  "titulo": "População em risco entre versões",
+  "pergunta": "Quantas pessoas e quantas pessoas idosas ficam em risco elevado em cada versão?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null
+  },
+  "indicadores": "todos",
+  "indice": {
+    "colunas": [
+      "pct_agua_inad",
+      "pct_esgoto_inad",
+      "razao_moradores",
+      "pct_analfab",
+      "renda_inv",
+      "pct_raca_pretpardind",
+      "banheiro_graduado"
+    ],
+    "renda": "original",
+    "rotacao": "promax",
+    "metodo": "60_40",
+    "normalizacao": "municipal"
+  },
+  "blocos": [
+    17
+  ],
+  "analise": "E4"
+}

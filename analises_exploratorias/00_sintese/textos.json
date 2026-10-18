@@ -1,0 +1,10 @@
+{
+  "pergunta": "O que cada versão muda em relação à referência, e quais passam nos critérios do NB05?",
+  "o_que_muda": "Não é uma versão: reúne, numa tabela só, os números que cada versão gravou, para comparar todas contra a mesma referência. A comparação é descritiva; nenhuma versão é escolhida.",
+  "sintese": "A maior parte das versões fica perto da referência: muda pouco a ordem dos setores e poucas trocam muitos setores de faixa. As mudanças que mais mexem no índice são as que trocam o que ele mede — o IVS-Idoso, o índice de moradia, o IBP aproximado, a média geométrica, o esgoto pela definição descartada e o lixo — e a região Norte quando estimada sozinha. Quando a elegibilidade falha, na maior parte dos casos o motivo é o mesmo: o banheiro graduado, que compartilha pouca variância com os demais componentes em vários recortes. As tabelas e figuras para o artigo se escolhem no Catalogo_Mestre.xlsx.",
+  "limitacoes": [
+    "Versões sem os blocos 9, 10 ou 13 aparecem com campos vazios (sem KMO, AUC ou comparação).",
+    "A versão do Brasil (A6) não roda o bloco 10, e por isso fica sem elegibilidade nem AUC na tabela.",
+    "As versões por estrato (A3, A4, A5) têm amostras menores e não são comparáveis em nível com as demais."
+  ]
+}

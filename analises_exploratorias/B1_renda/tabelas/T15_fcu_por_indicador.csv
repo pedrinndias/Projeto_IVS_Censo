@@ -1,0 +1,4 @@
+indicador,rotulo,n_fcu,n_nao_fcu,mediana_fcu,mediana_nao_fcu,diferenca,auc
+renda_media,Renda média,19448,84648,1515.35,3067.015,-1551.665,0.10180602791035023
+renda_media_mediana_mun,Renda (mediana mun.),19448,84648,1515.35,3067.015,-1551.665,0.10178023814282028
+renda_media_sem_extremo,Renda sem o extremo,19447,84648,1515.32,3067.015,-1551.695,0.10175984114776014

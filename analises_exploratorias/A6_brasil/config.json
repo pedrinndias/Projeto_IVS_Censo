@@ -1,0 +1,41 @@
+{
+  "versao": "A6_brasil",
+  "titulo": "Brasil",
+  "pergunta": "Como ficam os indicadores e o IVS nos setores urbanos de todo o Brasil, lado a lado com os 70 municípios?",
+  "base": "nacional/Base_Brasil_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null
+  },
+  "indicadores": "todos",
+  "indice": {
+    "colunas": [
+      "pct_agua_inad",
+      "pct_esgoto_inad",
+      "razao_moradores",
+      "pct_analfab",
+      "renda_inv",
+      "pct_raca_pretpardind",
+      "banheiro_graduado"
+    ],
+    "renda": "original",
+    "rotacao": "promax",
+    "metodo": "60_40",
+    "normalizacao": "municipal"
+  },
+  "blocos": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    9,
+    13
+  ],
+  "grupo_descritivo": "UF",
+  "comparar_com_70": true
+}

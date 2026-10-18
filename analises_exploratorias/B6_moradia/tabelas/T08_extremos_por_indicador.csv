@@ -1,0 +1,9 @@
+indicador,rotulo,criterio,limite_inferior,limite_superior,n_validos,pct_zeros,n_extremos,pct_extremos
+razao_moradores,Razão de moradores,Tukey k=3 (intervalo interquartil),1.1374643505315003,4.267591392273789,104108,0.0,84,0.08068544204095747
+pct_dom_improv,Domicílio improvisado,inflação de zeros: Tukey k=3 só entre os valores acima de zero,,0.264120833755248,98969,99.21187442532509,69,0.06971880083662561
+pct_hab_precaria,Habitação precária,inflação de zeros: Tukey k=3 só entre os valores acima de zero,,0.30027836755863146,104108,92.46167441503054,449,0.4312828985284512
+pct_moradia_convencional,Moradia convencional,Tukey k=3 (intervalo interquartil),0.9763313609467454,1.017751479289941,104108,0.013447573673492912,7037,6.759326852883544
+pct_moradia_nao_convencional,Moradia não convencional,inflação de zeros: Tukey k=3 só entre os valores acima de zero,,0.29416425520187406,104108,92.95251085411303,406,0.3899796365312944
+pct_apartamento,Apartamento,Tukey k=3 (intervalo interquartil),-2.282608695652174,3.0434782608695654,95005,38.51797273827693,0,0.0
+pct_casa,Casa,Tukey k=3 (intervalo interquartil),-1.4463652850912707,2.8239043986010617,99642,10.110194496296742,0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,inflação de zeros: Tukey k=3 só entre os valores acima de zero,,0.5924992301516425,91304,70.74060282134408,1496,1.638482432314028

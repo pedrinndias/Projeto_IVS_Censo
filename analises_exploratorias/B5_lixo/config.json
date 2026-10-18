@@ -1,0 +1,50 @@
+{
+  "versao": "B5_lixo",
+  "titulo": "Com e sem lixo",
+  "pergunta": "O que muda no índice se o lixo inadequado volta a ser componente, como no IVS-BH e no NB04?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null
+  },
+  "indicadores": "todos",
+  "indice": {
+    "colunas": [
+      "pct_agua_inad",
+      "pct_esgoto_inad",
+      "pct_lixo_inad",
+      "razao_moradores",
+      "pct_analfab",
+      "renda_inv",
+      "pct_raca_pretpardind",
+      "banheiro_graduado"
+    ],
+    "renda": "original",
+    "rotacao": "promax",
+    "metodo": "60_40",
+    "normalizacao": "municipal"
+  },
+  "blocos": [
+    9,
+    10,
+    13
+  ],
+  "sensibilidade": [
+    {
+      "rotulo": "sem lixo (referência)",
+      "indice": {
+        "colunas": [
+          "pct_agua_inad",
+          "pct_esgoto_inad",
+          "razao_moradores",
+          "pct_analfab",
+          "renda_inv",
+          "pct_raca_pretpardind",
+          "banheiro_graduado"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "pergunta": "A desigualdade do índice dentro de cada município depende da versão?",
+  "o_que_muda": "Não é uma versão do índice: calcula o Gini do índice dentro de cada município em todas as versões com normalização min-max no município e soma ponderada, e compara níveis e posições.",
+  "sintese": "Na maioria das versões, os municípios mais desiguais continuam os mais desiguais: a correlação de postos do Gini municipal com a referência é alta. As exceções são o IVS-Idoso (D2) e o índice de moradia (D3), que medem outra coisa. Alguns municípios, porém, mudam muito de posição conforme a versão, o que pede cautela ao comparar cidades pela desigualdade interna.",
+  "limitacoes": [
+    "Versões com escore z, postos ou média geométrica ficam de fora: mudam a escala e tornam o Gini incomparável.",
+    "Municípios com poucos setores têm Gini instável."
+  ]
+}

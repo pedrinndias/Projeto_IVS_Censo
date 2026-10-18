@@ -1,0 +1,12 @@
+{
+  "pergunta": "Como são os dados e o IVS da referência proposta do NB05, sem nada mudado?",
+  "o_que_muda": "Nada. Esta é a base de comparação de todas as outras versões: o recorte da EDA (setores urbanos com Dados_sig = OK nos 70 municípios), todos os indicadores e variantes, e o IVS da referência proposta no NB05 — renda original, sem lixo, banheiro graduado, rotação promax, pesos 60/40 da regra do IVS-BH e normalização dentro do município. Cada versão seguinte muda uma coisa só em relação a esta.",
+  "sintese": "A referência é o ponto de partida, não uma escolha: ela foi proposta no NB05 pela melhor posição média entre as especificações elegíveis, e continua valendo até a orientadora decidir. Os números desta versão reproduzem os publicados no NB05 (amostra do índice, índice por setor, faixas e AUC municipal). O bloco 13 compara a referência com ela mesma e serve só para mostrar como o bloco se lê nas outras versões: correlação 1 e nenhum setor mudando de faixa.",
+  "limitacoes": [
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista). Como o sigilo se concentra nos setores pequenos (bloco 4), a amostra sub-representa esses setores.",
+    "O índice é normalizado dentro de cada município: compara setores da mesma cidade, não cidades entre si.",
+    "A AUC usa as favelas e comunidades urbanas do IBGE como referência externa; elas não esgotam a vulnerabilidade, e municípios com poucos setores de FCU ficam fora da AUC municipal.",
+    "Não há malha dos setores no computador: nenhuma análise espacial ou mapa entra nesta versão.",
+    "As faixas etárias dos agregados por setor não separam sexo; a pirâmide é de um lado só."
+  ]
+}

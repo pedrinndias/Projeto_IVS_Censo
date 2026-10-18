@@ -1,0 +1,10 @@
+{
+  "pergunta": "O que muda no índice sem o banheiro, com V00495 ou com cada uma das partições, em vez do banheiro graduado?",
+  "o_que_muda": "O índice sem o componente de banheiro (seis componentes, como no NB04 sem o lixo). V00495 e as três partições (nem banheiro nem sanitário, só sanitário, banheiro de uso comum), cada uma no lugar do banheiro, e o banheiro graduado da referência estão na tabela T34. Os blocos 2 a 7 descrevem só as variáveis de banheiro.",
+  "sintese": "Sem o banheiro, o índice ganha setores (o banheiro graduado é o componente com mais faltantes), mas perde capacidade de separar as favelas: a AUC municipal cai em relação à referência. Kaiser e Horn passam a reter um fator só. Qualquer das variantes de banheiro na T34 recupera a AUC e muda de faixa cerca de um em cada dez setores em relação ao índice sem banheiro. O banheiro graduado é também o componente que falha a elegibilidade em Belo Horizonte e em três regiões (versões A3 e A4).",
+  "limitacoes": [
+    "As variáveis de banheiro têm mediana zero e quase todos os setores sem falta: a fatorial depende de poucos setores com valor.",
+    "As partições de V00495 (V00236, V00237, V00238) nunca tinham sido tabuladas antes destas versões.",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista); trocar um componente muda também a amostra."
+  ]
+}

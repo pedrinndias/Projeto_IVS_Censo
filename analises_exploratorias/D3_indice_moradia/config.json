@@ -1,0 +1,36 @@
+{
+  "versao": "D3_indice_moradia",
+  "titulo": "Índice de moradia",
+  "pergunta": "Como fica um índice só de moradia, com as variáveis de adensamento e de tipo de domicílio?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null
+  },
+  "indicadores": "todos",
+  "indice": {
+    "colunas": [
+      "razao_moradores",
+      "pct_dom_improv",
+      "pct_hab_precaria",
+      "pct_moradia_nao_convencional",
+      "pct_banheiro_comum"
+    ],
+    "renda": "original",
+    "rotacao": "promax",
+    "metodo": "ss_padrao",
+    "normalizacao": "municipal"
+  },
+  "blocos": [
+    9,
+    10,
+    11,
+    12,
+    13
+  ],
+  "parametros_exploratorios": {
+    "composição do índice de moradia": "razão de moradores, domicílio improvisado, habitação precária, moradia não convencional e banheiro de uso comum; pesos pela fatorial (promax, 2 fatores)"
+  }
+}

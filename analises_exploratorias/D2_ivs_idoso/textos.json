@@ -1,0 +1,10 @@
+{
+  "pergunta": "Como fica um IVS com uma terceira dimensão de envelhecimento (IEP, RDI e % de 60+), com pesos pela fatorial?",
+  "o_que_muda": "Três componentes de envelhecimento entram no índice — % de pessoas de 60 anos ou mais, índice de envelhecimento e razão de dependência idosa —, com três fatores e pesos pela fatorial (soma dos quadrados das cargas, promax). A composição é parâmetro exploratório. A mesma composição com dois fatores e a referência estão na tabela T34.",
+  "sintese": "O envelhecimento forma um fator próprio — o de maior variância — e passa a pesar perto de dois quintos do índice. O resultado se afasta muito da referência: metade dos setores muda de faixa, e a AUC contra as favelas cai para perto de 0,6. Isso acontece porque, nestes municípios, setores mais envelhecidos tendem a ter renda maior (bloco 8): somar envelhecimento e carência num índice só faz um compensar o outro. A versão não é elegível (a razão de moradores fica sem carga suficiente). O cruzamento entre IVS e envelhecimento está na análise E5.",
+  "limitacoes": [
+    "A composição do IVS-Idoso é parâmetro exploratório — não é decisão.",
+    "A AUC contra as favelas não é o desfecho adequado para um índice de envelhecimento; ela só mostra o quanto o índice deixou de medir carência.",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista)."
+  ]
+}

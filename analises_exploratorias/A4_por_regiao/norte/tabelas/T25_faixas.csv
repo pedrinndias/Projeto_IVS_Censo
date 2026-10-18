@@ -1,0 +1,9 @@
+regra,faixa,setores,pct
+ivs_bh,baixo,1361,39.5754579819715
+ivs_bh,medio,1132,32.916545507414945
+ivs_bh,elevado,646,18.784530386740332
+ivs_bh,muito_elevado,300,8.72346612387322
+quartis,baixo,858,24.949113114277406
+quartis,medio,859,24.978191334690315
+quartis,elevado,859,24.978191334690315
+quartis,muito_elevado,863,25.09450421634196

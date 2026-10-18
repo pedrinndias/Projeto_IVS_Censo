@@ -1,0 +1,22 @@
+a,b,rotulo_a,rotulo_b,spearman,pearson
+renda_media,renda_media_mediana_mun,Renda média,Renda (mediana mun.),1.0,1.0
+renda_media_sem_extremo,renda_media_mediana_mun,Renda sem o extremo,Renda (mediana mun.),1.0,1.0
+renda_media,renda_media_sem_extremo,Renda média,Renda sem o extremo,1.0,1.0
+pct_sem_banheiro,banheiro_graduado,Sem banheiro,Banheiro graduado,0.999957744745466,0.9612749915457284
+pct_idoso_60mais,rdi_setor,Pessoas 60+,Dependência idosa,0.9940081479447668,0.8879927573527863
+pct_idoso_60mais,iep_setor,Pessoas 60+,Índice de envelhecimento,0.9684402948954114,0.856412198066324
+pct_hab_precaria,pct_moradia_nao_convencional,Habitação precária,Moradia não convencional,0.9519901892294713,0.8810119163003891
+iep_setor,rdi_setor,Índice de envelhecimento,Dependência idosa,0.9409565116810814,0.8034927742980367
+pct_banheiro_comum,banheiro_graduado,Banheiro de uso comum,Banheiro graduado,0.9263437793433169,0.5270678564181327
+pct_sem_banheiro,pct_banheiro_comum,Sem banheiro,Banheiro de uso comum,0.9257259958802588,0.6806821426313623
+pct_pop_0a14,iep_setor,População 0–14,Índice de envelhecimento,-0.9024669314450431,-0.7797872011771131
+pct_sem_agua_canalizada,pct_agua_so_terreno,Sem água canalizada,Água só no terreno,0.8637823319046317,0.7882725223262603
+pct_crianca_0a4,pct_pop_0a14,Crianças 0–4,População 0–14,0.8441998797065351,0.8376958945852233
+pct_apartamento,pct_casa,Apartamento,Casa,-0.8436307865983657,-0.8286334568845483
+pct_crianca_0a4,iep_setor,Crianças 0–4,Índice de envelhecimento,-0.8165542536442093,-0.65608704960327
+pct_sem_banheiro,pct_so_sanitario,Sem banheiro,Só sanitário,0.8108996373494805,0.8612957903520544
+pct_analfab,renda_media_sem_extremo,Analfabetismo 15+,Renda sem o extremo,-0.8043190415456969,-0.5560886493310945
+pct_analfab,renda_media,Analfabetismo 15+,Renda média,-0.8043190415456969,-0.5560886493310945
+pct_analfab,renda_media_mediana_mun,Analfabetismo 15+,Renda (mediana mun.),-0.8043190415456969,-0.5560886493310945
+pct_so_sanitario,banheiro_graduado,Só sanitário,Banheiro graduado,0.7647796591745288,0.9217693171670245
+pct_sem_agua_canalizada,pct_agua_nao_encanada,Sem água canalizada,Água não chega,0.6633891089347781,0.8396595920409732

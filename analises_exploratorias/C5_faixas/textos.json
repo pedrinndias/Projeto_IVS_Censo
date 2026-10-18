@@ -1,0 +1,9 @@
+{
+  "pergunta": "Como mudam as faixas de vulnerabilidade do mesmo índice com quartis, quintis, quebras naturais ou agrupamento?",
+  "o_que_muda": "Só as faixas: o índice é o da referência, classificado também por quartis, quintis, quebras naturais (por município) e agrupamento dos setores pelos componentes. As tabelas T36 a T38 e a figura F30 comparam as regras; os blocos 11 e 12 continuam com a regra do IVS-BH.",
+  "sintese": "Quartis, quintis e quebras naturais ordenam os setores de modo parecido com a regra do IVS-BH, mas repartem as classes de outro jeito: quartis põem um quarto dos setores em cada classe, enquanto a regra do IVS-BH deixa a classe mais alta pequena. O agrupamento pelos componentes é o que mais se afasta,: ele junta setores pelo perfil dos componentes, sem passar pelos pesos do índice. A silhueta indica 4 grupos.",
+  "limitacoes": [
+    "As quebras naturais foram aproximadas por k-médias numa dimensão, com 4 classes, só em municípios com pelo menos 8 setores.",
+    "O número de grupos do agrupamento é parâmetro exploratório — não é decisão."
+  ]
+}

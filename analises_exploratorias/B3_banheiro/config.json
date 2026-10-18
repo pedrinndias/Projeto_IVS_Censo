@@ -1,0 +1,116 @@
+{
+  "versao": "B3_banheiro",
+  "titulo": "As definições de banheiro",
+  "pergunta": "O que muda no índice sem o banheiro, com V00495 ou com cada uma das partições, em vez do banheiro graduado?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null
+  },
+  "indicadores": [
+    "pct_sem_banheiro",
+    "banheiro_graduado",
+    "pct_sem_banheiro_nem_sanitario",
+    "pct_so_sanitario",
+    "pct_banheiro_comum"
+  ],
+  "indice": {
+    "colunas": [
+      "pct_agua_inad",
+      "pct_esgoto_inad",
+      "razao_moradores",
+      "pct_analfab",
+      "renda_inv",
+      "pct_raca_pretpardind"
+    ],
+    "renda": "original",
+    "rotacao": "promax",
+    "metodo": "60_40",
+    "normalizacao": "municipal"
+  },
+  "blocos": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    9,
+    10,
+    13
+  ],
+  "sensibilidade": [
+    {
+      "rotulo": "sem banheiro (V00495)",
+      "indice": {
+        "colunas": [
+          "pct_agua_inad",
+          "pct_esgoto_inad",
+          "razao_moradores",
+          "pct_analfab",
+          "renda_inv",
+          "pct_raca_pretpardind",
+          "pct_sem_banheiro"
+        ]
+      }
+    },
+    {
+      "rotulo": "nem banheiro nem sanitário (V00238)",
+      "indice": {
+        "colunas": [
+          "pct_agua_inad",
+          "pct_esgoto_inad",
+          "razao_moradores",
+          "pct_analfab",
+          "renda_inv",
+          "pct_raca_pretpardind",
+          "pct_sem_banheiro_nem_sanitario"
+        ]
+      }
+    },
+    {
+      "rotulo": "só sanitário (V00237)",
+      "indice": {
+        "colunas": [
+          "pct_agua_inad",
+          "pct_esgoto_inad",
+          "razao_moradores",
+          "pct_analfab",
+          "renda_inv",
+          "pct_raca_pretpardind",
+          "pct_so_sanitario"
+        ]
+      }
+    },
+    {
+      "rotulo": "banheiro de uso comum (V00236)",
+      "indice": {
+        "colunas": [
+          "pct_agua_inad",
+          "pct_esgoto_inad",
+          "razao_moradores",
+          "pct_analfab",
+          "renda_inv",
+          "pct_raca_pretpardind",
+          "pct_banheiro_comum"
+        ]
+      }
+    },
+    {
+      "rotulo": "banheiro graduado (referência)",
+      "indice": {
+        "colunas": [
+          "pct_agua_inad",
+          "pct_esgoto_inad",
+          "razao_moradores",
+          "pct_analfab",
+          "renda_inv",
+          "pct_raca_pretpardind",
+          "banheiro_graduado"
+        ]
+      }
+    }
+  ]
+}

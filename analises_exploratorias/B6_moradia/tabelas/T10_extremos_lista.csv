@@ -1,0 +1,61 @@
+indicador,rotulo,CD_SETOR,NM_MUN,valor,mediana_global
+razao_moradores,Razão de moradores,330455705080087,Rio de Janeiro,6.913461538461538,2.7126436781609193
+razao_moradores,Razão de moradores,330455705080105,Rio de Janeiro,6.657894736842105,2.7126436781609193
+razao_moradores,Razão de moradores,351880005001175,Guarulhos,5.918918918918919,2.7126436781609193
+razao_moradores,Razão de moradores,130260305100324,Manaus,5.833333333333333,2.7126436781609193
+razao_moradores,Razão de moradores,431490205002934,Porto Alegre,5.4,2.7126436781609193
+razao_moradores,Razão de moradores,351880005000809,Guarulhos,5.379746835443038,2.7126436781609193
+razao_moradores,Razão de moradores,351880005001456,Guarulhos,5.239837398373984,2.7126436781609193
+razao_moradores,Razão de moradores,330455705220027,Rio de Janeiro,5.1835443037974684,2.7126436781609193
+razao_moradores,Razão de moradores,150580905000077,Portel,5.125,2.7126436781609193
+razao_moradores,Razão de moradores,412550605000484,São José dos Pinhais,5.125,2.7126436781609193
+pct_dom_improv,Domicílio improvisado,330455705300460,Rio de Janeiro,0.9725274725274725,0.0
+pct_dom_improv,Domicílio improvisado,330455705060007,Rio de Janeiro,0.9523809523809523,0.0
+pct_dom_improv,Domicílio improvisado,355030870000056,São Paulo,0.9378531073446328,0.0
+pct_dom_improv,Domicílio improvisado,355030809000108,São Paulo,0.9308755760368663,0.0
+pct_dom_improv,Domicílio improvisado,355030846000656,São Paulo,0.9251336898395722,0.0
+pct_dom_improv,Domicílio improvisado,355030878000054,São Paulo,0.8836206896551724,0.0
+pct_dom_improv,Domicílio improvisado,355030804000188,São Paulo,0.85,0.0
+pct_dom_improv,Domicílio improvisado,330455705060109,Rio de Janeiro,0.8363636363636363,0.0
+pct_dom_improv,Domicílio improvisado,355030866000345,São Paulo,0.8333333333333334,0.0
+pct_dom_improv,Domicílio improvisado,351880005001892,Guarulhos,0.8153846153846154,0.0
+pct_hab_precaria,Habitação precária,310620060660397,Belo Horizonte,1.0,0.0
+pct_hab_precaria,Habitação precária,330455705160298,Rio de Janeiro,1.0,0.0
+pct_hab_precaria,Habitação precária,330455705210578,Rio de Janeiro,1.0,0.0
+pct_hab_precaria,Habitação precária,330455705210589,Rio de Janeiro,1.0,0.0
+pct_hab_precaria,Habitação precária,330455705211468,Rio de Janeiro,1.0,0.0
+pct_hab_precaria,Habitação precária,330455705211579,Rio de Janeiro,1.0,0.0
+pct_hab_precaria,Habitação precária,330455705250341,Rio de Janeiro,1.0,0.0
+pct_hab_precaria,Habitação precária,355030849000117,São Paulo,1.0,0.0
+pct_hab_precaria,Habitação precária,354870805001806,São Bernardo do Campo,0.99,0.0
+pct_hab_precaria,Habitação precária,354870805001805,São Bernardo do Campo,0.9880239520958084,0.0
+pct_moradia_convencional,Moradia convencional,310620060660397,Belo Horizonte,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330170210000747,Duque de Caxias,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705070029,Rio de Janeiro,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705160298,Rio de Janeiro,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705210578,Rio de Janeiro,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705210589,Rio de Janeiro,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705211468,Rio de Janeiro,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705211579,Rio de Janeiro,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705250341,Rio de Janeiro,0.0,1.0
+pct_moradia_convencional,Moradia convencional,354870805001805,São Bernardo do Campo,0.0,1.0
+pct_moradia_nao_convencional,Moradia não convencional,310620060660397,Belo Horizonte,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705160298,Rio de Janeiro,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705210578,Rio de Janeiro,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705210589,Rio de Janeiro,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705211468,Rio de Janeiro,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705211579,Rio de Janeiro,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705250341,Rio de Janeiro,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,355030849000117,São Paulo,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,354870805001806,São Bernardo do Campo,0.99,0.0
+pct_moradia_nao_convencional,Moradia não convencional,354870805001805,São Bernardo do Campo,0.9880239520958084,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,130260305110210,Manaus,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,130260305110375,Manaus,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,130260305130062,Manaus,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,130260305130143,Manaus,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000509,Ananindeua,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000536,Ananindeua,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000555,Ananindeua,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000636,Ananindeua,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000894,Ananindeua,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000895,Ananindeua,1.0,0.0

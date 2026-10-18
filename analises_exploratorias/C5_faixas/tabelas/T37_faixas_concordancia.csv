@@ -1,0 +1,6 @@
+regra,classes,spearman_com_ivs_bh,pct_mesma_classe
+IVS-BH (média ± DP),4,0.9999999999999998,100.0
+quartis,4,0.9208279553038625,55.32032973726599
+quintis,5,0.9103846507698126,
+quebras naturais (4 classes),4,0.8589162837607589,70.92108292590436
+"agrupamento (k = 4, silhueta)",4,0.6799374501494239,58.68267525752265

@@ -1,0 +1,12 @@
+{
+  "versao": "A2_piso_populacional",
+  "titulo": "Com piso de população",
+  "pergunta": "O que muda se só entram os setores com pelo menos 50 moradores?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {"urbano": true, "dados_sig": "OK", "piso_pop": 50, "municipios": null},
+  "indicadores": "todos",
+  "indice": {"colunas": ["pct_agua_inad", "pct_esgoto_inad", "razao_moradores", "pct_analfab", "renda_inv", "pct_raca_pretpardind", "banheiro_graduado"], "renda": "original", "rotacao": "promax", "metodo": "60_40", "normalizacao": "municipal"},
+  "blocos": [1, 2, 3, 4, 5, 6, 7, 8, 10, 13],
+  "parametros_exploratorios": {"piso de população": "50 moradores (sensibilidade com 100 na tabela T34)"},
+  "sensibilidade": [{"rotulo": "piso de 100 moradores", "recorte": {"piso_pop": 100}}]
+}

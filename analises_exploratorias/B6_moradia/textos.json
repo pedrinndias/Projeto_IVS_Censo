@@ -1,0 +1,10 @@
+{
+  "pergunta": "O que muda no índice quando a razão de moradores é trocada por outra medida de moradia?",
+  "o_que_muda": "O componente de moradia do índice: a habitação precária entra no lugar da razão de moradores. Domicílio improvisado, moradia não convencional e a razão de moradores da referência estão na tabela T34. Os blocos 2 a 7 descrevem só as variáveis de moradia.",
+  "sintese": "Trocar a razão de moradores pela habitação precária mantém o índice elegível, baixa o KMO e eleva a AUC contra as favelas; cerca de um em cada dez setores muda de faixa em relação à referência. A moradia não convencional dá praticamente o mesmo índice que a habitação precária (as duas medem quase a mesma coisa); o domicílio improvisado reduz a amostra e não é elegível.",
+  "limitacoes": [
+    "Habitação precária, improvisado e moradia não convencional têm mediana zero e poucos setores com valor.",
+    "As variáveis de tipo de moradia (casa, apartamento, vila) descrevem a morfologia, não carência; ficam só nas descritivas.",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista); trocar um componente muda também a amostra."
+  ]
+}

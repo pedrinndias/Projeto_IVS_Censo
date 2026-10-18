@@ -1,0 +1,682 @@
+{
+  "_leia": "Modelos de texto de todos os decks de versão. 'titulo' e 'o_que_mostra' são preenchidos pelo motor (scripts/eda_versoes.py) com os campos do catalogo.csv; 'como_ler' e 'nota' vão para o slide e para as notas do apresentador. Campo entre chaves que o motor não preencher fica visível, de propósito.",
+  "blocos": {
+    "1": {
+      "titulo": "Recorte",
+      "pergunta": "Quantos setores entram nesta versão, quantos saem e por quê?",
+      "nota": "Antes de qualquer número, é preciso saber sobre quais setores ele foi calculado. Este bloco segue o caminho dos setores desde a base completa até a amostra do índice: cada filtro tira alguns, e o motivo de cada saída fica registrado. Também mostra, indicador por indicador, quantos setores não têm valor — porque um indicador com muitos faltantes muda a amostra de qualquer análise que o use."
+    },
+    "2": {
+      "titulo": "Descritivas",
+      "pergunta": "Qual é o valor típico de cada indicador, e quanto ele varia?",
+      "nota": "As descritivas resumem cada indicador em poucos números: o centro (média e mediana), a dispersão (desvio-padrão, quartis, percentis 10 e 90) e a forma (assimetria e curtose). Elas aparecem para o conjunto, por região e por município, para que diferenças de lugar fiquem visíveis antes de qualquer modelo."
+    },
+    "3": {
+      "titulo": "Distribuições",
+      "pergunta": "Que forma tem cada indicador, e ela muda de uma região para outra?",
+      "nota": "Os números do bloco anterior escondem a forma da distribuição. Histogramas, caixas e curvas de densidade mostram se o indicador se concentra em zero, se tem cauda longa ou se separa regiões. Cada painel reúne os indicadores de uma dimensão."
+    },
+    "4": {
+      "titulo": "Faltantes e sigilo",
+      "pergunta": "Onde faltam dados, e a falta é aleatória?",
+      "nota": "O IBGE não divulga alguns valores para proteger o sigilo de setores pequenos. Se a falta fosse aleatória, bastaria descartar os setores sem dado; como ela se concentra em setores pequenos, descartar muda o retrato. Este bloco mostra onde estão os faltantes e como eles se distribuem pelo tamanho do setor."
+    },
+    "5": {
+      "titulo": "Extremos",
+      "pergunta": "Que setores têm valores fora do comum, e por qual critério?",
+      "nota": "Um extremo não é um erro por definição: pode ser um setor realmente diferente. O critério muda com o indicador: o intervalo interquartil onde ele funciona, um critério próprio para a renda e, nos indicadores em que a maioria dos setores vale zero, o critério aplicado só aos valores acima de zero."
+    },
+    "6": {
+      "titulo": "Correlações",
+      "pergunta": "Que indicadores andam juntos?",
+      "nota": "A correlação mede o quanto dois indicadores sobem e descem juntos, de −1 a 1. Pares muito correlacionados medem quase a mesma coisa; pares sem correlação trazem informação diferente. O bloco mostra as duas medidas usuais (Spearman, por postos, e Pearson, linear) e agrupa os indicadores parecidos."
+    },
+    "7": {
+      "titulo": "Favelas e comunidades urbanas (FCU)",
+      "pergunta": "Cada indicador, sozinho, separa os setores de favela dos demais?",
+      "nota": "As favelas e comunidades urbanas delimitadas pelo IBGE servem de referência externa: um bom indicador de vulnerabilidade deve ter valores mais altos nelas. A comparação usa medianas e a AUC, que mede a capacidade de separar os dois grupos."
+    },
+    "8": {
+      "titulo": "Envelhecimento",
+      "pergunta": "Como a população idosa se distribui, e com que indicadores ela se relaciona?",
+      "nota": "O projeto olha para a vulnerabilidade do idoso. Este bloco descreve a estrutura etária e quatro indicadores de envelhecimento, e cruza o percentual de pessoas de 60 anos ou mais com os demais indicadores."
+    },
+    "9": {
+      "titulo": "Adequação fatorial",
+      "pergunta": "Os componentes do índice se prestam a uma análise fatorial, e quantos fatores ela sustenta?",
+      "nota": "A análise fatorial resume vários indicadores correlacionados em poucas dimensões (fatores). Antes de usá-la, testa-se se os dados se prestam a isso (KMO, MSA, Bartlett) e quantos fatores reter (Kaiser e análise paralela de Horn). Depois, as cargas dizem o quanto cada indicador pertence a cada fator."
+    },
+    "10": {
+      "titulo": "O índice da versão",
+      "pergunta": "Como fica o índice, e ele separa os setores de favela?",
+      "nota": "Com os fatores e os pesos, cada setor recebe um valor de 0 a 1 dentro do seu município. O bloco mostra os pesos, a distribuição do índice, as faixas de vulnerabilidade pelas duas regras, a AUC contra as favelas e se a versão passa nos critérios de elegibilidade fixados no NB05."
+    },
+    "11": {
+      "titulo": "Quem está em risco",
+      "pergunta": "Quantas pessoas, e quantas pessoas idosas, vivem em cada faixa?",
+      "nota": "O índice classifica setores, mas a pergunta de política pública é sobre pessoas. Este bloco soma moradores e moradores de 60 anos ou mais em cada faixa do índice, por município."
+    },
+    "12": {
+      "titulo": "Desigualdade interna",
+      "pergunta": "Em que municípios o índice varia mais de um setor para outro?",
+      "nota": "Como o índice é normalizado dentro de cada município, a comparação entre cidades é sobre a desigualdade interna, não sobre o nível. Três medidas: a razão entre os percentis 90 e 10, o Gini e o Theil."
+    },
+    "13": {
+      "titulo": "Comparação com a referência",
+      "pergunta": "O que esta versão muda em relação à referência proposta do NB05?",
+      "nota": "Cada versão muda uma coisa só em relação à referência. Este bloco mede o efeito dessa mudança: a correlação de postos entre os dois índices, a matriz de setores que trocam de faixa e os municípios mais afetados."
+    },
+    "14": {
+      "titulo": "Incerteza da classificação",
+      "pergunta": "Em quantas versões elegíveis cada setor fica em risco elevado?",
+      "nota": "Cada versão elegível é uma forma defensável de construir o índice. Se um setor fica em risco elevado em todas, a classificação dele não depende das escolhas de método; se fica só em algumas, a classificação é incerta. Risco elevado aqui é estar nas faixas elevado ou muito elevado pela regra do IVS-BH."
+    },
+    "15": {
+      "titulo": "Estabilidade",
+      "pergunta": "Os pesos e as faixas mudam se um município sai ou se os setores são reamostrados?",
+      "nota": "Duas provas de estabilidade da referência. Na primeira, os pesos são reestimados 70 vezes, cada vez sem um município, e o índice é recalculado para todos os setores. Na segunda (reamostragem com reposição, bootstrap), os pesos são reestimados em amostras sorteadas dos setores, com semente fixa, para ver quanto eles variam só pelo acaso da amostra."
+    },
+    "16": {
+      "titulo": "Desigualdade intramunicipal entre versões",
+      "pergunta": "A desigualdade do índice dentro de cada município depende da versão?",
+      "nota": "O Gini do índice dentro de cada município, calculado em todas as versões com normalização min-max no município e soma ponderada (as outras normalizações mudam a escala e tornam o Gini incomparável). Compara-se o nível e a posição de cada município entre as versões."
+    },
+    "17": {
+      "titulo": "População em risco entre versões",
+      "pergunta": "Quantas pessoas e quantas pessoas idosas ficam em risco elevado em cada versão?",
+      "nota": "A conta de pessoas em setores de risco elevado ou muito elevado, versão por versão, nos setores da referência. As versões por estrato (região, porte, Belo Horizonte) ficam de fora, porque cobrem só parte dos setores."
+    },
+    "18": {
+      "titulo": "IVS e envelhecimento",
+      "pergunta": "Como o IVS da referência se relaciona com o envelhecimento dos setores?",
+      "nota": "O cruzamento entre o índice da referência e os indicadores de envelhecimento: correlação de postos, valores típicos por faixa e diferenças entre municípios. É a alternativa ao IVS-Idoso (versão D2): em vez de somar envelhecimento ao índice, cruza os dois."
+    },
+    "19": {
+      "titulo": "Tipologias",
+      "pergunta": "Que perfis de vulnerabilidade aparecem quando se agrupam setores e municípios?",
+      "nota": "Agrupamento por k-médias: setores pelos componentes normalizados no município, e municípios pelas medianas dos componentes padronizadas. O número de grupos é o que a silhueta indica entre 3 e 6, e 4 é sempre reportado (parâmetro exploratório). Os grupos são descritivos: não substituem o índice."
+    },
+    "20": {
+      "titulo": "Todas as versões lado a lado",
+      "pergunta": "O que cada versão muda em relação à referência, e quais passam nos critérios do NB05?",
+      "nota": "Cada linha resume uma versão com os números que ela própria gravou: setores no índice, KMO, AUC global e municipal contra as favelas, elegibilidade pelos critérios do NB05, correlação de postos com a referência e percentual de setores que mudam de faixa. A comparação é descritiva: nenhuma versão é escolhida aqui."
+    }
+  },
+  "itens": {
+    "funil_tab": {
+      "titulo": "{n_indice} setores chegam ao índice, de {n_base} na base",
+      "como_ler": "Cada linha é um filtro, na ordem em que é aplicado: quantos setores ficam, quantos saem e por quê.",
+      "o_que_mostra": "A base tem {n_base} setores; {n_recorte} ficam no recorte da versão e {n_indice} têm todos os componentes do índice ({saem_indice} saem nesta última etapa).",
+      "nota": "O funil mostra o caminho dos setores. A base completa inclui setores rurais e setores sem dados divulgados. O recorte da versão é o conjunto sobre o qual são calculadas as descritivas, as distribuições e as correlações. A amostra do índice é menor, porque a análise fatorial exige que o setor tenha todos os componentes preenchidos (exclusão por lista: basta faltar um componente para o setor sair). Essa diferença de amostra é importante quando se comparam números de blocos diferentes."
+    },
+    "funil_fig": {
+      "titulo": "Do recorte ao índice, {saem_indice} setores saem por falta de algum componente",
+      "como_ler": "Cada barra é uma etapa do funil; o comprimento é o número de setores que ainda estão dentro.",
+      "o_que_mostra": "A barra final ({n_indice} setores) é a amostra do índice; a do recorte tem {n_recorte}.",
+      "nota": "É a mesma informação da tabela do funil, em forma de barras. A queda entre o recorte e a amostra do índice é quase toda causada pelos indicadores com sigilo (renda e analfabetismo) e pelas partes do banheiro graduado, como mostra a tabela de perdas por indicador."
+    },
+    "perdas": {
+      "titulo": "{ind_max} é o indicador com mais faltantes ({pct_max} dos setores)",
+      "como_ler": "Uma linha por indicador: setores com valor, setores sem valor e a porcentagem sem valor dentro do recorte.",
+      "o_que_mostra": "O maior percentual de faltantes é o de {ind_max} ({pct_max}); o menor, o de {ind_min} ({pct_min}).",
+      "nota": "Um faltante é um setor do recorte em que o indicador não pôde ser calculado: porque o IBGE não divulgou a variável (sigilo), porque o denominador é zero (por exemplo, nenhuma pessoa de 60 anos ou mais para calcular a proporção de 70+ entre elas) ou porque alguma parte da conta faltou. Indicadores com muitos faltantes reduzem a amostra de qualquer análise que os inclua."
+    },
+    "desc_global": {
+      "titulo": "{ind_assim} é o indicador mais assimétrico (assimetria {assim_max})",
+      "como_ler": "Uma linha por indicador. n: setores com valor; DP: desvio-padrão; P10…P90: percentis; CV: coeficiente de variação; % zeros: setores com valor exatamente zero.",
+      "o_que_mostra": "A maior assimetria é a de {ind_assim} ({assim_max}); o maior percentual de zeros é o de {ind_zeros} ({pct_zeros}).",
+      "nota": "A média é sensível a valores extremos; a mediana não. Quando as duas se afastam, a distribuição é assimétrica. A assimetria é positiva quando há uma cauda longa à direita (poucos setores com valores muito altos). A curtose mede o peso das caudas: valores altos indicam muitos extremos. O coeficiente de variação (DP dividido pela média, em %) permite comparar a dispersão de indicadores em escalas diferentes. Nos indicadores de saneamento, a maioria dos setores vale zero: a mediana é zero e o intervalo interquartil também, o que explica por que o critério de extremos muda para eles (bloco 5)."
+    },
+    "desc_regiao": {
+      "titulo": "{ind}: a mediana vai de {val_min} ({grupo_min}) a {val_max} ({grupo_max})",
+      "como_ler": "Uma linha por região e indicador, com as mesmas colunas da tabela global.",
+      "o_que_mostra": "Para {ind}, a mediana mais alta está no {grupo_max} ({val_max}) e a mais baixa no {grupo_min} ({val_min}).",
+      "nota": "A região é o primeiro dígito do código da unidade da federação. As diferenças entre regiões mostram o quanto o retrato depende do lugar: um indicador que varia muito entre regiões pode dominar um índice calculado com normalização global, e é por isso que a referência normaliza dentro de cada município."
+    },
+    "desc_municipio": {
+      "titulo": "{ind}: entre os municípios, a mediana vai de {val_min} a {val_max}",
+      "como_ler": "Uma linha por município e indicador (tabela longa). No deck, um recorte; a tabela completa está no CSV.",
+      "o_que_mostra": "Para {ind}, a maior mediana municipal é a de {grupo_max} ({val_max}); a menor, a de {grupo_min} ({val_min}).",
+      "nota": "São 70 municípios de tamanhos muito diferentes: alguns têm poucas dezenas de setores, e a mediana deles é menos estável. A tabela completa serve para consulta; o slide destaca os extremos."
+    },
+    "hist": {
+      "titulo": "{dim}: {ind} tem a distribuição mais assimétrica (assimetria {assim})",
+      "como_ler": "Um histograma por indicador da dimensão: no eixo horizontal, o valor; no vertical, quantos setores têm aquele valor. Os 0,5% maiores ficam de fora para a escala ser legível.",
+      "o_que_mostra": "Entre os indicadores de {dim}, a maior assimetria é a de {ind} ({assim}).",
+      "nota": "O histograma divide o intervalo de valores em 50 faixas iguais e conta os setores em cada uma. Uma barra alta junto do zero indica muitos setores sem o problema medido; uma cauda longa à direita indica poucos setores com valores muito altos. Os 0,5% de valores mais altos são omitidos só no desenho, para que a cauda não esmague a escala; as tabelas usam todos os valores."
+    },
+    "box": {
+      "titulo": "{dim}: {ind} tem mediana de {val_max} no {grupo_max} e {val_min} no {grupo_min}",
+      "como_ler": "Uma caixa por região: a linha dentro é a mediana, a caixa vai do 1º ao 3º quartil e as hastes até 1,5 intervalo interquartil. Os pontos extremos não são desenhados (ver bloco 5).",
+      "o_que_mostra": "No primeiro indicador da dimensão ({ind}), a mediana regional vai de {val_min} ({grupo_min}) a {val_max} ({grupo_max}).",
+      "nota": "O diagrama de caixa resume a distribuição em cinco números. A caixa contém a metade central dos setores; se as caixas de duas regiões não se sobrepõem, a diferença entre elas é grande. Quando a mediana e o 1º quartil coincidem com zero, a caixa fica achatada no chão: é o caso dos indicadores com muitos zeros."
+    },
+    "dens": {
+      "titulo": "{dim}: as regiões têm formas diferentes de distribuição",
+      "como_ler": "Uma curva por região em cada painel: a altura indica onde os setores daquela região se concentram. As áreas sob as curvas são iguais, para que regiões grandes e pequenas sejam comparáveis.",
+      "o_que_mostra": "Em {ind}, a mediana regional vai de {val_min} ({grupo_min}) a {val_max} ({grupo_max}).",
+      "nota": "A curva de densidade é um histograma suavizado e normalizado: a área sob ela vale 1, qualquer que seja o número de setores da região. Assim, comparam-se formas, não tamanhos. Picos em lugares diferentes indicam regiões com valores típicos diferentes; uma curva mais larga indica mais dispersão."
+    },
+    "falt_municipio": {
+      "titulo": "O maior percentual de faltantes é o de {ind_max} em {mun_max} ({pct_max})",
+      "como_ler": "Uma linha por município e uma coluna por indicador; cada célula é o percentual de setores do município sem aquele indicador.",
+      "o_que_mostra": "A célula mais alta é {ind_max} em {mun_max}, com {pct_max} dos setores sem valor.",
+      "nota": "Os faltantes não se espalham por igual entre os municípios. Onde eles se concentram, um índice calculado só com setores completos retrata pior o município, porque os setores que saem não são uma amostra ao acaso."
+    },
+    "falt_mapa": {
+      "titulo": "Os faltantes se concentram em poucos indicadores e municípios",
+      "como_ler": "Mapa de calor: linhas são municípios, colunas são indicadores; quanto mais escura a célula, maior o percentual de setores sem valor.",
+      "o_que_mostra": "O ponto mais escuro é {ind_max} em {mun_max} ({pct_max}).",
+      "nota": "O mapa de calor mostra a tabela anterior como cores. Colunas inteiras escuras indicam indicadores com sigilo ou denominador frequentemente zero; linhas escuras indicam municípios com muitos setores pequenos."
+    },
+    "sigilo_porte_tab": {
+      "titulo": "O analfabetismo falta em {analf_d1} dos menores setores e em {analf_d10} dos maiores",
+      "como_ler": "Os setores são divididos em dez grupos iguais pelo número de moradores (1 = os menores). Para cada grupo, o percentual de setores sem renda e sem analfabetismo, e o percentual em FCU.",
+      "o_que_mostra": "Sem renda: {renda_d1} no primeiro décimo e {renda_d10} no último. Sem analfabetismo: {analf_d1} e {analf_d10}.",
+      "nota": "Se a falta de dados fosse aleatória, o percentual de faltantes seria parecido em todos os décimos. Quando ele se concentra nos setores pequenos, a falta é não aleatória: o IBGE suprime valores para proteger o sigilo de quem mora em setores com poucos domicílios. A consequência é que análises só com setores completos sub-representam setores pequenos."
+    },
+    "sigilo_porte_fig": {
+      "titulo": "A falta de dados depende do tamanho do setor",
+      "como_ler": "Eixo horizontal: décimo de moradores do setor (1 = menores). Eixo vertical: percentual de setores sem o indicador.",
+      "o_que_mostra": "Renda: de {renda_d1} a {renda_d10}; analfabetismo: de {analf_d1} a {analf_d10}, do menor ao maior décimo.",
+      "nota": "As duas linhas mostram a mesma tabela em forma de gráfico. Uma linha que desce da esquerda para a direita é o sinal do sigilo: quanto menor o setor, mais provável que o valor tenha sido suprimido."
+    },
+    "extremos_criterio": {
+      "titulo": "{ind_max} tem a maior proporção de extremos ({pct_max})",
+      "como_ler": "Uma linha por indicador: o critério usado, os limites, quantos setores passam deles e o percentual de zeros.",
+      "o_que_mostra": "O maior percentual de extremos é o de {ind_max} ({pct_max}), pelo critério “{criterio}”.",
+      "nota": "O critério de Tukey marca como extremo o valor que fica a mais de 3 intervalos interquartis abaixo do 1º quartil ou acima do 3º (o intervalo interquartil é a distância entre o 1º e o 3º quartil). Nos indicadores com mediana zero esse intervalo é zero, e qualquer valor positivo viraria extremo; por isso, neles, o critério é aplicado só aos valores acima de zero. A renda usa o critério próprio do projeto: limite de Tukey dentro de cada município e um teste de coerência com o perfil do setor, que separa a renda alta de verdade (EXTREMO) da provável inconsistência (SUSPEITO)."
+    },
+    "extremos_municipio": {
+      "titulo": "{mun_max} concentra o maior número de marcações de extremo ({n_max})",
+      "como_ler": "Uma linha por município e uma coluna por indicador, com o número de setores marcados; a coluna total soma todas as marcações.",
+      "o_que_mostra": "O município com mais marcações é {mun_max}, com {n_max} no total.",
+      "nota": "O total soma marcações, não setores: um setor extremo em dois indicadores conta duas vezes. Municípios grandes tendem a ter mais marcações só por terem mais setores; a comparação justa é com o número de setores de cada um (bloco 2)."
+    },
+    "extremos_lista": {
+      "titulo": "Os setores mais distantes da mediana, indicador por indicador",
+      "como_ler": "Até dez setores por indicador, os mais distantes da mediana entre os marcados como extremo: código do setor, município, valor e mediana global.",
+      "o_que_mostra": "No topo da lista de {ind} está um setor de {mun}, com valor {valor}.",
+      "nota": "A lista serve para conferência caso a caso: abrir o setor, olhar o entorno e decidir se é um setor diferente de verdade ou um erro de registro. Nenhum setor é retirado das análises por estar nesta lista."
+    },
+    "renda_classes": {
+      "titulo": "{n_suspeito} setores têm renda suspeita e {n_extremo} têm renda extrema coerente",
+      "como_ler": "Cada setor com renda recebe uma classe: NORMAL, EXTREMO (acima do limite do município, mas coerente com o perfil) ou SUSPEITO (acima do limite e incoerente).",
+      "o_que_mostra": "São {n_suspeito} setores SUSPEITO ({pct_suspeito}) e {n_extremo} EXTREMO.",
+      "nota": "A classe vem do rastreio da renda do projeto (src/ivs_censo/renda.py). Um setor de renda alta com baixo analfabetismo e pouca população preta, parda ou indígena é coerente; o mesmo valor num setor com perfil oposto é suspeito. A variante de renda “sem o extremo” retira esses valores; a referência usa a renda original."
+    },
+    "extremos_fig": {
+      "titulo": "A proporção de extremos varia muito de um indicador para outro",
+      "como_ler": "Uma barra por indicador, com o percentual de setores marcados; a cor indica o critério (petróleo: Tukey; cinza: inflação de zeros; argila: renda).",
+      "o_que_mostra": "A barra mais longa é a de {ind_max} ({pct_max}).",
+      "nota": "Os percentuais não são comparáveis de forma direta entre critérios diferentes: o critério da inflação de zeros olha só os setores com valor acima de zero. O gráfico serve para localizar os indicadores em que os extremos merecem atenção."
+    },
+    "spearman": {
+      "titulo": "{par_a} e {par_b} formam o par mais correlacionado (ρ = {rho})",
+      "como_ler": "Matriz de correlação de Spearman: cada célula é a correlação entre o indicador da linha e o da coluna, de −1 a 1.",
+      "o_que_mostra": "A maior correlação em módulo é entre {par_a} e {par_b} (ρ = {rho}).",
+      "nota": "A correlação de Spearman é calculada sobre os postos (a ordem dos setores), não sobre os valores. Por isso é pouco afetada por extremos e capta relações que sobem sempre, mesmo que não em linha reta. Valor perto de 1: os setores ordenados por um indicador ficam quase na mesma ordem pelo outro; perto de −1: ordem invertida; perto de 0: sem relação de ordem. Cada par usa os setores com os dois valores."
+    },
+    "pearson": {
+      "titulo": "Na correlação linear, o par mais forte é {par_a} × {par_b} (r = {rho})",
+      "como_ler": "Matriz de correlação de Pearson, com a mesma leitura da de Spearman.",
+      "o_que_mostra": "A maior correlação de Pearson em módulo é entre {par_a} e {par_b} (r = {rho}).",
+      "nota": "A correlação de Pearson mede a relação em linha reta entre os valores. Ela é sensível a extremos e a distribuições muito assimétricas, como as do saneamento. Quando Pearson e Spearman divergem muito para um mesmo par, a relação é puxada por poucos setores extremos ou não é linear."
+    },
+    "pares": {
+      "titulo": "O par mais redundante é {par_a} × {par_b} (ρ = {rho_s})",
+      "como_ler": "Os pares de indicadores com correlação de pelo menos 0,80 em módulo, por Spearman ou por Pearson, do mais forte para o mais fraco.",
+      "o_que_mostra": "No topo: {par_a} × {par_b}, com Spearman {rho_s} e Pearson {rho_p}.",
+      "nota": "Dois indicadores com correlação acima de 0,80 medem praticamente a mesma coisa. Pôr os dois no índice dá peso dobrado a essa dimensão. Muitas vezes são variantes de um mesmo conceito (por exemplo, as três rendas ou as várias definições de água), e a escolha entre elas é uma das decisões que as versões do eixo B exploram."
+    },
+    "mapa_spearman": {
+      "titulo": "Os indicadores formam grupos de correlação",
+      "como_ler": "Matriz de correlação de Spearman entre todos os indicadores, reordenados pelo agrupamento do dendrograma. Cada célula do triângulo inferior traz o valor de ρ (−1 a 1); argila é correlação positiva, petróleo negativa, branco é perto de zero. Com 31 indicadores, os valores só ficam legíveis com a figura ampliada; as matrizes por dimensão vêm a seguir.",
+      "o_que_mostra": "O par mais forte é {par_a} × {par_b} (ρ = {rho}).",
+      "nota": "A reordenação põe lado a lado os indicadores que se correlacionam entre si, e os blocos de cor ao longo da diagonal revelam os grupos. Um grupo nítido costuma corresponder a uma dimensão: socioeconômica, saneamento, moradia, idade."
+    },
+    "dendrograma": {
+      "titulo": "O dendrograma junta os indicadores que medem coisas parecidas",
+      "como_ler": "Cada indicador é uma folha à esquerda; as linhas os unem do mais parecido para o menos. Quanto mais à esquerda a união, mais correlacionados os indicadores.",
+      "o_que_mostra": "O par mais próximo é {par_a} × {par_b} (ρ = {rho}).",
+      "nota": "O dendrograma é o resultado de um agrupamento hierárquico: começa com cada indicador sozinho e, a cada passo, une os dois grupos mais próximos. A distância entre dois indicadores é 1 menos o módulo da correlação de Spearman (0 = idênticos, 1 = sem relação); entre grupos, usa-se a média das distâncias (ligação média). Ele é um retrato descritivo: não substitui a análise fatorial."
+    },
+    "fcu_tab": {
+      "titulo": "{ind_max} é o indicador que mais separa as favelas (AUC {auc_max})",
+      "como_ler": "Uma linha por indicador: setores de FCU e fora, a mediana em cada grupo, a diferença e a AUC do indicador sozinho.",
+      "o_que_mostra": "{ind_max} tem AUC {auc_max} (mediana {med_fcu} em FCU e {med_nao} fora); a menor AUC é a de {ind_min} ({auc_min}).",
+      "nota": "A AUC (área sob a curva ROC) é a probabilidade de que um setor de favela, sorteado ao acaso, tenha valor maior que um setor de fora, também sorteado. AUC 0,5: o indicador não separa os grupos. Acima de 0,5: valores maiores nas favelas. Abaixo de 0,5: valores menores nas favelas (é o caso da renda, que entra no índice invertida). A AUC aqui é global, com todos os municípios juntos."
+    },
+    "fcu_fig": {
+      "titulo": "Os indicadores separam as favelas com força muito diferente",
+      "como_ler": "À esquerda, a AUC de cada indicador (barras a partir de 0,5; argila acima, petróleo abaixo). À direita, as medianas em FCU e fora, para os indicadores em proporção.",
+      "o_que_mostra": "A maior AUC é a de {ind_max} ({auc_max}); a menor, a de {ind_min} ({auc_min}).",
+      "nota": "Barras que partem de 0,5 deixam claro o sentido: argila para a direita, o indicador é maior nas favelas; petróleo para a esquerda, é menor. O painel das medianas mostra a mesma comparação em valores absolutos, o que ajuda a separar uma diferença grande em termos relativos de uma diferença grande de fato."
+    },
+    "etaria": {
+      "titulo": "A faixa de {faixa_max} anos concentra a maior parte da população ({pct_max})",
+      "como_ler": "Uma linha por faixa etária; as colunas são o total e as regiões, com o percentual da população de cada uma em cada faixa.",
+      "o_que_mostra": "Pessoas de 70 anos ou mais são {pct_70_global} do total, chegando a {pct_70_max} no {reg_70_max}.",
+      "nota": "As faixas etárias do Censo não são todas do mesmo tamanho: de 30 a 59 anos elas têm dez anos, e as anteriores, cinco. Por isso as faixas de dez anos tendem a parecer maiores. O percentual é calculado sobre a soma das faixas, e cada região soma 100%."
+    },
+    "envelhecimento": {
+      "titulo": "A mediana de pessoas 60+ por setor vai de {med_min} ({reg_min}) a {med_max} ({reg_max})",
+      "como_ler": "Os quatro indicadores de envelhecimento, para o total e por região: n, média, mediana, quartis e as demais descritivas.",
+      "o_que_mostra": "Pessoas 60+: mediana de {med_max} no {reg_max} e {med_min} no {reg_min}. Índice de envelhecimento, mediana do total: {iep_med}.",
+      "nota": "O índice de envelhecimento é a razão entre pessoas de 60 anos ou mais e pessoas de 0 a 14 anos. A razão de dependência idosa é a razão entre pessoas de 60 anos ou mais e pessoas de 15 a 59 anos. A proporção de 70+ entre os 60+ indica o quanto a população idosa do setor é mais velha. Os quatro são calculados por setor."
+    },
+    "env_correl": {
+      "titulo": "O percentual de pessoas 60+ se relaciona mais com {ind} (ρ = {rho})",
+      "como_ler": "Correlação de Spearman entre os indicadores de envelhecimento (linhas) e os demais (colunas).",
+      "o_que_mostra": "Para pessoas 60+, a correlação mais forte é com {ind} (ρ = {rho}); com a renda média, ρ = {rho_renda}.",
+      "nota": "A tabela cruza envelhecimento com vulnerabilidade. Uma correlação positiva com a renda indica que setores mais ricos têm mais idosos (envelhecimento associado à transição demográfica mais avançada); uma correlação negativa com indicadores de carência diz o mesmo pelo outro lado. Isso importa para o IVS-Idoso: se idade e vulnerabilidade andam em sentidos opostos, somá-las num índice só pode cancelar os efeitos."
+    },
+    "piramide": {
+      "titulo": "A estrutura etária muda de região para região",
+      "como_ler": "Barras: percentual da população total em cada faixa etária. Pontos: o mesmo percentual em cada região.",
+      "o_que_mostra": "70+: {pct_70_global} no total e {pct_70_max} no {reg_70_max}.",
+      "nota": "Os agregados por setor do Censo trazem as faixas etárias sem a separação por sexo, por isso a figura é uma pirâmide de um lado só. Pontos à direita da barra nas faixas mais velhas indicam regiões mais envelhecidas."
+    },
+    "dispersao_60": {
+      "titulo": "Pessoas 60+ e renda média: ρ = {rho_renda}",
+      "como_ler": "Cada hexágono reúne setores com valores parecidos; quanto mais escuro, mais setores. Eixo horizontal: renda média em escala logarítmica; vertical: proporção de pessoas de 60 anos ou mais.",
+      "o_que_mostra": "A correlação de Spearman entre as duas é {rho_renda}.",
+      "nota": "Com mais de cem mil setores, um gráfico de pontos vira uma mancha. O gráfico de hexágonos conta quantos setores caem em cada célula. A escala logarítmica da renda espalha os setores de renda baixa, que de outro modo ficariam espremidos à esquerda."
+    },
+    "adequacao": {
+      "titulo": "KMO de {kmo}: os componentes se prestam à análise fatorial",
+      "como_ler": "As medidas de adequação da matriz de correlação dos componentes do índice, na amostra do índice.",
+      "o_que_mostra": "KMO {kmo}, com {n} setores; Kaiser retém {kaiser} fatores e Horn, {horn}; {k_fatores} fatores explicam {var_k}% da variância.",
+      "nota": "O KMO (Kaiser-Meyer-Olkin) compara as correlações entre as variáveis com as correlações parciais: perto de 1, as variáveis compartilham muita informação e a fatorial faz sentido; o critério do projeto é pelo menos 0,70. O teste de Bartlett verifica se a matriz de correlação é diferente da identidade (variáveis sem relação); com tantos setores, ele sempre rejeita. O critério de Kaiser retém fatores com autovalor acima de 1; a análise paralela de Horn, mais conservadora, retém os fatores cujo autovalor supera o que dados aleatórios do mesmo tamanho produziriam. A correlação usada é a de Spearman, como no NB04."
+    },
+    "variaveis": {
+      "titulo": "{var_msa_min} tem a menor adequação individual (MSA {msa_min})",
+      "como_ler": "Uma linha por componente: MSA, comunalidades e as cargas em cada fator, sem rotação, na Varimax e na promax (padrão e estrutura).",
+      "o_que_mostra": "Menor MSA: {var_msa_min} ({msa_min}). Menor comunalidade (promax): {var_h2_min} ({h2_min}).",
+      "nota": "O MSA é o KMO de cada variável: abaixo de 0,50, a variável compartilha pouco com as outras. A comunalidade é a parte da variância da variável explicada pelos fatores retidos (critério do projeto: pelo menos 0,30). A carga é a correlação da variável com o fator (critério: pelo menos 0,40 no fator principal). A rotação gira os fatores para que cada variável carregue forte em um só: a Varimax mantém os fatores independentes; a promax permite que eles se correlacionem. Na promax, a matriz padrão dá o efeito próprio de cada fator e a matriz estrutura, a correlação simples."
+    },
+    "autovalores": {
+      "titulo": "O segundo autovalor ({autov2}) fica acima da linha de Horn ({horn2})",
+      "como_ler": "Um componente por linha: autovalor, valor de referência da análise paralela de Horn e variância explicada, simples e acumulada.",
+      "o_que_mostra": "Primeiro autovalor {autov1}, segundo {autov2} (Horn: {horn2}); os dois primeiros explicam {pct_acum2}% da variância.",
+      "nota": "O autovalor mede quanta variância um componente resume, em unidades de variável: autovalor 2 equivale a duas variáveis inteiras. A análise paralela de Horn gera dados aleatórios com o mesmo número de setores e variáveis e calcula os autovalores que surgiriam só por acaso; um componente merece ser retido quando o seu autovalor supera esse valor."
+    },
+    "phi": {
+      "titulo": "Os dois fatores da promax se correlacionam em {phi}",
+      "como_ler": "Matriz Φ: a correlação entre os fatores depois da rotação promax.",
+      "o_que_mostra": "A correlação entre F1 e F2 é {phi}.",
+      "nota": "Na rotação oblíqua (promax), os fatores podem se correlacionar. Uma correlação alta entre a dimensão socioeconômica e a de saneamento indica que as carências tendem a ocorrer juntas no mesmo setor. É por isso que, na promax, se usa a matriz padrão para distribuir pesos: ela separa o efeito próprio de cada fator."
+    },
+    "sedimentacao": {
+      "titulo": "Gráfico de sedimentação: dois componentes acima do acaso",
+      "como_ler": "Linha cheia: autovalores em ordem decrescente. Tracejada: o que dados aleatórios produziriam (Horn). Pontilhada: o critério de Kaiser (autovalor 1).",
+      "o_que_mostra": "O segundo autovalor é {autov2}, contra {horn2} da linha de Horn.",
+      "nota": "O nome vem da imagem de uma encosta: os primeiros componentes formam o paredão e os demais, o entulho no pé. Os componentes que ficam acima da linha tracejada trazem estrutura real; os que ficam abaixo, ruído."
+    },
+    "cargas": {
+      "titulo": "{var_f1} define F1 e {var_f2} define F2",
+      "como_ler": "Cada seta é um componente; a ponta fica nas cargas padrão da promax em F1 (horizontal) e F2 (vertical). O círculo marca carga 1.",
+      "o_que_mostra": "Maior carga em F1: {var_f1} ({carga_f1}); em F2: {var_f2} ({carga_f2}).",
+      "nota": "O mapa de cargas mostra a que fator cada variável pertence. Setas ao longo do eixo horizontal pertencem a F1; ao longo do vertical, a F2; setas na diagonal dividem-se entre os dois. Setas curtas indicam variáveis mal explicadas pelos dois fatores (comunalidade baixa)."
+    },
+    "pesos": {
+      "titulo": "{var_max} tem o maior peso no índice ({peso_max}%)",
+      "como_ler": "Uma linha por componente: a dimensão em que ele carrega mais, a carga, o peso da dimensão e o peso final no índice (em %).",
+      "o_que_mostra": "O maior peso é o de {var_max} ({peso_max}%); a dimensão {dim_principal} pesa {peso_socio}%.",
+      "nota": "Os pesos seguem a receita do NB04: cada variável vai para a dimensão em que tem a maior carga; o peso da dimensão é repartido entre as variáveis dela em proporção ao quadrado da carga. O peso das dimensões depende do método da versão; na referência é a regra do IVS-BH de 2012 (60% socioeconômica, 40% saneamento)."
+    },
+    "indice_desc": {
+      "titulo": "O índice tem mediana {mediana} e P90 {p90}, em {n} setores",
+      "como_ler": "Descritivas do índice para o total e por região. Como o índice é normalizado dentro de cada município, todo município tem mínimo 0 e máximo 1.",
+      "o_que_mostra": "{n} setores; mediana {mediana}; percentil 90 {p90}.",
+      "nota": "O índice vai de 0 (o setor menos vulnerável do município) a 1 (o mais vulnerável). Comparar o nível do índice entre municípios não faz sentido nesta normalização; o que se compara é a posição relativa de cada setor dentro da sua cidade."
+    },
+    "faixas": {
+      "titulo": "Pela regra do IVS-BH, {pct_muito_bh} dos setores ficam em vulnerabilidade muito elevada",
+      "como_ler": "Quantos setores ficam em cada faixa, pelas duas regras: a do IVS-BH (média e desvio-padrão do município) e a dos quartis do município.",
+      "o_que_mostra": "IVS-BH: {pct_baixo_bh} baixo e {pct_muito_bh} muito elevado. Quartis: {pct_muito_q} muito elevado.",
+      "nota": "A regra do IVS-BH de 2012 classifica pelo afastamento da média do município em desvios-padrão: abaixo de −0,5 DP é baixo; até +0,5 DP, médio; até +1,5 DP, elevado; acima, muito elevado. Como a distribuição é assimétrica, as faixas não têm o mesmo tamanho. A regra dos quartis divide cada município em quatro partes iguais, por construção com 25% cada."
+    },
+    "auc_elegib": {
+      "titulo": "AUC municipal de {auc_mun}: o índice separa as favelas — versão {elegivel}",
+      "como_ler": "AUC global e municipal, peso da dimensão socioeconômica e os critérios de elegibilidade do NB05, um por linha (1 = atende).",
+      "o_que_mostra": "AUC global {auc_global}; mediana da AUC municipal {auc_mun}, em {n_mun} municípios. Pelos critérios do NB05, a versão é {elegivel}.",
+      "nota": "A AUC global junta todos os setores; a municipal calcula a AUC dentro de cada município e toma a mediana, só nos municípios com pelo menos 30 setores de FCU e 30 fora. A municipal é a leitura adequada para um índice normalizado no município. Os critérios de elegibilidade foram fixados antes de rodar a grade do NB05: KMO de pelo menos 0,70, MSA de pelo menos 0,50, comunalidade de pelo menos 0,30 e carga de pelo menos 0,40 em todas as variáveis. A elegibilidade é descritiva: não escolhe a versão."
+    },
+    "auc_municipio": {
+      "titulo": "A AUC vai de {auc_min} ({mun_min}) a {auc_max} ({mun_max}) entre os municípios",
+      "como_ler": "Uma linha por município: AUC, setores de FCU (n1) e fora (n0) e se o município entra na mediana.",
+      "o_que_mostra": "Entre os municípios que entram na mediana, a maior AUC é a de {mun_max} ({auc_max}) e a menor, a de {mun_min} ({auc_min}).",
+      "nota": "Municípios com poucos setores de favela têm AUC instável: um ou dois setores mudam muito o resultado. Por isso a mediana só usa os municípios com pelo menos 30 setores em cada grupo; os demais ficam na tabela, marcados."
+    },
+    "hist_faixa": {
+      "titulo": "A distribuição do índice e as faixas do IVS-BH",
+      "como_ler": "Histograma do índice, com cada barra dividida pela faixa dos setores (regra do IVS-BH).",
+      "o_que_mostra": "{pct_baixo_bh} dos setores ficam em baixo e {pct_muito_bh} em muito elevado.",
+      "nota": "Como as faixas são definidas dentro de cada município, um mesmo valor do índice pode cair em faixas diferentes em cidades diferentes: por isso as cores se sobrepõem nas fronteiras."
+    },
+    "roc": {
+      "titulo": "Curva ROC do índice contra as favelas (AUC global {auc_global})",
+      "como_ler": "Cada ponto da curva é um corte do índice: no eixo vertical, a proporção de setores de FCU acima do corte; no horizontal, a dos setores de fora. A diagonal é o acaso.",
+      "o_que_mostra": "Área sob a curva: {auc_global} (global); a mediana municipal é {auc_mun}.",
+      "nota": "Quanto mais a curva se aproxima do canto superior esquerdo, melhor o índice separa os dois grupos. A área sob a curva é a AUC. Esta curva usa todos os setores juntos; como o índice é normalizado no município, a AUC municipal é a medida principal."
+    },
+    "risco_municipio": {
+      "titulo": "{mun_max} tem a maior parte dos moradores em vulnerabilidade elevada ou muito elevada ({pct_max})",
+      "como_ler": "Uma linha por município: setores, moradores e moradores de 60+ em cada faixa (regra do IVS-BH) e o percentual de moradores nas duas faixas mais altas.",
+      "o_que_mostra": "Maior percentual em elevado ou muito elevado: {mun_max} ({pct_max}); menor: {mun_min} ({pct_min}).",
+      "nota": "As faixas são relativas ao município: todo município tem setores nas faixas altas, por construção. O que muda de um para outro é quanta gente mora nesses setores, porque os setores têm populações diferentes."
+    },
+    "risco_total": {
+      "titulo": "{pessoas_muito} pessoas vivem em setores de vulnerabilidade muito elevada",
+      "como_ler": "Uma linha por faixa: setores, moradores e moradores de 60+, com os percentuais.",
+      "o_que_mostra": "Na faixa muito elevada: {pessoas_muito} pessoas ({pct_muito} do total), das quais {p60_muito} com 60 anos ou mais.",
+      "nota": "A contagem de pessoas usa o total de moradores do setor (v0001) e a soma das faixas de 60 a 69 e de 70 anos ou mais. Só entram os setores da amostra do índice."
+    },
+    "risco_barras": {
+      "titulo": "A parcela de moradores em cada faixa muda de município para município",
+      "como_ler": "Uma barra por município, dividida pelas faixas do índice; o comprimento de cada parte é o percentual de moradores. Ordem: do maior para o menor percentual nas duas faixas mais altas.",
+      "o_que_mostra": "No topo, {mun_max} ({pct_max} em elevado ou muito elevado); na base, {mun_min} ({pct_min}).",
+      "nota": "O gráfico mostra a tabela por município em forma de barras empilhadas. Um município em que as faixas altas ocupam muito da barra concentra população nos setores mais vulneráveis da cidade."
+    },
+    "desigualdade_tab": {
+      "titulo": "{mun_gini_max} tem a maior desigualdade interna do índice (Gini {gini_max})",
+      "como_ler": "Uma linha por município: setores, média, percentis 10 e 90 do índice, a razão P90/P10, o Gini e o Theil.",
+      "o_que_mostra": "Maior Gini: {mun_gini_max} ({gini_max}); menor: {mun_gini_min} ({gini_min}).",
+      "nota": "O Gini vai de 0 (todos os setores com o mesmo valor) a 1 (toda a soma concentrada num setor). O Theil também mede concentração, mas é mais sensível à cauda alta. A razão P90/P10 compara o setor no percentil 90 com o do percentil 10; como o índice começa em 0 em todo município, o P10 pode ser muito pequeno e a razão explodir, por isso ela fica vazia quando o P10 é zero."
+    },
+    "desigualdade_fig": {
+      "titulo": "A desigualdade interna do índice, município por município",
+      "como_ler": "Barras: Gini do índice dentro de cada município, do maior para o menor. Pontos: Theil.",
+      "o_que_mostra": "Do maior Gini, {mun_gini_max} ({gini_max}), ao menor, {mun_gini_min} ({gini_min}).",
+      "nota": "Quando Gini e Theil apontam em sentidos diferentes para um município, a desigualdade dele está mais na cauda (poucos setores muito acima dos demais) do que no meio da distribuição."
+    },
+    "comp_spearman": {
+      "titulo": "A correlação de postos com a referência é {rho_global}",
+      "como_ler": "Correlação de Spearman entre o índice desta versão e o da referência, nos setores que estão nas duas amostras: total e por município.",
+      "o_que_mostra": "Total: ρ = {rho_global}. Menor correlação municipal: {mun_rho_min} ({rho_min}).",
+      "nota": "Uma correlação de postos perto de 1 indica que a versão ordena os setores quase como a referência, ainda que os valores mudem. Na própria referência, o valor é 1 por construção."
+    },
+    "comp_matriz_tab": {
+      "titulo": "A maior troca de faixa é de {de} para {para} ({setores} setores)",
+      "como_ler": "Cada linha é um par (faixa na referência, faixa nesta versão), com o número de setores e o percentual do total.",
+      "o_que_mostra": "Fora da diagonal, a maior célula é de {de} para {para}, com {setores} setores.",
+      "nota": "A diagonal (mesma faixa nas duas) mostra a concordância. Trocas entre faixas vizinhas são esperadas quando os pesos mudam um pouco; trocas de duas faixas ou mais indicam que a versão muda de fato a classificação do setor."
+    },
+    "comp_matriz_fig": {
+      "titulo": "Matriz de faixas: referência × esta versão",
+      "como_ler": "Linhas: faixa na referência; colunas: faixa nesta versão; cada célula traz o número de setores.",
+      "o_que_mostra": "A maior troca fora da diagonal é de {de} para {para} ({setores} setores).",
+      "nota": "Uma matriz com quase tudo na diagonal indica que a mudança da versão não altera a classificação; células fora da diagonal mostram para onde os setores se movem."
+    },
+    "comp_municipios_tab": {
+      "titulo": "{pct_global} dos setores mudam de faixa em relação à referência",
+      "como_ler": "A primeira linha é o total; as demais, os municípios, do mais afetado para o menos: setores comuns, setores que mudam de faixa e o percentual.",
+      "o_que_mostra": "No total, {pct_global} dos setores mudam de faixa; o município mais afetado é {mun_max} ({pct_max}).",
+      "nota": "A faixa usada é a da regra do IVS-BH. Municípios pequenos tendem a aparecer no topo, porque poucas trocas pesam muito em poucos setores."
+    },
+    "comp_municipios_fig": {
+      "titulo": "Os municípios mais afetados pela mudança da versão",
+      "como_ler": "Os 20 municípios com o maior percentual de setores que mudam de faixa.",
+      "o_que_mostra": "O mais afetado é {mun_max} ({pct_max}); no total, {pct_global}.",
+      "nota": "O gráfico destaca onde a escolha desta versão faz mais diferença. Na própria referência, todas as barras são zero."
+    },
+    "sensibilidade": {
+      "titulo": "Com {rotulo_alt}, o índice fica com {n_alt} setores e ρ = {rho} com o valor-padrão",
+      "como_ler": "Uma linha por valor do parâmetro exploratório: setores no recorte e no índice, KMO, AUC global e municipal, elegibilidade (1 = elegível), correlação de postos com o índice do valor-padrão e % de setores que mudam de faixa.",
+      "o_que_mostra": "Com {rotulo_alt}: {n_alt} setores no índice (contra {n_padrao}), AUC municipal {auc_alt}, ρ = {rho} com o valor-padrão e {pct_mudam} dos setores comuns mudando de faixa.",
+      "nota": "Quando ninguém fixou um parâmetro, a versão roda com um valor-padrão e esta tabela mostra o que muda com o valor alternativo. Correlação de postos perto de 1 e poucas trocas de faixa indicam que a escolha do parâmetro pesa pouco; o contrário indica que ela precisa ser decidida. Nenhum dos valores é decisão: é parâmetro exploratório."
+    },
+    "brasil_x_70": {
+      "titulo": "{ind} é o indicador que mais difere entre o recorte da versão e os 70 municípios",
+      "como_ler": "Uma linha por indicador: n, média e mediana no recorte da versão e nos setores dele que pertencem ao recorte dos 70 municípios do ELSI.",
+      "o_que_mostra": "São {n_versao} setores na versão e {n_70} nos 70 municípios. A maior diferença relativa de média é a de {ind}: {media_versao} na versão e {media_70} nos 70 municípios.",
+      "nota": "A tabela põe lado a lado o conjunto amplo e a amostra do ELSI. Se os 70 municípios fossem um retrato do país, as médias seriam parecidas. Como a amostra é urbana e concentrada em municípios grandes, espera-se que indicadores de saneamento e de renda se afastem do conjunto do país. A diferença relativa é a diferença das médias dividida pela média da versão."
+    },
+    "faixas_alt_tab": {
+      "titulo": "As regras de faixa repartem os setores de jeitos diferentes",
+      "como_ler": "Uma linha por regra e classe (1 = menos vulnerável): setores e percentual. Quartis e quintis repartem por igual; as demais regras, não.",
+      "o_que_mostra": "A regra que menos concorda com a do IVS-BH é “{regra_min}” (ρ = {rho_min} entre as classes).",
+      "nota": "Todas as regras classificam o mesmo índice. A do IVS-BH usa média e desvio-padrão do município; quartis e quintis dividem o município em partes iguais; as quebras naturais procuram, dentro de cada município, os cortes que deixam as classes mais homogêneas (aqui, k-médias numa dimensão com 4 classes); o agrupamento junta setores com perfil parecido nos componentes normalizados, sem olhar o valor do índice, e as classes são ordenadas depois pela média do índice. O número de grupos do agrupamento é parâmetro exploratório (silhueta entre 3 e 6, e sempre 4)."
+    },
+    "faixas_concordancia": {
+      "titulo": "“{regra_min}” é a regra que mais se afasta da do IVS-BH (ρ = {rho_min})",
+      "como_ler": "Uma linha por regra: número de classes, correlação de postos entre a classe da regra e a faixa do IVS-BH e, nas regras de 4 classes, o percentual de setores na mesma classe.",
+      "o_que_mostra": "A menor correlação com a faixa do IVS-BH é a de “{regra_min}” ({rho_min}).",
+      "nota": "A correlação de postos entre classes mede se as duas regras ordenam os setores do mesmo jeito, mesmo com números de classes diferentes. A concordância exata só faz sentido entre regras com o mesmo número de classes."
+    },
+    "silhueta": {
+      "titulo": "A silhueta indica {k} grupos para o agrupamento dos setores",
+      "como_ler": "Uma linha por número de grupos (k), com a silhueta média numa amostra de 5 mil setores.",
+      "o_que_mostra": "A maior silhueta é a de k = {k} ({sil}).",
+      "nota": "A silhueta compara, para cada setor, a distância média aos setores do próprio grupo com a distância média ao grupo vizinho mais próximo: vai de −1 a 1, e valores maiores indicam grupos mais bem separados. Ela é calculada numa amostra fixa (semente 42), porque a conta completa cresce com o quadrado do número de setores."
+    },
+    "faixas_alt_fig": {
+      "titulo": "Como cada regra reparte os setores entre as classes",
+      "como_ler": "Uma barra por regra, dividida pelas classes (da mais clara, menos vulnerável, à mais escura); o comprimento de cada parte é o percentual de setores.",
+      "o_que_mostra": "A regra que menos concorda com a do IVS-BH é “{regra_min}” (ρ = {rho_min}).",
+      "nota": "Regras de partes iguais (quartis, quintis) produzem barras com divisões regulares; a regra do IVS-BH e as quebras naturais deixam a classe mais alta pequena, porque o índice tem cauda à direita."
+    },
+    "e1_versoes": {
+      "titulo": "Entre as versões elegíveis, os setores em risco elevado vão de {pct_alto_min} a {pct_alto_max}",
+      "como_ler": "Uma linha por versão elegível usada: setores em comum com a referência e o percentual deles em risco elevado ou muito elevado.",
+      "o_que_mostra": "O percentual de setores em risco elevado vai de {pct_alto_min} a {pct_alto_max} entre as versões elegíveis usadas.",
+      "nota": "Entram as versões elegíveis pelos critérios do NB05, com o índice por setor. Versões cujo índice é idêntico ao da referência (como a das regras de faixa) não entram, para não contar a referência duas vezes. As versões por estrato entram para os setores que cobrem."
+    },
+    "e1_situacao": {
+      "titulo": "{pct_as_vezes} dos setores mudam de situação conforme a versão",
+      "como_ler": "Os setores da referência em três situações: nunca, às vezes ou sempre em risco elevado nas versões elegíveis em que aparecem.",
+      "o_que_mostra": "Nunca em risco elevado: {pct_nunca}; às vezes: {pct_as_vezes}; sempre: {pct_sempre}.",
+      "nota": "Os setores \"às vezes\" são os de classificação incerta: estão em risco elevado em algumas formas defensáveis de construir o índice e não em outras. Para a política pública, os \"sempre\" são o núcleo robusto da vulnerabilidade."
+    },
+    "e1_municipios": {
+      "titulo": "Em {mun_max}, {pct_max} dos setores têm classificação incerta",
+      "como_ler": "Uma linha por município: percentual de setores nunca, às vezes e sempre em risco elevado.",
+      "o_que_mostra": "Maior incerteza: {mun_max} ({pct_max}); menor: {mun_min} ({pct_min}). Destaques entre os municípios com pelo menos 30 setores.",
+      "nota": "Municípios com muita incerteza são aqueles em que a classificação depende mais das escolhas de método; neles, a faixa de um setor deve ser lida com cautela."
+    },
+    "e1_hist": {
+      "titulo": "A maior parte dos setores tem classificação estável",
+      "como_ler": "Histograma da fração das versões elegíveis em que cada setor fica em risco elevado: 0 = nunca, 1 = sempre.",
+      "o_que_mostra": "Nunca: {pct_nunca}; às vezes: {pct_as_vezes}; sempre: {pct_sempre}.",
+      "nota": "As barras nas pontas são os setores de classificação estável; o meio do histograma é a incerteza."
+    },
+    "e1_mun_fig": {
+      "titulo": "Os municípios com mais setores de classificação incerta",
+      "como_ler": "Os 25 municípios (com pelo menos 30 setores) com maior percentual de setores ora em risco elevado, ora não.",
+      "o_que_mostra": "No topo, {mun_max} ({pct_max}). Destaques entre os municípios com pelo menos 30 setores.",
+      "nota": "A figura destaca onde a escolha de método mais pesa na classificação."
+    },
+    "e2_loo": {
+      "titulo": "Tirar {mun_min} da estimação é o que mais mexe no índice (ρ = {rho_min})",
+      "como_ler": "Uma linha por município excluído da estimação dos pesos: KMO, correlação de postos com a referência, % de setores que mudam de faixa e os pesos resultantes.",
+      "o_que_mostra": "O menor ρ é ao tirar {mun_min} ({rho_min}); no máximo, {pct_max} dos setores mudam de faixa.",
+      "nota": "Se tirar um município só mudasse muito os pesos, o índice dependeria daquela cidade. Os setores do município excluído continuam recebendo índice, com os pesos estimados sem eles."
+    },
+    "e2_pesos": {
+      "titulo": "O peso de {comp} é o que mais varia na reamostragem ({p2_5}% a {p97_5}%)",
+      "como_ler": "Uma linha por componente: peso na referência e os percentis 2,5, 50 e 97,5 do peso nas reamostragens.",
+      "o_que_mostra": "O intervalo mais largo é o de {comp}: de {p2_5}% a {p97_5}%.",
+      "nota": "A reamostragem sorteia setores com reposição, refaz a fatorial e recalcula os pesos. O intervalo entre os percentis 2,5 e 97,5 contém 95% dos pesos obtidos: é uma medida de quanto o peso varia só pelo acaso da amostra."
+    },
+    "e2_medidas": {
+      "titulo": "Nas reamostragens, a AUC municipal fica entre {auc_p2_5} e {auc_p97_5}",
+      "como_ler": "KMO, correlação de postos com a referência e AUC municipal: valor na referência e percentis nas reamostragens.",
+      "o_que_mostra": "{n_boot} reamostragens; ρ com a referência acima de {rho_p2_5} em 97,5% delas; AUC municipal entre {auc_p2_5} e {auc_p97_5}.",
+      "nota": "Medidas estáveis nas reamostragens indicam que o índice não depende de quais setores entraram na amostra."
+    },
+    "e2_loo_fig": {
+      "titulo": "Quanto o índice muda quando cada município sai da estimação",
+      "como_ler": "Uma barra por município excluído, com o percentual de setores que mudam de faixa.",
+      "o_que_mostra": "No máximo, {pct_max} dos setores mudam de faixa; o maior efeito é ao tirar {mun_min}.",
+      "nota": "Barras curtas em todos os municípios indicam que nenhuma cidade sozinha define os pesos."
+    },
+    "e2_pesos_fig": {
+      "titulo": "Os pesos variam pouco nas reamostragens",
+      "como_ler": "Uma caixa por componente com os pesos das reamostragens; o ponto é o peso na referência.",
+      "o_que_mostra": "O intervalo mais largo é o de {comp}: de {p2_5}% a {p97_5}%.",
+      "nota": "A caixa vai do 1º ao 3º quartil dos pesos reamostrados; caixas estreitas indicam pesos estáveis."
+    },
+    "e3_versoes": {
+      "titulo": "A ordem dos municípios pela desigualdade interna se mantém entre versões",
+      "como_ler": "Uma linha por versão: Gini mediano, mínimo e máximo entre os municípios e a correlação de postos do Gini municipal com o da referência.",
+      "o_que_mostra": "A menor correlação com a referência é a de {versao_min} ({rho_min}).",
+      "nota": "Se a correlação de postos do Gini com a referência é alta, os municípios mais desiguais continuam os mais desiguais em qualquer versão."
+    },
+    "e3_municipios": {
+      "titulo": "{mun} é o município cuja posição pela desigualdade mais varia ({posto_min}º a {posto_max}º)",
+      "como_ler": "Uma linha por município: Gini na referência, menor e maior Gini e menor e maior posição entre as versões (1 = mais desigual).",
+      "o_que_mostra": "A maior amplitude de posição é a de {mun}: do {posto_min}º ao {posto_max}º. Destaques entre os municípios com pelo menos 30 setores.",
+      "nota": "A posição é o lugar do município na ordem do Gini dentro de cada versão."
+    },
+    "e3_fig": {
+      "titulo": "O Gini de cada município entre as versões",
+      "como_ler": "Uma linha por município, do menor ao maior Gini entre as versões; o ponto é a referência.",
+      "o_que_mostra": "A posição de {mun} vai do {posto_min}º ao {posto_max}º. Destaques entre os municípios com pelo menos 30 setores.",
+      "nota": "Linhas curtas indicam desigualdade interna que não depende do método."
+    },
+    "e4_versoes": {
+      "titulo": "Entre as versões, a população em risco elevado vai de {pct_min} a {pct_max}",
+      "como_ler": "Uma linha por versão: setores, pessoas, pessoas e pessoas de 60+ em risco elevado ou muito elevado, e os percentuais.",
+      "o_que_mostra": "Na referência, {pct_ref} dos moradores e {p60_ref} pessoas de 60+ estão em risco elevado; o mínimo é {pct_min} ({versao_min}) e o máximo {pct_max} ({versao_max}).",
+      "nota": "Como as faixas são relativas ao município, a população em risco muda pouco de nível entre versões; o que muda é quem está nela."
+    },
+    "e4_municipios": {
+      "titulo": "Em {mun}, a população em risco elevado vai de {pct_min} a {pct_max} conforme a versão",
+      "como_ler": "Uma linha por município: menor, maior e referência do percentual de moradores em risco elevado entre as versões elegíveis.",
+      "o_que_mostra": "A maior amplitude é a de {mun}: de {pct_min} a {pct_max}. Destaques entre os municípios com pelo menos 30 setores.",
+      "nota": "Municípios com grande amplitude são os que mais dependem da escolha de método para dizer quanta gente está em risco."
+    },
+    "e4_fig": {
+      "titulo": "A população em risco elevado em cada versão",
+      "como_ler": "Uma barra por versão com o percentual de moradores em risco elevado ou muito elevado; em argila, a referência.",
+      "o_que_mostra": "Referência: {pct_ref}; mínimo {pct_min}, máximo {pct_max}.",
+      "nota": "As barras mostram que as faixas relativas ao município estabilizam o total; diferenças grandes aparecem nas versões que mudam a forma da distribuição do índice."
+    },
+    "e5_correl": {
+      "titulo": "IVS e pessoas de 60+ andam em sentidos opostos (ρ = {rho_60})",
+      "como_ler": "Correlação de postos entre o IVS da referência e os indicadores de envelhecimento, no total e por região.",
+      "o_que_mostra": "Total: ρ = {rho_60} com a proporção de 60+ e {rho_iep} com o índice de envelhecimento.",
+      "nota": "Correlação negativa significa que os setores mais vulneráveis tendem a ser mais jovens. Isso não quer dizer que idosos vulneráveis sejam poucos: quer dizer que eles se espalham por setores de perfis diferentes."
+    },
+    "e5_faixas": {
+      "titulo": "A mediana de 60+ cai de {med_baixo} na faixa baixa para {med_muito} na muito elevada",
+      "como_ler": "Uma linha por faixa do IVS (regra do IVS-BH): setores, medianas dos indicadores de envelhecimento e total de pessoas de 60+.",
+      "o_que_mostra": "Mediana da proporção de 60+: {med_baixo} na faixa baixa e {med_muito} na muito elevada.",
+      "nota": "Mesmo com proporção menor, as faixas altas concentram muitos idosos em números absolutos, porque reúnem setores populosos; a coluna de pessoas de 60+ mostra isso."
+    },
+    "e5_municipios": {
+      "titulo": "A relação entre IVS e 60+ vai de {rho_min} ({mun_min}) a {rho_max} ({mun_max})",
+      "como_ler": "Uma linha por município: setores e correlação de postos entre o IVS e a proporção de 60+.",
+      "o_que_mostra": "Menor: {mun_min} ({rho_min}); maior: {mun_max} ({rho_max}). Destaques entre os municípios com pelo menos 30 setores.",
+      "nota": "A relação muda de cidade para cidade: onde ela é positiva, envelhecimento e vulnerabilidade se sobrepõem."
+    },
+    "e5_hex": {
+      "titulo": "IVS × proporção de 60+ (ρ = {rho_60})",
+      "como_ler": "Cada hexágono reúne setores com IVS e proporção de 60+ parecidos; quanto mais escuro, mais setores.",
+      "o_que_mostra": "ρ = {rho_60} no total.",
+      "nota": "O gráfico mostra a nuvem inteira: a correlação resume a tendência, mas há setores vulneráveis e envelhecidos ao mesmo tempo."
+    },
+    "e5_box": {
+      "titulo": "A proporção de 60+ em cada faixa do IVS",
+      "como_ler": "Uma caixa por faixa com a proporção de pessoas de 60+ nos setores.",
+      "o_que_mostra": "Mediana de {med_baixo} na faixa baixa e {med_muito} na muito elevada.",
+      "nota": "As caixas se sobrepõem: em todas as faixas há setores muito envelhecidos."
+    },
+    "e6_sil_setores": {
+      "titulo": "A silhueta indica {k} grupos de setores",
+      "como_ler": "Uma linha por número de grupos (k) com a silhueta média numa amostra de 5 mil setores.",
+      "o_que_mostra": "Maior silhueta: k = {k} ({sil}).",
+      "nota": "A silhueta vai de −1 a 1; valores perto de 0,3 indicam grupos com sobreposição, o que é comum em dados socioeconômicos."
+    },
+    "e6_perfis_setores": {
+      "titulo": "O grupo {grupo} concentra as favelas ({pct_fcu} dos setores em FCU)",
+      "como_ler": "Uma linha por grupo: setores, IVS médio, % em FCU e a média de cada componente normalizado (0 a 1 no município).",
+      "o_que_mostra": "Com k = 4, o grupo {grupo} tem {pct_fcu} dos setores em FCU e reúne {pct_setores} dos setores.",
+      "nota": "Os grupos são ordenados pelo IVS médio (1 = menor). O perfil mostra que tipo de carência cada grupo combina."
+    },
+    "e6_sil_mun": {
+      "titulo": "A silhueta indica {k} grupos de municípios",
+      "como_ler": "Uma linha por número de grupos (k) com a silhueta média dos 70 municípios.",
+      "o_que_mostra": "Maior silhueta: k = {k} ({sil}).",
+      "nota": "Com 70 municípios, a silhueta é calculada com todos."
+    },
+    "e6_municipios": {
+      "titulo": "Os municípios em {k} grupos de perfil",
+      "como_ler": "Uma linha por município: região e grupo (pelo k da silhueta e com k = 4).",
+      "o_que_mostra": "Agrupamento com k = {k}.",
+      "nota": "Os municípios são agrupados pelas medianas dos componentes, padronizadas entre os municípios."
+    },
+    "e6_perfis_mun": {
+      "titulo": "Os perfis dos {k} grupos de municípios",
+      "como_ler": "Uma linha por grupo: número de municípios e a mediana de cada componente (valores originais).",
+      "o_que_mostra": "k = {k}; o maior grupo tem {n_max} municípios.",
+      "nota": "O perfil mostra em que componentes cada grupo de municípios se destaca."
+    },
+    "e6_fig_setores": {
+      "titulo": "Os perfis dos 4 grupos de setores",
+      "como_ler": "Mapa de calor: linhas são grupos, colunas são componentes; a cor é a média normalizada (0 a 1).",
+      "o_que_mostra": "O grupo {grupo} tem {pct_fcu} dos setores em FCU.",
+      "nota": "Grupos com cores fortes em poucas colunas têm uma carência específica; grupos escuros em todas as colunas acumulam carências."
+    },
+    "e6_fig_mun": {
+      "titulo": "Os grupos de municípios por região",
+      "como_ler": "Uma barra por grupo, dividida pelas regiões dos municípios.",
+      "o_que_mostra": "Agrupamento com k = {k}.",
+      "nota": "Se os grupos coincidem com as regiões, o perfil de vulnerabilidade é sobretudo regional."
+    },
+    "sint_tabela": {
+      "titulo": "A versão que mais se afasta da referência é {versao_min} (ρ = {rho_min})",
+      "como_ler": "Uma linha por versão: setores no recorte e no índice, KMO, AUC global e municipal, elegibilidade (1 = elegível), ρ com a referência e % de setores que mudam de faixa.",
+      "o_que_mostra": "A menor correlação de postos com a referência é a de {versao_min} ({rho_min}).",
+      "nota": "As versões das análises transversais (E1 a E6) não entram, porque não constroem um índice. Versões sem bloco 13 não têm ρ nem trocas de faixa; versões sem bloco 9 não têm KMO."
+    },
+    "sint_eixos": {
+      "titulo": "{n_eleg} de {n_versoes} versões são elegíveis pelos critérios do NB05",
+      "como_ler": "Uma linha por eixo: número de versões, quantas são elegíveis, a menor e a maior AUC municipal e o maior % de setores que mudam de faixa; a última linha soma todas.",
+      "o_que_mostra": "{n_eleg} de {n_versoes} versões são elegíveis; a AUC municipal vai de {auc_min} a {auc_max}.",
+      "nota": "Os critérios de elegibilidade são os fixados no NB05 antes de rodar a grade: KMO de pelo menos 0,70, MSA de pelo menos 0,50, comunalidade de pelo menos 0,30 e carga de pelo menos 0,40."
+    },
+    "sint_disp": {
+      "titulo": "Proximidade da referência × capacidade de separar as favelas",
+      "como_ler": "Cada ponto é uma versão: no eixo horizontal, a correlação de postos com o índice da referência; no vertical, a AUC municipal contra as favelas. A linha pontilhada é a AUC da referência.",
+      "o_que_mostra": "A versão mais distante da referência é {versao_min} (ρ = {rho_min}).",
+      "nota": "Versões à direita ordenam os setores quase como a referência; versões acima da linha pontilhada separam melhor as favelas. As cores indicam a elegibilidade."
+    },
+    "sint_barras": {
+      "titulo": "Quanto cada versão muda as faixas em relação à referência",
+      "como_ler": "Uma barra por versão com o percentual de setores que mudam de faixa (regra do IVS-BH); petróleo: elegível; argila: não elegível.",
+      "o_que_mostra": "A maior mudança é a de {versao_max}: {pct_max} dos setores mudam de faixa.",
+      "nota": "As versões que mudam o recorte (eixo A) comparam só os setores em comum com a referência."
+    },
+    "mapa_spearman_foco": {
+      "titulo": "Entre as variáveis das demandas e os componentes do índice, o par mais forte é {par_a} × {par_b} (ρ = {rho})",
+      "como_ler": "Matriz de Spearman só com os componentes do índice (acima e à esquerda da linha) e as variáveis das demandas de setembro (abaixo e à direita). Cada célula traz o ρ; argila é positiva, petróleo negativa.",
+      "o_que_mostra": "Entre uma variável nova e um componente de outra família, o par mais forte é {par_a} × {par_b} (ρ = {rho}). Pares de variantes da mesma coisa (como banheiro graduado e sem banheiro) ficam de fora do destaque.",
+      "nota": "É a matriz no formato da que a orientadora enviou: o IVS e as variáveis novas lado a lado, com os valores escritos. A correlação de Spearman mede se dois indicadores ordenam os setores do mesmo jeito: 1 é a mesma ordem, −1 a ordem invertida, 0 nenhuma relação. A renda aparece como renda média (não invertida): por isso ela tem correlação negativa com as carências. Variáveis com muitos zeros (água não chega, sem banheiro, moradia não convencional) têm correlações achatadas, porque os empates em zero não têm ordem."
+    },
+    "mapa_spearman_dim": {
+      "titulo": "{dim}: o par mais correlacionado é {par_a} × {par_b} (ρ = {rho})",
+      "como_ler": "Matriz de Spearman só com os indicadores da dimensão {dim}; cada célula traz o ρ (−1 a 1). Argila é correlação positiva, petróleo negativa.",
+      "o_que_mostra": "Na dimensão {dim}, o par mais forte é {par_a} × {par_b} (ρ = {rho}).",
+      "nota": "A matriz completa tem 31 indicadores e, num slide, os valores ficam pequenos demais; por isso cada dimensão tem a sua. Pares com ρ perto de 1 são, quase sempre, variantes da mesma medida (as três rendas, as definições de banheiro): escolher uma delas é uma das decisões do índice. As correlações entre dimensões estão na matriz completa e na matriz dos componentes."
+    }
+  },
+  "dicionario_extra": {
+    "renda_media_sem_extremo": {
+      "o_que_mede": "Renda média dos responsáveis sem o valor extremo de Belo Horizonte (R$ 170.418,06), que vira faltante",
+      "numerador_curto": "V06004",
+      "denominador_curto": "—"
+    },
+    "renda_media_mediana_mun": {
+      "o_que_mede": "Renda média dos responsáveis com o valor extremo trocado pela mediana do município",
+      "numerador_curto": "V06004",
+      "denominador_curto": "—"
+    },
+    "banheiro_graduado": {
+      "o_que_mede": "Falta de banheiro graduada: 1 ponto para banheiro só de uso comum, 2 para só sanitário, 3 para nem banheiro nem sanitário, sobre 3 vezes os domicílios",
+      "numerador_curto": "V00236 + 2·V00237 + 3·V00238",
+      "denominador_curto": "3·V00001"
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "pergunta": "Como ficam os indicadores e o IVS nos setores urbanos de todo o Brasil, lado a lado com os 70 municípios?",
+  "o_que_muda": "A base: em vez dos 70 municípios do ELSI, todos os setores urbanos com Dados_sig = OK do Brasil, montados dos arquivos nacionais do Censo com as mesmas regras e as mesmas funções da base da entrega. A fatorial, os pesos e as faixas são calculados com o país inteiro; componentes, rotação, pesos 60/40 e normalização no município são os da referência. As tabelas por município dos blocos 2, 4 e 5 passam a ser por UF, e a tabela T35 põe o país e os 70 municípios lado a lado.",
+  "sintese": "Calculado com o país inteiro, o índice ordena os setores dos 70 municípios quase como a referência, e poucos mudam de faixa: a estrutura de dois fatores e os pesos não dependem da amostra do ELSI. A versão é elegível. A AUC global contra as favelas é menor que a da referência, porque mistura municípios em que as favelas pesam de modo muito diferente; a AUC municipal, que é a leitura adequada, fica mais alta. Na comparação lado a lado (T35), os setores dos 70 municípios têm mais renda, menos analfabetismo e menos falta de água, esgoto e banheiro do que os setores urbanos do país, mas mais apartamentos, mais habitação precária e mais lixo inadequado: o perfil de uma amostra concentrada em cidades grandes.",
+  "limitacoes": [
+    "A base nacional foi montada para esta versão (scripts/base_nacional_versoes.py) e não é versionada; nos 70 municípios ela reproduz a base da entrega.",
+    "Com milhares de municípios, as tabelas por município dos blocos 2, 4 e 5 viram tabelas por UF.",
+    "O bloco 8 (envelhecimento) e os blocos 10 a 12 não fazem parte desta versão; o índice entra só na adequação fatorial e na comparação com a referência.",
+    "Os nomes de município levam a sigla da UF, porque o nome sozinho se repete no país e o índice é normalizado por município.",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista)."
+  ]
+}

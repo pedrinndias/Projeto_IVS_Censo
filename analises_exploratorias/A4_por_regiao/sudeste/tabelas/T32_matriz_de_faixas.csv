@@ -1,0 +1,17 @@
+faixa_referencia,faixa_versao,setores,pct_do_total
+baixo,baixo,13056,28.788146057505735
+baixo,medio,192,0.42335508908096664
+baixo,elevado,0,0.0
+baixo,muito_elevado,0,0.0
+medio,baixo,234,0.5159640148174282
+medio,medio,17993,39.674104780384546
+medio,elevado,236,0.5203739636620215
+medio,muito_elevado,0,0.0
+elevado,baixo,0,0.0
+elevado,medio,352,0.7761509966484389
+elevado,elevado,10820,23.85782324925031
+elevado,muito_elevado,90,0.19844769800670312
+muito_elevado,baixo,0,0.0
+muito_elevado,medio,0,0.0
+muito_elevado,elevado,101,0.22270241665196683
+muito_elevado,muito_elevado,2278,5.022931733991886

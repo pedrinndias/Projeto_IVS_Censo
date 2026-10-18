@@ -1,0 +1,5 @@
+indicador,rotulo,n_fcu,n_nao_fcu,mediana_fcu,mediana_nao_fcu,diferenca,auc
+pct_sem_agua_canalizada,Sem água canalizada,19438,84629,0.003558718861209953,0.0,0.003558718861209953,0.6484402842297029
+pct_agua_so_terreno,Água só no terreno,15070,73141,0.0,0.0,0.0,0.5993046618095107
+pct_agua_inad,Água inadequada,19452,84656,0.0,0.0,0.0,0.5710764228268855
+pct_agua_nao_encanada,Água não chega,16179,78223,0.0,0.0,0.0,0.542442832891705

@@ -1,0 +1,72 @@
+{
+  "versao": "B4_esgoto",
+  "titulo": "As duas definições de esgoto",
+  "pergunta": "O que muda no índice se o esgoto for medido por V00249–V00253 em vez de V00312–V00316?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null
+  },
+  "indicadores": [
+    "pct_esgoto_inad",
+    "pct_esgoto_249"
+  ],
+  "indice": {
+    "colunas": [
+      "pct_agua_inad",
+      "pct_esgoto_249",
+      "razao_moradores",
+      "pct_analfab",
+      "renda_inv",
+      "pct_raca_pretpardind",
+      "banheiro_graduado"
+    ],
+    "renda": "original",
+    "rotacao": "promax",
+    "metodo": "60_40",
+    "normalizacao": "municipal"
+  },
+  "blocos": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    9,
+    10,
+    13
+  ],
+  "indicadores_externos": [
+    {
+      "nome": "pct_esgoto_249",
+      "rotulo": "Esgoto (V00249–V00253)",
+      "dimensao": "Saneamento",
+      "arquivo": "eda/diagnostico_esgoto_312_vs_249.csv",
+      "sep": ";",
+      "numerador": "soma_249_253",
+      "denominador": "V00001",
+      "o_que_mede": "Soma de V00249 a V00253 sobre os domicílios; pelo dicionário oficial do IBGE é tipologia de habitação, não esgoto",
+      "numerador_curto": "V00249 + … + V00253",
+      "denominador_curto": "V00001"
+    }
+  ],
+  "sensibilidade": [
+    {
+      "rotulo": "esgoto V00312–V00316 (referência)",
+      "indice": {
+        "colunas": [
+          "pct_agua_inad",
+          "pct_esgoto_inad",
+          "razao_moradores",
+          "pct_analfab",
+          "renda_inv",
+          "pct_raca_pretpardind",
+          "banheiro_graduado"
+        ]
+      }
+    }
+  ]
+}

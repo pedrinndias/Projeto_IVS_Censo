@@ -1,0 +1,179 @@
+indicador,rotulo,CD_SETOR,NM_MUN,valor,mediana_global
+pct_esgoto_inad,Esgoto inadequado,130030005000083,Autazes,1.0,0.01593625498007968
+pct_esgoto_inad,Esgoto inadequado,150565005000044,Placas,1.0,0.01593625498007968
+pct_esgoto_inad,Esgoto inadequado,150565005000045,Placas,1.0,0.01593625498007968
+pct_esgoto_inad,Esgoto inadequado,150580905000007,Portel,1.0,0.01593625498007968
+pct_esgoto_inad,Esgoto inadequado,150580905000010,Portel,1.0,0.01593625498007968
+pct_esgoto_inad,Esgoto inadequado,150580905000013,Portel,1.0,0.01593625498007968
+pct_esgoto_inad,Esgoto inadequado,150580905000086,Portel,1.0,0.01593625498007968
+pct_esgoto_inad,Esgoto inadequado,211163105000002,São Raimundo do Doca Bezerra,1.0,0.01593625498007968
+pct_esgoto_inad,Esgoto inadequado,230760105000072,Limoeiro do Norte,1.0,0.01593625498007968
+pct_esgoto_inad,Esgoto inadequado,230760105000108,Limoeiro do Norte,1.0,0.01593625498007968
+pct_lixo_inad,Lixo inadequado,150580905000077,Portel,1.0,0.0
+pct_lixo_inad,Lixo inadequado,355270005000048,Tabatinga,1.0,0.0
+pct_lixo_inad,Lixo inadequado,510300710000011,Chapada dos Guimarães,1.0,0.0
+pct_lixo_inad,Lixo inadequado,520860805000079,Goianésia,1.0,0.0
+pct_lixo_inad,Lixo inadequado,150580905000013,Portel,0.9973045822102425,0.0
+pct_lixo_inad,Lixo inadequado,150580905000007,Portel,0.996875,0.0
+pct_lixo_inad,Lixo inadequado,270470805000048,Marechal Deodoro,0.9873417721518988,0.0
+pct_lixo_inad,Lixo inadequado,150565005000015,Placas,0.9865771812080537,0.0
+pct_lixo_inad,Lixo inadequado,421780805000044,Taió,0.9845360824742269,0.0
+pct_lixo_inad,Lixo inadequado,311920305000011,Coroaci,0.9806763285024155,0.0
+pct_sem_agua_canalizada,Sem água canalizada,150580905000077,Portel,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,210960105000051,Rosário,0.7124183006535948,0.0
+pct_sem_agua_canalizada,Sem água canalizada,210960105000080,Rosário,0.673170731707317,0.0
+pct_sem_agua_canalizada,Sem água canalizada,250090805000001,Arara,0.6622807017543859,0.0
+pct_sem_agua_canalizada,Sem água canalizada,150580905000084,Portel,0.6134453781512605,0.0
+pct_sem_agua_canalizada,Sem água canalizada,130030005000083,Autazes,0.5714285714285714,0.0
+pct_sem_agua_canalizada,Sem água canalizada,150580905000085,Portel,0.5691489361702128,0.0
+pct_sem_agua_canalizada,Sem água canalizada,421780805000047,Taió,0.5,0.0
+pct_sem_agua_canalizada,Sem água canalizada,210960105000041,Rosário,0.4455445544554455,0.0
+pct_sem_agua_canalizada,Sem água canalizada,150565005000045,Placas,0.42105263157894735,0.0
+pct_agua_nao_encanada,Água não chega,150580905000077,Portel,1.0,0.0
+pct_agua_nao_encanada,Água não chega,210960105000051,Rosário,0.6601307189542484,0.0
+pct_agua_nao_encanada,Água não chega,311230705000080,Capelinha,0.6,0.0
+pct_agua_nao_encanada,Água não chega,210960105000080,Rosário,0.4926829268292683,0.0
+pct_agua_nao_encanada,Água não chega,150580905000084,Portel,0.40336134453781514,0.0
+pct_agua_nao_encanada,Água não chega,130030005000083,Autazes,0.35714285714285715,0.0
+pct_agua_nao_encanada,Água não chega,270470805000129,Marechal Deodoro,0.33090909090909093,0.0
+pct_agua_nao_encanada,Água não chega,210960105000030,Rosário,0.2846153846153846,0.0
+pct_agua_nao_encanada,Água não chega,250090805000009,Arara,0.25396825396825395,0.0
+pct_agua_nao_encanada,Água não chega,130030005000008,Autazes,0.24915824915824916,0.0
+pct_agua_so_terreno,Água só no terreno,250090805000001,Arara,0.5789473684210527,0.0
+pct_agua_so_terreno,Água só no terreno,421780805000047,Taió,0.5,0.0
+pct_agua_so_terreno,Água só no terreno,150565005000045,Placas,0.39473684210526316,0.0
+pct_agua_so_terreno,Água só no terreno,150580905000085,Portel,0.3617021276595745,0.0
+pct_agua_so_terreno,Água só no terreno,130030010000001,Autazes,0.3333333333333333,0.0
+pct_agua_so_terreno,Água só no terreno,210960105000057,Rosário,0.3233082706766917,0.0
+pct_agua_so_terreno,Água só no terreno,320245405000025,Ibatiba,0.30158730158730157,0.0
+pct_agua_so_terreno,Água só no terreno,210960105000041,Rosário,0.28217821782178215,0.0
+pct_sem_banheiro,Sem banheiro,150580905000077,Portel,0.875,0.0
+pct_sem_banheiro,Sem banheiro,210960105000080,Rosário,0.5560975609756098,0.0
+pct_sem_banheiro,Sem banheiro,150580905000085,Portel,0.5319148936170213,0.0
+pct_sem_banheiro,Sem banheiro,150565005000045,Placas,0.5263157894736842,0.0
+pct_sem_banheiro,Sem banheiro,150565005000053,Placas,0.46153846153846156,0.0
+pct_sem_banheiro,Sem banheiro,210960105000041,Rosário,0.4207920792079208,0.0
+pct_sem_banheiro,Sem banheiro,150580905000010,Portel,0.41358024691358025,0.0
+pct_sem_banheiro,Sem banheiro,130030005000083,Autazes,0.35714285714285715,0.0
+pct_sem_banheiro,Sem banheiro,210960105000015,Rosário,0.35400516795865633,0.0
+pct_sem_banheiro,Sem banheiro,210960105000051,Rosário,0.35294117647058826,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,150580905000010,Portel,0.06481481481481481,0.0
+pct_banheiro_comum,Banheiro de uso comum,150580905000077,Portel,0.875,0.0
+pct_banheiro_comum,Banheiro de uso comum,130030005000083,Autazes,0.21428571428571427,0.0
+banheiro_graduado,Banheiro graduado,150580905000085,Portel,0.3475177304964539,0.0
+razao_moradores,Razão de moradores,150580905000077,Portel,5.125,2.782258064516129
+razao_moradores,Razão de moradores,150580905000065,Portel,4.981132075471698,2.782258064516129
+razao_moradores,Razão de moradores,150580905000085,Portel,4.840425531914893,2.782258064516129
+razao_moradores,Razão de moradores,150580905000067,Portel,4.745247148288973,2.782258064516129
+razao_moradores,Razão de moradores,150580905000064,Portel,4.558766859344894,2.782258064516129
+razao_moradores,Razão de moradores,150580905000010,Portel,4.503086419753086,2.782258064516129
+razao_moradores,Razão de moradores,150580905000066,Portel,4.484513274336283,2.782258064516129
+razao_moradores,Razão de moradores,150580905000004,Portel,4.43006993006993,2.782258064516129
+razao_moradores,Razão de moradores,311920310000007,Coroaci,4.407407407407407,2.782258064516129
+razao_moradores,Razão de moradores,150580905000012,Portel,4.369791666666667,2.782258064516129
+renda_media,Renda média,411850105000244,Pato Branco,16576.46,2077.62
+renda_media,Renda média,130030005000058,Autazes,16414.4,2077.62
+renda_media,Renda média,270470805000087,Marechal Deodoro,14648.79,2077.62
+renda_media,Renda média,411850105000231,Pato Branco,12668.45,2077.62
+renda_media,Renda média,520860805000078,Goianésia,10668.62,2077.62
+renda_media,Renda média,510300705000050,Chapada dos Guimarães,10351.08,2077.62
+renda_media,Renda média,510300705000041,Chapada dos Guimarães,9816.91,2077.62
+renda_media,Renda média,311230705000063,Capelinha,9623.4,2077.62
+renda_media,Renda média,351750505000018,Guapiaçu,8300.35,2077.62
+renda_media,Renda média,520860805000018,Goianésia,8160.15,2077.62
+renda_media_sem_extremo,Renda sem o extremo,411850105000244,Pato Branco,16576.46,2077.62
+renda_media_sem_extremo,Renda sem o extremo,130030005000058,Autazes,16414.4,2077.62
+renda_media_sem_extremo,Renda sem o extremo,270470805000087,Marechal Deodoro,14648.79,2077.62
+renda_media_sem_extremo,Renda sem o extremo,411850105000231,Pato Branco,12668.45,2077.62
+renda_media_sem_extremo,Renda sem o extremo,411850105000027,Pato Branco,11387.07,2077.62
+renda_media_sem_extremo,Renda sem o extremo,520860805000078,Goianésia,10668.62,2077.62
+renda_media_sem_extremo,Renda sem o extremo,510300705000050,Chapada dos Guimarães,10351.08,2077.62
+renda_media_sem_extremo,Renda sem o extremo,510300705000041,Chapada dos Guimarães,9816.91,2077.62
+renda_media_sem_extremo,Renda sem o extremo,311230705000063,Capelinha,9623.4,2077.62
+renda_media_sem_extremo,Renda sem o extremo,411850105000243,Pato Branco,9182.62,2077.62
+renda_media_mediana_mun,Renda (mediana mun.),411850105000244,Pato Branco,16576.46,2077.62
+renda_media_mediana_mun,Renda (mediana mun.),130030005000058,Autazes,16414.4,2077.62
+renda_media_mediana_mun,Renda (mediana mun.),270470805000087,Marechal Deodoro,14648.79,2077.62
+renda_media_mediana_mun,Renda (mediana mun.),411850105000231,Pato Branco,12668.45,2077.62
+renda_media_mediana_mun,Renda (mediana mun.),411850105000027,Pato Branco,11387.07,2077.62
+renda_media_mediana_mun,Renda (mediana mun.),520860805000078,Goianésia,10668.62,2077.62
+renda_media_mediana_mun,Renda (mediana mun.),510300705000050,Chapada dos Guimarães,10351.08,2077.62
+renda_media_mediana_mun,Renda (mediana mun.),510300705000041,Chapada dos Guimarães,9816.91,2077.62
+renda_media_mediana_mun,Renda (mediana mun.),311230705000063,Capelinha,9623.4,2077.62
+renda_media_mediana_mun,Renda (mediana mun.),411850105000243,Pato Branco,9182.62,2077.62
+pct_moradia_convencional,Moradia convencional,411850105000219,Pato Branco,0.875,1.0
+pct_moradia_convencional,Moradia convencional,210960105000008,Rosário,0.8779661016949153,1.0
+pct_moradia_convencional,Moradia convencional,421780805000027,Taió,0.8823529411764706,1.0
+pct_moradia_convencional,Moradia convencional,130030005000006,Autazes,0.8918918918918919,1.0
+pct_moradia_convencional,Moradia convencional,230760105000142,Limoeiro do Norte,0.9090909090909091,1.0
+pct_moradia_convencional,Moradia convencional,230760105000072,Limoeiro do Norte,0.9166666666666666,1.0
+pct_moradia_convencional,Moradia convencional,130030005000050,Autazes,0.9333333333333333,1.0
+pct_moradia_convencional,Moradia convencional,520860805000063,Goianésia,0.9392712550607287,1.0
+pct_moradia_convencional,Moradia convencional,230760105000133,Limoeiro do Norte,0.9411764705882353,1.0
+pct_moradia_convencional,Moradia convencional,355270005000010,Tabatinga,0.9548022598870056,1.0
+pct_apartamento,Apartamento,411850105000004,Pato Branco,0.9934640522875817,0.0
+pct_apartamento,Apartamento,520860805000106,Goianésia,0.9919571045576407,0.0
+pct_apartamento,Apartamento,411850105000169,Pato Branco,0.9873737373737373,0.0
+pct_apartamento,Apartamento,411850105000168,Pato Branco,0.9703264094955489,0.0
+pct_apartamento,Apartamento,411850105000212,Pato Branco,0.9689922480620154,0.0
+pct_apartamento,Apartamento,411850105000214,Pato Branco,0.9612403100775194,0.0
+pct_apartamento,Apartamento,411850105000092,Pato Branco,0.9575163398692811,0.0
+pct_apartamento,Apartamento,411850105000213,Pato Branco,0.935251798561151,0.0
+pct_apartamento,Apartamento,411850105000211,Pato Branco,0.9016393442622951,0.0
+pct_apartamento,Apartamento,411850105000171,Pato Branco,0.9003436426116839,0.0
+pct_casa,Casa,291640105000084,Itapetinga,0.0,0.9863479638430714
+pct_casa,Casa,291640105000112,Itapetinga,0.0,0.9863479638430714
+pct_casa,Casa,291640105000113,Itapetinga,0.0,0.9863479638430714
+pct_casa,Casa,291640105000114,Itapetinga,0.0,0.9863479638430714
+pct_casa,Casa,291640105000097,Itapetinga,0.011904761904761904,0.9863479638430714
+pct_casa,Casa,411850105000169,Pato Branco,0.012626262626262626,0.9863479638430714
+pct_casa,Casa,291640105000111,Itapetinga,0.017857142857142856,0.9863479638430714
+pct_casa,Casa,411850105000168,Pato Branco,0.026706231454005934,0.9863479638430714
+pct_casa,Casa,291640105000098,Itapetinga,0.028846153846153848,0.9863479638430714
+pct_casa,Casa,411850105000212,Pato Branco,0.031007751937984496,0.9863479638430714
+pct_casa_vila_condominio,Casa de vila/condomínio,291640105000084,Itapetinga,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,291640105000112,Itapetinga,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,291640105000113,Itapetinga,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,291640105000083,Itapetinga,0.9927007299270073,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,291640105000097,Itapetinga,0.9880952380952381,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,291640105000114,Itapetinga,0.9850746268656716,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,291640105000111,Itapetinga,0.9821428571428571,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,291640105000098,Itapetinga,0.9711538461538461,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,291640105000085,Itapetinga,0.9481865284974094,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,291640105000082,Itapetinga,0.872093023255814,0.0
+pct_crianca_0a4,Crianças 0–4,150580905000077,Portel,0.21951219512195122,0.06365159128978225
+pct_crianca_0a4,Crianças 0–4,130030005000083,Autazes,0.19047619047619047,0.06365159128978225
+pct_crianca_0a4,Crianças 0–4,150580905000085,Portel,0.1824175824175824,0.06365159128978225
+pct_crianca_0a4,Crianças 0–4,421780805000052,Taió,0.18181818181818182,0.06365159128978225
+pct_pop_0a14,População 0–14,150580905000077,Portel,0.4878048780487805,0.19584569732937684
+pct_idoso_60mais,Pessoas 60+,421780805000038,Taió,0.6666666666666666,0.15236239411318145
+pct_idoso_60mais,Pessoas 60+,431930710000001,São Paulo das Missões,0.5111111111111111,0.15236239411318145
+iep_setor,Índice de envelhecimento,510300705000041,Chapada dos Guimarães,833.3333333333334,76.51006711409396
+iep_setor,Índice de envelhecimento,351750505000057,Guapiaçu,725.0,76.51006711409396
+iep_setor,Índice de envelhecimento,421780805000028,Taió,533.3333333333333,76.51006711409396
+iep_setor,Índice de envelhecimento,411850130000007,Pato Branco,500.0,76.51006711409396
+iep_setor,Índice de envelhecimento,352010305000002,Igarapava,493.93939393939394,76.51006711409396
+iep_setor,Índice de envelhecimento,311230730000001,Capelinha,437.5,76.51006711409396
+iep_setor,Índice de envelhecimento,411850105000215,Pato Branco,433.3333333333333,76.51006711409396
+iep_setor,Índice de envelhecimento,291640105000006,Itapetinga,427.906976744186,76.51006711409396
+iep_setor,Índice de envelhecimento,510300705000006,Chapada dos Guimarães,414.28571428571433,76.51006711409396
+iep_setor,Índice de envelhecimento,351750505000018,Guapiaçu,396.875,76.51006711409396
+rdi_setor,Dependência idosa,421780805000038,Taió,280.0,23.356009070294785
+rdi_setor,Dependência idosa,421780805000042,Taió,166.66666666666669,23.356009070294785
+rdi_setor,Dependência idosa,421780805000032,Taió,133.33333333333331,23.356009070294785
+rdi_setor,Dependência idosa,421780805000041,Taió,133.33333333333331,23.356009070294785
+rdi_setor,Dependência idosa,421780805000054,Taió,133.33333333333331,23.356009070294785
+rdi_setor,Dependência idosa,431930710000001,São Paulo das Missões,117.94871794871796,23.356009070294785
+rdi_setor,Dependência idosa,510300705000042,Chapada dos Guimarães,111.11111111111111,23.356009070294785
+rdi_setor,Dependência idosa,352010305000002,Igarapava,92.61363636363636,23.356009070294785
+rdi_setor,Dependência idosa,411850105000192,Pato Branco,87.5,23.356009070294785
+prop_70mais_entre_60mais,70+ entre 60+,230760105000122,Limoeiro do Norte,100.0,44.44444444444444
+prop_70mais_entre_60mais,70+ entre 60+,311230705000063,Capelinha,100.0,44.44444444444444
+prop_70mais_entre_60mais,70+ entre 60+,355270005000048,Tabatinga,100.0,44.44444444444444
+prop_70mais_entre_60mais,70+ entre 60+,411850105000063,Pato Branco,100.0,44.44444444444444
+prop_70mais_entre_60mais,70+ entre 60+,421780805000032,Taió,100.0,44.44444444444444
+prop_70mais_entre_60mais,70+ entre 60+,421780805000036,Taió,100.0,44.44444444444444
+prop_70mais_entre_60mais,70+ entre 60+,421780805000042,Taió,100.0,44.44444444444444
+prop_70mais_entre_60mais,70+ entre 60+,352010305000060,Igarapava,0.0,44.44444444444444
+prop_70mais_entre_60mais,70+ entre 60+,352010305000078,Igarapava,0.0,44.44444444444444
+prop_70mais_entre_60mais,70+ entre 60+,355270005000026,Tabatinga,0.0,44.44444444444444

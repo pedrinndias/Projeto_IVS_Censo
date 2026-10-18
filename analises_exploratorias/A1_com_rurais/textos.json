@@ -1,0 +1,10 @@
+{
+  "pergunta": "O que muda se os setores rurais com dados divulgados também entram?",
+  "o_que_muda": "Só o recorte: além dos setores urbanos, entram os setores rurais com Dados_sig = OK dos mesmos 70 municípios. Indicadores, componentes do índice, rotação, pesos e normalização são os da referência.",
+  "sintese": "Os setores rurais são poucos diante dos urbanos, e o índice quase não muda: a correlação de postos com a referência fica perto de 1 e poucos setores trocam de faixa. A AUC contra as favelas cai um pouco, o que é esperado, porque as favelas são urbanas e os setores rurais carentes passam a disputar as faixas altas com elas. Os municípios mais afetados são os pequenos, em que os rurais pesam mais no total.",
+  "limitacoes": [
+    "As favelas e comunidades urbanas só existem em área urbana: com rurais, a AUC compara favelas também com setores rurais, o que muda o sentido da medida.",
+    "Os indicadores de saneamento foram pensados para a cidade: poço ou fossa no campo não têm o mesmo significado de carência que na área urbana.",
+    "A amostra do índice continua excluindo todo setor com algum componente faltante (exclusão por lista)."
+  ]
+}

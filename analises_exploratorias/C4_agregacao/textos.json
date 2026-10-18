@@ -1,0 +1,10 @@
+{
+  "pergunta": "O que muda no índice com a média geométrica ponderada dos componentes, em vez da soma ponderada?",
+  "o_que_muda": "A agregação: média geométrica ponderada dos componentes normalizados no lugar da soma ponderada. Como o min-max põe zero no setor de menor valor do município, soma-se 0,01 a cada componente antes do produto (parâmetro exploratório). A soma ponderada da referência está na tabela T34.",
+  "sintese": "A média geométrica muda muito o índice: mais de um quarto dos setores troca de faixa e a AUC contra as favelas cai de forma visível. Ela pune setores com algum componente perto de zero, e como a maior parte dos setores tem zero em vários indicadores de saneamento, o índice passa a depender sobretudo de quais componentes são zero, não de quão alta é a carência nos outros.",
+  "limitacoes": [
+    "O resultado depende do deslocamento somado aos zeros (0,01), que é parâmetro exploratório — não é decisão.",
+    "Com muitos zeros nos componentes, a média geométrica é pouco indicada; a versão documenta o efeito.",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista)."
+  ]
+}

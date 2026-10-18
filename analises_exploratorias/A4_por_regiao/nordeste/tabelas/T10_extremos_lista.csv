@@ -1,0 +1,251 @@
+indicador,rotulo,CD_SETOR,NM_MUN,valor,mediana_global
+pct_agua_inad,Água inadequada,211120105000200,São José de Ribamar,1.0,0.007772020725388601
+pct_agua_inad,Água inadequada,211130005000510,São Luís,1.0,0.007772020725388601
+pct_agua_inad,Água inadequada,211130005000873,São Luís,1.0,0.007772020725388601
+pct_agua_inad,Água inadequada,211130005000979,São Luís,1.0,0.007772020725388601
+pct_agua_inad,Água inadequada,211130005001019,São Luís,1.0,0.007772020725388601
+pct_agua_inad,Água inadequada,211130005001105,São Luís,1.0,0.007772020725388601
+pct_agua_inad,Água inadequada,211130005001435,São Luís,1.0,0.007772020725388601
+pct_agua_inad,Água inadequada,211130005001557,São Luís,1.0,0.007772020725388601
+pct_agua_inad,Água inadequada,211130005001560,São Luís,1.0,0.007772020725388601
+pct_agua_inad,Água inadequada,211130005001662,São Luís,1.0,0.007772020725388601
+pct_sem_agua_canalizada,Sem água canalizada,292740805260240,Salvador,1.0,0.0032051282051281937
+pct_sem_agua_canalizada,Sem água canalizada,292740805220800,Salvador,0.972027972027972,0.0032051282051281937
+pct_sem_agua_canalizada,Sem água canalizada,292740805230102,Salvador,0.953125,0.0032051282051281937
+pct_sem_agua_canalizada,Sem água canalizada,261160605180103,Recife,0.9411764705882353,0.0032051282051281937
+pct_sem_agua_canalizada,Sem água canalizada,270430205090004,Maceió,0.9390243902439024,0.0032051282051281937
+pct_sem_agua_canalizada,Sem água canalizada,261160605180151,Recife,0.9230769230769231,0.0032051282051281937
+pct_sem_agua_canalizada,Sem água canalizada,211130005001435,São Luís,0.9074074074074074,0.0032051282051281937
+pct_sem_agua_canalizada,Sem água canalizada,261160605230797,Recife,0.8695652173913043,0.0032051282051281937
+pct_sem_agua_canalizada,Sem água canalizada,230440005200383,Fortaleza,0.8648648648648649,0.0032051282051281937
+pct_sem_agua_canalizada,Sem água canalizada,211130005001730,São Luís,0.8616352201257862,0.0032051282051281937
+pct_agua_nao_encanada,Água não chega,292740805220800,Salvador,0.965034965034965,0.0
+pct_agua_nao_encanada,Água não chega,292740805230102,Salvador,0.953125,0.0
+pct_agua_nao_encanada,Água não chega,261160605200712,Recife,0.8536585365853658,0.0
+pct_agua_nao_encanada,Água não chega,270430205120370,Maceió,0.8511326860841424,0.0
+pct_agua_nao_encanada,Água não chega,211130005001730,São Luís,0.8364779874213837,0.0
+pct_agua_nao_encanada,Água não chega,211130005001932,São Luís,0.788135593220339,0.0
+pct_agua_nao_encanada,Água não chega,292740805090255,Salvador,0.7777777777777778,0.0
+pct_agua_nao_encanada,Água não chega,211130005001843,São Luís,0.7246963562753036,0.0
+pct_agua_nao_encanada,Água não chega,211130005001849,São Luís,0.6679841897233202,0.0
+pct_agua_nao_encanada,Água não chega,211130005001931,São Luís,0.6666666666666666,0.0
+pct_agua_so_terreno,Água só no terreno,292740805260240,Salvador,0.9565217391304348,0.0
+pct_agua_so_terreno,Água só no terreno,261160605180103,Recife,0.9411764705882353,0.0
+pct_agua_so_terreno,Água só no terreno,270430205090004,Maceió,0.926829268292683,0.0
+pct_agua_so_terreno,Água só no terreno,261160605180151,Recife,0.9201183431952663,0.0
+pct_agua_so_terreno,Água só no terreno,261160605230797,Recife,0.8695652173913043,0.0
+pct_agua_so_terreno,Água só no terreno,230440005200383,Fortaleza,0.8648648648648649,0.0
+pct_agua_so_terreno,Água só no terreno,261160605180187,Recife,0.8383838383838383,0.0
+pct_agua_so_terreno,Água só no terreno,270430205090005,Maceió,0.8333333333333334,0.0
+pct_agua_so_terreno,Água só no terreno,211120110000121,São José de Ribamar,0.8275862068965517,0.0
+pct_agua_so_terreno,Água só no terreno,261160605180170,Recife,0.8235294117647058,0.0
+pct_sem_banheiro,Sem banheiro,261160605230797,Recife,0.9627329192546584,0.0
+pct_sem_banheiro,Sem banheiro,270430205120370,Maceió,0.8511326860841424,0.0
+pct_sem_banheiro,Sem banheiro,211130005001435,São Luís,0.7592592592592593,0.0
+pct_sem_banheiro,Sem banheiro,261160605230706,Recife,0.75,0.0
+pct_sem_banheiro,Sem banheiro,291080005110167,Feira de Santana,0.6576576576576577,0.0
+pct_sem_banheiro,Sem banheiro,211130005001432,São Luís,0.5869565217391305,0.0
+pct_sem_banheiro,Sem banheiro,211120110000517,São José de Ribamar,0.5670103092783505,0.0
+pct_sem_banheiro,Sem banheiro,210960105000080,Rosário,0.5560975609756098,0.0
+pct_sem_banheiro,Sem banheiro,261160605210645,Recife,0.5483870967741935,0.0
+pct_sem_banheiro,Sem banheiro,261160605180168,Recife,0.5316455696202531,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,261160605190415,Recife,0.41379310344827586,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,211130005001730,São Luís,0.33962264150943394,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,211130005001662,São Luís,0.2857142857142857,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,261160605230795,Recife,0.2647058823529412,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,211130005001432,São Luís,0.2391304347826087,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,211130005001435,São Luís,0.2222222222222222,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,211130005001520,São Luís,0.19463087248322147,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,261160605210645,Recife,0.1881720430107527,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,221100105090225,Teresina,0.17543859649122806,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,221100105070371,Teresina,0.16842105263157894,0.0
+pct_so_sanitario,Só sanitário,210960105000080,Rosário,0.526829268292683,0.0
+pct_so_sanitario,Só sanitário,261160605180168,Recife,0.46835443037974683,0.0
+pct_so_sanitario,Só sanitário,211120110000517,São José de Ribamar,0.44329896907216493,0.0
+pct_so_sanitario,Só sanitário,211130005001428,São Luís,0.41025641025641024,0.0
+pct_so_sanitario,Só sanitário,211130005001990,São Luís,0.4,0.0
+pct_so_sanitario,Só sanitário,261160605230706,Recife,0.375,0.0
+pct_so_sanitario,Só sanitário,210960105000041,Rosário,0.3564356435643564,0.0
+pct_so_sanitario,Só sanitário,211130005001430,São Luís,0.3561643835616438,0.0
+pct_so_sanitario,Só sanitário,210960105000051,Rosário,0.32679738562091504,0.0
+pct_so_sanitario,Só sanitário,261160605230483,Recife,0.3157894736842105,0.0
+pct_banheiro_comum,Banheiro de uso comum,261160605230797,Recife,0.9565217391304348,0.0
+pct_banheiro_comum,Banheiro de uso comum,270430205120370,Maceió,0.8511326860841424,0.0
+pct_banheiro_comum,Banheiro de uso comum,211130005001765,São Luís,0.4642857142857143,0.0
+pct_banheiro_comum,Banheiro de uso comum,211130005001066,São Luís,0.30660377358490565,0.0
+pct_banheiro_comum,Banheiro de uso comum,211130005001705,São Luís,0.3007518796992481,0.0
+pct_banheiro_comum,Banheiro de uso comum,230440005240338,Fortaleza,0.3,0.0
+pct_banheiro_comum,Banheiro de uso comum,211130005001704,São Luís,0.29411764705882354,0.0
+pct_banheiro_comum,Banheiro de uso comum,211130005001902,São Luís,0.27586206896551724,0.0
+pct_banheiro_comum,Banheiro de uso comum,211130005001875,São Luís,0.2719298245614035,0.0
+pct_banheiro_comum,Banheiro de uso comum,211120105000200,São José de Ribamar,0.2558139534883721,0.0
+banheiro_graduado,Banheiro graduado,211130005001435,São Luís,0.5,0.0
+banheiro_graduado,Banheiro graduado,291080005110167,Feira de Santana,0.4114114114114114,0.0
+banheiro_graduado,Banheiro graduado,211130005001432,São Luís,0.39855072463768115,0.0
+banheiro_graduado,Banheiro graduado,211120110000517,São José de Ribamar,0.3917525773195876,0.0
+banheiro_graduado,Banheiro graduado,261160605210645,Recife,0.3727598566308244,0.0
+banheiro_graduado,Banheiro graduado,261160605180168,Recife,0.3333333333333333,0.0
+banheiro_graduado,Banheiro graduado,211130005001428,São Luís,0.3247863247863248,0.0
+banheiro_graduado,Banheiro graduado,261160605230795,Recife,0.3137254901960784,0.0
+banheiro_graduado,Banheiro graduado,211130005001914,São Luís,0.3020833333333333,0.0
+banheiro_graduado,Banheiro graduado,211130005001520,São Luís,0.28635346756152125,0.0
+razao_moradores,Razão de moradores,270430205090184,Maceió,4.733333333333333,2.783393501805054
+razao_moradores,Razão de moradores,230440005240038,Fortaleza,4.466666666666667,2.783393501805054
+razao_moradores,Razão de moradores,211130005001362,São Luís,4.428571428571429,2.783393501805054
+razao_moradores,Razão de moradores,292740805270288,Salvador,1.2727272727272727,2.783393501805054
+razao_moradores,Razão de moradores,292740805270266,Salvador,1.2758620689655173,2.783393501805054
+razao_moradores,Razão de moradores,240810205080097,Natal,4.290748898678414,2.783393501805054
+razao_moradores,Razão de moradores,291080005080155,Feira de Santana,4.262124711316397,2.783393501805054
+razao_moradores,Razão de moradores,261160605230593,Recife,1.3051948051948052,2.783393501805054
+razao_moradores,Razão de moradores,221100105070255,Teresina,4.253731343283582,2.783393501805054
+razao_moradores,Razão de moradores,292740805070339,Salvador,1.3411764705882352,2.783393501805054
+pct_analfab,Analfabetismo 15+,292740805180776,Salvador,0.7254901960784313,0.05157593123209169
+pct_analfab,Analfabetismo 15+,240810205060418,Natal,0.5333333333333333,0.05157593123209169
+pct_analfab,Analfabetismo 15+,270430205090227,Maceió,0.5175438596491229,0.05157593123209169
+pct_analfab,Analfabetismo 15+,292740805220449,Salvador,0.5,0.05157593123209169
+pct_analfab,Analfabetismo 15+,230440005140173,Fortaleza,0.40350877192982454,0.05157593123209169
+pct_analfab,Analfabetismo 15+,270430205090119,Maceió,0.38095238095238093,0.05157593123209169
+pct_analfab,Analfabetismo 15+,261160605190415,Recife,0.37777777777777777,0.05157593123209169
+pct_analfab,Analfabetismo 15+,230440005150023,Fortaleza,0.375,0.05157593123209169
+pct_analfab,Analfabetismo 15+,270430205090228,Maceió,0.36923076923076925,0.05157593123209169
+pct_analfab,Analfabetismo 15+,270430205070114,Maceió,0.3674418604651163,0.05157593123209169
+renda_media,Renda média,261160605200257,Recife,67237.29,1719.1950000000002
+renda_media,Renda média,292740805090354,Salvador,61671.36,1719.1950000000002
+renda_media,Renda média,261160605230448,Recife,39151.35,1719.1950000000002
+renda_media,Renda média,211130005001268,São Luís,37914.19,1719.1950000000002
+renda_media,Renda média,292740805270142,Salvador,37428.33,1719.1950000000002
+renda_media,Renda média,292740805070406,Salvador,36765.67,1719.1950000000002
+renda_media,Renda média,292740805220740,Salvador,36672.29,1719.1950000000002
+renda_media,Renda média,240810205080034,Natal,34588.24,1719.1950000000002
+renda_media,Renda média,230440005150146,Fortaleza,32466.4,1719.1950000000002
+renda_media,Renda média,292740805270367,Salvador,31642.55,1719.1950000000002
+pct_raca_pretpardind,Cor/raça PPI,240810205080034,Natal,0.0,0.7340529931305201
+pct_resp_feminino,Responsável mulher,240810205070035,Natal,0.0,0.5576923076923077
+pct_resp_feminino,Responsável mulher,240810205080025,Natal,0.0,0.5576923076923077
+pct_resp_feminino,Responsável mulher,270470805000017,Marechal Deodoro,0.0,0.5576923076923077
+pct_resp_feminino,Responsável mulher,292740805220226,Salvador,0.0,0.5576923076923077
+pct_resp_feminino,Responsável mulher,240810205080186,Natal,0.07471264367816093,0.5576923076923077
+pct_resp_feminino,Responsável mulher,211130005001362,São Luís,1.0,0.5576923076923077
+pct_resp_feminino,Responsável mulher,211130005001879,São Luís,1.0,0.5576923076923077
+pct_resp_feminino,Responsável mulher,221100105060174,Teresina,1.0,0.5576923076923077
+pct_resp_feminino,Responsável mulher,221100105080289,Teresina,1.0,0.5576923076923077
+pct_resp_feminino,Responsável mulher,230440005150483,Fortaleza,1.0,0.5576923076923077
+renda_media_sem_extremo,Renda sem o extremo,261160605200257,Recife,67237.29,1719.1950000000002
+renda_media_sem_extremo,Renda sem o extremo,292740805090354,Salvador,61671.36,1719.1950000000002
+renda_media_sem_extremo,Renda sem o extremo,261160605230448,Recife,39151.35,1719.1950000000002
+renda_media_sem_extremo,Renda sem o extremo,211130005001268,São Luís,37914.19,1719.1950000000002
+renda_media_sem_extremo,Renda sem o extremo,292740805270142,Salvador,37428.33,1719.1950000000002
+renda_media_sem_extremo,Renda sem o extremo,292740805070406,Salvador,36765.67,1719.1950000000002
+renda_media_sem_extremo,Renda sem o extremo,292740805220740,Salvador,36672.29,1719.1950000000002
+renda_media_sem_extremo,Renda sem o extremo,240810205080034,Natal,34588.24,1719.1950000000002
+renda_media_sem_extremo,Renda sem o extremo,230440005150146,Fortaleza,32466.4,1719.1950000000002
+renda_media_sem_extremo,Renda sem o extremo,292740805270367,Salvador,31642.55,1719.1950000000002
+renda_media_mediana_mun,Renda (mediana mun.),261160605200257,Recife,67237.29,1719.1950000000002
+renda_media_mediana_mun,Renda (mediana mun.),292740805090354,Salvador,61671.36,1719.1950000000002
+renda_media_mediana_mun,Renda (mediana mun.),261160605230448,Recife,39151.35,1719.1950000000002
+renda_media_mediana_mun,Renda (mediana mun.),211130005001268,São Luís,37914.19,1719.1950000000002
+renda_media_mediana_mun,Renda (mediana mun.),292740805270142,Salvador,37428.33,1719.1950000000002
+renda_media_mediana_mun,Renda (mediana mun.),292740805070406,Salvador,36765.67,1719.1950000000002
+renda_media_mediana_mun,Renda (mediana mun.),292740805220740,Salvador,36672.29,1719.1950000000002
+renda_media_mediana_mun,Renda (mediana mun.),240810205080034,Natal,34588.24,1719.1950000000002
+renda_media_mediana_mun,Renda (mediana mun.),230440005150146,Fortaleza,32466.4,1719.1950000000002
+renda_media_mediana_mun,Renda (mediana mun.),292740805270367,Salvador,31642.55,1719.1950000000002
+pct_dom_improv,Domicílio improvisado,292740805230243,Salvador,0.8134328358208955,0.0
+pct_dom_improv,Domicílio improvisado,240810205090265,Natal,0.5714285714285714,0.0
+pct_dom_improv,Domicílio improvisado,270430205070050,Maceió,0.5609756097560976,0.0
+pct_dom_improv,Domicílio improvisado,270430205070174,Maceió,0.5294117647058824,0.0
+pct_dom_improv,Domicílio improvisado,261160605190432,Recife,0.49230769230769234,0.0
+pct_dom_improv,Domicílio improvisado,230440005210314,Fortaleza,0.44329896907216493,0.0
+pct_dom_improv,Domicílio improvisado,261160605200643,Recife,0.35802469135802467,0.0
+pct_dom_improv,Domicílio improvisado,230440005200278,Fortaleza,0.35714285714285715,0.0
+pct_dom_improv,Domicílio improvisado,240810205060193,Natal,0.23880597014925373,0.0
+pct_dom_improv,Domicílio improvisado,292740805060485,Salvador,0.23076923076923078,0.0
+pct_hab_precaria,Habitação precária,292740805230243,Salvador,0.8134328358208955,0.0
+pct_hab_precaria,Habitação precária,261160605230711,Recife,0.7350993377483444,0.0
+pct_hab_precaria,Habitação precária,261160605190039,Recife,0.5986394557823129,0.0
+pct_hab_precaria,Habitação precária,240810205090265,Natal,0.5714285714285714,0.0
+pct_hab_precaria,Habitação precária,270430205070050,Maceió,0.5609756097560976,0.0
+pct_hab_precaria,Habitação precária,270430205070174,Maceió,0.5294117647058824,0.0
+pct_hab_precaria,Habitação precária,261160605220317,Recife,0.5254237288135594,0.0
+pct_hab_precaria,Habitação precária,261160605230848,Recife,0.5,0.0
+pct_hab_precaria,Habitação precária,261160605230846,Recife,0.49557522123893805,0.0
+pct_hab_precaria,Habitação precária,261160605190432,Recife,0.49230769230769234,0.0
+pct_moradia_convencional,Moradia convencional,261160605230711,Recife,0.26490066225165565,1.0
+pct_moradia_convencional,Moradia convencional,261160605190039,Recife,0.3945578231292517,1.0
+pct_moradia_convencional,Moradia convencional,261160605220317,Recife,0.4745762711864407,1.0
+pct_moradia_convencional,Moradia convencional,261160605230846,Recife,0.49557522123893805,1.0
+pct_moradia_convencional,Moradia convencional,261160605230848,Recife,0.5,1.0
+pct_moradia_convencional,Moradia convencional,230440005190096,Fortaleza,0.5634920634920635,1.0
+pct_moradia_convencional,Moradia convencional,261160605230503,Recife,0.5826771653543307,1.0
+pct_moradia_convencional,Moradia convencional,261160605190387,Recife,0.5913978494623656,1.0
+pct_moradia_convencional,Moradia convencional,230440005130072,Fortaleza,0.6025641025641025,1.0
+pct_moradia_convencional,Moradia convencional,211130005001954,São Luís,0.6174496644295302,1.0
+pct_moradia_nao_convencional,Moradia não convencional,261160605230711,Recife,0.7350993377483444,0.0
+pct_moradia_nao_convencional,Moradia não convencional,261160605190039,Recife,0.5986394557823129,0.0
+pct_moradia_nao_convencional,Moradia não convencional,261160605220317,Recife,0.5254237288135594,0.0
+pct_moradia_nao_convencional,Moradia não convencional,261160605230848,Recife,0.5,0.0
+pct_moradia_nao_convencional,Moradia não convencional,261160605230846,Recife,0.49557522123893805,0.0
+pct_moradia_nao_convencional,Moradia não convencional,230440005190096,Fortaleza,0.4365079365079365,0.0
+pct_moradia_nao_convencional,Moradia não convencional,261160605190387,Recife,0.40860215053763443,0.0
+pct_moradia_nao_convencional,Moradia não convencional,230440005130072,Fortaleza,0.3974358974358974,0.0
+pct_moradia_nao_convencional,Moradia não convencional,261160605230503,Recife,0.3937007874015748,0.0
+pct_moradia_nao_convencional,Moradia não convencional,211130005001954,São Luís,0.3825503355704698,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,211120105000093,São José de Ribamar,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,211120105000094,São José de Ribamar,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,211120105000101,São José de Ribamar,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,211120110000572,São José de Ribamar,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,230440005140512,Fortaleza,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,230440005150025,Fortaleza,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,230440005180298,Fortaleza,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,270430205090146,Maceió,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,270430205100263,Maceió,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,270430205110273,Maceió,1.0,0.0
+pct_crianca_0a4,Crianças 0–4,221100105080289,Teresina,0.3333333333333333,0.05583756345177665
+pct_crianca_0a4,Crianças 0–4,230440005200444,Fortaleza,0.21951219512195122,0.05583756345177665
+pct_crianca_0a4,Crianças 0–4,240810205080112,Natal,0.21052631578947367,0.05583756345177665
+pct_crianca_0a4,Crianças 0–4,270430205090184,Maceió,0.19718309859154928,0.05583756345177665
+pct_crianca_0a4,Crianças 0–4,211130005001362,São Luís,0.1935483870967742,0.05583756345177665
+pct_crianca_0a4,Crianças 0–4,221100105080351,Teresina,0.19270833333333334,0.05583756345177665
+pct_crianca_0a4,Crianças 0–4,211130005001095,São Luís,0.17204301075268819,0.05583756345177665
+pct_crianca_0a4,Crianças 0–4,221100105070314,Teresina,0.16666666666666666,0.05583756345177665
+pct_crianca_0a4,Crianças 0–4,221100105080328,Teresina,0.16546762589928057,0.05583756345177665
+pct_crianca_0a4,Crianças 0–4,270430205100185,Maceió,0.16326530612244897,0.05583756345177665
+pct_pop_0a14,População 0–14,221100105080289,Teresina,0.47619047619047616,0.18250377073906485
+pct_pop_0a14,População 0–14,292740805180376,Salvador,0.4482758620689655,0.18250377073906485
+pct_idoso_60mais,Pessoas 60+,230440005140173,Fortaleza,0.811965811965812,0.1435257410296412
+pct_idoso_60mais,Pessoas 60+,292740805270417,Salvador,0.5084745762711864,0.1435257410296412
+pct_idoso_60mais,Pessoas 60+,261160605230511,Recife,0.5,0.1435257410296412
+pct_idoso_60mais,Pessoas 60+,292740805270194,Salvador,0.4973821989528796,0.1435257410296412
+pct_idoso_60mais,Pessoas 60+,292740805270207,Salvador,0.4939759036144578,0.1435257410296412
+pct_idoso_60mais,Pessoas 60+,292740805270182,Salvador,0.4883720930232558,0.1435257410296412
+pct_idoso_60mais,Pessoas 60+,292740805060099,Salvador,0.48764044943820223,0.1435257410296412
+iep_setor,Índice de envelhecimento,230440005140173,Fortaleza,4750.0,77.77777777777779
+iep_setor,Índice de envelhecimento,292740805270372,Salvador,2100.0,77.77777777777779
+iep_setor,Índice de envelhecimento,292740805240031,Salvador,2039.9999999999998,77.77777777777779
+iep_setor,Índice de envelhecimento,292740805270296,Salvador,1900.0,77.77777777777779
+iep_setor,Índice de envelhecimento,292740805240018,Salvador,1766.6666666666667,77.77777777777779
+iep_setor,Índice de envelhecimento,292740805270182,Salvador,1680.0,77.77777777777779
+iep_setor,Índice de envelhecimento,230440005170164,Fortaleza,1600.0,77.77777777777779
+iep_setor,Índice de envelhecimento,292740805270417,Salvador,1200.0,77.77777777777779
+iep_setor,Índice de envelhecimento,292740805270184,Salvador,1183.3333333333335,77.77777777777779
+iep_setor,Índice de envelhecimento,292740805270083,Salvador,1168.75,77.77777777777779
+rdi_setor,Dependência idosa,230440005140173,Fortaleza,527.7777777777777,21.502590673575128
+rdi_setor,Dependência idosa,292740805270288,Salvador,133.33333333333331,21.502590673575128
+rdi_setor,Dependência idosa,292740805270417,Salvador,125.0,21.502590673575128
+rdi_setor,Dependência idosa,261160605230511,Recife,120.0,21.502590673575128
+rdi_setor,Dependência idosa,261160605200723,Recife,116.66666666666667,21.502590673575128
+rdi_setor,Dependência idosa,292740805270194,Salvador,111.76470588235294,21.502590673575128
+rdi_setor,Dependência idosa,230440005170259,Fortaleza,111.11111111111111,21.502590673575128
+rdi_setor,Dependência idosa,292740805060099,Salvador,109.5959595959596,21.502590673575128
+rdi_setor,Dependência idosa,292740805270207,Salvador,108.84955752212389,21.502590673575128
+rdi_setor,Dependência idosa,292740805070270,Salvador,107.6923076923077,21.502590673575128
+prop_70mais_entre_60mais,70+ entre 60+,211120110000385,São José de Ribamar,100.0,41.843971631205676
+prop_70mais_entre_60mais,70+ entre 60+,211130005000929,São Luís,100.0,41.843971631205676
+prop_70mais_entre_60mais,70+ entre 60+,211130005001835,São Luís,100.0,41.843971631205676
+prop_70mais_entre_60mais,70+ entre 60+,211130005001879,São Luís,100.0,41.843971631205676
+prop_70mais_entre_60mais,70+ entre 60+,221100105060174,Teresina,100.0,41.843971631205676
+prop_70mais_entre_60mais,70+ entre 60+,221100105070220,Teresina,100.0,41.843971631205676
+prop_70mais_entre_60mais,70+ entre 60+,221100105070248,Teresina,100.0,41.843971631205676
+prop_70mais_entre_60mais,70+ entre 60+,221100105070264,Teresina,100.0,41.843971631205676
+prop_70mais_entre_60mais,70+ entre 60+,221100105070315,Teresina,100.0,41.843971631205676
+prop_70mais_entre_60mais,70+ entre 60+,221100105070343,Teresina,100.0,41.843971631205676

@@ -1,0 +1,6 @@
+indicador,rotulo,n_fcu,n_nao_fcu,mediana_fcu,mediana_nao_fcu,diferenca,auc
+pct_sem_banheiro,Sem banheiro,15197,76715,0.0,0.0,0.0,0.5578694002863718
+pct_banheiro_comum,Banheiro de uso comum,15848,78566,0.0,0.0,0.0,0.5327705158312063
+banheiro_graduado,Banheiro graduado,13956,75860,0.0,0.0,0.0,0.5251377696254063
+pct_so_sanitario,Só sanitário,17769,82528,0.0,0.0,0.0,0.5144899498351938
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,18061,83078,0.0,0.0,0.0,0.5048189154253978

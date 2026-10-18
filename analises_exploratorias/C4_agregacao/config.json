@@ -1,0 +1,46 @@
+{
+  "versao": "C4_agregacao",
+  "titulo": "Agregação",
+  "pergunta": "O que muda no índice com a média geométrica ponderada dos componentes, em vez da soma ponderada?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null
+  },
+  "indicadores": "todos",
+  "indice": {
+    "colunas": [
+      "pct_agua_inad",
+      "pct_esgoto_inad",
+      "razao_moradores",
+      "pct_analfab",
+      "renda_inv",
+      "pct_raca_pretpardind",
+      "banheiro_graduado"
+    ],
+    "renda": "original",
+    "rotacao": "promax",
+    "metodo": "60_40",
+    "normalizacao": "municipal",
+    "agregacao": "geometrica"
+  },
+  "blocos": [
+    10,
+    11,
+    12,
+    13
+  ],
+  "parametros_exploratorios": {
+    "deslocamento da média geométrica": "0,01 somado a cada componente normalizado (zero anularia o produto)"
+  },
+  "sensibilidade": [
+    {
+      "rotulo": "soma ponderada (referência)",
+      "indice": {
+        "agregacao": "soma"
+      }
+    }
+  ]
+}

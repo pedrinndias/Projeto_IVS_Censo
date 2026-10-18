@@ -1,0 +1,10 @@
+{
+  "pergunta": "Como fica um índice só de moradia, com as variáveis de adensamento e de tipo de domicílio?",
+  "o_que_muda": "Um índice só de moradia, sem os componentes da referência: razão de moradores, domicílio improvisado, habitação precária, moradia não convencional e banheiro de uso comum, com pesos pela fatorial (promax, dois fatores). A composição é parâmetro exploratório.",
+  "sintese": "As variáveis de moradia não se prestam a uma fatorial: o KMO fica muito abaixo de 0,70 e a versão falha em todos os critérios de elegibilidade. Habitação precária e moradia não convencional quase coincidem e dominam o índice, enquanto o domicílio improvisado quase não compartilha variância com as demais. O índice separa as favelas bem menos do que a referência e ordena os setores de modo muito diferente.",
+  "limitacoes": [
+    "A composição do índice de moradia é parâmetro exploratório — não é decisão.",
+    "As variáveis de moradia têm mediana zero e poucos setores com valor; a fatorial depende de poucos setores.",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista)."
+  ]
+}

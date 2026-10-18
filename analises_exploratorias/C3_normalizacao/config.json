@@ -1,0 +1,60 @@
+{
+  "versao": "C3_normalizacao",
+  "titulo": "Normalização",
+  "pergunta": "O que muda no índice com min-max global, escore z ou postos, em vez de min-max dentro do município?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null
+  },
+  "indicadores": "todos",
+  "indice": {
+    "colunas": [
+      "pct_agua_inad",
+      "pct_esgoto_inad",
+      "razao_moradores",
+      "pct_analfab",
+      "renda_inv",
+      "pct_raca_pretpardind",
+      "banheiro_graduado"
+    ],
+    "renda": "original",
+    "rotacao": "promax",
+    "metodo": "60_40",
+    "normalizacao": "global"
+  },
+  "blocos": [
+    10,
+    11,
+    12,
+    13
+  ],
+  "sensibilidade": [
+    {
+      "rotulo": "escore z no município",
+      "indice": {
+        "normalizacao": "z_municipal"
+      }
+    },
+    {
+      "rotulo": "escore z global",
+      "indice": {
+        "normalizacao": "z_global"
+      }
+    },
+    {
+      "rotulo": "postos percentis no município",
+      "indice": {
+        "normalizacao": "postos_municipal"
+      }
+    },
+    {
+      "rotulo": "min-max no município (referência)",
+      "indice": {
+        "normalizacao": "municipal"
+      }
+    }
+  ]
+}

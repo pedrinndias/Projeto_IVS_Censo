@@ -1,0 +1,23 @@
+a,b,rotulo_a,rotulo_b,spearman,pearson
+renda_media_sem_extremo,renda_media_mediana_mun,Renda sem o extremo,Renda (mediana mun.),1.0,1.0
+renda_media,renda_media_sem_extremo,Renda média,Renda sem o extremo,1.0,1.0
+pct_sem_banheiro,banheiro_graduado,Sem banheiro,Banheiro graduado,0.9999927711571759,0.9579880386527238
+renda_media,renda_media_mediana_mun,Renda média,Renda (mediana mun.),0.9999907864333161,0.9922200796463762
+pct_idoso_60mais,rdi_setor,Pessoas 60+,Dependência idosa,0.9952674355756331,0.9472550939052491
+pct_hab_precaria,pct_moradia_nao_convencional,Habitação precária,Moradia não convencional,0.9631943856471323,0.9325643080750111
+pct_idoso_60mais,iep_setor,Pessoas 60+,Índice de envelhecimento,0.958857143514329,0.7523222826744413
+iep_setor,rdi_setor,Índice de envelhecimento,Dependência idosa,0.9325799855935187,0.737136014487986
+pct_banheiro_comum,banheiro_graduado,Banheiro de uso comum,Banheiro graduado,0.9157848752393566,0.42984627309905277
+pct_pop_0a14,iep_setor,População 0–14,Índice de envelhecimento,-0.9153562245354739,-0.7231690667316488
+pct_sem_banheiro,pct_banheiro_comum,Sem banheiro,Banheiro de uso comum,0.9109286004432376,0.6795774112757984
+pct_apartamento,pct_casa,Apartamento,Casa,-0.9007143759176741,-0.9513579195240329
+pct_crianca_0a4,pct_pop_0a14,Crianças 0–4,População 0–14,0.8446989987187774,0.8395122577331426
+pct_sem_agua_canalizada,pct_agua_so_terreno,Sem água canalizada,Água só no terreno,0.8250572445882655,0.8236201546987237
+pct_crianca_0a4,iep_setor,Crianças 0–4,Índice de envelhecimento,-0.810450841254189,-0.6278497440230766
+pct_raca_pretpardind,renda_media_sem_extremo,Cor/raça PPI,Renda sem o extremo,-0.8086550887081458,-0.6854518798054776
+pct_raca_pretpardind,renda_media_mediana_mun,Cor/raça PPI,Renda (mediana mun.),-0.8086457093100171,-0.6854510273302783
+renda_media,pct_raca_pretpardind,Renda média,Cor/raça PPI,-0.808619429507945,-0.6798136137351026
+pct_sem_banheiro,pct_so_sanitario,Sem banheiro,Só sanitário,0.6507416238283364,0.8445028014582884
+pct_so_sanitario,banheiro_graduado,Só sanitário,Banheiro graduado,0.5612843485610365,0.8562527715184536
+pct_moradia_convencional,pct_moradia_nao_convencional,Moradia convencional,Moradia não convencional,-0.5030098113894453,-0.9743190977576949
+pct_hab_precaria,pct_moradia_convencional,Habitação precária,Moradia convencional,-0.4874335653843075,-0.9133378624452021

@@ -1,0 +1,9 @@
+{
+  "pergunta": "O que muda no índice se a chefia feminina ou a proporção de crianças entram como componente?",
+  "o_que_muda": "A chefia feminina (responsável mulher) entra como oitavo componente do índice. As crianças de 0 a 4 anos e a população de 0 a 14 anos, cada uma como oitavo componente, e a referência estão na tabela T34. Os blocos 2 a 7 descrevem só os três complementares.",
+  "sintese": "Com a chefia feminina, a versão não é elegível: a menor comunalidade, a de Banheiro graduado, fica abaixo de 0,30, e a AUC municipal contra as favelas cai. As crianças (0 a 4 ou 0 a 14 anos) se encaixam melhor: o KMO sobe, as duas versões são elegíveis e a AUC fica perto da referência, mas mais de um em cada dez setores muda de faixa.",
+  "limitacoes": [
+    "Proporção de crianças também marca a estrutura etária do setor, o que conversa com o eixo do envelhecimento (versão D2).",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista); trocar um componente muda também a amostra."
+  ]
+}

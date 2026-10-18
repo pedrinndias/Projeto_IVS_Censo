@@ -1,0 +1,4 @@
+indicador,rotulo,criterio,limite_inferior,limite_superior,n_validos,pct_zeros,n_extremos,pct_extremos
+renda_media,Renda média,renda: Tukey k=3 no município + coerência do perfil do setor,,,104096,0.0,3358,3.2258684291423303
+renda_media_sem_extremo,Renda sem o extremo,Tukey k=3 (intervalo interquartil),-7497.575000000003,14085.875000000004,104095,0.0,3987,3.8301551467409576
+renda_media_mediana_mun,Renda (mediana mun.),Tukey k=3 (intervalo interquartil),-7497.5425000000005,14085.837500000001,104096,0.0,3987,3.8301183522901936

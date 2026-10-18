@@ -1,0 +1,4 @@
+a,b,rotulo_a,rotulo_b,spearman,pearson
+pct_sem_banheiro,banheiro_graduado,Sem banheiro,Banheiro graduado,0.9999923967933124,0.9384988581695602
+banheiro_graduado,pct_banheiro_comum,Banheiro graduado,Banheiro de uso comum,0.9338811961753218,0.5593537697189185
+pct_sem_banheiro,pct_banheiro_comum,Sem banheiro,Banheiro de uso comum,0.9271229176690914,0.8069235391622622

@@ -1,0 +1,32 @@
+indicador,rotulo,dimensao,n_validos,n_faltantes,pct_faltantes
+pct_agua_inad,Água inadequada,Saneamento,347400,0,0.0
+pct_esgoto_inad,Esgoto inadequado,Saneamento,347391,9,0.0025906735751295338
+pct_lixo_inad,Lixo inadequado,Saneamento,347391,9,0.0025906735751295338
+pct_sem_agua_canalizada,Sem água canalizada,Saneamento,347186,214,0.061600460564191134
+pct_agua_nao_encanada,Água não chega,Saneamento,307827,39573,11.39119170984456
+pct_agua_so_terreno,Água só no terreno,Saneamento,289265,58135,16.734312032239494
+pct_sem_banheiro,Sem banheiro,Saneamento,300578,46822,13.47783534830167
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,Saneamento,331902,15498,4.461139896373057
+pct_so_sanitario,Só sanitário,Saneamento,327150,20250,5.829015544041451
+pct_banheiro_comum,Banheiro de uso comum,Saneamento,309301,38099,10.966896948762233
+banheiro_graduado,Banheiro graduado,Saneamento,286270,61130,17.59643062751871
+razao_moradores,Razão de moradores,Socioeconômica,347400,0,0.0
+pct_analfab,Analfabetismo 15+,Socioeconômica,309256,38144,10.979850316637881
+renda_media,Renda média,Socioeconômica,347364,36,0.010362694300518135
+pct_raca_pretpardind,Cor/raça PPI,Socioeconômica,347396,4,0.0011514104778353482
+pct_resp_feminino,Responsável mulher,Socioeconômica,346034,1366,0.3932066781807715
+renda_media_sem_extremo,Renda sem o extremo,Socioeconômica,347363,37,0.010650546919976972
+renda_media_mediana_mun,Renda (mediana mun.),Socioeconômica,347364,36,0.010362694300518135
+pct_dom_improv,Domicílio improvisado,Morfologia,327530,19870,5.719631548647093
+pct_hab_precaria,Habitação precária,Morfologia,347400,0,0.0
+pct_moradia_convencional,Moradia convencional,Morfologia,347399,1,0.00028785261945883704
+pct_moradia_nao_convencional,Moradia não convencional,Morfologia,347399,1,0.00028785261945883704
+pct_apartamento,Apartamento,Morfologia,312866,34534,9.940702360391478
+pct_casa,Casa,Morfologia,340063,7337,2.1119746689694874
+pct_casa_vila_condominio,Casa de vila/condomínio,Morfologia,307460,39940,11.496833621185953
+pct_crianca_0a4,Crianças 0–4,Demografia,340915,6485,1.8667242371905584
+pct_pop_0a14,População 0–14,Demografia,346371,1029,0.2962003454231434
+pct_idoso_60mais,Pessoas 60+,Demografia,346054,1346,0.3874496257915947
+iep_setor,Índice de envelhecimento,Demografia,343058,4342,1.2498560736902706
+rdi_setor,Dependência idosa,Demografia,345939,1461,0.42055267702936094
+prop_70mais_entre_60mais,70+ entre 60+,Demografia,338785,8615,2.479850316637881

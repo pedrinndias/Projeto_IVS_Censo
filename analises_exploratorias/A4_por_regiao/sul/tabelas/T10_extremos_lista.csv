@@ -1,0 +1,203 @@
+indicador,rotulo,CD_SETOR,NM_MUN,valor,mediana_global
+pct_agua_inad,Água inadequada,412385730000001,Santa Maria do Oeste,1.0,0.0
+pct_agua_inad,Água inadequada,412550605000269,São José dos Pinhais,1.0,0.0
+pct_agua_inad,Água inadequada,421780805000041,Taió,1.0,0.0
+pct_agua_inad,Água inadequada,421780805000053,Taió,1.0,0.0
+pct_agua_inad,Água inadequada,430460605000580,Canoas,1.0,0.0
+pct_agua_inad,Água inadequada,412550605000209,São José dos Pinhais,0.9957446808510638,0.0
+pct_agua_inad,Água inadequada,412550605000365,São José dos Pinhais,0.9724770642201835,0.0
+pct_agua_inad,Água inadequada,410690205090250,Curitiba,0.9700996677740864,0.0
+pct_agua_inad,Água inadequada,410690205060246,Curitiba,0.9692832764505119,0.0
+pct_agua_inad,Água inadequada,431490205002449,Porto Alegre,0.9690265486725663,0.0
+pct_esgoto_inad,Esgoto inadequado,411850130000007,Pato Branco,1.0,0.0
+pct_esgoto_inad,Esgoto inadequado,412385705000020,Santa Maria do Oeste,1.0,0.0
+pct_esgoto_inad,Esgoto inadequado,430460605000313,Canoas,1.0,0.0
+pct_esgoto_inad,Esgoto inadequado,431490205002995,Porto Alegre,1.0,0.0
+pct_esgoto_inad,Esgoto inadequado,431490205003030,Porto Alegre,1.0,0.0
+pct_esgoto_inad,Esgoto inadequado,412550605000424,São José dos Pinhais,0.9937106918238994,0.0
+pct_esgoto_inad,Esgoto inadequado,431490205001848,Porto Alegre,0.9871794871794872,0.0
+pct_esgoto_inad,Esgoto inadequado,412385705000022,Santa Maria do Oeste,0.9819819819819819,0.0
+pct_esgoto_inad,Esgoto inadequado,412385730000001,Santa Maria do Oeste,0.9795918367346939,0.0
+pct_esgoto_inad,Esgoto inadequado,410690205080177,Curitiba,0.9764705882352941,0.0
+pct_sem_agua_canalizada,Sem água canalizada,431490205002739,Porto Alegre,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,431490205001848,Porto Alegre,0.9230769230769231,0.0
+pct_sem_agua_canalizada,Sem água canalizada,431490205002696,Porto Alegre,0.7628865979381443,0.0
+pct_sem_agua_canalizada,Sem água canalizada,410690205100183,Curitiba,0.7100371747211895,0.0
+pct_sem_agua_canalizada,Sem água canalizada,410690205100181,Curitiba,0.6978723404255319,0.0
+pct_sem_agua_canalizada,Sem água canalizada,431490205002697,Porto Alegre,0.6056338028169015,0.0
+pct_sem_agua_canalizada,Sem água canalizada,431490205002666,Porto Alegre,0.6016597510373445,0.0
+pct_sem_agua_canalizada,Sem água canalizada,410690205100184,Curitiba,0.5738636363636364,0.0
+pct_sem_agua_canalizada,Sem água canalizada,410690205100182,Curitiba,0.5693430656934306,0.0
+pct_sem_agua_canalizada,Sem água canalizada,430460605000391,Canoas,0.5384615384615384,0.0
+pct_agua_nao_encanada,Água não chega,431490205001848,Porto Alegre,0.9230769230769231,0.0
+pct_agua_nao_encanada,Água não chega,431490205002696,Porto Alegre,0.7525773195876289,0.0
+pct_agua_nao_encanada,Água não chega,431490205002666,Porto Alegre,0.6016597510373444,0.0
+pct_agua_nao_encanada,Água não chega,431490205002697,Porto Alegre,0.6009389671361502,0.0
+pct_agua_nao_encanada,Água não chega,430460605000391,Canoas,0.5384615384615384,0.0
+pct_agua_so_terreno,Água só no terreno,431490205002739,Porto Alegre,0.8333333333333334,0.0
+pct_agua_so_terreno,Água só no terreno,410690205100183,Curitiba,0.6877323420074349,0.0
+pct_agua_so_terreno,Água só no terreno,410690205100184,Curitiba,0.5227272727272727,0.0
+pct_agua_so_terreno,Água só no terreno,421780805000047,Taió,0.5,0.0
+pct_agua_so_terreno,Água só no terreno,430460605000690,Canoas,0.43902439024390244,0.0
+pct_agua_so_terreno,Água só no terreno,410690205100181,Curitiba,0.43829787234042555,0.0
+pct_agua_so_terreno,Água só no terreno,410690205100182,Curitiba,0.36496350364963503,0.0
+pct_agua_so_terreno,Água só no terreno,430460605000037,Canoas,0.3482142857142857,0.0
+pct_agua_so_terreno,Água só no terreno,410690205020546,Curitiba,0.21951219512195122,0.0
+pct_agua_so_terreno,Água só no terreno,430460605000691,Canoas,0.2155688622754491,0.0
+pct_sem_banheiro,Sem banheiro,410690205090296,Curitiba,0.9333333333333333,0.0
+pct_sem_banheiro,Sem banheiro,431490205002739,Porto Alegre,0.5,0.0
+pct_sem_banheiro,Sem banheiro,410690205100181,Curitiba,0.25957446808510637,0.0
+pct_sem_banheiro,Sem banheiro,431490205001307,Porto Alegre,0.2,0.0
+pct_sem_banheiro,Sem banheiro,431490205002360,Porto Alegre,0.1935483870967742,0.0
+pct_sem_banheiro,Sem banheiro,410690205030346,Curitiba,0.17391304347826086,0.0
+pct_sem_banheiro,Sem banheiro,431490205002821,Porto Alegre,0.17355371900826447,0.0
+pct_sem_banheiro,Sem banheiro,431490205002779,Porto Alegre,0.17073170731707318,0.0
+pct_sem_banheiro,Sem banheiro,431490205002986,Porto Alegre,0.16666666666666666,0.0
+pct_sem_banheiro,Sem banheiro,410690205100182,Curitiba,0.16058394160583941,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,410690205030346,Curitiba,0.15810276679841898,0.0
+pct_so_sanitario,Só sanitário,410690205100181,Curitiba,0.20851063829787234,0.0
+pct_so_sanitario,Só sanitário,410690205100182,Curitiba,0.145985401459854,0.0
+pct_banheiro_comum,Banheiro de uso comum,410690205090296,Curitiba,0.9333333333333333,0.0
+pct_banheiro_comum,Banheiro de uso comum,431490205002779,Porto Alegre,0.17073170731707318,0.0
+pct_banheiro_comum,Banheiro de uso comum,431490205002986,Porto Alegre,0.16666666666666666,0.0
+pct_banheiro_comum,Banheiro de uso comum,431490205002821,Porto Alegre,0.1652892561983471,0.0
+pct_banheiro_comum,Banheiro de uso comum,431490205002360,Porto Alegre,0.16129032258064516,0.0
+pct_banheiro_comum,Banheiro de uso comum,410690205010417,Curitiba,0.1375,0.0
+pct_banheiro_comum,Banheiro de uso comum,410690205030218,Curitiba,0.1095890410958904,0.0
+pct_banheiro_comum,Banheiro de uso comum,431490205001307,Porto Alegre,0.10909090909090909,0.0
+pct_banheiro_comum,Banheiro de uso comum,430460605000689,Canoas,0.10714285714285714,0.0
+pct_banheiro_comum,Banheiro de uso comum,430460605000113,Canoas,0.10204081632653061,0.0
+banheiro_graduado,Banheiro graduado,410690205090296,Curitiba,0.3111111111111111,0.0
+banheiro_graduado,Banheiro graduado,410690205100181,Curitiba,0.17304964539007092,0.0
+banheiro_graduado,Banheiro graduado,410690205030346,Curitiba,0.1686429512516469,0.0
+banheiro_graduado,Banheiro graduado,431490205001307,Porto Alegre,0.12727272727272726,0.0
+banheiro_graduado,Banheiro graduado,431490205002360,Porto Alegre,0.07526881720430108,0.0
+banheiro_graduado,Banheiro graduado,410690205030218,Curitiba,0.07077625570776255,0.0
+banheiro_graduado,Banheiro graduado,431490205002779,Porto Alegre,0.056910569105691054,0.0
+banheiro_graduado,Banheiro graduado,431490205002986,Porto Alegre,0.05555555555555555,0.0
+banheiro_graduado,Banheiro graduado,410690205010417,Curitiba,0.04583333333333333,0.0
+banheiro_graduado,Banheiro graduado,431490205002743,Porto Alegre,0.0443213296398892,0.0
+razao_moradores,Razão de moradores,431490205002934,Porto Alegre,5.4,2.5991902834008096
+razao_moradores,Razão de moradores,412550605000484,São José dos Pinhais,5.125,2.5991902834008096
+pct_analfab,Analfabetismo 15+,431490205002739,Porto Alegre,0.3,0.016166281755196306
+pct_analfab,Analfabetismo 15+,431490205002465,Porto Alegre,0.2978723404255319,0.016166281755196306
+pct_analfab,Analfabetismo 15+,431490205002697,Porto Alegre,0.2767857142857143,0.016166281755196306
+pct_analfab,Analfabetismo 15+,412550605000291,São José dos Pinhais,0.22033898305084745,0.016166281755196306
+pct_analfab,Analfabetismo 15+,410690205060615,Curitiba,0.1877637130801688,0.016166281755196306
+pct_analfab,Analfabetismo 15+,431490205002876,Porto Alegre,0.18181818181818182,0.016166281755196306
+pct_analfab,Analfabetismo 15+,410690205010428,Curitiba,0.17045454545454544,0.016166281755196306
+pct_analfab,Analfabetismo 15+,431490205001307,Porto Alegre,0.1686746987951807,0.016166281755196306
+pct_analfab,Analfabetismo 15+,431490205002696,Porto Alegre,0.16216216216216217,0.016166281755196306
+pct_analfab,Analfabetismo 15+,410690205070394,Curitiba,0.15963855421686746,0.016166281755196306
+renda_media,Renda média,431490205002838,Porto Alegre,49759.69,3722.28
+renda_media,Renda média,431490205002258,Porto Alegre,44895.68,3722.28
+renda_media,Renda média,410690205010483,Curitiba,39925.88,3722.28
+renda_media,Renda média,410690205090273,Curitiba,33752.86,3722.28
+renda_media,Renda média,410690205010178,Curitiba,30864.04,3722.28
+renda_media,Renda média,431490205002479,Porto Alegre,28192.61,3722.28
+renda_media,Renda média,431490205001137,Porto Alegre,27919.23,3722.28
+renda_media,Renda média,431490205000851,Porto Alegre,27885.54,3722.28
+renda_media,Renda média,410690205050345,Curitiba,27690.06,3722.28
+renda_media,Renda média,431490205001721,Porto Alegre,27630.91,3722.28
+pct_raca_pretpardind,Cor/raça PPI,431490205002779,Porto Alegre,1.0,0.22186495176848875
+pct_raca_pretpardind,Cor/raça PPI,430460605000603,Canoas,0.9882352941176471,0.22186495176848875
+pct_raca_pretpardind,Cor/raça PPI,431490205002455,Porto Alegre,0.9841269841269841,0.22186495176848875
+pct_resp_feminino,Responsável mulher,410690205100013,Curitiba,0.0,0.5217391304347826
+pct_resp_feminino,Responsável mulher,411850105000229,Pato Branco,0.0,0.5217391304347826
+pct_resp_feminino,Responsável mulher,412550605000363,São José dos Pinhais,1.0,0.5217391304347826
+pct_resp_feminino,Responsável mulher,421780805000041,Taió,1.0,0.5217391304347826
+pct_resp_feminino,Responsável mulher,431490205002958,Porto Alegre,1.0,0.5217391304347826
+renda_media_sem_extremo,Renda sem o extremo,431490205002838,Porto Alegre,49759.69,3722.28
+renda_media_sem_extremo,Renda sem o extremo,431490205002258,Porto Alegre,44895.68,3722.28
+renda_media_sem_extremo,Renda sem o extremo,410690205010483,Curitiba,39925.88,3722.28
+renda_media_sem_extremo,Renda sem o extremo,410690205090273,Curitiba,33752.86,3722.28
+renda_media_sem_extremo,Renda sem o extremo,410690205010178,Curitiba,30864.04,3722.28
+renda_media_sem_extremo,Renda sem o extremo,431490205002479,Porto Alegre,28192.61,3722.28
+renda_media_sem_extremo,Renda sem o extremo,431490205001137,Porto Alegre,27919.23,3722.28
+renda_media_sem_extremo,Renda sem o extremo,431490205000851,Porto Alegre,27885.54,3722.28
+renda_media_sem_extremo,Renda sem o extremo,410690205050345,Curitiba,27690.06,3722.28
+renda_media_sem_extremo,Renda sem o extremo,431490205001721,Porto Alegre,27630.91,3722.28
+renda_media_mediana_mun,Renda (mediana mun.),431490205002838,Porto Alegre,49759.69,3722.28
+renda_media_mediana_mun,Renda (mediana mun.),431490205002258,Porto Alegre,44895.68,3722.28
+renda_media_mediana_mun,Renda (mediana mun.),410690205010483,Curitiba,39925.88,3722.28
+renda_media_mediana_mun,Renda (mediana mun.),410690205090273,Curitiba,33752.86,3722.28
+renda_media_mediana_mun,Renda (mediana mun.),410690205010178,Curitiba,30864.04,3722.28
+renda_media_mediana_mun,Renda (mediana mun.),431490205002479,Porto Alegre,28192.61,3722.28
+renda_media_mediana_mun,Renda (mediana mun.),431490205001137,Porto Alegre,27919.23,3722.28
+renda_media_mediana_mun,Renda (mediana mun.),431490205000851,Porto Alegre,27885.54,3722.28
+renda_media_mediana_mun,Renda (mediana mun.),410690205050345,Curitiba,27690.06,3722.28
+renda_media_mediana_mun,Renda (mediana mun.),431490205001721,Porto Alegre,27630.91,3722.28
+pct_dom_improv,Domicílio improvisado,410690205050069,Curitiba,0.16279069767441862,0.0
+pct_hab_precaria,Habitação precária,431490205000792,Porto Alegre,0.32919254658385094,0.0
+pct_hab_precaria,Habitação precária,410690205030346,Curitiba,0.31225296442687744,0.0
+pct_hab_precaria,Habitação precária,431490205000791,Porto Alegre,0.2310126582278481,0.0
+pct_hab_precaria,Habitação precária,410690205020074,Curitiba,0.19444444444444445,0.0
+pct_hab_precaria,Habitação precária,431490205000957,Porto Alegre,0.18518518518518517,0.0
+pct_hab_precaria,Habitação precária,410690205050069,Curitiba,0.16279069767441862,0.0
+pct_hab_precaria,Habitação precária,431490205001310,Porto Alegre,0.12149532710280374,0.0
+pct_hab_precaria,Habitação precária,431490205001410,Porto Alegre,0.11949685534591195,0.0
+pct_moradia_convencional,Moradia convencional,431490205002868,Porto Alegre,0.6,1.0
+pct_moradia_convencional,Moradia convencional,431490205002968,Porto Alegre,0.6,1.0
+pct_moradia_convencional,Moradia convencional,431490205000792,Porto Alegre,0.6645962732919255,1.0
+pct_moradia_convencional,Moradia convencional,410690205030346,Curitiba,0.6837944664031621,1.0
+pct_moradia_convencional,Moradia convencional,431490205000791,Porto Alegre,0.7658227848101266,1.0
+pct_moradia_convencional,Moradia convencional,410690205020074,Curitiba,0.8055555555555556,1.0
+pct_moradia_convencional,Moradia convencional,431490205000957,Porto Alegre,0.8101851851851852,1.0
+pct_moradia_convencional,Moradia convencional,430460605000580,Canoas,0.8333333333333334,1.0
+pct_moradia_convencional,Moradia convencional,430460605000650,Canoas,0.8571428571428571,1.0
+pct_moradia_convencional,Moradia convencional,411850105000219,Pato Branco,0.875,1.0
+pct_moradia_nao_convencional,Moradia não convencional,431490205000792,Porto Alegre,0.32919254658385094,0.0
+pct_moradia_nao_convencional,Moradia não convencional,410690205030346,Curitiba,0.31225296442687744,0.0
+pct_moradia_nao_convencional,Moradia não convencional,431490205000791,Porto Alegre,0.2310126582278481,0.0
+pct_moradia_nao_convencional,Moradia não convencional,410690205020074,Curitiba,0.19444444444444445,0.0
+pct_moradia_nao_convencional,Moradia não convencional,431490205000957,Porto Alegre,0.18518518518518517,0.0
+pct_moradia_nao_convencional,Moradia não convencional,431490205001310,Porto Alegre,0.12149532710280374,0.0
+pct_moradia_nao_convencional,Moradia não convencional,431490205001410,Porto Alegre,0.11949685534591195,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,410690205020060,Curitiba,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,431490205002780,Porto Alegre,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,431490205002348,Porto Alegre,0.9953917050691244,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,431490205002723,Porto Alegre,0.9885057471264368,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,430460605000636,Canoas,0.9874213836477987,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,410690205040269,Curitiba,0.9846938775510204,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,410690205020480,Curitiba,0.984375,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,431490205002386,Porto Alegre,0.9818652849740933,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,430460605000683,Canoas,0.9743589743589743,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,431490205000623,Porto Alegre,0.972972972972973,0.0
+pct_crianca_0a4,Crianças 0–4,412550605000363,São José dos Pinhais,0.20689655172413793,0.046511627906976744
+pct_crianca_0a4,Crianças 0–4,412550605000474,São José dos Pinhais,0.19,0.046511627906976744
+pct_crianca_0a4,Crianças 0–4,421780805000052,Taió,0.18181818181818182,0.046511627906976744
+pct_crianca_0a4,Crianças 0–4,431490205002138,Porto Alegre,0.1610738255033557,0.046511627906976744
+pct_crianca_0a4,Crianças 0–4,410690205100118,Curitiba,0.1527777777777778,0.046511627906976744
+pct_crianca_0a4,Crianças 0–4,430460605000209,Canoas,0.1513157894736842,0.046511627906976744
+pct_pop_0a14,População 0–14,412550605000474,São José dos Pinhais,0.47,0.15847330191592487
+pct_idoso_60mais,Pessoas 60+,421780805000038,Taió,0.6666666666666666,0.1934156378600823
+iep_setor,Índice de envelhecimento,431490205001784,Porto Alegre,4050.0,122.93374316939891
+iep_setor,Índice de envelhecimento,431490205000044,Porto Alegre,3366.6666666666665,122.93374316939891
+iep_setor,Índice de envelhecimento,431490205001707,Porto Alegre,2283.333333333333,122.93374316939891
+iep_setor,Índice de envelhecimento,431490205000595,Porto Alegre,2000.0,122.93374316939891
+iep_setor,Índice de envelhecimento,430460605000397,Canoas,1737.5,122.93374316939891
+iep_setor,Índice de envelhecimento,431490205000037,Porto Alegre,1650.0,122.93374316939891
+iep_setor,Índice de envelhecimento,431490205000169,Porto Alegre,1600.0,122.93374316939891
+iep_setor,Índice de envelhecimento,431490205002403,Porto Alegre,1550.0,122.93374316939891
+iep_setor,Índice de envelhecimento,431490205000004,Porto Alegre,1450.0,122.93374316939891
+iep_setor,Índice de envelhecimento,431490205000070,Porto Alegre,1385.7142857142858,122.93374316939891
+rdi_setor,Dependência idosa,421780805000038,Taió,280.0,29.965016796771152
+rdi_setor,Dependência idosa,421780805000042,Taió,166.66666666666669,29.965016796771152
+rdi_setor,Dependência idosa,430460605000397,Canoas,133.65384615384613,29.965016796771152
+rdi_setor,Dependência idosa,421780805000032,Taió,133.33333333333331,29.965016796771152
+rdi_setor,Dependência idosa,421780805000041,Taió,133.33333333333331,29.965016796771152
+rdi_setor,Dependência idosa,421780805000054,Taió,133.33333333333331,29.965016796771152
+rdi_setor,Dependência idosa,431490205002124,Porto Alegre,132.0,29.965016796771152
+rdi_setor,Dependência idosa,410690205010446,Curitiba,131.89655172413794,29.965016796771152
+rdi_setor,Dependência idosa,431490205001664,Porto Alegre,122.16216216216216,29.965016796771152
+rdi_setor,Dependência idosa,431930710000001,São Paulo das Missões,117.94871794871796,29.965016796771152
+prop_70mais_entre_60mais,70+ entre 60+,411850105000063,Pato Branco,100.0,43.96551724137931
+prop_70mais_entre_60mais,70+ entre 60+,412550605000353,São José dos Pinhais,100.0,43.96551724137931
+prop_70mais_entre_60mais,70+ entre 60+,412550605000363,São José dos Pinhais,100.0,43.96551724137931
+prop_70mais_entre_60mais,70+ entre 60+,412550605000450,São José dos Pinhais,100.0,43.96551724137931
+prop_70mais_entre_60mais,70+ entre 60+,421780805000032,Taió,100.0,43.96551724137931
+prop_70mais_entre_60mais,70+ entre 60+,421780805000036,Taió,100.0,43.96551724137931
+prop_70mais_entre_60mais,70+ entre 60+,421780805000042,Taió,100.0,43.96551724137931
+prop_70mais_entre_60mais,70+ entre 60+,430460605000393,Canoas,100.0,43.96551724137931
+prop_70mais_entre_60mais,70+ entre 60+,430460605000650,Canoas,100.0,43.96551724137931
+prop_70mais_entre_60mais,70+ entre 60+,431490205002704,Porto Alegre,100.0,43.96551724137931

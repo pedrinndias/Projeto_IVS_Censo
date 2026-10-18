@@ -1,0 +1,51 @@
+indicador,rotulo,CD_SETOR,NM_MUN,valor,mediana_global
+pct_sem_banheiro,Sem banheiro,330455705250341,Rio de Janeiro,1.0,0.0
+pct_sem_banheiro,Sem banheiro,261160605230797,Recife,0.9627329192546584,0.0
+pct_sem_banheiro,Sem banheiro,410690205090296,Curitiba,0.9333333333333333,0.0
+pct_sem_banheiro,Sem banheiro,500270405110448,Campo Grande,0.9111111111111111,0.0
+pct_sem_banheiro,Sem banheiro,330455705140350,Rio de Janeiro,0.8888888888888888,0.0
+pct_sem_banheiro,Sem banheiro,150580905000077,Portel,0.875,0.0
+pct_sem_banheiro,Sem banheiro,130260305130192,Manaus,0.8648648648648649,0.0
+pct_sem_banheiro,Sem banheiro,520870705410055,Goiânia,0.8636363636363636,0.0
+pct_sem_banheiro,Sem banheiro,270430205120370,Maceió,0.8511326860841424,0.0
+pct_sem_banheiro,Sem banheiro,355030825000435,São Paulo,0.8333333333333334,0.0
+banheiro_graduado,Banheiro graduado,355030830001117,São Paulo,0.6666666666666666,0.0
+banheiro_graduado,Banheiro graduado,150140260000260,Belém,0.6124031007751938,0.0
+banheiro_graduado,Banheiro graduado,130260305130192,Manaus,0.5435435435435435,0.0
+banheiro_graduado,Banheiro graduado,211130005001435,São Luís,0.5,0.0
+banheiro_graduado,Banheiro graduado,355030830001613,São Paulo,0.4927536231884058,0.0
+banheiro_graduado,Banheiro graduado,330170205000764,Duque de Caxias,0.4388185654008439,0.0
+banheiro_graduado,Banheiro graduado,130260305000269,Manaus,0.4117647058823529,0.0
+banheiro_graduado,Banheiro graduado,291080005110167,Feira de Santana,0.4114114114114114,0.0
+banheiro_graduado,Banheiro graduado,150080005000883,Ananindeua,0.3989071038251366,0.0
+banheiro_graduado,Banheiro graduado,211130005001432,São Luís,0.39855072463768115,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,355030830001117,São Paulo,0.6666666666666666,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,150140260000260,Belém,0.5348837209302325,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,261160605190415,Recife,0.41379310344827586,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,130260305000269,Manaus,0.35294117647058826,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,150140250000167,Belém,0.35294117647058826,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,211130005001730,São Luís,0.33962264150943394,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,150080005000883,Ananindeua,0.319672131147541,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,211130005001662,São Luís,0.2857142857142857,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,261160605230795,Recife,0.2647058823529412,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,211130005001432,São Luís,0.2391304347826087,0.0
+pct_so_sanitario,Só sanitário,500270405110448,Campo Grande,0.8444444444444444,0.0
+pct_so_sanitario,Só sanitário,130260305130192,Manaus,0.7657657657657657,0.0
+pct_so_sanitario,Só sanitário,355030830001613,São Paulo,0.6086956521739131,0.0
+pct_so_sanitario,Só sanitário,330170205000764,Duque de Caxias,0.5569620253164557,0.0
+pct_so_sanitario,Só sanitário,210960105000080,Rosário,0.526829268292683,0.0
+pct_so_sanitario,Só sanitário,150565005000045,Placas,0.5,0.0
+pct_so_sanitario,Só sanitário,150580905000085,Portel,0.4787234042553192,0.0
+pct_so_sanitario,Só sanitário,261160605180168,Recife,0.46835443037974683,0.0
+pct_so_sanitario,Só sanitário,211120110000517,São José de Ribamar,0.44329896907216493,0.0
+pct_so_sanitario,Só sanitário,130260305140410,Manaus,0.43425076452599387,0.0
+pct_banheiro_comum,Banheiro de uso comum,330455705250341,Rio de Janeiro,1.0,0.0
+pct_banheiro_comum,Banheiro de uso comum,261160605230797,Recife,0.9565217391304348,0.0
+pct_banheiro_comum,Banheiro de uso comum,410690205090296,Curitiba,0.9333333333333333,0.0
+pct_banheiro_comum,Banheiro de uso comum,330455705140350,Rio de Janeiro,0.8888888888888888,0.0
+pct_banheiro_comum,Banheiro de uso comum,150580905000077,Portel,0.875,0.0
+pct_banheiro_comum,Banheiro de uso comum,520870705410055,Goiânia,0.8636363636363636,0.0
+pct_banheiro_comum,Banheiro de uso comum,270430205120370,Maceió,0.8511326860841424,0.0
+pct_banheiro_comum,Banheiro de uso comum,355030825000435,São Paulo,0.8111111111111111,0.0
+pct_banheiro_comum,Banheiro de uso comum,310620005670397,Belo Horizonte,0.7727272727272727,0.0
+pct_banheiro_comum,Banheiro de uso comum,330455705070029,Rio de Janeiro,0.7441860465116279,0.0

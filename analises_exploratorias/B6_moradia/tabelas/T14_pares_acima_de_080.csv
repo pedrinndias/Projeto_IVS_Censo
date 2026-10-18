@@ -1,0 +1,5 @@
+a,b,rotulo_a,rotulo_b,spearman,pearson
+pct_hab_precaria,pct_moradia_nao_convencional,Habitação precária,Moradia não convencional,0.9645791416320098,0.9355155605291979
+pct_apartamento,pct_casa,Apartamento,Casa,-0.9016343896026168,-0.9511560260734486
+pct_moradia_convencional,pct_moradia_nao_convencional,Moradia convencional,Moradia não convencional,-0.5054934763459814,-0.9766805465910899
+pct_hab_precaria,pct_moradia_convencional,Habitação precária,Moradia convencional,-0.49064815899140135,-0.9176976406137332

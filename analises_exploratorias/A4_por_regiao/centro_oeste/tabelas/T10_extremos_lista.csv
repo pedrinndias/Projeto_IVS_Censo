@@ -1,0 +1,220 @@
+indicador,rotulo,CD_SETOR,NM_MUN,valor,mediana_global
+pct_agua_inad,Água inadequada,500270405090175,Campo Grande,1.0,0.0
+pct_agua_inad,Água inadequada,500270405090207,Campo Grande,1.0,0.0
+pct_agua_inad,Água inadequada,500270405090211,Campo Grande,1.0,0.0
+pct_agua_inad,Água inadequada,500270405130278,Campo Grande,1.0,0.0
+pct_agua_inad,Água inadequada,520860805000079,Goianésia,1.0,0.0
+pct_agua_inad,Água inadequada,520870705360052,Goiânia,1.0,0.0
+pct_agua_inad,Água inadequada,520870705580042,Goiânia,1.0,0.0
+pct_agua_inad,Água inadequada,520870715000004,Goiânia,1.0,0.0
+pct_agua_inad,Água inadequada,520870715000006,Goiânia,1.0,0.0
+pct_agua_inad,Água inadequada,530010805070176,Brasília,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,530010805110366,Brasília,0.9556650246305418,0.0
+pct_sem_agua_canalizada,Sem água canalizada,500270405110448,Campo Grande,0.9333333333333333,0.0
+pct_sem_agua_canalizada,Sem água canalizada,520870715000004,Goiânia,0.89937106918239,0.0
+pct_sem_agua_canalizada,Sem água canalizada,520110805000326,Anápolis,0.8906666666666667,0.0
+pct_sem_agua_canalizada,Sem água canalizada,530010805340041,Brasília,0.8647540983606558,0.0
+pct_sem_agua_canalizada,Sem água canalizada,520110805000460,Anápolis,0.8451882845188284,0.0
+pct_sem_agua_canalizada,Sem água canalizada,530010805060491,Brasília,0.84,0.0
+pct_sem_agua_canalizada,Sem água canalizada,520870705560118,Goiânia,0.7978723404255319,0.0
+pct_sem_agua_canalizada,Sem água canalizada,520870705410055,Goiânia,0.7727272727272727,0.0
+pct_sem_agua_canalizada,Sem água canalizada,520870705580042,Goiânia,0.7454545454545455,0.0
+pct_agua_nao_encanada,Água não chega,520870715000004,Goiânia,0.89937106918239,0.0
+pct_agua_nao_encanada,Água não chega,500270405090168,Campo Grande,0.8571428571428571,0.0
+pct_agua_nao_encanada,Água não chega,520870705580042,Goiânia,0.7454545454545455,0.0
+pct_agua_nao_encanada,Água não chega,500270405110448,Campo Grande,0.7111111111111111,0.0
+pct_agua_nao_encanada,Água não chega,530010805340041,Brasília,0.6926229508196722,0.0
+pct_agua_nao_encanada,Água não chega,520110815000004,Anápolis,0.6776556776556777,0.0
+pct_agua_nao_encanada,Água não chega,520110805000591,Anápolis,0.6764705882352942,0.0
+pct_agua_nao_encanada,Água não chega,520870705630075,Goiânia,0.3776824034334764,0.0
+pct_agua_nao_encanada,Água não chega,530010805160315,Brasília,0.3333333333333333,0.0
+pct_agua_nao_encanada,Água não chega,500270405130177,Campo Grande,0.33,0.0
+pct_agua_so_terreno,Água só no terreno,530010805110354,Brasília,0.9925925925925926,0.0
+pct_agua_so_terreno,Água só no terreno,530010805300201,Brasília,0.9766666666666667,0.0
+pct_agua_so_terreno,Água só no terreno,530010805110366,Brasília,0.9556650246305419,0.0
+pct_agua_so_terreno,Água só no terreno,520110805000326,Anápolis,0.8906666666666667,0.0
+pct_agua_so_terreno,Água só no terreno,530010805060491,Brasília,0.84,0.0
+pct_agua_so_terreno,Água só no terreno,520870705560118,Goiânia,0.7978723404255319,0.0
+pct_agua_so_terreno,Água só no terreno,520110805000460,Anápolis,0.7949790794979079,0.0
+pct_agua_so_terreno,Água só no terreno,520870705410055,Goiânia,0.7727272727272727,0.0
+pct_agua_so_terreno,Água só no terreno,530010805370138,Brasília,0.7142857142857143,0.0
+pct_agua_so_terreno,Água só no terreno,530010805310115,Brasília,0.696,0.0
+pct_sem_banheiro,Sem banheiro,500270405110448,Campo Grande,0.9111111111111111,0.0
+pct_sem_banheiro,Sem banheiro,520870705410055,Goiânia,0.8636363636363636,0.0
+pct_sem_banheiro,Sem banheiro,530010805060491,Brasília,0.48,0.0
+pct_sem_banheiro,Sem banheiro,500270405070157,Campo Grande,0.4266666666666667,0.0
+pct_sem_banheiro,Sem banheiro,500270405110437,Campo Grande,0.25,0.0
+pct_sem_banheiro,Sem banheiro,520870705010028,Goiânia,0.15920398009950248,0.0
+pct_sem_banheiro,Sem banheiro,520870705410060,Goiânia,0.15172413793103448,0.0
+pct_sem_banheiro,Sem banheiro,500270405110345,Campo Grande,0.14035087719298245,0.0
+pct_sem_banheiro,Sem banheiro,500270405090211,Campo Grande,0.10344827586206896,0.0
+pct_sem_banheiro,Sem banheiro,530010805110408,Brasília,0.10144927536231885,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,530010805060524,Brasília,0.05142857142857143,0.0
+pct_so_sanitario,Só sanitário,500270405110448,Campo Grande,0.8444444444444444,0.0
+pct_so_sanitario,Só sanitário,500270405070157,Campo Grande,0.4,0.0
+pct_banheiro_comum,Banheiro de uso comum,520870705410055,Goiânia,0.8636363636363636,0.0
+pct_banheiro_comum,Banheiro de uso comum,530010805060491,Brasília,0.36,0.0
+pct_banheiro_comum,Banheiro de uso comum,520870705010028,Goiânia,0.15920398009950248,0.0
+pct_banheiro_comum,Banheiro de uso comum,500270405110345,Campo Grande,0.12280701754385964,0.0
+pct_banheiro_comum,Banheiro de uso comum,520870705410060,Goiânia,0.11724137931034483,0.0
+pct_banheiro_comum,Banheiro de uso comum,500270405060028,Campo Grande,0.1,0.0
+banheiro_graduado,Banheiro graduado,520870705410055,Goiânia,0.2878787878787879,0.0
+banheiro_graduado,Banheiro graduado,530010805060491,Brasília,0.2,0.0
+banheiro_graduado,Banheiro graduado,530010805380129,Brasília,0.05673758865248227,0.0
+banheiro_graduado,Banheiro graduado,520870705010028,Goiânia,0.05306799336650083,0.0
+banheiro_graduado,Banheiro graduado,500270405060028,Campo Grande,0.03333333333333333,0.0
+razao_moradores,Razão de moradores,530010805370177,Brasília,4.8432432432432435,2.802531594944809
+razao_moradores,Razão de moradores,530010805370129,Brasília,4.782608695652174,2.802531594944809
+razao_moradores,Razão de moradores,500270405070170,Campo Grande,4.677083333333333,2.802531594944809
+razao_moradores,Razão de moradores,530010805370172,Brasília,4.658536585365853,2.802531594944809
+razao_moradores,Razão de moradores,530010805370178,Brasília,4.620111731843576,2.802531594944809
+razao_moradores,Razão de moradores,520870705130095,Goiânia,1.0701754385964912,2.802531594944809
+razao_moradores,Razão de moradores,530010805350107,Brasília,1.1126760563380282,2.802531594944809
+razao_moradores,Razão de moradores,530010805350103,Brasília,1.1245136186770428,2.802531594944809
+razao_moradores,Razão de moradores,500270405070173,Campo Grande,4.470588235294118,2.802531594944809
+pct_analfab,Analfabetismo 15+,530010805140094,Brasília,0.34,0.026168224299065422
+pct_analfab,Analfabetismo 15+,520860805000088,Goianésia,0.25970149253731345,0.026168224299065422
+pct_analfab,Analfabetismo 15+,510300720000001,Chapada dos Guimarães,0.24074074074074073,0.026168224299065422
+pct_analfab,Analfabetismo 15+,520870705450013,Goiânia,0.23440453686200377,0.026168224299065422
+pct_analfab,Analfabetismo 15+,500270405090168,Campo Grande,0.23333333333333334,0.026168224299065422
+pct_analfab,Analfabetismo 15+,500270460000017,Campo Grande,0.21454545454545454,0.026168224299065422
+pct_analfab,Analfabetismo 15+,520110805000516,Anápolis,0.21428571428571427,0.026168224299065422
+pct_analfab,Analfabetismo 15+,500270405110448,Campo Grande,0.19753086419753085,0.026168224299065422
+pct_analfab,Analfabetismo 15+,520860805000023,Goianésia,0.19734904270986744,0.026168224299065422
+pct_analfab,Analfabetismo 15+,520860810000001,Goianésia,0.18627450980392157,0.026168224299065422
+renda_media,Renda média,530010805360095,Brasília,47190.48,3127.125
+renda_media,Renda média,530010805160234,Brasília,39304.77,3127.125
+renda_media,Renda média,530010805360249,Brasília,38864.01,3127.125
+renda_media,Renda média,520870705130073,Goiânia,36691.5,3127.125
+renda_media,Renda média,530010805080839,Brasília,36128.98,3127.125
+renda_media,Renda média,500270405070145,Campo Grande,31837.21,3127.125
+renda_media,Renda média,530010805060439,Brasília,31224.84,3127.125
+renda_media,Renda média,530010805060461,Brasília,30436.6,3127.125
+renda_media,Renda média,530010805060498,Brasília,29502.33,3127.125
+renda_media,Renda média,520870705030021,Goiânia,29100.92,3127.125
+pct_resp_feminino,Responsável mulher,500270405130278,Campo Grande,0.0,0.5056818181818182
+pct_resp_feminino,Responsável mulher,520870705420023,Goiânia,0.0,0.5056818181818182
+pct_resp_feminino,Responsável mulher,530010805060049,Brasília,0.0,0.5056818181818182
+pct_resp_feminino,Responsável mulher,500270405060158,Campo Grande,1.0,0.5056818181818182
+pct_resp_feminino,Responsável mulher,500270405070163,Campo Grande,1.0,0.5056818181818182
+pct_resp_feminino,Responsável mulher,500270405110394,Campo Grande,1.0,0.5056818181818182
+pct_resp_feminino,Responsável mulher,530010805140094,Brasília,1.0,0.5056818181818182
+pct_resp_feminino,Responsável mulher,530010805380115,Brasília,1.0,0.5056818181818182
+pct_resp_feminino,Responsável mulher,530010805060275,Brasília,0.03225806451612903,0.5056818181818182
+pct_resp_feminino,Responsável mulher,530010805060007,Brasília,0.03431372549019608,0.5056818181818182
+renda_media_sem_extremo,Renda sem o extremo,530010805360095,Brasília,47190.48,3127.125
+renda_media_sem_extremo,Renda sem o extremo,530010805160234,Brasília,39304.77,3127.125
+renda_media_sem_extremo,Renda sem o extremo,530010805360249,Brasília,38864.01,3127.125
+renda_media_sem_extremo,Renda sem o extremo,520870705130073,Goiânia,36691.5,3127.125
+renda_media_sem_extremo,Renda sem o extremo,530010805080839,Brasília,36128.98,3127.125
+renda_media_sem_extremo,Renda sem o extremo,500270405070145,Campo Grande,31837.21,3127.125
+renda_media_sem_extremo,Renda sem o extremo,530010805060439,Brasília,31224.84,3127.125
+renda_media_sem_extremo,Renda sem o extremo,530010805060461,Brasília,30436.6,3127.125
+renda_media_sem_extremo,Renda sem o extremo,530010805060498,Brasília,29502.33,3127.125
+renda_media_sem_extremo,Renda sem o extremo,520870705030021,Goiânia,29100.92,3127.125
+renda_media_mediana_mun,Renda (mediana mun.),530010805360095,Brasília,47190.48,3127.125
+renda_media_mediana_mun,Renda (mediana mun.),530010805160234,Brasília,39304.77,3127.125
+renda_media_mediana_mun,Renda (mediana mun.),530010805360249,Brasília,38864.01,3127.125
+renda_media_mediana_mun,Renda (mediana mun.),520870705130073,Goiânia,36691.5,3127.125
+renda_media_mediana_mun,Renda (mediana mun.),530010805080839,Brasília,36128.98,3127.125
+renda_media_mediana_mun,Renda (mediana mun.),500270405070145,Campo Grande,31837.21,3127.125
+renda_media_mediana_mun,Renda (mediana mun.),530010805060439,Brasília,31224.84,3127.125
+renda_media_mediana_mun,Renda (mediana mun.),530010805060461,Brasília,30436.6,3127.125
+renda_media_mediana_mun,Renda (mediana mun.),530010805060498,Brasília,29502.33,3127.125
+renda_media_mediana_mun,Renda (mediana mun.),520870705030021,Goiânia,29100.92,3127.125
+pct_dom_improv,Domicílio improvisado,530010805110407,Brasília,0.44155844155844154,0.0
+pct_dom_improv,Domicílio improvisado,530010805110408,Brasília,0.39473684210526316,0.0
+pct_dom_improv,Domicílio improvisado,530010805330015,Brasília,0.3888888888888889,0.0
+pct_dom_improv,Domicílio improvisado,530010805060421,Brasília,0.16363636363636364,0.0
+pct_dom_improv,Domicílio improvisado,530010805110327,Brasília,0.14814814814814814,0.0
+pct_dom_improv,Domicílio improvisado,520870705350047,Goiânia,0.13941018766756033,0.0
+pct_dom_improv,Domicílio improvisado,530010805330009,Brasília,0.1388888888888889,0.0
+pct_hab_precaria,Habitação precária,530010805090111,Brasília,0.9634146341463414,0.0
+pct_hab_precaria,Habitação precária,520870705560118,Goiânia,0.9191919191919192,0.0
+pct_hab_precaria,Habitação precária,520870705410055,Goiânia,0.9090909090909091,0.0
+pct_hab_precaria,Habitação precária,530010805090110,Brasília,0.7872340425531915,0.0
+pct_hab_precaria,Habitação precária,530010805150435,Brasília,0.7560975609756098,0.0
+pct_hab_precaria,Habitação precária,520870705260073,Goiânia,0.6304347826086957,0.0
+pct_hab_precaria,Habitação precária,500270405110448,Campo Grande,0.5777777777777777,0.0
+pct_hab_precaria,Habitação precária,530010805150271,Brasília,0.5448717948717948,0.0
+pct_hab_precaria,Habitação precária,530010805150444,Brasília,0.5243243243243243,0.0
+pct_hab_precaria,Habitação precária,520870705160049,Goiânia,0.5135135135135135,0.0
+pct_moradia_convencional,Moradia convencional,520870705410055,Goiânia,0.0,1.0
+pct_moradia_convencional,Moradia convencional,530010805090111,Brasília,0.036585365853658534,1.0
+pct_moradia_convencional,Moradia convencional,520870705560118,Goiânia,0.07446808510638298,1.0
+pct_moradia_convencional,Moradia convencional,530010805090110,Brasília,0.2127659574468085,1.0
+pct_moradia_convencional,Moradia convencional,530010805150435,Brasília,0.23780487804878048,1.0
+pct_moradia_convencional,Moradia convencional,520870705260073,Goiânia,0.3695652173913043,1.0
+pct_moradia_convencional,Moradia convencional,500270405110448,Campo Grande,0.4222222222222222,1.0
+pct_moradia_convencional,Moradia convencional,530010805150271,Brasília,0.4423076923076923,1.0
+pct_moradia_convencional,Moradia convencional,530010805180360,Brasília,0.4666666666666667,1.0
+pct_moradia_convencional,Moradia convencional,530010805150444,Brasília,0.4756756756756757,1.0
+pct_moradia_nao_convencional,Moradia não convencional,530010805090111,Brasília,0.9634146341463414,0.0
+pct_moradia_nao_convencional,Moradia não convencional,520870705560118,Goiânia,0.925531914893617,0.0
+pct_moradia_nao_convencional,Moradia não convencional,520870705410055,Goiânia,0.9090909090909091,0.0
+pct_moradia_nao_convencional,Moradia não convencional,530010805090110,Brasília,0.7872340425531915,0.0
+pct_moradia_nao_convencional,Moradia não convencional,530010805150435,Brasília,0.7560975609756098,0.0
+pct_moradia_nao_convencional,Moradia não convencional,520870705260073,Goiânia,0.6304347826086957,0.0
+pct_moradia_nao_convencional,Moradia não convencional,500270405110448,Campo Grande,0.5777777777777777,0.0
+pct_moradia_nao_convencional,Moradia não convencional,530010805150271,Brasília,0.5448717948717948,0.0
+pct_moradia_nao_convencional,Moradia não convencional,530010805150444,Brasília,0.5243243243243243,0.0
+pct_moradia_nao_convencional,Moradia não convencional,520870705160049,Goiânia,0.5135135135135135,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,500270405070176,Campo Grande,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,500270405110287,Campo Grande,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,500270405110288,Campo Grande,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,500270405110289,Campo Grande,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,500270405110336,Campo Grande,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,520870705280019,Goiânia,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,520870705340010,Goiânia,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,520870705380039,Goiânia,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,530010805150677,Brasília,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,530010805250127,Brasília,1.0,0.0
+pct_crianca_0a4,Crianças 0–4,520870715000006,Goiânia,0.21052631578947367,0.05800339429947092
+pct_crianca_0a4,Crianças 0–4,500270405080206,Campo Grande,0.2,0.05800339429947092
+pct_crianca_0a4,Crianças 0–4,500270405080222,Campo Grande,0.2,0.05800339429947092
+pct_crianca_0a4,Crianças 0–4,530010805380101,Brasília,0.19047619047619047,0.05800339429947092
+pct_crianca_0a4,Crianças 0–4,530010805180360,Brasília,0.18705035971223022,0.05800339429947092
+pct_crianca_0a4,Crianças 0–4,530010805310154,Brasília,0.18181818181818182,0.05800339429947092
+pct_crianca_0a4,Crianças 0–4,500270405110437,Campo Grande,0.17567567567567569,0.05800339429947092
+pct_crianca_0a4,Crianças 0–4,500270405110345,Campo Grande,0.17341040462427745,0.05800339429947092
+pct_crianca_0a4,Crianças 0–4,500270405070173,Campo Grande,0.17105263157894737,0.05800339429947092
+pct_crianca_0a4,Crianças 0–4,500270405110350,Campo Grande,0.1638349514563107,0.05800339429947092
+pct_pop_0a14,População 0–14,530010805060487,Brasília,0.484375,0.18526679183574588
+pct_pop_0a14,População 0–14,500270405080206,Campo Grande,0.46382978723404256,0.18526679183574588
+pct_pop_0a14,População 0–14,500270405120228,Campo Grande,0.4280936454849498,0.18526679183574588
+pct_pop_0a14,População 0–14,500270405110341,Campo Grande,0.42773722627737226,0.18526679183574588
+pct_pop_0a14,População 0–14,530010805380116,Brasília,0.425,0.18526679183574588
+pct_pop_0a14,População 0–14,500270405110345,Campo Grande,0.42196531791907516,0.18526679183574588
+pct_idoso_60mais,Pessoas 60+,530010805140094,Brasília,0.8571428571428571,0.1375093423019432
+pct_idoso_60mais,Pessoas 60+,500270405130278,Campo Grande,0.8333333333333334,0.1375093423019432
+pct_idoso_60mais,Pessoas 60+,500270405060158,Campo Grande,0.5,0.1375093423019432
+iep_setor,Índice de envelhecimento,530010805320018,Brasília,3166.666666666667,75.23809523809524
+iep_setor,Índice de envelhecimento,530010805140094,Brasília,3000.0,75.23809523809524
+iep_setor,Índice de envelhecimento,520110805000084,Anápolis,1725.0,75.23809523809524
+iep_setor,Índice de envelhecimento,530010805060065,Brasília,1566.6666666666665,75.23809523809524
+iep_setor,Índice de envelhecimento,530010805060081,Brasília,1300.0,75.23809523809524
+iep_setor,Índice de envelhecimento,530010805060401,Brasília,1125.0,75.23809523809524
+iep_setor,Índice de envelhecimento,530010805060476,Brasília,1066.6666666666665,75.23809523809524
+iep_setor,Índice de envelhecimento,520870705200005,Goiânia,1000.0,75.23809523809524
+iep_setor,Índice de envelhecimento,530010805360049,Brasília,1000.0,75.23809523809524
+iep_setor,Índice de envelhecimento,520110805000002,Anápolis,922.2222222222222,75.23809523809524
+rdi_setor,Dependência idosa,530010805140094,Brasília,1000.0,20.433501323994193
+rdi_setor,Dependência idosa,520870705200005,Goiânia,125.0,20.433501323994193
+rdi_setor,Dependência idosa,510300705000042,Chapada dos Guimarães,111.11111111111111,20.433501323994193
+rdi_setor,Dependência idosa,520110805000001,Anápolis,107.36842105263158,20.433501323994193
+rdi_setor,Dependência idosa,500270405080256,Campo Grande,100.0,20.433501323994193
+rdi_setor,Dependência idosa,520870705040041,Goiânia,96.99248120300751,20.433501323994193
+rdi_setor,Dependência idosa,520870705040037,Goiânia,96.47887323943662,20.433501323994193
+rdi_setor,Dependência idosa,520870715000009,Goiânia,92.5,20.433501323994193
+rdi_setor,Dependência idosa,530010805060223,Brasília,91.33858267716536,20.433501323994193
+rdi_setor,Dependência idosa,520110805000002,Anápolis,87.36842105263159,20.433501323994193
+prop_70mais_entre_60mais,70+ entre 60+,500270405060158,Campo Grande,100.0,40.909090909090914
+prop_70mais_entre_60mais,70+ entre 60+,500270405070062,Campo Grande,100.0,40.909090909090914
+prop_70mais_entre_60mais,70+ entre 60+,500270405110336,Campo Grande,100.0,40.909090909090914
+prop_70mais_entre_60mais,70+ entre 60+,500270405120187,Campo Grande,100.0,40.909090909090914
+prop_70mais_entre_60mais,70+ entre 60+,520870705150038,Goiânia,100.0,40.909090909090914
+prop_70mais_entre_60mais,70+ entre 60+,520870705180032,Goiânia,100.0,40.909090909090914
+prop_70mais_entre_60mais,70+ entre 60+,520870705180051,Goiânia,100.0,40.909090909090914
+prop_70mais_entre_60mais,70+ entre 60+,520870705380050,Goiânia,100.0,40.909090909090914
+prop_70mais_entre_60mais,70+ entre 60+,520870705410052,Goiânia,100.0,40.909090909090914
+prop_70mais_entre_60mais,70+ entre 60+,520870705580018,Goiânia,100.0,40.909090909090914

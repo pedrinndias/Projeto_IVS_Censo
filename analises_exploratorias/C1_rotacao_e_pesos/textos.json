@@ -1,0 +1,9 @@
+{
+  "pergunta": "O que muda no índice com outra rotação e com cada um dos 9 esquemas de peso entre as dimensões?",
+  "o_que_muda": "A rotação: Varimax (fatores independentes) no lugar da promax, com os mesmos pesos 60/40 entre as dimensões. Os outros oito esquemas de rotação e peso — sem rotação, Varimax e promax com soma dos quadrados, comunalidades, 50/50 e a referência — estão na tabela T34.",
+  "sintese": "Com os pesos 60/40 fixos, trocar promax por Varimax quase não muda nada: correlação de postos praticamente 1 com a referência e poucas trocas de faixa. O que move o índice é o esquema de peso, não a rotação: os pesos pela soma dos quadrados das cargas elevam a AUC municipal, o 50/50 a reduz, e o índice sem rotação (um fator só) tem a AUC mais alta da tabela mas não é elegível pelos critérios do NB05.",
+  "limitacoes": [
+    "Os esquemas 50/50 e 60/40 fixam o peso das dimensões antes de olhar os dados; os demais o tiram das cargas.",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista)."
+  ]
+}

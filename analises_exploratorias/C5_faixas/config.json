@@ -1,0 +1,38 @@
+{
+  "versao": "C5_faixas",
+  "titulo": "Regras de faixa",
+  "pergunta": "Como mudam as faixas de vulnerabilidade do mesmo índice com quartis, quintis, quebras naturais ou agrupamento?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null
+  },
+  "indicadores": "todos",
+  "indice": {
+    "colunas": [
+      "pct_agua_inad",
+      "pct_esgoto_inad",
+      "razao_moradores",
+      "pct_analfab",
+      "renda_inv",
+      "pct_raca_pretpardind",
+      "banheiro_graduado"
+    ],
+    "renda": "original",
+    "rotacao": "promax",
+    "metodo": "60_40",
+    "normalizacao": "municipal"
+  },
+  "blocos": [
+    10,
+    11,
+    12
+  ],
+  "faixas_alternativas": true,
+  "parametros_exploratorios": {
+    "número de grupos": "o da silhueta entre 3 e 6, e sempre 4",
+    "quebras naturais": "k-médias numa dimensão, 4 classes, por município (municípios com pelo menos 8 setores)"
+  }
+}

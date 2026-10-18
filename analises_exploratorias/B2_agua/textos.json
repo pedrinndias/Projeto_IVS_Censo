@@ -1,0 +1,10 @@
+{
+  "pergunta": "O que muda no índice quando a água inadequada é trocada por outra definição de falta de água?",
+  "o_que_muda": "O componente de água do índice: a falta de água canalizada entra no lugar da água inadequada. As outras definições (água não chega ao domicílio, água só no terreno) e a água inadequada da referência estão na tabela T34. Os blocos 2 a 7 descrevem só as quatro definições de água.",
+  "sintese": "Trocar a definição de água é uma das mudanças que mais mexem no índice entre as versões do eixo B: a correlação de postos com a referência cai e mais de um em cada dez setores muda de faixa. Com a falta de água canalizada, o KMO e a AUC contra as favelas sobem em relação à referência; as outras duas definições (T34) ficam muito próximas desta versão — correlação de postos perto de 1, poucas trocas de faixa e AUC também acima da referência —, mas reduzem a amostra do índice. As quatro definições medem coisas diferentes: a água inadequada inclui poço e outras fontes; as outras olham se a água chega canalizada à casa.",
+  "limitacoes": [
+    "As definições de água têm mediana zero e muitos zeros: a correlação entre elas e a fatorial dependem de poucos setores com valor.",
+    "Água não chega e água só no terreno têm mais faltantes e reduzem a amostra do índice.",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista); trocar um componente muda também a amostra."
+  ]
+}

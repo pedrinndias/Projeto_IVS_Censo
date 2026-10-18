@@ -1,0 +1,10 @@
+regra,faixa,setores,pct
+ivs_bh,indefinida,1,0.11389521640091116
+ivs_bh,baixo,268,30.52391799544419
+ivs_bh,medio,358,40.77448747152619
+ivs_bh,elevado,204,23.234624145785876
+ivs_bh,muito_elevado,47,5.353075170842825
+quartis,baixo,208,23.690205011389523
+quartis,medio,222,25.284738041002278
+quartis,elevado,217,24.715261958997722
+quartis,muito_elevado,231,26.309794988610477

@@ -1,0 +1,11 @@
+{
+  "pergunta": "Como ficam os dados e o IVS quando os blocos rodam só com os municípios da região Nordeste?",
+  "o_que_muda": "Só o recorte: entram apenas os setores urbanos com Dados_sig = OK dos municípios da região Nordeste. A fatorial, os pesos e as faixas são recalculados com eles; componentes, rotação, pesos 60/40 e normalização são os da referência.",
+  "sintese": "O índice regional ordena os setores de modo parecido com a referência, mas cerca de um em cada dez setores muda de faixa. A versão não é elegível: o KMO fica abaixo de 0,70 e o banheiro graduado tem comunalidade e carga baixas. A AUC contra as favelas é menor que a da referência. Falha registrada como falha.",
+  "limitacoes": [
+    "A fatorial, os pesos e as faixas são recalculados só com os setores da região; os índices de regiões diferentes não são comparáveis entre si.",
+    "Regiões com poucos municípios no ELSI têm descritivas regionais apoiadas em poucas cidades.",
+    "A AUC municipal só usa municípios com pelo menos 30 setores de FCU e 30 fora; em algumas regiões, são poucos.",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista)."
+  ]
+}

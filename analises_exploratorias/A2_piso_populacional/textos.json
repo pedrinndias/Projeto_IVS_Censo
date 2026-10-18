@@ -1,0 +1,10 @@
+{
+  "pergunta": "O que muda se só entram os setores com pelo menos 50 moradores?",
+  "o_que_muda": "Só o recorte: saem os setores urbanos com menos de 50 moradores, em que as proporções dependem de muito poucas pessoas. O piso de 50 é parâmetro exploratório; a tabela T34 repete a versão com piso de 100.",
+  "sintese": "O piso tira poucos setores e mexe pouco no índice: a correlação de postos com a referência fica perto de 1 e poucos setores trocam de faixa. A AUC contra as favelas sobe um pouco, sinal de que parte do ruído vinha de setores muito pequenos. Com piso de 100 (T34), o quadro é o mesmo. O piso não é decisão: a pergunta está registrada para a orientadora.",
+  "limitacoes": [
+    "O piso é parâmetro exploratório: nem 50 nem 100 moradores foram fixados pelo projeto.",
+    "Os setores pequenos são justamente os mais atingidos pelo sigilo (bloco 4); o piso e a exclusão por lista retiram em parte os mesmos setores.",
+    "A amostra do índice continua excluindo todo setor com algum componente faltante (exclusão por lista)."
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "pergunta": "Como o IVS da referência se relaciona com o envelhecimento dos setores?",
+  "o_que_muda": "Não é uma versão do índice: cruza o IVS da referência com os indicadores de envelhecimento por setor (proporção de 60+, índice de envelhecimento, razão de dependência idosa e 70+ entre os 60+).",
+  "sintese": "O IVS e o envelhecimento andam em sentidos opostos: os setores mais vulneráveis são, em geral, mais jovens, e a proporção mediana de pessoas de 60+ cai das faixas baixas para as altas. A relação muda de cidade para cidade e chega a ser positiva em alguns municípios. É por isso que somar envelhecimento ao índice (D2) apaga a vulnerabilidade; cruzar os dois, como aqui, preserva as duas informações.",
+  "limitacoes": [
+    "Correlação por setor não diz nada sobre o idoso individual: idosos vulneráveis existem em setores de todos os perfis.",
+    "Municípios com poucos setores têm correlação instável."
+  ]
+}

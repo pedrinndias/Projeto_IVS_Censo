@@ -1,0 +1,4 @@
+a,b,rotulo_a,rotulo_b,spearman,pearson
+renda_media,renda_media_sem_extremo,Renda média,Renda sem o extremo,1.0,1.0
+renda_media_sem_extremo,renda_media_mediana_mun,Renda sem o extremo,Renda (mediana mun.),1.0,1.0
+renda_media,renda_media_mediana_mun,Renda média,Renda (mediana mun.),0.9999903148892957,0.9921601037477966

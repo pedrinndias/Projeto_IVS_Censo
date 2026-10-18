@@ -1,0 +1,10 @@
+{
+  "pergunta": "Que perfis aparecem quando se agrupam setores e municípios?",
+  "o_que_muda": "Não é uma versão do índice: agrupa setores (pelos componentes normalizados no município) e municípios (pelas medianas dos componentes) por k-médias, com o número de grupos indicado pela silhueta entre 3 e 6 (parâmetro exploratório).",
+  "sintese": "A silhueta indica quatro grupos tanto para setores quanto para municípios, mas com separação moderada, como é comum nesse tipo de dado. Entre os setores, um grupo pequeno concentra as favelas — metade dos setores dele está em FCU —, sem ser o grupo de IVS médio mais alto: as favelas têm um perfil próprio de carência, que o índice mistura com outros. Os grupos de municípios estão no deck por região.",
+  "limitacoes": [
+    "O número de grupos é parâmetro exploratório — não é decisão.",
+    "A silhueta dos setores é calculada numa amostra fixa de 5 mil setores.",
+    "k-médias supõe grupos de formato esférico; outros métodos de agrupamento podem dar grupos diferentes."
+  ]
+}

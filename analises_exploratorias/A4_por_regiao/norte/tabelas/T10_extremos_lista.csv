@@ -1,0 +1,248 @@
+indicador,rotulo,CD_SETOR,NM_MUN,valor,mediana_global
+pct_sem_agua_canalizada,Sem água canalizada,130260305100279,Manaus,1.0,0.007352941176470562
+pct_sem_agua_canalizada,Sem água canalizada,150140250000167,Belém,1.0,0.007352941176470562
+pct_sem_agua_canalizada,Sem água canalizada,150580905000077,Portel,1.0,0.007352941176470562
+pct_sem_agua_canalizada,Sem água canalizada,150140255000386,Belém,0.9829545454545454,0.007352941176470562
+pct_sem_agua_canalizada,Sem água canalizada,150140260000076,Belém,0.9676375404530745,0.007352941176470562
+pct_sem_agua_canalizada,Sem água canalizada,150080005000398,Ananindeua,0.9375,0.007352941176470562
+pct_sem_agua_canalizada,Sem água canalizada,150140250000224,Belém,0.9327433628318584,0.007352941176470562
+pct_sem_agua_canalizada,Sem água canalizada,130260305100327,Manaus,0.9315589353612167,0.007352941176470562
+pct_sem_agua_canalizada,Sem água canalizada,150080005000157,Ananindeua,0.9218390804597701,0.007352941176470562
+pct_sem_agua_canalizada,Sem água canalizada,150140245000544,Belém,0.9217391304347826,0.007352941176470562
+pct_agua_nao_encanada,Água não chega,150580905000077,Portel,1.0,0.0
+pct_agua_nao_encanada,Água não chega,130260305100207,Manaus,0.9933333333333333,0.0
+pct_agua_nao_encanada,Água não chega,130260305140512,Manaus,0.9861111111111112,0.0
+pct_agua_nao_encanada,Água não chega,130260305130002,Manaus,0.96875,0.0
+pct_agua_nao_encanada,Água não chega,150140250000167,Belém,0.9411764705882353,0.0
+pct_agua_nao_encanada,Água não chega,150080005000157,Ananindeua,0.9218390804597701,0.0
+pct_agua_nao_encanada,Água não chega,130260305130093,Manaus,0.9135802469135802,0.0
+pct_agua_nao_encanada,Água não chega,130260305140353,Manaus,0.9056603773584906,0.0
+pct_agua_nao_encanada,Água não chega,150140267000058,Belém,0.9,0.0
+pct_agua_nao_encanada,Água não chega,130260305140410,Manaus,0.8960244648318043,0.0
+pct_agua_so_terreno,Água só no terreno,130260305100279,Manaus,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,130260305130159,Manaus,0.9840637450199203,0.0
+pct_agua_so_terreno,Água só no terreno,150140255000386,Belém,0.9829545454545454,0.0
+pct_agua_so_terreno,Água só no terreno,150080005000398,Ananindeua,0.9375,0.0
+pct_agua_so_terreno,Água só no terreno,150140250000224,Belém,0.9327433628318584,0.0
+pct_agua_so_terreno,Água só no terreno,130260305100327,Manaus,0.9201520912547528,0.0
+pct_agua_so_terreno,Água só no terreno,150140245000543,Belém,0.9106382978723404,0.0
+pct_agua_so_terreno,Água só no terreno,150140245000544,Belém,0.8956521739130435,0.0
+pct_agua_so_terreno,Água só no terreno,150140255000009,Belém,0.8913043478260869,0.0
+pct_agua_so_terreno,Água só no terreno,130260305100243,Manaus,0.8898305084745762,0.0
+pct_sem_banheiro,Sem banheiro,150580905000077,Portel,0.875,0.0
+pct_sem_banheiro,Sem banheiro,130260305130192,Manaus,0.8648648648648649,0.0
+pct_sem_banheiro,Sem banheiro,150140275000344,Belém,0.7142857142857143,0.0
+pct_sem_banheiro,Sem banheiro,150140260000260,Belém,0.6511627906976745,0.0
+pct_sem_banheiro,Sem banheiro,150140250000167,Belém,0.5882352941176471,0.0
+pct_sem_banheiro,Sem banheiro,150140250000160,Belém,0.5798319327731093,0.0
+pct_sem_banheiro,Sem banheiro,150580905000085,Portel,0.5319148936170213,0.0
+pct_sem_banheiro,Sem banheiro,130260305140410,Manaus,0.5290519877675841,0.0
+pct_sem_banheiro,Sem banheiro,150565005000045,Placas,0.5263157894736842,0.0
+pct_sem_banheiro,Sem banheiro,150565005000053,Placas,0.46153846153846156,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,150140260000260,Belém,0.5348837209302325,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,130260305000269,Manaus,0.35294117647058826,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,150140250000167,Belém,0.35294117647058826,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,150080005000883,Ananindeua,0.319672131147541,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,150140275000344,Belém,0.14285714285714285,0.0
+pct_so_sanitario,Só sanitário,130260305130192,Manaus,0.7657657657657657,0.0
+pct_so_sanitario,Só sanitário,150565005000045,Placas,0.5,0.0
+pct_so_sanitario,Só sanitário,150580905000085,Portel,0.4787234042553192,0.0
+pct_so_sanitario,Só sanitário,130260305140410,Manaus,0.43425076452599387,0.0
+pct_so_sanitario,Só sanitário,150140250000160,Belém,0.3865546218487395,0.0
+pct_so_sanitario,Só sanitário,150565005000053,Placas,0.38461538461538464,0.0
+pct_so_sanitario,Só sanitário,150580905000010,Portel,0.3271604938271605,0.0
+pct_so_sanitario,Só sanitário,130260305130197,Manaus,0.30357142857142855,0.0
+pct_so_sanitario,Só sanitário,130260305000157,Manaus,0.2972972972972973,0.0
+pct_so_sanitario,Só sanitário,150140245000486,Belém,0.29310344827586204,0.0
+pct_banheiro_comum,Banheiro de uso comum,150580905000077,Portel,0.875,0.0
+pct_banheiro_comum,Banheiro de uso comum,150140275000344,Belém,0.5,0.0
+pct_banheiro_comum,Banheiro de uso comum,150140267000061,Belém,0.3137254901960784,0.0
+pct_banheiro_comum,Banheiro de uso comum,150140267000060,Belém,0.30701754385964913,0.0
+pct_banheiro_comum,Banheiro de uso comum,130260305130193,Manaus,0.30128205128205127,0.0
+pct_banheiro_comum,Banheiro de uso comum,130030005000083,Autazes,0.21428571428571427,0.0
+pct_banheiro_comum,Banheiro de uso comum,130260305130195,Manaus,0.18248175182481752,0.0
+pct_banheiro_comum,Banheiro de uso comum,130260305130116,Manaus,0.16996047430830039,0.0
+pct_banheiro_comum,Banheiro de uso comum,130260305120926,Manaus,0.16831683168316833,0.0
+pct_banheiro_comum,Banheiro de uso comum,150140250000160,Belém,0.15966386554621848,0.0
+banheiro_graduado,Banheiro graduado,150140260000260,Belém,0.6124031007751938,0.0
+banheiro_graduado,Banheiro graduado,130260305130192,Manaus,0.5435435435435435,0.0
+banheiro_graduado,Banheiro graduado,130260305000269,Manaus,0.4117647058823529,0.0
+banheiro_graduado,Banheiro graduado,150080005000883,Ananindeua,0.3989071038251366,0.0
+banheiro_graduado,Banheiro graduado,150580905000085,Portel,0.3475177304964539,0.0
+banheiro_graduado,Banheiro graduado,150140250000160,Belém,0.3445378151260504,0.0
+banheiro_graduado,Banheiro graduado,130260305140410,Manaus,0.3414882772680938,0.0
+banheiro_graduado,Banheiro graduado,150580905000077,Portel,0.2916666666666667,0.0
+banheiro_graduado,Banheiro graduado,150580905000010,Portel,0.29012345679012347,0.0
+banheiro_graduado,Banheiro graduado,130260305130197,Manaus,0.2604166666666667,0.0
+razao_moradores,Razão de moradores,130260305100324,Manaus,5.833333333333333,3.1937716262975777
+razao_moradores,Razão de moradores,130260305080116,Manaus,1.13125,3.1937716262975777
+razao_moradores,Razão de moradores,150140255000330,Belém,1.1724137931034482,3.1937716262975777
+razao_moradores,Razão de moradores,150580905000077,Portel,5.125,3.1937716262975777
+razao_moradores,Razão de moradores,130260305130186,Manaus,1.303030303030303,3.1937716262975777
+razao_moradores,Razão de moradores,150580905000065,Portel,4.981132075471698,3.1937716262975777
+razao_moradores,Razão de moradores,130260305080302,Manaus,1.5437956204379562,3.1937716262975777
+razao_moradores,Razão de moradores,150580905000085,Portel,4.840425531914893,3.1937716262975777
+razao_moradores,Razão de moradores,130260305080065,Manaus,1.6055555555555556,3.1937716262975777
+razao_moradores,Razão de moradores,130260305080062,Manaus,1.6268221574344024,3.1937716262975777
+pct_analfab,Analfabetismo 15+,150140267000058,Belém,0.35714285714285715,0.028421052631578948
+pct_analfab,Analfabetismo 15+,150140250000167,Belém,0.2916666666666667,0.028421052631578948
+pct_analfab,Analfabetismo 15+,150580905000085,Portel,0.264,0.028421052631578948
+pct_analfab,Analfabetismo 15+,150565005000053,Placas,0.2571428571428571,0.028421052631578948
+pct_analfab,Analfabetismo 15+,150580905000084,Portel,0.2554517133956386,0.028421052631578948
+pct_analfab,Analfabetismo 15+,150580905000010,Portel,0.2545068928950159,0.028421052631578948
+pct_analfab,Analfabetismo 15+,150580905000067,Portel,0.22933333333333333,0.028421052631578948
+pct_analfab,Analfabetismo 15+,150580905000086,Portel,0.22868217054263565,0.028421052631578948
+pct_analfab,Analfabetismo 15+,150565005000045,Placas,0.20930232558139536,0.028421052631578948
+pct_analfab,Analfabetismo 15+,150580905000065,Portel,0.20454545454545456,0.028421052631578948
+renda_media,Renda média,150140255000432,Belém,78444.47,1820.99
+renda_media,Renda média,130260305110044,Manaus,50802.73,1820.99
+renda_media,Renda média,130260305130065,Manaus,40720.0,1820.99
+renda_media,Renda média,130260305130111,Manaus,36276.19,1820.99
+renda_media,Renda média,130260305080282,Manaus,34887.53,1820.99
+renda_media,Renda média,130260305110351,Manaus,31466.12,1820.99
+renda_media,Renda média,130260305110353,Manaus,31125.56,1820.99
+renda_media,Renda média,150140245000258,Belém,29359.01,1820.99
+renda_media,Renda média,130260305130071,Manaus,28824.65,1820.99
+renda_media,Renda média,150080005000676,Ananindeua,27854.05,1820.99
+pct_raca_pretpardind,Cor/raça PPI,150140250000022,Belém,0.20594713656387664,0.7699481865284974
+pct_raca_pretpardind,Cor/raça PPI,130260305130071,Manaus,0.25,0.7699481865284974
+pct_raca_pretpardind,Cor/raça PPI,130260305110044,Manaus,0.28825622775800713,0.7699481865284974
+pct_raca_pretpardind,Cor/raça PPI,130260305110336,Manaus,0.2922077922077922,0.7699481865284974
+pct_raca_pretpardind,Cor/raça PPI,130260305110198,Manaus,0.30220713073005095,0.7699481865284974
+pct_raca_pretpardind,Cor/raça PPI,130260305110190,Manaus,0.3185550082101806,0.7699481865284974
+pct_raca_pretpardind,Cor/raça PPI,130260305110313,Manaus,0.3248502994011976,0.7699481865284974
+pct_raca_pretpardind,Cor/raça PPI,130260305130065,Manaus,0.32751091703056767,0.7699481865284974
+pct_raca_pretpardind,Cor/raça PPI,130260305110335,Manaus,0.3333333333333333,0.7699481865284974
+pct_raca_pretpardind,Cor/raça PPI,130260305110184,Manaus,0.3381294964028777,0.7699481865284974
+pct_resp_feminino,Responsável mulher,130260305100324,Manaus,0.0,0.546875
+pct_resp_feminino,Responsável mulher,130260305100276,Manaus,0.036011080332409975,0.546875
+pct_resp_feminino,Responsável mulher,150140250000015,Belém,0.06209150326797386,0.546875
+pct_resp_feminino,Responsável mulher,130260305100030,Manaus,0.06666666666666667,0.546875
+pct_resp_feminino,Responsável mulher,150580905000077,Portel,1.0,0.546875
+pct_resp_feminino,Responsável mulher,130260305070019,Manaus,0.09821428571428571,0.546875
+pct_resp_feminino,Responsável mulher,130260305100152,Manaus,0.1276595744680851,0.546875
+pct_resp_feminino,Responsável mulher,130260305100002,Manaus,0.13074204946996468,0.546875
+pct_resp_feminino,Responsável mulher,150140250000001,Belém,0.13963963963963963,0.546875
+pct_resp_feminino,Responsável mulher,130260305100274,Manaus,0.14705882352941177,0.546875
+renda_media_sem_extremo,Renda sem o extremo,150140255000432,Belém,78444.47,1820.99
+renda_media_sem_extremo,Renda sem o extremo,130260305110044,Manaus,50802.73,1820.99
+renda_media_sem_extremo,Renda sem o extremo,130260305130065,Manaus,40720.0,1820.99
+renda_media_sem_extremo,Renda sem o extremo,130260305130111,Manaus,36276.19,1820.99
+renda_media_sem_extremo,Renda sem o extremo,130260305080282,Manaus,34887.53,1820.99
+renda_media_sem_extremo,Renda sem o extremo,130260305110351,Manaus,31466.12,1820.99
+renda_media_sem_extremo,Renda sem o extremo,130260305110353,Manaus,31125.56,1820.99
+renda_media_sem_extremo,Renda sem o extremo,150140245000258,Belém,29359.01,1820.99
+renda_media_sem_extremo,Renda sem o extremo,130260305130071,Manaus,28824.65,1820.99
+renda_media_sem_extremo,Renda sem o extremo,150080005000676,Ananindeua,27854.05,1820.99
+renda_media_mediana_mun,Renda (mediana mun.),150140255000432,Belém,78444.47,1820.99
+renda_media_mediana_mun,Renda (mediana mun.),130260305110044,Manaus,50802.73,1820.99
+renda_media_mediana_mun,Renda (mediana mun.),130260305130065,Manaus,40720.0,1820.99
+renda_media_mediana_mun,Renda (mediana mun.),130260305130111,Manaus,36276.19,1820.99
+renda_media_mediana_mun,Renda (mediana mun.),130260305080282,Manaus,34887.53,1820.99
+renda_media_mediana_mun,Renda (mediana mun.),130260305110351,Manaus,31466.12,1820.99
+renda_media_mediana_mun,Renda (mediana mun.),130260305110353,Manaus,31125.56,1820.99
+renda_media_mediana_mun,Renda (mediana mun.),150140245000258,Belém,29359.01,1820.99
+renda_media_mediana_mun,Renda (mediana mun.),130260305130071,Manaus,28824.65,1820.99
+renda_media_mediana_mun,Renda (mediana mun.),150080005000676,Ananindeua,27854.05,1820.99
+pct_dom_improv,Domicílio improvisado,150140250000193,Belém,0.5720524017467249,0.0
+pct_dom_improv,Domicílio improvisado,130260305140520,Manaus,0.21585903083700442,0.0
+pct_dom_improv,Domicílio improvisado,130260305000219,Manaus,0.1510574018126888,0.0
+pct_dom_improv,Domicílio improvisado,150080005000706,Ananindeua,0.14482758620689656,0.0
+pct_hab_precaria,Habitação precária,150140250000193,Belém,0.5720524017467249,0.0
+pct_hab_precaria,Habitação precária,150080005000883,Ananindeua,0.42896174863387976,0.0
+pct_hab_precaria,Habitação precária,130260305100111,Manaus,0.42391304347826086,0.0
+pct_hab_precaria,Habitação precária,130260305120479,Manaus,0.3557312252964427,0.0
+pct_hab_precaria,Habitação precária,130260305060007,Manaus,0.2948717948717949,0.0
+pct_hab_precaria,Habitação precária,130260305120002,Manaus,0.24550898203592814,0.0
+pct_hab_precaria,Habitação precária,130260305140520,Manaus,0.21585903083700442,0.0
+pct_hab_precaria,Habitação precária,130260305070190,Manaus,0.20987654320987653,0.0
+pct_hab_precaria,Habitação precária,130260305120590,Manaus,0.2,0.0
+pct_hab_precaria,Habitação precária,130260305120258,Manaus,0.19402985074626866,0.0
+pct_moradia_convencional,Moradia convencional,150080005000883,Ananindeua,0.5683060109289617,1.0
+pct_moradia_convencional,Moradia convencional,130260305100111,Manaus,0.572463768115942,1.0
+pct_moradia_convencional,Moradia convencional,130260305120479,Manaus,0.6442687747035574,1.0
+pct_moradia_convencional,Moradia convencional,130260305060007,Manaus,0.7051282051282052,1.0
+pct_moradia_convencional,Moradia convencional,130260305120590,Manaus,0.72,1.0
+pct_moradia_convencional,Moradia convencional,130260305120002,Manaus,0.7485029940119761,1.0
+pct_moradia_convencional,Moradia convencional,130260305070190,Manaus,0.7901234567901234,1.0
+pct_moradia_convencional,Moradia convencional,130260305120258,Manaus,0.7985074626865671,1.0
+pct_moradia_convencional,Moradia convencional,150080005000629,Ananindeua,0.8115942028985508,1.0
+pct_moradia_convencional,Moradia convencional,150080005000514,Ananindeua,0.8155339805825242,1.0
+pct_moradia_nao_convencional,Moradia não convencional,150080005000883,Ananindeua,0.42896174863387976,0.0
+pct_moradia_nao_convencional,Moradia não convencional,130260305100111,Manaus,0.42391304347826086,0.0
+pct_moradia_nao_convencional,Moradia não convencional,130260305120479,Manaus,0.3557312252964427,0.0
+pct_moradia_nao_convencional,Moradia não convencional,130260305060007,Manaus,0.2948717948717949,0.0
+pct_moradia_nao_convencional,Moradia não convencional,130260305120002,Manaus,0.24550898203592814,0.0
+pct_moradia_nao_convencional,Moradia não convencional,130260305070190,Manaus,0.20987654320987653,0.0
+pct_moradia_nao_convencional,Moradia não convencional,130260305120590,Manaus,0.2,0.0
+pct_moradia_nao_convencional,Moradia não convencional,130260305120258,Manaus,0.19402985074626866,0.0
+pct_moradia_nao_convencional,Moradia não convencional,150080005000629,Ananindeua,0.18840579710144928,0.0
+pct_apartamento,Apartamento,130260305000064,Manaus,1.0,0.04094634873323398
+pct_apartamento,Apartamento,130260305000066,Manaus,1.0,0.04094634873323398
+pct_apartamento,Apartamento,130260305000068,Manaus,1.0,0.04094634873323398
+pct_apartamento,Apartamento,130260305000069,Manaus,1.0,0.04094634873323398
+pct_apartamento,Apartamento,130260305000070,Manaus,1.0,0.04094634873323398
+pct_apartamento,Apartamento,130260305000071,Manaus,1.0,0.04094634873323398
+pct_apartamento,Apartamento,130260305000073,Manaus,1.0,0.04094634873323398
+pct_apartamento,Apartamento,130260305000074,Manaus,1.0,0.04094634873323398
+pct_apartamento,Apartamento,130260305000076,Manaus,1.0,0.04094634873323398
+pct_apartamento,Apartamento,130260305000080,Manaus,1.0,0.04094634873323398
+pct_casa,Casa,130260305000064,Manaus,0.0,0.8942698561601001
+pct_casa,Casa,130260305000066,Manaus,0.0,0.8942698561601001
+pct_casa,Casa,130260305000068,Manaus,0.0,0.8942698561601001
+pct_casa,Casa,130260305000069,Manaus,0.0,0.8942698561601001
+pct_casa,Casa,130260305000070,Manaus,0.0,0.8942698561601001
+pct_casa,Casa,130260305000071,Manaus,0.0,0.8942698561601001
+pct_casa,Casa,130260305000072,Manaus,0.0,0.8942698561601001
+pct_casa,Casa,130260305000073,Manaus,0.0,0.8942698561601001
+pct_casa,Casa,130260305000074,Manaus,0.0,0.8942698561601001
+pct_casa,Casa,130260305000075,Manaus,0.0,0.8942698561601001
+pct_casa_vila_condominio,Casa de vila/condomínio,130260305110210,Manaus,1.0,0.03153863642822633
+pct_casa_vila_condominio,Casa de vila/condomínio,130260305110375,Manaus,1.0,0.03153863642822633
+pct_casa_vila_condominio,Casa de vila/condomínio,130260305130062,Manaus,1.0,0.03153863642822633
+pct_casa_vila_condominio,Casa de vila/condomínio,130260305130143,Manaus,1.0,0.03153863642822633
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000509,Ananindeua,1.0,0.03153863642822633
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000536,Ananindeua,1.0,0.03153863642822633
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000555,Ananindeua,1.0,0.03153863642822633
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000636,Ananindeua,1.0,0.03153863642822633
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000894,Ananindeua,1.0,0.03153863642822633
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000895,Ananindeua,1.0,0.03153863642822633
+pct_crianca_0a4,Crianças 0–4,150080005000550,Ananindeua,0.2222222222222222,0.06323436021396066
+pct_crianca_0a4,Crianças 0–4,150580905000077,Portel,0.21951219512195122,0.06323436021396066
+pct_crianca_0a4,Crianças 0–4,130260305130082,Manaus,0.21153846153846154,0.06323436021396066
+pct_crianca_0a4,Crianças 0–4,130260305100279,Manaus,0.19767441860465115,0.06323436021396066
+pct_crianca_0a4,Crianças 0–4,130260305100326,Manaus,0.1956521739130435,0.06323436021396066
+pct_crianca_0a4,Crianças 0–4,130030005000083,Autazes,0.19047619047619047,0.06323436021396066
+pct_crianca_0a4,Crianças 0–4,150580905000085,Portel,0.1824175824175824,0.06323436021396066
+pct_crianca_0a4,Crianças 0–4,150140260000324,Belém,0.17647058823529413,0.06323436021396066
+pct_pop_0a14,População 0–14,150580905000077,Portel,0.4878048780487805,0.20638820638820637
+iep_setor,Índice de envelhecimento,150140255000330,Belém,683.3333333333333,53.55042016806723
+iep_setor,Índice de envelhecimento,150140205000248,Belém,585.7142857142857,53.55042016806723
+iep_setor,Índice de envelhecimento,150140205000131,Belém,577.7777777777777,53.55042016806723
+iep_setor,Índice de envelhecimento,130260305130186,Manaus,525.0,53.55042016806723
+iep_setor,Índice de envelhecimento,150140275000309,Belém,500.0,53.55042016806723
+iep_setor,Índice de envelhecimento,150140205000244,Belém,471.7391304347826,53.55042016806723
+iep_setor,Índice de envelhecimento,150140205000070,Belém,437.73584905660374,53.55042016806723
+iep_setor,Índice de envelhecimento,150140205000064,Belém,423.2876712328767,53.55042016806723
+iep_setor,Índice de envelhecimento,130260305060147,Manaus,411.1111111111111,53.55042016806723
+iep_setor,Índice de envelhecimento,150140205000190,Belém,409.3023255813954,53.55042016806723
+rdi_setor,Dependência idosa,150140205000190,Belém,77.19298245614034,16.576576576576578
+rdi_setor,Dependência idosa,150140205000070,Belém,72.95597484276729,16.576576576576578
+rdi_setor,Dependência idosa,150140205000064,Belém,69.5945945945946,16.576576576576578
+rdi_setor,Dependência idosa,150140205000091,Belém,69.28327645051195,16.576576576576578
+rdi_setor,Dependência idosa,150140205000087,Belém,68.57142857142857,16.576576576576578
+rdi_setor,Dependência idosa,150140205000131,Belém,66.66666666666666,16.576576576576578
+rdi_setor,Dependência idosa,150140205000014,Belém,64.61538461538461,16.576576576576578
+rdi_setor,Dependência idosa,150140205000120,Belém,64.44444444444444,16.576576576576578
+rdi_setor,Dependência idosa,150140205000074,Belém,64.31818181818181,16.576576576576578
+rdi_setor,Dependência idosa,150140205000050,Belém,63.961038961038966,16.576576576576578
+prop_70mais_entre_60mais,70+ entre 60+,130260305080037,Manaus,100.0,38.46153846153847
+prop_70mais_entre_60mais,70+ entre 60+,130260305100238,Manaus,100.0,38.46153846153847
+prop_70mais_entre_60mais,70+ entre 60+,130260305100274,Manaus,100.0,38.46153846153847
+prop_70mais_entre_60mais,70+ entre 60+,130260305120754,Manaus,100.0,38.46153846153847
+prop_70mais_entre_60mais,70+ entre 60+,130260305120900,Manaus,100.0,38.46153846153847
+prop_70mais_entre_60mais,70+ entre 60+,130260305130188,Manaus,100.0,38.46153846153847
+prop_70mais_entre_60mais,70+ entre 60+,130260305140048,Manaus,100.0,38.46153846153847
+prop_70mais_entre_60mais,70+ entre 60+,130260305140375,Manaus,100.0,38.46153846153847
+prop_70mais_entre_60mais,70+ entre 60+,130260305140502,Manaus,100.0,38.46153846153847
+prop_70mais_entre_60mais,70+ entre 60+,150080005000680,Ananindeua,100.0,38.46153846153847

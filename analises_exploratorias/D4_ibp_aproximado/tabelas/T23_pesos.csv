@@ -1,0 +1,4 @@
+variavel,rotulo,dimensao,carga,peso_dimensao,peso
+renda_inv,Renda (invertida),F1 (socioeconômica),0.9179914996729294,60.0,33.33333333333333
+pct_analfab,Analfabetismo 15+,F1 (socioeconômica),0.9552060353979387,60.0,33.33333333333333
+ibp_saneamento,Saneamento (IBP),F2 (saneamento),0.9998631373845029,40.0,33.33333333333333

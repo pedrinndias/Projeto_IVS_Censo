@@ -1,0 +1,261 @@
+indicador,rotulo,CD_SETOR,NM_MUN,valor,mediana_global
+pct_sem_agua_canalizada,Sem água canalizada,110002305000046,Ariquemes/RO,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,130006005000024,Amaturá/AM,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,130006005000027,Amaturá/AM,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,130060705000082,Benjamin Constant/AM,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,130060705000092,Benjamin Constant/AM,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,130063105000099,Beruri/AM,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,130063105000127,Beruri/AM,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,130120905000227,Coari/AM,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,130260305100279,Manaus/AM,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,130270205000123,Manicoré/AM,1.0,0.0
+pct_agua_nao_encanada,Água não chega,130006005000024,Amaturá/AM,1.0,0.0
+pct_agua_nao_encanada,Água não chega,130006005000027,Amaturá/AM,1.0,0.0
+pct_agua_nao_encanada,Água não chega,130063105000099,Beruri/AM,1.0,0.0
+pct_agua_nao_encanada,Água não chega,130120905000227,Coari/AM,1.0,0.0
+pct_agua_nao_encanada,Água não chega,130270205000123,Manicoré/AM,1.0,0.0
+pct_agua_nao_encanada,Água não chega,130380905000046,São Gabriel da Cachoeira/AM,1.0,0.0
+pct_agua_nao_encanada,Água não chega,130390805000026,São Paulo de Olivença/AM,1.0,0.0
+pct_agua_nao_encanada,Água não chega,130390805000030,São Paulo de Olivença/AM,1.0,0.0
+pct_agua_nao_encanada,Água não chega,130390815000010,São Paulo de Olivença/AM,1.0,0.0
+pct_agua_nao_encanada,Água não chega,130390815000011,São Paulo de Olivença/AM,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,110002305000046,Ariquemes/RO,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,130260305100279,Manaus/AM,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,150442205000144,Marituba/PA,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,150670805000087,Santana do Araguaia/PA,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,210232505000110,Buriticupu/MA,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,210480005000231,Grajaú/MA,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,210820705000064,Pedreiras/MA,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,211220905000299,Timon/MA,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,293180615000013,Tremedal/BA,1.0,0.0
+pct_agua_so_terreno,Água só no terreno,315690810000014,Sacramento/MG,1.0,0.0
+pct_sem_banheiro,Sem banheiro,130006005000024,Amaturá/AM,1.0,0.0
+pct_sem_banheiro,Sem banheiro,130006005000027,Amaturá/AM,1.0,0.0
+pct_sem_banheiro,Sem banheiro,130060705000092,Benjamin Constant/AM,1.0,0.0
+pct_sem_banheiro,Sem banheiro,130063105000099,Beruri/AM,1.0,0.0
+pct_sem_banheiro,Sem banheiro,130063105000127,Beruri/AM,1.0,0.0
+pct_sem_banheiro,Sem banheiro,130180305000054,Ipixuna/AM,1.0,0.0
+pct_sem_banheiro,Sem banheiro,130380905000046,São Gabriel da Cachoeira/AM,1.0,0.0
+pct_sem_banheiro,Sem banheiro,150280610000023,Curralinho/PA,1.0,0.0
+pct_sem_banheiro,Sem banheiro,210480005000231,Grajaú/MA,1.0,0.0
+pct_sem_banheiro,Sem banheiro,210820705000064,Pedreiras/MA,1.0,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,210330715000001,Codó/MA,0.8333333333333334,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,355030830001117,São Paulo/SP,0.6666666666666666,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,250440510000001,Conceição/PB,0.5714285714285714,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,120010405000068,Brasiléia/AC,0.56,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,130380905000047,São Gabriel da Cachoeira/AM,0.5538461538461539,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,354780905001103,Santo André/SP,0.5466666666666666,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,150140260000260,Belém/PA,0.5348837209302325,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,210480005000190,Grajaú/MA,0.4726027397260274,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,261110105080200,Petrolina/PE,0.46153846153846156,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,210330710000001,Codó/MA,0.43478260869565216,0.0
+pct_so_sanitario,Só sanitário,130006005000027,Amaturá/AM,1.0,0.0
+pct_so_sanitario,Só sanitário,130060705000092,Benjamin Constant/AM,1.0,0.0
+pct_so_sanitario,Só sanitário,130063105000127,Beruri/AM,1.0,0.0
+pct_so_sanitario,Só sanitário,150280610000023,Curralinho/PA,1.0,0.0
+pct_so_sanitario,Só sanitário,210480005000231,Grajaú/MA,1.0,0.0
+pct_so_sanitario,Só sanitário,210860310000001,Pinheiro/MA,1.0,0.0
+pct_so_sanitario,Só sanitário,411760205000080,Palmas/PR,1.0,0.0
+pct_so_sanitario,Só sanitário,500570705000152,Naviraí/MS,1.0,0.0
+pct_so_sanitario,Só sanitário,500570705000156,Naviraí/MS,1.0,0.0
+pct_so_sanitario,Só sanitário,130006005000023,Amaturá/AM,0.9882352941176471,0.0
+pct_banheiro_comum,Banheiro de uso comum,130380905000046,São Gabriel da Cachoeira/AM,1.0,0.0
+pct_banheiro_comum,Banheiro de uso comum,330455705250341,Rio de Janeiro/RJ,1.0,0.0
+pct_banheiro_comum,Banheiro de uso comum,354340205000414,Ribeirão Preto/SP,1.0,0.0
+pct_banheiro_comum,Banheiro de uso comum,421620605000129,São Francisco do Sul/SC,1.0,0.0
+pct_banheiro_comum,Banheiro de uso comum,431690705130082,Santa Maria/RS,0.9696969696969697,0.0
+pct_banheiro_comum,Banheiro de uso comum,261160605230797,Recife/PE,0.9565217391304348,0.0
+pct_banheiro_comum,Banheiro de uso comum,410690205090296,Curitiba/PR,0.9333333333333333,0.0
+pct_banheiro_comum,Banheiro de uso comum,430210505000302,Bento Gonçalves/RS,0.9230769230769231,0.0
+pct_banheiro_comum,Banheiro de uso comum,330455705140350,Rio de Janeiro/RJ,0.8888888888888888,0.0
+pct_banheiro_comum,Banheiro de uso comum,150580905000077,Portel/PA,0.875,0.0
+banheiro_graduado,Banheiro graduado,210330715000001,Codó/MA,0.8333333333333334,0.0
+banheiro_graduado,Banheiro graduado,210330710000001,Codó/MA,0.7536231884057971,0.0
+banheiro_graduado,Banheiro graduado,120010405000068,Brasiléia/AC,0.7333333333333333,0.0
+banheiro_graduado,Banheiro graduado,130390815000031,São Paulo de Olivença/AM,0.6827586206896552,0.0
+banheiro_graduado,Banheiro graduado,130006005000027,Amaturá/AM,0.6666666666666666,0.0
+banheiro_graduado,Banheiro graduado,130060705000092,Benjamin Constant/AM,0.6666666666666666,0.0
+banheiro_graduado,Banheiro graduado,130063105000127,Beruri/AM,0.6666666666666666,0.0
+banheiro_graduado,Banheiro graduado,150280610000023,Curralinho/PA,0.6666666666666666,0.0
+banheiro_graduado,Banheiro graduado,210480005000231,Grajaú/MA,0.6666666666666666,0.0
+banheiro_graduado,Banheiro graduado,210860310000001,Pinheiro/MA,0.6666666666666666,0.0
+razao_moradores,Razão de moradores,130406205000033,Tabatinga/AM,8.057971014492754,2.752757390211265
+razao_moradores,Razão de moradores,130060705000027,Benjamin Constant/AM,7.666666666666667,2.752757390211265
+razao_moradores,Razão de moradores,130406205000028,Tabatinga/AM,7.631578947368421,2.752757390211265
+razao_moradores,Razão de moradores,130060705000091,Benjamin Constant/AM,7.574468085106383,2.752757390211265
+razao_moradores,Razão de moradores,130406205000130,Tabatinga/AM,7.515789473684211,2.752757390211265
+razao_moradores,Razão de moradores,130006005000022,Amaturá/AM,7.475409836065574,2.752757390211265
+razao_moradores,Razão de moradores,130406205000032,Tabatinga/AM,7.379310344827586,2.752757390211265
+razao_moradores,Razão de moradores,130060705000028,Benjamin Constant/AM,7.296969696969697,2.752757390211265
+razao_moradores,Razão de moradores,130406205000027,Tabatinga/AM,7.169811320754717,2.752757390211265
+razao_moradores,Razão de moradores,150293905000077,Dom Eliseu/PA,7.068965517241379,2.752757390211265
+pct_analfab,Analfabetismo 15+,421725305000003,São Pedro de Alcântara/SC,0.75,0.04
+pct_analfab,Analfabetismo 15+,292740805180776,Salvador/BA,0.7254901960784313,0.04
+pct_analfab,Analfabetismo 15+,330455705250341,Rio de Janeiro/RJ,0.625,0.04
+pct_analfab,Analfabetismo 15+,251210115000001,Pombal/PB,0.6122448979591837,0.04
+pct_analfab,Analfabetismo 15+,210860310000001,Pinheiro/MA,0.6046511627906976,0.04
+pct_analfab,Analfabetismo 15+,230423610000006,Croatá/CE,0.5818181818181818,0.04
+pct_analfab,Analfabetismo 15+,230835110000008,Milhã/CE,0.5625,0.04
+pct_analfab,Analfabetismo 15+,240810205060418,Natal/RN,0.5333333333333333,0.04
+pct_analfab,Analfabetismo 15+,353600005000056,Parapuã/SP,0.5277777777777778,0.04
+pct_analfab,Analfabetismo 15+,270430205090227,Maceió/AL,0.5175438596491229,0.04
+renda_media,Renda média,330610705000124,Valença/RJ,177068.09,2312.82
+renda_media,Renda média,310620005650366,Belo Horizonte/MG,170418.06,2312.82
+renda_media,Renda média,355030832000202,São Paulo/SP,140172.64,2312.82
+renda_media,Renda média,210300005000361,Caxias/MA,115680.0,2312.82
+renda_media,Renda média,354990405001246,São José dos Campos/SP,108567.12,2312.82
+renda_media,Renda média,355680005000055,Viradouro/SP,107394.71,2312.82
+renda_media,Renda média,314610705000004,Ouro Preto/MG,103066.13,2312.82
+renda_media,Renda média,150140255000432,Belém/PA,78444.47,2312.82
+renda_media,Renda média,291920705000441,Lauro de Freitas/BA,78330.79,2312.82
+renda_media,Renda média,355030868000461,São Paulo/SP,77468.68,2312.82
+pct_resp_feminino,Responsável mulher,110020505000068,Porto Velho/RO,0.0,0.515625
+pct_resp_feminino,Responsável mulher,130260305100324,Manaus/AM,0.0,0.515625
+pct_resp_feminino,Responsável mulher,130340305000082,Parintins/AM,0.0,0.515625
+pct_resp_feminino,Responsável mulher,150150110000133,Benevides/PA,0.0,0.515625
+pct_resp_feminino,Responsável mulher,150150110000151,Benevides/PA,0.0,0.515625
+pct_resp_feminino,Responsável mulher,150160005000037,Bonito/PA,0.0,0.515625
+pct_resp_feminino,Responsável mulher,150730005000104,São Félix do Xingu/PA,0.0,0.515625
+pct_resp_feminino,Responsável mulher,160030305000612,Macapá/AP,0.0,0.515625
+pct_resp_feminino,Responsável mulher,170210905000184,Araguaína/TO,0.0,0.515625
+pct_resp_feminino,Responsável mulher,170320605000011,Bernardo Sayão/TO,0.0,0.515625
+renda_media_sem_extremo,Renda sem o extremo,330610705000124,Valença/RJ,177068.09,2312.82
+renda_media_sem_extremo,Renda sem o extremo,355030832000202,São Paulo/SP,140172.64,2312.82
+renda_media_sem_extremo,Renda sem o extremo,210300005000361,Caxias/MA,115680.0,2312.82
+renda_media_sem_extremo,Renda sem o extremo,354990405001246,São José dos Campos/SP,108567.12,2312.82
+renda_media_sem_extremo,Renda sem o extremo,355680005000055,Viradouro/SP,107394.71,2312.82
+renda_media_sem_extremo,Renda sem o extremo,314610705000004,Ouro Preto/MG,103066.13,2312.82
+renda_media_sem_extremo,Renda sem o extremo,150140255000432,Belém/PA,78444.47,2312.82
+renda_media_sem_extremo,Renda sem o extremo,291920705000441,Lauro de Freitas/BA,78330.79,2312.82
+renda_media_sem_extremo,Renda sem o extremo,355030868000461,São Paulo/SP,77468.68,2312.82
+renda_media_sem_extremo,Renda sem o extremo,355030883000206,São Paulo/SP,73198.95,2312.82
+renda_media_mediana_mun,Renda (mediana mun.),330610705000124,Valença/RJ,177068.09,2312.82
+renda_media_mediana_mun,Renda (mediana mun.),355030832000202,São Paulo/SP,140172.64,2312.82
+renda_media_mediana_mun,Renda (mediana mun.),210300005000361,Caxias/MA,115680.0,2312.82
+renda_media_mediana_mun,Renda (mediana mun.),354990405001246,São José dos Campos/SP,108567.12,2312.82
+renda_media_mediana_mun,Renda (mediana mun.),355680005000055,Viradouro/SP,107394.71,2312.82
+renda_media_mediana_mun,Renda (mediana mun.),314610705000004,Ouro Preto/MG,103066.13,2312.82
+renda_media_mediana_mun,Renda (mediana mun.),150140255000432,Belém/PA,78444.47,2312.82
+renda_media_mediana_mun,Renda (mediana mun.),291920705000441,Lauro de Freitas/BA,78330.79,2312.82
+renda_media_mediana_mun,Renda (mediana mun.),355030868000461,São Paulo/SP,77468.68,2312.82
+renda_media_mediana_mun,Renda (mediana mun.),355030883000206,São Paulo/SP,73198.95,2312.82
+pct_dom_improv,Domicílio improvisado,330455705300460,Rio de Janeiro/RJ,0.9725274725274725,0.0
+pct_dom_improv,Domicílio improvisado,353870905000865,Piracicaba/SP,0.9583333333333334,0.0
+pct_dom_improv,Domicílio improvisado,330455705060007,Rio de Janeiro/RJ,0.9523809523809523,0.0
+pct_dom_improv,Domicílio improvisado,355030870000056,São Paulo/SP,0.9378531073446328,0.0
+pct_dom_improv,Domicílio improvisado,520140505000347,Aparecida de Goiânia/GO,0.9318181818181818,0.0
+pct_dom_improv,Domicílio improvisado,355030809000108,São Paulo/SP,0.9308755760368663,0.0
+pct_dom_improv,Domicílio improvisado,355030846000656,São Paulo/SP,0.9251336898395722,0.0
+pct_dom_improv,Domicílio improvisado,251080805000250,Patos/PB,0.9019607843137255,0.0
+pct_dom_improv,Domicílio improvisado,355030878000054,São Paulo/SP,0.8836206896551724,0.0
+pct_dom_improv,Domicílio improvisado,355030804000188,São Paulo/SP,0.85,0.0
+pct_hab_precaria,Habitação precária,310620060660397,Belo Horizonte/MG,1.0,0.0
+pct_hab_precaria,Habitação precária,330455705160298,Rio de Janeiro/RJ,1.0,0.0
+pct_hab_precaria,Habitação precária,330455705210578,Rio de Janeiro/RJ,1.0,0.0
+pct_hab_precaria,Habitação precária,330455705210589,Rio de Janeiro/RJ,1.0,0.0
+pct_hab_precaria,Habitação precária,330455705211468,Rio de Janeiro/RJ,1.0,0.0
+pct_hab_precaria,Habitação precária,330455705211579,Rio de Janeiro/RJ,1.0,0.0
+pct_hab_precaria,Habitação precária,330455705250341,Rio de Janeiro/RJ,1.0,0.0
+pct_hab_precaria,Habitação precária,355030849000117,São Paulo/SP,1.0,0.0
+pct_hab_precaria,Habitação precária,354780905001435,Santo André/SP,0.9967105263157895,0.0
+pct_hab_precaria,Habitação precária,354870805001806,São Bernardo do Campo/SP,0.99,0.0
+pct_moradia_convencional,Moradia convencional,150670805000087,Santana do Araguaia/PA,0.0,1.0
+pct_moradia_convencional,Moradia convencional,310620060660397,Belo Horizonte/MG,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330170210000747,Duque de Caxias/RJ,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705070029,Rio de Janeiro/RJ,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705160298,Rio de Janeiro/RJ,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705210578,Rio de Janeiro/RJ,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705210589,Rio de Janeiro/RJ,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705211468,Rio de Janeiro/RJ,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705211579,Rio de Janeiro/RJ,0.0,1.0
+pct_moradia_convencional,Moradia convencional,330455705250341,Rio de Janeiro/RJ,0.0,1.0
+pct_moradia_nao_convencional,Moradia não convencional,310620060660397,Belo Horizonte/MG,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705160298,Rio de Janeiro/RJ,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705210578,Rio de Janeiro/RJ,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705210589,Rio de Janeiro/RJ,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705211468,Rio de Janeiro/RJ,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705211579,Rio de Janeiro/RJ,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,330455705250341,Rio de Janeiro/RJ,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,355030849000117,São Paulo/SP,1.0,0.0
+pct_moradia_nao_convencional,Moradia não convencional,354780905001435,Santo André/SP,0.9967105263157895,0.0
+pct_moradia_nao_convencional,Moradia não convencional,354870805001806,São Bernardo do Campo/SP,0.99,0.0
+pct_casa,Casa,110020505000068,Porto Velho/RO,0.0,0.9758269720101781
+pct_casa,Casa,110020505000111,Porto Velho/RO,0.0,0.9758269720101781
+pct_casa,Casa,110020505000112,Porto Velho/RO,0.0,0.9758269720101781
+pct_casa,Casa,110020505000115,Porto Velho/RO,0.0,0.9758269720101781
+pct_casa,Casa,110020505000116,Porto Velho/RO,0.0,0.9758269720101781
+pct_casa,Casa,110020505000117,Porto Velho/RO,0.0,0.9758269720101781
+pct_casa,Casa,110020505000118,Porto Velho/RO,0.0,0.9758269720101781
+pct_casa,Casa,110020505000119,Porto Velho/RO,0.0,0.9758269720101781
+pct_casa,Casa,110020505000121,Porto Velho/RO,0.0,0.9758269720101781
+pct_casa,Casa,110020505000122,Porto Velho/RO,0.0,0.9758269720101781
+pct_casa_vila_condominio,Casa de vila/condomínio,110020505000068,Porto Velho/RO,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,110020505000122,Porto Velho/RO,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,110020505000123,Porto Velho/RO,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,110020505000130,Porto Velho/RO,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,130185205000112,Iranduba/AM,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,130250405000126,Manacapuru/AM,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,130260305110210,Manaus/AM,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,130260305110375,Manaus/AM,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,130260305130062,Manaus/AM,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,130260305130143,Manaus/AM,1.0,0.0
+pct_crianca_0a4,Crianças 0–4,330100905080215,Campos dos Goytacazes/RJ,0.46153846153846156,0.05805243445692884
+pct_crianca_0a4,Crianças 0–4,221100105080289,Teresina/PI,0.3333333333333333,0.05805243445692884
+pct_crianca_0a4,Crianças 0–4,352050905000565,Indaiatuba/SP,0.2777777777777778,0.05805243445692884
+pct_crianca_0a4,Crianças 0–4,510340310400132,Cuiabá/MT,0.2777777777777778,0.05805243445692884
+pct_crianca_0a4,Crianças 0–4,330270020000058,Maricá/RJ,0.27586206896551724,0.05805243445692884
+pct_crianca_0a4,Crianças 0–4,313090305000033,Inhapim/MG,0.2727272727272727,0.05805243445692884
+pct_crianca_0a4,Crianças 0–4,312770105000504,Governador Valadares/MG,0.2692307692307692,0.05805243445692884
+pct_crianca_0a4,Crianças 0–4,210300005000213,Caxias/MA,0.26666666666666666,0.05805243445692884
+pct_crianca_0a4,Crianças 0–4,330200705000178,Itaguaí/RJ,0.2631578947368421,0.05805243445692884
+pct_crianca_0a4,Crianças 0–4,355030817000604,São Paulo/SP,0.2608695652173913,0.05805243445692884
+pct_pop_0a14,População 0–14,210480005000231,Grajaú/MA,0.5555555555555556,0.186
+pct_pop_0a14,População 0–14,431350805000094,Osório/RS,0.5523809523809524,0.186
+pct_pop_0a14,População 0–14,130440105000032,Urucurituba/AM,0.5444191343963554,0.186
+pct_pop_0a14,População 0–14,510792505000002,Sorriso/MT,0.54,0.186
+pct_pop_0a14,População 0–14,210596305000036,Lagoa Grande do Maranhão/MA,0.5384615384615384,0.186
+pct_pop_0a14,População 0–14,310670505040035,Betim/MG,0.5357142857142857,0.186
+pct_pop_0a14,População 0–14,150670805000087,Santana do Araguaia/PA,0.5301204819277109,0.186
+pct_pop_0a14,População 0–14,520025805000146,Águas Lindas de Goiás/GO,0.5238095238095238,0.186
+pct_pop_0a14,População 0–14,130006005000024,Amaturá/AM,0.5227272727272727,0.186
+pct_pop_0a14,População 0–14,330270020000058,Maricá/RJ,0.5172413793103449,0.186
+pct_idoso_60mais,Pessoas 60+,350760505000030,Bragança Paulista/SP,1.0,0.15813688917109825
+pct_idoso_60mais,Pessoas 60+,353870905000063,Piracicaba/SP,0.9676470588235294,0.15813688917109825
+pct_idoso_60mais,Pessoas 60+,351080705000011,Casa Branca/SP,0.9629629629629629,0.15813688917109825
+pct_idoso_60mais,Pessoas 60+,354980505000802,São José do Rio Preto/SP,0.930379746835443,0.15813688917109825
+pct_idoso_60mais,Pessoas 60+,351550905000052,Fernandópolis/SP,0.9180327868852459,0.15813688917109825
+pct_idoso_60mais,Pessoas 60+,311770205000033,Conceição do Rio Verde/MG,0.875,0.15813688917109825
+pct_idoso_60mais,Pessoas 60+,411990505000018,Ponta Grossa/PR,0.8728813559322034,0.15813688917109825
+pct_idoso_60mais,Pessoas 60+,530010805140094,Brasília/DF,0.8571428571428571,0.15813688917109825
+pct_idoso_60mais,Pessoas 60+,315690805000065,Sacramento/MG,0.8524590163934426,0.15813688917109825
+pct_idoso_60mais,Pessoas 60+,290570120000050,Camaçari/BA,0.8333333333333334,0.15813688917109825
+iep_setor,Índice de envelhecimento,230440005140173,Fortaleza/CE,4750.0,84.40366972477065
+iep_setor,Índice de envelhecimento,330455705100218,Rio de Janeiro/RJ,4400.0,84.40366972477065
+iep_setor,Índice de envelhecimento,431490205001784,Porto Alegre/RS,4050.0,84.40366972477065
+iep_setor,Índice de envelhecimento,355030812000016,São Paulo/SP,3875.0,84.40366972477065
+iep_setor,Índice de envelhecimento,431490205000044,Porto Alegre/RS,3366.6666666666665,84.40366972477065
+iep_setor,Índice de envelhecimento,431870505000005,São Leopoldo/RS,3366.6666666666665,84.40366972477065
+iep_setor,Índice de envelhecimento,330455705090507,Rio de Janeiro/RJ,3166.666666666667,84.40366972477065
+iep_setor,Índice de envelhecimento,530010805320018,Brasília/DF,3166.666666666667,84.40366972477065
+iep_setor,Índice de envelhecimento,355030877000028,São Paulo/SP,3100.0,84.40366972477065
+iep_setor,Índice de envelhecimento,530010805140094,Brasília/DF,3000.0,84.40366972477065
+rdi_setor,Dependência idosa,353870905000063,Piracicaba/SP,3290.0,24.297520661157023
+rdi_setor,Dependência idosa,354980505000802,São José do Rio Preto/SP,2940.0,24.297520661157023
+rdi_setor,Dependência idosa,355210605000169,Socorro/SP,1166.6666666666665,24.297520661157023
+rdi_setor,Dependência idosa,530010805140094,Brasília/DF,1000.0,24.297520661157023
+rdi_setor,Dependência idosa,421570305000056,Santo Amaro da Imperatriz/SC,857.1428571428571,24.297520661157023
+rdi_setor,Dependência idosa,411990505000018,Ponta Grossa/PR,792.3076923076924,24.297520661157023
+rdi_setor,Dependência idosa,330455705150066,Rio de Janeiro/RJ,722.7272727272727,24.297520661157023
+rdi_setor,Dependência idosa,315690805000065,Sacramento/MG,650.0,24.297520661157023
+rdi_setor,Dependência idosa,500370205000027,Dourados/MS,637.5,24.297520661157023
+rdi_setor,Dependência idosa,352710810000008,Lins/SP,600.0,24.297520661157023
+prop_70mais_entre_60mais,70+ entre 60+,110004905000084,Cacoal/RO,100.0,43.01075268817204
+prop_70mais_entre_60mais,70+ entre 60+,110015505000055,Ouro Preto do Oeste/RO,100.0,43.01075268817204
+prop_70mais_entre_60mais,70+ entre 60+,110020505070073,Porto Velho/RO,100.0,43.01075268817204
+prop_70mais_entre_60mais,70+ entre 60+,110020505090118,Porto Velho/RO,100.0,43.01075268817204
+prop_70mais_entre_60mais,70+ entre 60+,120040105000335,Rio Branco/AC,100.0,43.01075268817204
+prop_70mais_entre_60mais,70+ entre 60+,120040105000552,Rio Branco/AC,100.0,43.01075268817204
+prop_70mais_entre_60mais,70+ entre 60+,120040105000711,Rio Branco/AC,100.0,43.01075268817204
+prop_70mais_entre_60mais,70+ entre 60+,120040105000735,Rio Branco/AC,100.0,43.01075268817204
+prop_70mais_entre_60mais,70+ entre 60+,120070805000067,Xapuri/AC,100.0,43.01075268817204
+prop_70mais_entre_60mais,70+ entre 60+,130010205000053,Anori/AM,100.0,43.01075268817204

@@ -1,0 +1,31 @@
+indicador,rotulo,CD_SETOR,NM_MUN,valor,mediana_global
+renda_media,Renda média,310620005650366,Belo Horizonte,170418.06,2572.39
+renda_media,Renda média,355030832000202,São Paulo,140172.64,2572.39
+renda_media,Renda média,150140255000432,Belém,78444.47,2572.39
+renda_media,Renda média,355030868000461,São Paulo,77468.68,2572.39
+renda_media,Renda média,355030883000206,São Paulo,73198.95,2572.39
+renda_media,Renda média,261160605200257,Recife,67237.29,2572.39
+renda_media,Renda média,351880005000793,Guarulhos,65031.76,2572.39
+renda_media,Renda média,292740805090354,Salvador,61671.36,2572.39
+renda_media,Renda média,354520905000248,Salto,60597.49,2572.39
+renda_media,Renda média,355030835000481,São Paulo,59642.86,2572.39
+renda_media_sem_extremo,Renda sem o extremo,355030832000202,São Paulo,140172.64,2572.39
+renda_media_sem_extremo,Renda sem o extremo,150140255000432,Belém,78444.47,2572.39
+renda_media_sem_extremo,Renda sem o extremo,355030868000461,São Paulo,77468.68,2572.39
+renda_media_sem_extremo,Renda sem o extremo,355030883000206,São Paulo,73198.95,2572.39
+renda_media_sem_extremo,Renda sem o extremo,261160605200257,Recife,67237.29,2572.39
+renda_media_sem_extremo,Renda sem o extremo,351880005000793,Guarulhos,65031.76,2572.39
+renda_media_sem_extremo,Renda sem o extremo,292740805090354,Salvador,61671.36,2572.39
+renda_media_sem_extremo,Renda sem o extremo,354520905000248,Salto,60597.49,2572.39
+renda_media_sem_extremo,Renda sem o extremo,355030835000481,São Paulo,59642.86,2572.39
+renda_media_sem_extremo,Renda sem o extremo,330455705110034,Rio de Janeiro,54926.08,2572.39
+renda_media_mediana_mun,Renda (mediana mun.),355030832000202,São Paulo,140172.64,2572.39
+renda_media_mediana_mun,Renda (mediana mun.),150140255000432,Belém,78444.47,2572.39
+renda_media_mediana_mun,Renda (mediana mun.),355030868000461,São Paulo,77468.68,2572.39
+renda_media_mediana_mun,Renda (mediana mun.),355030883000206,São Paulo,73198.95,2572.39
+renda_media_mediana_mun,Renda (mediana mun.),261160605200257,Recife,67237.29,2572.39
+renda_media_mediana_mun,Renda (mediana mun.),351880005000793,Guarulhos,65031.76,2572.39
+renda_media_mediana_mun,Renda (mediana mun.),292740805090354,Salvador,61671.36,2572.39
+renda_media_mediana_mun,Renda (mediana mun.),354520905000248,Salto,60597.49,2572.39
+renda_media_mediana_mun,Renda (mediana mun.),355030835000481,São Paulo,59642.86,2572.39
+renda_media_mediana_mun,Renda (mediana mun.),330455705110034,Rio de Janeiro,54926.08,2572.39

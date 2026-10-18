@@ -1,0 +1,3498 @@
+{
+ "slides": [
+  {
+   "tipo": "capa",
+   "kicker": "PROJETO IVS · CENSO 2022 · ELSI-BRASIL",
+   "titulo": "Análises exploratórias e análise fatorial",
+   "sub": "A EDA unificada de todas as versões, a EDA e a fatorial da versão final, e os catálogos visuais para escolher o que vai para o artigo",
+   "rodape": "Pedro Dias Soares · outubro de 2026"
+  },
+  {
+   "tipo": "texto",
+   "titulo": "Roteiro",
+   "fonte": "",
+   "nota": "",
+   "itens": [
+    "1 · A EDA unificada — todas as versões comparadas contra a mesma referência.",
+    "2 · A EDA da versão final — o recorte de análise com os 31 indicadores e as demandas de setembro atendidas.",
+    "3 · A análise fatorial — a grade das demandas, as especificações do NB05, a referência e a robustez.",
+    "4 · Catálogo visual da EDA — as figuras da versão final, só identificadas, para escolher.",
+    "5 · Catálogo visual da análise fatorial — as figuras da versão final, idem."
+   ]
+  },
+  {
+   "tipo": "secao",
+   "num": "1",
+   "titulo": "A EDA unificada",
+   "sub": "Todas as versões das análises exploratórias, comparadas contra a mesma referência",
+   "nota": "Cada versão é a referência proposta no NB05 com uma coisa mudada: que setores entram (eixo A), que indicadores entram (B), como o índice é construído (C), índices novos ao lado do IVS (D). O eixo E atravessa as versões. Esta parte põe tudo lado a lado; nada aqui escolhe versão."
+  },
+  {
+   "tipo": "texto",
+   "titulo": "Como as versões foram construídas",
+   "itens": [
+    "Cada versão é a referência proposta no NB05 com uma coisa mudada, para que a comparação responda a uma pergunta só.",
+    "A — que setores entram: com rurais, piso de população, Belo Horizonte, por região, por porte e o Brasil inteiro.",
+    "B — que indicadores entram: as três rendas, as definições de água, banheiro, esgoto e moradia, lixo, cor ou raça e os complementares.",
+    "C — como o índice é construído: rotação e pesos, extração, normalização, agregação, regras de faixa e pesos iguais.",
+    "D — índices novos: subíndices, IVS-Idoso, índice de moradia, IBP aproximado e pesos de especialista × dados.",
+    "E — análises que atravessam as versões: incerteza, estabilidade, desigualdade interna, população em risco, envelhecimento e tipologias.",
+    "São 32 versões que constroem um índice; 21 passam nos critérios de elegibilidade do NB05."
+   ],
+   "nota": "Cada versão é a referência proposta no NB05 com uma coisa mudada, para que a comparação responda a uma pergunta só.\nA — que setores entram: com rurais, piso de população, Belo Horizonte, por região, por porte e o Brasil inteiro.\nB — que indicadores entram: as três rendas, as definições de água, banheiro, esgoto e moradia, lixo, cor ou raça e os complementares.\nC — como o índice é construído: rotação e pesos, extração, normalização, agregação, regras de faixa e pesos iguais.\nD — índices novos: subíndices, IVS-Idoso, índice de moradia, IBP aproximado e pesos de especialista × dados.\nE — análises que atravessam as versões: incerteza, estabilidade, desigualdade interna, população em risco, envelhecimento e tipologias.\nSão 32 versões que constroem um índice; 21 passam nos critérios de elegibilidade do NB05.",
+   "fonte": "00_sintese · T61"
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "21 de 32 versões são elegíveis pelos critérios do NB05",
+   "cab": [
+    "Eixo",
+    "Versões",
+    "Elegíveis",
+    "AUC mun. mín.",
+    "AUC mun. máx.",
+    "% muda faixa (máx.)"
+   ],
+   "linhas": [
+    [
+     "A — que setores entram",
+     "12",
+     "7",
+     "0,6040",
+     "0,9214",
+     "31,2%"
+    ],
+    [
+     "B — que indicadores entram",
+     "8",
+     "6",
+     "0,7696",
+     "0,8626",
+     "28,8%"
+    ],
+    [
+     "C — como o índice é construído",
+     "6",
+     "5",
+     "0,7502",
+     "0,8263",
+     "27,1%"
+    ],
+    [
+     "D — índices novos ao lado do IVS",
+     "5",
+     "2",
+     "0,6034",
+     "0,8664",
+     "49,8%"
+    ],
+    [
+     "Referência",
+     "1",
+     "1",
+     "0,8186",
+     "0,8186",
+     "0,0%"
+    ],
+    [
+     "Todas",
+     "32",
+     "21",
+     "0,6034",
+     "0,9214",
+     "49,8%"
+    ]
+   ],
+   "colW": [
+    3.0,
+    0.9,
+    0.9,
+    1.1,
+    1.1,
+    1.2
+   ],
+   "como_ler": "Uma linha por eixo: versões, quantas são elegíveis, a menor e a maior AUC municipal contra as favelas e a maior troca de faixa em relação à referência.",
+   "mostra": "A AUC municipal vai de 0,6034 a 0,9214 entre as versões.",
+   "nota": "Os critérios de elegibilidade são os fixados no NB05 antes de rodar a grade: KMO de pelo menos 0,70, MSA de pelo menos 0,50, comunalidade de pelo menos 0,30 e carga de pelo menos 0,40.",
+   "fonte": "00_sintese · T61",
+   "larga": false
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "Todas as versões lado a lado",
+   "cab": [
+    "Versão",
+    "Setores no índice",
+    "KMO",
+    "AUC mun.",
+    "Elegível",
+    "ρ com a referência",
+    "% muda faixa"
+   ],
+   "linhas": [
+    [
+     "00_referencia",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim",
+     "1,0000",
+     "0,0%"
+    ],
+    [
+     "A1_com_rurais",
+     "75.096",
+     "—",
+     "0,8169",
+     "sim",
+     "0,9961",
+     "3,7%"
+    ],
+    [
+     "A2_piso_populacional",
+     "73.407",
+     "—",
+     "0,8238",
+     "sim",
+     "0,9940",
+     "1,6%"
+    ],
+    [
+     "A3_belo_horizonte",
+     "3.499",
+     "0,7994",
+     "0,9172",
+     "não",
+     "0,9978",
+     "5,3%"
+    ],
+    [
+     "A4_por_regiao/centro_oeste",
+     "7.329",
+     "—",
+     "0,8703",
+     "não",
+     "0,9932",
+     "11,0%"
+    ],
+    [
+     "A4_por_regiao/nordeste",
+     "13.097",
+     "—",
+     "0,7896",
+     "não",
+     "0,9677",
+     "10,8%"
+    ],
+    [
+     "A4_por_regiao/norte",
+     "3.439",
+     "—",
+     "0,6040",
+     "não",
+     "0,8689",
+     "31,2%"
+    ],
+    [
+     "A4_por_regiao/sudeste",
+     "45.352",
+     "—",
+     "0,9214",
+     "sim",
+     "0,9976",
+     "2,7%"
+    ],
+    [
+     "A4_por_regiao/sul",
+     "4.661",
+     "—",
+     "0,8971",
+     "sim",
+     "0,9948",
+     "5,6%"
+    ],
+    [
+     "A5_por_porte/ate_100_mil",
+     "878",
+     "—",
+     "—",
+     "sim",
+     "0,9982",
+     "3,4%"
+    ],
+    [
+     "A5_por_porte/de_100_a_500_mil",
+     "5.568",
+     "—",
+     "0,8081",
+     "sim",
+     "0,9941",
+     "6,0%"
+    ],
+    [
+     "A5_por_porte/mais_de_500_mil",
+     "67.432",
+     "—",
+     "0,8463",
+     "sim",
+     "1,0000",
+     "0,3%"
+    ],
+    [
+     "A6_brasil",
+     "249.404",
+     "0,7865",
+     "—",
+     "—",
+     "0,9983",
+     "3,7%"
+    ],
+    [
+     "B1_renda",
+     "73.877",
+     "0,7807",
+     "0,8186",
+     "sim",
+     "0,9995",
+     "0,2%"
+    ],
+    [
+     "B2_agua",
+     "73.854",
+     "0,8019",
+     "0,8626",
+     "sim",
+     "0,9503",
+     "13,9%"
+    ],
+    [
+     "B3_banheiro",
+     "87.545",
+     "0,7870",
+     "0,7845",
+     "sim",
+     "0,9907",
+     "13,0%"
+    ],
+    [
+     "B4_esgoto",
+     "73.878",
+     "0,7638",
+     "0,7696",
+     "sim",
+     "0,8803",
+     "28,8%"
+    ],
+    [
+     "B5_lixo",
+     "73.878",
+     "0,7741",
+     "0,8358",
+     "não",
+     "0,9146",
+     "23,3%"
+    ],
+    [
+     "B6_moradia",
+     "73.878",
+     "0,7443",
+     "0,8522",
+     "sim",
+     "0,9735",
+     "11,3%"
+    ],
+    [
+     "B7_raca",
+     "73.879",
+     "0,7155",
+     "0,8190",
+     "sim",
+     "0,9184",
+     "17,1%"
+    ],
+    [
+     "B8_complementares",
+     "73.794",
+     "0,7867",
+     "0,8055",
+     "não",
+     "0,9811",
+     "10,2%"
+    ],
+    [
+     "C1_rotacao_e_pesos",
+     "73.878",
+     "0,7807",
+     "0,8160",
+     "sim",
+     "0,9997",
+     "1,8%"
+    ],
+    [
+     "C2_extracao",
+     "73.878",
+     "0,7807",
+     "0,8064",
+     "não",
+     "0,9912",
+     "9,2%"
+    ],
+    [
+     "C3_normalizacao",
+     "73.878",
+     "—",
+     "0,7731",
+     "sim",
+     "0,9396",
+     "10,2%"
+    ],
+    [
+     "C4_agregacao",
+     "73.878",
+     "—",
+     "0,7502",
+     "sim",
+     "0,8915",
+     "27,1%"
+    ],
+    [
+     "C5_faixas",
+     "73.878",
+     "—",
+     "0,8186",
+     "sim",
+     "—",
+     "—"
+    ],
+    [
+     "C6_pesos_iguais",
+     "73.878",
+     "—",
+     "0,8263",
+     "sim",
+     "0,9885",
+     "9,9%"
+    ],
+    [
+     "D1_subindices",
+     "73.878",
+     "—",
+     "0,8664",
+     "sim",
+     "0,9278",
+     "20,9%"
+    ],
+    [
+     "D2_ivs_idoso",
+     "73.250",
+     "0,7341",
+     "0,6034",
+     "não",
+     "0,5518",
+     "49,8%"
+    ],
+    [
+     "D3_indice_moradia",
+     "90.035",
+     "0,3117",
+     "0,6776",
+     "não",
+     "0,4884",
+     "48,5%"
+    ],
+    [
+     "D4_ibp_aproximado",
+     "75.956",
+     "—",
+     "0,8432",
+     "não",
+     "0,8801",
+     "25,1%"
+    ],
+    [
+     "D5_especialista_x_dados",
+     "73.878",
+     "—",
+     "0,8374",
+     "sim",
+     "0,9977",
+     "4,3%"
+    ]
+   ],
+   "colW": [
+    2.8,
+    1.1,
+    0.75,
+    0.85,
+    0.75,
+    1.0,
+    0.95
+   ],
+   "como_ler": "Uma linha por versão. ρ é a correlação de postos entre o índice da versão e o da referência; % muda faixa é a parcela dos setores comuns que troca de faixa (regra do IVS-BH). Traço: a versão não roda aquele bloco.",
+   "mostra": "A menor correlação de postos com a referência é a de D3_indice_moradia (0,4884).",
+   "nota": "As versões das análises transversais (E1 a E6) não entram, porque não constroem um índice. Versões sem bloco 13 não têm ρ nem trocas de faixa; versões sem bloco 9 não têm KMO.",
+   "fonte": "00_sintese · T60",
+   "larga": false
+  },
+  {
+   "tipo": "figura",
+   "titulo": "Proximidade da referência × capacidade de separar as favelas",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_sintese/figuras/F60_proximidade_x_auc.png",
+   "como_ler": "Cada ponto é uma versão: no eixo horizontal, a correlação de postos com o índice da referência; no vertical, a AUC municipal contra as favelas. A linha pontilhada é a AUC da referência.",
+   "mostra": "A versão mais distante da referência é D3_indice_moradia (ρ = 0,4884).",
+   "nota": "Versões à direita ordenam os setores quase como a referência; versões acima da linha pontilhada separam melhor as favelas. As cores indicam a elegibilidade.",
+   "fonte": "00_sintese · F60 · figuras/F60_proximidade_x_auc.png",
+   "chave": "sint_disp"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "Quanto cada versão muda as faixas em relação à referência",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_sintese/figuras/F61_mudam_de_faixa.png",
+   "como_ler": "Uma barra por versão com o percentual de setores que mudam de faixa (regra do IVS-BH); petróleo: elegível; argila: não elegível.",
+   "mostra": "A maior mudança é a de D2_ivs_idoso: 49,8% dos setores mudam de faixa.",
+   "nota": "As versões que mudam o recorte (eixo A) comparam só os setores em comum com a referência.",
+   "fonte": "00_sintese · F61 · figuras/F61_mudam_de_faixa.png",
+   "chave": "sint_barras"
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "Os recortes mudam o retrato: a renda mediana vai de 1.719,20 a 3.722,28",
+   "cab": [
+    "Versão",
+    "Recorte",
+    "Índice",
+    "Renda mediana (R$)",
+    "Analfab. (média)",
+    "Esgoto inad. (média)",
+    "Água inad. (média)",
+    "% sem analfab."
+   ],
+   "linhas": [
+    [
+     "00_referencia",
+     "104.108",
+     "73.878",
+     "2.572,39",
+     "0,0364",
+     "0,0820",
+     "0,0696",
+     "15,9%"
+    ],
+    [
+     "A1_com_rurais",
+     "106.281",
+     "75.096",
+     "2.545,97",
+     "0,0387",
+     "0,0925",
+     "0,0827",
+     "15,8%"
+    ],
+    [
+     "A2_piso_populacional",
+     "103.280",
+     "73.407",
+     "2.576,92",
+     "0,0364",
+     "0,0813",
+     "0,0689",
+     "15,7%"
+    ],
+    [
+     "A3_belo_horizonte",
+     "5.113",
+     "3.499",
+     "3.060,31",
+     "0,0276",
+     "0,0297",
+     "0,0068",
+     "22,5%"
+    ],
+    [
+     "A4_por_regiao/norte",
+     "5.915",
+     "3.439",
+     "1.820,99",
+     "0,0327",
+     "0,2376",
+     "0,3227",
+     "8,5%"
+    ],
+    [
+     "A4_por_regiao/nordeste",
+     "19.497",
+     "13.097",
+     "1.719,20",
+     "0,0623",
+     "0,1617",
+     "0,1176",
+     "8,4%"
+    ],
+    [
+     "A4_por_regiao/sudeste",
+     "61.989",
+     "45.352",
+     "2.730,60",
+     "0,0303",
+     "0,0493",
+     "0,0384",
+     "18,4%"
+    ],
+    [
+     "A4_por_regiao/sul",
+     "7.217",
+     "4.661",
+     "3.722,28",
+     "0,0213",
+     "0,0290",
+     "0,0200",
+     "23,5%"
+    ],
+    [
+     "A4_por_regiao/centro_oeste",
+     "9.490",
+     "7.329",
+     "3.127,12",
+     "0,0307",
+     "0,0750",
+     "0,0549",
+     "14,2%"
+    ],
+    [
+     "A5_por_porte/ate_100_mil",
+     "1.223",
+     "878",
+     "2.077,62",
+     "0,0926",
+     "0,2025",
+     "0,1264",
+     "4,7%"
+    ],
+    [
+     "A5_por_porte/de_100_a_500_mil",
+     "7.674",
+     "5.568",
+     "2.496,83",
+     "0,0355",
+     "0,0980",
+     "0,1307",
+     "13,5%"
+    ],
+    [
+     "A5_por_porte/mais_de_500_mil",
+     "95.211",
+     "67.432",
+     "2.593,06",
+     "0,0357",
+     "0,0791",
+     "0,0640",
+     "16,2%"
+    ],
+    [
+     "A6_brasil",
+     "347.400",
+     "249.404",
+     "2.312,82",
+     "0,0593",
+     "0,1615",
+     "0,0959",
+     "11,0%"
+    ]
+   ],
+   "colW": [
+    2.5,
+    0.85,
+    0.8,
+    1.0,
+    0.85,
+    0.85,
+    0.85,
+    0.8
+   ],
+   "como_ler": "Uma linha por recorte do eixo A (e a referência): setores no recorte e no índice, renda mediana, médias de analfabetismo, esgoto e água inadequados e o percentual de setores sem analfabetismo por sigilo.",
+   "mostra": "Renda mediana mais alta: A4_por_regiao/sul (3.722,28); mais baixa: A4_por_regiao/nordeste (1.719,20).",
+   "nota": "Os números vêm das tabelas T01, T02 e T03 de cada versão, reunidos em analises_exploratorias/00_sintese/unificada/U01_recortes.csv. As médias de proporção são médias entre setores, não razões agregadas.",
+   "fonte": "00_sintese/unificada/U01_recortes.csv",
+   "larga": false
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "61 variantes testadas nas tabelas de sensibilidade, com AUC municipal de 0,5168 a 0,8774",
+   "cab": [
+    "Versão",
+    "Variante",
+    "Índice",
+    "KMO",
+    "AUC mun.",
+    "Elegível"
+   ],
+   "linhas": [
+    [
+     "A2_piso_populacional",
+     "valor-padrão desta versão",
+     "73.407",
+     "0,7798",
+     "0,8238",
+     "sim"
+    ],
+    [
+     "A2_piso_populacional",
+     "piso de 100 moradores",
+     "72.289",
+     "0,7799",
+     "0,8344",
+     "sim"
+    ],
+    [
+     "B1_renda",
+     "valor-padrão desta versão",
+     "73.877",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ],
+    [
+     "B1_renda",
+     "renda com a mediana do município",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ],
+    [
+     "B1_renda",
+     "renda original (referência)",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ],
+    [
+     "B2_agua",
+     "valor-padrão desta versão",
+     "73.854",
+     "0,8019",
+     "0,8626",
+     "sim"
+    ],
+    [
+     "B2_agua",
+     "água não chega ao domicílio",
+     "68.001",
+     "0,7881",
+     "0,8712",
+     "sim"
+    ],
+    [
+     "B2_agua",
+     "água só no terreno",
+     "62.843",
+     "0,7960",
+     "0,8774",
+     "sim"
+    ],
+    [
+     "B2_agua",
+     "água inadequada (referência)",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ],
+    [
+     "B3_banheiro",
+     "valor-padrão desta versão",
+     "87.545",
+     "0,7870",
+     "0,7845",
+     "sim"
+    ],
+    [
+     "B3_banheiro",
+     "sem banheiro (V00495)",
+     "75.955",
+     "0,7967",
+     "0,8202",
+     "sim"
+    ],
+    [
+     "B3_banheiro",
+     "nem banheiro nem sanitário (V00238)",
+     "84.678",
+     "0,7849",
+     "0,8242",
+     "sim"
+    ],
+    [
+     "B3_banheiro",
+     "só sanitário (V00237)",
+     "83.844",
+     "0,7870",
+     "0,8175",
+     "sim"
+    ],
+    [
+     "B3_banheiro",
+     "banheiro de uso comum (V00236)",
+     "78.298",
+     "0,7886",
+     "0,8217",
+     "sim"
+    ],
+    [
+     "B3_banheiro",
+     "banheiro graduado (referência)",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ],
+    [
+     "B4_esgoto",
+     "valor-padrão desta versão",
+     "73.878",
+     "0,7638",
+     "0,7696",
+     "sim"
+    ],
+    [
+     "B4_esgoto",
+     "esgoto V00312–V00316 (referência)",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ],
+    [
+     "B5_lixo",
+     "valor-padrão desta versão",
+     "73.878",
+     "0,7741",
+     "0,8358",
+     "não"
+    ],
+    [
+     "B5_lixo",
+     "sem lixo (referência)",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ],
+    [
+     "B6_moradia",
+     "valor-padrão desta versão",
+     "73.878",
+     "0,7443",
+     "0,8522",
+     "sim"
+    ],
+    [
+     "B6_moradia",
+     "domicílio improvisado",
+     "70.286",
+     "0,7454",
+     "0,8356",
+     "não"
+    ],
+    [
+     "B6_moradia",
+     "moradia não convencional",
+     "73.878",
+     "0,7445",
+     "0,8516",
+     "sim"
+    ],
+    [
+     "B6_moradia",
+     "razão de moradores (referência)",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ],
+    [
+     "B7_raca",
+     "valor-padrão desta versão",
+     "73.879",
+     "0,7155",
+     "0,8190",
+     "sim"
+    ],
+    [
+     "B7_raca",
+     "com cor ou raça (referência)",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ],
+    [
+     "B8_complementares",
+     "valor-padrão desta versão",
+     "73.794",
+     "0,7867",
+     "0,8055",
+     "não"
+    ],
+    [
+     "B8_complementares",
+     "com crianças de 0 a 4 anos",
+     "72.799",
+     "0,8109",
+     "0,8215",
+     "sim"
+    ],
+    [
+     "B8_complementares",
+     "com população de 0 a 14 anos",
+     "73.725",
+     "0,8098",
+     "0,8149",
+     "sim"
+    ],
+    [
+     "B8_complementares",
+     "referência (sem complementares)",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ],
+    [
+     "C1_rotacao_e_pesos",
+     "valor-padrão desta versão",
+     "73.878",
+     "0,7807",
+     "0,8160",
+     "sim"
+    ],
+    [
+     "C1_rotacao_e_pesos",
+     "sem rotação, um fator",
+     "73.878",
+     "0,7807",
+     "0,8468",
+     "não"
+    ],
+    [
+     "C1_rotacao_e_pesos",
+     "Varimax, soma dos quadrados",
+     "73.878",
+     "0,7807",
+     "0,8353",
+     "sim"
+    ],
+    [
+     "C1_rotacao_e_pesos",
+     "Varimax, 50/50",
+     "73.878",
+     "0,7807",
+     "0,8048",
+     "sim"
+    ],
+    [
+     "C1_rotacao_e_pesos",
+     "promax, soma dos quadrados (padrão)",
+     "73.878",
+     "0,7807",
+     "0,8374",
+     "sim"
+    ],
+    [
+     "C1_rotacao_e_pesos",
+     "promax, soma dos quadrados (estrutura)",
+     "73.878",
+     "0,7807",
+     "0,8250",
+     "sim"
+    ],
+    [
+     "C1_rotacao_e_pesos",
+     "promax, comunalidades",
+     "73.878",
+     "0,7807",
+     "0,8286",
+     "sim"
+    ],
+    [
+     "C1_rotacao_e_pesos",
+     "promax, 50/50",
+     "73.878",
+     "0,7807",
+     "0,8032",
+     "sim"
+    ],
+    [
+     "C1_rotacao_e_pesos",
+     "promax, 60/40 (referência)",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ],
+    [
+     "C2_extracao",
+     "valor-padrão desta versão",
+     "73.878",
+     "0,7807",
+     "0,8064",
+     "não"
+    ],
+    [
+     "C2_extracao",
+     "máxima verossimilhança",
+     "73.878",
+     "0,7807",
+     "0,8105",
+     "não"
+    ],
+    [
+     "C2_extracao",
+     "componentes principais (referência)",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ],
+    [
+     "C3_normalizacao",
+     "valor-padrão desta versão",
+     "73.878",
+     "0,7807",
+     "0,7731",
+     "sim"
+    ],
+    [
+     "C3_normalizacao",
+     "escore z no município",
+     "73.878",
+     "0,7807",
+     "0,8486",
+     "sim"
+    ],
+    [
+     "C3_normalizacao",
+     "escore z global",
+     "73.878",
+     "0,7807",
+     "0,8269",
+     "sim"
+    ],
+    [
+     "C3_normalizacao",
+     "postos percentis no município",
+     "73.878",
+     "0,7807",
+     "0,8591",
+     "sim"
+    ],
+    [
+     "C3_normalizacao",
+     "min-max no município (referência)",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ],
+    [
+     "C4_agregacao",
+     "valor-padrão desta versão",
+     "73.878",
+     "0,7807",
+     "0,7502",
+     "sim"
+    ],
+    [
+     "C4_agregacao",
+     "soma ponderada (referência)",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ],
+    [
+     "C6_pesos_iguais",
+     "valor-padrão desta versão",
+     "73.878",
+     "0,7807",
+     "0,8263",
+     "sim"
+    ],
+    [
+     "C6_pesos_iguais",
+     "média dos postos no município",
+     "73.878",
+     "0,7807",
+     "0,8456",
+     "sim"
+    ],
+    [
+     "C6_pesos_iguais",
+     "pesos da fatorial (referência)",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ],
+    [
+     "D1_subindices",
+     "valor-padrão desta versão",
+     "73.878",
+     "0,7807",
+     "0,8664",
+     "sim"
+    ],
+    [
+     "D1_subindices",
+     "subíndice de saneamento",
+     "73.878",
+     "0,7807",
+     "0,6032",
+     "sim"
+    ],
+    [
+     "D1_subindices",
+     "índice completo (referência)",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ],
+    [
+     "D2_ivs_idoso",
+     "valor-padrão desta versão",
+     "73.250",
+     "0,7341",
+     "0,6034",
+     "não"
+    ],
+    [
+     "D2_ivs_idoso",
+     "mesmos 10 componentes com 2 fatores",
+     "73.250",
+     "0,7341",
+     "0,5168",
+     "não"
+    ],
+    [
+     "D2_ivs_idoso",
+     "referência (sem envelhecimento)",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ],
+    [
+     "D5_especialista_x_dados",
+     "valor-padrão desta versão",
+     "73.878",
+     "0,7807",
+     "0,8374",
+     "sim"
+    ],
+    [
+     "D5_especialista_x_dados",
+     "dados: soma dos quadrados (estrutura)",
+     "73.878",
+     "0,7807",
+     "0,8250",
+     "sim"
+    ],
+    [
+     "D5_especialista_x_dados",
+     "dados: comunalidades",
+     "73.878",
+     "0,7807",
+     "0,8286",
+     "sim"
+    ],
+    [
+     "D5_especialista_x_dados",
+     "especialista: 60/40 (referência)",
+     "73.878",
+     "0,7807",
+     "0,8186",
+     "sim"
+    ]
+   ],
+   "colW": [
+    2.0,
+    3.0,
+    0.85,
+    0.75,
+    0.85,
+    0.7
+   ],
+   "como_ler": "Uma linha por variante: a primeira de cada versão é o valor-padrão dela; as demais, as alternativas da tabela T34 (inclusive a referência, quando entra como alternativa).",
+   "mostra": "A maior AUC municipal entre as variantes é a de “água só no terreno” (B2_agua, 0,8774).",
+   "nota": "Reunido das tabelas T34 de todas as versões em analises_exploratorias/00_sintese/unificada/U02_variantes.csv.",
+   "fonte": "00_sintese/unificada/U02_variantes.csv",
+   "larga": false
+  },
+  {
+   "tipo": "figura",
+   "titulo": "A maior parte dos setores tem classificação estável",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/E1_incerteza/figuras/F40_fracao_em_risco.png",
+   "como_ler": "Histograma da fração das versões elegíveis em que cada setor fica em risco elevado: 0 = nunca, 1 = sempre.",
+   "mostra": "Nunca: 53,0%; às vezes: 36,1%; sempre: 10,9%.",
+   "nota": "As barras nas pontas são os setores de classificação estável; o meio do histograma é a incerteza.",
+   "fonte": "E1_incerteza · F40 · figuras/F40_fracao_em_risco.png",
+   "chave": "e1_hist"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "Os municípios com mais setores de classificação incerta",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/E1_incerteza/figuras/F41_incerteza_por_municipio.png",
+   "como_ler": "Os 25 municípios (com pelo menos 30 setores) com maior percentual de setores ora em risco elevado, ora não.",
+   "mostra": "No topo, Taió (59,5%). Destaques entre os municípios com pelo menos 30 setores.",
+   "nota": "A figura destaca onde a escolha de método mais pesa na classificação.",
+   "fonte": "E1_incerteza · F41 · figuras/F41_incerteza_por_municipio.png",
+   "chave": "e1_mun_fig"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "A população em risco elevado em cada versão",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/E4_populacao_em_risco/figuras/F45_pessoas_em_risco_por_versao.png",
+   "como_ler": "Uma barra por versão com o percentual de moradores em risco elevado ou muito elevado; em argila, a referência.",
+   "mostra": "Referência: 29,4%; mínimo 15,5%, máximo 35,5%.",
+   "nota": "As barras mostram que as faixas relativas ao município estabilizam o total; diferenças grandes aparecem nas versões que mudam a forma da distribuição do índice.",
+   "fonte": "E4_populacao_em_risco · F45 · figuras/F45_pessoas_em_risco_por_versao.png",
+   "chave": "e4_fig"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "O Gini de cada município entre as versões",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/E3_desigualdade_intramunicipal/figuras/F44_gini_entre_versoes.png",
+   "como_ler": "Uma linha por município, do menor ao maior Gini entre as versões; o ponto é a referência.",
+   "mostra": "A posição de Capelinha vai do 3º ao 57º. Destaques entre os municípios com pelo menos 30 setores.",
+   "nota": "Linhas curtas indicam desigualdade interna que não depende do método.",
+   "fonte": "E3_desigualdade_intramunicipal · F44 · figuras/F44_gini_entre_versoes.png",
+   "chave": "e3_fig"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "IVS × proporção de 60+ (ρ = -0,5426)",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/E5_ivs_e_envelhecimento/figuras/F46_ivs_x_60mais.png",
+   "como_ler": "Cada hexágono reúne setores com IVS e proporção de 60+ parecidos; quanto mais escuro, mais setores.",
+   "mostra": "ρ = -0,5426 no total.",
+   "nota": "O gráfico mostra a nuvem inteira: a correlação resume a tendência, mas há setores vulneráveis e envelhecidos ao mesmo tempo.",
+   "fonte": "E5_ivs_e_envelhecimento · F46 · figuras/F46_ivs_x_60mais.png",
+   "chave": "e5_hex"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "A proporção de 60+ em cada faixa do IVS",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/E5_ivs_e_envelhecimento/figuras/F47_60mais_por_faixa.png",
+   "como_ler": "Uma caixa por faixa com a proporção de pessoas de 60+ nos setores.",
+   "mostra": "Mediana de 0,2311 na faixa baixa e 0,0957 na muito elevada.",
+   "nota": "As caixas se sobrepõem: em todas as faixas há setores muito envelhecidos.",
+   "fonte": "E5_ivs_e_envelhecimento · F47 · figuras/F47_60mais_por_faixa.png",
+   "chave": "e5_box"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "Os perfis dos 4 grupos de setores",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/E6_tipologias/figuras/F48_perfis_grupos_setores.png",
+   "como_ler": "Mapa de calor: linhas são grupos, colunas são componentes; a cor é a média normalizada (0 a 1).",
+   "mostra": "O grupo 3 tem 50,7% dos setores em FCU.",
+   "nota": "Grupos com cores fortes em poucas colunas têm uma carência específica; grupos escuros em todas as colunas acumulam carências.",
+   "fonte": "E6_tipologias · F48 · figuras/F48_perfis_grupos_setores.png",
+   "chave": "e6_fig_setores"
+  },
+  {
+   "tipo": "texto",
+   "titulo": "O que a EDA unificada mostra",
+   "itens": [
+    "21 de 32 versões passam nos critérios do NB05; quando falham, o motivo mais comum é o banheiro graduado.",
+    "A maior parte das versões fica perto da referência; a que mais se afasta é D3_indice_moradia (ρ = 0,4884).",
+    "Entre as versões elegíveis, 53,0% dos setores nunca ficam em risco elevado, 10,9% ficam sempre e 36,1% mudam conforme a versão.",
+    "Na referência, 29,4% dos moradores vivem em setores de risco elevado ou muito elevado.",
+    "IVS e envelhecimento andam em sentidos opostos (ρ = -0,5426 com a proporção de 60+).",
+    "Nada disso escolhe versão: a escolha é da orientadora."
+   ],
+   "nota": "21 de 32 versões passam nos critérios do NB05; quando falham, o motivo mais comum é o banheiro graduado.\nA maior parte das versões fica perto da referência; a que mais se afasta é D3_indice_moradia (ρ = 0,4884).\nEntre as versões elegíveis, 53,0% dos setores nunca ficam em risco elevado, 10,9% ficam sempre e 36,1% mudam conforme a versão.\nNa referência, 29,4% dos moradores vivem em setores de risco elevado ou muito elevado.\nIVS e envelhecimento andam em sentidos opostos (ρ = -0,5426 com a proporção de 60+).\nNada disso escolhe versão: a escolha é da orientadora.",
+   "fonte": "00_sintese · E1 · E4 · E5"
+  },
+  {
+   "tipo": "secao",
+   "num": "2",
+   "titulo": "A EDA da versão final",
+   "sub": "O recorte da referência, com os 31 indicadores e as correções das demandas",
+   "nota": "A versão final da EDA é a do recorte de análise (setores urbanos com Dados_sig = OK nos 70 municípios), com todos os indicadores e variantes pedidos nas demandas de setembro. O índice que a acompanha é a referência proposta no NB05, que continua proposta até a orientadora decidir."
+  },
+  {
+   "tipo": "texto",
+   "titulo": "O que esta versão atende",
+   "itens": [
+    "Demanda 1 — renda com a mediana: coluna renda_media_mediana_mun, ao lado da renda original e da sem o extremo.",
+    "Demanda 2 — quadro de indicadores: Quadro_Indicadores, gerado do código, com numerador, denominador e origem.",
+    "Demandas 5 e 7 — água: “não chega”, sem canalização e só no terreno, comparadas com o IVS-7 e com as outras categorias.",
+    "Demanda 6 — banheiro: V00495 (que já contém V00238) e as três partições V00236, V00237 e V00238, além do banheiro graduado.",
+    "Demanda 9 — habitação: moradia não convencional, na direção da vulnerabilidade, com diagnóstico completo.",
+    "Índice que acompanha a EDA: original·lixo_sem·banheiro_graduado·promax·60_40·municipal (referência proposta no NB05, não decidida)."
+   ],
+   "nota": "Demanda 1 — renda com a mediana: coluna renda_media_mediana_mun, ao lado da renda original e da sem o extremo.\nDemanda 2 — quadro de indicadores: Quadro_Indicadores, gerado do código, com numerador, denominador e origem.\nDemandas 5 e 7 — água: “não chega”, sem canalização e só no terreno, comparadas com o IVS-7 e com as outras categorias.\nDemanda 6 — banheiro: V00495 (que já contém V00238) e as três partições V00236, V00237 e V00238, além do banheiro graduado.\nDemanda 9 — habitação: moradia não convencional, na direção da vulnerabilidade, com diagnóstico completo.\nÍndice que acompanha a EDA: original·lixo_sem·banheiro_graduado·promax·60_40·municipal (referência proposta no NB05, não decidida).",
+   "fonte": "docs/prompts/estado_demandas_2026-09.md · ivs_especificacoes/referencia.csv"
+  },
+  {
+   "tipo": "numeros",
+   "titulo": "73.878 setores chegam ao índice, de 109.032 na base",
+   "nums": [
+    [
+     "109.032",
+     "setores na base completa"
+    ],
+    [
+     "104.108",
+     "setores no recorte (urbanos, Dados_sig = OK)"
+    ],
+    [
+     "73.878",
+     "setores com todos os componentes do índice"
+    ]
+   ],
+   "texto": "O funil mostra o caminho dos setores. A base completa inclui setores rurais e setores sem dados divulgados. O recorte da versão é o conjunto sobre o qual são calculadas as descritivas, as distribuições e as correlações. A amostra do índice é menor, porque a análise fatorial exige que o setor tenha todos os componentes preenchidos (exclusão por lista: basta faltar um componente para o setor sair). Essa diferença de amostra é importante quando se comparam números de blocos diferentes.",
+   "nota": "O funil mostra o caminho dos setores. A base completa inclui setores rurais e setores sem dados divulgados. O recorte da versão é o conjunto sobre o qual são calculadas as descritivas, as distribuições e as correlações. A amostra do índice é menor, porque a análise fatorial exige que o setor tenha todos os componentes preenchidos (exclusão por lista: basta faltar um componente para o setor sair). Essa diferença de amostra é importante quando se comparam números de blocos diferentes.",
+   "fonte": "00_referencia · T01"
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "Os 31 indicadores e variantes da versão final",
+   "cab": [
+    "Indicador",
+    "Dimensão",
+    "IVS-7",
+    "O que mede"
+   ],
+   "linhas": [
+    [
+     "Água inadequada",
+     "Saneamento",
+     "Sim",
+     "Proporção de domicílios com abastecimento de água inadequado ou ausente"
+    ],
+    [
+     "Esgoto inadequado",
+     "Saneamento",
+     "Sim",
+     "Proporção de domicílios com esgotamento sanitário inadequado ou ausente"
+    ],
+    [
+     "Lixo inadequado",
+     "Saneamento",
+     "Sim",
+     "Proporção de domicílios com destino do lixo inadequado ou ausente"
+    ],
+    [
+     "Razão de moradores",
+     "Socioeconômica",
+     "Sim",
+     "Razão de moradores por domicílio (reproduz o V0005 do IBGE)"
+    ],
+    [
+     "Analfabetismo 15+",
+     "Socioeconômica",
+     "Sim",
+     "Taxa de analfabetismo entre pessoas de 15 anos ou mais"
+    ],
+    [
+     "Renda média",
+     "Socioeconômica",
+     "Sim",
+     "Rendimento nominal médio mensal das pessoas responsáveis (R$)"
+    ],
+    [
+     "Cor/raça PPI",
+     "Socioeconômica",
+     "Sim",
+     "Proporção de pessoas de cor/raça preta, parda ou indígena"
+    ],
+    [
+     "Domicílio improvisado",
+     "Morfologia",
+     "Não",
+     "Proporção de domicílios particulares improvisados"
+    ],
+    [
+     "Habitação precária",
+     "Morfologia",
+     "Não",
+     "Proporção de domicílios em habitação precária (cortiço, estrutura degradada, improvisados)"
+    ],
+    [
+     "Moradia convencional",
+     "Morfologia",
+     "Não",
+     "Proporção de moradias convencionais (casa, casa de vila/condomínio, apartamento)"
+    ],
+    [
+     "Moradia não convencional",
+     "Morfologia",
+     "Não",
+     "Proporção de moradias não convencionais (cortiço, maloca, estrutura degradada)"
+    ],
+    [
+     "Apartamento",
+     "Morfologia",
+     "Não",
+     "Proporção de domicílios do tipo apartamento"
+    ],
+    [
+     "Casa",
+     "Morfologia",
+     "Não",
+     "Proporção de domicílios do tipo casa"
+    ],
+    [
+     "Casa de vila/condomínio",
+     "Morfologia",
+     "Não",
+     "Proporção de domicílios do tipo casa de vila ou em condomínio"
+    ],
+    [
+     "Sem água canalizada",
+     "Saneamento",
+     "Não",
+     "Proporção de domicílios em que a água não chega encanada até dentro do domicílio (complemento de V00199; equivale a V00200+V00201 sobre V00001)"
+    ],
+    [
+     "Água não chega",
+     "Saneamento",
+     "Não",
+     "Proporção de domicílios em que a água não chega encanada ao domicílio (V00201)"
+    ],
+    [
+     "Água só no terreno",
+     "Saneamento",
+     "Não",
+     "Proporção de domicílios em que a água chega encanada apenas ao terreno (V00200)"
+    ],
+    [
+     "Sem banheiro",
+     "Saneamento",
+     "Não",
+     "Proporção de domicílios sem banheiro de uso exclusivo com chuveiro e vaso sanitário"
+    ],
+    [
+     "Sem banheiro nem sanitário",
+     "Saneamento",
+     "Não",
+     "Proporção de domicílios sem banheiro nem sanitário"
+    ],
+    [
+     "Só sanitário",
+     "Saneamento",
+     "Não",
+     "Proporção de domicílios com apenas sanitário ou buraco para dejeções"
+    ],
+    [
+     "Banheiro de uso comum",
+     "Saneamento",
+     "Não",
+     "Proporção de domicílios com apenas banheiro de uso comum"
+    ],
+    [
+     "Responsável mulher",
+     "Socioeconômica",
+     "Não",
+     "Proporção de domicílios com pessoa responsável do sexo feminino"
+    ],
+    [
+     "Crianças 0–4",
+     "Demografia",
+     "Não",
+     "Proporção de crianças de 0 a 4 anos na população residente"
+    ],
+    [
+     "População 0–14",
+     "Demografia",
+     "Não",
+     "Proporção de pessoas com menos de 15 anos na população residente"
+    ],
+    [
+     "Pessoas 60+",
+     "Demografia",
+     "Não",
+     "Proporção de pessoas de 60 anos ou mais na população residente"
+    ],
+    [
+     "Índice de envelhecimento",
+     "Demografia",
+     "Não",
+     "Índice de Envelhecimento Populacional: 60+ por 100 menores de 15 anos"
+    ],
+    [
+     "Dependência idosa",
+     "Demografia",
+     "Não",
+     "Razão de Dependência de Idosos: 60+ por 100 pessoas de 15 a 59 anos"
+    ],
+    [
+     "70+ entre 60+",
+     "Demografia",
+     "Não",
+     "Proporção de pessoas de 70+ entre os de 60+ (proxy de longevidade; NÃO é o LI, que exigiria a faixa 75+, inexistente nos agregados por setor)"
+    ],
+    [
+     "Renda sem o extremo",
+     "Socioeconômica",
+     "Não",
+     "Renda média dos responsáveis sem o valor extremo de Belo Horizonte (R$ 170.418,06), que vira faltante"
+    ],
+    [
+     "Renda (mediana mun.)",
+     "Socioeconômica",
+     "Não",
+     "Renda média dos responsáveis com o valor extremo trocado pela mediana do município"
+    ],
+    [
+     "Banheiro graduado",
+     "Saneamento",
+     "Não",
+     "Falta de banheiro graduada: 1 ponto para banheiro só de uso comum, 2 para só sanitário, 3 para nem banheiro nem sanitário, sobre 3 vezes os domicílios"
+    ]
+   ],
+   "colW": [
+    2.1,
+    1.3,
+    0.6,
+    4.2
+   ],
+   "como_ler": "Uma linha por indicador: dimensão, se entra no IVS-7 e o que mede (texto do Quadro de Indicadores).",
+   "mostra": "O quadro completo, com numerador, denominador e arquivo do Censo, está em Quadro_Indicadores.xlsx.",
+   "nota": "O quadro é gerado do código (scripts/gerar_quadro_indicadores.py), nunca digitado. As três variantes no fim (duas rendas e o banheiro graduado) foram criadas depois do quadro.",
+   "fonte": "entrega_orientadora/Quadro_Indicadores.csv",
+   "larga": false
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "Demanda 1: a renda do setor extremo de BH, imputada por três medianas",
+   "cab": [
+    "Alternativa",
+    "Valor imputado (R$)",
+    "Média BH",
+    "DP BH",
+    "Máx. BH",
+    "Média 70 mun."
+   ],
+   "linhas": [
+    [
+     "mediana de BH sem o setor",
+     "3.058,24",
+     "4.649,57",
+     "3.847,13",
+     "45.385,44",
+     "4.185,80"
+    ],
+    [
+     "mediana de BH com o setor",
+     "3.060,31",
+     "4.649,57",
+     "3.847,13",
+     "45.385,44",
+     "4.185,80"
+    ],
+    [
+     "mediana dos 70 municípios sem o setor",
+     "2.572,39",
+     "4.649,47",
+     "3.847,18",
+     "45.385,44",
+     "4.185,80"
+    ]
+   ],
+   "colW": [
+    2.7,
+    1.2,
+    1.0,
+    1.0,
+    1.0,
+    1.1
+   ],
+   "como_ler": "Uma linha por alternativa de imputação do setor 310620005650366: o valor posto no lugar e o efeito nas estatísticas de BH e do conjunto.",
+   "mostra": "A mediana de BH sem o setor (3.058,24) é a usada na coluna renda_media_mediana_mun; com qualquer alternativa, o máximo de BH cai para 45.385,44.",
+   "nota": "A mediana do próprio setor (V06006) não existe no arquivo do Censo; por isso a imputação usa a mediana do município. As alternativas mostram que a escolha mexe pouco nas estatísticas.",
+   "fonte": "banco_de_dados/eda/atualizada/renda_imputacao_alternativas.csv",
+   "larga": false
+  },
+  {
+   "tipo": "figura",
+   "titulo": "O setor extremo de Belo Horizonte e o efeito de tirá-lo",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/banco_de_dados/eda/atualizada/figuras/extremo_bh.png",
+   "como_ler": "A renda dos setores de Belo Horizonte e a escala normalizada, com e sem o setor extremo.",
+   "mostra": "Sem o setor extremo, a maior renda média de setor em BH passa a ser 45.385,44.",
+   "nota": "Figura da 2ª rodada da EDA (eda/atualizada). O setor extremo comprime a escala min-max de toda a cidade; por isso as variantes de renda existem.",
+   "fonte": "banco_de_dados/eda/atualizada/figuras/extremo_bh.png",
+   "chave": "extremo_bh"
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "As descritivas do IVS-7 e dos indicadores das demandas",
+   "cab": [
+    "Indicador",
+    "n",
+    "Média",
+    "Mediana",
+    "P90",
+    "Máx.",
+    "Assim.",
+    "% zeros"
+   ],
+   "linhas": [
+    [
+     "Água inadequada",
+     "104.108",
+     "0,0696",
+     "0,0000",
+     "0,1986",
+     "1,0000",
+     "3,42",
+     "74,2%"
+    ],
+    [
+     "Esgoto inadequado",
+     "104.107",
+     "0,0820",
+     "0,0000",
+     "0,2838",
+     "1,0000",
+     "2,98",
+     "72,5%"
+    ],
+    [
+     "Lixo inadequado",
+     "104.108",
+     "0,1158",
+     "0,0000",
+     "0,5046",
+     "1,0000",
+     "2,38",
+     "62,8%"
+    ],
+    [
+     "Razão de moradores",
+     "104.108",
+     "2,6909",
+     "2,7126",
+     "3,1412",
+     "6,9135",
+     "-0,22",
+     "0,0%"
+    ],
+    [
+     "Analfabetismo 15+",
+     "87.556",
+     "0,0364",
+     "0,0271",
+     "0,0792",
+     "0,7255",
+     "2,34",
+     "10,6%"
+    ],
+    [
+     "Renda média",
+     "104.096",
+     "4.187,41",
+     "2.572,39",
+     "9.490,68",
+     "170.418,06",
+     "3,74",
+     "0,0%"
+    ],
+    [
+     "Cor/raça PPI",
+     "104.106",
+     "0,5267",
+     "0,5719",
+     "0,7929",
+     "1,0000",
+     "-0,39",
+     "0,1%"
+    ],
+    [
+     "Sem água canalizada",
+     "104.067",
+     "0,0150",
+     "0,0000",
+     "0,0234",
+     "1,0000",
+     "8,70",
+     "69,7%"
+    ],
+    [
+     "Água não chega",
+     "94.402",
+     "0,0047",
+     "0,0000",
+     "0,0000",
+     "1,0000",
+     "15,71",
+     "94,5%"
+    ],
+    [
+     "Água só no terreno",
+     "88.211",
+     "0,0105",
+     "0,0000",
+     "0,0147",
+     "1,0000",
+     "9,87",
+     "88,3%"
+    ],
+    [
+     "Sem banheiro",
+     "91.912",
+     "0,0023",
+     "0,0000",
+     "0,0000",
+     "1,0000",
+     "21,31",
+     "95,6%"
+    ],
+    [
+     "Sem banheiro nem sanitário",
+     "101.139",
+     "0,0002",
+     "0,0000",
+     "0,0000",
+     "0,6667",
+     "68,98",
+     "99,7%"
+    ],
+    [
+     "Só sanitário",
+     "100.297",
+     "0,0006",
+     "0,0000",
+     "0,0000",
+     "0,8444",
+     "32,59",
+     "99,0%"
+    ],
+    [
+     "Banheiro de uso comum",
+     "94.414",
+     "0,0011",
+     "0,0000",
+     "0,0000",
+     "1,0000",
+     "37,68",
+     "97,3%"
+    ],
+    [
+     "Banheiro graduado",
+     "89.816",
+     "0,0006",
+     "0,0000",
+     "0,0000",
+     "0,6667",
+     "32,80",
+     "97,8%"
+    ],
+    [
+     "Moradia não convencional",
+     "104.108",
+     "0,0059",
+     "0,0000",
+     "0,0000",
+     "1,0000",
+     "13,01",
+     "93,0%"
+    ],
+    [
+     "Renda sem o extremo",
+     "104.095",
+     "4.185,81",
+     "2.572,39",
+     "9.490,42",
+     "140.172,64",
+     "3,20",
+     "0,0%"
+    ],
+    [
+     "Renda (mediana mun.)",
+     "104.096",
+     "4.185,80",
+     "2.572,39",
+     "9.490,41",
+     "140.172,64",
+     "3,20",
+     "0,0%"
+    ]
+   ],
+   "colW": [
+    2.3,
+    0.85,
+    0.85,
+    0.85,
+    0.85,
+    0.95,
+    0.65,
+    0.75
+   ],
+   "como_ler": "Uma linha por indicador: n, média, mediana, percentil 90, máximo, assimetria e percentual de setores com valor zero.",
+   "mostra": "Os indicadores novos de água e banheiro têm mediana zero: sem banheiro tem 95,6% de zeros e água não chega, 94,5%.",
+   "nota": "A média é sensível a valores extremos; a mediana não. Quando as duas se afastam, a distribuição é assimétrica. A assimetria é positiva quando há uma cauda longa à direita (poucos setores com valores muito altos). A curtose mede o peso das caudas: valores altos indicam muitos extremos. O coeficiente de variação (DP dividido pela média, em %) permite comparar a dispersão de indicadores em escalas diferentes. Nos indicadores de saneamento, a maioria dos setores vale zero: a mediana é zero e o intervalo interquartil também, o que explica por que o critério de extremos muda para eles (bloco 5).",
+   "fonte": "00_referencia · T03",
+   "larga": false
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "Demandas 5 e 7: “não chega” se parece mais com as outras categorias de água do que com o IVS-7",
+   "cab": [
+    "Variável",
+    "ρ com “não chega”",
+    "n"
+   ],
+   "linhas": [
+    [
+     "Água inadequada",
+     "0,4591",
+     "94.402"
+    ],
+    [
+     "Esgoto inadequado",
+     "0,2906",
+     "94.401"
+    ],
+    [
+     "Lixo inadequado",
+     "0,1092",
+     "94.402"
+    ],
+    [
+     "Razão de moradores",
+     "0,1420",
+     "94.402"
+    ],
+    [
+     "Analfabetismo 15+",
+     "0,2185",
+     "78.266"
+    ],
+    [
+     "Renda média",
+     "-0,2519",
+     "94.391"
+    ],
+    [
+     "Cor/raça PPI",
+     "0,2486",
+     "94.400"
+    ],
+    [
+     "Água só no terreno",
+     "0,5063",
+     "81.303"
+    ],
+    [
+     "Sem água canalizada",
+     "0,5138",
+     "94.368"
+    ],
+    [
+     "Sem banheiro",
+     "0,3860",
+     "85.098"
+    ]
+   ],
+   "colW": [
+    3.6,
+    1.6,
+    1.4
+   ],
+   "como_ler": "Correlação de Spearman entre “água não chega” e cada variável do IVS-7 e as outras categorias de água, nos pares completos.",
+   "mostra": "Maior ρ: Sem água canalizada (0,5138).",
+   "nota": "Leitura (a) e (b) da demanda 5: compara com as outras categorias de canalização e com o IVS-7. Com 85% de zeros, a correlação de postos fica achatada pelos empates.",
+   "fonte": "banco_de_dados/eda/fatorial_ampliada/comparacao_nao_chega_banheiro.csv",
+   "larga": false
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "“Água não chega”: os setores com o problema têm renda mediana de 1.526,40, contra 2.830,52 nos demais",
+   "cab": [
+    "Variável do IVS-7",
+    "Mediana com água não chega > 0",
+    "n",
+    "Mediana = 0",
+    "n"
+   ],
+   "linhas": [
+    [
+     "Água inadequada",
+     "0,2370",
+     "5.190",
+     "0,0000",
+     "89.212"
+    ],
+    [
+     "Esgoto inadequado",
+     "0,0968",
+     "5.189",
+     "0,0000",
+     "89.212"
+    ],
+    [
+     "Lixo inadequado",
+     "0,0263",
+     "5.190",
+     "0,0000",
+     "89.212"
+    ],
+    [
+     "Razão de moradores",
+     "2,8880",
+     "5.190",
+     "2,6878",
+     "89.212"
+    ],
+    [
+     "Analfabetismo 15+",
+     "0,0532",
+     "5.089",
+     "0,0238",
+     "73.177"
+    ],
+    [
+     "Renda média",
+     "1.526,40",
+     "5.190",
+     "2.830,52",
+     "89.201"
+    ],
+    [
+     "Cor/raça PPI",
+     "0,7438",
+     "5.190",
+     "0,5337",
+     "89.210"
+    ]
+   ],
+   "colW": [
+    2.4,
+    1.6,
+    0.9,
+    1.2,
+    0.9
+   ],
+   "como_ler": "Perfil: a mediana de cada variável do IVS-7 nos setores com “água não chega” acima de zero e nos setores com zero.",
+   "mostra": "Renda mediana 1.526,40 nos setores com o problema e 2.830,52 nos demais.",
+   "nota": "É a forma mais direta de comparar uma variável que é zero na maior parte dos setores: em vez de correlação, o perfil dos dois grupos.",
+   "fonte": "banco_de_dados/eda/fatorial_ampliada/comparacao_nao_chega_banheiro.csv",
+   "larga": false
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "“Sem banheiro”: os setores com o problema têm renda mediana de 1.477,89, contra 2.822,70 nos demais",
+   "cab": [
+    "Variável do IVS-7",
+    "Mediana com sem banheiro > 0",
+    "n",
+    "Mediana = 0",
+    "n"
+   ],
+   "linhas": [
+    [
+     "Água inadequada",
+     "0,0572",
+     "4.048",
+     "0,0000",
+     "87.864"
+    ],
+    [
+     "Esgoto inadequado",
+     "0,1123",
+     "4.048",
+     "0,0000",
+     "87.864"
+    ],
+    [
+     "Lixo inadequado",
+     "0,0390",
+     "4.048",
+     "0,0000",
+     "87.864"
+    ],
+    [
+     "Razão de moradores",
+     "2,9830",
+     "4.048",
+     "2,6870",
+     "87.864"
+    ],
+    [
+     "Analfabetismo 15+",
+     "0,0571",
+     "3.948",
+     "0,0237",
+     "72.017"
+    ],
+    [
+     "Renda média",
+     "1.477,89",
+     "4.048",
+     "2.822,70",
+     "87.852"
+    ],
+    [
+     "Cor/raça PPI",
+     "0,7719",
+     "4.048",
+     "0,5394",
+     "87.862"
+    ]
+   ],
+   "colW": [
+    2.4,
+    1.6,
+    0.9,
+    1.2,
+    0.9
+   ],
+   "como_ler": "Perfil: a mediana de cada variável do IVS-7 nos setores com “sem banheiro” acima de zero e nos setores com zero.",
+   "mostra": "Renda mediana 1.477,89 nos setores com o problema e 2.822,70 nos demais.",
+   "nota": "É a forma mais direta de comparar uma variável que é zero na maior parte dos setores: em vez de correlação, o perfil dos dois grupos.",
+   "fonte": "banco_de_dados/eda/fatorial_ampliada/comparacao_nao_chega_banheiro.csv",
+   "larga": false
+  },
+  {
+   "tipo": "numeros",
+   "titulo": "Demandas 6 e 9: banheiro e habitação não convencional",
+   "nums": [
+    [
+     "100,0%",
+     "dos 90.858 setores com as duas variáveis têm V00238 ≤ V00495 (a junção já está em V00495)"
+    ],
+    [
+     "93,0%",
+     "dos setores com moradia não convencional igual a zero"
+    ],
+    [
+     "0,8125",
+     "MSA da moradia não convencional (cenário S5)"
+    ],
+    [
+     "0,0128",
+     "comunalidade da moradia não convencional (S5)"
+    ]
+   ],
+   "texto": "Somar V00238 a V00495 contaria o mesmo domicílio duas vezes; a V00495 já é a junção. As partições V00236, V00237 e V00238 estão na base e formam o banheiro graduado. A moradia não convencional entra na direção da vulnerabilidade e não foi excluída por variância baixa: o diagnóstico está aqui para a decisão.",
+   "nota": "Somar V00238 a V00495 contaria o mesmo domicílio duas vezes; a V00495 já é a junção. As partições V00236, V00237 e V00238 estão na base e formam o banheiro graduado. A moradia não convencional entra na direção da vulnerabilidade e não foi excluída por variância baixa: o diagnóstico está aqui para a decisão.",
+   "fonte": "fatorial_ampliada/comparacao_nao_chega_banheiro.csv · cargas.csv · 00_referencia T03"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "Saneamento: Sem banheiro nem sanitário tem a distribuição mais assimétrica (assimetria 68,98)",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F02_histogramas_saneamento.png",
+   "como_ler": "Um histograma por indicador da dimensão: no eixo horizontal, o valor; no vertical, quantos setores têm aquele valor. Os 0,5% maiores ficam de fora para a escala ser legível.",
+   "mostra": "Entre os indicadores de Saneamento, a maior assimetria é a de Sem banheiro nem sanitário (68,98).",
+   "nota": "O histograma divide o intervalo de valores em 50 faixas iguais e conta os setores em cada uma. Uma barra alta junto do zero indica muitos setores sem o problema medido; uma cauda longa à direita indica poucos setores com valores muito altos. Os 0,5% de valores mais altos são omitidos só no desenho, para que a cauda não esmague a escala; as tabelas usam todos os valores.",
+   "fonte": "00_referencia · F02 · figuras/F02_histogramas_saneamento.png",
+   "chave": "hist"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "Socioeconômica: Renda média tem a distribuição mais assimétrica (assimetria 3,74)",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F05_histogramas_socioeconomica.png",
+   "como_ler": "Um histograma por indicador da dimensão: no eixo horizontal, o valor; no vertical, quantos setores têm aquele valor. Os 0,5% maiores ficam de fora para a escala ser legível.",
+   "mostra": "Entre os indicadores de Socioeconômica, a maior assimetria é a de Renda média (3,74).",
+   "nota": "O histograma divide o intervalo de valores em 50 faixas iguais e conta os setores em cada uma. Uma barra alta junto do zero indica muitos setores sem o problema medido; uma cauda longa à direita indica poucos setores com valores muito altos. Os 0,5% de valores mais altos são omitidos só no desenho, para que a cauda não esmague a escala; as tabelas usam todos os valores.",
+   "fonte": "00_referencia · F05 · figuras/F05_histogramas_socioeconomica.png",
+   "chave": "hist"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "Saneamento: Água inadequada tem mediana de 0,1759 no Norte e 0,0000 no Centro-Oeste",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F03_boxplots_regiao_saneamento.png",
+   "como_ler": "Uma caixa por região: a linha dentro é a mediana, a caixa vai do 1º ao 3º quartil e as hastes até 1,5 intervalo interquartil. Os pontos extremos não são desenhados (ver bloco 5).",
+   "mostra": "No primeiro indicador da dimensão (Água inadequada), a mediana regional vai de 0,0000 (Centro-Oeste) a 0,1759 (Norte).",
+   "nota": "O diagrama de caixa resume a distribuição em cinco números. A caixa contém a metade central dos setores; se as caixas de duas regiões não se sobrepõem, a diferença entre elas é grande. Quando a mediana e o 1º quartil coincidem com zero, a caixa fica achatada no chão: é o caso dos indicadores com muitos zeros.",
+   "fonte": "00_referencia · F03 · figuras/F03_boxplots_regiao_saneamento.png",
+   "chave": "box"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "A falta de dados depende do tamanho do setor",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F15_sigilo_por_porte_do_setor.png",
+   "como_ler": "Eixo horizontal: décimo de moradores do setor (1 = menores). Eixo vertical: percentual de setores sem o indicador.",
+   "mostra": "Renda: de 0,1% a 0,0%; analfabetismo: de 29,4% a 3,9%, do menor ao maior décimo.",
+   "nota": "As duas linhas mostram a mesma tabela em forma de gráfico. Uma linha que desce da esquerda para a direita é o sinal do sigilo: quanto menor o setor, mais provável que o valor tenha sido suprimido.",
+   "fonte": "00_referencia · F15 · figuras/F15_sigilo_por_porte_do_setor.png",
+   "chave": "sigilo_porte_fig"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "A proporção de extremos varia muito de um indicador para outro",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F16_extremos_por_indicador.png",
+   "como_ler": "Uma barra por indicador, com o percentual de setores marcados; a cor indica o critério (petróleo: Tukey; cinza: inflação de zeros; argila: renda).",
+   "mostra": "A barra mais longa é a de Moradia convencional (6,8%).",
+   "nota": "Os percentuais não são comparáveis de forma direta entre critérios diferentes: o critério da inflação de zeros olha só os setores com valor acima de zero. O gráfico serve para localizar os indicadores em que os extremos merecem atenção.",
+   "fonte": "00_referencia · F16 · figuras/F16_extremos_por_indicador.png",
+   "chave": "extremos_fig"
+  },
+  {
+   "tipo": "figura_larga",
+   "titulo": "Entre as variáveis das demandas e os componentes do índice, o par mais forte é Sem água canalizada × Cor/raça PPI (ρ = 0,4193)",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F31_mapa_spearman_componentes.png",
+   "como_ler": "Matriz de Spearman só com os componentes do índice (acima e à esquerda da linha) e as variáveis das demandas de setembro (abaixo e à direita). Cada célula traz o ρ; argila é positiva, petróleo negativa.",
+   "mostra": "Entre uma variável nova e um componente de outra família, o par mais forte é Sem água canalizada × Cor/raça PPI (ρ = 0,4193). Pares de variantes da mesma coisa (como banheiro graduado e sem banheiro) ficam de fora do destaque.",
+   "nota": "É a matriz no formato da que a orientadora enviou: o IVS e as variáveis novas lado a lado, com os valores escritos. A correlação de Spearman mede se dois indicadores ordenam os setores do mesmo jeito: 1 é a mesma ordem, −1 a ordem invertida, 0 nenhuma relação. A renda aparece como renda média (não invertida): por isso ela tem correlação negativa com as carências. Variáveis com muitos zeros (água não chega, sem banheiro, moradia não convencional) têm correlações achatadas, porque os empates em zero não têm ordem.",
+   "fonte": "00_referencia · F31 · figuras/F31_mapa_spearman_componentes.png",
+   "chave": "mapa_spearman_foco"
+  },
+  {
+   "tipo": "figura_larga",
+   "titulo": "Os indicadores formam grupos de correlação",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F17_mapa_spearman.png",
+   "como_ler": "Matriz de correlação de Spearman entre todos os indicadores, reordenados pelo agrupamento do dendrograma. Cada célula do triângulo inferior traz o valor de ρ (−1 a 1); argila é correlação positiva, petróleo negativa, branco é perto de zero. Com 31 indicadores, os valores só ficam legíveis com a figura ampliada; as matrizes por dimensão vêm a seguir.",
+   "mostra": "O par mais forte é Renda média × Renda sem o extremo (ρ = 1,0000).",
+   "nota": "A reordenação põe lado a lado os indicadores que se correlacionam entre si, e os blocos de cor ao longo da diagonal revelam os grupos. Um grupo nítido costuma corresponder a uma dimensão: socioeconômica, saneamento, moradia, idade.",
+   "fonte": "00_referencia · F17 · figuras/F17_mapa_spearman.png",
+   "chave": "mapa_spearman"
+  },
+  {
+   "tipo": "figura_larga",
+   "titulo": "Saneamento: o par mais correlacionado é Sem banheiro × Banheiro graduado (ρ = 1,0000)",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F32_mapa_spearman_saneamento.png",
+   "como_ler": "Matriz de Spearman só com os indicadores da dimensão Saneamento; cada célula traz o ρ (−1 a 1). Argila é correlação positiva, petróleo negativa.",
+   "mostra": "Na dimensão Saneamento, o par mais forte é Sem banheiro × Banheiro graduado (ρ = 1,0000).",
+   "nota": "A matriz completa tem 31 indicadores e, num slide, os valores ficam pequenos demais; por isso cada dimensão tem a sua. Pares com ρ perto de 1 são, quase sempre, variantes da mesma medida (as três rendas, as definições de banheiro): escolher uma delas é uma das decisões do índice. As correlações entre dimensões estão na matriz completa e na matriz dos componentes.",
+   "fonte": "00_referencia · F32 · figuras/F32_mapa_spearman_saneamento.png",
+   "chave": "mapa_spearman_dim"
+  },
+  {
+   "tipo": "figura_larga",
+   "titulo": "Socioeconômica: o par mais correlacionado é Renda média × Renda sem o extremo (ρ = 1,0000)",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F33_mapa_spearman_socioeconomica.png",
+   "como_ler": "Matriz de Spearman só com os indicadores da dimensão Socioeconômica; cada célula traz o ρ (−1 a 1). Argila é correlação positiva, petróleo negativa.",
+   "mostra": "Na dimensão Socioeconômica, o par mais forte é Renda média × Renda sem o extremo (ρ = 1,0000).",
+   "nota": "A matriz completa tem 31 indicadores e, num slide, os valores ficam pequenos demais; por isso cada dimensão tem a sua. Pares com ρ perto de 1 são, quase sempre, variantes da mesma medida (as três rendas, as definições de banheiro): escolher uma delas é uma das decisões do índice. As correlações entre dimensões estão na matriz completa e na matriz dos componentes.",
+   "fonte": "00_referencia · F33 · figuras/F33_mapa_spearman_socioeconomica.png",
+   "chave": "mapa_spearman_dim"
+  },
+  {
+   "tipo": "figura_larga",
+   "titulo": "Morfologia: o par mais correlacionado é Habitação precária × Moradia não convencional (ρ = 0,9646)",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F34_mapa_spearman_morfologia.png",
+   "como_ler": "Matriz de Spearman só com os indicadores da dimensão Morfologia; cada célula traz o ρ (−1 a 1). Argila é correlação positiva, petróleo negativa.",
+   "mostra": "Na dimensão Morfologia, o par mais forte é Habitação precária × Moradia não convencional (ρ = 0,9646).",
+   "nota": "A matriz completa tem 31 indicadores e, num slide, os valores ficam pequenos demais; por isso cada dimensão tem a sua. Pares com ρ perto de 1 são, quase sempre, variantes da mesma medida (as três rendas, as definições de banheiro): escolher uma delas é uma das decisões do índice. As correlações entre dimensões estão na matriz completa e na matriz dos componentes.",
+   "fonte": "00_referencia · F34 · figuras/F34_mapa_spearman_morfologia.png",
+   "chave": "mapa_spearman_dim"
+  },
+  {
+   "tipo": "figura_larga",
+   "titulo": "Demografia: o par mais correlacionado é Pessoas 60+ × Dependência idosa (ρ = 0,9957)",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F35_mapa_spearman_demografia.png",
+   "como_ler": "Matriz de Spearman só com os indicadores da dimensão Demografia; cada célula traz o ρ (−1 a 1). Argila é correlação positiva, petróleo negativa.",
+   "mostra": "Na dimensão Demografia, o par mais forte é Pessoas 60+ × Dependência idosa (ρ = 0,9957).",
+   "nota": "A matriz completa tem 31 indicadores e, num slide, os valores ficam pequenos demais; por isso cada dimensão tem a sua. Pares com ρ perto de 1 são, quase sempre, variantes da mesma medida (as três rendas, as definições de banheiro): escolher uma delas é uma das decisões do índice. As correlações entre dimensões estão na matriz completa e na matriz dos componentes.",
+   "fonte": "00_referencia · F35 · figuras/F35_mapa_spearman_demografia.png",
+   "chave": "mapa_spearman_dim"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "O dendrograma junta os indicadores que medem coisas parecidas",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F18_dendrograma.png",
+   "como_ler": "Cada indicador é uma folha à esquerda; as linhas os unem do mais parecido para o menos. Quanto mais à esquerda a união, mais correlacionados os indicadores.",
+   "mostra": "O par mais próximo é Renda média × Renda sem o extremo (ρ = 1,0000).",
+   "nota": "O dendrograma é o resultado de um agrupamento hierárquico: começa com cada indicador sozinho e, a cada passo, une os dois grupos mais próximos. A distância entre dois indicadores é 1 menos o módulo da correlação de Spearman (0 = idênticos, 1 = sem relação); entre grupos, usa-se a média das distâncias (ligação média). Ele é um retrato descritivo: não substitui a análise fatorial.",
+   "fonte": "00_referencia · F18 · figuras/F18_dendrograma.png",
+   "chave": "dendrograma"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "Os indicadores separam as favelas com força muito diferente",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F19_fcu_por_indicador.png",
+   "como_ler": "À esquerda, a AUC de cada indicador (barras a partir de 0,5; argila acima, petróleo abaixo). À direita, as medianas em FCU e fora, para os indicadores em proporção.",
+   "mostra": "A maior AUC é a de Cor/raça PPI (0,8456); a menor, a de Renda sem o extremo (0,1018).",
+   "nota": "Barras que partem de 0,5 deixam claro o sentido: argila para a direita, o indicador é maior nas favelas; petróleo para a esquerda, é menor. O painel das medianas mostra a mesma comparação em valores absolutos, o que ajuda a separar uma diferença grande em termos relativos de uma diferença grande de fato.",
+   "fonte": "00_referencia · F19 · figuras/F19_fcu_por_indicador.png",
+   "chave": "fcu_fig"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "A estrutura etária muda de região para região",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F20_piramide_etaria.png",
+   "como_ler": "Barras: percentual da população total em cada faixa etária. Pontos: o mesmo percentual em cada região.",
+   "mostra": "70+: 7,4% no total e 8,5% no Sul.",
+   "nota": "Os agregados por setor do Censo trazem as faixas etárias sem a separação por sexo, por isso a figura é uma pirâmide de um lado só. Pontos à direita da barra nas faixas mais velhas indicam regiões mais envelhecidas.",
+   "fonte": "00_referencia · F20 · figuras/F20_piramide_etaria.png",
+   "chave": "piramide"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "Pessoas 60+ e renda média: ρ = 0,5189",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F21_dispersao_60mais.png",
+   "como_ler": "Cada hexágono reúne setores com valores parecidos; quanto mais escuro, mais setores. Eixo horizontal: renda média em escala logarítmica; vertical: proporção de pessoas de 60 anos ou mais.",
+   "mostra": "A correlação de Spearman entre as duas é 0,5189.",
+   "nota": "Com mais de cem mil setores, um gráfico de pontos vira uma mancha. O gráfico de hexágonos conta quantos setores caem em cada célula. A escala logarítmica da renda espalha os setores de renda baixa, que de outro modo ficariam espremidos à esquerda.",
+   "fonte": "00_referencia · F21 · figuras/F21_dispersao_60mais.png",
+   "chave": "dispersao_60"
+  },
+  {
+   "tipo": "texto",
+   "titulo": "O que a EDA da versão final mostra",
+   "itens": [
+    "104.108 setores no recorte e 73.878 na amostra do índice; a perda vem sobretudo do sigilo, que se concentra nos setores pequenos.",
+    "Os indicadores de saneamento têm mediana zero; o mais assimétrico é Sem banheiro nem sanitário (assimetria 68,98).",
+    "Contra as favelas, o indicador que mais separa sozinho é Cor/raça PPI (AUC 0,8456).",
+    "A renda tem 66 setores suspeitos e 3.292 extremos coerentes; as variantes de renda tratam o extremo de BH.",
+    "As demandas 1, 2, 5, 6, 7 e 9 estão atendidas com os dados acima; o que entra no índice é decisão da orientadora."
+   ],
+   "nota": "104.108 setores no recorte e 73.878 na amostra do índice; a perda vem sobretudo do sigilo, que se concentra nos setores pequenos.\nOs indicadores de saneamento têm mediana zero; o mais assimétrico é Sem banheiro nem sanitário (assimetria 68,98).\nContra as favelas, o indicador que mais separa sozinho é Cor/raça PPI (AUC 0,8456).\nA renda tem 66 setores suspeitos e 3.292 extremos coerentes; as variantes de renda tratam o extremo de BH.\nAs demandas 1, 2, 5, 6, 7 e 9 estão atendidas com os dados acima; o que entra no índice é decisão da orientadora.",
+   "fonte": "00_referencia · T01 · T03 · T11 · T15"
+  },
+  {
+   "tipo": "secao",
+   "num": "3",
+   "titulo": "A análise fatorial",
+   "sub": "A grade ampliada das demandas, as especificações do NB05, a referência e a robustez",
+   "nota": "Sem bootstrap, a pedido da orientadora: a estabilidade é medida por sensibilidade por município e por reamostragem apresentada como tal. Sem rotação, Varimax e promax lado a lado em todos os cenários."
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "A grade das demandas: com as quatro variáveis novas (S6), o KMO sobe para 0,8100 e Horn pede 4 fatores",
+   "cab": [
+    "Cenário",
+    "Variáveis",
+    "Demanda",
+    "n",
+    "KMO",
+    "Kaiser",
+    "Horn",
+    "Var. 2 fatores (%)"
+   ],
+   "linhas": [
+    [
+     "S0",
+     "IVS-7 (referência, reproduz o NB04)",
+     "—",
+     "87.545",
+     "0,7826",
+     "2",
+     "2",
+     "62,1"
+    ],
+    [
+     "S1",
+     "IVS-6 (IVS-7 sem lixo)",
+     "10",
+     "87.545",
+     "0,7870",
+     "1",
+     "1",
+     "70,0"
+    ],
+    [
+     "S2",
+     "IVS-7 + não chega",
+     "5, 7",
+     "78.256",
+     "0,7803",
+     "3",
+     "3",
+     "58,5"
+    ],
+    [
+     "S3",
+     "IVS-7 + sem canalização",
+     "7",
+     "87.512",
+     "0,8051",
+     "3",
+     "3",
+     "59,2"
+    ],
+    [
+     "S4",
+     "IVS-7 + sem banheiro (V00495)",
+     "6, 7",
+     "75.955",
+     "0,7915",
+     "3",
+     "2",
+     "56,4"
+    ],
+    [
+     "S5",
+     "IVS-7 + não convencional",
+     "9",
+     "87.545",
+     "0,7826",
+     "2",
+     "2",
+     "54,4"
+    ],
+    [
+     "S6",
+     "IVS-7 + as quatro (\"tudo isso\")",
+     "8",
+     "69.458",
+     "0,8100",
+     "4",
+     "4",
+     "48,9"
+    ],
+    [
+     "S7",
+     "S6 sem lixo",
+     "8, 10",
+     "69.458",
+     "0,8133",
+     "3",
+     "2",
+     "53,2"
+    ]
+   ],
+   "colW": [
+    1.0,
+    3.2,
+    0.8,
+    0.85,
+    0.7,
+    0.65,
+    0.6,
+    1.0
+   ],
+   "como_ler": "Uma linha por cenário da grade: variáveis, demanda que responde, setores com todos os dados (n), KMO, fatores retidos por Kaiser e por Horn e variância explicada por 2 fatores.",
+   "mostra": "S0 (IVS-7) tem n 87.545 e KMO 0,7826; S6 (tudo isso) tem n 69.458, KMO 0,8100 e 4 fatores por Horn.",
+   "nota": "Método igual ao NB04 para ser comparável: Spearman, casos completos por cenário, componentes principais, renda invertida, sempre 2 fatores na solução apresentada.",
+   "fonte": "banco_de_dados/eda/fatorial_ampliada/cenarios.csv",
+   "larga": false
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "As três rendas e os postos dentro do município, em S0, S1 e S6",
+   "cab": [
+    "Cenário",
+    "Variáveis",
+    "Demanda",
+    "n",
+    "KMO",
+    "Kaiser",
+    "Horn",
+    "Var. 2 fatores (%)"
+   ],
+   "linhas": [
+    [
+     "S0_renda_sem_extremo",
+     "IVS-7 (referência, reproduz o NB04), renda sem_extremo",
+     "—",
+     "87.544",
+     "0,7825",
+     "2",
+     "2",
+     "62,1"
+    ],
+    [
+     "S0_renda_mediana_mun",
+     "IVS-7 (referência, reproduz o NB04), renda mediana_mun",
+     "—",
+     "87.545",
+     "0,7825",
+     "2",
+     "2",
+     "62,1"
+    ],
+    [
+     "S0_postos_mun",
+     "IVS-7 (referência, reproduz o NB04), postos dentro do município",
+     "—",
+     "87.545",
+     "0,7937",
+     "2",
+     "2",
+     "60,5"
+    ],
+    [
+     "S1_postos_mun",
+     "IVS-6 (IVS-7 sem lixo), postos dentro do município",
+     "10",
+     "87.545",
+     "0,7938",
+     "2",
+     "2",
+     "68,0"
+    ],
+    [
+     "S6_renda_sem_extremo",
+     "IVS-7 + as quatro (\"tudo isso\"), renda sem_extremo",
+     "8",
+     "69.457",
+     "0,8099",
+     "4",
+     "4",
+     "48,9"
+    ],
+    [
+     "S6_renda_mediana_mun",
+     "IVS-7 + as quatro (\"tudo isso\"), renda mediana_mun",
+     "8",
+     "69.458",
+     "0,8100",
+     "4",
+     "4",
+     "48,9"
+    ],
+    [
+     "S6_postos_mun",
+     "IVS-7 + as quatro (\"tudo isso\"), postos dentro do município",
+     "8",
+     "69.458",
+     "0,7689",
+     "3",
+     "3",
+     "48,3"
+    ]
+   ],
+   "colW": [
+    1.0,
+    3.2,
+    0.8,
+    0.85,
+    0.7,
+    0.65,
+    0.6,
+    1.0
+   ],
+   "como_ler": "Mesmas colunas: as variantes de renda (sem o extremo, com a mediana) e a fatorial com postos percentis dentro do município.",
+   "mostra": "As rendas não mudam a estrutura; com postos no município, o MSA mínimo de S6 cai para 0,3842.",
+   "nota": "Os postos dentro do município tiram da matriz a diferença entre cidades: se a estrutura muda muito, parte dela vinha da diferença entre municípios.",
+   "fonte": "banco_de_dados/eda/fatorial_ampliada/cenarios.csv",
+   "larga": false
+  },
+  {
+   "tipo": "figura",
+   "titulo": "A matriz de correlação ampliada: o IVS-7 e as quatro variáveis novas",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/banco_de_dados/eda/fatorial_ampliada/figuras/fa_correlacao_ampliada.png",
+   "como_ler": "Correlação de Spearman entre as variáveis; a linha separa as quatro novas (não chega, sem canalização, sem banheiro, não convencional).",
+   "mostra": "As novas variáveis de água e banheiro se correlacionam com o bloco de saneamento; a moradia não convencional quase não se correlaciona com nada.",
+   "nota": "No formato da imagem enviada pela orientadora.",
+   "fonte": "banco_de_dados/eda/fatorial_ampliada/figuras/fa_correlacao_ampliada.png",
+   "chave": "mapa_spearman_foco"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "S6: 4 autovalores acima da linha de Horn",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/banco_de_dados/eda/fatorial_ampliada/figuras/fa_scree_s6.png",
+   "como_ler": "Autovalores de S6 em ordem decrescente, com a linha da análise paralela de Horn.",
+   "mostra": "Primeiro autovalor 3,8301, segundo 1,5533; Horn no segundo componente: 1,0276.",
+   "nota": "O autovalor mede quanta variância um componente resume, em unidades de variável: autovalor 2 equivale a duas variáveis inteiras. A análise paralela de Horn gera dados aleatórios com o mesmo número de setores e variáveis e calcula os autovalores que surgiriam só por acaso; um componente merece ser retido quando o seu autovalor supera esse valor.",
+   "fonte": "banco_de_dados/eda/fatorial_ampliada/figuras/fa_scree_s6.png",
+   "chave": "sedimentacao"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "Demandas 3 e 11: o plano fatorial de S6 sem rotação, com Varimax e com promax",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/banco_de_dados/eda/fatorial_ampliada/figuras/fa_plano_s6.png",
+   "como_ler": "Três painéis com as cargas no plano dos fatores 1 e 2; o rótulo de cada eixo vem das cargas.",
+   "mostra": "As rotações redistribuem as variáveis entre os dois fatores; a promax permite que eles se correlacionem.",
+   "nota": "O MSA é o KMO de cada variável: abaixo de 0,50, a variável compartilha pouco com as outras. A comunalidade é a parte da variância da variável explicada pelos fatores retidos (critério do projeto: pelo menos 0,30). A carga é a correlação da variável com o fator (critério: pelo menos 0,40 no fator principal). A rotação gira os fatores para que cada variável carregue forte em um só: a Varimax mantém os fatores independentes; a promax permite que eles se correlacionem. Na promax, a matriz padrão dá o efeito próprio de cada fator e a matriz estrutura, a correlação simples.",
+   "fonte": "banco_de_dados/eda/fatorial_ampliada/figuras/fa_plano_s6.png",
+   "chave": "cargas"
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "O peso do fator 1 em cada rotação, nos cenários principais",
+   "cab": [
+    "Cenário",
+    "Rotação",
+    "Peso F1 (%)",
+    "Peso F2 (%)",
+    "Maior carga F1",
+    "Maior carga F2",
+    "Φ"
+   ],
+   "linhas": [
+    [
+     "S0",
+     "sem_rotacao",
+     "75,89",
+     "24,11",
+     "Renda (invertida)",
+     "Lixo inadequado",
+     "—"
+    ],
+    [
+     "S0",
+     "varimax",
+     "74,00",
+     "26,00",
+     "Renda (invertida)",
+     "Lixo inadequado",
+     "—"
+    ],
+    [
+     "S0",
+     "promax_padrao",
+     "74,69",
+     "25,31",
+     "Renda (invertida)",
+     "Lixo inadequado",
+     "0,1506"
+    ],
+    [
+     "S0",
+     "promax_estrutura",
+     "73,40",
+     "26,60",
+     "Renda (invertida)",
+     "Lixo inadequado",
+     "0,1506"
+    ],
+    [
+     "S1",
+     "sem_rotacao",
+     "77,17",
+     "22,83",
+     "Renda (invertida)",
+     "Água inadequada",
+     "—"
+    ],
+    [
+     "S1",
+     "varimax",
+     "65,01",
+     "34,99",
+     "Renda (invertida)",
+     "Água inadequada",
+     "—"
+    ],
+    [
+     "S1",
+     "promax_padrao",
+     "65,82",
+     "34,18",
+     "Renda (invertida)",
+     "Água inadequada",
+     "0,5215"
+    ],
+    [
+     "S1",
+     "promax_estrutura",
+     "59,64",
+     "40,36",
+     "Renda (invertida)",
+     "Água inadequada",
+     "0,5215"
+    ],
+    [
+     "S6",
+     "sem_rotacao",
+     "71,15",
+     "28,85",
+     "Renda (invertida)",
+     "Água não chega",
+     "—"
+    ],
+    [
+     "S6",
+     "varimax",
+     "56,45",
+     "43,55",
+     "Renda (invertida)",
+     "Água não chega",
+     "—"
+    ],
+    [
+     "S6",
+     "promax_padrao",
+     "55,48",
+     "44,52",
+     "Renda (invertida)",
+     "Água não chega",
+     "0,4348"
+    ],
+    [
+     "S6",
+     "promax_estrutura",
+     "53,82",
+     "46,18",
+     "Renda (invertida)",
+     "Água não chega",
+     "0,4348"
+    ],
+    [
+     "S7",
+     "sem_rotacao",
+     "70,96",
+     "29,04",
+     "Renda (invertida)",
+     "Água não chega",
+     "—"
+    ],
+    [
+     "S7",
+     "varimax",
+     "56,63",
+     "43,37",
+     "Renda (invertida)",
+     "Água não chega",
+     "—"
+    ],
+    [
+     "S7",
+     "promax_padrao",
+     "55,90",
+     "44,10",
+     "Renda (invertida)",
+     "Água não chega",
+     "0,4295"
+    ],
+    [
+     "S7",
+     "promax_estrutura",
+     "54,15",
+     "45,85",
+     "Renda (invertida)",
+     "Água não chega",
+     "0,4295"
+    ]
+   ],
+   "colW": [
+    0.8,
+    1.6,
+    0.9,
+    0.9,
+    1.6,
+    1.6,
+    0.6
+   ],
+   "como_ler": "Uma linha por cenário e rotação: repartição do peso entre os dois fatores (na promax, pela matriz padrão e pela estrutura), a variável de maior carga em cada fator e a correlação Φ entre fatores.",
+   "mostra": "Em S1 (IVS-6), o peso do fator 1 fica entre 59,64% e 77,17% conforme a rotação.",
+   "nota": "As duas métricas da repartição oblíqua (padrão e estrutura) são reportadas lado a lado, sem dizer que uma se afasta ou se aproxima da literatura.",
+   "fonte": "banco_de_dados/eda/fatorial_ampliada/pesos.csv",
+   "larga": false
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "Demanda 10: o lixo forma fator próprio no IVS-7 e deixa de formar quando entram as variáveis novas",
+   "cab": [
+    "Cenário",
+    "Variáveis",
+    "Lixo em fator próprio (Varimax)"
+   ],
+   "linhas": [
+    [
+     "S0",
+     "IVS-7 (referência, reproduz o NB04)",
+     "sim"
+    ],
+    [
+     "S1",
+     "IVS-6 (IVS-7 sem lixo)",
+     "sem lixo"
+    ],
+    [
+     "S2",
+     "IVS-7 + não chega",
+     "não"
+    ],
+    [
+     "S3",
+     "IVS-7 + sem canalização",
+     "não"
+    ],
+    [
+     "S4",
+     "IVS-7 + sem banheiro (V00495)",
+     "não"
+    ],
+    [
+     "S5",
+     "IVS-7 + não convencional",
+     "sim"
+    ],
+    [
+     "S6",
+     "IVS-7 + as quatro (\"tudo isso\")",
+     "não"
+    ],
+    [
+     "S7",
+     "S6 sem lixo",
+     "sem lixo"
+    ]
+   ],
+   "colW": [
+    1.0,
+    4.2,
+    2.4
+   ],
+   "como_ler": "Uma linha por cenário: o lixo fica sozinho no seu fator na solução Varimax?",
+   "mostra": "Tirando um município por vez em S0, o lixo muda de situação em 2 das 71 rodadas.",
+   "nota": "Num índice intraurbano, um fator próprio do lixo pode refletir a cobertura de coleta de cada município, e não a vulnerabilidade do setor.",
+   "fonte": "fatorial_ampliada/cenarios.csv · sensibilidade_municipios.csv",
+   "larga": false
+  },
+  {
+   "tipo": "figura",
+   "titulo": "Um município de fora por vez: o peso do fator 1 em S6 varia entre 55,11% e 56,94%",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/banco_de_dados/eda/fatorial_ampliada/figuras/fa_sensibilidade_municipios.png",
+   "como_ler": "O peso do fator 1 (Varimax) nas rodadas em que cada município sai da estimação, em S1 e S6.",
+   "mostra": "S1: de 62,89% a 66,58%; S6: de 55,11% a 56,94%.",
+   "nota": "Isto não é bootstrap: é sensibilidade por município, como pedido. Mostra se alguma cidade sozinha define os pesos.",
+   "fonte": "banco_de_dados/eda/fatorial_ampliada/figuras/fa_sensibilidade_municipios.png",
+   "chave": "sensibilidade_mun"
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "O que o índice acrescenta à renda: a AUC do índice ao lado da renda sozinha e da média de postos",
+   "cab": [
+    "Cenário",
+    "indice_01 (pesos Varimax)",
+    "media simples de postos",
+    "renda invertida sozinha"
+   ],
+   "linhas": [
+    [
+     "S0",
+     "0,8377",
+     "0,8684",
+     "0,8819"
+    ],
+    [
+     "S1",
+     "0,8131",
+     "0,8533",
+     "0,8819"
+    ],
+    [
+     "S2",
+     "0,8384",
+     "0,8707",
+     "0,8889"
+    ],
+    [
+     "S3",
+     "0,8365",
+     "0,8584",
+     "0,8819"
+    ],
+    [
+     "S4",
+     "0,8568",
+     "0,8758",
+     "0,8897"
+    ],
+    [
+     "S5",
+     "0,8379",
+     "0,8681",
+     "0,8819"
+    ],
+    [
+     "S6",
+     "0,8472",
+     "0,8694",
+     "0,8952"
+    ],
+    [
+     "S7",
+     "0,8394",
+     "0,8560",
+     "0,8952"
+    ],
+    [
+     "S0_renda_sem_extremo",
+     "0,8382",
+     "0,8684",
+     "0,8819"
+    ],
+    [
+     "S0_renda_mediana_mun",
+     "0,8382",
+     "0,8684",
+     "0,8819"
+    ],
+    [
+     "S0_postos_mun",
+     "0,8528",
+     "0,8178",
+     "0,8454"
+    ],
+    [
+     "S1_postos_mun",
+     "0,8411",
+     "0,8133",
+     "0,8454"
+    ],
+    [
+     "S6_renda_sem_extremo",
+     "0,8478",
+     "0,8694",
+     "0,8953"
+    ],
+    [
+     "S6_renda_mediana_mun",
+     "0,8478",
+     "0,8694",
+     "0,8953"
+    ],
+    [
+     "S6_postos_mun",
+     "0,8651",
+     "0,7555",
+     "0,8643"
+    ]
+   ],
+   "colW": [
+    1.8,
+    1.9,
+    1.9,
+    1.9
+   ],
+   "como_ler": "Uma linha por cenário: AUC contra as favelas do índice (pesos Varimax), da média simples de postos e da renda invertida sozinha.",
+   "mostra": "Em S0, índice 0,8377, média de postos 0,8684 e renda sozinha 0,8819.",
+   "nota": "A AUC mede conteúdo socioeconômico, não valida pesos: a pergunta é o que o índice acrescenta à renda, e a tabela permite responder.",
+   "fonte": "banco_de_dados/eda/fatorial_ampliada/validacao_fcu.csv",
+   "larga": false
+  },
+  {
+   "tipo": "numeros",
+   "titulo": "O NB05: a grade de especificações e a referência proposta",
+   "nums": [
+    [
+     "324",
+     "especificações (renda × lixo × banheiro × rotação × pesos × normalização)"
+    ],
+    [
+     "192",
+     "elegíveis pelos critérios fixados antes de rodar"
+    ],
+    [
+     "0,8186",
+     "AUC municipal da referência proposta"
+    ]
+   ],
+   "texto": "Referência proposta: original·lixo_sem·banheiro_graduado·promax·60_40·municipal. Por quê: melhor posição média entre 96 elegíveis (normalização municipal): estabilidade 24.5º, AUC municipal 43º, parcimônia 48.5º; amplitude zero por construção (peso de F1 fixo).",
+   "nota": "Referência proposta: original·lixo_sem·banheiro_graduado·promax·60_40·municipal. Por quê: melhor posição média entre 96 elegíveis (normalização municipal): estabilidade 24.5º, AUC municipal 43º, parcimônia 48.5º; amplitude zero por construção (peso de F1 fixo).",
+   "fonte": "ivs_especificacoes/especificacoes.csv · avaliacao.csv · referencia.csv"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "A AUC das especificações do NB05",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/banco_de_dados/eda/ivs_especificacoes/figuras/auc_por_especificacao.png",
+   "como_ler": "A AUC contra as favelas de cada especificação.",
+   "mostra": "Ver as tabelas do NB05 em banco_de_dados/eda/ivs_especificacoes/.",
+   "nota": "Figura do NB05 (scripts/ivs_especificacoes.py).",
+   "fonte": "banco_de_dados/eda/ivs_especificacoes/figuras/auc_por_especificacao.png",
+   "chave": "nb05_auc"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "O peso do fator socioeconômico nas especificações do NB05",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/banco_de_dados/eda/ivs_especificacoes/figuras/peso_f1_por_especificacao.png",
+   "como_ler": "O peso do fator 1 em cada especificação e a amplitude entre municípios.",
+   "mostra": "Ver as tabelas do NB05 em banco_de_dados/eda/ivs_especificacoes/.",
+   "nota": "Figura do NB05 (scripts/ivs_especificacoes.py).",
+   "fonte": "banco_de_dados/eda/ivs_especificacoes/figuras/peso_f1_por_especificacao.png",
+   "chave": "nb05_peso"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "A concordância das faixas entre especificações",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/banco_de_dados/eda/ivs_especificacoes/figuras/concordancia_faixas.png",
+   "como_ler": "Quanto as faixas de vulnerabilidade concordam entre especificações.",
+   "mostra": "Ver as tabelas do NB05 em banco_de_dados/eda/ivs_especificacoes/.",
+   "nota": "Figura do NB05 (scripts/ivs_especificacoes.py).",
+   "fonte": "banco_de_dados/eda/ivs_especificacoes/figuras/concordancia_faixas.png",
+   "chave": "nb05_concordancia"
+  },
+  {
+   "tipo": "numeros",
+   "titulo": "A fatorial da referência proposta",
+   "nums": [
+    [
+     "0,7807",
+     "KMO"
+    ],
+    [
+     "2",
+     "fatores por Kaiser"
+    ],
+    [
+     "2",
+     "fatores por Horn"
+    ],
+    [
+     "60,8%",
+     "variância explicada por 2 fatores"
+    ]
+   ],
+   "texto": "O KMO (Kaiser-Meyer-Olkin) compara as correlações entre as variáveis com as correlações parciais: perto de 1, as variáveis compartilham muita informação e a fatorial faz sentido; o critério do projeto é pelo menos 0,70. O teste de Bartlett verifica se a matriz de correlação é diferente da identidade (variáveis sem relação); com tantos setores, ele sempre rejeita. O critério de Kaiser retém fatores com autovalor acima de 1; a análise paralela de Horn, mais conservadora, retém os fatores cujo autovalor supera o que dados aleatórios do mesmo tamanho produziriam. A correlação usada é a de Spearman, como no NB04.",
+   "nota": "O KMO (Kaiser-Meyer-Olkin) compara as correlações entre as variáveis com as correlações parciais: perto de 1, as variáveis compartilham muita informação e a fatorial faz sentido; o critério do projeto é pelo menos 0,70. O teste de Bartlett verifica se a matriz de correlação é diferente da identidade (variáveis sem relação); com tantos setores, ele sempre rejeita. O critério de Kaiser retém fatores com autovalor acima de 1; a análise paralela de Horn, mais conservadora, retém os fatores cujo autovalor supera o que dados aleatórios do mesmo tamanho produziriam. A correlação usada é a de Spearman, como no NB04.",
+   "fonte": "00_referencia · T19"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "Gráfico de sedimentação: dois componentes acima do acaso",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F22_sedimentacao_horn.png",
+   "como_ler": "Linha cheia: autovalores em ordem decrescente. Tracejada: o que dados aleatórios produziriam (Horn). Pontilhada: o critério de Kaiser (autovalor 1).",
+   "mostra": "O segundo autovalor é 1,0708, contra 1,0155 da linha de Horn.",
+   "nota": "O nome vem da imagem de uma encosta: os primeiros componentes formam o paredão e os demais, o entulho no pé. Os componentes que ficam acima da linha tracejada trazem estrutura real; os que ficam abaixo, ruído.",
+   "fonte": "00_referencia · F22 · figuras/F22_sedimentacao_horn.png",
+   "chave": "sedimentacao"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "Renda (invertida) define F1 e Água inadequada define F2",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F23_mapa_cargas.png",
+   "como_ler": "Cada seta é um componente; a ponta fica nas cargas padrão da promax em F1 (horizontal) e F2 (vertical). O círculo marca carga 1.",
+   "mostra": "Maior carga em F1: Renda (invertida) (0,9366); em F2: Água inadequada (0,7829).",
+   "nota": "O mapa de cargas mostra a que fator cada variável pertence. Setas ao longo do eixo horizontal pertencem a F1; ao longo do vertical, a F2; setas na diagonal dividem-se entre os dois. Setas curtas indicam variáveis mal explicadas pelos dois fatores (comunalidade baixa).",
+   "fonte": "00_referencia · F23 · figuras/F23_mapa_cargas.png",
+   "chave": "cargas"
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "Renda (invertida) tem o maior peso no índice (19,3%)",
+   "cab": [
+    "Componente",
+    "Dimensão",
+    "Carga",
+    "Peso da dimensão (%)",
+    "Peso no índice (%)"
+   ],
+   "linhas": [
+    [
+     "Água inadequada",
+     "F2 (saneamento)",
+     "0,7829",
+     "40,0",
+     "17,3"
+    ],
+    [
+     "Esgoto inadequado",
+     "F2 (saneamento)",
+     "0,5245",
+     "40,0",
+     "7,8"
+    ],
+    [
+     "Razão de moradores",
+     "F1 (socioeconômica)",
+     "0,5827",
+     "60,0",
+     "7,5"
+    ],
+    [
+     "Analfabetismo 15+",
+     "F1 (socioeconômica)",
+     "0,8887",
+     "60,0",
+     "17,4"
+    ],
+    [
+     "Renda (invertida)",
+     "F1 (socioeconômica)",
+     "0,9366",
+     "60,0",
+     "19,3"
+    ],
+    [
+     "Cor/raça PPI",
+     "F1 (socioeconômica)",
+     "0,8506",
+     "60,0",
+     "15,9"
+    ],
+    [
+     "Banheiro graduado",
+     "F2 (saneamento)",
+     "0,7260",
+     "40,0",
+     "14,9"
+    ]
+   ],
+   "colW": [
+    2.2,
+    2.2,
+    1.0,
+    1.5,
+    1.4
+   ],
+   "como_ler": "Uma linha por componente: a dimensão em que ele carrega mais, a carga, o peso da dimensão e o peso final no índice (em %).",
+   "mostra": "O maior peso é o de Renda (invertida) (19,3%); a dimensão F1 (socioeconômica) pesa 60,0%.",
+   "nota": "Os pesos seguem a receita do NB04: cada variável vai para a dimensão em que tem a maior carga; o peso da dimensão é repartido entre as variáveis dela em proporção ao quadrado da carga. O peso das dimensões depende do método da versão; na referência é a regra do IVS-BH de 2012 (60% socioeconômica, 40% saneamento).",
+   "fonte": "00_referencia · T23",
+   "larga": false
+  },
+  {
+   "tipo": "figura",
+   "titulo": "Curva ROC do índice contra as favelas (AUC global 0,8309)",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F25_curva_roc.png",
+   "como_ler": "Cada ponto da curva é um corte do índice: no eixo vertical, a proporção de setores de FCU acima do corte; no horizontal, a dos setores de fora. A diagonal é o acaso.",
+   "mostra": "Área sob a curva: 0,8309 (global); a mediana municipal é 0,8186.",
+   "nota": "Quanto mais a curva se aproxima do canto superior esquerdo, melhor o índice separa os dois grupos. A área sob a curva é a AUC. Esta curva usa todos os setores juntos; como o índice é normalizado no município, a AUC municipal é a medida principal.",
+   "fonte": "00_referencia · F25 · figuras/F25_curva_roc.png",
+   "chave": "roc"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "A distribuição do índice e as faixas do IVS-BH",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/00_referencia/figuras/F24_histograma_por_faixa.png",
+   "como_ler": "Histograma do índice, com cada barra dividida pela faixa dos setores (regra do IVS-BH).",
+   "mostra": "28,8% dos setores ficam em baixo e 5,3% em muito elevado.",
+   "nota": "Como as faixas são definidas dentro de cada município, um mesmo valor do índice pode cair em faixas diferentes em cidades diferentes: por isso as cores se sobrepõem nas fronteiras.",
+   "fonte": "00_referencia · F24 · figuras/F24_histograma_por_faixa.png",
+   "chave": "hist_faixa"
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "Com promax, 60/40 (referência), o índice fica com 73.878 setores e ρ = 0,9997 com o valor-padrão",
+   "cab": [
+    "Esquema",
+    "KMO",
+    "AUC global",
+    "AUC mun.",
+    "Elegível",
+    "ρ com o padrão",
+    "% muda faixa"
+   ],
+   "linhas": [
+    [
+     "valor-padrão desta versão",
+     "0,7807",
+     "0,8311",
+     "0,8160",
+     "sim",
+     "1,0000",
+     "0,0%"
+    ],
+    [
+     "sem rotação, um fator",
+     "0,7807",
+     "0,8501",
+     "0,8468",
+     "não",
+     "0,9790",
+     "9,2%"
+    ],
+    [
+     "Varimax, soma dos quadrados",
+     "0,7807",
+     "0,8378",
+     "0,8353",
+     "sim",
+     "0,9974",
+     "4,6%"
+    ],
+    [
+     "Varimax, 50/50",
+     "0,7807",
+     "0,8217",
+     "0,8048",
+     "sim",
+     "0,9956",
+     "7,0%"
+    ],
+    [
+     "promax, soma dos quadrados (padrão)",
+     "0,7807",
+     "0,8373",
+     "0,8374",
+     "sim",
+     "0,9972",
+     "5,4%"
+    ],
+    [
+     "promax, soma dos quadrados (estrutura)",
+     "0,7807",
+     "0,8330",
+     "0,8250",
+     "sim",
+     "0,9994",
+     "2,7%"
+    ],
+    [
+     "promax, comunalidades",
+     "0,7807",
+     "0,8342",
+     "0,8286",
+     "sim",
+     "0,9990",
+     "3,4%"
+    ],
+    [
+     "promax, 50/50",
+     "0,7807",
+     "0,8215",
+     "0,8032",
+     "sim",
+     "0,9958",
+     "6,2%"
+    ],
+    [
+     "promax, 60/40 (referência)",
+     "0,7807",
+     "0,8309",
+     "0,8186",
+     "sim",
+     "0,9997",
+     "1,8%"
+    ]
+   ],
+   "colW": [
+    3.0,
+    0.7,
+    0.9,
+    0.85,
+    0.75,
+    1.0,
+    0.9
+   ],
+   "como_ler": "Uma linha por esquema; a primeira é o valor-padrão da versão, as demais as alternativas. ρ e % muda faixa são em relação à primeira linha.",
+   "mostra": "Com promax, 60/40 (referência): 73.878 setores no índice (contra 73.878), AUC municipal 0,8186, ρ = 0,9997 com o valor-padrão e 1,8% dos setores comuns mudando de faixa.",
+   "nota": "Com os pesos 60/40 fixos, trocar promax por Varimax quase não muda nada: correlação de postos praticamente 1 com a referência e poucas trocas de faixa. O que move o índice é o esquema de peso, não a rotação: os pesos pela soma dos quadrados das cargas elevam a AUC municipal, o 50/50 a reduz, e o índice sem rotação (um fator só) tem a AUC mais alta da tabela mas não é elegível pelos critérios do NB05.",
+   "fonte": "C1_rotacao_e_pesos · T34",
+   "larga": false
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "Com componentes principais (referência), o índice fica com 73.878 setores e ρ = 0,9912 com o valor-padrão",
+   "cab": [
+    "Esquema",
+    "KMO",
+    "AUC global",
+    "AUC mun.",
+    "Elegível",
+    "ρ com o padrão",
+    "% muda faixa"
+   ],
+   "linhas": [
+    [
+     "valor-padrão desta versão",
+     "0,7807",
+     "0,8269",
+     "0,8064",
+     "não",
+     "1,0000",
+     "0,0%"
+    ],
+    [
+     "máxima verossimilhança",
+     "0,7807",
+     "0,8311",
+     "0,8105",
+     "não",
+     "0,9989",
+     "2,1%"
+    ],
+    [
+     "componentes principais (referência)",
+     "0,7807",
+     "0,8309",
+     "0,8186",
+     "sim",
+     "0,9912",
+     "9,2%"
+    ]
+   ],
+   "colW": [
+    3.0,
+    0.7,
+    0.9,
+    0.85,
+    0.75,
+    1.0,
+    0.9
+   ],
+   "como_ler": "Uma linha por esquema; a primeira é o valor-padrão da versão, as demais as alternativas. ρ e % muda faixa são em relação à primeira linha.",
+   "mostra": "Com componentes principais (referência): 73.878 setores no índice (contra 73.878), AUC municipal 0,8186, ρ = 0,9912 com o valor-padrão e 9,2% dos setores comuns mudando de faixa.",
+   "nota": "Com o eixo principal ou a máxima verossimilhança, a versão deixa de ser elegível: esses métodos estimam só a variância compartilhada, e o banheiro graduado, que divide pouca variância com os demais componentes, fica com comunalidade e carga muito baixas. A ACP superestima essa comunalidade. O índice muda pouco na ordenação, mas cerca de um em cada dez setores troca de faixa em relação à referência, e a AUC municipal cai um pouco.",
+   "fonte": "C2_extracao · T34",
+   "larga": false
+  },
+  {
+   "tipo": "tabela",
+   "titulo": "Com especialista: 60/40 (referência), o índice fica com 73.878 setores e ρ = 0,9977 com o valor-padrão",
+   "cab": [
+    "Esquema",
+    "KMO",
+    "AUC global",
+    "AUC mun.",
+    "Elegível",
+    "ρ com o padrão",
+    "% muda faixa"
+   ],
+   "linhas": [
+    [
+     "valor-padrão desta versão",
+     "0,7807",
+     "0,8373",
+     "0,8374",
+     "sim",
+     "1,0000",
+     "0,0%"
+    ],
+    [
+     "dados: soma dos quadrados (estrutura)",
+     "0,7807",
+     "0,8330",
+     "0,8250",
+     "sim",
+     "0,9989",
+     "2,9%"
+    ],
+    [
+     "dados: comunalidades",
+     "0,7807",
+     "0,8342",
+     "0,8286",
+     "sim",
+     "0,9994",
+     "2,1%"
+    ],
+    [
+     "especialista: 60/40 (referência)",
+     "0,7807",
+     "0,8309",
+     "0,8186",
+     "sim",
+     "0,9977",
+     "4,3%"
+    ]
+   ],
+   "colW": [
+    3.0,
+    0.7,
+    0.9,
+    0.85,
+    0.75,
+    1.0,
+    0.9
+   ],
+   "como_ler": "Uma linha por esquema; a primeira é o valor-padrão da versão, as demais as alternativas. ρ e % muda faixa são em relação à primeira linha.",
+   "mostra": "Com especialista: 60/40 (referência): 73.878 setores no índice (contra 73.878), AUC municipal 0,8186, ρ = 0,9977 com o valor-padrão e 4,3% dos setores comuns mudando de faixa.",
+   "nota": "Os dados dão à dimensão socioeconômica um peso um pouco maior que os 60% da regra do IVS-BH. O índice quase não muda: correlação de postos praticamente 1 e poucas trocas de faixa, com AUC municipal um pouco maior. Pesos de especialista e pesos dos dados levam, aqui, a resultados muito próximos.",
+   "fonte": "D5_especialista_x_dados · T34",
+   "larga": false
+  },
+  {
+   "tipo": "figura",
+   "titulo": "Os pesos variam pouco nas reamostragens",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/E2_estabilidade/figuras/F43_pesos_reamostragem.png",
+   "como_ler": "Uma caixa por componente com os pesos das reamostragens; o ponto é o peso na referência.",
+   "mostra": "O intervalo mais largo é o de Banheiro graduado: de 13,9% a 15,8%.",
+   "nota": "A caixa vai do 1º ao 3º quartil dos pesos reamostrados; caixas estreitas indicam pesos estáveis.",
+   "fonte": "E2_estabilidade · F43 · figuras/F43_pesos_reamostragem.png",
+   "chave": "e2_pesos_fig"
+  },
+  {
+   "tipo": "figura",
+   "titulo": "Quanto o índice muda quando cada município sai da estimação",
+   "img": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/analises_exploratorias/E2_estabilidade/figuras/F42_um_municipio_de_fora.png",
+   "como_ler": "Uma barra por município excluído, com o percentual de setores que mudam de faixa.",
+   "mostra": "No máximo, 4,1% dos setores mudam de faixa; o maior efeito é ao tirar São Paulo.",
+   "nota": "Barras curtas em todos os municípios indicam que nenhuma cidade sozinha define os pesos.",
+   "fonte": "E2_estabilidade · F42 · figuras/F42_um_municipio_de_fora.png",
+   "chave": "e2_loo_fig"
+  },
+  {
+   "tipo": "texto",
+   "titulo": "O que fica para a orientadora decidir",
+   "itens": [
+    "Que variáveis entram: lixo (fator próprio no IVS-7), as novas de água e banheiro, a moradia não convencional, a cor ou raça.",
+    "Qual renda: original, sem o extremo ou com a mediana do município (mudam pouco o índice).",
+    "Rotação e pesos: Varimax ou promax; regra 60/40 do IVS-BH ou pesos da fatorial (padrão ou estrutura).",
+    "Normalização e faixas: min-max no município (referência) ou outra; regra do IVS-BH, quartis ou outra.",
+    "Parâmetros exploratórios ainda abertos: piso de população, faixas de porte, composição do IVS-Idoso e do índice de moradia, número de grupos.",
+    "Tudo com as alternativas documentadas: analises_exploratorias/PERGUNTAS.md e o Catalogo_Mestre.xlsx."
+   ],
+   "nota": "Que variáveis entram: lixo (fator próprio no IVS-7), as novas de água e banheiro, a moradia não convencional, a cor ou raça.\nQual renda: original, sem o extremo ou com a mediana do município (mudam pouco o índice).\nRotação e pesos: Varimax ou promax; regra 60/40 do IVS-BH ou pesos da fatorial (padrão ou estrutura).\nNormalização e faixas: min-max no município (referência) ou outra; regra do IVS-BH, quartis ou outra.\nParâmetros exploratórios ainda abertos: piso de população, faixas de porte, composição do IVS-Idoso e do índice de moradia, número de grupos.\nTudo com as alternativas documentadas: analises_exploratorias/PERGUNTAS.md e o Catalogo_Mestre.xlsx.",
+   "fonte": "analises_exploratorias/PERGUNTAS.md"
+  },
+  {
+   "tipo": "secao",
+   "num": "4",
+   "titulo": "Catálogo visual: EDA — versão final",
+   "sub": "As 26 figuras da versão final, identificadas pelo ID, para escolher o que vai para o artigo",
+   "nota": "Só identificação: cada miniatura traz a versão e o ID do Catalogo_Mestre.xlsx (aba Catálogo mestre), onde se marca \"Vai para o artigo?\"."
+  },
+  {
+   "tipo": "grade",
+   "titulo": "EDA — versão final — 1 de 5",
+   "cels": [
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F01.jpg",
+     "rotulo": "00_referencia · F01",
+     "titulo": "Do recorte ao índice, 30.230 setores saem por falta de algum componente",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F01_funil.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F02.jpg",
+     "rotulo": "00_referencia · F02",
+     "titulo": "Saneamento: Sem banheiro nem sanitário tem a distribuição mais assimétrica (assimetria 68,98)",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F02_histogramas_saneamento.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F03.jpg",
+     "rotulo": "00_referencia · F03",
+     "titulo": "Saneamento: Água inadequada tem mediana de 0,1759 no Norte e 0,0000 no Centro-Oeste",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F03_boxplots_regiao_saneamento.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F04.jpg",
+     "rotulo": "00_referencia · F04",
+     "titulo": "Saneamento: as regiões têm formas diferentes de distribuição",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F04_densidades_regiao_saneamento.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F05.jpg",
+     "rotulo": "00_referencia · F05",
+     "titulo": "Socioeconômica: Renda média tem a distribuição mais assimétrica (assimetria 3,74)",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F05_histogramas_socioeconomica.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F06.jpg",
+     "rotulo": "00_referencia · F06",
+     "titulo": "Socioeconômica: Razão de moradores tem mediana de 3,1938 no Norte e 2,5992 no Sul",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F06_boxplots_regiao_socioeconomica.png"
+    }
+   ],
+   "nc": 3,
+   "nl": 2,
+   "nota": "00_referencia · F01 — Do recorte ao índice, 30.230 setores saem por falta de algum componente — analises_exploratorias/00_referencia/figuras/F01_funil.png\n00_referencia · F02 — Saneamento: Sem banheiro nem sanitário tem a distribuição mais assimétrica (assimetria 68,98) — analises_exploratorias/00_referencia/figuras/F02_histogramas_saneamento.png\n00_referencia · F03 — Saneamento: Água inadequada tem mediana de 0,1759 no Norte e 0,0000 no Centro-Oeste — analises_exploratorias/00_referencia/figuras/F03_boxplots_regiao_saneamento.png\n00_referencia · F04 — Saneamento: as regiões têm formas diferentes de distribuição — analises_exploratorias/00_referencia/figuras/F04_densidades_regiao_saneamento.png\n00_referencia · F05 — Socioeconômica: Renda média tem a distribuição mais assimétrica (assimetria 3,74) — analises_exploratorias/00_referencia/figuras/F05_histogramas_socioeconomica.png\n00_referencia · F06 — Socioeconômica: Razão de moradores tem mediana de 3,1938 no Norte e 2,5992 no Sul — analises_exploratorias/00_referencia/figuras/F06_boxplots_regiao_socioeconomica.png",
+   "fonte": "Catalogo_Mestre.xlsx"
+  },
+  {
+   "tipo": "grade",
+   "titulo": "EDA — versão final — 2 de 5",
+   "cels": [
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F07.jpg",
+     "rotulo": "00_referencia · F07",
+     "titulo": "Socioeconômica: as regiões têm formas diferentes de distribuição",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F07_densidades_regiao_socioeconomica.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F08.jpg",
+     "rotulo": "00_referencia · F08",
+     "titulo": "Morfologia: Domicílio improvisado tem a distribuição mais assimétrica (assimetria 37,38)",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F08_histogramas_morfologia.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F09.jpg",
+     "rotulo": "00_referencia · F09",
+     "titulo": "Morfologia: Domicílio improvisado tem mediana de 0,0000 no Centro-Oeste e 0,0000 no Centro-Oeste",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F09_boxplots_regiao_morfologia.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F10.jpg",
+     "rotulo": "00_referencia · F10",
+     "titulo": "Morfologia: as regiões têm formas diferentes de distribuição",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F10_densidades_regiao_morfologia.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F11.jpg",
+     "rotulo": "00_referencia · F11",
+     "titulo": "Demografia: Índice de envelhecimento tem a distribuição mais assimétrica (assimetria 5,74)",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F11_histogramas_demografia.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F12.jpg",
+     "rotulo": "00_referencia · F12",
+     "titulo": "Demografia: Crianças 0–4 tem mediana de 0,0632 no Norte e 0,0465 no Sul",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F12_boxplots_regiao_demografia.png"
+    }
+   ],
+   "nc": 3,
+   "nl": 2,
+   "nota": "00_referencia · F07 — Socioeconômica: as regiões têm formas diferentes de distribuição — analises_exploratorias/00_referencia/figuras/F07_densidades_regiao_socioeconomica.png\n00_referencia · F08 — Morfologia: Domicílio improvisado tem a distribuição mais assimétrica (assimetria 37,38) — analises_exploratorias/00_referencia/figuras/F08_histogramas_morfologia.png\n00_referencia · F09 — Morfologia: Domicílio improvisado tem mediana de 0,0000 no Centro-Oeste e 0,0000 no Centro-Oeste — analises_exploratorias/00_referencia/figuras/F09_boxplots_regiao_morfologia.png\n00_referencia · F10 — Morfologia: as regiões têm formas diferentes de distribuição — analises_exploratorias/00_referencia/figuras/F10_densidades_regiao_morfologia.png\n00_referencia · F11 — Demografia: Índice de envelhecimento tem a distribuição mais assimétrica (assimetria 5,74) — analises_exploratorias/00_referencia/figuras/F11_histogramas_demografia.png\n00_referencia · F12 — Demografia: Crianças 0–4 tem mediana de 0,0632 no Norte e 0,0465 no Sul — analises_exploratorias/00_referencia/figuras/F12_boxplots_regiao_demografia.png",
+   "fonte": "Catalogo_Mestre.xlsx"
+  },
+  {
+   "tipo": "grade",
+   "titulo": "EDA — versão final — 3 de 5",
+   "cels": [
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F13.jpg",
+     "rotulo": "00_referencia · F13",
+     "titulo": "Demografia: as regiões têm formas diferentes de distribuição",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F13_densidades_regiao_demografia.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F14.jpg",
+     "rotulo": "00_referencia · F14",
+     "titulo": "Os faltantes se concentram em poucos indicadores e municípios",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F14_mapa_faltantes.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F15.jpg",
+     "rotulo": "00_referencia · F15",
+     "titulo": "A falta de dados depende do tamanho do setor",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F15_sigilo_por_porte_do_setor.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F16.jpg",
+     "rotulo": "00_referencia · F16",
+     "titulo": "A proporção de extremos varia muito de um indicador para outro",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F16_extremos_por_indicador.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F17.jpg",
+     "rotulo": "00_referencia · F17",
+     "titulo": "Os indicadores formam grupos de correlação",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F17_mapa_spearman.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F31.jpg",
+     "rotulo": "00_referencia · F31",
+     "titulo": "Entre as variáveis das demandas e os componentes do índice, o par mais forte é Sem água canalizada × Cor/raça PPI (ρ = 0,4193)",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F31_mapa_spearman_componentes.png"
+    }
+   ],
+   "nc": 3,
+   "nl": 2,
+   "nota": "00_referencia · F13 — Demografia: as regiões têm formas diferentes de distribuição — analises_exploratorias/00_referencia/figuras/F13_densidades_regiao_demografia.png\n00_referencia · F14 — Os faltantes se concentram em poucos indicadores e municípios — analises_exploratorias/00_referencia/figuras/F14_mapa_faltantes.png\n00_referencia · F15 — A falta de dados depende do tamanho do setor — analises_exploratorias/00_referencia/figuras/F15_sigilo_por_porte_do_setor.png\n00_referencia · F16 — A proporção de extremos varia muito de um indicador para outro — analises_exploratorias/00_referencia/figuras/F16_extremos_por_indicador.png\n00_referencia · F17 — Os indicadores formam grupos de correlação — analises_exploratorias/00_referencia/figuras/F17_mapa_spearman.png\n00_referencia · F31 — Entre as variáveis das demandas e os componentes do índice, o par mais forte é Sem água canalizada × Cor/raça PPI (ρ = 0,4193) — analises_exploratorias/00_referencia/figuras/F31_mapa_spearman_componentes.png",
+   "fonte": "Catalogo_Mestre.xlsx"
+  },
+  {
+   "tipo": "grade",
+   "titulo": "EDA — versão final — 4 de 5",
+   "cels": [
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F32.jpg",
+     "rotulo": "00_referencia · F32",
+     "titulo": "Saneamento: o par mais correlacionado é Sem banheiro × Banheiro graduado (ρ = 1,0000)",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F32_mapa_spearman_saneamento.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F33.jpg",
+     "rotulo": "00_referencia · F33",
+     "titulo": "Socioeconômica: o par mais correlacionado é Renda média × Renda sem o extremo (ρ = 1,0000)",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F33_mapa_spearman_socioeconomica.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F34.jpg",
+     "rotulo": "00_referencia · F34",
+     "titulo": "Morfologia: o par mais correlacionado é Habitação precária × Moradia não convencional (ρ = 0,9646)",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F34_mapa_spearman_morfologia.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F35.jpg",
+     "rotulo": "00_referencia · F35",
+     "titulo": "Demografia: o par mais correlacionado é Pessoas 60+ × Dependência idosa (ρ = 0,9957)",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F35_mapa_spearman_demografia.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F18.jpg",
+     "rotulo": "00_referencia · F18",
+     "titulo": "O dendrograma junta os indicadores que medem coisas parecidas",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F18_dendrograma.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F19.jpg",
+     "rotulo": "00_referencia · F19",
+     "titulo": "Os indicadores separam as favelas com força muito diferente",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F19_fcu_por_indicador.png"
+    }
+   ],
+   "nc": 3,
+   "nl": 2,
+   "nota": "00_referencia · F32 — Saneamento: o par mais correlacionado é Sem banheiro × Banheiro graduado (ρ = 1,0000) — analises_exploratorias/00_referencia/figuras/F32_mapa_spearman_saneamento.png\n00_referencia · F33 — Socioeconômica: o par mais correlacionado é Renda média × Renda sem o extremo (ρ = 1,0000) — analises_exploratorias/00_referencia/figuras/F33_mapa_spearman_socioeconomica.png\n00_referencia · F34 — Morfologia: o par mais correlacionado é Habitação precária × Moradia não convencional (ρ = 0,9646) — analises_exploratorias/00_referencia/figuras/F34_mapa_spearman_morfologia.png\n00_referencia · F35 — Demografia: o par mais correlacionado é Pessoas 60+ × Dependência idosa (ρ = 0,9957) — analises_exploratorias/00_referencia/figuras/F35_mapa_spearman_demografia.png\n00_referencia · F18 — O dendrograma junta os indicadores que medem coisas parecidas — analises_exploratorias/00_referencia/figuras/F18_dendrograma.png\n00_referencia · F19 — Os indicadores separam as favelas com força muito diferente — analises_exploratorias/00_referencia/figuras/F19_fcu_por_indicador.png",
+   "fonte": "Catalogo_Mestre.xlsx"
+  },
+  {
+   "tipo": "grade",
+   "titulo": "EDA — versão final — 5 de 5",
+   "cels": [
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F20.jpg",
+     "rotulo": "00_referencia · F20",
+     "titulo": "A estrutura etária muda de região para região",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F20_piramide_etaria.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F21.jpg",
+     "rotulo": "00_referencia · F21",
+     "titulo": "Pessoas 60+ e renda média: ρ = 0,5189",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F21_dispersao_60mais.png"
+    }
+   ],
+   "nc": 3,
+   "nl": 2,
+   "nota": "00_referencia · F20 — A estrutura etária muda de região para região — analises_exploratorias/00_referencia/figuras/F20_piramide_etaria.png\n00_referencia · F21 — Pessoas 60+ e renda média: ρ = 0,5189 — analises_exploratorias/00_referencia/figuras/F21_dispersao_60mais.png",
+   "fonte": "Catalogo_Mestre.xlsx"
+  },
+  {
+   "tipo": "secao",
+   "num": "5",
+   "titulo": "Catálogo visual: análise fatorial — versão final",
+   "sub": "As 8 figuras da versão final, identificadas pelo ID, para escolher o que vai para o artigo",
+   "nota": "Só identificação: cada miniatura traz a versão e o ID do Catalogo_Mestre.xlsx (aba Catálogo mestre), onde se marca \"Vai para o artigo?\"."
+  },
+  {
+   "tipo": "grade",
+   "titulo": "análise fatorial — versão final — 1 de 2",
+   "cels": [
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F22.jpg",
+     "rotulo": "00_referencia · F22",
+     "titulo": "Gráfico de sedimentação: dois componentes acima do acaso",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F22_sedimentacao_horn.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F23.jpg",
+     "rotulo": "00_referencia · F23",
+     "titulo": "Renda (invertida) define F1 e Água inadequada define F2",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F23_mapa_cargas.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F24.jpg",
+     "rotulo": "00_referencia · F24",
+     "titulo": "A distribuição do índice e as faixas do IVS-BH",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F24_histograma_por_faixa.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F25.jpg",
+     "rotulo": "00_referencia · F25",
+     "titulo": "Curva ROC do índice contra as favelas (AUC global 0,8309)",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F25_curva_roc.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F26.jpg",
+     "rotulo": "00_referencia · F26",
+     "titulo": "A parcela de moradores em cada faixa muda de município para município",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F26_risco_por_municipio.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F27.jpg",
+     "rotulo": "00_referencia · F27",
+     "titulo": "A desigualdade interna do índice, município por município",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F27_desigualdade_interna.png"
+    }
+   ],
+   "nc": 3,
+   "nl": 2,
+   "nota": "00_referencia · F22 — Gráfico de sedimentação: dois componentes acima do acaso — analises_exploratorias/00_referencia/figuras/F22_sedimentacao_horn.png\n00_referencia · F23 — Renda (invertida) define F1 e Água inadequada define F2 — analises_exploratorias/00_referencia/figuras/F23_mapa_cargas.png\n00_referencia · F24 — A distribuição do índice e as faixas do IVS-BH — analises_exploratorias/00_referencia/figuras/F24_histograma_por_faixa.png\n00_referencia · F25 — Curva ROC do índice contra as favelas (AUC global 0,8309) — analises_exploratorias/00_referencia/figuras/F25_curva_roc.png\n00_referencia · F26 — A parcela de moradores em cada faixa muda de município para município — analises_exploratorias/00_referencia/figuras/F26_risco_por_municipio.png\n00_referencia · F27 — A desigualdade interna do índice, município por município — analises_exploratorias/00_referencia/figuras/F27_desigualdade_interna.png",
+   "fonte": "Catalogo_Mestre.xlsx"
+  },
+  {
+   "tipo": "grade",
+   "titulo": "análise fatorial — versão final — 2 de 2",
+   "cels": [
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F28.jpg",
+     "rotulo": "00_referencia · F28",
+     "titulo": "Matriz de faixas: referência × esta versão",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F28_matriz_de_faixas.png"
+    },
+    {
+     "img": "/var/folders/rq/q1nmqsdx1dv0ltwc7c7z2bvc0000gn/T/deck_orientadora_miniaturas/00_referencia__F29.jpg",
+     "rotulo": "00_referencia · F29",
+     "titulo": "Os municípios mais afetados pela mudança da versão",
+     "arquivo": "analises_exploratorias/00_referencia/figuras/F29_municipios_que_mudam.png"
+    }
+   ],
+   "nc": 3,
+   "nl": 2,
+   "nota": "00_referencia · F28 — Matriz de faixas: referência × esta versão — analises_exploratorias/00_referencia/figuras/F28_matriz_de_faixas.png\n00_referencia · F29 — Os municípios mais afetados pela mudança da versão — analises_exploratorias/00_referencia/figuras/F29_municipios_que_mudam.png",
+   "fonte": "Catalogo_Mestre.xlsx"
+  }
+ ],
+ "saida": "/Users/pedro/Documents/Iniciacao Cientifica/Projeto_IVS_Censo22/docs/Apresentacoes_IVS/Apresentacao_Orientadora_EDA_Fatorial_2026-10.pptx"
+}

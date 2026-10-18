@@ -1,0 +1,222 @@
+indicador,rotulo,CD_SETOR,NM_MUN,valor,mediana_global
+pct_sem_agua_canalizada,Sem água canalizada,330240305020038,Macaé,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330240305030085,Macaé,1.0,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330240305030012,Macaé,0.9698492462311558,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330240305010053,Macaé,0.96484375,0.0
+pct_sem_agua_canalizada,Sem água canalizada,351870110000328,Guarujá,0.9583333333333334,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330520805090169,São Pedro da Aldeia,0.9514563106796117,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330240305010058,Macaé,0.9398907103825137,0.0
+pct_sem_agua_canalizada,Sem água canalizada,352940105000651,Mauá,0.9393939393939394,0.0
+pct_sem_agua_canalizada,Sem água canalizada,150080005000398,Ananindeua,0.9375,0.0
+pct_sem_agua_canalizada,Sem água canalizada,330240305030038,Macaé,0.9343065693430657,0.0
+pct_agua_nao_encanada,Água não chega,351870110000014,Guarujá,0.9919354838709677,0.0
+pct_agua_nao_encanada,Água não chega,330240305030052,Macaé,0.9603174603174603,0.0
+pct_agua_nao_encanada,Água não chega,351870110000328,Guarujá,0.9444444444444444,0.0
+pct_agua_nao_encanada,Água não chega,150080005000157,Ananindeua,0.9218390804597701,0.0
+pct_agua_nao_encanada,Água não chega,330240305030012,Macaé,0.9045226130653267,0.0
+pct_agua_nao_encanada,Água não chega,352940105001069,Mauá,0.9,0.0
+pct_agua_nao_encanada,Água não chega,330240305050291,Macaé,0.890625,0.0
+pct_agua_nao_encanada,Água não chega,351870110000251,Guarujá,0.8761904761904762,0.0
+pct_agua_nao_encanada,Água não chega,330240305030050,Macaé,0.8520710059171598,0.0
+pct_agua_nao_encanada,Água não chega,150080005000322,Ananindeua,0.8095238095238095,0.0
+pct_agua_so_terreno,Água só no terreno,150080005000398,Ananindeua,0.9375,0.0
+pct_agua_so_terreno,Água só no terreno,330240305020140,Macaé,0.9264705882352942,0.0
+pct_agua_so_terreno,Água só no terreno,330240305030038,Macaé,0.9197080291970803,0.0
+pct_agua_so_terreno,Água só no terreno,330240305020073,Macaé,0.9105691056910569,0.0
+pct_agua_so_terreno,Água só no terreno,330240305010074,Macaé,0.8925619834710744,0.0
+pct_agua_so_terreno,Água só no terreno,520110805000326,Anápolis,0.8906666666666667,0.0
+pct_agua_so_terreno,Água só no terreno,330240305020055,Macaé,0.8888888888888888,0.0
+pct_agua_so_terreno,Água só no terreno,330240305020057,Macaé,0.8651685393258427,0.0
+pct_agua_so_terreno,Água só no terreno,330240305010053,Macaé,0.86328125,0.0
+pct_agua_so_terreno,Água só no terreno,330240305020156,Macaé,0.8611111111111112,0.0
+pct_sem_banheiro,Sem banheiro,211120110000517,São José de Ribamar,0.5670103092783505,0.0
+pct_sem_banheiro,Sem banheiro,150080005000883,Ananindeua,0.4426229508196721,0.0
+pct_sem_banheiro,Sem banheiro,211120105000080,São José de Ribamar,0.43243243243243246,0.0
+pct_sem_banheiro,Sem banheiro,211120110000485,São José de Ribamar,0.36923076923076925,0.0
+pct_sem_banheiro,Sem banheiro,211120110000492,São José de Ribamar,0.36,0.0
+pct_sem_banheiro,Sem banheiro,211120105000039,São José de Ribamar,0.35555555555555557,0.0
+pct_sem_banheiro,Sem banheiro,211120105000179,São José de Ribamar,0.33620689655172414,0.0
+pct_sem_banheiro,Sem banheiro,211120105000177,São José de Ribamar,0.3333333333333333,0.0
+pct_sem_banheiro,Sem banheiro,211120105000156,São José de Ribamar,0.32558139534883723,0.0
+pct_sem_banheiro,Sem banheiro,211120110000426,São José de Ribamar,0.3076923076923077,0.0
+pct_sem_banheiro_nem_sanitario,Sem banheiro nem sanitário,150080005000883,Ananindeua,0.319672131147541,0.0
+pct_so_sanitario,Só sanitário,211120110000517,São José de Ribamar,0.44329896907216493,0.0
+pct_so_sanitario,Só sanitário,211120105000156,São José de Ribamar,0.3023255813953488,0.0
+pct_so_sanitario,Só sanitário,211120110000485,São José de Ribamar,0.2923076923076923,0.0
+pct_banheiro_comum,Banheiro de uso comum,330240305040059,Macaé,0.2727272727272727,0.0
+pct_banheiro_comum,Banheiro de uso comum,211120105000200,São José de Ribamar,0.2558139534883721,0.0
+pct_banheiro_comum,Banheiro de uso comum,211120105000186,São José de Ribamar,0.2426470588235294,0.0
+pct_banheiro_comum,Banheiro de uso comum,211120110000492,São José de Ribamar,0.24,0.0
+pct_banheiro_comum,Banheiro de uso comum,211120105000097,São José de Ribamar,0.23484848484848486,0.0
+pct_banheiro_comum,Banheiro de uso comum,211120110000360,São José de Ribamar,0.18586387434554974,0.0
+pct_banheiro_comum,Banheiro de uso comum,211120105000185,São José de Ribamar,0.171875,0.0
+pct_banheiro_comum,Banheiro de uso comum,211120105000134,São José de Ribamar,0.16129032258064516,0.0
+pct_banheiro_comum,Banheiro de uso comum,150080005000632,Ananindeua,0.1553398058252427,0.0
+pct_banheiro_comum,Banheiro de uso comum,211120105000179,São José de Ribamar,0.15517241379310345,0.0
+banheiro_graduado,Banheiro graduado,150080005000883,Ananindeua,0.3989071038251366,0.0
+banheiro_graduado,Banheiro graduado,211120110000517,São José de Ribamar,0.3917525773195876,0.0
+banheiro_graduado,Banheiro graduado,211120105000080,São José de Ribamar,0.2702702702702703,0.0
+banheiro_graduado,Banheiro graduado,211120110000426,São José de Ribamar,0.22090729783037474,0.0
+banheiro_graduado,Banheiro graduado,211120110000486,São José de Ribamar,0.18840579710144928,0.0
+banheiro_graduado,Banheiro graduado,211120105000179,São José de Ribamar,0.1810344827586207,0.0
+banheiro_graduado,Banheiro graduado,150080005000632,Ananindeua,0.1650485436893204,0.0
+banheiro_graduado,Banheiro graduado,211120105000147,São José de Ribamar,0.16216216216216217,0.0
+razao_moradores,Razão de moradores,412550605000484,São José dos Pinhais,5.125,2.756363341968912
+razao_moradores,Razão de moradores,520110805000269,Anápolis,4.282608695652174,2.756363341968912
+razao_moradores,Razão de moradores,520110805000302,Anápolis,1.274131274131274,2.756363341968912
+pct_analfab,Analfabetismo 15+,330520805070038,São Pedro da Aldeia,0.3333333333333333,0.028189910979228485
+pct_analfab,Analfabetismo 15+,211120105000072,São José de Ribamar,0.23770491803278687,0.028189910979228485
+pct_analfab,Analfabetismo 15+,211120105000148,São José de Ribamar,0.22666666666666666,0.028189910979228485
+pct_analfab,Analfabetismo 15+,412550605000291,São José dos Pinhais,0.22033898305084745,0.028189910979228485
+pct_analfab,Analfabetismo 15+,260345405100054,Camaragibe,0.216,0.028189910979228485
+pct_analfab,Analfabetismo 15+,330240305040124,Macaé,0.21428571428571427,0.028189910979228485
+pct_analfab,Analfabetismo 15+,352940105001027,Mauá,0.21428571428571427,0.028189910979228485
+pct_analfab,Analfabetismo 15+,520110805000516,Anápolis,0.21428571428571427,0.028189910979228485
+pct_analfab,Analfabetismo 15+,320120936000001,Cachoeiro de Itapemirim,0.2054794520547945,0.028189910979228485
+pct_analfab,Analfabetismo 15+,260345405090018,Camaragibe,0.20218579234972678,0.028189910979228485
+renda_media,Renda média,354520905000248,Salto,60597.49,2496.83
+renda_media,Renda média,150080005000676,Ananindeua,27854.05,2496.83
+renda_media,Renda média,354880705000478,São Caetano do Sul,24794.39,2496.83
+renda_media,Renda média,354520905000023,Salto,20776.59,2496.83
+renda_media,Renda média,351870105000494,Guarujá,19984.99,2496.83
+renda_media,Renda média,312230605000418,Divinópolis,18628.57,2496.83
+renda_media,Renda média,350280405000314,Araçatuba,18241.03,2496.83
+renda_media,Renda média,350280405000302,Araçatuba,17778.07,2496.83
+renda_media,Renda média,350280405000379,Araçatuba,17515.4,2496.83
+renda_media,Renda média,520110805000424,Anápolis,17125.32,2496.83
+pct_resp_feminino,Responsável mulher,320120916000006,Cachoeiro de Itapemirim,0.0,0.5
+pct_resp_feminino,Responsável mulher,320120917000006,Cachoeiro de Itapemirim,0.0,0.5
+pct_resp_feminino,Responsável mulher,330520805070038,São Pedro da Aldeia,1.0,0.5
+pct_resp_feminino,Responsável mulher,330520805070106,São Pedro da Aldeia,0.0,0.5
+pct_resp_feminino,Responsável mulher,350280405000348,Araçatuba,0.0,0.5
+pct_resp_feminino,Responsável mulher,351870105000725,Guarujá,1.0,0.5
+pct_resp_feminino,Responsável mulher,352940105000547,Mauá,1.0,0.5
+pct_resp_feminino,Responsável mulher,352940105000584,Mauá,1.0,0.5
+pct_resp_feminino,Responsável mulher,352940105000628,Mauá,1.0,0.5
+pct_resp_feminino,Responsável mulher,412550605000363,São José dos Pinhais,1.0,0.5
+renda_media_sem_extremo,Renda sem o extremo,354520905000248,Salto,60597.49,2496.83
+renda_media_sem_extremo,Renda sem o extremo,150080005000676,Ananindeua,27854.05,2496.83
+renda_media_sem_extremo,Renda sem o extremo,354880705000478,São Caetano do Sul,24794.39,2496.83
+renda_media_sem_extremo,Renda sem o extremo,354880705000481,São Caetano do Sul,23854.81,2496.83
+renda_media_sem_extremo,Renda sem o extremo,354520905000023,Salto,20776.59,2496.83
+renda_media_sem_extremo,Renda sem o extremo,354880705000477,São Caetano do Sul,20220.19,2496.83
+renda_media_sem_extremo,Renda sem o extremo,351870105000494,Guarujá,19984.99,2496.83
+renda_media_sem_extremo,Renda sem o extremo,312230605000418,Divinópolis,18628.57,2496.83
+renda_media_sem_extremo,Renda sem o extremo,350280405000314,Araçatuba,18241.03,2496.83
+renda_media_sem_extremo,Renda sem o extremo,354880705000479,São Caetano do Sul,18148.36,2496.83
+renda_media_mediana_mun,Renda (mediana mun.),354520905000248,Salto,60597.49,2496.83
+renda_media_mediana_mun,Renda (mediana mun.),150080005000676,Ananindeua,27854.05,2496.83
+renda_media_mediana_mun,Renda (mediana mun.),354880705000478,São Caetano do Sul,24794.39,2496.83
+renda_media_mediana_mun,Renda (mediana mun.),354880705000481,São Caetano do Sul,23854.81,2496.83
+renda_media_mediana_mun,Renda (mediana mun.),354520905000023,Salto,20776.59,2496.83
+renda_media_mediana_mun,Renda (mediana mun.),354880705000477,São Caetano do Sul,20220.19,2496.83
+renda_media_mediana_mun,Renda (mediana mun.),351870105000494,Guarujá,19984.99,2496.83
+renda_media_mediana_mun,Renda (mediana mun.),312230605000418,Divinópolis,18628.57,2496.83
+renda_media_mediana_mun,Renda (mediana mun.),350280405000314,Araçatuba,18241.03,2496.83
+renda_media_mediana_mun,Renda (mediana mun.),354880705000479,São Caetano do Sul,18148.36,2496.83
+pct_hab_precaria,Habitação precária,351870110000014,Guarujá,0.9435483870967742,0.0
+pct_hab_precaria,Habitação precária,351870105000606,Guarujá,0.7647058823529411,0.0
+pct_hab_precaria,Habitação precária,354880705000455,São Caetano do Sul,0.4648648648648649,0.0
+pct_hab_precaria,Habitação precária,354880705000391,São Caetano do Sul,0.4491017964071856,0.0
+pct_hab_precaria,Habitação precária,150080005000883,Ananindeua,0.42896174863387976,0.0
+pct_hab_precaria,Habitação precária,352940105000568,Mauá,0.3317757009345794,0.0
+pct_hab_precaria,Habitação precária,312230605000576,Divinópolis,0.32038834951456313,0.0
+pct_hab_precaria,Habitação precária,211120110000126,São José de Ribamar,0.2937062937062937,0.0
+pct_hab_precaria,Habitação precária,354880705000418,São Caetano do Sul,0.2777777777777778,0.0
+pct_hab_precaria,Habitação precária,354880705000390,São Caetano do Sul,0.26717557251908397,0.0
+pct_moradia_convencional,Moradia convencional,351870110000014,Guarujá,0.056451612903225805,1.0
+pct_moradia_convencional,Moradia convencional,351870105000606,Guarujá,0.23529411764705882,1.0
+pct_moradia_convencional,Moradia convencional,354880705000455,São Caetano do Sul,0.5243243243243243,1.0
+pct_moradia_convencional,Moradia convencional,354880705000391,São Caetano do Sul,0.5508982035928144,1.0
+pct_moradia_convencional,Moradia convencional,150080005000883,Ananindeua,0.5683060109289617,1.0
+pct_moradia_convencional,Moradia convencional,312230605000576,Divinópolis,0.6601941747572816,1.0
+pct_moradia_convencional,Moradia convencional,354880705000518,São Caetano do Sul,0.6666666666666666,1.0
+pct_moradia_convencional,Moradia convencional,352940105000568,Mauá,0.6682242990654206,1.0
+pct_moradia_convencional,Moradia convencional,211120110000126,São José de Ribamar,0.7062937062937062,1.0
+pct_moradia_convencional,Moradia convencional,330520805080086,São Pedro da Aldeia,0.7142857142857143,1.0
+pct_moradia_nao_convencional,Moradia não convencional,351870110000014,Guarujá,0.9435483870967742,0.0
+pct_moradia_nao_convencional,Moradia não convencional,351870105000606,Guarujá,0.7647058823529411,0.0
+pct_moradia_nao_convencional,Moradia não convencional,354880705000455,São Caetano do Sul,0.4648648648648649,0.0
+pct_moradia_nao_convencional,Moradia não convencional,354880705000391,São Caetano do Sul,0.4491017964071856,0.0
+pct_moradia_nao_convencional,Moradia não convencional,150080005000883,Ananindeua,0.42896174863387976,0.0
+pct_moradia_nao_convencional,Moradia não convencional,352940105000568,Mauá,0.3317757009345794,0.0
+pct_moradia_nao_convencional,Moradia não convencional,312230605000576,Divinópolis,0.32038834951456313,0.0
+pct_moradia_nao_convencional,Moradia não convencional,211120110000126,São José de Ribamar,0.2937062937062937,0.0
+pct_moradia_nao_convencional,Moradia não convencional,354880705000418,São Caetano do Sul,0.2777777777777778,0.0
+pct_moradia_nao_convencional,Moradia não convencional,354880705000390,São Caetano do Sul,0.26717557251908397,0.0
+pct_apartamento,Apartamento,150080005000213,Ananindeua,1.0,0.014150943396226415
+pct_apartamento,Apartamento,150080005000436,Ananindeua,1.0,0.014150943396226415
+pct_apartamento,Apartamento,150080005000491,Ananindeua,1.0,0.014150943396226415
+pct_apartamento,Apartamento,150080005000492,Ananindeua,1.0,0.014150943396226415
+pct_apartamento,Apartamento,150080005000501,Ananindeua,1.0,0.014150943396226415
+pct_apartamento,Apartamento,150080005000532,Ananindeua,1.0,0.014150943396226415
+pct_apartamento,Apartamento,150080005000538,Ananindeua,1.0,0.014150943396226415
+pct_apartamento,Apartamento,150080005000544,Ananindeua,1.0,0.014150943396226415
+pct_apartamento,Apartamento,150080005000545,Ananindeua,1.0,0.014150943396226415
+pct_apartamento,Apartamento,150080005000547,Ananindeua,1.0,0.014150943396226415
+pct_casa,Casa,150080005000213,Ananindeua,0.0,0.9642857142857143
+pct_casa,Casa,150080005000436,Ananindeua,0.0,0.9642857142857143
+pct_casa,Casa,150080005000491,Ananindeua,0.0,0.9642857142857143
+pct_casa,Casa,150080005000492,Ananindeua,0.0,0.9642857142857143
+pct_casa,Casa,150080005000493,Ananindeua,0.0,0.9642857142857143
+pct_casa,Casa,150080005000500,Ananindeua,0.0,0.9642857142857143
+pct_casa,Casa,150080005000501,Ananindeua,0.0,0.9642857142857143
+pct_casa,Casa,150080005000504,Ananindeua,0.0,0.9642857142857143
+pct_casa,Casa,150080005000508,Ananindeua,0.0,0.9642857142857143
+pct_casa,Casa,150080005000509,Ananindeua,0.0,0.9642857142857143
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000509,Ananindeua,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000536,Ananindeua,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000555,Ananindeua,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000636,Ananindeua,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000894,Ananindeua,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,150080005000895,Ananindeua,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,211120105000093,São José de Ribamar,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,211120105000094,São José de Ribamar,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,211120105000101,São José de Ribamar,1.0,0.0
+pct_casa_vila_condominio,Casa de vila/condomínio,211120110000572,São José de Ribamar,1.0,0.0
+pct_crianca_0a4,Crianças 0–4,330520805070106,São Pedro da Aldeia,0.24242424242424243,0.05724280634473719
+pct_crianca_0a4,Crianças 0–4,150080005000550,Ananindeua,0.2222222222222222,0.05724280634473719
+pct_crianca_0a4,Crianças 0–4,412550605000363,São José dos Pinhais,0.20689655172413793,0.05724280634473719
+pct_crianca_0a4,Crianças 0–4,351870105000725,Guarujá,0.2,0.05724280634473719
+pct_crianca_0a4,Crianças 0–4,412550605000474,São José dos Pinhais,0.19,0.05724280634473719
+pct_crianca_0a4,Crianças 0–4,351870105000532,Guarujá,0.17365661861074705,0.05724280634473719
+pct_crianca_0a4,Crianças 0–4,330240305020139,Macaé,0.17266187050359713,0.05724280634473719
+pct_crianca_0a4,Crianças 0–4,330520805070023,São Pedro da Aldeia,0.16554054054054054,0.05724280634473719
+pct_crianca_0a4,Crianças 0–4,352940105000628,Mauá,0.15789473684210525,0.05724280634473719
+pct_crianca_0a4,Crianças 0–4,352940105001043,Mauá,0.1568627450980392,0.05724280634473719
+pct_pop_0a14,População 0–14,412550605000474,São José dos Pinhais,0.47,0.18412765420597027
+pct_pop_0a14,População 0–14,330240305020139,Macaé,0.4262589928057554,0.18412765420597027
+pct_idoso_60mais,Pessoas 60+,312230605000383,Divinópolis,0.6470588235294118,0.14862681744749595
+pct_idoso_60mais,Pessoas 60+,351870105000375,Guarujá,0.625,0.14862681744749595
+pct_idoso_60mais,Pessoas 60+,350280405000005,Araçatuba,0.5714285714285714,0.14862681744749595
+pct_idoso_60mais,Pessoas 60+,350280405000379,Araçatuba,0.5563380281690141,0.14862681744749595
+iep_setor,Índice de envelhecimento,320120905000008,Cachoeiro de Itapemirim,2166.666666666667,79.69924812030075
+iep_setor,Índice de envelhecimento,350280405000379,Araçatuba,1975.0,79.69924812030075
+iep_setor,Índice de envelhecimento,350280405000002,Araçatuba,1900.0,79.69924812030075
+iep_setor,Índice de envelhecimento,430460605000397,Canoas,1737.5,79.69924812030075
+iep_setor,Índice de envelhecimento,520110805000084,Anápolis,1725.0,79.69924812030075
+iep_setor,Índice de envelhecimento,351870105000353,Guarujá,1500.0,79.69924812030075
+iep_setor,Índice de envelhecimento,350280405000279,Araçatuba,1200.0,79.69924812030075
+iep_setor,Índice de envelhecimento,351870105000418,Guarujá,1200.0,79.69924812030075
+iep_setor,Índice de envelhecimento,350280405000001,Araçatuba,1155.5555555555554,79.69924812030075
+iep_setor,Índice de envelhecimento,350280405000069,Araçatuba,1044.4444444444446,79.69924812030075
+rdi_setor,Dependência idosa,312230605000383,Divinópolis,366.66666666666663,22.55935103756011
+rdi_setor,Dependência idosa,351870105000375,Guarujá,250.0,22.55935103756011
+rdi_setor,Dependência idosa,351870105000447,Guarujá,200.0,22.55935103756011
+rdi_setor,Dependência idosa,351870105000403,Guarujá,175.0,22.55935103756011
+rdi_setor,Dependência idosa,350280405000522,Araçatuba,157.14285714285714,22.55935103756011
+rdi_setor,Dependência idosa,330240305050005,Macaé,155.0,22.55935103756011
+rdi_setor,Dependência idosa,350280405000005,Araçatuba,143.75,22.55935103756011
+rdi_setor,Dependência idosa,350280405000379,Araçatuba,143.63636363636363,22.55935103756011
+rdi_setor,Dependência idosa,350280405000022,Araçatuba,142.25352112676057,22.55935103756011
+rdi_setor,Dependência idosa,430460605000397,Canoas,133.65384615384613,22.55935103756011
+prop_70mais_entre_60mais,70+ entre 60+,150080005000680,Ananindeua,100.0,40.0
+prop_70mais_entre_60mais,70+ entre 60+,211120110000385,São José de Ribamar,100.0,40.0
+prop_70mais_entre_60mais,70+ entre 60+,312230605000290,Divinópolis,100.0,40.0
+prop_70mais_entre_60mais,70+ entre 60+,312230605000421,Divinópolis,100.0,40.0
+prop_70mais_entre_60mais,70+ entre 60+,330240305030048,Macaé,100.0,40.0
+prop_70mais_entre_60mais,70+ entre 60+,330520805000031,São Pedro da Aldeia,100.0,40.0
+prop_70mais_entre_60mais,70+ entre 60+,330520805080026,São Pedro da Aldeia,100.0,40.0
+prop_70mais_entre_60mais,70+ entre 60+,330520805080027,São Pedro da Aldeia,100.0,40.0
+prop_70mais_entre_60mais,70+ entre 60+,330520805090063,São Pedro da Aldeia,100.0,40.0
+prop_70mais_entre_60mais,70+ entre 60+,350280405000284,Araçatuba,100.0,40.0

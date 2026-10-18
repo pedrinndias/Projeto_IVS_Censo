@@ -1,0 +1,8 @@
+NM_MUN,pct_agua_inad,pct_esgoto_inad,pct_lixo_inad,pct_sem_agua_canalizada,pct_agua_nao_encanada,pct_agua_so_terreno,pct_sem_banheiro,pct_sem_banheiro_nem_sanitario,pct_so_sanitario,pct_banheiro_comum,banheiro_graduado,razao_moradores,pct_analfab,renda_media,pct_raca_pretpardind,pct_resp_feminino,renda_media_sem_extremo,renda_media_mediana_mun,pct_dom_improv,pct_hab_precaria,pct_moradia_convencional,pct_moradia_nao_convencional,pct_apartamento,pct_casa,pct_casa_vila_condominio,pct_crianca_0a4,pct_pop_0a14,pct_idoso_60mais,iep_setor,rdi_setor,prop_70mais_entre_60mais,total
+Brasília,236,0,0,87,7,20,2,1,0,1,2,6,7,38,0,14,219,219,6,25,374,22,0,0,63,3,2,1,40,8,8,1411
+Goiânia,37,0,0,48,4,6,3,0,0,3,2,1,2,85,0,1,53,53,1,22,426,22,0,0,28,4,0,0,51,7,6,865
+Campo Grande,17,0,0,51,5,9,6,0,2,2,1,2,6,78,0,5,18,18,0,1,28,1,0,0,33,9,4,2,19,5,4,326
+Anápolis,11,0,0,18,2,5,0,0,0,0,0,0,3,22,0,0,1,1,0,0,12,0,0,0,1,0,0,0,6,3,0,85
+Goianésia,4,0,0,2,1,0,0,0,0,0,0,0,6,2,0,0,0,0,0,0,5,0,0,0,0,0,0,0,0,0,0,20
+Chapada dos Guimarães,3,0,0,4,0,0,0,0,0,0,0,0,3,2,0,0,0,0,0,0,2,0,0,0,0,0,0,0,2,1,0,17
+Vicentinópolis,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0

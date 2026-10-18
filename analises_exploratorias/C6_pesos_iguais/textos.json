@@ -1,0 +1,9 @@
+{
+  "pergunta": "O que muda no índice com pesos iguais para os componentes ou com a média dos postos, sem a análise fatorial?",
+  "o_que_muda": "Os pesos: cada componente pesa o mesmo, sem a análise fatorial. A média dos postos percentis no município (também com pesos iguais) e os pesos da fatorial da referência estão na tabela T34.",
+  "sintese": "Com pesos iguais, sem fatorial, o índice ordena os setores quase como a referência e a AUC municipal contra as favelas até sobe um pouco; cerca de um em cada dez setores muda de faixa. A média de postos sobe mais a AUC, mas reordena bastante os setores. A fatorial, aqui, serve mais para justificar a estrutura de duas dimensões do que para ganhar capacidade de separar as favelas.",
+  "limitacoes": [
+    "Pesos iguais dão às quatro variáveis socioeconômicas mais peso conjunto do que às três de saneamento, só pelo número de variáveis.",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista)."
+  ]
+}

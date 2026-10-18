@@ -1,0 +1,10 @@
+{
+  "pergunta": "O que muda no índice com min-max global, escore z ou postos, em vez de min-max dentro do município?",
+  "o_que_muda": "A normalização dos componentes: min-max global (todos os municípios juntos) no lugar de min-max dentro do município. Escore z no município, escore z global, postos percentis no município e o min-max municipal da referência estão na tabela T34. As faixas continuam calculadas dentro de cada município.",
+  "sintese": "Com o min-max global, os extremos de alguns municípios passam a definir a escala de todos, e a AUC municipal contra as favelas cai em relação à referência. As normalizações que olham a distribuição inteira — escore z e postos — elevam a AUC, mas reordenam bastante os setores: com postos no município, mais de um quarto muda de faixa em relação ao min-max global. É um dos eixos que mais mexem no índice.",
+  "limitacoes": [
+    "Com escore z o índice deixa de ficar entre 0 e 1, e as medidas de desigualdade do bloco 12 perdem o sentido usual (há valores negativos).",
+    "Postos percentis apagam a distância entre setores: só a ordem importa.",
+    "A amostra do índice exclui todo setor com algum componente faltante (exclusão por lista)."
+  ]
+}

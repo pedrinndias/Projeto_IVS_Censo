@@ -1,0 +1,4 @@
+id,tipo,bloco,chave,titulo,o_que_mostra,arquivo,fonte,campos,slide
+T46,tabela,16,e3_versoes,A ordem dos municípios pela desigualdade interna se mantém entre versões,"A menor correlação com a referência é a de D2_ivs_idoso (0,6245).",tabelas/T46_gini_por_versao.csv,T46,"{""versao_min"": ""D2_ivs_idoso"", ""rho_min"": ""0,6245""}",5
+T47,tabela,16,e3_municipios,Capelinha é o município cuja posição pela desigualdade mais varia (3º a 57º),A maior amplitude de posição é a de Capelinha: do 3º ao 57º. Destaques entre os municípios com pelo menos 30 setores.,tabelas/T47_gini_por_municipio.csv,T47,"{""mun"": ""Capelinha"", ""posto_min"": ""3"", ""posto_max"": ""57""}",7
+F44,figura,16,e3_fig,O Gini de cada município entre as versões,A posição de Capelinha vai do 3º ao 57º. Destaques entre os municípios com pelo menos 30 setores.,figuras/F44_gini_entre_versoes.png,T47,"{""mun"": ""Capelinha"", ""posto_min"": ""3"", ""posto_max"": ""57""}",12

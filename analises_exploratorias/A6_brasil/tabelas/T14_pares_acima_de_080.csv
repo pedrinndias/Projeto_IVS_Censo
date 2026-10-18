@@ -1,0 +1,20 @@
+a,b,rotulo_a,rotulo_b,spearman,pearson
+renda_media,renda_media_sem_extremo,Renda média,Renda sem o extremo,1.0,1.0
+renda_media_sem_extremo,renda_media_mediana_mun,Renda sem o extremo,Renda (mediana mun.),1.0,1.0
+renda_media,renda_media_mediana_mun,Renda média,Renda (mediana mun.),0.9999983680854138,0.9955275892652323
+pct_sem_banheiro,banheiro_graduado,Sem banheiro,Banheiro graduado,0.9999836108862719,0.9706651157372143
+pct_idoso_60mais,rdi_setor,Pessoas 60+,Dependência idosa,0.9948832720505751,0.8587794133381842
+pct_idoso_60mais,iep_setor,Pessoas 60+,Índice de envelhecimento,0.9664044662064188,0.796537748370468
+pct_hab_precaria,pct_moradia_nao_convencional,Habitação precária,Moradia não convencional,0.9459225039524093,0.9202593469741163
+iep_setor,rdi_setor,Índice de envelhecimento,Dependência idosa,0.9412626219774146,0.7832464786454156
+pct_pop_0a14,iep_setor,População 0–14,Índice de envelhecimento,-0.9064114233406041,-0.7341541800401742
+pct_apartamento,pct_casa,Apartamento,Casa,-0.8743163046075076,-0.9436574357087868
+pct_banheiro_comum,banheiro_graduado,Banheiro de uso comum,Banheiro graduado,0.8742903595691236,0.4658697715507542
+pct_sem_banheiro,pct_banheiro_comum,Sem banheiro,Banheiro de uso comum,0.8725260535522368,0.6666258988240628
+pct_crianca_0a4,pct_pop_0a14,Crianças 0–4,População 0–14,0.8434503217839174,0.8356214584868257
+pct_sem_agua_canalizada,pct_agua_so_terreno,Sem água canalizada,Água só no terreno,0.8310363832467327,0.8337521625302107
+pct_crianca_0a4,iep_setor,Crianças 0–4,Índice de envelhecimento,-0.8008168356103664,-0.6374897109609438
+pct_sem_banheiro,pct_so_sanitario,Sem banheiro,Só sanitário,0.7760356490432421,0.8913110123331979
+pct_so_sanitario,banheiro_graduado,Só sanitário,Banheiro graduado,0.7047956954917103,0.9049225898792554
+pct_moradia_convencional,pct_moradia_nao_convencional,Moradia convencional,Moradia não convencional,-0.42262226918638873,-0.9424581341856318
+pct_hab_precaria,pct_moradia_convencional,Habitação precária,Moradia convencional,-0.4038271432911913,-0.8702445532302475

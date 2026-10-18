@@ -1,0 +1,20 @@
+a,b,rotulo_a,rotulo_b,spearman,pearson
+renda_media,renda_media_sem_extremo,Renda média,Renda sem o extremo,1.0,1.0
+renda_media_sem_extremo,renda_media_mediana_mun,Renda sem o extremo,Renda (mediana mun.),1.0,1.0
+pct_sem_banheiro,banheiro_graduado,Sem banheiro,Banheiro graduado,0.9999989073541838,0.9151140368434219
+renda_media,renda_media_mediana_mun,Renda média,Renda (mediana mun.),0.999981323538781,0.9883208187426438
+pct_idoso_60mais,rdi_setor,Pessoas 60+,Dependência idosa,0.9951023105482927,0.9611821927776502
+pct_banheiro_comum,banheiro_graduado,Banheiro de uso comum,Banheiro graduado,0.9650255030527265,0.6539965702948428
+pct_hab_precaria,pct_moradia_nao_convencional,Habitação precária,Moradia não convencional,0.9629279954957105,0.934208596061657
+pct_idoso_60mais,iep_setor,Pessoas 60+,Índice de envelhecimento,0.9522798095272382,0.7318736336951013
+pct_sem_banheiro,pct_banheiro_comum,Sem banheiro,Banheiro de uso comum,0.9521313364872409,0.9026369479108528
+iep_setor,rdi_setor,Índice de envelhecimento,Dependência idosa,0.9236315277715512,0.7118399519215652
+pct_apartamento,pct_casa,Apartamento,Casa,-0.9215933596288993,-0.9562490085218597
+pct_pop_0a14,iep_setor,População 0–14,Índice de envelhecimento,-0.9190390124486961,-0.7324065610125389
+pct_raca_pretpardind,renda_media_sem_extremo,Cor/raça PPI,Renda sem o extremo,-0.8705263709264189,-0.7498894962460448
+pct_raca_pretpardind,renda_media_mediana_mun,Cor/raça PPI,Renda (mediana mun.),-0.8705048769267082,-0.7498853259474783
+renda_media,pct_raca_pretpardind,Renda média,Cor/raça PPI,-0.8704467250339685,-0.7404650097183629
+pct_sem_agua_canalizada,pct_agua_so_terreno,Sem água canalizada,Água só no terreno,0.8297605886210682,0.8549718005043337
+pct_crianca_0a4,pct_pop_0a14,Crianças 0–4,População 0–14,0.8295695381653563,0.8239755081800005
+pct_moradia_convencional,pct_moradia_nao_convencional,Moradia convencional,Moradia não convencional,-0.4909946851492675,-0.9820266957368534
+pct_hab_precaria,pct_moradia_convencional,Habitação precária,Moradia convencional,-0.4764431565602698,-0.922171504238626

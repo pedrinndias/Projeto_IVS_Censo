@@ -1,0 +1,47 @@
+{
+  "versao": "A5_por_porte/mais_de_500_mil",
+  "titulo": "Municípios de mais de 500 mil habitantes",
+  "pergunta": "Como ficam os dados e o IVS quando os blocos rodam só com os municípios de mais de 500 mil habitantes?",
+  "base": "entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "recorte": {
+    "urbano": true,
+    "dados_sig": "OK",
+    "piso_pop": null,
+    "municipios": null,
+    "porte": [
+      500000,
+      null
+    ]
+  },
+  "indicadores": "todos",
+  "indice": {
+    "colunas": [
+      "pct_agua_inad",
+      "pct_esgoto_inad",
+      "razao_moradores",
+      "pct_analfab",
+      "renda_inv",
+      "pct_raca_pretpardind",
+      "banheiro_graduado"
+    ],
+    "renda": "original",
+    "rotacao": "promax",
+    "metodo": "60_40",
+    "normalizacao": "municipal"
+  },
+  "blocos": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    10,
+    13
+  ],
+  "parametros_exploratorios": {
+    "faixas de porte": "até 100 mil · de 100 a 500 mil · mais de 500 mil habitantes (moradores somados nos setores da base)"
+  }
+}

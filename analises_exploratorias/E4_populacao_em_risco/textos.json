@@ -1,0 +1,9 @@
+{
+  "pergunta": "Quantas pessoas e quantas pessoas idosas ficam em risco elevado em cada versão?",
+  "o_que_muda": "Não é uma versão do índice: soma, versão por versão, os moradores e os moradores de 60 anos ou mais em setores de risco elevado ou muito elevado, nos setores da referência.",
+  "sintese": "Na referência, cerca de três em cada dez moradores vivem em setores de risco elevado ou muito elevado. Entre as versões, esse percentual varia de forma moderada: o menor é o do índice de moradia (D3) e o maior, o do subíndice socioeconômico (D1). Em alguns municípios, a parcela de moradores em risco muda muito com a versão.",
+  "limitacoes": [
+    "As versões por estrato (A3, A4, A5) ficam de fora porque cobrem só parte dos setores.",
+    "A contagem usa os moradores dos setores da amostra do índice; setores excluídos por falta de dado não entram."
+  ]
+}
