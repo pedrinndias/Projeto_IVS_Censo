@@ -1,0 +1,361 @@
+{
+ "gerado_por": "scripts/pecas_relatorio_raic.py",
+ "setores_no_recorte": 104108,
+ "trava_s6": {
+  "n": 69458,
+  "renda_x_ppi": 0.7896
+ },
+ "figura1": {
+  "n_dados_completos": 75629,
+  "metodo": "Spearman, exclusão por lista, renda invertida",
+  "indicadores": [
+   "pct_agua_inad",
+   "pct_esgoto_inad",
+   "pct_lixo_inad",
+   "razao_moradores",
+   "pct_analfab",
+   "renda_media_sem_extremo",
+   "pct_raca_pretpardind",
+   "pct_sem_agua_canalizada",
+   "pct_sem_banheiro",
+   "pct_moradia_nao_convencional",
+   "pct_idoso_60mais",
+   "pct_pop_0a14"
+  ],
+  "R": {
+   "pct_agua_inad": {
+    "pct_agua_inad": 1.0,
+    "pct_esgoto_inad": 0.4016,
+    "pct_lixo_inad": 0.0983,
+    "razao_moradores": 0.2254,
+    "pct_analfab": 0.2174,
+    "renda_media_sem_extremo": 0.2328,
+    "pct_raca_pretpardind": 0.3316,
+    "pct_sem_agua_canalizada": 0.4727,
+    "pct_sem_banheiro": 0.2489,
+    "pct_moradia_nao_convencional": 0.0395,
+    "pct_idoso_60mais": -0.1905,
+    "pct_pop_0a14": 0.2209
+   },
+   "pct_esgoto_inad": {
+    "pct_agua_inad": 0.4016,
+    "pct_esgoto_inad": 1.0,
+    "pct_lixo_inad": 0.2068,
+    "razao_moradores": 0.3162,
+    "pct_analfab": 0.4169,
+    "renda_media_sem_extremo": 0.4211,
+    "pct_raca_pretpardind": 0.3978,
+    "pct_sem_agua_canalizada": 0.3662,
+    "pct_sem_banheiro": 0.2546,
+    "pct_moradia_nao_convencional": 0.0539,
+    "pct_idoso_60mais": -0.3389,
+    "pct_pop_0a14": 0.3867
+   },
+   "pct_lixo_inad": {
+    "pct_agua_inad": 0.0983,
+    "pct_esgoto_inad": 0.2068,
+    "pct_lixo_inad": 1.0,
+    "razao_moradores": -0.0547,
+    "pct_analfab": 0.1368,
+    "renda_media_sem_extremo": 0.1871,
+    "pct_raca_pretpardind": 0.2085,
+    "pct_sem_agua_canalizada": 0.1665,
+    "pct_sem_banheiro": 0.1301,
+    "pct_moradia_nao_convencional": 0.0163,
+    "pct_idoso_60mais": -0.2491,
+    "pct_pop_0a14": 0.1882
+   },
+   "razao_moradores": {
+    "pct_agua_inad": 0.2254,
+    "pct_esgoto_inad": 0.3162,
+    "pct_lixo_inad": -0.0547,
+    "razao_moradores": 1.0,
+    "pct_analfab": 0.4246,
+    "renda_media_sem_extremo": 0.4002,
+    "pct_raca_pretpardind": 0.4175,
+    "pct_sem_agua_canalizada": 0.1902,
+    "pct_sem_banheiro": 0.157,
+    "pct_moradia_nao_convencional": 0.0255,
+    "pct_idoso_60mais": -0.4474,
+    "pct_pop_0a14": 0.611
+   },
+   "pct_analfab": {
+    "pct_agua_inad": 0.2174,
+    "pct_esgoto_inad": 0.4169,
+    "pct_lixo_inad": 0.1368,
+    "razao_moradores": 0.4246,
+    "pct_analfab": 1.0,
+    "renda_media_sem_extremo": 0.7598,
+    "pct_raca_pretpardind": 0.6342,
+    "pct_sem_agua_canalizada": 0.3199,
+    "pct_sem_banheiro": 0.2122,
+    "pct_moradia_nao_convencional": 0.0697,
+    "pct_idoso_60mais": -0.4142,
+    "pct_pop_0a14": 0.543
+   },
+   "renda_media_sem_extremo": {
+    "pct_agua_inad": 0.2328,
+    "pct_esgoto_inad": 0.4211,
+    "pct_lixo_inad": 0.1871,
+    "razao_moradores": 0.4002,
+    "pct_analfab": 0.7598,
+    "renda_media_sem_extremo": 1.0,
+    "pct_raca_pretpardind": 0.7893,
+    "pct_sem_agua_canalizada": 0.3615,
+    "pct_sem_banheiro": 0.2271,
+    "pct_moradia_nao_convencional": 0.0582,
+    "pct_idoso_60mais": -0.5198,
+    "pct_pop_0a14": 0.6207
+   },
+   "pct_raca_pretpardind": {
+    "pct_agua_inad": 0.3316,
+    "pct_esgoto_inad": 0.3978,
+    "pct_lixo_inad": 0.2085,
+    "razao_moradores": 0.4175,
+    "pct_analfab": 0.6342,
+    "renda_media_sem_extremo": 0.7893,
+    "pct_raca_pretpardind": 1.0,
+    "pct_sem_agua_canalizada": 0.381,
+    "pct_sem_banheiro": 0.2227,
+    "pct_moradia_nao_convencional": 0.0776,
+    "pct_idoso_60mais": -0.5296,
+    "pct_pop_0a14": 0.562
+   },
+   "pct_sem_agua_canalizada": {
+    "pct_agua_inad": 0.4727,
+    "pct_esgoto_inad": 0.3662,
+    "pct_lixo_inad": 0.1665,
+    "razao_moradores": 0.1902,
+    "pct_analfab": 0.3199,
+    "renda_media_sem_extremo": 0.3615,
+    "pct_raca_pretpardind": 0.381,
+    "pct_sem_agua_canalizada": 1.0,
+    "pct_sem_banheiro": 0.3418,
+    "pct_moradia_nao_convencional": 0.0635,
+    "pct_idoso_60mais": -0.1865,
+    "pct_pop_0a14": 0.245
+   },
+   "pct_sem_banheiro": {
+    "pct_agua_inad": 0.2489,
+    "pct_esgoto_inad": 0.2546,
+    "pct_lixo_inad": 0.1301,
+    "razao_moradores": 0.157,
+    "pct_analfab": 0.2122,
+    "renda_media_sem_extremo": 0.2271,
+    "pct_raca_pretpardind": 0.2227,
+    "pct_sem_agua_canalizada": 0.3418,
+    "pct_sem_banheiro": 1.0,
+    "pct_moradia_nao_convencional": 0.1261,
+    "pct_idoso_60mais": -0.168,
+    "pct_pop_0a14": 0.1912
+   },
+   "pct_moradia_nao_convencional": {
+    "pct_agua_inad": 0.0395,
+    "pct_esgoto_inad": 0.0539,
+    "pct_lixo_inad": 0.0163,
+    "razao_moradores": 0.0255,
+    "pct_analfab": 0.0697,
+    "renda_media_sem_extremo": 0.0582,
+    "pct_raca_pretpardind": 0.0776,
+    "pct_sem_agua_canalizada": 0.0635,
+    "pct_sem_banheiro": 0.1261,
+    "pct_moradia_nao_convencional": 1.0,
+    "pct_idoso_60mais": -0.0475,
+    "pct_pop_0a14": 0.0393
+   },
+   "pct_idoso_60mais": {
+    "pct_agua_inad": -0.1905,
+    "pct_esgoto_inad": -0.3389,
+    "pct_lixo_inad": -0.2491,
+    "razao_moradores": -0.4474,
+    "pct_analfab": -0.4142,
+    "renda_media_sem_extremo": -0.5198,
+    "pct_raca_pretpardind": -0.5296,
+    "pct_sem_agua_canalizada": -0.1865,
+    "pct_sem_banheiro": -0.168,
+    "pct_moradia_nao_convencional": -0.0475,
+    "pct_idoso_60mais": 1.0,
+    "pct_pop_0a14": -0.7891
+   },
+   "pct_pop_0a14": {
+    "pct_agua_inad": 0.2209,
+    "pct_esgoto_inad": 0.3867,
+    "pct_lixo_inad": 0.1882,
+    "razao_moradores": 0.611,
+    "pct_analfab": 0.543,
+    "renda_media_sem_extremo": 0.6207,
+    "pct_raca_pretpardind": 0.562,
+    "pct_sem_agua_canalizada": 0.245,
+    "pct_sem_banheiro": 0.1912,
+    "pct_moradia_nao_convencional": 0.0393,
+    "pct_idoso_60mais": -0.7891,
+    "pct_pop_0a14": 1.0
+   }
+  }
+ },
+ "robustez_figura1": {
+  "pares": {
+   "renda_media_sem_extremo|pct_raca_pretpardind": 0.8106,
+   "pct_analfab|renda_media_sem_extremo": 0.7567,
+   "pct_agua_inad|pct_esgoto_inad": 0.4169,
+   "pct_idoso_60mais|renda_media_sem_extremo": -0.5189,
+   "pct_pop_0a14|renda_media_sem_extremo": 0.6184,
+   "pct_idoso_60mais|pct_pop_0a14": -0.7878
+  },
+  "intra": {
+   "renda_media_sem_extremo|pct_raca_pretpardind": 0.8409,
+   "pct_analfab|renda_media_sem_extremo": 0.7517,
+   "pct_agua_inad|pct_esgoto_inad": 0.2178,
+   "pct_idoso_60mais|renda_media_sem_extremo": -0.5431,
+   "pct_pop_0a14|renda_media_sem_extremo": 0.6405,
+   "pct_idoso_60mais|pct_pop_0a14": -0.7734
+  },
+  "municipios_30mais": 53,
+  "municipios_idoso_renda_negativa": 50,
+  "mediana_municipal_idoso_renda": -0.4607
+ },
+ "centro_oeste": {
+  "setores": 9490,
+  "brasilia": 4924
+ },
+ "tabela1": [
+  {
+   "indicador": "pct_agua_inad",
+   "n": "104.108",
+   "Média": "0,070",
+   "Mediana": "0,000",
+   "p75": "0,012",
+   "Máx": "1,000",
+   "Assim.": "3,42",
+   "n_bruto": 104108,
+   "media_bruta": 0.0696110977013312
+  },
+  {
+   "indicador": "pct_esgoto_inad",
+   "n": "104.107",
+   "Média": "0,082",
+   "Mediana": "0,000",
+   "p75": "0,018",
+   "Máx": "1,000",
+   "Assim.": "2,98",
+   "n_bruto": 104107,
+   "media_bruta": 0.0819575913215089
+  },
+  {
+   "indicador": "pct_lixo_inad",
+   "n": "104.108",
+   "Média": "0,116",
+   "Mediana": "0,000",
+   "p75": "0,059",
+   "Máx": "1,000",
+   "Assim.": "2,38",
+   "n_bruto": 104108,
+   "media_bruta": 0.1158026828480343
+  },
+  {
+   "indicador": "razao_moradores",
+   "n": "104.108",
+   "Média": "2,691",
+   "Mediana": "2,713",
+   "p75": "2,926",
+   "Máx": "6,913",
+   "Assim.": "−0,22",
+   "n_bruto": 104108,
+   "media_bruta": 2.690928542866797
+  },
+  {
+   "indicador": "pct_analfab",
+   "n": "87.556",
+   "Média": "0,036",
+   "Mediana": "0,027",
+   "p75": "0,050",
+   "Máx": "0,725",
+   "Assim.": "2,34",
+   "n_bruto": 87556,
+   "media_bruta": 0.0364326643896894
+  },
+  {
+   "indicador": "renda_media_sem_extremo",
+   "n": "104.095",
+   "Média": "4.185,81",
+   "Mediana": "2.572,39",
+   "p75": "4.835,82",
+   "Máx": "140.172,64",
+   "Assim.": "3,20",
+   "n_bruto": 104095,
+   "media_bruta": 4185.812444786014
+  },
+  {
+   "indicador": "pct_raca_pretpardind",
+   "n": "104.106",
+   "Média": "0,527",
+   "Mediana": "0,572",
+   "p75": "0,704",
+   "Máx": "1,000",
+   "Assim.": "−0,39",
+   "n_bruto": 104106,
+   "media_bruta": 0.5267444468732659
+  },
+  {
+   "indicador": "pct_sem_agua_canalizada",
+   "n": "104.067",
+   "Média": "0,015",
+   "Mediana": "0,000",
+   "p75": "0,005",
+   "Máx": "1,000",
+   "Assim.": "8,70",
+   "n_bruto": 104067,
+   "media_bruta": 0.0149653184952115
+  },
+  {
+   "indicador": "pct_sem_banheiro",
+   "n": "91.912",
+   "Média": "0,002",
+   "Mediana": "0,000",
+   "p75": "0,000",
+   "Máx": "1,000",
+   "Assim.": "21,31",
+   "n_bruto": 91912,
+   "media_bruta": 0.0023457634327734
+  },
+  {
+   "indicador": "pct_moradia_nao_convencional",
+   "n": "104.108",
+   "Média": "0,006",
+   "Mediana": "0,000",
+   "p75": "0,000",
+   "Máx": "1,000",
+   "Assim.": "13,01",
+   "n_bruto": 104108,
+   "media_bruta": 0.0059217314771117
+  },
+  {
+   "indicador": "pct_idoso_60mais",
+   "n": "103.823",
+   "Média": "0,175",
+   "Mediana": "0,166",
+   "p75": "0,231",
+   "Máx": "0,857",
+   "Assim.": "0,55",
+   "n_bruto": 103823,
+   "media_bruta": 0.175320267158682
+  },
+  {
+   "indicador": "pct_pop_0a14",
+   "n": "103.850",
+   "Média": "0,173",
+   "Mediana": "0,172",
+   "p75": "0,210",
+   "Máx": "0,488",
+   "Assim.": "0,11",
+   "n_bruto": 103850,
+   "media_bruta": 0.1725903316886544
+  }
+ ],
+ "quadro2_por_dimensao": {
+  "Saneamento": 5,
+  "Socioeconômica": 4,
+  "Morfologia": 1,
+  "Demografia": 2
+ }
+}

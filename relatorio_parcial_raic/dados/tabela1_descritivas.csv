@@ -1,0 +1,13 @@
+﻿indicador,Indicador,n,Média,Mediana,p75,Máx,Assim.
+pct_agua_inad,Água inadequada,104.108,"0,070","0,000","0,012","1,000","3,42"
+pct_esgoto_inad,Esgoto inadequado,104.107,"0,082","0,000","0,018","1,000","2,98"
+pct_lixo_inad,Lixo inadequado,104.108,"0,116","0,000","0,059","1,000","2,38"
+razao_moradores,Razão de moradores,104.108,"2,691","2,713","2,926","6,913","−0,22"
+pct_analfab,Analfabetismo 15+,87.556,"0,036","0,027","0,050","0,725","2,34"
+renda_media_sem_extremo,Renda média (R$),104.095,"4.185,81","2.572,39","4.835,82","140.172,64","3,20"
+pct_raca_pretpardind,"Preta, parda ou indígena",104.106,"0,527","0,572","0,704","1,000","−0,39"
+pct_sem_agua_canalizada,Sem água canalizada,104.067,"0,015","0,000","0,005","1,000","8,70"
+pct_sem_banheiro,Sem banheiro,91.912,"0,002","0,000","0,000","1,000","21,31"
+pct_moradia_nao_convencional,Moradia não convencional,104.108,"0,006","0,000","0,000","1,000","13,01"
+pct_idoso_60mais,Idosos (60 anos ou mais),103.823,"0,175","0,166","0,231","0,857","0,55"
+pct_pop_0a14,Crianças (0 a 14 anos),103.850,"0,173","0,172","0,210","0,488","0,11"

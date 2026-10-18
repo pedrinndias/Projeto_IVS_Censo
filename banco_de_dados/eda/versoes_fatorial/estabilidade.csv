@@ -1,0 +1,109 @@
+id,rotacao,metodo,rodadas,peso_f1_cheio,peso_f1_min,peso_f1_max,amp_peso_f1,fora_no_min,fora_no_max,amp_peso_var_max,variavel_amp_max
+V001,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,12.734092901930506,Lixo inadequado
+V002,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,12.638930964583073,Lixo inadequado
+V003,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,28.222684785944185,Lixo inadequado
+V004,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,7.108881827778345,Moradia não convencional
+V005,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,16.167879625937903,Lixo inadequado
+V006,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,31.46463048194385,Lixo inadequado
+V007,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,5.093154206082823,Razão de moradores
+V008,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,5.022839027354133,Razão de moradores
+V009,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,3.3631497086596394,Razão de moradores
+V010,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,3.3970608942687734,Razão de moradores
+V011,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,3.425296150319862,Razão de moradores
+V012,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,3.460466819811521,Razão de moradores
+V013,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,8.803949369138056,Razão de moradores
+V014,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,8.636573341120835,Razão de moradores
+V015,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.6225453353388914,Razão de moradores
+V016,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.628246073625621,Razão de moradores
+V017,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.495682832220201,Razão de moradores
+V018,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.462960313011583,Razão de moradores
+V019,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.689755243639048,Água inadequada
+V020,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,37.517449401948475,Moradia não convencional
+V021,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,5.9601066286287,Razão de moradores
+V022,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,8.037391236489025,Moradia não convencional
+V023,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,6.940287532163435,Banheiro graduado
+V024,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,9.97910186721687,Moradia não convencional
+V025,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.083514401831015,Razão de moradores
+V026,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.012402678841355,Razão de moradores
+V027,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,2.789069905654336,Razão de moradores
+V028,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,2.822249824839514,Razão de moradores
+V029,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,2.6495193033709215,Razão de moradores
+V030,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,2.686280690009352,Razão de moradores
+V031,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,6.427558326811514,Razão de moradores
+V032,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,6.477346651250909,Razão de moradores
+V033,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,5.154707313221848,Razão de moradores
+V034,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,5.130154050840999,Razão de moradores
+V035,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.817020831007804,Razão de moradores
+V036,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.805058949532145,Razão de moradores
+V037,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,12.734738619210646,Lixo inadequado
+V038,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,12.639460159942917,Lixo inadequado
+V039,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,28.22217196116381,Lixo inadequado
+V040,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,7.108325652898334,Moradia não convencional
+V041,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,16.167573838503603,Lixo inadequado
+V042,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,31.45982741458777,Lixo inadequado
+V043,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,5.093017334949752,Razão de moradores
+V044,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,5.0226998331960075,Razão de moradores
+V045,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,3.363179617027877,Razão de moradores
+V046,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,3.397091790836948,Razão de moradores
+V047,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,3.4253148749782554,Razão de moradores
+V048,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,3.460487202006722,Razão de moradores
+V049,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,8.804029264009209,Razão de moradores
+V050,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,8.63658408517584,Razão de moradores
+V051,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.622281201955254,Razão de moradores
+V052,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.627993038646472,Razão de moradores
+V053,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.495397126948281,Razão de moradores
+V054,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.462694588177879,Razão de moradores
+V055,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.690263463728773,Água inadequada
+V056,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,37.52023244946722,Moradia não convencional
+V057,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,5.96013508119784,Razão de moradores
+V058,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,8.037874589916367,Moradia não convencional
+V059,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,6.9404877948620145,Banheiro graduado
+V060,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,9.98001842145042,Moradia não convencional
+V061,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.083650104769522,Razão de moradores
+V062,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.0125209846467484,Razão de moradores
+V063,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,2.7892853285835364,Razão de moradores
+V064,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,2.82247045866941,Razão de moradores
+V065,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,2.649753488889586,Razão de moradores
+V066,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,2.686519939643421,Razão de moradores
+V067,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,6.427683699864155,Razão de moradores
+V068,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,6.477461378811084,Razão de moradores
+V069,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,5.154916480766016,Razão de moradores
+V070,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,5.130403336768103,Razão de moradores
+V071,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.817265602532207,Razão de moradores
+V072,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.8053412227794885,Razão de moradores
+V073,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,12.736693693170892,Lixo inadequado
+V074,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,12.641283016303234,Lixo inadequado
+V075,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,28.22462479301543,Lixo inadequado
+V076,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,7.108466495786246,Moradia não convencional
+V077,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,16.166657194896437,Lixo inadequado
+V078,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,31.470738831839327,Lixo inadequado
+V079,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,5.093357729597214,Razão de moradores
+V080,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,5.023048370218838,Razão de moradores
+V081,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,3.363415957839197,Razão de moradores
+V082,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,3.397324197202503,Razão de moradores
+V083,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,3.425552242651328,Razão de moradores
+V084,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,3.460719287832846,Razão de moradores
+V085,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,8.806577257853945,Razão de moradores
+V086,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,8.639226789049781,Razão de moradores
+V087,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.623445420508519,Razão de moradores
+V088,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.629115483784895,Razão de moradores
+V089,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.496516703600141,Razão de moradores
+V090,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.463790116130291,Razão de moradores
+V091,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.689806548506733,Água inadequada
+V092,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,37.51863743294283,Moradia não convencional
+V093,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,5.959782505553147,Razão de moradores
+V094,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,8.037153482219567,Moradia não convencional
+V095,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,6.9397746701153995,Banheiro graduado
+V096,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,9.979381427224311,Moradia não convencional
+V097,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.083492959861402,Razão de moradores
+V098,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.012392052908869,Razão de moradores
+V099,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,2.7891978679030633,Razão de moradores
+V100,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,2.8223729882066078,Razão de moradores
+V101,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,2.649666028921022,Razão de moradores
+V102,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,2.6864220703160373,Razão de moradores
+V103,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,6.427254291268052,Razão de moradores
+V104,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,6.47704141634608,Razão de moradores
+V105,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,5.154562652610972,Razão de moradores
+V106,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,5.130038348664261,Razão de moradores
+V107,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.816930284996209,Razão de moradores
+V108,promax,60_40,70,60.0,60.0,60.0,0.0,Ananindeua,Ananindeua,4.804998437496983,Razão de moradores

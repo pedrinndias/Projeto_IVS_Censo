@@ -1,0 +1,4537 @@
+{
+ "P00": {
+  "titulo": "Perguntas gerais",
+  "o": "Perguntas que podem vir em qualquer momento da reunião: andamento, como conferi, ferramentas, limitações e próximos passos.",
+  "q": [
+   {
+    "p": "Em que pé está o trabalho?",
+    "r": "As 11 demandas de setembro estão feitas. A descritiva cobre 31 indicadores e as correlações; a fatorial tem uma referência proposta e 108 versões testadas. Falta você escolher a versão e decidir os pontos em aberto.",
+    "de_onde": "DM01; DC07; VP00"
+   },
+   {
+    "p": "Como você conferiu os números?",
+    "r": "Recalculei os indicadores direto dos códigos V do Censo, por um caminho separado, e bateram com o banco e com as tabelas. Os números do relatório saem das tabelas de resultado.",
+    "de_onde": "auditoria geral de 08/10 (17 checagens)"
+   },
+   {
+    "p": "Que ferramentas você usou?",
+    "r": "Python para tudo (scripts que geram tabelas e slides). [Escreva aqui, com as suas palavras, como usou IA e como conferiu.]",
+    "de_onde": "[o Pedro decide a resposta]"
+   },
+   {
+    "p": "Quais as limitações?",
+    "r": "Sigilo não aleatório, exclusão por lista, sem análise espacial e validação só contra FCU. E é estudo ecológico: vale para setores, não para pessoas.",
+    "de_onde": "notas do Pedro (ART034 p.537); ART008 p.194"
+   }
+  ],
+  "k": [
+   "11 demandas; 31 indicadores; 108 versões; 24 elegíveis",
+   "Em aberto: versão do índice, regra das faixas, formativo × reflexivo, moradia"
+  ],
+  "ver": [
+   "DM01",
+   "DC07",
+   "VP00",
+   "VP05"
+  ],
+  "tipo": "geral"
+ },
+ "A01": {
+  "titulo": "Relatório descritivo do andamento",
+  "o": "Capa. O relatório tem cinco partes: as demandas de setembro e como foram cobertas, a descrição de cada indicador, as correlações, a análise fatorial (a referência proposta e as demandas sobre ela) e as 108 versões da fatorial.",
+  "q": [
+   {
+    "p": "Qual o objetivo deste relatório?",
+    "r": "Mostrar o que fiz de cada demanda de setembro, para você conferir os números com os seus resultados e decidir o que fica em aberto.",
+    "de_onde": "A01; DM01"
+   },
+   {
+    "p": "Qual a base de dados?",
+    "r": "Os setores censitários dos 70 municípios do ELSI-Brasil, Censo 2022: 109.032 setores, dos quais 104.108 são urbanos com dados divulgados.",
+    "de_onde": "DS01; T01_funil.csv"
+   }
+  ],
+  "k": [
+   "70 municípios do ELSI-Brasil; Censo 2022",
+   "109.032 setores; 104.108 na descritiva; 73.878 na fatorial"
+  ],
+  "ver": [
+   "DS01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DM00": {
+  "titulo": "As demandas e como foram cobertas",
+  "o": "Abre a parte das demandas de setembro. Cada slide tem: o pedido, como eu li, o que foi feito, o que contornei e onde está o resultado.",
+  "q": [
+   {
+    "p": "Todas as demandas foram atendidas?",
+    "r": "As 11 estão concluídas. Três têm um ponto aberto: o banheiro graduado (demanda 6), a leitura de \"fatorial de tudo isso\" (demanda 8) e manter ou não a moradia não convencional (demanda 9).",
+    "de_onde": "DM01"
+   },
+   {
+    "p": "O que é \"o que contornamos\"?",
+    "r": "É onde o dado não deixou fazer exatamente o pedido, e o que fiz no lugar. Por exemplo, a mediana de renda do setor não existe no arquivo do Censo.",
+    "de_onde": "DM14; DM02"
+   }
+  ],
+  "k": [
+   "11 demandas, todas concluídas",
+   "Pontos abertos: demandas 6, 8 e 9"
+  ],
+  "ver": [
+   "DM01"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DM01": {
+  "titulo": "As 11 demandas",
+  "o": "A lista das 11 demandas de setembro, o estado de cada uma, o slide que a explica e o slide do resultado.",
+  "q": [
+   {
+    "p": "A demanda 4 aparece com o DM05, que não está no relatório. Por quê?",
+    "r": "Tirei o DM05 na edição. O resultado da demanda 4 (separar útil × inútil) está no mapa, como diz a coluna \"Resultado em\".",
+    "de_onde": "DM01, linha 4 [A CONFERIR: o Pedro confirma]"
+   },
+   {
+    "p": "O que quer dizer \"graduada (V00237) em aberto\" na demanda 6?",
+    "r": "O sem banheiro foi juntado com a V00495. A versão graduada, que usa a V00237, foi feita depois, no NB05; fica em aberto se ela substitui a V00495.",
+    "de_onde": "DM01; DM07"
+   },
+   {
+    "p": "Por que a demanda 8 diz \"leitura padrão da pergunta 6\"?",
+    "r": "\"Fatorial de tudo isso\" pode ser lida de mais de um jeito. Usei a leitura de juntar as quatro variáveis novas ao IVS-7 (cenário S6); falta confirmar com você.",
+    "de_onde": "DM09"
+   }
+  ],
+  "k": [
+   "Demanda 6: V00495 feita; graduada em aberto",
+   "Demanda 9: moradia como não convencional, sem excluir"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DM02": {
+  "titulo": "Demanda 1: a renda com a mediana",
+  "o": "Demanda 1: uma coluna de renda com a mediana. A renda do Censo por setor é a média (V06004); a mediana do setor (V06006) não vem no arquivo. O setor extremo de Belo Horizonte tem renda média de R$ 170.418,06.",
+  "q": [
+   {
+    "p": "Por que não usou a mediana do setor?",
+    "r": "Ela não existe no arquivo do Censo: vêm V06001 a V06005, não V06006. Por isso troquei só o setor extremo pela mediana de BH calculada sem ele.",
+    "de_onde": "DM02; ART004"
+   },
+   {
+    "p": "Quanto isso muda?",
+    "r": "Só 1 setor fica diferente. A média de BH vai de R$ 4.649,57 a R$ 4.649,47 conforme a alternativa, e a média nos 70 fica em R$ 4.185,80.",
+    "de_onde": "DM02, tabela; renda_imputacao_alternativas.csv"
+   },
+   {
+    "p": "Por que esse setor é extremo?",
+    "r": "É o maior valor da base, muito acima dos outros, e ele sozinho puxava a média de BH. Não investiguei o motivo no setor (por exemplo, poucos domicílios de renda muito alta).",
+    "de_onde": "DM02 [A CONFERIR: características do setor 310620005650366]"
+   }
+  ],
+  "k": [
+   "Setor 310620005650366, R$ 170.418,06",
+   "Imputado: R$ 3.058,235 (mediana de BH sem o setor)",
+   "1 setor difere; base passa de 104 para 105 colunas"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DM03": {
+  "titulo": "Demanda 2: quadro de indicadores",
+  "o": "Demanda 2: o quadro de indicadores. São 28 indicadores em quatro dimensões; 7 deles formam o IVS-7, adaptado do IVS-BH 2012.",
+  "q": [
+   {
+    "p": "Onde está a definição de cada indicador?",
+    "r": "Um slide por indicador (DS03 a DS33): numerador, denominador, arquivo do Censo e a distribuição. O quadro também está no Quadro_Indicadores.csv da entrega.",
+    "de_onde": "DM03; DS03 a DS33"
+   },
+   {
+    "p": "Por que 28 aqui e 31 slides de indicador?",
+    "r": "Os 28 do quadro mais as duas variantes de renda e o banheiro graduado, que foram criados depois, nas demandas 1 e 6.",
+    "de_onde": "DM03; DM14 linha 2; DS02"
+   },
+   {
+    "p": "O que é o IVS-7?",
+    "r": "Os sete componentes do IVS-BH 2012 adaptados ao Censo 2022: água, esgoto, lixo, razão de moradores, analfabetismo, renda e cor/raça.",
+    "de_onde": "ART003; ART004; DC01"
+   }
+  ],
+  "k": [
+   "28 indicadores: 6 demografia, 7 morfologia, 10 saneamento, 5 socioeconômica",
+   "7 no IVS-7"
+  ],
+  "ver": [
+   "DS02",
+   "DC01",
+   "DC07"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DM04": {
+  "titulo": "Demanda 3: fatorial sem bootstrap, sem e com rotação",
+  "o": "Demanda 3: fatorial sem bootstrap, sem e com rotação. Rotação é girar os eixos dos fatores para cada variável carregar forte num fator só, o que facilita dar nome aos fatores.",
+  "q": [
+   {
+    "p": "Por que tirou o bootstrap?",
+    "r": "Foi o pedido. Para ter uma ideia da incerteza, rodei a fatorial tirando um município de cada vez (S0, S1 e S6).",
+    "de_onde": "DM04; estabilidade.csv"
+   },
+   {
+    "p": "Qual a diferença entre Varimax e promax?",
+    "r": "A Varimax mantém os fatores sem correlação (ortogonal). A promax deixa os fatores se correlacionarem (oblíqua); por isso tem Φ, a correlação entre eles.",
+    "de_onde": "ART002 p.169; ART001 p.38; FA10"
+   },
+   {
+    "p": "Os pesos mudam muito com a rotação?",
+    "r": "No S0, o peso de F1 vai de 73,40% (promax, estrutura) a 75,89% (sem rotação). Como diz Figueiredo, as rotações costumam dar resultados parecidos quando o padrão é claro.",
+    "de_onde": "DM04, tabela; ART002 p.169"
+   }
+  ],
+  "k": [
+   "S0: F1 75,89% sem rotação; 74,00% Varimax; 74,69% promax padrão",
+   "Φ no S0: 0,151"
+  ],
+  "ver": [],
+  "p": [
+   "Promax: artigo original (ART025) em andamento"
+  ],
+  "tipo": "slide"
+ },
+ "DM06": {
+  "titulo": "Demanda 5: comparar \"não chega\"",
+  "o": "Demanda 5: comparar \"água não chega\" (a água não chega ao domicílio por canalização). Fiz duas leituras: (a) contra as outras categorias de água e (b) contra os indicadores do IVS-7.",
+  "q": [
+   {
+    "p": "O que mostra a comparação?",
+    "r": "\"Não chega\" se correlaciona mais com as outras faltas de água: 0,514 com sem água canalizada e 0,506 com água só no terreno. Com o IVS-7, a maior é com água inadequada (0,459).",
+    "de_onde": "DM06, tabela; FP03"
+   },
+   {
+    "p": "Por que o % de zeros mudou de 85,7% para 94,5%?",
+    "r": "O 85,7% usava os 104.108 setores como denominador e contava o faltante como não zero. Sobre os setores com valor, são 94,5%.",
+    "de_onde": "DM06"
+   },
+   {
+    "p": "Os setores com \"não chega\" são mais vulneráveis?",
+    "r": "Na mediana, sim: renda menor e analfabetismo, cor/raça PPI e esgoto inadequado maiores (FP03). É descrição, não causa.",
+    "de_onde": "FP03"
+   }
+  ],
+  "k": [
+   "Spearman com água inadequada: 0,459",
+   "Zeros: 94,5% dos setores com valor"
+  ],
+  "ver": [
+   "FP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DM07": {
+  "titulo": "Demanda 6: juntar \"sem banheiro\"",
+  "o": "Demanda 6: juntar o \"sem banheiro\". A V00495 (sem banheiro de uso exclusivo) é a soma de três partes: V00236 (só banheiro de uso comum), V00237 (só sanitário) e V00238 (sem banheiro nem sanitário).",
+  "q": [
+   {
+    "p": "Como sabe que a V00495 contém as outras?",
+    "r": "Conferi no banco: a soma V00236 + V00237 + V00238 fecha com a V00495 em 91.199 de 91.199 setores.",
+    "de_onde": "DM07, tabela"
+   },
+   {
+    "p": "O que é o banheiro graduado?",
+    "r": "Uma nota de 0 a 1 que pesa a gravidade: 1 para uso comum, 2 para só sanitário, 3 para sem banheiro nem sanitário, dividido por 3 vezes o total de domicílios.",
+    "de_onde": "DS13"
+   },
+   {
+    "p": "Por que a V00237 não estava na base?",
+    "r": "Não tinha sido extraída na primeira montagem. Extraí de novo dos arquivos do Censo.",
+    "de_onde": "DM07; DM14"
+   }
+  ],
+  "k": [
+   "V00495 = V00236 + V00237 + V00238 em 91.199 de 91.199",
+   "Graduado: pesos 1, 2 e 3"
+  ],
+  "ver": [
+   "DS13"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DM08": {
+  "titulo": "Demanda 7: adicionar canalização e sem banheiro",
+  "o": "Demanda 7: acrescentar canalização e sem banheiro. Uma variável nova por vez sobre o IVS-7: não chega (S2), sem canalização (S3) e sem banheiro (S4).",
+  "q": [
+   {
+    "p": "Por que uma por vez?",
+    "r": "Assim dá para ver o efeito de cada uma. Juntas, estão no S6 (demanda 8).",
+    "de_onde": "DM08; DM09"
+   },
+   {
+    "p": "Por que o S4 perde tantos setores?",
+    "r": "O sem banheiro tem faltantes em muitos setores: o S4 fica com 75.955, 11.590 a menos que o S0.",
+    "de_onde": "DM08, tabela; FC05"
+   },
+   {
+    "p": "O KMO piora com as variáveis novas?",
+    "r": "Não: fica entre 0,780 (S2) e 0,805 (S3); o S0 tem 0,783.",
+    "de_onde": "DM08, tabela"
+   }
+  ],
+  "k": [
+   "S2: 78.256 setores; S3: 87.512; S4: 75.955",
+   "KMO de 0,780 a 0,805"
+  ],
+  "ver": [
+   "DM01"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DM09": {
+  "titulo": "Demanda 8: fatorial de tudo isso",
+  "o": "Demanda 8: fatorial de tudo isso. Li como o IVS-7 mais as quatro variáveis novas (não chega, sem canalização, sem banheiro e não convencional): cenário S6. O S7 é o S6 sem lixo.",
+  "q": [
+   {
+    "p": "Por que o S6 explica menos variância?",
+    "r": "Com 11 variáveis, dois fatores explicam 48,94%, contra 62,12% no IVS-7 (S0). Kaiser e Horn pedem 4 fatores no S6; fiquei com 2 para comparar com o IVS-BH.",
+    "de_onde": "DM09, tabela; FP06"
+   },
+   {
+    "p": "Essa leitura de \"tudo isso\" está certa?",
+    "r": "É a minha leitura; preciso que você confirme. Se for outra, rodo de novo.",
+    "de_onde": "DM09"
+   },
+   {
+    "p": "As três rendas mudam o resultado?",
+    "r": "Não: o KMO é 0,810 nas três e a variância, 48,94%.",
+    "de_onde": "DM09, tabela"
+   }
+  ],
+  "k": [
+   "S6: 69.458 setores, KMO 0,810, 48,94%",
+   "S7: KMO 0,813, 53,22%"
+  ],
+  "ver": [
+   "FP06",
+   "FC07"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DM10": {
+  "titulo": "Demanda 9: habitação convencional",
+  "o": "Demanda 9: habitação convencional. Usei no sentido da vulnerabilidade: moradia não convencional. Mostrei o diagnóstico em vez de tirar a variável.",
+  "q": [
+   {
+    "p": "Por que a moradia não convencional é problemática na fatorial?",
+    "r": "Quase todo setor tem zero (92,19% no S5) e a comunalidade é muito baixa (0,013): a fatorial quase não \"vê\" a variável.",
+    "de_onde": "DM10, tabela"
+   },
+   {
+    "p": "O que é comunalidade?",
+    "r": "A parte da variância da variável que os fatores explicam. Abaixo de 0,30 ela fica fora pelos critérios do NB05.",
+    "de_onde": "ART002 p.176; FA04"
+   },
+   {
+    "p": "Então tira ou mantém?",
+    "r": "Pelo critério, sairia. Deixei o diagnóstico para decidirmos juntos.",
+    "de_onde": "DM10"
+   }
+  ],
+  "k": [
+   "Comunalidade 0,013 (S5); 0,018 (S6)",
+   "Zeros: 92,19% (S5)"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DM11": {
+  "titulo": "Demanda 10: testar lixo",
+  "o": "Demanda 10: testar lixo. Rodei com e sem o lixo: S1 (IVS-7 sem lixo) e S7 (S6 sem lixo).",
+  "q": [
+   {
+    "p": "O que acontece com o lixo?",
+    "r": "No S0 ele forma um fator próprio na Varimax: Kaiser e Horn dão 2 fatores. Sem o lixo (S1) dão 1.",
+    "de_onde": "DM11, tabela; FP08"
+   },
+   {
+    "p": "Por que o lixo se separa?",
+    "r": "Quase não se correlaciona com os outros indicadores (0,095 com água inadequada). Ele sozinho vira um fator.",
+    "de_onde": "DC01; FP02"
+   },
+   {
+    "p": "Isso é estável?",
+    "r": "Não muito: em duas rodadas tirando um município de cada vez, o lixo muda de fator. E com lixo quase nenhuma versão passa nos critérios: só 3 das 108.",
+    "de_onde": "DM11; VP05"
+   }
+  ],
+  "k": [
+   "S0: 2 fatores (Kaiser e Horn); S1: 1",
+   "Lixo × água inadequada: 0,095"
+  ],
+  "ver": [
+   "DC01",
+   "VP05"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DM12": {
+  "titulo": "Demanda 11: testar as duas rotações",
+  "o": "Demanda 11: testar as duas rotações. Varimax e promax; na promax há duas formas de ler as cargas: a matriz padrão (efeito próprio do fator) e a matriz estrutura (correlação da variável com o fator).",
+  "q": [
+   {
+    "p": "Qual rotação usar?",
+    "r": "Não escolhi. Mostro as duas; os pesos de F1 no S1 ficam entre 59,64% e 65,82% nas leituras oblíquas e 65,01% na Varimax.",
+    "de_onde": "DM12, tabela; FP09"
+   },
+   {
+    "p": "O que é o Φ de 0,522 no S1?",
+    "r": "A correlação entre F1 e F2 na promax. Se fosse perto de zero, a Varimax bastaria.",
+    "de_onde": "DM12; FA10"
+   },
+   {
+    "p": "Padrão ou estrutura?",
+    "r": "A padrão mostra quanto cada fator, sozinho, explica a variável; a estrutura soma também o que vem pela correlação entre os fatores. Reportei as duas.",
+    "de_onde": "FA09"
+   }
+  ],
+  "k": [
+   "S1: F1 65,01% Varimax; 65,82% promax padrão; 59,64% estrutura",
+   "Φ no S1: 0,522"
+  ],
+  "ver": [],
+  "p": [
+   "Matriz padrão × estrutura: sem leitura no fichamento"
+  ],
+  "tipo": "slide"
+ },
+ "DM14": {
+  "titulo": "Tudo o que contornamos",
+  "o": "Resumo de tudo o que contornei, demanda por demanda: o obstáculo, o que fiz no lugar e o efeito.",
+  "q": [
+   {
+    "p": "Algum contorno muda o resultado?",
+    "r": "O maior efeito é a perda de setores quando entra variável nova (demanda 7). A renda imputada muda 1 setor.",
+    "de_onde": "DM14; DM08"
+   },
+   {
+    "p": "O que é o erro dos 85,7%?",
+    "r": "Um percentual calculado antes com o denominador errado; o certo é 94,5% (demanda 5).",
+    "de_onde": "DM06"
+   }
+  ],
+  "k": [
+   "Renda: 1 setor muda",
+   "Zeros de \"não chega\": 94,5%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS00": {
+  "titulo": "Descritiva dos indicadores",
+  "o": "Abre a descritiva: um indicador por slide, sem cruzar indicadores. Cada um tem a definição, o arquivo do Censo e a distribuição nos 104.108 setores.",
+  "q": [
+   {
+    "p": "Por que 104.108 setores?",
+    "r": "São os urbanos com Dados_sig = OK: tirei os rurais e os sem dados divulgados.",
+    "de_onde": "DS01"
+   },
+   {
+    "p": "Por que não cruza indicadores aqui?",
+    "r": "Foi a forma combinada: primeiro cada indicador sozinho; as correlações vêm depois (DC).",
+    "de_onde": "DC00"
+   }
+  ],
+  "k": [
+   "104.108 setores urbanos com Dados_sig = OK"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS01": {
+  "titulo": "A base",
+  "o": "O funil: de 109.032 setores para os que entram em cada parte. É a forma recomendada de abrir os resultados (como se chegou à amostra).",
+  "q": [
+   {
+    "p": "Por que saem 2.685 setores rurais?",
+    "r": "O IVS é de vulnerabilidade intraurbana: compara setores dentro da cidade, e os rurais ficam fora.",
+    "de_onde": "DS01; ART010 p.8"
+   },
+   {
+    "p": "O que é Dados_sig?",
+    "r": "Uma marca por setor: OK se o setor tem dados divulgados. Saem 2.239 setores sem dado (sigilo ou sem domicílio ocupado). A regra vem do IVS-BH.",
+    "de_onde": "ART004 (Tratamento dos dados); DS01"
+   },
+   {
+    "p": "Por que a fatorial usa só 73.878?",
+    "r": "Exclusão por lista: sai o setor que não tem algum dos sete componentes. Saem 30.230, a maior parte pelo analfabetismo e pelo banheiro graduado.",
+    "de_onde": "DS01; FA01"
+   }
+  ],
+  "k": [
+   "109.032 → 106.347 urbanos → 104.108 com dados → 73.878 na fatorial",
+   "Saem 30.230 na fatorial"
+  ],
+  "ver": [
+   "FA01"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS02": {
+  "titulo": "Setores com valor, indicador a indicador",
+  "o": "Quantos setores têm valor em cada indicador. Faltante = o setor não tem o dado (sigilo ou denominador zero).",
+  "q": [
+   {
+    "p": "Qual indicador perde mais setores?",
+    "r": "Analfabetismo 15+: 16.552 faltantes (15,90%). Depois água só no terreno (15.897) e banheiro graduado (14.292).",
+    "de_onde": "DS02, tabela; T02_perdas_por_indicador.csv"
+   },
+   {
+    "p": "Por que o analfabetismo perde tanto?",
+    "r": "Os dados de alfabetização têm mais setores sem divulgação. Não verifiquei a causa setor a setor.",
+    "de_onde": "DS02 [A CONFERIR: causa dos faltantes do analfabetismo]"
+   },
+   {
+    "p": "Isso enviesa a fatorial?",
+    "r": "Pode: o sigilo não é aleatório (atinge setores pequenos). Está nas limitações.",
+    "de_onde": "ART034 p.537; notas do Pedro (limitações)"
+   }
+  ],
+  "k": [
+   "Analfabetismo: 16.552 faltantes (15,90%)",
+   "Banheiro graduado: 14.292 (13,73%)"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS03": {
+  "titulo": "Água inadequada",
+  "o": "Proporção de domicílios com abastecimento de água inadequado ou ausente. Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: saneamento.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00112, V00113, V00114, V00115 e mais 3; denominador: V00001.",
+    "de_onde": "DS03, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que a mediana é zero?",
+    "r": "Em 74,25% dos setores nenhum domicílio está nessa situação: a condição se concentra em poucos setores. Por isso descrevo também a média (6,96%) e o % de setores com valor acima de zero (slide seguinte).",
+    "de_onde": "DS03, tabela de distribuição; T03_descritivas_global.csv"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Assimetria 3,42: cauda à direita. Poucos setores com valor bem alto puxam a média (6,96%) para cima da mediana (0,00%).",
+    "de_onde": "DS03, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Está no IVS-7 (os sete indicadores adaptados do IVS-BH 2012) e na referência proposta do NB05.",
+    "de_onde": "DS03, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 104.108; faltantes: 0 (0,00%)",
+   "Média 6,96%; mediana 0,00%",
+   "Setores com zero: 74,25%",
+   "IVS-7: Sim; referência: Sim"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS03-2": {
+  "titulo": "Água inadequada: por região, município e FCU",
+  "o": "Água inadequada separado por região, por município e entre setores de favela (FCU) e os demais. Como a maioria dos setores tem zero, compara o % de setores com valor acima de zero e a média.",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Norte (% de setores com valor acima de zero: 87,6%); a menor é a Sudeste (12,8%).",
+    "de_onde": "DS03-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 36,8%; nos demais, 23,2%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS03-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, vai de 0,0% (São Paulo das Missões) a 100,0% (Placas). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS03-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Norte: 87,6%; Sudeste: 12,8%",
+   "FCU 36,8% × demais 23,2%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS04": {
+  "titulo": "Esgoto inadequado",
+  "o": "Proporção de domicílios com esgotamento sanitário inadequado ou ausente. Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: saneamento.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00312, V00313, V00314, V00315 e mais 1; denominador: V00001.",
+    "de_onde": "DS04, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que a mediana é zero?",
+    "r": "Em 72,53% dos setores nenhum domicílio está nessa situação: a condição se concentra em poucos setores. Por isso descrevo também a média (8,20%) e o % de setores com valor acima de zero (slide seguinte).",
+    "de_onde": "DS04, tabela de distribuição; T03_descritivas_global.csv"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Assimetria 2,98: cauda à direita. Poucos setores com valor bem alto puxam a média (8,20%) para cima da mediana (0,00%).",
+    "de_onde": "DS04, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Está no IVS-7 (os sete indicadores adaptados do IVS-BH 2012) e na referência proposta do NB05.",
+    "de_onde": "DS04, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 104.107; faltantes: 1 (0,00%)",
+   "Média 8,20%; mediana 0,00%",
+   "Setores com zero: 72,53%",
+   "IVS-7: Sim; referência: Sim"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS04-2": {
+  "titulo": "Esgoto inadequado: por região, município e FCU",
+  "o": "Esgoto inadequado separado por região, por município e entre setores de favela (FCU) e os demais. Como a maioria dos setores tem zero, compara o % de setores com valor acima de zero e a média.",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Norte (% de setores com valor acima de zero: 68,1%); a menor é a Sul (14,4%).",
+    "de_onde": "DS04-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 57,1%; nos demais, 20,7%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS04-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, vai de 0,0% (São Caetano do Sul) a 100,0% (Vicentinópolis). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS04-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Norte: 68,1%; Sul: 14,4%",
+   "FCU 57,1% × demais 20,7%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS05": {
+  "titulo": "Lixo inadequado",
+  "o": "Proporção de domicílios com destino do lixo inadequado ou ausente. Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: saneamento.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00398, V00399, V00400, V00401 e mais 1; denominador: V00001.",
+    "de_onde": "DS05, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que a mediana é zero?",
+    "r": "Em 62,78% dos setores nenhum domicílio está nessa situação: a condição se concentra em poucos setores. Por isso descrevo também a média (11,58%) e o % de setores com valor acima de zero (slide seguinte).",
+    "de_onde": "DS05, tabela de distribuição; T03_descritivas_global.csv"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Assimetria 2,38: cauda à direita. Poucos setores com valor bem alto puxam a média (11,58%) para cima da mediana (0,00%).",
+    "de_onde": "DS05, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Está no IVS-7, mas a referência proposta do NB05 é a versão sem lixo: com o lixo, ele forma um fator próprio (FP08).",
+    "de_onde": "DS05, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 104.108; faltantes: 0 (0,00%)",
+   "Média 11,58%; mediana 0,00%",
+   "Setores com zero: 62,78%",
+   "IVS-7: Sim; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS05-2": {
+  "titulo": "Lixo inadequado: por região, município e FCU",
+  "o": "Lixo inadequado separado por região, por município e entre setores de favela (FCU) e os demais. Como a maioria dos setores tem zero, compara o % de setores com valor acima de zero e a média.",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Nordeste (% de setores com valor acima de zero: 44,8%); a menor é a Centro-Oeste (30,4%).",
+    "de_onde": "DS05-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 59,5%; nos demais, 32,1%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS05-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, vai de 0,0% (São Paulo das Missões) a 100,0% (Placas). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS05-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Nordeste: 44,8%; Centro-Oeste: 30,4%",
+   "FCU 59,5% × demais 32,1%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS06": {
+  "titulo": "Sem água canalizada",
+  "o": "Proporção de domicílios em que a água não chega encanada até dentro do domicílio (complemento de V00199; equivale a V00200+V00201 sobre V00001). Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: saneamento.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00199; denominador: V00001.",
+    "de_onde": "DS06, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que a mediana é zero?",
+    "r": "Em 69,70% dos setores nenhum domicílio está nessa situação: a condição se concentra em poucos setores. Por isso descrevo também a média (1,50%) e o % de setores com valor acima de zero (slide seguinte).",
+    "de_onde": "DS06, tabela de distribuição; T03_descritivas_global.csv"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Assimetria 8,70: cauda à direita. Poucos setores com valor bem alto puxam a média (1,50%) para cima da mediana (0,00%).",
+    "de_onde": "DS06, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Foi pedido na demanda 7. Testei nos cenários S3 e S6 e no eixo água das 108 versões; não está na referência proposta.",
+    "de_onde": "DS06, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 104.067; faltantes: 41 (0,04%)",
+   "Média 1,50%; mediana 0,00%",
+   "Setores com zero: 69,70%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS06-2": {
+  "titulo": "Sem água canalizada: por região, município e FCU",
+  "o": "Sem água canalizada separado por região, por município e entre setores de favela (FCU) e os demais. Como a maioria dos setores tem zero, compara o % de setores com valor acima de zero e a média.",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Norte (% de setores com valor acima de zero: 64,1%); a menor é a Sul (17,8%).",
+    "de_onde": "DS06-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 52,1%; nos demais, 25,3%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS06-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, vai de 0,0% (São Paulo das Missões) a 100,0% (Portel). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS06-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Norte: 64,1%; Sul: 17,8%",
+   "FCU 52,1% × demais 25,3%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS07": {
+  "titulo": "Água não chega",
+  "o": "Proporção de domicílios em que a água não chega encanada ao domicílio (V00201). Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: saneamento.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00201; denominador: V00001.",
+    "de_onde": "DS07, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que a mediana é zero?",
+    "r": "Em 94,50% dos setores nenhum domicílio está nessa situação: a condição se concentra em poucos setores. Por isso descrevo também a média (0,47%) e o % de setores com valor acima de zero (slide seguinte).",
+    "de_onde": "DS07, tabela de distribuição; T03_descritivas_global.csv"
+   },
+   {
+    "p": "Por que há 9.706 faltantes?",
+    "r": "O setor fica sem valor quando o IBGE não divulgou o dado (sigilo, em setores com poucos moradores) ou quando o denominador é zero. Não separei as duas causas por indicador. O setor sai só deste indicador; na fatorial, sai inteiro (exclusão por lista).",
+    "de_onde": "DS07, linha Faltantes; T02_perdas_por_indicador.csv"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Demandas 5 e 7. Testei nos cenários S2 e S6 e no eixo água das 108 versões; não está na referência proposta.",
+    "de_onde": "DS07, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 94.402; faltantes: 9.706 (9,32%)",
+   "Média 0,47%; mediana 0,00%",
+   "Setores com zero: 94,50%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS07-2": {
+  "titulo": "Água não chega: por região, município e FCU",
+  "o": "Água não chega separado por região, por município e entre setores de favela (FCU) e os demais. Como a maioria dos setores tem zero, compara o % de setores com valor acima de zero e a média.",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Norte (% de setores com valor acima de zero: 21,2%); a menor é a Sul (1,4%).",
+    "de_onde": "DS07-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 12,5%; nos demais, 4,0%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS07-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, vai de 0,0% (Chapada dos Guimarães) a 88,2% (Arara). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS07-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Norte: 21,2%; Sul: 1,4%",
+   "FCU 12,5% × demais 4,0%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS08": {
+  "titulo": "Água só no terreno",
+  "o": "Proporção de domicílios em que a água chega encanada apenas ao terreno (V00200). Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: saneamento.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00200; denominador: V00001.",
+    "de_onde": "DS08, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que a mediana é zero?",
+    "r": "Em 88,28% dos setores nenhum domicílio está nessa situação: a condição se concentra em poucos setores. Por isso descrevo também a média (1,05%) e o % de setores com valor acima de zero (slide seguinte).",
+    "de_onde": "DS08, tabela de distribuição; T03_descritivas_global.csv"
+   },
+   {
+    "p": "Por que há 15.897 faltantes?",
+    "r": "O setor fica sem valor quando o IBGE não divulgou o dado (sigilo, em setores com poucos moradores) ou quando o denominador é zero. Não separei as duas causas por indicador. O setor sai só deste indicador; na fatorial, sai inteiro (exclusão por lista).",
+    "de_onde": "DS08, linha Faltantes; T02_perdas_por_indicador.csv"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Descreve a canalização junto com \"não chega\" e \"sem canalização\". Não testei como componente da fatorial.",
+    "de_onde": "DS08, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 88.211; faltantes: 15.897 (15,27%)",
+   "Média 1,05%; mediana 0,00%",
+   "Setores com zero: 88,28%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS08-2": {
+  "titulo": "Água só no terreno: por região, município e FCU",
+  "o": "Água só no terreno separado por região, por município e entre setores de favela (FCU) e os demais. Como a maioria dos setores tem zero, compara o % de setores com valor acima de zero e a média.",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Norte (% de setores com valor acima de zero: 39,6%); a menor é a Sul (3,0%).",
+    "de_onde": "DS08-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 28,0%; nos demais, 8,4%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS08-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, vai de 0,0% (Guapiaçu) a 100,0% (São Raimundo do Doca Bezerra). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS08-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Norte: 39,6%; Sul: 3,0%",
+   "FCU 28,0% × demais 8,4%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS09": {
+  "titulo": "Sem banheiro",
+  "o": "Proporção de domicílios sem banheiro de uso exclusivo com chuveiro e vaso sanitário. Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: saneamento.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00495; denominador: V00001.",
+    "de_onde": "DS09, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que a mediana é zero?",
+    "r": "Em 95,60% dos setores nenhum domicílio está nessa situação: a condição se concentra em poucos setores. Por isso descrevo também a média (0,23%) e o % de setores com valor acima de zero (slide seguinte).",
+    "de_onde": "DS09, tabela de distribuição; T03_descritivas_global.csv"
+   },
+   {
+    "p": "Por que há 12.196 faltantes?",
+    "r": "O setor fica sem valor quando o IBGE não divulgou o dado (sigilo, em setores com poucos moradores) ou quando o denominador é zero. Não separei as duas causas por indicador. O setor sai só deste indicador; na fatorial, sai inteiro (exclusão por lista).",
+    "de_onde": "DS09, linha Faltantes; T02_perdas_por_indicador.csv"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Demanda 6. É a V00495, testada no cenário S4 e no eixo banheiro das 108 versões. Na referência entrou a forma graduada do banheiro.",
+    "de_onde": "DS09, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 91.912; faltantes: 12.196 (11,71%)",
+   "Média 0,23%; mediana 0,00%",
+   "Setores com zero: 95,60%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS09-2": {
+  "titulo": "Sem banheiro: por região, município e FCU",
+  "o": "Sem banheiro separado por região, por município e entre setores de favela (FCU) e os demais. Como a maioria dos setores tem zero, compara o % de setores com valor acima de zero e a média.",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Norte (% de setores com valor acima de zero: 24,0%); a menor é a Centro-Oeste (1,3%).",
+    "de_onde": "DS09-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 14,1%; nos demais, 2,5%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS09-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, vai de 0,0% (Anápolis) a 100,0% (Placas). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS09-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Norte: 24,0%; Centro-Oeste: 1,3%",
+   "FCU 14,1% × demais 2,5%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS10": {
+  "titulo": "Sem banheiro nem sanitário",
+  "o": "Proporção de domicílios sem banheiro nem sanitário. Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: saneamento.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00238; denominador: V00001.",
+    "de_onde": "DS10, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que a mediana é zero?",
+    "r": "Em 99,65% dos setores nenhum domicílio está nessa situação: a condição se concentra em poucos setores. Por isso descrevo também a média (0,02%) e o % de setores com valor acima de zero (slide seguinte).",
+    "de_onde": "DS10, tabela de distribuição; T03_descritivas_global.csv"
+   },
+   {
+    "p": "Por que há 2.969 faltantes?",
+    "r": "O setor fica sem valor quando o IBGE não divulgou o dado (sigilo, em setores com poucos moradores) ou quando o denominador é zero. Não separei as duas causas por indicador. O setor sai só deste indicador; na fatorial, sai inteiro (exclusão por lista).",
+    "de_onde": "DS10, linha Faltantes; T02_perdas_por_indicador.csv"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "É uma das três partes do sem banheiro. Entra no índice só dentro do banheiro graduado (peso 3), não sozinha.",
+    "de_onde": "DS10, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 101.139; faltantes: 2.969 (2,85%)",
+   "Média 0,02%; mediana 0,00%",
+   "Setores com zero: 99,65%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS10-2": {
+  "titulo": "Sem banheiro nem sanitário: por região, município e FCU",
+  "o": "Sem banheiro nem sanitário separado por região, por município e entre setores de favela (FCU) e os demais. Como a maioria dos setores tem zero, compara o % de setores com valor acima de zero e a média.",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Norte (% de setores com valor acima de zero: 1,4%); a menor é a Sudeste (0,1%).",
+    "de_onde": "DS10-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 1,1%; nos demais, 0,2%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS10-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, vai de 0,0% (Anápolis) a 33,3% (São Raimundo do Doca Bezerra). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS10-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Norte: 1,4%; Sudeste: 0,1%",
+   "FCU 1,1% × demais 0,2%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS11": {
+  "titulo": "Só sanitário",
+  "o": "Proporção de domicílios com apenas sanitário ou buraco para dejeções. Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: saneamento.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00237; denominador: V00001.",
+    "de_onde": "DS11, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que a mediana é zero?",
+    "r": "Em 98,96% dos setores nenhum domicílio está nessa situação: a condição se concentra em poucos setores. Por isso descrevo também a média (0,06%) e o % de setores com valor acima de zero (slide seguinte).",
+    "de_onde": "DS11, tabela de distribuição; T03_descritivas_global.csv"
+   },
+   {
+    "p": "Por que há 3.811 faltantes?",
+    "r": "O setor fica sem valor quando o IBGE não divulgou o dado (sigilo, em setores com poucos moradores) ou quando o denominador é zero. Não separei as duas causas por indicador. O setor sai só deste indicador; na fatorial, sai inteiro (exclusão por lista).",
+    "de_onde": "DS11, linha Faltantes; T02_perdas_por_indicador.csv"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "É uma das três partes do sem banheiro. Entra no índice só dentro do banheiro graduado (peso 2), não sozinha.",
+    "de_onde": "DS11, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 100.297; faltantes: 3.811 (3,66%)",
+   "Média 0,06%; mediana 0,00%",
+   "Setores com zero: 98,96%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS11-2": {
+  "titulo": "Só sanitário: por região, município e FCU",
+  "o": "Só sanitário separado por região, por município e entre setores de favela (FCU) e os demais. Como a maioria dos setores tem zero, compara o % de setores com valor acima de zero e a média.",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Norte (% de setores com valor acima de zero: 4,0%); a menor é a Sudeste (0,2%).",
+    "de_onde": "DS11-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 3,4%; nos demais, 0,5%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS11-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, vai de 0,0% (Anápolis) a 83,3% (Placas). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS11-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Norte: 4,0%; Sudeste: 0,2%",
+   "FCU 3,4% × demais 0,5%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS12": {
+  "titulo": "Banheiro de uso comum",
+  "o": "Proporção de domicílios com apenas banheiro de uso comum. Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: saneamento.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00236; denominador: V00001.",
+    "de_onde": "DS12, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que a mediana é zero?",
+    "r": "Em 97,31% dos setores nenhum domicílio está nessa situação: a condição se concentra em poucos setores. Por isso descrevo também a média (0,11%) e o % de setores com valor acima de zero (slide seguinte).",
+    "de_onde": "DS12, tabela de distribuição; T03_descritivas_global.csv"
+   },
+   {
+    "p": "Por que há 9.694 faltantes?",
+    "r": "O setor fica sem valor quando o IBGE não divulgou o dado (sigilo, em setores com poucos moradores) ou quando o denominador é zero. Não separei as duas causas por indicador. O setor sai só deste indicador; na fatorial, sai inteiro (exclusão por lista).",
+    "de_onde": "DS12, linha Faltantes; T02_perdas_por_indicador.csv"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "É uma das três partes do sem banheiro. Entra no índice só dentro do banheiro graduado (peso 1), não sozinha.",
+    "de_onde": "DS12, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 94.414; faltantes: 9.694 (9,31%)",
+   "Média 0,11%; mediana 0,00%",
+   "Setores com zero: 97,31%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS12-2": {
+  "titulo": "Banheiro de uso comum: por região, município e FCU",
+  "o": "Banheiro de uso comum separado por região, por município e entre setores de favela (FCU) e os demais. Como a maioria dos setores tem zero, compara o % de setores com valor acima de zero e a média.",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Norte (% de setores com valor acima de zero: 17,2%); a menor é a Centro-Oeste (0,8%).",
+    "de_onde": "DS12-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 8,2%; nos demais, 1,6%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS12-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, vai de 0,0% (Anápolis) a 100,0% (São Raimundo do Doca Bezerra). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS12-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Norte: 17,2%; Centro-Oeste: 0,8%",
+   "FCU 8,2% × demais 1,6%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS13": {
+  "titulo": "Banheiro graduado",
+  "o": "Grau de inadequação do banheiro: 0 = todos com banheiro, 1 = todos sem banheiro nem sanitário. Cada setor recebe um valor (escala de 0 a 1); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: saneamento.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "É calculado a partir de outras colunas da base, que vêm do Censo 2022. Numerador: V00236, V00237, V00238; denominador: V00001.",
+    "de_onde": "DS13, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que a mediana é zero?",
+    "r": "Em 97,83% dos setores nenhum domicílio está nessa situação: a condição se concentra em poucos setores. Por isso descrevo também a média (0,001) e o % de setores com valor acima de zero (slide seguinte).",
+    "de_onde": "DS13, tabela de distribuição; T03_descritivas_global.csv"
+   },
+   {
+    "p": "Por que há 14.292 faltantes?",
+    "r": "O setor fica sem valor quando o IBGE não divulgou o dado (sigilo, em setores com poucos moradores) ou quando o denominador é zero. Não separei as duas causas por indicador. O setor sai só deste indicador; na fatorial, sai inteiro (exclusão por lista).",
+    "de_onde": "DS13, linha Faltantes; T02_perdas_por_indicador.csv"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Não estava no IVS-BH 2012. Entrou na referência proposta como a forma graduada do sem banheiro (demanda 6).",
+    "de_onde": "DS13, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 89.816; faltantes: 14.292 (13,73%)",
+   "Média 0,001; mediana 0,000",
+   "Setores com zero: 97,83%",
+   "IVS-7: Não; referência: Sim"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS13-2": {
+  "titulo": "Banheiro graduado: por região, município e FCU",
+  "o": "Banheiro graduado separado por região, por município e entre setores de favela (FCU) e os demais. Como a maioria dos setores tem zero, compara o % de setores com valor acima de zero e a média.",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Norte (% de setores com valor acima de zero: 13,7%); a menor é a Centro-Oeste (0,7%).",
+    "de_onde": "DS13-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 6,4%; nos demais, 1,4%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS13-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, vai de 0,0% (Anápolis) a 100,0% (Placas). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS13-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Norte: 13,7%; Centro-Oeste: 0,7%",
+   "FCU 6,4% × demais 1,4%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS14": {
+  "titulo": "Razão de moradores",
+  "o": "Razão de moradores por domicílio (reproduz o V0005 do IBGE). Cada setor recebe um valor (razão); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: socioeconômica.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00005, V00006; denominador: V00001.",
+    "de_onde": "DS14, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Quase simétrica (assimetria -0,22): média (2,69) e mediana (2,71) ficam perto.",
+    "de_onde": "DS14, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Está no IVS-7 (os sete indicadores adaptados do IVS-BH 2012) e na referência proposta do NB05.",
+    "de_onde": "DS14, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 104.108; faltantes: 0 (0,00%)",
+   "Média 2,69; mediana 2,71",
+   "Setores com zero: 0,00%",
+   "IVS-7: Sim; referência: Sim"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS14-2": {
+  "titulo": "Razão de moradores: por região, município e FCU",
+  "o": "Razão de moradores separado por região, por município e entre setores de favela (FCU) e os demais. Compara a mediana de cada recorte (caixas sem os pontos extremos).",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Norte (mediana: 3,19); a menor é a Sul (2,60).",
+    "de_onde": "DS14-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 2,92; nos demais, 2,67. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS14-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, a mediana vai de 2,38 (Porto Alegre) a 4,23 (Portel). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS14-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Norte: 3,19; Sul: 2,60",
+   "FCU 2,92 × demais 2,67"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS15": {
+  "titulo": "Analfabetismo 15+",
+  "o": "Taxa de analfabetismo entre pessoas de 15 anos ou mais. Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: socioeconômica.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_alfabetizacao_BR.csv). Numerador: V00901; denominador: V00900.",
+    "de_onde": "DS15, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que há 16.552 faltantes?",
+    "r": "O setor fica sem valor quando o IBGE não divulgou o dado (sigilo, em setores com poucos moradores) ou quando o denominador é zero. Não separei as duas causas por indicador. O setor sai só deste indicador; na fatorial, sai inteiro (exclusão por lista).",
+    "de_onde": "DS15, linha Faltantes; T02_perdas_por_indicador.csv"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Assimetria 2,34: cauda à direita. Poucos setores com valor bem alto puxam a média (3,64%) para cima da mediana (2,71%).",
+    "de_onde": "DS15, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Está no IVS-7 (os sete indicadores adaptados do IVS-BH 2012) e na referência proposta do NB05.",
+    "de_onde": "DS15, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 87.556; faltantes: 16.552 (15,90%)",
+   "Média 3,64%; mediana 2,71%",
+   "Setores com zero: 10,59%",
+   "IVS-7: Sim; referência: Sim"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS15-2": {
+  "titulo": "Analfabetismo 15+: por região, município e FCU",
+  "o": "Analfabetismo 15+ separado por região, por município e entre setores de favela (FCU) e os demais. Compara a mediana de cada recorte (caixas sem os pontos extremos).",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Nordeste (mediana: 5,16%); a menor é a Sul (1,62%).",
+    "de_onde": "DS15-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 5,46%; nos demais, 2,13%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS15-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, a mediana vai de 1,11% (São Caetano do Sul) a 23,06% (Arara). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS15-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Nordeste: 5,16%; Sul: 1,62%",
+   "FCU 5,46% × demais 2,13%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS16": {
+  "titulo": "Renda média",
+  "o": "Rendimento nominal médio mensal das pessoas responsáveis (R$). Cada setor recebe um valor (reais (R$)); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: socioeconômica.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_renda_responsavel_BR.csv). Numerador: V06004; não tem denominador (é o valor médio do setor).",
+    "de_onde": "DS16, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Assimetria 3,74: cauda à direita. Poucos setores com valor bem alto puxam a média (R$ 4.187,41) para cima da mediana (R$ 2.572,39).",
+    "de_onde": "DS16, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Está no IVS-7 (os sete indicadores adaptados do IVS-BH 2012) e na referência proposta do NB05, invertida: quanto menor a renda, maior a vulnerabilidade.",
+    "de_onde": "DS16, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 104.096; faltantes: 12 (0,01%)",
+   "Média R$ 4.187,41; mediana R$ 2.572,39",
+   "Setores com zero: 0,00%",
+   "IVS-7: Sim; referência: Sim, como renda invertida"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS16-2": {
+  "titulo": "Renda média: por região, município e FCU",
+  "o": "Renda média separado por região, por município e entre setores de favela (FCU) e os demais. Compara a mediana de cada recorte (caixas sem os pontos extremos).",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Sul (mediana: R$ 3.722,28); a menor é a Nordeste (R$ 1.719,20).",
+    "de_onde": "DS16-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, R$ 1.515,35; nos demais, R$ 3.067,01. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS16-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, a mediana vai de R$ 1.062,36 (Jaqueira) a R$ 5.291,89 (São Caetano do Sul). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS16-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Sul: R$ 3.722,28; Nordeste: R$ 1.719,20",
+   "FCU R$ 1.515,35 × demais R$ 3.067,01"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS17": {
+  "titulo": "Renda sem o extremo",
+  "o": "Renda média das pessoas responsáveis, com o setor extremo de BH vazio. Cada setor recebe um valor (reais (R$)); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: socioeconômica.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "É calculado a partir de outras colunas da base, que vêm do Censo 2022. Numerador: renda_media, sem o setor 310620005650366; denominador: —.",
+    "de_onde": "DS17, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Assimetria 3,20: cauda à direita. Poucos setores com valor bem alto puxam a média (R$ 4.185,81) para cima da mediana (R$ 2.572,39).",
+    "de_onde": "DS17, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "É uma variante da renda (demanda 1). Testei nos cenários S0 e S6 e no eixo renda das 108 versões; a referência usa a renda original.",
+    "de_onde": "DS17, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 104.095; faltantes: 13 (0,01%)",
+   "Média R$ 4.185,81; mediana R$ 2.572,39",
+   "Setores com zero: 0,00%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS17-2": {
+  "titulo": "Renda sem o extremo: por região, município e FCU",
+  "o": "Renda sem o extremo separado por região, por município e entre setores de favela (FCU) e os demais. Compara a mediana de cada recorte (caixas sem os pontos extremos).",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Sul (mediana: R$ 3.722,28); a menor é a Nordeste (R$ 1.719,20).",
+    "de_onde": "DS17-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, R$ 1.515,32; nos demais, R$ 3.067,01. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS17-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, a mediana vai de R$ 1.062,36 (Jaqueira) a R$ 5.291,89 (São Caetano do Sul). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS17-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Sul: R$ 3.722,28; Nordeste: R$ 1.719,20",
+   "FCU R$ 1.515,32 × demais R$ 3.067,01"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS18": {
+  "titulo": "Renda (mediana mun.)",
+  "o": "Renda média das pessoas responsáveis, com o setor extremo de BH substituído pela mediana do município. Cada setor recebe um valor (reais (R$)); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: socioeconômica.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "É calculado a partir de outras colunas da base, que vêm do Censo 2022. Numerador: renda_media, com imputação no setor 310620005650366; denominador: —.",
+    "de_onde": "DS18, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Assimetria 3,20: cauda à direita. Poucos setores com valor bem alto puxam a média (R$ 4.185,80) para cima da mediana (R$ 2.572,39).",
+    "de_onde": "DS18, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "É uma variante da renda (demanda 1). Testei nos cenários S0 e S6 e no eixo renda das 108 versões; a referência usa a renda original.",
+    "de_onde": "DS18, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 104.096; faltantes: 12 (0,01%)",
+   "Média R$ 4.185,80; mediana R$ 2.572,39",
+   "Setores com zero: 0,00%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS18-2": {
+  "titulo": "Renda (mediana mun.): por região, município e FCU",
+  "o": "Renda (mediana mun.) separado por região, por município e entre setores de favela (FCU) e os demais. Compara a mediana de cada recorte (caixas sem os pontos extremos).",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Sul (mediana: R$ 3.722,28); a menor é a Nordeste (R$ 1.719,20).",
+    "de_onde": "DS18-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, R$ 1.515,35; nos demais, R$ 3.067,01. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS18-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, a mediana vai de R$ 1.062,36 (Jaqueira) a R$ 5.291,89 (São Caetano do Sul). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS18-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Sul: R$ 3.722,28; Nordeste: R$ 1.719,20",
+   "FCU R$ 1.515,35 × demais R$ 3.067,01"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS19": {
+  "titulo": "Cor/raça PPI",
+  "o": "Proporção de pessoas de cor/raça preta, parda ou indígena. Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: socioeconômica.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_basico_BR_20250417.csv). Numerador: V01318, V01320, V01321; denominador: v0001.",
+    "de_onde": "DS19, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Quase simétrica (assimetria -0,39): média (52,67%) e mediana (57,19%) ficam perto.",
+    "de_onde": "DS19, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Está no IVS-7 (os sete indicadores adaptados do IVS-BH 2012) e na referência proposta do NB05.",
+    "de_onde": "DS19, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 104.106; faltantes: 2 (0,00%)",
+   "Média 52,67%; mediana 57,19%",
+   "Setores com zero: 0,09%",
+   "IVS-7: Sim; referência: Sim"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS19-2": {
+  "titulo": "Cor/raça PPI: por região, município e FCU",
+  "o": "Cor/raça PPI separado por região, por município e entre setores de favela (FCU) e os demais. Compara a mediana de cada recorte (caixas sem os pontos extremos).",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Norte (mediana: 76,99%); a menor é a Sul (22,19%).",
+    "de_onde": "DS19-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 74,27%; nos demais, 50,96%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS19-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, a mediana vai de 15,99% (Taió) a 88,89% (Salvador). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS19-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Norte: 76,99%; Sul: 22,19%",
+   "FCU 74,27% × demais 50,96%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS20": {
+  "titulo": "Responsável mulher",
+  "o": "Proporção de domicílios com pessoa responsável do sexo feminino. Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: socioeconômica.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_parentesco_BR.csv). Numerador: V01063; denominador: V01062.",
+    "de_onde": "DS20, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Quase simétrica (assimetria -0,34): média (52,81%) e mediana (53,39%) ficam perto.",
+    "de_onde": "DS20, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Descreve a população. Não está no IVS-BH 2012 e não testei na fatorial.",
+    "de_onde": "DS20, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 103.961; faltantes: 147 (0,14%)",
+   "Média 52,81%; mediana 53,39%",
+   "Setores com zero: 0,02%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS20-2": {
+  "titulo": "Responsável mulher: por região, município e FCU",
+  "o": "Responsável mulher separado por região, por município e entre setores de favela (FCU) e os demais. Compara a mediana de cada recorte (caixas sem os pontos extremos).",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Nordeste (mediana: 55,77%); a menor é a Centro-Oeste (50,57%).",
+    "de_onde": "DS20-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 56,78%; nos demais, 52,58%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS20-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, a mediana vai de 34,11% (Vicentinópolis) a 61,94% (Rosário). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS20-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Nordeste: 55,77%; Centro-Oeste: 50,57%",
+   "FCU 56,78% × demais 52,58%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS21": {
+  "titulo": "Domicílio improvisado",
+  "o": "Proporção de domicílios particulares improvisados. Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: morfologia.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00002; denominador: V00001.",
+    "de_onde": "DS21, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que a mediana é zero?",
+    "r": "Em 99,21% dos setores nenhum domicílio está nessa situação: a condição se concentra em poucos setores. Por isso descrevo também a média (0,07%) e o % de setores com valor acima de zero (slide seguinte).",
+    "de_onde": "DS21, tabela de distribuição; T03_descritivas_global.csv"
+   },
+   {
+    "p": "Por que há 5.139 faltantes?",
+    "r": "O setor fica sem valor quando o IBGE não divulgou o dado (sigilo, em setores com poucos moradores) ou quando o denominador é zero. Não separei as duas causas por indicador. O setor sai só deste indicador; na fatorial, sai inteiro (exclusão por lista).",
+    "de_onde": "DS21, linha Faltantes; T02_perdas_por_indicador.csv"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Descreve o tipo de moradia (demanda 9). Na fatorial testei só a moradia não convencional.",
+    "de_onde": "DS21, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 98.969; faltantes: 5.139 (4,94%)",
+   "Média 0,07%; mediana 0,00%",
+   "Setores com zero: 99,21%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS21-2": {
+  "titulo": "Domicílio improvisado: por região, município e FCU",
+  "o": "Domicílio improvisado separado por região, por município e entre setores de favela (FCU) e os demais. Como a maioria dos setores tem zero, compara o % de setores com valor acima de zero e a média.",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Nordeste (% de setores com valor acima de zero: 1,0%); a menor é a Sul (0,5%).",
+    "de_onde": "DS21-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 1,5%; nos demais, 0,6%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS21-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, vai de 0,0% (Arara) a 25,0% (Vicentinópolis). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS21-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Nordeste: 1,0%; Sul: 0,5%",
+   "FCU 1,5% × demais 0,6%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS22": {
+  "titulo": "Habitação precária",
+  "o": "Proporção de domicílios em habitação precária (cortiço, estrutura degradada, improvisados). Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: morfologia.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00050, V00052, V00053, V00054 e mais 4; denominador: V00001.",
+    "de_onde": "DS22, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que a mediana é zero?",
+    "r": "Em 92,46% dos setores nenhum domicílio está nessa situação: a condição se concentra em poucos setores. Por isso descrevo também a média (0,65%) e o % de setores com valor acima de zero (slide seguinte).",
+    "de_onde": "DS22, tabela de distribuição; T03_descritivas_global.csv"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Assimetria 12,43: cauda à direita. Poucos setores com valor bem alto puxam a média (0,65%) para cima da mediana (0,00%).",
+    "de_onde": "DS22, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Descreve o tipo de moradia (demanda 9). Na fatorial testei só a moradia não convencional.",
+    "de_onde": "DS22, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 104.108; faltantes: 0 (0,00%)",
+   "Média 0,65%; mediana 0,00%",
+   "Setores com zero: 92,46%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS22-2": {
+  "titulo": "Habitação precária: por região, município e FCU",
+  "o": "Habitação precária separado por região, por município e entre setores de favela (FCU) e os demais. Como a maioria dos setores tem zero, compara o % de setores com valor acima de zero e a média.",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Centro-Oeste (% de setores com valor acima de zero: 13,1%); a menor é a Sul (3,4%).",
+    "de_onde": "DS22-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 11,8%; nos demais, 6,6%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS22-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, vai de 0,0% (Arara) a 29,4% (São Luís). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS22-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Centro-Oeste: 13,1%; Sul: 3,4%",
+   "FCU 11,8% × demais 6,6%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS23": {
+  "titulo": "Moradia convencional",
+  "o": "Proporção de moradias convencionais (casa, casa de vila/condomínio, apartamento). Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: morfologia.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00047, V00048, V00049; denominador: V00001.",
+    "de_onde": "DS23, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Assimetria -12,34: cauda à esquerda. A maioria dos setores tem valor alto e poucos têm valor baixo; a média (99,10%) fica abaixo da mediana (100,00%).",
+    "de_onde": "DS23, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Descreve o tipo de moradia (demanda 9). Na fatorial testei só a moradia não convencional.",
+    "de_onde": "DS23, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 104.108; faltantes: 0 (0,00%)",
+   "Média 99,10%; mediana 100,00%",
+   "Setores com zero: 0,01%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS23-2": {
+  "titulo": "Moradia convencional: por região, município e FCU",
+  "o": "Moradia convencional separado por região, por município e entre setores de favela (FCU) e os demais. Compara a mediana de cada recorte (caixas sem os pontos extremos).",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Norte (mediana: 100,00%); a menor é a Norte (100,00%).",
+    "de_onde": "DS23-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 100,00%; nos demais, 100,00%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS23-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, a mediana vai de 99,55% (São Luís) a 100,00% (Água Preta). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS23-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Norte: 100,00%; Norte: 100,00%",
+   "FCU 100,00% × demais 100,00%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS24": {
+  "titulo": "Moradia não convencional",
+  "o": "Proporção de moradias não convencionais (cortiço, maloca, estrutura degradada). Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: morfologia.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00050, V00051, V00052; denominador: V00001.",
+    "de_onde": "DS24, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que a mediana é zero?",
+    "r": "Em 92,95% dos setores nenhum domicílio está nessa situação: a condição se concentra em poucos setores. Por isso descrevo também a média (0,59%) e o % de setores com valor acima de zero (slide seguinte).",
+    "de_onde": "DS24, tabela de distribuição; T03_descritivas_global.csv"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Assimetria 13,01: cauda à direita. Poucos setores com valor bem alto puxam a média (0,59%) para cima da mediana (0,00%).",
+    "de_onde": "DS24, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Demanda 9. Testei nos cenários S5 e S6 e no eixo moradia das 108 versões. Tem variância baixa (DM10) e não está na referência.",
+    "de_onde": "DS24, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 104.108; faltantes: 0 (0,00%)",
+   "Média 0,59%; mediana 0,00%",
+   "Setores com zero: 92,95%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS24-2": {
+  "titulo": "Moradia não convencional: por região, município e FCU",
+  "o": "Moradia não convencional separado por região, por município e entre setores de favela (FCU) e os demais. Como a maioria dos setores tem zero, compara o % de setores com valor acima de zero e a média.",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Norte (% de setores com valor acima de zero: 12,6%); a menor é a Sul (3,0%).",
+    "de_onde": "DS24-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 10,9%; nos demais, 6,2%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS24-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, vai de 0,0% (Arara) a 29,0% (São Luís). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS24-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Norte: 12,6%; Sul: 3,0%",
+   "FCU 10,9% × demais 6,2%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS25": {
+  "titulo": "Apartamento",
+  "o": "Proporção de domicílios do tipo apartamento. Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: morfologia.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00049; denominador: V00001.",
+    "de_onde": "DS25, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que há 9.103 faltantes?",
+    "r": "O setor fica sem valor quando o IBGE não divulgou o dado (sigilo, em setores com poucos moradores) ou quando o denominador é zero. Não separei as duas causas por indicador. O setor sai só deste indicador; na fatorial, sai inteiro (exclusão por lista).",
+    "de_onde": "DS25, linha Faltantes; T02_perdas_por_indicador.csv"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Assimetria 0,83: cauda à direita. Poucos setores com valor bem alto puxam a média (31,48%) para cima da mediana (5,21%).",
+    "de_onde": "DS25, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Descreve o tipo de moradia (demanda 9). Na fatorial testei só a moradia não convencional.",
+    "de_onde": "DS25, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 95.005; faltantes: 9.103 (8,74%)",
+   "Média 31,48%; mediana 5,21%",
+   "Setores com zero: 38,52%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS25-2": {
+  "titulo": "Apartamento: por região, município e FCU",
+  "o": "Apartamento separado por região, por município e entre setores de favela (FCU) e os demais. Compara a mediana de cada recorte (caixas sem os pontos extremos).",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Sul (mediana: 15,83%); a menor é a Nordeste (1,96%).",
+    "de_onde": "DS25-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 0,00%; nos demais, 11,94%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS25-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, a mediana vai de 0,00% (Ananindeua) a 64,73% (Porto Alegre). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS25-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Sul: 15,83%; Nordeste: 1,96%",
+   "FCU 0,00% × demais 11,94%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS26": {
+  "titulo": "Casa",
+  "o": "Proporção de domicílios do tipo casa. Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: morfologia.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00047; denominador: V00001.",
+    "de_onde": "DS26, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que há 4.466 faltantes?",
+    "r": "O setor fica sem valor quando o IBGE não divulgou o dado (sigilo, em setores com poucos moradores) ou quando o denominador é zero. Não separei as duas causas por indicador. O setor sai só deste indicador; na fatorial, sai inteiro (exclusão por lista).",
+    "de_onde": "DS26, linha Faltantes; T02_perdas_por_indicador.csv"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Assimetria -0,91: cauda à esquerda. A maioria dos setores tem valor alto e poucos têm valor baixo; a média (69,47%) fica abaixo da mediana (91,44%).",
+    "de_onde": "DS26, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Descreve o tipo de moradia (demanda 9). Na fatorial testei só a moradia não convencional.",
+    "de_onde": "DS26, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 99.642; faltantes: 4.466 (4,29%)",
+   "Média 69,47%; mediana 91,44%",
+   "Setores com zero: 10,11%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS26-2": {
+  "titulo": "Casa: por região, município e FCU",
+  "o": "Casa separado por região, por município e entre setores de favela (FCU) e os demais. Compara a mediana de cada recorte (caixas sem os pontos extremos).",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Nordeste (mediana: 94,18%); a menor é a Sul (83,55%).",
+    "de_onde": "DS26-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 98,68%; nos demais, 85,87%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS26-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, a mediana vai de 43,57% (São Caetano do Sul) a 100,00% (Água Preta). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS26-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Nordeste: 94,18%; Sul: 83,55%",
+   "FCU 98,68% × demais 85,87%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS27": {
+  "titulo": "Casa de vila/condomínio",
+  "o": "Proporção de domicílios do tipo casa de vila ou em condomínio. Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: morfologia.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_caracteristicas_domicilio1_BR.csv). Numerador: V00048; denominador: V00001.",
+    "de_onde": "DS27, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que a mediana é zero?",
+    "r": "Em 70,74% dos setores nenhum domicílio está nessa situação: a condição se concentra em poucos setores. Por isso descrevo também a média (4,43%) e o % de setores com valor acima de zero (slide seguinte).",
+    "de_onde": "DS27, tabela de distribuição; T03_descritivas_global.csv"
+   },
+   {
+    "p": "Por que há 12.804 faltantes?",
+    "r": "O setor fica sem valor quando o IBGE não divulgou o dado (sigilo, em setores com poucos moradores) ou quando o denominador é zero. Não separei as duas causas por indicador. O setor sai só deste indicador; na fatorial, sai inteiro (exclusão por lista).",
+    "de_onde": "DS27, linha Faltantes; T02_perdas_por_indicador.csv"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Descreve o tipo de moradia (demanda 9). Na fatorial testei só a moradia não convencional.",
+    "de_onde": "DS27, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 91.304; faltantes: 12.804 (12,30%)",
+   "Média 4,43%; mediana 0,00%",
+   "Setores com zero: 70,74%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS27-2": {
+  "titulo": "Casa de vila/condomínio: por região, município e FCU",
+  "o": "Casa de vila/condomínio separado por região, por município e entre setores de favela (FCU) e os demais. Como a maioria dos setores tem zero, compara o % de setores com valor acima de zero e a média.",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Norte (% de setores com valor acima de zero: 66,2%); a menor é a Centro-Oeste (22,2%).",
+    "de_onde": "DS27-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 31,5%; nos demais, 28,8%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS27-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, vai de 0,0% (Arara) a 76,9% (Natal). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS27-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Norte: 66,2%; Centro-Oeste: 22,2%",
+   "FCU 31,5% × demais 28,8%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS28": {
+  "titulo": "Crianças 0–4",
+  "o": "Proporção de crianças de 0 a 4 anos na população residente. Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: demografia.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_basico_BR_20250417.csv). Numerador: V01031; denominador: v0001.",
+    "de_onde": "DS28, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que há 1.820 faltantes?",
+    "r": "O setor fica sem valor quando o IBGE não divulgou o dado (sigilo, em setores com poucos moradores) ou quando o denominador é zero. Não separei as duas causas por indicador. O setor sai só deste indicador; na fatorial, sai inteiro (exclusão por lista).",
+    "de_onde": "DS28, linha Faltantes; T02_perdas_por_indicador.csv"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Assimetria 0,74: cauda à direita. Poucos setores com valor bem alto puxam a média (5,41%) para cima da mediana (5,21%).",
+    "de_onde": "DS28, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Descreve a idade da população, contexto do ELSI (idosos). Não entra no índice de vulnerabilidade.",
+    "de_onde": "DS28, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 102.288; faltantes: 1.820 (1,75%)",
+   "Média 5,41%; mediana 5,21%",
+   "Setores com zero: 0,52%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS28-2": {
+  "titulo": "Crianças 0–4: por região, município e FCU",
+  "o": "Crianças 0–4 separado por região, por município e entre setores de favela (FCU) e os demais. Compara a mediana de cada recorte (caixas sem os pontos extremos).",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Norte (mediana: 6,32%); a menor é a Sul (4,65%).",
+    "de_onde": "DS28-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 6,81%; nos demais, 4,85%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS28-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, a mediana vai de 4,14% (Porto Alegre) a 10,84% (Portel). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS28-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Norte: 6,32%; Sul: 4,65%",
+   "FCU 6,81% × demais 4,85%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS29": {
+  "titulo": "População 0–14",
+  "o": "Proporção de pessoas com menos de 15 anos na população residente. Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: demografia.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_basico_BR_20250417.csv). Numerador: V01031, V01032, V01033; denominador: v0001.",
+    "de_onde": "DS29, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Quase simétrica (assimetria 0,11): média (17,26%) e mediana (17,19%) ficam perto.",
+    "de_onde": "DS29, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Descreve a idade da população, contexto do ELSI (idosos). Não entra no índice de vulnerabilidade.",
+    "de_onde": "DS29, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 103.850; faltantes: 258 (0,25%)",
+   "Média 17,26%; mediana 17,19%",
+   "Setores com zero: 0,50%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS29-2": {
+  "titulo": "População 0–14: por região, município e FCU",
+  "o": "População 0–14 separado por região, por município e entre setores de favela (FCU) e os demais. Compara a mediana de cada recorte (caixas sem os pontos extremos).",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Norte (mediana: 20,64%); a menor é a Sul (15,85%).",
+    "de_onde": "DS29-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 21,93%; nos demais, 16,07%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS29-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, a mediana vai de 13,28% (São Paulo das Missões) a 28,57% (Autazes). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS29-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Norte: 20,64%; Sul: 15,85%",
+   "FCU 21,93% × demais 16,07%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS30": {
+  "titulo": "Pessoas 60+",
+  "o": "Proporção de pessoas de 60 anos ou mais na população residente. Cada setor recebe um valor (proporção, mostrada em %); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: demografia.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_basico_BR_20250417.csv). Numerador: V01040, V01041; denominador: v0001.",
+    "de_onde": "DS30, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Assimetria 0,55: cauda à direita. Poucos setores com valor bem alto puxam a média (17,53%) para cima da mediana (16,57%).",
+    "de_onde": "DS30, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Descreve a idade da população, contexto do ELSI (idosos). Não entra no índice de vulnerabilidade.",
+    "de_onde": "DS30, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 103.823; faltantes: 285 (0,27%)",
+   "Média 17,53%; mediana 16,57%",
+   "Setores com zero: 0,30%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS30-2": {
+  "titulo": "Pessoas 60+: por região, município e FCU",
+  "o": "Pessoas 60+ separado por região, por município e entre setores de favela (FCU) e os demais. Compara a mediana de cada recorte (caixas sem os pontos extremos).",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Sul (mediana: 19,34%); a menor é a Norte (11,18%).",
+    "de_onde": "DS30-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 10,55%; nos demais, 18,49%. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS30-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, a mediana vai de 7,30% (Portel) a 29,40% (São Paulo das Missões). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS30-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Sul: 19,34%; Norte: 11,18%",
+   "FCU 10,55% × demais 18,49%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS31": {
+  "titulo": "Índice de envelhecimento",
+  "o": "Índice de Envelhecimento Populacional: 60+ por 100 menores de 15 anos. Cada setor recebe um valor (por 100); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: demografia.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_demografia_BR.csv). Numerador: V01040, V01041; denominador: V01031.",
+    "de_onde": "DS31, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Assimetria 5,74: cauda à direita. Poucos setores com valor bem alto puxam a média (134,66) para cima da mediana (96,30).",
+    "de_onde": "DS31, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Descreve a idade da população, contexto do ELSI (idosos). Não entra no índice de vulnerabilidade.",
+    "de_onde": "DS31, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   },
+   {
+    "p": "O que quer dizer o coeficiente de variação de 105,1%?",
+    "r": "O desvio-padrão é maior que a média: o valor muda muito de um setor para outro.",
+    "de_onde": "DS31, linha Coeficiente de variação"
+   }
+  ],
+  "k": [
+   "Setores com valor: 103.116; faltantes: 992 (0,95%)",
+   "Média 134,66; mediana 96,30",
+   "Setores com zero: 0,21%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS31-2": {
+  "titulo": "Índice de envelhecimento: por região, município e FCU",
+  "o": "Índice de envelhecimento separado por região, por município e entre setores de favela (FCU) e os demais. Compara a mediana de cada recorte (caixas sem os pontos extremos).",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Sul (mediana: 122,93); a menor é a Norte (53,55).",
+    "de_onde": "DS31-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 47,91; nos demais, 114,81. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS31-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, a mediana vai de 24,12 (Portel) a 217,46 (São Paulo das Missões). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS31-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Sul: 122,93; Norte: 53,55",
+   "FCU 47,91 × demais 114,81"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS32": {
+  "titulo": "Dependência idosa",
+  "o": "Razão de Dependência de Idosos: 60+ por 100 pessoas de 15 a 59 anos. Cada setor recebe um valor (por 100); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: demografia.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_demografia_BR.csv). Numerador: V01040, V01041; denominador: V01034.",
+    "de_onde": "DS32, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Assimetria 4,30: cauda à direita. Poucos setores com valor bem alto puxam a média (28,12) para cima da mediana (25,16).",
+    "de_onde": "DS32, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Descreve a idade da população, contexto do ELSI (idosos). Não entra no índice de vulnerabilidade.",
+    "de_onde": "DS32, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 103.810; faltantes: 298 (0,29%)",
+   "Média 28,12; mediana 25,16",
+   "Setores com zero: 0,30%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS32-2": {
+  "titulo": "Dependência idosa: por região, município e FCU",
+  "o": "Dependência idosa separado por região, por município e entre setores de favela (FCU) e os demais. Compara a mediana de cada recorte (caixas sem os pontos extremos).",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Sul (mediana: 29,97); a menor é a Norte (16,58).",
+    "de_onde": "DS32-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 15,67; nos demais, 28,39. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS32-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, a mediana vai de 11,86 (São José de Ribamar) a 50,58 (São Paulo das Missões). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS32-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Sul: 29,97; Norte: 16,58",
+   "FCU 15,67 × demais 28,39"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS33": {
+  "titulo": "70+ entre 60+",
+  "o": "Proporção de pessoas de 70+ entre os de 60+ (proxy de longevidade; NÃO é o LI, que exigiria a faixa 75+, inexistente nos agregados por setor). Cada setor recebe um valor (por 100); o slide mostra como esse valor se distribui nos setores urbanos com dados divulgados. Dimensão: demografia.",
+  "q": [
+   {
+    "p": "De onde vem esse indicador?",
+    "r": "Do Censo 2022, agregados por setor (Agregados_por_setores_demografia_BR.csv). Numerador: V01041; denominador: V01040.",
+    "de_onde": "DS33, tabela \"Como é calculado\"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento"
+   },
+   {
+    "p": "Por que há 2.136 faltantes?",
+    "r": "O setor fica sem valor quando o IBGE não divulgou o dado (sigilo, em setores com poucos moradores) ou quando o denominador é zero. Não separei as duas causas por indicador. O setor sai só deste indicador; na fatorial, sai inteiro (exclusão por lista).",
+    "de_onde": "DS33, linha Faltantes; T02_perdas_por_indicador.csv"
+   },
+   {
+    "p": "A distribuição é simétrica?",
+    "r": "Quase simétrica (assimetria 0,10): média (42,67) e mediana (42,86) ficam perto.",
+    "de_onde": "DS33, linhas Assimetria, Média e Mediana"
+   },
+   {
+    "p": "Por que entra (ou não) no índice?",
+    "r": "Descreve a idade da população, contexto do ELSI (idosos). Não entra no índice de vulnerabilidade.",
+    "de_onde": "DS33, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
+   }
+  ],
+  "k": [
+   "Setores com valor: 101.972; faltantes: 2.136 (2,05%)",
+   "Média 42,67; mediana 42,86",
+   "Setores com zero: 0,31%",
+   "IVS-7: Não; referência: Não"
+  ],
+  "ver": [
+   "DM01",
+   "VP03"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DS33-2": {
+  "titulo": "70+ entre 60+: por região, município e FCU",
+  "o": "70+ entre 60+ separado por região, por município e entre setores de favela (FCU) e os demais. Compara a mediana de cada recorte (caixas sem os pontos extremos).",
+  "q": [
+   {
+    "p": "Onde é maior?",
+    "r": "Na região Sul (mediana: 43,97); a menor é a Norte (38,46).",
+    "de_onde": "DS33-2, tabela por recorte; T04_descritivas_regiao.csv"
+   },
+   {
+    "p": "E nas favelas?",
+    "r": "Nos setores de FCU, 36,26; nos demais, 44,32. É descrição de grupos de setores, não de pessoas: num estudo ecológico não dá para passar para o indivíduo.",
+    "de_onde": "DS33-2; ART008 p.194 (falácia ecológica); T15_fcu_por_indicador.csv"
+   },
+   {
+    "p": "Qual município se destaca?",
+    "r": "Entre os municípios, a mediana vai de 36,21 (Manaus) a 55,77 (Arara). A lista completa está no anexo (aba Por_municipio).",
+    "de_onde": "DS33-2; T05_descritivas_municipio.csv"
+   },
+   {
+    "p": "Por que comparar com FCU?",
+    "r": "FCU é a classificação do IBGE de Favelas e Comunidades Urbanas. Uso como critério externo: mais adiante, o índice é validado pela AUC contra FCU.",
+    "de_onde": "ART005 p.46-47; FA14"
+   }
+  ],
+  "k": [
+   "Sul: 43,97; Norte: 38,46",
+   "FCU 36,26 × demais 44,32"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DC00": {
+  "titulo": "2b",
+  "o": "Abre as correlações: primeiro os componentes do IVS-7, depois cada tema (saneamento, socioeconômica, morfologia, demografia) e por fim os 31 juntos.",
+  "q": [
+   {
+    "p": "Para que servem as correlações antes da fatorial?",
+    "r": "A fatorial parte da matriz de correlação. Ver os pares antes mostra o que deve ficar junto num fator e o que é quase repetido.",
+    "de_onde": "FA02; ART002"
+   },
+   {
+    "p": "Por que separar por tema?",
+    "r": "Com os 31 juntos a matriz fica grande demais para ler; por tema dá para ver os pares de cada dimensão, e a matriz completa vem no fim (DC07).",
+    "de_onde": "DC07"
+   }
+  ],
+  "k": [
+   "Spearman em todas as matrizes"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DC01": {
+  "titulo": "Os componentes do IVS-7",
+  "o": "Correlação de Spearman entre pares de indicadores, nos setores que têm os dois valores. Vai de -1 a 1: perto de 1, os setores ficam na mesma ordem nos dois; perto de -1, em ordem inversa; perto de 0, sem relação de ordem.",
+  "q": [
+   {
+    "p": "Por que Spearman e não Pearson?",
+    "r": "Os indicadores são assimétricos e cheios de zeros. O Spearman usa a ordem (postos) dos setores e não depende de distribuição normal. O Pearson está no anexo.",
+    "de_onde": "ART007 seção 11.2 (Guia FIOCRUZ); anexo, aba Correlacao_Pearson"
+   },
+   {
+    "p": "Qual o par mais forte?",
+    "r": "Maior correlação: Analfabetismo 15+ e Cor/raça PPI (0,626). Correlação negativa mais forte: Renda média e Cor/raça PPI (-0,811).",
+    "de_onde": "DC01, matriz; T12_correlacao_spearman.csv"
+   },
+   {
+    "p": "O que fazer com dois indicadores muito correlacionados?",
+    "r": "Na fatorial eles medem quase a mesma coisa. Por isso entra um ou outro (uma renda só, um tipo de banheiro, \"não chega\" ou \"sem canalização\"), nunca os dois.",
+    "de_onde": "VP03; FP04"
+   }
+  ],
+  "k": [
+   "Maior correlação: Analfabetismo 15+ e Cor/raça PPI (0,626). Correlação negativa mais forte: Renda média e Cor/raça PPI (-0,811)."
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DC02": {
+  "titulo": "Os componentes do IVS-7: mapa",
+  "o": "Correlação de Spearman entre pares de indicadores, nos setores que têm os dois valores. Vai de -1 a 1: perto de 1, os setores ficam na mesma ordem nos dois; perto de -1, em ordem inversa; perto de 0, sem relação de ordem.",
+  "q": [
+   {
+    "p": "Por que Spearman e não Pearson?",
+    "r": "Os indicadores são assimétricos e cheios de zeros. O Spearman usa a ordem (postos) dos setores e não depende de distribuição normal. O Pearson está no anexo.",
+    "de_onde": "ART007 seção 11.2 (Guia FIOCRUZ); anexo, aba Correlacao_Pearson"
+   },
+   {
+    "p": "Qual o par mais forte?",
+    "r": "Maior correlação: Analfabetismo 15+ e Cor/raça PPI (0,626). Correlação negativa mais forte: Renda média e Cor/raça PPI (-0,811).",
+    "de_onde": "DC02, matriz; T12_correlacao_spearman.csv"
+   },
+   {
+    "p": "O que fazer com dois indicadores muito correlacionados?",
+    "r": "Na fatorial eles medem quase a mesma coisa. Por isso entra um ou outro (uma renda só, um tipo de banheiro, \"não chega\" ou \"sem canalização\"), nunca os dois.",
+    "de_onde": "VP03; FP04"
+   }
+  ],
+  "k": [
+   "Maior correlação: Analfabetismo 15+ e Cor/raça PPI (0,626). Correlação negativa mais forte: Renda média e Cor/raça PPI (-0,811)."
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DC03": {
+  "titulo": "Saneamento",
+  "o": "Correlação de Spearman entre pares de indicadores, nos setores que têm os dois valores. Vai de -1 a 1: perto de 1, os setores ficam na mesma ordem nos dois; perto de -1, em ordem inversa; perto de 0, sem relação de ordem.",
+  "q": [
+   {
+    "p": "Por que Spearman e não Pearson?",
+    "r": "Os indicadores são assimétricos e cheios de zeros. O Spearman usa a ordem (postos) dos setores e não depende de distribuição normal. O Pearson está no anexo.",
+    "de_onde": "ART007 seção 11.2 (Guia FIOCRUZ); anexo, aba Correlacao_Pearson"
+   },
+   {
+    "p": "Qual o par mais forte?",
+    "r": "Maior correlação: Sem banheiro e Banheiro graduado (1,000). A mais baixa: Lixo inadequado e Sem banheiro nem sanitário (0,064).",
+    "de_onde": "DC03, matriz; T12_correlacao_spearman.csv"
+   },
+   {
+    "p": "Por que Sem banheiro × Banheiro graduado dá 1,000?",
+    "r": "O graduado é feito com as três partes do sem banheiro, com pesos 1, 2 e 3. Os setores ficam praticamente na mesma ordem.",
+    "de_onde": "DC03; definições nos slides DS"
+   },
+   {
+    "p": "O que fazer com dois indicadores muito correlacionados?",
+    "r": "Na fatorial eles medem quase a mesma coisa. Por isso entra um ou outro (uma renda só, um tipo de banheiro, \"não chega\" ou \"sem canalização\"), nunca os dois.",
+    "de_onde": "VP03; FP04"
+   }
+  ],
+  "k": [
+   "Maior correlação: Sem banheiro e Banheiro graduado (1,000). A mais baixa: Lixo inadequado e Sem banheiro nem sanitário (0,064)."
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DC04": {
+  "titulo": "Socioeconômica",
+  "o": "Correlação de Spearman entre pares de indicadores, nos setores que têm os dois valores. Vai de -1 a 1: perto de 1, os setores ficam na mesma ordem nos dois; perto de -1, em ordem inversa; perto de 0, sem relação de ordem.",
+  "q": [
+   {
+    "p": "Por que Spearman e não Pearson?",
+    "r": "Os indicadores são assimétricos e cheios de zeros. O Spearman usa a ordem (postos) dos setores e não depende de distribuição normal. O Pearson está no anexo.",
+    "de_onde": "ART007 seção 11.2 (Guia FIOCRUZ); anexo, aba Correlacao_Pearson"
+   },
+   {
+    "p": "Qual o par mais forte?",
+    "r": "Maior correlação: Analfabetismo 15+ e Cor/raça PPI (0,626). Correlação negativa mais forte: Renda sem o extremo e Cor/raça PPI (-0,811).",
+    "de_onde": "DC04, matriz; T12_correlacao_spearman.csv"
+   },
+   {
+    "p": "Por que as três rendas dão 1,00 entre si?",
+    "r": "Elas só diferem no setor extremo de Belo Horizonte; em todos os outros setores o valor é o mesmo.",
+    "de_onde": "DC04; definições nos slides DS"
+   },
+   {
+    "p": "O que fazer com dois indicadores muito correlacionados?",
+    "r": "Na fatorial eles medem quase a mesma coisa. Por isso entra um ou outro (uma renda só, um tipo de banheiro, \"não chega\" ou \"sem canalização\"), nunca os dois.",
+    "de_onde": "VP03; FP04"
+   }
+  ],
+  "k": [
+   "Maior correlação: Analfabetismo 15+ e Cor/raça PPI (0,626). Correlação negativa mais forte: Renda sem o extremo e Cor/raça PPI (-0,811)."
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DC05": {
+  "titulo": "Morfologia",
+  "o": "Correlação de Spearman entre pares de indicadores, nos setores que têm os dois valores. Vai de -1 a 1: perto de 1, os setores ficam na mesma ordem nos dois; perto de -1, em ordem inversa; perto de 0, sem relação de ordem.",
+  "q": [
+   {
+    "p": "Por que Spearman e não Pearson?",
+    "r": "Os indicadores são assimétricos e cheios de zeros. O Spearman usa a ordem (postos) dos setores e não depende de distribuição normal. O Pearson está no anexo.",
+    "de_onde": "ART007 seção 11.2 (Guia FIOCRUZ); anexo, aba Correlacao_Pearson"
+   },
+   {
+    "p": "Qual o par mais forte?",
+    "r": "Maior correlação: Habitação precária e Moradia não convencional (0,965). Correlação negativa mais forte: Apartamento e Casa (-0,902).",
+    "de_onde": "DC05, matriz; T12_correlacao_spearman.csv"
+   },
+   {
+    "p": "O que fazer com dois indicadores muito correlacionados?",
+    "r": "Na fatorial eles medem quase a mesma coisa. Por isso entra um ou outro (uma renda só, um tipo de banheiro, \"não chega\" ou \"sem canalização\"), nunca os dois.",
+    "de_onde": "VP03; FP04"
+   }
+  ],
+  "k": [
+   "Maior correlação: Habitação precária e Moradia não convencional (0,965). Correlação negativa mais forte: Apartamento e Casa (-0,902)."
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DC06": {
+  "titulo": "Demografia",
+  "o": "Correlação de Spearman entre pares de indicadores, nos setores que têm os dois valores. Vai de -1 a 1: perto de 1, os setores ficam na mesma ordem nos dois; perto de -1, em ordem inversa; perto de 0, sem relação de ordem.",
+  "q": [
+   {
+    "p": "Por que Spearman e não Pearson?",
+    "r": "Os indicadores são assimétricos e cheios de zeros. O Spearman usa a ordem (postos) dos setores e não depende de distribuição normal. O Pearson está no anexo.",
+    "de_onde": "ART007 seção 11.2 (Guia FIOCRUZ); anexo, aba Correlacao_Pearson"
+   },
+   {
+    "p": "Qual o par mais forte?",
+    "r": "Maior correlação: Pessoas 60+ e Dependência idosa (0,996). Correlação negativa mais forte: População 0–14 e Índice de envelhecimento (-0,917).",
+    "de_onde": "DC06, matriz; T12_correlacao_spearman.csv"
+   },
+   {
+    "p": "Por que Pessoas 60+ e Dependência idosa andam juntas?",
+    "r": "As duas têm os idosos no numerador; muda só o denominador (toda a população ou só 15 a 59 anos).",
+    "de_onde": "DC06; definições nos slides DS"
+   },
+   {
+    "p": "O que fazer com dois indicadores muito correlacionados?",
+    "r": "Na fatorial eles medem quase a mesma coisa. Por isso entra um ou outro (uma renda só, um tipo de banheiro, \"não chega\" ou \"sem canalização\"), nunca os dois.",
+    "de_onde": "VP03; FP04"
+   }
+  ],
+  "k": [
+   "Maior correlação: Pessoas 60+ e Dependência idosa (0,996). Correlação negativa mais forte: População 0–14 e Índice de envelhecimento (-0,917)."
+  ],
+  "ver": [
+   "DS32"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "DC07": {
+  "titulo": "Os 31 indicadores",
+  "o": "Correlação de Spearman entre pares de indicadores, nos setores que têm os dois valores. Vai de -1 a 1: perto de 1, os setores ficam na mesma ordem nos dois; perto de -1, em ordem inversa; perto de 0, sem relação de ordem.",
+  "q": [
+   {
+    "p": "Por que Spearman e não Pearson?",
+    "r": "Os indicadores são assimétricos e cheios de zeros. O Spearman usa a ordem (postos) dos setores e não depende de distribuição normal. O Pearson está no anexo.",
+    "de_onde": "ART007 seção 11.2 (Guia FIOCRUZ); anexo, aba Correlacao_Pearson"
+   },
+   {
+    "p": "Qual o par mais forte?",
+    "r": "Maior correlação: Sem banheiro e Banheiro graduado (1,000). Correlação negativa mais forte: População 0–14 e Índice de envelhecimento (-0,917).",
+    "de_onde": "DC07, matriz; T12_correlacao_spearman.csv"
+   },
+   {
+    "p": "Por que Sem banheiro × Banheiro graduado dá 1,000?",
+    "r": "O graduado é feito com as três partes do sem banheiro, com pesos 1, 2 e 3. Os setores ficam praticamente na mesma ordem.",
+    "de_onde": "DC07; definições nos slides DS"
+   },
+   {
+    "p": "O que fazer com dois indicadores muito correlacionados?",
+    "r": "Na fatorial eles medem quase a mesma coisa. Por isso entra um ou outro (uma renda só, um tipo de banheiro, \"não chega\" ou \"sem canalização\"), nunca os dois.",
+    "de_onde": "VP03; FP04"
+   }
+  ],
+  "k": [
+   "Maior correlação: Sem banheiro e Banheiro graduado (1,000). Correlação negativa mais forte: População 0–14 e Índice de envelhecimento (-0,917)."
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FA00": {
+  "titulo": "Descritiva da análise fatorial",
+  "o": "Abre a fatorial da referência proposta do NB05: renda original, sem lixo, banheiro graduado, rotação promax, pesos 60/40 e normalização municipal. É uma proposta: a escolha é sua.",
+  "q": [
+   {
+    "p": "O que é análise fatorial?",
+    "r": "Um método que resume muitas variáveis correlacionadas em poucos fatores (dimensões). Aqui gera duas dimensões, socioeconômica e saneamento, e a partir delas os pesos do índice.",
+    "de_onde": "ART002 p.161; ART001"
+   },
+   {
+    "p": "Por que essa é a referência?",
+    "r": "Foi a primeira na ordem dos critérios fixados no NB05 (estabilidade, AUC no município e parcimônia) entre as elegíveis. É uma proposta para você avaliar, não uma decisão.",
+    "de_onde": "estado_nb05 (referência proposta)"
+   },
+   {
+    "p": "A fatorial é o caminho certo para os pesos?",
+    "r": "Depende de o índice ser reflexivo ou formativo. Essa questão está em aberto e ainda vou ler os textos (Bollen; Diamantopoulos; Edwards).",
+    "de_onde": "ART020; minhas notas da planilha"
+   }
+  ],
+  "k": [
+   "Renda original · sem lixo · banheiro graduado · promax · 60/40 · municipal"
+  ],
+  "ver": [],
+  "p": [
+   "Formativo × reflexivo: ART020, ART021, ART022 planejados"
+  ],
+  "tipo": "slide"
+ },
+ "FA01": {
+  "titulo": "A amostra da fatorial",
+  "o": "A amostra da fatorial: entram os setores com os sete componentes. Exclusão por lista: falta um, sai o setor.",
+  "q": [
+   {
+    "p": "Quem tira mais setores?",
+    "r": "Analfabetismo 15+ (16.552 faltantes) e banheiro graduado (14.292).",
+    "de_onde": "FA01, tabela"
+   },
+   {
+    "p": "Por que não usar todos os 104.108?",
+    "r": "A fatorial precisa de todas as variáveis no setor. Imputar criaria valores não divulgados; preferi tirar e mostrar quantos saem.",
+    "de_onde": "FA01; DS01"
+   }
+  ],
+  "k": [
+   "73.878 entram; 30.230 saem"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FA02": {
+  "titulo": "A matriz de correlação de entrada",
+  "o": "A matriz de correlação que entra na fatorial: Spearman entre os sete componentes, nos 73.878 setores.",
+  "q": [
+   {
+    "p": "Qual par é mais forte?",
+    "r": "Renda (invertida) e cor/raça PPI: 0,784. Depois renda e analfabetismo: 0,753.",
+    "de_onde": "FA02, matriz"
+   },
+   {
+    "p": "Por que a renda está invertida?",
+    "r": "Para todas as variáveis apontarem para o mesmo lado: valor maior = mais vulnerável. Renda alta é menos vulnerável, então entra com sinal trocado.",
+    "de_onde": "FA02; FA11"
+   },
+   {
+    "p": "Por que fatorial com Spearman?",
+    "r": "Os indicadores são assimétricos e cheios de zeros; a fatorial parte da matriz de postos, que não exige normalidade.",
+    "de_onde": "ART007 seção 11.2; FA02"
+   }
+  ],
+  "k": [
+   "Maior correlação: 0,784 (renda × cor/raça)",
+   "Menor: 0,083 (razão × banheiro graduado)"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FA03": {
+  "titulo": "Adequação dos dados à fatorial",
+  "o": "Se os dados servem para fatorial. KMO compara as correlações entre as variáveis com as correlações parciais: vai de 0 a 1, e quanto maior, mais as variáveis têm algo em comum. Bartlett testa se a matriz de correlação é diferente da identidade.",
+  "q": [
+   {
+    "p": "O KMO de 0,7807 é bom?",
+    "r": "Na escala de Matos (Enap) é \"bom\" (entre 0,7 e 0,8); na de Figueiredo, \"mediano\" (0,70 a 0,79). Passa o critério do NB05 (KMO ≥ 0,70).",
+    "de_onde": "ART001 p.43; ART002 p.166; FA16"
+   },
+   {
+    "p": "E o Bartlett?",
+    "r": "Rejeita a hipótese de identidade (qui-quadrado 185.197,02, 21 graus de liberdade). Mas com amostra grande o Bartlett quase sempre rejeita, então sozinho não basta.",
+    "de_onde": "ART001 p.43"
+   },
+   {
+    "p": "Quanto os dois fatores explicam?",
+    "r": "60,82% da variância.",
+    "de_onde": "FA03; FA05"
+   }
+  ],
+  "k": [
+   "KMO 0,7807",
+   "n = 73.878; 7 variáveis",
+   "2 fatores, 60,82%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FA04": {
+  "titulo": "MSA e comunalidade por variável",
+  "o": "MSA é o KMO de cada variável: mostra se ela combina com as outras. Comunalidade é a parte da variância da variável que os dois fatores explicam.",
+  "q": [
+   {
+    "p": "Qual variável é a mais fraca?",
+    "r": "Na MSA, renda (invertida), com 0,709; na comunalidade, razão de moradores, com 0,375. As duas passam os critérios (MSA ≥ 0,50; comunalidade ≥ 0,30).",
+    "de_onde": "FA04; FA16"
+   },
+   {
+    "p": "Figueiredo pede comunalidade de 0,50. Por que 0,30?",
+    "r": "O NB05 usou 0,30. Com 0,50, razão de moradores (0,375) e banheiro graduado (0,446) ficariam abaixo. É uma questão para decidirmos.",
+    "de_onde": "ART002 p.176; FA04"
+   },
+   {
+    "p": "Por que a comunalidade oblíqua é igual?",
+    "r": "Com dois fatores, a parte explicada da variável não muda com a rotação; muda só como se reparte entre F1 e F2.",
+    "de_onde": "FA04"
+   }
+  ],
+  "k": [
+   "Menor MSA: 0,709 (renda)",
+   "Menor comunalidade: 0,375 (razão de moradores)"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FA05": {
+  "titulo": "Autovalores e análise paralela de Horn",
+  "o": "Autovalor é quanto da variância total um componente explica. Kaiser fica com os autovalores maiores que 1. Horn (análise paralela) compara cada autovalor com o que daria em dados aleatórios do mesmo tamanho e fica com os que passam.",
+  "q": [
+   {
+    "p": "Quantos fatores?",
+    "r": "Dois: os dois primeiros autovalores (3,186 e 1,071) passam de 1 e da referência de Horn (1,026 e 1,015).",
+    "de_onde": "FA05, tabela"
+   },
+   {
+    "p": "O segundo fator não está no limite?",
+    "r": "Está perto: 1,071 contra 1,015 de Horn. Por isso olho Kaiser e Horn juntos.",
+    "de_onde": "FA05"
+   },
+   {
+    "p": "Kaiser é confiável aqui?",
+    "r": "Matos diz que Kaiser é preciso com n > 250 e comunalidade média ≥ 0,6. O n passa; a comunalidade média fica no limite.",
+    "de_onde": "ART001 p.29"
+   }
+  ],
+  "k": [
+   "Autovalores: 3,186 e 1,071",
+   "Horn: 1,026 e 1,015",
+   "60,82% acumulado"
+  ],
+  "ver": [],
+  "p": [
+   "Horn: artigo original (ART024) em andamento; a definição está em Figueiredo, ART002 p.168"
+  ],
+  "tipo": "slide"
+ },
+ "FA06": {
+  "titulo": "Quantos fatores",
+  "o": "A decisão do número de fatores: Kaiser e Horn concordam em 2, e a solução fica com 2.",
+  "q": [
+   {
+    "p": "Por que reter 2 e não 1?",
+    "r": "Os dois critérios dão 2 nesta base. Também é o desenho do IVS-BH: uma dimensão socioeconômica e uma de saneamento.",
+    "de_onde": "FA06; ART003"
+   },
+   {
+    "p": "E se desse 3?",
+    "r": "Nos cenários com mais variáveis Kaiser e Horn pedem 3 ou 4; mantive 2 para comparar com o IVS-BH. Está no FP06.",
+    "de_onde": "FP06"
+   }
+  ],
+  "k": [
+   "Kaiser 2; Horn 2; retidos 2"
+  ],
+  "ver": [
+   "FP06"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FA07": {
+  "titulo": "Cargas sem rotação",
+  "o": "Cargas sem rotação: a correlação de cada variável com cada fator antes de girar os eixos. O primeiro fator pega um pouco de tudo, o que dificulta dar nome.",
+  "q": [
+   {
+    "p": "O que é carga?",
+    "r": "A correlação entre a variável e o fator. Acima de 0,40 em módulo, a variável é considerada parte do fator (critério do NB05).",
+    "de_onde": "FA16; ART002"
+   },
+   {
+    "p": "Por que mostrar sem rotação?",
+    "r": "Para comparar: a rotação não muda o total explicado, só reparte entre os fatores.",
+    "de_onde": "FA07; FA08"
+   }
+  ],
+  "k": [
+   "Maior carga em F1: renda (0,868)",
+   "Maior em F2: água inadequada (0,625)"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FA08": {
+  "titulo": "Cargas Varimax",
+  "o": "Cargas Varimax: rotação ortogonal, que deixa cada variável carregar forte num fator só. Os fatores ficam sem correlação entre si.",
+  "q": [
+   {
+    "p": "Como ficam os dois fatores?",
+    "r": "F1 socioeconômico (renda 0,906, analfabetismo 0,861, cor/raça 0,848, razão de moradores 0,592); F2 saneamento (água 0,752, banheiro graduado 0,668, esgoto 0,560).",
+    "de_onde": "FA08, tabela"
+   },
+   {
+    "p": "E o esgoto?",
+    "r": "Carrega nos dois (0,447 e 0,560): fica entre as dimensões.",
+    "de_onde": "FA08"
+   }
+  ],
+  "k": [
+   "F1: renda, analfabetismo, cor/raça, razão",
+   "F2: água, banheiro, esgoto"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FA09": {
+  "titulo": "Cargas promax: matriz padrão e matriz estrutura",
+  "o": "Cargas promax, a rotação oblíqua da referência. Padrão: efeito próprio de cada fator. Estrutura: correlação total da variável com o fator, incluindo o que vem pela correlação entre os fatores.",
+  "q": [
+   {
+    "p": "Por que promax e não Varimax?",
+    "r": "Os fatores são correlacionados (Φ = 0,411); a promax permite isso. Matos descreve a promax como um método rápido para bases grandes.",
+    "de_onde": "FA10; ART001 p.38"
+   },
+   {
+    "p": "Qual matriz vira peso?",
+    "r": "A padrão: os pesos saem do quadrado das cargas padrão.",
+    "de_onde": "FA11"
+   },
+   {
+    "p": "Por que há carga negativa (-0,207 no banheiro em F1)?",
+    "r": "Na matriz padrão, descontado o que vem de F2, o banheiro quase não tem relação própria com F1. É pequena e não entra no peso de F1.",
+    "de_onde": "FA09; FA11"
+   }
+  ],
+  "k": [
+   "Padrão: renda 0,937 em F1; água 0,783 em F2",
+   "Estrutura: renda 0,908; água 0,772"
+  ],
+  "ver": [
+   "FA10"
+  ],
+  "p": [
+   "Promax: ART025 em andamento; padrão × estrutura sem leitura no fichamento"
+  ],
+  "tipo": "slide"
+ },
+ "FA10": {
+  "titulo": "Correlação entre os fatores (Φ)",
+  "o": "Φ é a correlação entre os dois fatores na rotação oblíqua. Na Varimax ela é zero por construção.",
+  "q": [
+   {
+    "p": "O Φ de 0,411 é alto?",
+    "r": "É moderado: setores com pior condição socioeconômica tendem a ter pior saneamento. Por isso uma rotação oblíqua faz sentido.",
+    "de_onde": "FA10"
+   },
+   {
+    "p": "E se fosse perto de zero?",
+    "r": "A Varimax daria quase o mesmo e seria mais simples.",
+    "de_onde": "ART002 p.169"
+   }
+  ],
+  "k": [
+   "Φ = 0,411"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FA11": {
+  "titulo": "Os pesos do índice",
+  "o": "Como as cargas viram pesos: em cada dimensão, o peso da variável é o quadrado da sua carga padrão dividido pela soma dos quadrados; depois, a dimensão socioeconômica vale 60% e a de saneamento 40%.",
+  "q": [
+   {
+    "p": "Por que 60/40?",
+    "r": "É a repartição do IVS-BH 2012 (60,4% e 39,6%), arredondada.",
+    "de_onde": "ART009 p.7; ART003"
+   },
+   {
+    "p": "Por que o quadrado das cargas?",
+    "r": "Para medir a importância relativa de cada variável no fator, como no ISU de Passarelli-Araujo.",
+    "de_onde": "ART009 p.7"
+   },
+   {
+    "p": "Quem pesa mais?",
+    "r": "Renda (invertida), 19,28%; depois analfabetismo (17,36%) e água (17,32%).",
+    "de_onde": "FA11"
+   }
+  ],
+  "k": [
+   "F1 60% · F2 40%",
+   "Renda 19,28%; analfabetismo 17,36%; água 17,32%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FA12": {
+  "titulo": "O índice da referência proposta",
+  "o": "O índice: cada variável é normalizada de 0 a 1 dentro do município (min-max) e somada com os pesos. O resultado vai de 0 a 1; maior = mais vulnerável.",
+  "q": [
+   {
+    "p": "O que é a normalização municipal?",
+    "r": "Cada variável vira (valor - mínimo) / (máximo - mínimo) entre os setores do próprio município. Assim o índice compara setores dentro da cidade.",
+    "de_onde": "ART004 (Conversão de escala); estado_nb05"
+   },
+   {
+    "p": "Como se distribui?",
+    "r": "Mediana 0,3306; metade dos setores entre 0,2832 e 0,3757 (P25 e P75); máximo 0,9120.",
+    "de_onde": "FA12, tabela"
+   },
+   {
+    "p": "Dá para comparar índice entre municípios?",
+    "r": "Não diretamente: a escala é de cada município. Para comparar entre cidades, a normalização global é a alternativa testada no NB05.",
+    "de_onde": "estado_nb05"
+   }
+  ],
+  "k": [
+   "Mediana 0,3306; média 0,3338",
+   "P10 0,2313; P90 0,4311"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FA13": {
+  "titulo": "As faixas, pelas duas regras",
+  "o": "As faixas por duas regras. IVS-BH: médio = média ± 0,5 desvio-padrão; baixo, abaixo; elevado, até 1,5 DP acima; muito elevado, acima disso. Quartis: um quarto dos setores em cada faixa.",
+  "q": [
+   {
+    "p": "Quantos setores estão em vulnerabilidade muito elevada?",
+    "r": "Pela regra do IVS-BH, 3.933 (5,32%).",
+    "de_onde": "FA13, tabela"
+   },
+   {
+    "p": "Por que 1 setor fica \"indefinido\"?",
+    "r": "Um município tem um setor só nesta amostra: não tem desvio-padrão, então a regra não se aplica.",
+    "de_onde": "estado_nb05"
+   },
+   {
+    "p": "Qual regra usar?",
+    "r": "A do IVS-BH mantém a comparação com 2012; quartis forçam faixas do mesmo tamanho. Fica para decidirmos.",
+    "de_onde": "ART003 p.10"
+   }
+  ],
+  "k": [
+   "Muito elevado: 3.933 (5,32%)",
+   "Médio: 31.052 (42,03%)"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FA14": {
+  "titulo": "Validação contra as favelas (FCU)",
+  "o": "Validação contra FCU. A curva ROC mostra quão bem o índice separa setores de favela (FCU) dos demais; a AUC é a área sob a curva: 0,5 é acaso, 1 é separação perfeita. A AUC é a chance de um setor FCU sorteado ter índice maior que um não FCU sorteado.",
+  "q": [
+   {
+    "p": "A AUC de 0,8309 é boa?",
+    "r": "Separa bem: sorteando um setor FCU e um não FCU, a chance de o FCU ter índice maior é 0,8309.",
+    "de_onde": "FA14"
+   },
+   {
+    "p": "Por que validar contra FCU?",
+    "r": "É um critério externo do IBGE, independente do índice. Mas a FCU já usa condições de moradia, então há alguma circularidade com o saneamento.",
+    "de_onde": "ART005 p.47; estado_nb05"
+   },
+   {
+    "p": "Por que a AUC municipal?",
+    "r": "O índice é normalizado por município; a AUC dentro de cada município é a comparação justa. Uso a mediana dos 31 municípios com ao menos 30 setores de FCU e 30 fora.",
+    "de_onde": "FA15"
+   }
+  ],
+  "k": [
+   "AUC global 0,8309; mediana municipal 0,8186",
+   "31 municípios na mediana"
+  ],
+  "ver": [],
+  "p": [
+   "ROC/AUC: sem leitura própria no fichamento"
+  ],
+  "tipo": "slide"
+ },
+ "FA15": {
+  "titulo": "AUC por município",
+  "o": "A AUC em cada município, só onde há ao menos 30 setores de FCU e 30 fora (para a AUC não depender de poucos setores).",
+  "q": [
+   {
+    "p": "Por que só 31 dos 41?",
+    "r": "Nos outros há menos de 30 setores de FCU ou menos de 30 fora.",
+    "de_onde": "FA15"
+   },
+   {
+    "p": "Por que Duque de Caxias é tão baixo?",
+    "r": "Lá a AUC é 0,6037: o índice separa pouco FCU dos demais. Não investiguei o motivo.",
+    "de_onde": "FA15 [A CONFERIR: Duque de Caxias]"
+   }
+  ],
+  "k": [
+   "Mediana 0,8186",
+   "Menor 0,6037 (Duque de Caxias); maior 0,9544 (Campinas)"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FA16": {
+  "titulo": "Elegibilidade pelos critérios do NB05",
+  "o": "Os critérios de elegibilidade do NB05, fixados antes de rodar: KMO ≥ 0,70; MSA ≥ 0,50 em todas; comunalidade ≥ 0,30 em todas; maior carga ≥ 0,40 em todas.",
+  "q": [
+   {
+    "p": "A referência passa em tudo?",
+    "r": "Sim. O ponto mais perto do limite é a comunalidade da razão de moradores (0,3755) e a menor carga máxima é a do esgoto (0,5245).",
+    "de_onde": "FA16"
+   },
+   {
+    "p": "Por que fixar os critérios antes?",
+    "r": "Para a escolha não depender de qual resultado parece melhor.",
+    "de_onde": "FA16"
+   }
+  ],
+  "k": [
+   "Comunalidade mínima 0,3755 (razão de moradores)",
+   "Menor carga máxima 0,5245 (esgoto)"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FP00": {
+  "titulo": "Demandas da fatorial",
+  "o": "Abre as demandas sobre a fatorial: um slide por pedido, na ordem das demandas. Aqui a comparação entre cenários é o próprio pedido.",
+  "q": [
+   {
+    "p": "Por que os cenários antes das demandas?",
+    "r": "Cada demanda compara cenários; os slides FC mostram antes quais setores entram em cada um.",
+    "de_onde": "FC01 a FC09"
+   },
+   {
+    "p": "Os cenários usam o mesmo método da referência?",
+    "r": "Não: os cenários vêm da fatorial ampliada (antes do NB05), com pesos Varimax; a referência é do NB05, com promax e 60/40.",
+    "de_onde": "FP11; FA00"
+   }
+  ],
+  "k": [
+   "Cenários S0 a S7 e variantes"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FC01": {
+  "titulo": "Cenário S0: IVS-7",
+  "o": "Um cenário é um conjunto de variáveis rodado numa fatorial. Entram os setores urbanos com dados divulgados e com todas as variáveis do cenário; por isso o número de setores muda de um cenário para outro. Tudo é comparado com o S0, que reproduz o IVS-7 do NB04.",
+  "q": [
+   {
+    "p": "Por que este cenário tem 87.545 setores?",
+    "r": "Entram os setores com as 7 variáveis: 87.545. Nenhum setor do S0 sai.",
+    "de_onde": "FC01, tabelas de faltantes e \"Sai do S0\"; cenarios.csv"
+   },
+   {
+    "p": "Por que o S0 é a referência dos cenários?",
+    "r": "Reproduz o IVS-7 do NB04, a fatorial que já tínhamos. Os outros cenários mudam uma coisa por vez em relação a ele.",
+    "de_onde": "FC01; DM11"
+   },
+   {
+    "p": "Por que não imputar os faltantes?",
+    "r": "A fatorial precisa de todas as variáveis no setor. Imputar criaria valores que o IBGE não divulgou; preferi tirar o setor e mostrar quantos saem (exclusão por lista). É uma escolha que posso rever com você.",
+    "de_onde": "DS01; FA01; ART034 p.537 (limitações)"
+   }
+  ],
+  "k": [
+   "Cenário S0: IVS-7",
+   "87.545 setores; 7 variáveis; saem do S0: 0"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FC02": {
+  "titulo": "Cenário S1: IVS-6 (IVS-7 sem lixo)",
+  "o": "Um cenário é um conjunto de variáveis rodado numa fatorial. Entram os setores urbanos com dados divulgados e com todas as variáveis do cenário; por isso o número de setores muda de um cenário para outro. Tudo é comparado com o S0, que reproduz o IVS-7 do NB04.",
+  "q": [
+   {
+    "p": "Por que este cenário tem 87.545 setores?",
+    "r": "Entram os setores com as 6 variáveis: 87.545. Nenhum setor do S0 sai.",
+    "de_onde": "FC02, tabelas de faltantes e \"Sai do S0\"; cenarios.csv"
+   },
+   {
+    "p": "Por que não imputar os faltantes?",
+    "r": "A fatorial precisa de todas as variáveis no setor. Imputar criaria valores que o IBGE não divulgou; preferi tirar o setor e mostrar quantos saem (exclusão por lista). É uma escolha que posso rever com você.",
+    "de_onde": "DS01; FA01; ART034 p.537 (limitações)"
+   }
+  ],
+  "k": [
+   "Cenário S1: IVS-6 (IVS-7 sem lixo)",
+   "87.545 setores; 6 variáveis; saem do S0: 0"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FC03": {
+  "titulo": "Cenário S2: IVS-7 + não chega",
+  "o": "Um cenário é um conjunto de variáveis rodado numa fatorial. Entram os setores urbanos com dados divulgados e com todas as variáveis do cenário; por isso o número de setores muda de um cenário para outro. Tudo é comparado com o S0, que reproduz o IVS-7 do NB04.",
+  "q": [
+   {
+    "p": "Por que este cenário tem 78.256 setores?",
+    "r": "Entram os setores com as 8 variáveis: 78.256. Saem 9.289 do S0; a variável que mais tira é Água não chega (9.289 setores sem o dado).",
+    "de_onde": "FC03, tabelas de faltantes e \"Sai do S0\"; cenarios.csv"
+   },
+   {
+    "p": "Os setores que saem são diferentes dos que ficam?",
+    "r": "Não comparei o perfil dos que saem neste cenário; a tabela mostra só em que região ficam os que entram. Posso fazer essa comparação.",
+    "de_onde": "FC03, tabela por região [A CONFERIR: perfil dos que saem]"
+   },
+   {
+    "p": "Por que não imputar os faltantes?",
+    "r": "A fatorial precisa de todas as variáveis no setor. Imputar criaria valores que o IBGE não divulgou; preferi tirar o setor e mostrar quantos saem (exclusão por lista). É uma escolha que posso rever com você.",
+    "de_onde": "DS01; FA01; ART034 p.537 (limitações)"
+   }
+  ],
+  "k": [
+   "Cenário S2: IVS-7 + não chega",
+   "78.256 setores; 8 variáveis; saem do S0: 9.289"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FC04": {
+  "titulo": "Cenário S3: IVS-7 + sem canalização",
+  "o": "Um cenário é um conjunto de variáveis rodado numa fatorial. Entram os setores urbanos com dados divulgados e com todas as variáveis do cenário; por isso o número de setores muda de um cenário para outro. Tudo é comparado com o S0, que reproduz o IVS-7 do NB04.",
+  "q": [
+   {
+    "p": "Por que este cenário tem 87.512 setores?",
+    "r": "Entram os setores com as 8 variáveis: 87.512. Saem 33 do S0; a variável que mais tira é Sem água canalizada (33 setores sem o dado).",
+    "de_onde": "FC04, tabelas de faltantes e \"Sai do S0\"; cenarios.csv"
+   },
+   {
+    "p": "Os setores que saem são diferentes dos que ficam?",
+    "r": "Não comparei o perfil dos que saem neste cenário; a tabela mostra só em que região ficam os que entram. Posso fazer essa comparação.",
+    "de_onde": "FC04, tabela por região [A CONFERIR: perfil dos que saem]"
+   },
+   {
+    "p": "Por que não imputar os faltantes?",
+    "r": "A fatorial precisa de todas as variáveis no setor. Imputar criaria valores que o IBGE não divulgou; preferi tirar o setor e mostrar quantos saem (exclusão por lista). É uma escolha que posso rever com você.",
+    "de_onde": "DS01; FA01; ART034 p.537 (limitações)"
+   }
+  ],
+  "k": [
+   "Cenário S3: IVS-7 + sem canalização",
+   "87.512 setores; 8 variáveis; saem do S0: 33"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FC05": {
+  "titulo": "Cenário S4: IVS-7 + sem banheiro (V00495)",
+  "o": "Um cenário é um conjunto de variáveis rodado numa fatorial. Entram os setores urbanos com dados divulgados e com todas as variáveis do cenário; por isso o número de setores muda de um cenário para outro. Tudo é comparado com o S0, que reproduz o IVS-7 do NB04.",
+  "q": [
+   {
+    "p": "Por que este cenário tem 75.955 setores?",
+    "r": "Entram os setores com as 8 variáveis: 75.955. Saem 11.590 do S0; a variável que mais tira é Sem banheiro (11.590 setores sem o dado).",
+    "de_onde": "FC05, tabelas de faltantes e \"Sai do S0\"; cenarios.csv"
+   },
+   {
+    "p": "Os setores que saem são diferentes dos que ficam?",
+    "r": "Não comparei o perfil dos que saem neste cenário; a tabela mostra só em que região ficam os que entram. Posso fazer essa comparação.",
+    "de_onde": "FC05, tabela por região [A CONFERIR: perfil dos que saem]"
+   },
+   {
+    "p": "Por que não imputar os faltantes?",
+    "r": "A fatorial precisa de todas as variáveis no setor. Imputar criaria valores que o IBGE não divulgou; preferi tirar o setor e mostrar quantos saem (exclusão por lista). É uma escolha que posso rever com você.",
+    "de_onde": "DS01; FA01; ART034 p.537 (limitações)"
+   }
+  ],
+  "k": [
+   "Cenário S4: IVS-7 + sem banheiro (V00495)",
+   "75.955 setores; 8 variáveis; saem do S0: 11.590"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FC06": {
+  "titulo": "Cenário S5: IVS-7 + não convencional",
+  "o": "Um cenário é um conjunto de variáveis rodado numa fatorial. Entram os setores urbanos com dados divulgados e com todas as variáveis do cenário; por isso o número de setores muda de um cenário para outro. Tudo é comparado com o S0, que reproduz o IVS-7 do NB04.",
+  "q": [
+   {
+    "p": "Por que este cenário tem 87.545 setores?",
+    "r": "Entram os setores com as 8 variáveis: 87.545. Nenhum setor do S0 sai.",
+    "de_onde": "FC06, tabelas de faltantes e \"Sai do S0\"; cenarios.csv"
+   },
+   {
+    "p": "Por que não imputar os faltantes?",
+    "r": "A fatorial precisa de todas as variáveis no setor. Imputar criaria valores que o IBGE não divulgou; preferi tirar o setor e mostrar quantos saem (exclusão por lista). É uma escolha que posso rever com você.",
+    "de_onde": "DS01; FA01; ART034 p.537 (limitações)"
+   }
+  ],
+  "k": [
+   "Cenário S5: IVS-7 + não convencional",
+   "87.545 setores; 8 variáveis; saem do S0: 0"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FC07": {
+  "titulo": "Cenário S6: IVS-7 + as quatro",
+  "o": "Um cenário é um conjunto de variáveis rodado numa fatorial. Entram os setores urbanos com dados divulgados e com todas as variáveis do cenário; por isso o número de setores muda de um cenário para outro. Tudo é comparado com o S0, que reproduz o IVS-7 do NB04.",
+  "q": [
+   {
+    "p": "Por que este cenário tem 69.458 setores?",
+    "r": "Entram os setores com as 11 variáveis: 69.458. Saem 18.087 do S0; a variável que mais tira é Sem banheiro (11.590 setores sem o dado).",
+    "de_onde": "FC07, tabelas de faltantes e \"Sai do S0\"; cenarios.csv"
+   },
+   {
+    "p": "Os setores que saem são diferentes dos que ficam?",
+    "r": "Não comparei o perfil dos que saem neste cenário; a tabela mostra só em que região ficam os que entram. Posso fazer essa comparação.",
+    "de_onde": "FC07, tabela por região [A CONFERIR: perfil dos que saem]"
+   },
+   {
+    "p": "Por que não imputar os faltantes?",
+    "r": "A fatorial precisa de todas as variáveis no setor. Imputar criaria valores que o IBGE não divulgou; preferi tirar o setor e mostrar quantos saem (exclusão por lista). É uma escolha que posso rever com você.",
+    "de_onde": "DS01; FA01; ART034 p.537 (limitações)"
+   }
+  ],
+  "k": [
+   "Cenário S6: IVS-7 + as quatro",
+   "69.458 setores; 11 variáveis; saem do S0: 18.087"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FC08": {
+  "titulo": "Cenário S7: S6 sem lixo",
+  "o": "Um cenário é um conjunto de variáveis rodado numa fatorial. Entram os setores urbanos com dados divulgados e com todas as variáveis do cenário; por isso o número de setores muda de um cenário para outro. Tudo é comparado com o S0, que reproduz o IVS-7 do NB04.",
+  "q": [
+   {
+    "p": "Por que este cenário tem 69.458 setores?",
+    "r": "Entram os setores com as 10 variáveis: 69.458. Saem 18.087 do S0; a variável que mais tira é Sem banheiro (11.590 setores sem o dado).",
+    "de_onde": "FC08, tabelas de faltantes e \"Sai do S0\"; cenarios.csv"
+   },
+   {
+    "p": "Os setores que saem são diferentes dos que ficam?",
+    "r": "Não comparei o perfil dos que saem neste cenário; a tabela mostra só em que região ficam os que entram. Posso fazer essa comparação.",
+    "de_onde": "FC08, tabela por região [A CONFERIR: perfil dos que saem]"
+   },
+   {
+    "p": "Por que não imputar os faltantes?",
+    "r": "A fatorial precisa de todas as variáveis no setor. Imputar criaria valores que o IBGE não divulgou; preferi tirar o setor e mostrar quantos saem (exclusão por lista). É uma escolha que posso rever com você.",
+    "de_onde": "DS01; FA01; ART034 p.537 (limitações)"
+   }
+  ],
+  "k": [
+   "Cenário S7: S6 sem lixo",
+   "69.458 setores; 10 variáveis; saem do S0: 18.087"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FC09": {
+  "titulo": "As variantes dos cenários",
+  "o": "As variantes: mesmos setores do cenário de origem, mudando a renda (sem extremo ou com mediana) ou a escala (postos dentro do município).",
+  "q": [
+   {
+    "p": "O que é \"postos dentro do município\"?",
+    "r": "Em vez do valor, cada setor recebe a sua posição (posto) entre os setores do mesmo município. Tira o efeito de escala entre cidades.",
+    "de_onde": "FC09; FP11"
+   },
+   {
+    "p": "Por que a variante sem extremo tem um setor a menos?",
+    "r": "O setor extremo de BH fica vazio nela.",
+    "de_onde": "FC09; DM02"
+   }
+  ],
+  "k": [
+   "S0 sem extremo: 87.544 setores",
+   "S6 sem extremo: 69.457"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FP01": {
+  "titulo": "Demanda 1: o efeito das três rendas na fatorial",
+  "o": "Demanda 1 na fatorial: o efeito das três rendas.",
+  "q": [
+   {
+    "p": "A renda escolhida muda a fatorial?",
+    "r": "Não: KMO 0,783, 62,12% de variância e peso de F1 74,00% nas três. A troca afeta um setor só.",
+    "de_onde": "FP01, tabela"
+   },
+   {
+    "p": "Então para que três rendas?",
+    "r": "Para mostrar que o setor extremo não distorce o resultado.",
+    "de_onde": "DM02"
+   }
+  ],
+  "k": [
+   "Três rendas: peso F1 74,00% em todas"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FP02": {
+  "titulo": "Demanda 3: sem bootstrap, sem e com rotação",
+  "o": "Demanda 3: as cargas do S0 (IVS-7) sem rotação, Varimax e promax lado a lado.",
+  "q": [
+   {
+    "p": "O que muda entre as rotações?",
+    "r": "Pouco: o lixo carrega no F2 nas três (0,880 a 0,919); renda, analfabetismo e cor/raça ficam no F1.",
+    "de_onde": "FP02, tabela"
+   },
+   {
+    "p": "Por que o lixo sozinho no F2?",
+    "r": "É o fator próprio do lixo: ele quase não se correlaciona com os outros.",
+    "de_onde": "FP08; DC01"
+   }
+  ],
+  "k": [
+   "Lixo em F2: 0,880 / 0,919 / 0,915"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FP03": {
+  "titulo": "Demanda 5: o perfil dos setores com e sem \"água não chega\"",
+  "o": "Demanda 5: o perfil (medianas) dos setores com água não chega = 0 e > 0.",
+  "q": [
+   {
+    "p": "Como são os setores com \"não chega\" > 0?",
+    "r": "Têm renda mediana menor (R$ 1.526,40 contra R$ 2.830,52), mais analfabetismo e mais cor/raça PPI.",
+    "de_onde": "FP03, tabela"
+   },
+   {
+    "p": "Quantos setores têm \"não chega\" > 0?",
+    "r": "5.190, contra 89.212 com zero.",
+    "de_onde": "FP03"
+   }
+  ],
+  "k": [
+   "> 0: 5.190 setores; = 0: 89.212",
+   "Renda mediana R$ 1.526,40 × R$ 2.830,52"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FP04": {
+  "titulo": "Demanda 6: o \"sem banheiro\" na fatorial",
+  "o": "Demanda 6 na fatorial: o S4 usa a V00495; no NB05 as três versões do banheiro entram na grade.",
+  "q": [
+   {
+    "p": "Qual versão do banheiro passa mais?",
+    "r": "Com a V00495, 96 de 108 especificações são elegíveis; fora e graduado, 48 de 108 cada.",
+    "de_onde": "FP04"
+   },
+   {
+    "p": "Então por que a referência usa o graduado?",
+    "r": "O graduado gradua a gravidade e ficou na frente na ordem dos critérios do NB05. Com a V00495 há empate no topo em outra leitura; está em aberto.",
+    "de_onde": "estado_nb05 (sensibilidade)"
+   }
+  ],
+  "k": [
+   "V00495: 96 de 108 elegíveis",
+   "S4: 75.955 setores"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FP05": {
+  "titulo": "Demanda 7: canalização e sem banheiro, uma por vez",
+  "o": "Demanda 7: cada cenário acrescenta uma variável ao IVS-7 e perde os setores sem ela.",
+  "q": [
+   {
+    "p": "Alguma variável nova melhora a fatorial?",
+    "r": "O sem canalização (S3) tem o maior KMO (0,805) e quase não perde setores. Mas com as novas, Kaiser pede 3 fatores.",
+    "de_onde": "FP05, tabela"
+   },
+   {
+    "p": "Por que a variância de 2 fatores cai?",
+    "r": "Com mais variáveis, dois fatores explicam uma parte menor do total: de 62,12% (S0) para 56,37% (S4).",
+    "de_onde": "FP05"
+   }
+  ],
+  "k": [
+   "S3: KMO 0,805; S4: 56,37%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FP06": {
+  "titulo": "Demanda 8: tudo isso junto",
+  "o": "Demanda 8: tudo junto (S6), sem lixo (S7) e as variantes.",
+  "q": [
+   {
+    "p": "Por que ficar com 2 fatores se Kaiser e Horn pedem 4?",
+    "r": "Para manter o desenho do IVS-BH (duas dimensões) e comparar os cenários. Com 4, o índice teria outra estrutura; posso rodar se você quiser.",
+    "de_onde": "FP06; FA06"
+   },
+   {
+    "p": "E com postos dentro do município?",
+    "r": "O KMO cai para 0,769 e Kaiser e Horn pedem 3.",
+    "de_onde": "FP06"
+   }
+  ],
+  "k": [
+   "S6: Kaiser 4, Horn 4, 48,94%",
+   "S7: Kaiser 3, Horn 2"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FP07": {
+  "titulo": "Demanda 9: a moradia não convencional",
+  "o": "Demanda 9 na fatorial: a moradia não convencional no S5 e no S6.",
+  "q": [
+   {
+    "p": "A variável muda a fatorial?",
+    "r": "O KMO do S5 é igual ao do S0 (0,783), mas a variância de 2 fatores cai de 62,12% para 54,45%: a variável entra sem pertencer a nenhum fator.",
+    "de_onde": "FP07; DM10"
+   },
+   {
+    "p": "Por que o S5 não perde setores?",
+    "r": "A moradia não convencional não tem faltantes: o S5 fica com os mesmos 87.545 setores do S0.",
+    "de_onde": "FP07; DS02"
+   }
+  ],
+  "k": [
+   "S5: KMO 0,783; 54,45%"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FP08": {
+  "titulo": "Demanda 10: testar o lixo",
+  "o": "Demanda 10: o lixo. Com ele, Kaiser e Horn dão 2 fatores e o lixo forma um fator próprio; sem ele, 1.",
+  "q": [
+   {
+    "p": "Então o IVS-7 tem um fator só de lixo?",
+    "r": "Na Varimax do S0, sim: o segundo fator é praticamente o lixo. Sem lixo (S1) sobra um fator.",
+    "de_onde": "FP08; FP02"
+   },
+   {
+    "p": "No S6 o lixo também se separa?",
+    "r": "Não: com as quatro variáveis novas, ele não forma fator próprio.",
+    "de_onde": "FP08"
+   }
+  ],
+  "k": [
+   "S0: 2 fatores; S1: 1",
+   "S6: lixo não forma fator próprio"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FP09": {
+  "titulo": "Demanda 11: as duas rotações",
+  "o": "Demanda 11: os pesos nas duas rotações, em S0, S1 e S6; na promax pelas duas matrizes.",
+  "q": [
+   {
+    "p": "Onde a rotação muda mais o peso?",
+    "r": "No S1: o peso de F1 vai de 77,17% (sem rotação) a 59,64% (promax, estrutura).",
+    "de_onde": "FP09"
+   },
+   {
+    "p": "Por que o Φ muda tanto entre cenários?",
+    "r": "Depende de quais variáveis entram: 0,151 no S0, 0,522 no S1 e 0,435 no S6.",
+    "de_onde": "FP09"
+   }
+  ],
+  "k": [
+   "Φ: 0,151 (S0), 0,522 (S1), 0,435 (S6)"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FP11": {
+  "titulo": "Validação contra FCU, cenário a cenário",
+  "o": "A AUC contra FCU em cada cenário: o índice com pesos Varimax, a renda invertida sozinha e a média simples dos postos das variáveis.",
+  "q": [
+   {
+    "p": "O índice separa FCU melhor que a renda?",
+    "r": "Não: a renda invertida sozinha tem AUC maior em quase todos os cenários (0,8819 contra 0,8377 no S0). O índice só fica à frente em duas variantes com postos dentro do município (S0_postos_mun e S6_postos_mun).",
+    "de_onde": "FP11, tabela"
+   },
+   {
+    "p": "O que é a média simples de postos?",
+    "r": "Um índice sem fatorial: cada variável vira posto e tira-se a média. Serve de comparação.",
+    "de_onde": "FP11"
+   }
+  ],
+  "k": [
+   "S0: índice 0,8377; renda 0,8819; postos 0,8684"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "FP13": {
+  "titulo": "A renda sozinha contra o índice",
+  "o": "O que o índice acrescenta à renda. A renda sozinha separa FCU melhor; dentro de cada faixa de renda do município, o índice separa melhor.",
+  "q": [
+   {
+    "p": "Se a renda sozinha é melhor, para que o índice?",
+    "r": "No geral a renda vence (0,8900 × 0,8309). Mas entre setores com renda parecida, o índice separa FCU melhor (0,7062 × 0,5900): ele acrescenta o que a renda não vê.",
+    "de_onde": "FP13, tabela; acrescimo_renda.csv"
+   },
+   {
+    "p": "Somar o índice à renda ajuda?",
+    "r": "Melhora o modelo (queda da deviance de 135,45; z de 17,48), mas a AUC quase não muda.",
+    "de_onde": "FP13; estado_nb05"
+   },
+   {
+    "p": "Em quantas especificações a renda vence?",
+    "r": "Em todas: em nenhuma das 192 o índice supera a renda na AUC global.",
+    "de_onde": "FP13"
+   }
+  ],
+  "k": [
+   "AUC global: índice 0,8309; renda 0,8900",
+   "Nos estratos de renda: índice 0,7062; renda 0,5900"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "VP00": {
+  "titulo": "As 108 versões da análise fatorial",
+  "o": "Abre as 108 versões: cinco escolhas (renda, lixo, água, banheiro, moradia) combinadas, todas com o mesmo método (promax, 60/40, normalização municipal).",
+  "q": [
+   {
+    "p": "Por que 108?",
+    "r": "3 rendas × 2 lixo × 3 água × 3 banheiro × 2 moradia = 108.",
+    "de_onde": "VP03"
+   },
+   {
+    "p": "Para que tantas versões?",
+    "r": "Para ver o efeito de cada escolha, uma por vez, mantendo o resto igual. É uma análise de sensibilidade.",
+    "de_onde": "ART039 p.775"
+   }
+  ],
+  "k": [
+   "108 versões; 24 passam"
+  ],
+  "ver": [
+   "VP03",
+   "VP05"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "VP02": {
+  "titulo": "Como ler",
+  "o": "Como ler as versões: método fixo, cada versão na sua amostra própria, comparações na amostra comum.",
+  "q": [
+   {
+    "p": "O que é a amostra comum?",
+    "r": "Os 67.981 setores que têm as variáveis de todas as 108. Comparar na mesma amostra evita que a diferença venha dos setores e não da versão.",
+    "de_onde": "VP02"
+   },
+   {
+    "p": "Os critérios são os mesmos do NB05?",
+    "r": "Sim: KMO ≥ 0,70; MSA ≥ 0,50; comunalidade ≥ 0,30; carga ≥ 0,40.",
+    "de_onde": "VP02; FA16"
+   }
+  ],
+  "k": [
+   "Amostra comum: 67.981 setores"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "VP03": {
+  "titulo": "Os cinco eixos",
+  "o": "Os cinco eixos e as opções de cada um. Seis variáveis ficam em todas as versões.",
+  "q": [
+   {
+    "p": "Por que \"não chega\" e \"sem canalização\" não entram juntas?",
+    "r": "Uma contém a outra: entrariam duas vezes a mesma informação.",
+    "de_onde": "VP03"
+   },
+   {
+    "p": "Por que essas variáveis fixas?",
+    "r": "São os componentes do IVS-7 que não estão em discussão: água, esgoto, razão de moradores, analfabetismo, renda e cor/raça.",
+    "de_onde": "VP03"
+   }
+  ],
+  "k": [
+   "3 × 2 × 3 × 3 × 2 = 108",
+   "De 6 a 10 variáveis"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "VP04": {
+  "titulo": "A amostra",
+  "o": "Quantos setores cada versão tem na amostra própria, por opção de cada eixo.",
+  "q": [
+   {
+    "p": "Qual opção tira mais setores?",
+    "r": "Acrescentar \"não chega\": a mediana cai para 69.480 setores.",
+    "de_onde": "VP04"
+   },
+   {
+    "p": "A renda muda a amostra?",
+    "r": "Quase nada: só o setor extremo de BH (68.000 × 68.001).",
+    "de_onde": "VP04"
+   }
+  ],
+  "k": [
+   "Amostras de 68.000 a 87.545 setores"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "VP05": {
+  "titulo": "As 108 de uma vez: quem passa nos critérios",
+  "o": "As 108 numa grade: cada célula é uma versão, em verde as que passam, com o primeiro critério que falha nas outras.",
+  "q": [
+   {
+    "p": "Por que só 24 passam?",
+    "r": "Quase todas as que falham, falham na comunalidade (alguma variável abaixo de 0,30); algumas também na carga. Com lixo só 3 passam; sem lixo, 21.",
+    "de_onde": "VP05; versoes.csv"
+   },
+   {
+    "p": "Que variável costuma ficar com comunalidade baixa?",
+    "r": "Lixo e moradia não convencional quase não se correlacionam com o resto (DC01, DM10).",
+    "de_onde": "DC01; DM10 [A CONFERIR: variável que falha em cada versão]"
+   }
+  ],
+  "k": [
+   "24 de 108 passam; com lixo 3, sem lixo 21"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "VP06": {
+  "titulo": "As 108 de uma vez: KMO",
+  "o": "O KMO de cada versão, na mesma grade.",
+  "q": [
+   {
+    "p": "Alguma versão falha no KMO?",
+    "r": "Não: o menor é 0,7653 (V048), acima de 0,70. O KMO não separa as versões; o que separa é a comunalidade.",
+    "de_onde": "VP06; VP05"
+   },
+   {
+    "p": "Qual versão tem o maior KMO?",
+    "r": "A V033 (0,8143).",
+    "de_onde": "VP06"
+   }
+  ],
+  "k": [
+   "KMO de 0,765 a 0,814"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "VP07": {
+  "titulo": "As 108 de uma vez: AUC no município",
+  "o": "A AUC no município de cada versão, na amostra comum.",
+  "q": [
+   {
+    "p": "A versão de maior AUC passa nos critérios?",
+    "r": "Sim: a V024 (0,8642) está na lista das que passam.",
+    "de_onde": "VP07; VP13"
+   },
+   {
+    "p": "A AUC muda muito entre versões?",
+    "r": "Pouco: de 0,812 a 0,864.",
+    "de_onde": "VP07"
+   }
+  ],
+  "k": [
+   "AUC no município de 0,812 a 0,864"
+  ],
+  "ver": [
+   "VP13"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "VP08": {
+  "titulo": "Um eixo por vez: renda",
+  "o": "Compara pares de versões iguais em tudo, menos neste eixo. Para cada troca: a mediana da diferença entre os pares e, entre colchetes, a menor e a maior. Spearman perto de 1 quer dizer que as duas versões ordenam os setores quase igual.",
+  "q": [
+   {
+    "p": "Mudar renda muda o índice?",
+    "r": "renda original → renda sem extremo: Spearman 0,999, 0,2% mudam de faixa; renda original → renda com mediana: Spearman 0,999, 0,2% mudam de faixa.",
+    "de_onde": "VP08; pares_por_eixo.csv"
+   },
+   {
+    "p": "E quantas versões passam nos critérios?",
+    "r": "renda original → renda sem extremo: 8 → 8; renda original → renda com mediana: 8 → 8; renda sem extremo → renda com mediana: 8 → 8.",
+    "de_onde": "VP08, coluna \"Elegíveis antes → depois\""
+   },
+   {
+    "p": "O que é \"mudar de faixa\"?",
+    "r": "É o setor passar de uma faixa (baixo, médio, elevado, muito elevado) para outra entre as duas versões, pela regra do IVS-BH. Mostra o efeito prático da troca.",
+    "de_onde": "FA13; ART003 p.10 (regra das faixas)"
+   }
+  ],
+  "k": [
+   "renda original → renda sem extremo: 0,2% mudam de faixa",
+   "renda original → renda com mediana: 0,2% mudam de faixa",
+   "renda sem extremo → renda com mediana: 0,0% mudam de faixa"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "VP09": {
+  "titulo": "Um eixo por vez: lixo",
+  "o": "Compara pares de versões iguais em tudo, menos neste eixo. Para cada troca: a mediana da diferença entre os pares e, entre colchetes, a menor e a maior. Spearman perto de 1 quer dizer que as duas versões ordenam os setores quase igual.",
+  "q": [
+   {
+    "p": "Mudar lixo muda o índice?",
+    "r": "com lixo → sem lixo: Spearman 0,990, 8,2% mudam de faixa.",
+    "de_onde": "VP09; pares_por_eixo.csv"
+   },
+   {
+    "p": "E quantas versões passam nos critérios?",
+    "r": "com lixo → sem lixo: 3 → 21.",
+    "de_onde": "VP09, coluna \"Elegíveis antes → depois\""
+   },
+   {
+    "p": "O que é \"mudar de faixa\"?",
+    "r": "É o setor passar de uma faixa (baixo, médio, elevado, muito elevado) para outra entre as duas versões, pela regra do IVS-BH. Mostra o efeito prático da troca.",
+    "de_onde": "FA13; ART003 p.10 (regra das faixas)"
+   }
+  ],
+  "k": [
+   "com lixo → sem lixo: 8,2% mudam de faixa"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "VP10": {
+  "titulo": "Um eixo por vez: água canalizada",
+  "o": "Compara pares de versões iguais em tudo, menos neste eixo. Para cada troca: a mediana da diferença entre os pares e, entre colchetes, a menor e a maior. Spearman perto de 1 quer dizer que as duas versões ordenam os setores quase igual.",
+  "q": [
+   {
+    "p": "Mudar água canalizada muda o índice?",
+    "r": "água: só a inadequada → + água não chega: Spearman 0,965, 16,3% mudam de faixa; água: só a inadequada → + sem água canalizada: Spearman 0,978, 12,1% mudam de faixa.",
+    "de_onde": "VP10; pares_por_eixo.csv"
+   },
+   {
+    "p": "E quantas versões passam nos critérios?",
+    "r": "água: só a inadequada → + água não chega: 15 → 3; água: só a inadequada → + sem água canalizada: 15 → 6; + água não chega → + sem água canalizada: 3 → 6.",
+    "de_onde": "VP10, coluna \"Elegíveis antes → depois\""
+   },
+   {
+    "p": "O que é \"mudar de faixa\"?",
+    "r": "É o setor passar de uma faixa (baixo, médio, elevado, muito elevado) para outra entre as duas versões, pela regra do IVS-BH. Mostra o efeito prático da troca.",
+    "de_onde": "FA13; ART003 p.10 (regra das faixas)"
+   }
+  ],
+  "k": [
+   "água: só a inadequada → + água não chega: 16,3% mudam de faixa",
+   "água: só a inadequada → + sem água canalizada: 12,1% mudam de faixa",
+   "+ água não chega → + sem água canalizada: 6,6% mudam de faixa"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "VP11": {
+  "titulo": "Um eixo por vez: banheiro",
+  "o": "Compara pares de versões iguais em tudo, menos neste eixo. Para cada troca: a mediana da diferença entre os pares e, entre colchetes, a menor e a maior. Spearman perto de 1 quer dizer que as duas versões ordenam os setores quase igual.",
+  "q": [
+   {
+    "p": "Mudar banheiro muda o índice?",
+    "r": "banheiro fora → + sem banheiro: Spearman 0,993, 9,8% mudam de faixa; banheiro fora → + banheiro graduado: Spearman 0,993, 11,3% mudam de faixa.",
+    "de_onde": "VP11; pares_por_eixo.csv"
+   },
+   {
+    "p": "E quantas versões passam nos critérios?",
+    "r": "banheiro fora → + sem banheiro: 9 → 9; banheiro fora → + banheiro graduado: 9 → 6; + sem banheiro → + banheiro graduado: 9 → 6.",
+    "de_onde": "VP11, coluna \"Elegíveis antes → depois\""
+   },
+   {
+    "p": "O que é \"mudar de faixa\"?",
+    "r": "É o setor passar de uma faixa (baixo, médio, elevado, muito elevado) para outra entre as duas versões, pela regra do IVS-BH. Mostra o efeito prático da troca.",
+    "de_onde": "FA13; ART003 p.10 (regra das faixas)"
+   }
+  ],
+  "k": [
+   "banheiro fora → + sem banheiro: 9,8% mudam de faixa",
+   "banheiro fora → + banheiro graduado: 11,3% mudam de faixa",
+   "+ sem banheiro → + banheiro graduado: 2,6% mudam de faixa"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "VP12": {
+  "titulo": "Um eixo por vez: moradia",
+  "o": "Compara pares de versões iguais em tudo, menos neste eixo. Para cada troca: a mediana da diferença entre os pares e, entre colchetes, a menor e a maior. Spearman perto de 1 quer dizer que as duas versões ordenam os setores quase igual.",
+  "q": [
+   {
+    "p": "Mudar moradia muda o índice?",
+    "r": "moradia fora → + moradia não convencional: Spearman 1,000, 1,1% mudam de faixa.",
+    "de_onde": "VP12; pares_por_eixo.csv"
+   },
+   {
+    "p": "E quantas versões passam nos critérios?",
+    "r": "moradia fora → + moradia não convencional: 21 → 3.",
+    "de_onde": "VP12, coluna \"Elegíveis antes → depois\""
+   },
+   {
+    "p": "O que é \"mudar de faixa\"?",
+    "r": "É o setor passar de uma faixa (baixo, médio, elevado, muito elevado) para outra entre as duas versões, pela regra do IVS-BH. Mostra o efeito prático da troca.",
+    "de_onde": "FA13; ART003 p.10 (regra das faixas)"
+   }
+  ],
+  "k": [
+   "moradia fora → + moradia não convencional: 1,1% mudam de faixa"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "VP13": {
+  "titulo": "As versões que passam nos critérios",
+  "o": "As versões que passam nos critérios, em ordem de código, com setores, KMO, AUC e o Spearman com a V023 (a referência do NB05).",
+  "q": [
+   {
+    "p": "A referência do NB05 está entre elas?",
+    "r": "Sim: é a V023 (renda original, sem lixo, banheiro graduado), com 73.878 setores e KMO 0,781.",
+    "de_onde": "VP13"
+   },
+   {
+    "p": "As que passam dão índices parecidos?",
+    "r": "O Spearman com a V023 mostra isso: perto de 1 quer dizer quase a mesma ordem de setores.",
+    "de_onde": "VP13"
+   }
+  ],
+  "k": [
+   "V023 = referência do NB05: 73.878 setores, KMO 0,781"
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "VP13-2": {
+  "titulo": "As versões que passam nos critérios (2)",
+  "o": "Continuação da lista das versões que passam.",
+  "q": [
+   {
+    "p": "Por que em ordem de código?",
+    "r": "Para não sugerir uma escolha; a ordem pelos critérios está no VP14.",
+    "de_onde": "VP14"
+   },
+   {
+    "p": "O que quer dizer o Spearman com a V023?",
+    "r": "Quanto a versão ordena os setores igual à referência do NB05: perto de 1, quase a mesma ordem.",
+    "de_onde": "VP13"
+   }
+  ],
+  "k": [
+   "24 versões no total"
+  ],
+  "ver": [
+   "VP13"
+  ],
+  "p": [],
+  "tipo": "slide"
+ },
+ "VP14": {
+  "titulo": "A ordem das elegíveis",
+  "o": "As elegíveis ordenadas pela posição média em três critérios: estabilidade (a maior variação do peso de uma variável quando se tira um município), AUC no município e parcimônia (menos variáveis). Empate: a mais próxima do IVS-BH 2012.",
+  "q": [
+   {
+    "p": "Então a melhor é a V025?",
+    "r": "Não escolhi. A V025 tem a menor posição média (9,2) por esses critérios; a decisão é sua.",
+    "de_onde": "VP14"
+   },
+   {
+    "p": "Por que a referência do NB05 (V023) não está no topo?",
+    "r": "Ela tem a maior variação de peso da lista (6,94 p.p.); a posição média é 12,3. A ordem do NB05 era em outra grade (com rotações e pesos diferentes).",
+    "de_onde": "VP14; estado_nb05"
+   },
+   {
+    "p": "O que é parcimônia?",
+    "r": "Preferir a versão com menos variáveis quando o resultado é parecido.",
+    "de_onde": "VP14"
+   }
+  ],
+  "k": [
+   "V025: posição média 9,2",
+   "V023: 12,3; variação de peso 6,94 p.p."
+  ],
+  "ver": [],
+  "p": [],
+  "tipo": "slide"
+ },
+ "G01": {
+  "titulo": "Glossário (1/14)",
+  "tipo": "glossario",
+  "termos": [
+   {
+    "t": "Setor censitário",
+    "d": "A menor área do Censo, com algumas centenas de domicílios. É a unidade do índice, como no IVS-BH.",
+    "de_onde": "ART003 p.6"
+   },
+   {
+    "t": "Dados_sig",
+    "d": "Marca do setor: OK se tem dados divulgados. A regra vem da nota do IVS-BH.",
+    "de_onde": "ART004"
+   },
+   {
+    "t": "Sigilo",
+    "d": "O IBGE não divulga contagens de setores com poucos moradores, para não identificar ninguém. O valor fica vazio.",
+    "de_onde": "DS02"
+   }
+  ]
+ },
+ "G02": {
+  "titulo": "Glossário (2/14)",
+  "tipo": "glossario",
+  "termos": [
+   {
+    "t": "FCU",
+    "d": "Favelas e Comunidades Urbanas: classificação do IBGE de 2022 (antes \"aglomerados subnormais\"). Usada como critério externo de validação.",
+    "de_onde": "ART005 p.46"
+   },
+   {
+    "t": "Proporção × razão",
+    "d": "Proporção vai de 0 a 1 (parte do total). Razão compara duas quantidades e pode passar de 1 (por exemplo, moradores por dormitório).",
+    "de_onde": "DS03; DS16"
+   },
+   {
+    "t": "Exclusão por lista",
+    "d": "Na fatorial, o setor sem alguma das variáveis sai inteiro.",
+    "de_onde": "DS01; FA01"
+   }
+  ]
+ },
+ "G03": {
+  "titulo": "Glossário (3/14)",
+  "tipo": "glossario",
+  "termos": [
+   {
+    "t": "Imputação",
+    "d": "Pôr um valor no lugar de um dado. Só usei para o setor extremo de renda de BH (mediana do município).",
+    "de_onde": "DM02"
+   },
+   {
+    "t": "Assimetria",
+    "d": "Mede se a distribuição tem cauda: positiva, cauda à direita (poucos valores altos); negativa, à esquerda.",
+    "de_onde": "slides DS"
+   },
+   {
+    "t": "Coeficiente de variação (CV)",
+    "d": "Desvio-padrão dividido pela média. Acima de 100%, o valor varia muito entre setores.",
+    "de_onde": "slides DS"
+   }
+  ]
+ },
+ "G04": {
+  "titulo": "Glossário (4/14)",
+  "tipo": "glossario",
+  "termos": [
+   {
+    "t": "P10, P25, P75, P90",
+    "d": "Percentis: abaixo do P10 ficam 10% dos setores; abaixo do P90, 90%.",
+    "de_onde": "slides DS"
+   },
+   {
+    "t": "Spearman",
+    "d": "Correlação pela ordem (postos) dos setores; não exige normalidade. Vai de -1 a 1.",
+    "de_onde": "ART007 seção 11.2"
+   },
+   {
+    "t": "Pearson",
+    "d": "Correlação pelos valores; sensível a extremos e a muitos zeros.",
+    "de_onde": "ART007"
+   }
+  ]
+ },
+ "G05": {
+  "titulo": "Glossário (5/14)",
+  "tipo": "glossario",
+  "termos": [
+   {
+    "t": "Análise fatorial",
+    "d": "Resume variáveis correlacionadas em poucos fatores (dimensões latentes).",
+    "de_onde": "ART002 p.161"
+   },
+   {
+    "t": "Componente × fator",
+    "d": "Componente vem da variância total (componentes principais); fator, só da parte comum. Aqui os autovalores são dos componentes.",
+    "de_onde": "ART001"
+   },
+   {
+    "t": "Autovalor",
+    "d": "Quanto da variância total um componente explica. A soma dos autovalores é o número de variáveis.",
+    "de_onde": "FA05"
+   }
+  ]
+ },
+ "G06": {
+  "titulo": "Glossário (6/14)",
+  "tipo": "glossario",
+  "termos": [
+   {
+    "t": "Critério de Kaiser",
+    "d": "Fica com os componentes de autovalor maior que 1. Preciso com n > 250 e comunalidade média ≥ 0,6.",
+    "de_onde": "ART001 p.29"
+   },
+   {
+    "t": "Análise paralela de Horn",
+    "d": "Compara cada autovalor com o de dados aleatórios do mesmo tamanho; fica com os que passam.",
+    "de_onde": "ART002 p.168"
+   },
+   {
+    "t": "KMO",
+    "d": "Kaiser-Meyer-Olkin: de 0 a 1, se as variáveis têm correlação suficiente para a fatorial. Acima de 0,7, bom (Matos).",
+    "de_onde": "ART001 p.43; ART002 p.166"
+   }
+  ]
+ },
+ "G07": {
+  "titulo": "Glossário (7/14)",
+  "tipo": "glossario",
+  "termos": [
+   {
+    "t": "MSA",
+    "d": "O KMO de cada variável. Abaixo de 0,5, a variável não combina com as outras.",
+    "de_onde": "FA04"
+   },
+   {
+    "t": "Bartlett",
+    "d": "Testa se a matriz de correlação é a identidade. Com amostra grande quase sempre rejeita; não basta sozinho.",
+    "de_onde": "ART001 p.43"
+   },
+   {
+    "t": "Comunalidade",
+    "d": "Parte da variância da variável explicada pelos fatores. O NB05 exige ≥ 0,30; Figueiredo sugere 0,50.",
+    "de_onde": "ART002 p.176"
+   }
+  ]
+ },
+ "G08": {
+  "titulo": "Glossário (8/14)",
+  "tipo": "glossario",
+  "termos": [
+   {
+    "t": "Carga",
+    "d": "Correlação da variável com o fator. O NB05 exige que a maior carga de cada variável seja ≥ 0,40.",
+    "de_onde": "FA16"
+   },
+   {
+    "t": "Rotação",
+    "d": "Girar os eixos para cada variável carregar forte num fator só. Não muda o total explicado.",
+    "de_onde": "ART002 p.169"
+   },
+   {
+    "t": "Varimax",
+    "d": "Rotação ortogonal: fatores sem correlação.",
+    "de_onde": "ART002 p.169"
+   }
+  ]
+ },
+ "G09": {
+  "titulo": "Glossário (9/14)",
+  "tipo": "glossario",
+  "termos": [
+   {
+    "t": "Promax",
+    "d": "Rotação oblíqua: permite fatores correlacionados. Rápida, boa para bases grandes.",
+    "de_onde": "ART001 p.38"
+   },
+   {
+    "t": "Φ (phi)",
+    "d": "Correlação entre os fatores numa rotação oblíqua.",
+    "de_onde": "FA10"
+   },
+   {
+    "t": "Matriz padrão",
+    "d": "Na oblíqua: o efeito próprio de cada fator sobre a variável. É a que vira peso.",
+    "de_onde": "FA09"
+   }
+  ]
+ },
+ "G10": {
+  "titulo": "Glossário (10/14)",
+  "tipo": "glossario",
+  "termos": [
+   {
+    "t": "Matriz estrutura",
+    "d": "Na oblíqua: a correlação total variável-fator, incluindo o que vem do outro fator.",
+    "de_onde": "FA09"
+   },
+   {
+    "t": "Pesos do índice",
+    "d": "Quadrado das cargas, normalizado em cada dimensão, vezes o peso da dimensão (60/40).",
+    "de_onde": "FA11; ART009 p.7"
+   },
+   {
+    "t": "Normalização min-max",
+    "d": "(valor - mínimo) / (máximo - mínimo): põe cada variável entre 0 e 1.",
+    "de_onde": "ART004 (Conversão de escala)"
+   }
+  ]
+ },
+ "G11": {
+  "titulo": "Glossário (11/14)",
+  "tipo": "glossario",
+  "termos": [
+   {
+    "t": "Normalização municipal",
+    "d": "O min-max feito dentro de cada município. A global usa todos os setores juntos.",
+    "de_onde": "FA12"
+   },
+   {
+    "t": "Faixas do IVS-BH",
+    "d": "Médio = média ± 0,5 DP; baixo abaixo; elevado até 1,5 DP acima; muito elevado acima.",
+    "de_onde": "ART003 p.10"
+   },
+   {
+    "t": "Quartis",
+    "d": "Cortes que deixam um quarto dos setores em cada faixa.",
+    "de_onde": "FA13"
+   }
+  ]
+ },
+ "G12": {
+  "titulo": "Glossário (12/14)",
+  "tipo": "glossario",
+  "termos": [
+   {
+    "t": "Curva ROC",
+    "d": "Para cada corte do índice, a proporção de FCU acima do corte contra a de não FCU acima.",
+    "de_onde": "FA14"
+   },
+   {
+    "t": "AUC",
+    "d": "Área sob a curva ROC: 0,5 é acaso; 1, separação perfeita. Chance de um FCU ter índice maior que um não FCU.",
+    "de_onde": "FA14"
+   },
+   {
+    "t": "AUC municipal",
+    "d": "A AUC calculada dentro de cada município; uso a mediana dos que têm ao menos 30 setores de FCU e 30 fora.",
+    "de_onde": "FA15"
+   }
+  ]
+ },
+ "G13": {
+  "titulo": "Glossário (13/14)",
+  "tipo": "glossario",
+  "termos": [
+   {
+    "t": "Média de postos",
+    "d": "Índice sem fatorial: cada variável vira posto e tira-se a média. Serve de comparação.",
+    "de_onde": "FP11"
+   },
+   {
+    "t": "Amostra comum",
+    "d": "Os setores que têm as variáveis de todas as versões comparadas.",
+    "de_onde": "VP02"
+   },
+   {
+    "t": "Estabilidade",
+    "d": "Quanto os pesos mudam quando se tira um município de cada vez.",
+    "de_onde": "VP14"
+   }
+  ]
+ },
+ "G14": {
+  "titulo": "Glossário (14/14)",
+  "tipo": "glossario",
+  "termos": [
+   {
+    "t": "Parcimônia",
+    "d": "Preferir menos variáveis quando o resultado é parecido.",
+    "de_onde": "VP14"
+   },
+   {
+    "t": "Formativo × reflexivo",
+    "d": "Reflexivo: os indicadores refletem algo latente (fatorial serve). Formativo: os indicadores formam o índice (a fatorial pode não ser o caminho para os pesos). Em aberto.",
+    "de_onde": "ART020"
+   },
+   {
+    "t": "Falácia ecológica",
+    "d": "Associação entre setores não vale automaticamente para pessoas.",
+    "de_onde": "ART008 p.194"
+   }
+  ]
+ }
+}

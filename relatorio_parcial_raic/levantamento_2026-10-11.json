@@ -1,0 +1,1028 @@
+{
+ "desvios": {
+  "indicadores": [
+   {
+    "indicador": "1. Água: % de domicílios com abastecimento de água inadequado ou ausente (pct_agua_inad)",
+    "no_plano": "Dimensão Saneamento: 'Percentual de domicílios particulares permanentes com abastecimento de água inadequado ou ausente'. O Plano não traz códigos nem diz o que é 'inadequado'.",
+    "ivs2012_num_den": "Numerador (Agua_Inade, Domicilio01_UF.xls): V013 poço ou nascente na propriedade + V014 água da chuva armazenada em cisterna + V015 outra forma de abastecimento. Denominador (Domicilio01_UF.xls): V002, domicílios particulares permanentes.",
+    "censo2022_implementacao": "(V00112 poço profundo ou artesiano + V00113 poço raso, freático ou cacimba + V00114 fonte, nascente ou mina + V00115 carro-pipa + V00116 água da chuva armazenada + V00117 rios, açudes, córregos, lagos e igarapés + V00118 outra forma) ÷ V00001 (DPPO, domicílios particulares permanentes ocupados). O numerador vem de Agregados_por_setores_caracteristicas_domicilio2_BR_20250417.csv e o denominador de Agregados_por_setores_caracteristicas_domicilio1_BR.csv. Só a rede geral (V00111) conta como adequada. Não há faixa etária (a unidade é o domicílio). O numerador é somado com min_count=1 e o resultado é limitado a [0,1]. Nos 104.108 setores: média 0,0696, mediana 0.",
+    "diferenca": "O conceito é o mesmo (toda forma que não é rede geral), mas 2010 tem 3 categorias e 2022 tem 7. Em 2022 o numerador e o denominador vêm de arquivos diferentes. Sigilo parcial: 30.302 setores (29,1%) têm ao menos uma parcela 'X', que entra na soma valendo zero. Pelo cálculo do repositório, isso subestima a média entre 3,9% e 14,9%.",
+    "fonte": "plano_trabalho.txt:22; calculo_ivs2012.txt:36-53; src/ivs_censo/indicadores.py:78,87-89; src/ivs_censo/fontes.py:46-66; dados/dicionario_de_dados_agregados_por_setores_censitarios_20260520.xlsx (aba Dicionário não PCT, l.112-119); docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:162,174-177,1167,1175-1178"
+   },
+   {
+    "indicador": "2. Esgoto: % de domicílios com esgotamento sanitário inadequado ou ausente (pct_esgoto_inad)",
+    "no_plano": "Dimensão Saneamento: 'Percentual de domicílios particulares permanentes com esgotamento sanitário inadequado ou ausente'.",
+    "ivs2012_num_den": "Numerador (Esg_Inadeq, Domicilio01_UF.xls): V019 fossa rudimentar + V020 vala + V021 rio, lago ou mar + V022 outro escoadouro (os quatro em domicílios com banheiro exclusivo ou sanitário) + V023 sem banheiro nem sanitário. Denominador: Dom_part_p, ou seja, V002 (DPP).",
+    "censo2022_implementacao": "(V00312 fossa rudimentar ou buraco + V00313 vala + V00314 rio, lago, córrego ou mar + V00315 outra forma + V00316 esgoto inexistente, sem banheiro nem sanitário) ÷ V00001. Arquivos: caracteristicas_domicilio2 (numerador) e caracteristicas_domicilio1 (denominador). Ficam fora do numerador, como adequadas, V00309 (rede geral ou pluvial) e V00310/V00311 (fossa séptica ou fossa filtro, ligada ou não à rede). n = 104.107; média 0,0820.",
+    "diferenca": "As categorias se correspondem uma a uma: V019→V00312, V020→V00313, V021→V00314, V022→V00315, V023→V00316. Mudou só a redação ('buraco para dejeções', 'córrego'). A faixa V00312–V00316 foi confirmada no dicionário oficial; a alternativa V00249–V00253 foi descartada porque é tipologia de habitação. Sigilo parcial em 29.606 setores (28,4%). Atenção: o GUIA grafa 'V019–V028' como códigos de 2010, o que diverge do Cálculo (V019–V023).",
+    "fonte": "plano_trabalho.txt:23; calculo_ivs2012.txt:58-76; src/ivs_censo/indicadores.py:79,90-92; dados/dicionario_de_dados_agregados_por_setores_censitarios_20260520.xlsx (aba Dicionário não PCT, l.310-317); docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:163,179-184,1168; README.md:25; GUIA_DO_PROJETO.md:122"
+   },
+   {
+    "indicador": "3. Lixo: % de domicílios com destino do lixo inadequado ou ausente (pct_lixo_inad)",
+    "no_plano": "Dimensão Saneamento: 'Percentual de domicílios particulares permanentes com destino do lixo de forma inadequada ou ausente'.",
+    "ivs2012_num_den": "Numerador (Lixo_inad, Domicilio01_UF.xls): V037 coletado em caçamba de serviço de limpeza + V038 queimado + V039 enterrado + V040 jogado em terreno baldio ou logradouro + V041 jogado em rio, lago ou mar + V042 outro destino. Denominador: V002 (DPP).",
+    "censo2022_implementacao": "(V00398 depositado em caçamba de serviço de limpeza + V00399 queimado + V00400 enterrado + V00401 jogado em terreno baldio, encosta ou área pública + V00402 outro destino) ÷ V00001. Arquivos: domicilio2 e domicilio1. Só V00397 (coletado no domicílio) é adequado. Média 0,1158, a maior das três de saneamento.",
+    "diferenca": "Eram 6 categorias inadequadas em 2010 e são 5 em 2022: o Censo 2022 não separa 'jogado em rio, lago ou mar'. A caçamba (V037 em 2010, V00398 em 2022) segue inadequada por fidelidade ao Cálculo, mas está em revisão. Motivos: o lixo é a variável menos correlacionada com as demais (0,10 a 0,20), é a única em que o recorte ELSI fica pior que o Brasil urbano (1,21×) e tem comunalidade de 0,052 no eixo principal. Sigilo parcial em 28.239 setores (27,1%).",
+    "fonte": "plano_trabalho.txt:24; calculo_ivs2012.txt:79-102; src/ivs_censo/indicadores.py:80-83,93-95; dados/dicionario_de_dados_agregados_por_setores_censitarios_20260520.xlsx (aba Dicionário não PCT, l.398-403); docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:164,186-194,1169; GUIA_DO_PROJETO.md:501-514,558-559"
+   },
+   {
+    "indicador": "4. Razão de moradores por domicílio (razao_moradores)",
+    "no_plano": "Dimensão Socioeconômica: 'Razão de moradores por domicílio'.",
+    "ivs2012_num_den": "Componente HABITAÇÃO. Numerador (Res_part_p, Pessoa13_UF.xls): V002, pessoas residentes em domicílios particulares permanentes. Denominador (Dom_part_p, Domicilio01_UF.xls): V002, domicílios particulares permanentes.",
+    "censo2022_implementacao": "(V00005 moradores em DPPO + V00006 moradores em DPIO) ÷ (V00001 DPPO + V00002 DPIO, domicílios particulares improvisados ocupados). Tudo vem de Agregados_por_setores_caracteristicas_domicilio1_BR.csv. Não é limitado a [0,1]. A fórmula reproduz o V0005 publicado pelo IBGE (média de moradores em domicílios particulares ocupados). Média 2,69, mínimo 1,00, máximo 6,91.",
+    "diferenca": "O 2022 soma os domicílios improvisados nos dois lados da razão; o Cálculo usa só os permanentes. A justificativa registrada é poder conferir o resultado contra o V0005 oficial. O efeito é pequeno: os improvisados são 11.525 domicílios (0,060%) no recorte. O Cálculo classifica o indicador como 'Habitação' e o Plano como 'Socioeconômica'.",
+    "fonte": "plano_trabalho.txt:26; calculo_ivs2012.txt:124-145; src/ivs_censo/indicadores.py:96-98; dados/dicionario_de_dados_agregados_por_setores_censitarios_20260520.xlsx (aba Dicionário Básico, V0005; aba Dicionário não PCT, l.2-7); GUIA_DO_PROJETO.md:314-323; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:165,196-202,541"
+   },
+   {
+    "indicador": "5. Percentual de pessoas analfabetas (pct_analfab)",
+    "no_plano": "Dimensão Socioeconômica: 'Percentual de pessoas analfabetas'. O Plano não diz a faixa etária.",
+    "ivs2012_num_den": "Componente ESCOLARIDADE: 1 − (Numerador ÷ Denominador). Numerador (Alfab_5_ma, Pessoa01_UF.xls): V001, pessoas alfabetizadas de 5 anos ou mais. Denominador (Pop_5_mais, Pessoa13_UF.xls): V039 a V134, pessoas de 5 anos até 100 anos ou mais, por idade simples.",
+    "censo2022_implementacao": "V00901 (15 anos ou mais, não sabe ler e escrever) ÷ (V00900, 15+ que sabe ler e escrever + V00901). Arquivo: Agregados_por_setores_alfabetizacao_BR.csv. O denominador exige as duas parcelas presentes (min_count_den=2). Faixa etária: 15 anos ou mais. n = 87.556 de 104.108 setores (84,1%); média 3,64%, mediana 2,71%.",
+    "diferenca": "(a) A faixa etária passou de 5+ para 15+. Foi o dado que impôs a mudança: o dicionário de 2022 não tem nenhuma variável de alfabetização abaixo de 15 anos (verifiquei: 0 das 362 variáveis do tema). (b) Em 2022 os analfabetos são contados diretamente, em vez de 1 − alfabetizados. (c) O sigilo do V00901 deixa 16.552 setores (15,9%) sem valor. Esse sigilo não é aleatório (os setores sem dado têm renda mediana de R$ 6.092,84, contra R$ 2.313,89 dos que têm) e não foi imputado, por decisão da orientadora em ago/2026. Com isso, a média verdadeira está entre 3,14% e 3,64%. A fórmula anterior, V00901/V00900, foi descartada.",
+    "fonte": "plano_trabalho.txt:27; calculo_ivs2012.txt:171-198; src/ivs_censo/indicadores.py:99-101; src/ivs_censo/fontes.py:74-80; dados/dicionario_de_dados_agregados_por_setores_censitarios_20260520.xlsx (aba Dicionário não PCT, l.901-902); GUIA_DO_PROJETO.md:301-312,365-392; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:166,204-210,1042-1091"
+   },
+   {
+    "indicador": "6. Rendimento nominal mensal médio das pessoas responsáveis (renda_media, invertida no índice)",
+    "no_plano": "Dimensão Socioeconômica: 'Rendimento nominal mensal médio das pessoas responsáveis'. O Plano não diz como inverter.",
+    "ivs2012_num_den": "Item 10, componente RENDA. Numerador (Tot_rend_r, ResponsavelRenda_UF.xls): V022, total do rendimento nominal mensal das pessoas responsáveis. Denominador (Tot_resp, Pessoa13_UF.xls): V003, responsáveis pelos domicílios particulares. Inversão: 1 − (renda média do setor ÷ maior valor).",
+    "censo2022_implementacao": "V06004 (valor do rendimento nominal médio mensal das pessoas responsáveis com rendimentos, em DPPO), usado diretamente e sem denominador. Arquivo: Agregados_por_setores_renda_responsavel_BR.csv. A vírgula decimal é convertida antes do cálculo. V06001 e V06005 (variância) são extraídas só para auditoria. A inversão fica para a normalização do NB03, ainda pendente. n = 104.096; média R$ 4.187,41; mediana R$ 2.572,39; máximo R$ 170.418,06; assimetria 3,74.",
+    "diferenca": "(a) O IBGE já entrega a média pronta, em vez da razão total ÷ responsáveis. (b) O universo mudou: o V06004 só conta responsáveis com rendimento e só domicílios permanentes ocupados, enquanto o Cálculo divide pelo total de responsáveis de domicílios particulares. Isso tende a elevar a média, e o repositório não documenta essa diferença (não encontrado). (c) A inversão difere: o Cálculo usa 1 − x/máx; o projeto prevê min-max invertida por município, ainda não executada. (d) A auditoria de extremos classificou 66 setores como SUSPEITO e 3.292 como EXTREMO. O V06006 (mediana) está no dicionário, mas não existe no CSV.",
+    "fonte": "plano_trabalho.txt:28; calculo_ivs2012.txt:255-267; src/ivs_censo/indicadores.py:102-104; src/ivs_censo/fontes.py:88-102; dados/dicionario_de_dados_renda_responsavel_20260508.xlsx (l.2-7); docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:111-115,167,212-305,1196; README.md:59,69"
+   },
+   {
+    "indicador": "7. % de pessoas de raça/cor preta, parda e indígena (pct_raca_pretpardind)",
+    "no_plano": "Dimensão Socioeconômica: 'Percentual de pessoas de raça/cor preta, parda e indígena'.",
+    "ivs2012_num_den": "Componente SOCIAL. Numerador (Neg_ind_Pard, Pessoa03_UF.xls): V003 preta + V005 parda + V006 indígena. Denominador (Pop_total, Pessoa03_UF.xls): V001, pessoas residentes.",
+    "censo2022_implementacao": "(V01318 preta + V01320 parda + V01321 indígena), de Agregados_por_setores_cor_ou_raca_BR.csv, ÷ v0001 (total de pessoas), de Agregados_por_setores_basico_BR_20250417.csv. Inclui todas as idades. n = 104.106; média 0,5267, mediana 0,5719.",
+    "diferenca": "O conceito é o mesmo. Em 2010 numerador e denominador vinham da mesma tabela (Pessoa03); em 2022 vêm de arquivos diferentes. Sigilo parcial em 24.226 setores (23,3%). Só o V01321 (indígena) é suprimido em 21,5% dos setores, então em cerca de 1 a cada 5 setores a proporção PPI é calculada sem a parcela indígena.",
+    "fonte": "plano_trabalho.txt:29; calculo_ivs2012.txt:269-288; src/ivs_censo/indicadores.py:84,105-107; src/ivs_censo/fontes.py:37-45,81-87; dados/dicionario_de_dados_agregados_por_setores_censitarios_20260520.xlsx (aba Dicionário Básico l.2; aba Dicionário não PCT l.1319-1322); docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:168,308-313,1170-1173"
+   }
+  ],
+  "desvios": [
+   {
+    "id": "D01",
+    "o_que_mudou": "Analfabetismo: a faixa etária passou de 5+ para 15+ e a fórmula passou de 1 − alfabetizados/pop para analfabetos/(alfabetizados + analfabetos)",
+    "previsto": "Cálculo: 1 − Pessoa01 V001 (alfabetizadas de 5+) ÷ Pessoa13 V039–V134 (população de 5+). O Plano não diz a idade.",
+    "executado": "V00901 ÷ (V00900 + V00901), população de 15+. 16.552 setores (15,9%) ficam sem valor por sigilo, sem imputação.",
+    "classe": "adaptacao_metodologica",
+    "justificativa_registrada": "O denominador de uma taxa precisa ser a população de referência inteira; a fórmula anterior, V00901/V00900, gerava valores acima de 1. Não há justificativa registrada para o 15+, mas ele é imposto pelo dado: o dicionário de 2022 não tem alfabetização abaixo de 15 anos (0 de 362 variáveis do tema, conferido). Recomendo declarar isso na Metodologia.",
+    "fonte": "calculo_ivs2012.txt:171-198; plano_trabalho.txt:27; GUIA_DO_PROJETO.md:301-312; src/ivs_censo/indicadores.py:99-101; dados/dicionario_de_dados_agregados_por_setores_censitarios_20260520.xlsx (aba Dicionário não PCT, l.901-902)"
+   },
+   {
+    "id": "D02",
+    "o_que_mudou": "Denominador domiciliar: V002 (Censo 2010) passou a V00001 (DPPO, Censo 2022). O número de responsáveis não é usado como total de domicílios.",
+    "previsto": "Cálculo: denominador V002 'Domicílios particulares permanentes' (Dom_part_p). O tratamento dos dados sugere 'considerar o número de responsáveis como número total de domicílios do setor'.",
+    "executado": "V00001 em 5 dos 7 componentes. O V01042 (responsáveis, arquivo Parentesco) foi descartado como denominador e é extraído só para auditoria.",
+    "classe": "adaptacao_metodologica",
+    "justificativa_registrada": "O V00001 é registrado como o equivalente exato do V002. O V01042 conta pessoas, não domicílios. Verificação: com V00001, nenhuma proporção passa de 1,0 nos 104.108 setores. Decisão consolidada com a orientadora em 22/05/2026.",
+    "fonte": "calculo_ivs2012.txt:50-54,314-315; GUIA_DO_PROJETO.md:281-299; README.md:50; src/ivs_censo/indicadores.py:39-40"
+   },
+   {
+    "id": "D03",
+    "o_que_mudou": "A razão de moradores passou a incluir os domicílios improvisados no numerador e no denominador",
+    "previsto": "Cálculo: Pessoa13 V002 (residentes em DPP) ÷ Domicilio01 V002 (DPP).",
+    "executado": "(V00005 + V00006) ÷ (V00001 + V00002).",
+    "classe": "adaptacao_metodologica",
+    "justificativa_registrada": "Reproduz o V0005 oficial do IBGE e permite conferir o cálculo contra ele. O impacto é pequeno: improvisados são 0,060% dos domicílios do recorte.",
+    "fonte": "calculo_ivs2012.txt:126-145; GUIA_DO_PROJETO.md:314-323; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:541"
+   },
+   {
+    "id": "D04",
+    "o_que_mudou": "Renda: entra a média pronta do V06004, cujo universo são só os responsáveis com rendimento em DPPO; a forma de inversão também muda",
+    "previsto": "Cálculo: ResponsavelRenda V022 ÷ Pessoa13 V003 (todos os responsáveis por domicílios particulares); inversão 1 − (renda ÷ maior valor).",
+    "executado": "V06004 usado diretamente. A inversão está prevista dentro da min-max por município (NB03), ainda não executada. A auditoria de extremos encontrou 66 setores SUSPEITO.",
+    "classe": "adaptacao_metodologica",
+    "justificativa_registrada": "O repositório registra só que o V06004 é 'rendimento médio, invertido' e que faltam faixas salariais. A diferença de universo (só responsáveis com rendimento) e a troca da fórmula de inversão não estão justificadas: não encontrado.",
+    "fonte": "calculo_ivs2012.txt:255-267; dados/dicionario_de_dados_renda_responsavel_20260508.xlsx (l.5); src/ivs_censo/indicadores.py:102-104; README.md:59,69; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:212-305,1196"
+   },
+   {
+    "id": "D05",
+    "o_que_mudou": "Lixo: 6 categorias inadequadas viraram 5 em 2022. A caçamba continua inadequada, mas está em revisão.",
+    "previsto": "Cálculo: V037–V042, com a caçamba inadequada e só a coleta no domicílio como adequada.",
+    "executado": "V00398–V00402 ÷ V00001. A caçamba (V00398) foi mantida como inadequada. Fica como decisão em aberto nº 2: separar ou não a caçamba das demais formas.",
+    "classe": "adaptacao_metodologica",
+    "justificativa_registrada": "Fidelidade à metodologia-fonte (princípio 1). Ressalva empírica: o indicador pode estar medindo porte urbano (correlações de 0,10 a 0,20; 1,21× pior que o Brasil urbano; comunalidade 0,052).",
+    "fonte": "calculo_ivs2012.txt:79-102; GUIA_DO_PROJETO.md:501-514,558-568; src/ivs_censo/indicadores.py:80-83"
+   },
+   {
+    "id": "D06",
+    "o_que_mudou": "Fontes e códigos: as tabelas por UF de 2010 (.xls) e os códigos V0xx foram substituídos pelos 8 CSVs nacionais de agregados por setor de 2022 e pelos códigos V00xxx/V01xxx/V06xxx. A água passou de 3 para 7 categorias; o esgoto tem correspondência 1:1.",
+    "previsto": "Cálculo: Domicilio01_UF, Pessoa01_UF, Pessoa03_UF, Pessoa13_UF, ResponsavelRenda_UF e DomicilioRenda_UF. Plano: agregados 'básico, população, domicílio e rendimento'.",
+    "executado": "Básico, Domicílio 1, Domicílio 2, Alfabetização, Cor ou Raça, Renda do Responsável, Demografia e Parentesco (Agregados_por_setores_*.csv). As fórmulas ficam no módulo src/ivs_censo, compartilhado pelos notebooks e scripts.",
+    "classe": "adaptacao_metodologica",
+    "justificativa_registrada": "Princípio 2: quando o Censo 2022 não permite reproduzir exatamente, a substituição é declarada. As descrições vêm do dicionário oficial do IBGE (72 variáveis de 8 arquivos).",
+    "fonte": "calculo_ivs2012.txt:38-288; plano_trabalho.txt:16; src/ivs_censo/fontes.py:36-120; GUIA_DO_PROJETO.md:265-274; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:729-761"
+   },
+   {
+    "id": "D07",
+    "o_que_mudou": "Recorte urbano: os setores rurais foram excluídos da análise",
+    "previsto": "O Plano não prevê exclusão; ele cita setores 'contidos em área urbana ou rural'. O Cálculo foi feito só para Belo Horizonte.",
+    "executado": "Filtro SITUACAO = Urbana (CD_SIT de 1 a 3), aplicado no NB02 e não na extração. Dos 106.281 elegíveis ficam 104.108; saem 2.173 (2,04%). 29 dos 70 municípios perdem mais de 10% dos setores e 14 perdem mais da metade.",
+    "classe": "adaptacao_metodologica",
+    "justificativa_registrada": "O IVS é intraurbano: com os rurais, o índice mediria em parte a diferença campo-cidade. O filtro foi pedido pela orientadora (Demanda 3, jul/2026: 'Excluir setores rurais, conferir com a porcentagem'). A exclusão é auditável e reversível. O piso mínimo de setores por município continua em aberto.",
+    "fonte": "plano_trabalho.txt:17; GUIA_DO_PROJETO.md:167-184,340-363; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:133-152,765-805"
+   },
+   {
+    "id": "D08",
+    "o_que_mudou": "Regra de elegibilidade (Dados_sig): a ordem das condições foi fixada e o critério COLETIVO foi refeito",
+    "previsto": "Cálculo: coluna Dados_sig com SIGILOSO, COLETIVO, ZERADO e OK. Coletivos = total de responsáveis − DPP − improvisados; o setor sai se esses coletivos forem 100%.",
+    "executado": "Ordem ZERADO → SIGILOSO → COLETIVO → OK. COLETIVO passou a ser V00001 = 0 com população > 0. Resultado: 1.736 ZERADO, 1.015 SIGILOSO, 0 COLETIVO e 106.281 OK.",
+    "classe": "adaptacao_metodologica",
+    "justificativa_registrada": "Na ordem anterior, setores vazios (massas d'água) eram contados como sigilo: 2.751 em vez de 1.015. Nenhum setor OK mudou de classe. Para o novo critério COLETIVO não há justificativa registrada: não encontrado. A classe ficou vazia, e os moradores de domicílios coletivos entram em v0001, mas não em V00001.",
+    "fonte": "calculo_ivs2012.txt:316-325; src/ivs_censo/indicadores.py:244-258; GUIA_DO_PROJETO.md:325-338; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:117-131,1026-1033"
+   },
+   {
+    "id": "D09",
+    "o_que_mudou": "Sigilo: o 'X' deixou de virar −1 e o setor deixou de ser excluído; agora vira valor ausente, com tratamento por indicador",
+    "previsto": "Cálculo: 'X' convertido em −1, e o setor com dado sigiloso não participa (57 setores em BH).",
+    "executado": "'X' vira NaN, nunca zero. O setor só é SIGILOSO se v0001 ou V00001 estiverem suprimidos. Nas somas de numerador usa-se min_count=1, e as parcelas sigilosas entram valendo zero, o que gera viés para baixo (água 29,1%, esgoto 28,4%, lixo 27,1% e PPI 23,3% dos setores com ao menos uma parcela sigilosa). No analfabetismo, o ausente é mantido sem imputação.",
+    "classe": "adaptacao_metodologica",
+    "justificativa_registrada": "Excluir todo setor com algum 'X' faria perder cerca de um terço da base. O sigilo do analfabetismo é informativo, e imputar zero subestimaria as áreas menos vulneráveis. A orientadora aceitou a limitação em ago/2026. A política para o índice final segue pendente (NB05).",
+    "fonte": "calculo_ivs2012.txt:313,322; GUIA_DO_PROJETO.md:365-392; src/ivs_censo/indicadores.py:9-36; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:104-109,1155-1189"
+   },
+   {
+    "id": "D10",
+    "o_que_mudou": "A cobertura do entorno não foi calculada",
+    "previsto": "Cálculo: cobertura do entorno de 99,85% (Entorno01 V001 ÷ Domicilio01 V002).",
+    "executado": "Nenhum arquivo de entorno do Censo 2022 é lido. Os 8 arquivos estão listados em fontes.py.",
+    "classe": "adaptacao_metodologica",
+    "justificativa_registrada": "não encontrado. Era uma checagem de cobertura em 2010, não um componente do índice.",
+    "fonte": "calculo_ivs2012.txt:327-328; src/ivs_censo/fontes.py:36-120"
+   },
+   {
+    "id": "D11",
+    "o_que_mudou": "Conversão de escala (min-max): ainda não aplicada no índice. A versão prevista é por município, e a usada provisoriamente na fatorial é global.",
+    "previsto": "Cálculo: (valor − mínimo) ÷ (máximo − mínimo), feita em uma cidade só (BH). O GUIA prevê padronização min-max de 0 a 1.",
+    "executado": "O NB03 (min-max por município, com a renda invertida) não foi feito. O NB04 fatorou os indicadores brutos com correlação de Spearman e usou min-max global provisória. Mesmo sem os setores suspeitos, 70,8% dos setores de BH ficam comprimidos no 1º decil da renda.",
+    "classe": "ainda_nao_executado",
+    "justificativa_registrada": "A renda é muito assimétrica (3,74) e o objetivo é intraurbano, por isso a normalização deve ser por município. A transformação da renda (log ou posto) ainda está em aberto. Normalizar antes da fatorial derruba o KMO de 0,783 para 0,720.",
+    "fonte": "calculo_ivs2012.txt:331-333; GUIA_DO_PROJETO.md:89,200-204,242-243; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:40-43,289-305,1001-1002; docs/relatorios/Relatorio_Analise_Fatorial_NB04.md:67,208"
+   },
+   {
+    "id": "D12",
+    "o_que_mudou": "Ferramenta: o QGIS 2.10.1 deu lugar a Python (notebooks Jupyter, pandas e numpy) no processamento, nas descritivas e na fatorial. O QGIS 3.x fica previsto para os mapas.",
+    "previsto": "Plano: geoprocessamento no QGIS 2.10.1.",
+    "executado": "Pipeline em Python 3.10+ (pandas>=2.2, numpy>=1.26) com testes automatizados. Os mapas no QGIS 3.x estão pendentes.",
+    "classe": "adaptacao_metodologica",
+    "justificativa_registrada": "A única nota é a orientação de 'atualizar referência: usar QGIS 3.x, não 2.10.1'. Não há justificativa registrada para o uso de Python: não encontrado.",
+    "fonte": "plano_trabalho.txt:31; GUIA_DO_PROJETO.md:94,763; README.md:31,219; requirements.txt:8-9"
+   },
+   {
+    "id": "D13",
+    "o_que_mudou": "Mapas temáticos e análise da distribuição espacial (objetivo específico 2) ainda não feitos",
+    "previsto": "Plano: 'Analisar a distribuição espacial do IVS'. O cronograma prevê mapas temáticos dentro de 'Análises dos dados' (mar–set/2026).",
+    "executado": "Mapas temáticos pendentes; a autocorrelação espacial (Moran) está em próximos passos. Isso depende do IVS final (NB05) e da malha de setores de 2022.",
+    "classe": "ainda_nao_executado",
+    "justificativa_registrada": "A dependência está registrada: os mapas exigem o IVS final, que depende do NB03 e das decisões de peso. Não há registro explícito do atraso em relação ao cronograma do Plano: não encontrado.",
+    "fonte": "plano_trabalho.txt:13,43; GUIA_DO_PROJETO.md:686-688,779; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:1199"
+   },
+   {
+    "id": "D14",
+    "o_que_mudou": "Análise fatorial: o Plano a usa para 'evidenciar a relação entre as variáveis'; o projeto passou a usá-la também para definir os pesos do índice. O repositório a dá como concluída, mas ainda há decisões em aberto.",
+    "previsto": "Plano: 'A técnica de análise fatorial será utilizada para evidenciar a relação entre as variáveis'.",
+    "executado": "NB04 de 17/09/2026: Spearman sobre 87.545 setores completos, KMO 0,783, ACP e eixo principal, Varimax e promax, bootstrap. Pesos 65,0% socioeconômica e 35,0% saneamento; AUC 0,813 contra setores de favela. Seis decisões ficaram para a orientação. O NB05 está em testes de especificação (192 de 324 elegíveis).",
+    "classe": "acrescimo",
+    "justificativa_registrada": "A colinearidade entre renda, cor/raça e analfabetismo favorece pesos empíricos. Para o relatório RAIC: como o usuário pede, 'iniciada' só é coerente se os pesos 65/35 não forem apresentados como finais.",
+    "fonte": "plano_trabalho.txt:31; GUIA_DO_PROJETO.md:90,242-248,552-570,684-685; docs/relatorios/Relatorio_Analise_Fatorial_NB04.md:21,37,92,208"
+   },
+   {
+    "id": "D15",
+    "o_que_mudou": "Cálculo do IVS final, ponderação e categorização em 4 faixas: pendentes. Essas etapas não aparecem no Plano nem no Cálculo.",
+    "previsto": "Plano e Cálculo não citam pesos nem faixas. O GUIA prevê uma média ponderada (referência IVS-BH de cerca de 60/40) e 4 faixas: Baixo, Médio, Elevado e Muito Elevado.",
+    "executado": "Pendentes: NB05 (IVS final) e a categorização em faixas.",
+    "classe": "ainda_nao_executado",
+    "justificativa_registrada": "Dependem da normalização municipal (NB03) e de 4 decisões em aberto: pesos, lixo, sigilo do analfabetismo e piso municipal. A fonte dos 60/40 (SMS, 2013) não está nos documentos fornecidos: não encontrado.",
+    "fonte": "GUIA_DO_PROJETO.md:57,88-93,563-570,686-687"
+   },
+   {
+    "id": "D16",
+    "o_que_mudou": "Foram acrescentados 21 indicadores descritivos, todos fora do índice",
+    "previsto": "Plano: 7 variáveis (Quadro 1).",
+    "executado": "INDICADORES_COMPLEMENTARES (21): habitação precária e improvisados; tipo de domicílio (convencional, não convencional, casa, vila/condomínio, apartamento); água canalizada (V00199–V00201); banheiro (V00495, V00238, V00237, V00236); chefia feminina (V01063); demografia e envelhecimento (0–4, 0–14, 60+, IEP, RDI, 70+/60+). Favelas identificadas por CD_TIPO = 1: 19.452 setores (18,7%).",
+    "classe": "acrescimo",
+    "justificativa_registrada": "Servem para caracterizar o território, não entram no índice porque nem todos têm uma direção clara de vulnerabilidade (ex.: apartamento). Em boa parte, atendem às demandas da orientadora de jul/2026: envelhecimento, moradia convencional, apartamento e favelas.",
+    "fonte": "src/ivs_censo/indicadores.py:110-195; GUIA_DO_PROJETO.md:136-191,516-530,572-588; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:486-590"
+   },
+   {
+    "id": "D17",
+    "o_que_mudou": "Foram acrescentadas uma linha de base nacional e validações externas",
+    "previsto": "Não previsto.",
+    "executado": "Os mesmos indicadores foram calculados para os 468.099 setores do Brasil. A população confere com o número oficial (203.080.756) e o IEP nacional dá 79,99, contra 80,0 do IBGE. Comparação ELSI × Brasil urbano. A lista de favelas foi conferida contra a lista oficial do IBGE (19.507 setores, 100% de concordância).",
+    "classe": "acrescimo",
+    "justificativa_registrada": "Demanda 7 da orientadora ('fazer o Brasil todo e depois para os 70 municípios') e verificação empírica das fórmulas (princípio 3).",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:594-627,905-942; GUIA_DO_PROJETO.md:419-473"
+   },
+   {
+    "id": "D18",
+    "o_que_mudou": "As estatísticas descritivas foram além das previstas no Plano",
+    "previsto": "Plano: 'medidas de frequências, medidas de tendência central (média) e dispersão (desvio padrão)'.",
+    "executado": "Média, desvio-padrão, mediana, P75, máximo, coeficiente de variação e assimetria. Também: outliers pelo IQR e pelo P95, análise de dados faltantes por município, correlação de Spearman e Pearson, e descritivas por região e por município.",
+    "classe": "acrescimo",
+    "justificativa_registrada": "Seguiu-se o framework de análise exploratória da FIOCRUZ (docs/referencias/guia_analises.docx). As três perguntas da etapa eram: forma das distribuições, padrão de ausência e estrutura de correlação.",
+    "fonte": "plano_trabalho.txt:31; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:66-80,156-168,367-454"
+   },
+   {
+    "id": "D19",
+    "o_que_mudou": "Universo de 70 municípios do ELSI-Brasil: cumprido como previsto. Só a operacionalização foi detalhada.",
+    "previsto": "Plano: 'Serão selecionados os 70 municípios [que] compõem a amostra do ELSI-Brasil'.",
+    "executado": "70 municípios (dados/municipios_elsi_brasil.csv), cruzados por UF e nome normalizado. São 109.032 setores na base (52.732.704 pessoas) e 104.108 urbanos elegíveis (cerca de 52,1 milhões de residentes).",
+    "classe": "adaptacao_metodologica",
+    "justificativa_registrada": "Não há desvio de universo. O único efeito colateral é o do recorte urbano (D07) sobre os municípios pequenos.",
+    "fonte": "plano_trabalho.txt:16; GUIA_DO_PROJETO.md:41-42,208; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:28-29,84-98,604"
+   },
+   {
+    "id": "D20",
+    "o_que_mudou": "O item 9 do Cálculo (% de domicílios com rendimento per capita até ½ SM) não foi incluído",
+    "previsto": "O Cálculo lista o item 9 (DomicilioRenda V005–V007 ÷ DPP + improvisados), mas o Quadro 1 do Plano já não o inclui.",
+    "executado": "Não implementado. A renda entra só como rendimento médio (V06004).",
+    "classe": "adaptacao_metodologica",
+    "justificativa_registrada": "Registra-se que as faixas salariais não estão disponíveis em 2022. Conferi: os dicionários de 2022 usados pelo projeto não têm nenhuma variável com 'salário' ou 'per capita'. Isso está de acordo com o Plano.",
+    "fonte": "calculo_ivs2012.txt:225-253; plano_trabalho.txt:20-29; GUIA_DO_PROJETO.md:133; dados/dicionario_de_dados_renda_responsavel_20260508.xlsx (l.1-7)"
+   },
+   {
+    "id": "D21",
+    "o_que_mudou": "Objetivos: não mudaram. O GUIA traz 4 objetivos específicos contra 2 do Plano; os 2 a mais são desdobramentos.",
+    "previsto": "Plano. Geral: 'Avaliar as desigualdades intraurbanas por meio da construção de um IVS de cidades brasileiras'. Específicos: (1) construir o IVS intraurbano com o Censo 2022 de um conjunto de cidades; (2) analisar a distribuição espacial do IVS.",
+    "executado": "GUIA. O objetivo geral é o mesmo, com 'em saúde' e 'usando dados do Censo 2022'. Os específicos 1 e 2 repetem os do Plano, acrescentando 'setor censitário', '70 municípios do ELSI' (que já estava na metodologia do Plano) e 'mapas temáticos'. O 3 ('descrever a distribuição das variáveis por setor') corresponde às análises descritivas da metodologia e do cronograma do Plano. O 4 ('comparar o perfil entre municípios de diferentes regiões e portes') é novo e foi executado em parte (análise regional e heterogeneidade municipal). Também foram acrescentados PICOS, hipóteses centro-periferia e um artigo científico como produto final.",
+    "classe": "acrescimo",
+    "justificativa_registrada": "Nenhuma mudança de objetivo está registrada. O edital pede, no item III, os objetivos 'definidos no subprojeto apresentado no momento da submissão da bolsa', e a OBSERVAÇÃO só é exigida 'no caso de mudança de objetivos'. Logo: copiar os 2 objetivos do Plano no item III, sem OBSERVAÇÃO obrigatória. Se quiser, a OBSERVAÇÃO pode dizer que não houve mudança e que as adaptações estão na Metodologia.",
+    "fonte": "plano_trabalho.txt:8-13,31,41; GUIA_DO_PROJETO.md:29,33-63; edital.txt:257-258,271; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:317-363"
+   }
+  ],
+  "tratamento_dados_2022": [
+   {
+    "item_do_calculo_2012": "Campo que identifica setor com dado sigiloso: 'X' convertido em '-1' (calculo_ivs2012.txt:313)",
+    "equivalente_2022": "O 'X' vira NaN (ausente), nunca zero nem −1. A base bruta guarda o marcador e a conversão acontece no NB02. Nas somas, min_count=1: o indicador só fica ausente se todas as parcelas forem sigilosas; com sigilo parcial, as parcelas suprimidas valem zero.",
+    "numeros_2022": "Setores com ao menos uma parcela sigilosa: água 30.302 (29,1%), esgoto 29.606 (28,4%), lixo 28.239 (27,1%), PPI 24.226 (23,3%). Com todas as parcelas sigilosas: 0, 1, 0 e 2. pct_analfab ausente em 16.552 setores (15,9%).",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:104-109,1048-1051,1163-1170; src/ivs_censo/indicadores.py:9-36; GUIA_DO_PROJETO.md:365-369"
+   },
+   {
+    "item_do_calculo_2012": "Domicílio coletivo é contado por leito; 'considerar o número de responsáveis como número total de domicílios do setor' (calculo_ivs2012.txt:314-315)",
+    "equivalente_2022": "Não adotado como denominador. O denominador é V00001 (DPPO). O V01042 (responsáveis) é extraído só para auditoria de setores coletivos.",
+    "numeros_2022": "Com V00001, 0 setores com proporção acima de 1,0 em 104.108. O V00001 coincide com o V01042 em 99,7% dos setores (anotação do NB02).",
+    "fonte": "GUIA_DO_PROJETO.md:283-297; README.md:50; notebooks/Fase3_EDA_ELSI/02_Analises_Descritivas.ipynb (trecho sobre V01042)"
+   },
+   {
+    "item_do_calculo_2012": "Excluir setores com 100% de domicílios coletivos (calculo_ivs2012.txt:316)",
+    "equivalente_2022": "Classe COLETIVO = V00001 = 0 com v0001 > 0 (população só em domicílios coletivos).",
+    "numeros_2022": "0 setores, ou seja, a classe ficou vazia. Ressalva: moradores de coletivos entram em v0001 (cor/raça, % 60+, IEP) mas não em V00001 (indicadores domiciliares).",
+    "fonte": "src/ivs_censo/indicadores.py:253; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:123,1026-1033"
+   },
+   {
+    "item_do_calculo_2012": "Coletivos = total de responsáveis − DPP − improvisados; % coletivos = coletivos ÷ total de responsáveis × 100 (calculo_ivs2012.txt:317-320)",
+    "equivalente_2022": "Não implementado nessa forma. Foi substituído pela regra V00001 = 0 do item anterior.",
+    "numeros_2022": "não encontrado (o % de coletivos por setor não é calculado)",
+    "fonte": "src/ivs_censo/indicadores.py:244-258"
+   },
+   {
+    "item_do_calculo_2012": "Coluna Dados_sig, que diz se o setor participa da análise (calculo_ivs2012.txt:321)",
+    "equivalente_2022": "Mantida, avaliada na ordem ZERADO → SIGILOSO → COLETIVO → OK (corrigida em 09/08/2026). A função classificar_dados_sig está no NB02 e no módulo.",
+    "numeros_2022": "Base bruta de 109.032 setores dos 70 municípios. Antes da correção da ordem, havia 2.751 setores SIGILOSO.",
+    "fonte": "GUIA_DO_PROJETO.md:325-338; src/ivs_censo/indicadores.py:244-258; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:117-131"
+   },
+   {
+    "item_do_calculo_2012": "SIGILOSO não participa: 57 setores (calculo_ivs2012.txt:322)",
+    "equivalente_2022": "SIGILOSO = v0001 ou V00001 suprimidos pelo IBGE.",
+    "numeros_2022": "1.015 setores (0,93%)",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:122"
+   },
+   {
+    "item_do_calculo_2012": "COLETIVO não participa: 07 setores (calculo_ivs2012.txt:323)",
+    "equivalente_2022": "COLETIVO = V00001 = 0 com população > 0",
+    "numeros_2022": "0 setores",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:123"
+   },
+   {
+    "item_do_calculo_2012": "ZERADO (população = 0) não participa: 41 setores (calculo_ivs2012.txt:324)",
+    "equivalente_2022": "ZERADO = v0001 = 0, testado antes do sigilo",
+    "numeros_2022": "1.736 setores (1,59%), incluindo 78 de massa d'água (CD_SIT = 9)",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:121,126-131"
+   },
+   {
+    "item_do_calculo_2012": "Participam (OK): 3.831 setores (calculo_ivs2012.txt:325)",
+    "equivalente_2022": "OK, e depois o filtro urbano (SITUACAO = Urbana, ou seja, CD_SIT de 1 a 3), passo que não existia em 2012",
+    "numeros_2022": "106.281 OK (97,48%). Depois do filtro urbano, 104.108 setores no recorte de análise; 2.173 rurais excluídos (2,04%).",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:124,140-145"
+   },
+   {
+    "item_do_calculo_2012": "Coluna 'observação' explicando os setores excluídos (calculo_ivs2012.txt:326)",
+    "equivalente_2022": "Não há coluna 'observação' na base: não encontrado. As exclusões ficam documentadas na tabela exclusao_rural_conferencia.csv e nos relatórios.",
+    "numeros_2022": "Conferência: 106.281 em n_ok_total e 104.108 em n_ok_urbano, nos 70 municípios",
+    "fonte": "docs/MANUAL_DO_PROJETO.md:348-360"
+   },
+   {
+    "item_do_calculo_2012": "Cobertura do entorno de 99,85% (Entorno01 V001 ÷ Domicilio01 V002) (calculo_ivs2012.txt:327-328)",
+    "equivalente_2022": "Não calculada: nenhum arquivo de entorno do Censo 2022 é lido",
+    "numeros_2022": "não encontrado",
+    "fonte": "src/ivs_censo/fontes.py:36-120"
+   },
+   {
+    "item_do_calculo_2012": "Setores com até 75% de domicílios improvisados mantidos na análise (calculo_ivs2012.txt:329)",
+    "equivalente_2022": "Improvisados mantidos. Não há regra de exclusão por improvisados, e o V00002 entra no denominador da razão de moradores.",
+    "numeros_2022": "pct_dom_improv: máximo 0,973 (97,3%), média 0,00073, n = 98.969. 11.525 domicílios improvisados (0,060%).",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:495,541; src/ivs_censo/indicadores.py:96,122"
+   },
+   {
+    "item_do_calculo_2012": "Conversão de escala: (valor bruto − mínimo) ÷ (máximo − mínimo) (calculo_ivs2012.txt:331-333)",
+    "equivalente_2022": "Ainda não aplicada ao índice. Está prevista por município, com a renda invertida (NB03). A fatorial usou min-max global provisória.",
+    "numeros_2022": "Sob min-max, mesmo sem os 66 setores suspeitos, ficam no 1º decil da renda 70,8% dos setores de BH, 69,6% de Belém e 59,0% de Salto",
+    "fonte": "GUIA_DO_PROJETO.md:200-204,242-243; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:289-305,1196; docs/relatorios/Relatorio_Analise_Fatorial_NB04.md:208"
+   },
+   {
+    "item_do_calculo_2012": "(sem equivalente em 2012) Separador decimal",
+    "equivalente_2022": "O V06004 vem com vírgula decimal e é convertido para ponto antes da conversão numérica",
+    "numeros_2022": "Sem a conversão, a coluna de renda inteira ficaria nula",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:111-115"
+   }
+  ],
+  "nao_copiar_literal": [
+   {
+    "trecho": "Nomes de tabelas do Censo 2010: 'Domicilio01_UF.xls', 'Pessoa01_UF.xls', 'Pessoa03_UF.xls', 'Pessoa13_UF.xls', 'ResponsavelRenda_UF.xls', 'DomicilioRenda_UF.xls', 'Entorno01' (calculo_ivs2012.txt:38-328)",
+    "motivo": "São as tabelas do Censo 2010, separadas por UF. O Censo 2022 é distribuído em CSVs nacionais com outro nome e outra estrutura.",
+    "substituir_por": "Agregados_por_setores_basico_BR_20250417.csv, ..._caracteristicas_domicilio1_BR.csv, ..._caracteristicas_domicilio2_BR_20250417.csv, ..._alfabetizacao_BR.csv, ..._cor_ou_raca_BR.csv, ..._renda_responsavel_BR.csv (src/ivs_censo/fontes.py:36-102)"
+   },
+   {
+    "trecho": "Códigos de 2010: V013–V015, V019–V023, V037–V042, V002 (Domicilio01), V002/V003/V039–V134 (Pessoa13), V001 (Pessoa01), V003/V005/V006/V001 (Pessoa03), V022 (ResponsavelRenda)",
+    "motivo": "Os códigos V de 2010 não existem nos agregados de 2022",
+    "substituir_por": "Água V00112–V00118; esgoto V00312–V00316; lixo V00398–V00402; denominador V00001; moradores (V00005+V00006)/(V00001+V00002); analfabetismo V00901/(V00900+V00901); renda V06004; PPI (V01318+V01320+V01321)/v0001 (src/ivs_censo/indicadores.py:78-107)"
+   },
+   {
+    "trecho": "Rótulos de coluna do IVS 2012: Agua_Inade, Esg_Inadeq, Lixo_inad, Dom_part_p, Res_part_p, Alfab_5_ma, Pop_5_mais, Rend_1_2, Dom_improv, Renda_media, Tot_rend_r, Tot_resp, Neg_ind_Pard, Pop_total",
+    "motivo": "São nomes de campo da base de BH-2010 e não existem no projeto",
+    "substituir_por": "Descrever o indicador por extenso, ou usar os nomes do projeto: pct_agua_inad, pct_esgoto_inad, pct_lixo_inad, razao_moradores, pct_analfab, renda_media, pct_raca_pretpardind"
+   },
+   {
+    "trecho": "'Pessoas alfabetizadas com 5 ou mais anos de idade' / 'Pessoas com 5 anos de idade ... 100 anos ou mais' / 'Percentual de pessoas analfabetas = 1 – Numerador/Denominador' (calculo_ivs2012.txt:172-198)",
+    "motivo": "Em 2022 a alfabetização por setor só existe para 15 anos ou mais, e o numerador é a contagem direta de analfabetos",
+    "substituir_por": "'Taxa de analfabetismo: pessoas de 15 anos ou mais que não sabem ler e escrever (V00901) ÷ total de pessoas de 15 anos ou mais (V00900 + V00901)'"
+   },
+   {
+    "trecho": "'9- Percentual de domicílios particulares com rendimento per capita até ½ SM' (calculo_ivs2012.txt:225-253)",
+    "motivo": "Não está no Quadro 1 do Plano, e os agregados de 2022 usados pelo projeto não têm faixas de salário mínimo nem renda per capita",
+    "substituir_por": "Omitir. Se for preciso, dizer que a renda é representada só pelo rendimento médio do responsável."
+   },
+   {
+    "trecho": "'Rendimento nominal mensal médio das pessoas responsáveis (invertido) = 1 – (Renda média do setor /maior valor)' e o denominador 'Responsáveis pelos domicílios particulares' (calculo_ivs2012.txt:255-267)",
+    "motivo": "Em 2022 a média vem pronta (V06004), só sobre responsáveis com rendimento em DPPO, e a inversão prevista é por min-max municipal, que ainda não foi executada",
+    "substituir_por": "'Rendimento nominal médio mensal das pessoas responsáveis com rendimentos em domicílios particulares permanentes ocupados (V06004), com sentido invertido na padronização (etapa em andamento)'"
+   },
+   {
+    "trecho": "'Os dados originalmente marcados como \"X\" foram convertidos para \"-1\"' (calculo_ivs2012.txt:313)",
+    "motivo": "O projeto converte o 'X' em valor ausente, não em −1, e não exclui o setor por sigilo parcial",
+    "substituir_por": "'Os valores suprimidos pelo IBGE (\"X\") foram tratados como ausentes, nunca como zero; setores com população ou domicílios suprimidos foram classificados como SIGILOSO'"
+   },
+   {
+    "trecho": "'Assim, achamos melhor considerar o número de responsáveis como número total de domicílios do setor' (calculo_ivs2012.txt:315)",
+    "motivo": "O projeto descartou essa opção: o número de responsáveis (V01042) conta pessoas, e o denominador é V00001",
+    "substituir_por": "'Adotou-se como denominador domiciliar o número de domicílios particulares permanentes ocupados (V00001), equivalente ao V002 do Censo 2010'"
+   },
+   {
+    "trecho": "Fórmula dos coletivos ('Total de responsáveis – Domicílios particulares permanentes – Domicílios improvisados') e '% coletivos' (calculo_ivs2012.txt:317-320)",
+    "motivo": "Não foi implementada no projeto",
+    "substituir_por": "'Setores com população mas sem domicílios particulares permanentes ocupados (V00001 = 0) foram classificados como COLETIVO; nenhum setor se enquadrou'"
+   },
+   {
+    "trecho": "'SIGILOSO ... (57 setores)', 'COLETIVO ... (07 setores)', 'ZERADO ... (41 setores)', 'OK (3831 setores)' (calculo_ivs2012.txt:322-325)",
+    "motivo": "São os números de Belo Horizonte com o Censo 2010",
+    "substituir_por": "ZERADO 1.736; SIGILOSO 1.015; COLETIVO 0; OK 106.281, dos quais 104.108 são setores urbanos (recorte de análise) e 2.173 rurais foram excluídos (Relatorio_EDA_Fase3_IVS_ELSI.md:119-145)"
+   },
+   {
+    "trecho": "'Cobertura do entorno estimada em 99,85% ... V001 tabela Entorno01 / V002 tabela Domicilio01' (calculo_ivs2012.txt:327-328)",
+    "motivo": "É um número de 2010, e o projeto não usa dados de entorno de 2022",
+    "substituir_por": "Omitir"
+   },
+   {
+    "trecho": "'Houve setores com até 75% de domicílios improvisados. Optamos por deixá-los incluídos na análise.' (calculo_ivs2012.txt:329)",
+    "motivo": "O percentual é de BH-2010",
+    "substituir_por": "'Setores com domicílios improvisados foram mantidos (máximo de 97,3% de improvisados em um setor; 0,06% dos domicílios do recorte)' (Relatorio_EDA_Fase3_IVS_ELSI.md:495,541)"
+   },
+   {
+    "trecho": "'CONVERSÃO DE ESCALA ... valor bruto – valor mínimo / valor máximo – valor mínimo' (calculo_ivs2012.txt:331-333), apresentada como já aplicada",
+    "motivo": "A padronização do índice ainda não foi feita (NB03 pendente) e será por município",
+    "substituir_por": "No futuro ou como etapa em andamento: 'as variáveis serão padronizadas pelo método min-max, dentro de cada município'"
+   },
+   {
+    "trecho": "Títulos e numeração do Cálculo: 'Construção de indicadores para escolha daqueles que comporão o IVS 2012'; componentes A) Saneamento, B) Habitação, C) Escolaridade, D) Renda, E) Social; itens 1, 2, 3, 5, 6, 9, 10, 12",
+    "motivo": "Referem-se ao IVS 2012. O Plano organiza 7 variáveis em 2 dimensões.",
+    "substituir_por": "Usar o Quadro 1 do Plano (Saneamento e Socioeconômica, 7 variáveis), com uma coluna de códigos de 2022"
+   },
+   {
+    "trecho": "'As técnicas para Geoprocessamento serão realizadas por meio do software Qgis 2.10.1' (plano_trabalho.txt:31)",
+    "motivo": "A versão é obsoleta (o próprio repositório manda usar a 3.x) e as análises feitas até agora foram em Python",
+    "substituir_por": "'O processamento e as análises foram realizados em Python (pandas, numpy), em notebooks Jupyter; os mapas temáticos serão elaborados no QGIS 3.x.' A versão exata do QGIS precisa ser confirmada no ambiente usado."
+   },
+   {
+    "trecho": "'Serão selecionados os 70 municípios ...' (plano_trabalho.txt:16)",
+    "motivo": "Está no futuro e não traz os números do universo efetivo",
+    "substituir_por": "'Foram selecionados os 70 municípios da amostra do ELSI-Brasil, totalizando 109.032 setores censitários, dos quais 104.108 urbanos elegíveis compõem o recorte de análise'"
+   },
+   {
+    "trecho": "'Serão realizadas análises descritivas com medidas de frequências, ... (média) e dispersão (desvio padrão)' (plano_trabalho.txt:31)",
+    "motivo": "Está no futuro e fica aquém do que foi feito",
+    "substituir_por": "'Foram realizadas análises descritivas (média, desvio-padrão, mediana, quartis, coeficiente de variação, assimetria), análise de outliers, de dados faltantes e de correlação (Spearman)'"
+   },
+   {
+    "trecho": "'A técnica de análise fatorial será utilizada para evidenciar a relação entre as variáveis' (plano_trabalho.txt:31)",
+    "motivo": "O usuário quer só registrar que a etapa começou",
+    "substituir_por": "'Iniciou-se a análise fatorial, com o objetivo de evidenciar a relação entre as variáveis e subsidiar a ponderação do índice' (sem apresentar os pesos 65/35 como finais)"
+   },
+   {
+    "trecho": "Quadro 1: 'Percentual de pessoas analfabetas' (plano_trabalho.txt:27)",
+    "motivo": "Falta a faixa etária, que mudou em relação ao IVS 2012",
+    "substituir_por": "'Percentual de pessoas de 15 anos ou mais analfabetas'"
+   },
+   {
+    "trecho": "'Percentual de ...' do Quadro 1 junto com os valores do repositório (por exemplo, 0,0696)",
+    "motivo": "O repositório guarda proporções de 0 a 1, não percentuais (Relatorio_EDA_Fase3_IVS_ELSI.md:160-168)",
+    "substituir_por": "Multiplicar por 100 ao apresentar como percentual (6,96%), ou rotular como proporção"
+   },
+   {
+    "trecho": "Tabelas do próprio repositório, De-Para e Limitações: esgoto 2010 'V019–V028', analfabetismo 2010 'V068–V134', '% fam. ≤ 2 SM', '% chefes com < 4 anos de estudo', 'Coef. óbitos cardiovasculares' (GUIA_DO_PROJETO.md:117-134; README.md:64-70)",
+    "motivo": "Divergem do Cálculo, que traz esgoto V019–V023, analfabetismo de 5+ (Pessoa01 V001 ÷ Pessoa13 V039–V134), renda per capita até ½ SM e o próprio rendimento médio do responsável (item 10). A origem desses três 'componentes não reprodutíveis' não está nos documentos fornecidos: não encontrado.",
+    "substituir_por": "Usar os códigos e definições do Cálculo IVS2012. Se for citar componentes do IVS-BH publicado, citar SMS (2013) depois de conferir no documento original."
+   },
+   {
+    "trecho": "'dezesseis indicadores descritivos' (GUIA_DO_PROJETO.md:518; Relatorio_EDA_Fase3_IVS_ELSI.md:30)",
+    "motivo": "O número está desatualizado: o código tem 21 complementares (28 indicadores no total)",
+    "substituir_por": "'21 indicadores descritivos complementares' (src/ivs_censo/indicadores.py:120-195), ou descrever por blocos"
+   },
+   {
+    "trecho": "'2.607 rurais (2,39%)' × '2.173 excluídos (2,04%)' (Relatorio_EDA_Fase3_IVS_ELSI.md:93,145)",
+    "motivo": "As bases são diferentes: 2.607 é sobre todos os 109.032 setores e 2.173 é sobre os 106.281 elegíveis",
+    "substituir_por": "Usar 2.173 (2,04% dos elegíveis), sempre citando a base"
+   },
+   {
+    "trecho": "Pesos 'dimensão socioeconômica ~60%, saneamento ~40%' e categorização em 4 faixas (GUIA_DO_PROJETO.md:91-93)",
+    "motivo": "Não aparecem no Plano nem no Cálculo fornecidos",
+    "substituir_por": "Se for mencionar, atribuir a SMS (2013) depois de conferir na fonte, e apresentar como etapa futura"
+   }
+  ]
+ },
+ "inventario": {
+  "resultados_eda": [
+   {
+    "id": "R1",
+    "resultado": "Universo amostral e recorte: 70 municípios do ELSI-Brasil; o recorte de análise tem 104.108 setores urbanos elegíveis, com 52,1 milhões de residentes; a base é dominada pelo Sudeste.",
+    "numeros": "Base completa: 109.032 setores. Funil T01: 109.032 → 106.347 urbanos (saem 2.685 não urbanos) → 104.108 com Dados_sig = OK (saem 2.239). No relatório da EDA a ordem é outra: 106.281 OK (ZERADO 1.736; SIGILOSO 1.015) → 104.108 urbanos (saem 2.173 rurais, 2,04%). Municípios e setores urbanos elegíveis por região: SE 26 / 61.989; NE 22 / 19.497; CO 7 / 9.490; S 9 / 7.217; N 6 / 5.915. O Sudeste tem 59% dos setores; São Paulo 27.301 e Rio de Janeiro 13.782. O recorte urbano pesa de forma desigual: 29 dos 70 municípios perdem mais de 10% dos setores e 14 perdem mais da metade. Divergência: o relatório da EDA soma 2.607 setores rurais (:93) e o T01 soma 2.685 não urbanos. A diferença, 78, coincide com os 78 setores de massa d'água citados em :128. Isso é inferência minha, não conferi.",
+    "tabela_ou_figura_pronta": "Tabelas: docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:86-93 (por região) e :140-145; analises_exploratorias/00_referencia/tabelas/T01_funil.csv. Figura: relatorio_descritivo/figuras/DS01.png (funil). Ela tem uma 4ª barra, '73.878 componentes completos', que é a base do NB05 (decisão L3 em aberto); essa barra precisa ser cortada.",
+    "prioridade": "essencial",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:28-30, :86-97, :119-124, :128, :140-151; analises_exploratorias/00_referencia/tabelas/T01_funil.csv:2-4"
+   },
+   {
+    "id": "R2",
+    "resultado": "Descritivas dos 7 componentes (n, média, DP, mediana, P75, máximo, CV, assimetria). É o que o Plano promete: frequências, média e desvio-padrão (plano_trabalho.txt:31).",
+    "numeros": "Água: n 104.108; média 0,0696; DP 0,1974; mediana 0; P75 0,0118; máx 1; CV 284%; assimetria 3,42. Esgoto: n 104.107; 0,0820; 0,2143; 0; 0,0182; 1; 261%; 2,98. Lixo: n 104.108; 0,1158; 0,2524; 0; 0,0594; 1; 218%; 2,38. Razão de moradores: n 104.108; 2,6909; 0,3899; 2,7126; 2,9261; 6,9135; 14%; −0,22. Analfabetismo 15+: n 87.556; 0,0364; 0,0352; 0,0271; 0,0499; 0,7255; 97%; 2,34. Renda média do responsável: n 104.096; R$ 4.187,41; DP 4.150,66; mediana 2.572,39; P75 4.835,89; máx 170.418,06; CV 99%; assimetria 3,74. PPI: n 104.106; 0,5267; 0,2283; 0,5719; 0,7044; 1; 43%; −0,39. Conferi contra o T03: os valores batem.",
+    "tabela_ou_figura_pronta": "Tabelas: docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:160-168; analises_exploratorias/00_referencia/tabelas/T03_descritivas_global.csv (linhas 2-4 e 13-16); relatorio_descritivo/Relatorio_Descritivo_numeros.xlsx, aba Descritivas.",
+    "prioridade": "essencial",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:158-168; analises_exploratorias/00_referencia/tabelas/T03_descritivas_global.csv:2-4,13-16; relatorio_descritivo/ESTADO.md:21-22; scratchpad/plano_trabalho.txt:31"
+   },
+   {
+    "id": "R3",
+    "resultado": "Forma das distribuições. As três de saneamento são infladas de zeros (mediana 0). A renda é fortemente assimétrica e o seu máximo é provável erro de dado. A razão de moradores é quase simétrica e a PPI é a única com assimetria negativa.",
+    "numeros": "Setores com valor zero: água 74,25%, esgoto 72,53%, lixo 62,78%. CV de 218% a 284%. Renda: média R$ 4.187 contra mediana R$ 2.572; assimetria 3,74; curtose 49,5. O máximo, R$ 170.418,06, é o setor 310620005650366, de favela em BH, com dados internamente contraditórios. Auditoria por município (Tukey k=3): 3.292 extremos coerentes (3,16%) e 66 contraditórios (0,06%). Sem o extremo: máximo R$ 140.172,64 e assimetria 3,20. Ressalva obrigatória: entre os setores com zero, têm alguma parcela sigilosa 22,6% (água), 22,1% (esgoto) e 30,5% (lixo). Por isso zero quer dizer 'sem inadequação medida', e não 'adequado'.",
+    "tabela_ou_figura_pronta": "A coluna pct_zeros do T03. Histogramas individuais: relatorio_descritivo/figuras/DS03.png, DS04.png, DS05.png, DS14.png, DS15.png, DS16.png e DS19.png.",
+    "prioridade": "essencial",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:34-43, :217-221, :390-395, :1185-1189; analises_exploratorias/00_referencia/tabelas/T03_descritivas_global.csv:2-4,15,18; docs/relatorios/Apanhado_Analises_Exploratorias_2026-10.md:115-116"
+   },
+   {
+    "id": "R4",
+    "resultado": "Faltantes e sigilo do IBGE. O problema está concentrado no analfabetismo e não é aleatório: o dado falta mais nos setores de melhor situação. A orientadora decidiu aceitar a limitação, sem imputação (ago/2026). Os numeradores com várias parcelas sofrem sigilo parcial, o que puxa os valores para baixo.",
+    "numeros": "Seis dos 7 componentes têm cobertura ≥99,99%. Analfabetismo: 87.556 de 104.108 setores (84,10%), ou seja, 16.552 sem o dado (15,9%), todos pela supressão do V00901. Setores com e sem o dado: renda mediana R$ 2.313,89 contra R$ 6.092,84; PPI mediana 60,6% contra 30,8%. Sigilo de 44,1% nos setores com 1 a 10 alfabetizados, caindo a 3,3% acima de 1.000; por décimo de moradores (T07/F15), de 29,4% a 3,9%. A média verdadeira fica entre 3,14% (piso) e 3,64% (teto). Sigilo parcial (≥1 parcela sigilosa): água 29,1%, esgoto 28,4%, lixo 27,1%, PPI 23,3%; na água o viés é de +3,9% a +14,9%. INCONSISTÊNCIA: a EDA :417-418 põe BH (22,5%) como o município mais afetado. A EDA :1065 fala em máximo de 29,7% (São Caetano do Sul), 0% em 11 municípios e 7 acima de 20%. O T06 dá São Caetano 29,7%, Porto Alegre 27,5%, BH 22,5%, 18 municípios com 0% e 9 acima de 20%. Não citar ranking municipal antes de resolver isso.",
+    "tabela_ou_figura_pronta": "Tabelas: EDA :401-409 (cobertura), :1057-1060 (com × sem o dado), :1073-1076 (piso/teto), :1165-1170 (sigilo parcial); T02_perdas_por_indicador.csv:14; T06_faltantes_por_municipio.csv. Figuras: analises_exploratorias/00_referencia/figuras/F15_sigilo_por_porte_do_setor.png (conferida); banco_de_dados/eda/figuras/missing_por_municipio.png (não aberta).",
+    "prioridade": "essencial",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:45-47, :401-435, :417-418, :1044-1078, :1063-1065, :1165-1178; analises_exploratorias/00_referencia/tabelas/T02_perdas_por_indicador.csv:14; T06_faltantes_por_municipio.csv:7,57; T07_sigilo_por_porte_do_setor.csv:2,11"
+   },
+   {
+    "id": "R5",
+    "resultado": "Estrutura de correlações (Spearman). Há um bloco socioeconômico coeso (renda, PPI, analfabetismo), um bloco de saneamento moderado (água e esgoto) e o lixo isolado. A razão de moradores faz a ligação entre os dois blocos.",
+    "numeros": "Renda × PPI −0,81; renda × analfabetismo −0,76; analfabetismo × PPI 0,63; água × esgoto 0,42. Esgoto com o bloco socioeconômico: 0,43 a 0,45 em valor absoluto. Lixo: de 0,10 a 0,20 com as demais e −0,06 com a razão de moradores. Razão de moradores: de 0,26 a 0,46. São pares calculados sobre os 104.108 setores. Na matriz listwise da fatorial, renda × PPI cai a 0,784; ao citar, dizer de qual matriz é o número.",
+    "tabela_ou_figura_pronta": "Tabela: EDA :446-454; analises_exploratorias/00_referencia/tabelas/T12_correlacao_spearman.csv. Figura: relatorio_descritivo/figuras/DC02.png (conferida: mapa 7×7 com os valores, rótulos em português).",
+    "prioridade": "essencial",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:49-58, :441-470; docs/relatorios/Relatorio_Analise_Fatorial_NB04.md:38 (achado 9); relatorio_descritivo/dados/numeros.json (slide DC01)"
+   },
+   {
+    "id": "R6",
+    "resultado": "Diferenças regionais. Há gradiente Norte→Sul em 5 dos 7 componentes. Duas exceções: o analfabetismo tem pico no Nordeste e o lixo é plano entre as regiões.",
+    "numeros": "Média entre setores (Água / Esgoto / Lixo / Moradores / Analfabetismo / Renda / PPI). Norte: 0,323 / 0,238 / 0,098 / 3,194 / 0,033 / R$ 2.881 / 0,748. Nordeste: 0,118 / 0,162 / 0,154 / 2,771 / 0,062 / R$ 3.008 / 0,713. Centro-Oeste: 0,055 / 0,075 / 0,091 / 2,762 / 0,031 / R$ 4.945 / 0,565. Sudeste: 0,038 / 0,049 / 0,111 / 2,626 / 0,030 / R$ 4.491 / 0,474. Sul: 0,020 / 0,029 / 0,102 / 2,529 / 0,021 / R$ 4.842 / 0,246. Norte contra Sul: água 16×, esgoto 8×, PPI 3×. A renda do Centro-Oeste reflete o peso de Brasília (5.418 setores). Conferi T04: água Norte 0,3227 e renda Centro-Oeste 4.944,55.",
+    "tabela_ou_figura_pronta": "Tabelas: EDA :321-327; T04_descritivas_regiao.csv; relatorio_descritivo/Relatorio_Descritivo_numeros.xlsx, aba Por_regiao. Figuras: banco_de_dados/eda/figuras/boxplots_por_regiao.png (não aberta). F03 e F06 da 00_referencia mostram região, mas os rótulos saem cortados ('No','No','Su','Su','Ce') e há painéis vazios: não usar sem regerar.",
+    "prioridade": "essencial",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:319-343; analises_exploratorias/00_referencia/tabelas/T04_descritivas_regiao.csv"
+   },
+   {
+    "id": "R7",
+    "resultado": "Comparação com o Brasil. A amostra é mais rica, mais alfabetizada e mais bem servida de esgoto que o Brasil urbano: representa o Brasil urbano de grande porte, não o Brasil. O lixo é a única variável em que a amostra está pior (hipótese: a caçamba, V00398).",
+    "numeros": "Brasil: 468.099 setores, 347.400 urbanos elegíveis e 5.572 municípios. Os 70 municípios ELSI respondem por 30,0% dos setores urbanos elegíveis, 26,0% da população (52.732.704 de 203.080.756), 26,9% dos domicílios e 58,6% dos setores de favela (19.507 de 33.272). Razão agregada ELSI ÷ Brasil urbano: esgoto 0,52×; analfabetismo 0,62×; água 0,83×; moradores 0,98×; PPI 1,01×; renda 1,31× (R$ 4.187 contra R$ 3.209); lixo 1,21×. O T35 do A6_brasil usa outra métrica (média entre setores; esgoto 0,0820 contra 0,1615): não misturar com a razão agregada.",
+    "tabela_ou_figura_pronta": "Tabelas: EDA :599-616; analises_exploratorias/A6_brasil/tabelas/T35_versao_x_70_municipios.csv. Não há figura específica.",
+    "prioridade": "desejavel",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:596-627; analises_exploratorias/A6_brasil/tabelas/T35_versao_x_70_municipios.csv:1-4"
+   },
+   {
+    "id": "R8",
+    "resultado": "Outliers. A regra do IQR não informa nada nas três de saneamento, porque P25 = mediana = 0; o P95 é o critério adequado nelas. Nas demais o IQR funciona.",
+    "numeros": "Marcados pelo IQR: água 21.532 (20,7%), esgoto 20.901 (20,1%), lixo 19.124 (18,4%). P95: 0,558 / 0,693 / 0,846. Razão de moradores 3.632 (3,5%); analfabetismo 4.114 (4,7%); renda 10.469 (10,1%) pelo IQR global; PPI 0.",
+    "tabela_ou_figura_pronta": "Tabela: EDA :369-377; analises_exploratorias/00_referencia/tabelas/T08_extremos_por_indicador.csv. Figura: analises_exploratorias/00_referencia/figuras/F16_extremos_por_indicador.png (não aberta).",
+    "prioridade": "cortar",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:367-395"
+   },
+   {
+    "id": "R9",
+    "resultado": "Validação externa da pipeline: aplicadas as mesmas fórmulas ao Brasil inteiro, os resultados reproduzem os números oficiais do IBGE.",
+    "numeros": "Índice de envelhecimento nacional: 79,99, contra 80,0 publicado pelo IBGE. População: 203.080.756, exatamente o número oficial. A primeira rodada, em float32, dava 203.080.736; foi refeita em float64 e um teste automatizado trava a soma.",
+    "tabela_ou_figura_pronta": "Texto em EDA :60-62 e quadro de verificações em :989-990. Não há figura.",
+    "prioridade": "desejavel",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:60-62, :931-935, :989-990"
+   },
+   {
+    "id": "R10",
+    "resultado": "Setores de favela (FCU) contra os demais setores urbanos: todos os componentes se movem na direção esperada, com magnitudes grandes. A classificação FCU é do próprio IBGE, independente dos componentes.",
+    "numeros": "19.452 setores FCU (18,7% do recorte), 5.903 favelas, 10.071.575 residentes; 42 dos 70 municípios têm FCU. Peso das FCU por região: Norte 50,6% dos setores, Centro-Oeste 4,6%. FCU ÷ não FCU: esgoto 4,14×; lixo 2,90×; analfabetismo 2,14×; água 1,77×; PPI 1,53×; moradores 1,11×; renda 0,34× (R$ 1.610 contra R$ 4.780).",
+    "tabela_ou_figura_pronta": "Tabelas: EDA :557-584; analises_exploratorias/00_referencia/tabelas/T15_fcu_por_indicador.csv. Figura: F19_fcu_por_indicador.png, que está em AUC por indicador; essa linguagem pode ser confundida com a validação do índice.",
+    "prioridade": "desejavel",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:552-590"
+   },
+   {
+    "id": "R11",
+    "resultado": "Envelhecimento (fora do IVS). Liga os resultados à justificativa do Plano, que parte do envelhecimento populacional.",
+    "numeros": "IEP 92,7; RDI 25,5; 60+ = 16,65%; menores de 15 = 17,96%; 70+ entre os 60+ = 44,6%. IEP por região: Sul 111,9; SE 105,5; NE 81,7; CO 73,0; N 56,3.",
+    "tabela_ou_figura_pronta": "Tabela: EDA :516-524. Figuras: analises_exploratorias/00_referencia/figuras/F20_piramide_etaria.png; relatorio_descritivo/figuras/DS30.png e DS31.png.",
+    "prioridade": "desejavel",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:511-533; scratchpad/plano_trabalho.txt:5"
+   },
+   {
+    "id": "R12",
+    "resultado": "Heterogeneidade entre municípios: os mesmos municípios lideram várias dimensões, e os municípios pequenos ficam instáveis depois do recorte urbano.",
+    "numeros": "Renda mediana municipal de R$ 5.292 (São Caetano do Sul) a R$ 1.062 (Jaqueira), cerca de 5×. Portel tem a pior mediana de água (0,919) e de esgoto (0,980) e a maior razão de moradores (4,23). Municípios com menos de 10 setores urbanos: São Raimundo do Doca Bezerra, Orizânia e São Paulo das Missões.",
+    "tabela_ou_figura_pronta": "Tabela: analises_exploratorias/00_referencia/tabelas/T05_descritivas_municipio.csv. Não há figura pronta.",
+    "prioridade": "cortar",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:177, :180, :201, :222-224, :347-363"
+   }
+  ],
+  "fatorial_iniciada": {
+   "fatos_seguros": [
+    "A EDA foi desenhada para preparar a análise fatorial. Ela mostrou um bloco socioeconômico coeso (renda, cor/raça, analfabetismo), um bloco de saneamento (água e esgoto) e o lixo pouco correlacionado: a estrutura que a fatorial vai examinar. Isto é resultado da própria EDA e é seguro afirmar.",
+    "A análise fatorial exploratória foi iniciada no Notebook 04 (setembro/2026), tendo como referência Matos e Rodrigues (2019), a mesma obra citada no Plano de trabalho.",
+    "Já foram feitos os testes de adequação da matriz de correlação (KMO, MSA e Bartlett), usando Spearman pela assimetria das variáveis, e a comparação entre métodos de extração (componentes principais × eixo principal) e de rotação (Varimax × promax). A recomendação é não citar os valores.",
+    "A fatorial exige setores completos nos sete componentes. Isso reduz a base por causa, sobretudo, do sigilo do analfabetismo. O tratamento dessa perda e as especificações finais estão em discussão com a orientadora."
+   ],
+   "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:456-482; docs/relatorios/Relatorio_Analise_Fatorial_NB04.md:1-13, :56-69, :75-84, :185-196; scratchpad/plano_trabalho.txt:31, :65; relatorio_descritivo/ESTADO.md:35; GUIA_DO_PROJETO.md:684-685",
+   "nao_afirmar": [
+    "Pesos 65/35 ou qualquer comparação com os 60/40 do IVS-BH (NB04 :21), nem o intervalo de confiança do bootstrap (:23).",
+    "O número de fatores. Com sete variáveis, Kaiser e Horn retêm 2 por margem estreita; com seis, retêm 1. A decisão está aberta (NB04 :108, :194).",
+    "Φ = 0,522, AUC de 0,813 ou 0,862 contra FCU, concordância de 0,924 ou qualquer 'validação do índice' (NB04 :29-35).",
+    "Que o lixo sai do índice ou tem comunalidade baixa (NB04 :192). É uma das 6 decisões que a orientadora ainda não tomou (NB04 :187).",
+    "O tamanho da base da fatorial: 87.545 no NB04 ou 73.878 na referência do NB05. A pendência L3 do ESTADO.md (:35) segue aguardando a orientadora.",
+    "Que a fatorial está 'concluída'. O GUIA_DO_PROJETO.md:684 diz 'Concluída em 17/09/2026', o que contradiz o enquadramento pedido. Também não falar no IVS final, nas 4 faixas, nas 324 especificações ou 192 elegíveis, nem na 'referência proposta' (GUIA :685-687).",
+    "A expressão 'análise fatorial confirmatória/AFC' (NB04 :69).",
+    "Qual versão da renda entra no índice: continua pendente (NB04 :46)."
+   ]
+  },
+  "campos_identificacao": [
+   {
+    "campo": "Título do trabalho",
+    "valor_encontrado": "\"Índice de Vulnerabilidade à Saúde (IVS) intraurbano — Censo Demográfico 2022\". O Plano de trabalho não tem título próprio, só o objetivo geral. Confirmar com o Pedro o título registrado na bolsa.",
+    "fonte": "GUIA_DO_PROJETO.md:23; scratchpad/plano_trabalho.txt:1, :9"
+   },
+   {
+    "campo": "Bolsista",
+    "valor_encontrado": "Pedro Dias Soares",
+    "fonte": "GUIA_DO_PROJETO.md:27; docs/relatorios/Relatorio_Analise_Fatorial_NB04.md:7"
+   },
+   {
+    "campo": "Orientador",
+    "valor_encontrado": "não encontrado. O repositório só fala em 'a orientadora', sem nome; no Plano do Artigo, o campo 'Instituição / Orientador(a)' traz só 'Fiocruz Minas — IRR'.",
+    "fonte": "scratchpad/plano_artigo.txt:4-5"
+   },
+   {
+    "campo": "Coorientador(es)",
+    "valor_encontrado": "não encontrado",
+    "fonte": "busca por coorientador/co-orientador sem resultado fora de banco_de_dados/.venv/graphify-out"
+   },
+   {
+    "campo": "Unidade / Departamento / Laboratório ou Núcleo ou Programa",
+    "valor_encontrado": "Fiocruz Minas — Instituto René Rachou (IRR). Laboratório, núcleo ou grupo: não encontrado.",
+    "fonte": "GUIA_DO_PROJETO.md:25; docs/relatorios/Relatorio_Analise_Fatorial_NB04.md:6"
+   },
+   {
+    "campo": "Programa ao qual está vinculado",
+    "valor_encontrado": "não encontrado. Só consta 'Iniciação Científica (bolsista)'. As opções do edital são PIBIC, PIBITI, IC CNPq, FAPEMIG, projetos e emendas.",
+    "fonte": "GUIA_DO_PROJETO.md:24; scratchpad/edital.txt:249-250"
+   },
+   {
+    "campo": "Área de conhecimento",
+    "valor_encontrado": "Saúde Coletiva — Saúde Urbana e Epidemiologia Espacial",
+    "fonte": "GUIA_DO_PROJETO.md:26; scratchpad/plano_artigo.txt:6-7"
+   },
+   {
+    "campo": "Data de Início no Programa",
+    "valor_encontrado": "Março/2026 (o dia não foi encontrado). O período previsto é março/2026 a fevereiro/2027, e o Programa de Inserção vai de março a abril/2026. O edital exige o relatório parcial de quem ingressou até 31/03/2026.",
+    "fonte": "GUIA_DO_PROJETO.md:28; scratchpad/plano_artigo.txt:11-12; scratchpad/plano_trabalho.txt:36; scratchpad/edital.txt:83-85"
+   },
+   {
+    "campo": "Palavras-Chave",
+    "valor_encontrado": "Vulnerabilidade em Saúde; Saúde Urbana; Indicadores Socioeconômicos; Censos; Desigualdades em Saúde (DeCS)",
+    "fonte": "scratchpad/plano_artigo.txt:326-331"
+   },
+   {
+    "campo": "Universidade/Curso de Graduação",
+    "valor_encontrado": "não encontrado",
+    "fonte": "busca por Universidade/graduação/curso sem resultado no repositório (fora das pastas excluídas)"
+   }
+  ],
+  "blocos_finais": [
+   {
+    "bloco": "MATÉRIA ENCAMINHADA PARA PUBLICAÇÃO",
+    "insumos_encontrados": "Nenhuma submissão registrada. O artigo está planejado: Plano do Artigo preenchido, redação pendente, periódico-alvo ainda não definido. O cronograma prevê a submissão em fev/2027.",
+    "falta_perguntar": "Algum resumo foi submetido a congresso (além desta RAIC)? Se não houve nada, escrever 'Nada a declarar' ou 'Artigo em preparação, sem submissão'?",
+    "fonte": "GUIA_DO_PROJETO.md:689, :783, :806; scratchpad/plano_artigo.txt:8-9; scratchpad/edital.txt:263-264"
+   },
+   {
+    "bloco": "PERSPECTIVAS PARA O TRABALHO",
+    "insumos_encontrados": "Próximos passos já documentados: (1) normalização por município (NB03); (2) concluir a análise fatorial e definir os pesos com a orientadora (NB04); (3) calcular o IVS final e categorizar em 4 faixas, validando contra os setores de favela (NB05); (4) geoprocessamento: mapas coropléticos no QGIS e autocorrelação espacial (Moran), o que atende ao objetivo específico 2; (5) trabalhos para congressos; (6) artigo de out a dez/2026 e Relatório Final de dez/2026 a fev/2027. As decisões que dependem da orientadora estão listadas no NB04 §3 e no ESTADO.md (L1, L3).",
+    "falta_perguntar": "Quanto do NB04 e NB05 citar como perspectiva sem parecer resultado. Há algum congresso-alvo definido?",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:1192-1199; GUIA_DO_PROJETO.md:682-689, :777-783; scratchpad/plano_trabalho.txt:45-47; docs/relatorios/Relatorio_Analise_Fatorial_NB04.md:185-196; relatorio_descritivo/ESTADO.md:34-35"
+   },
+   {
+    "bloco": "OUTRAS ATIVIDADES DESENVOLVIDAS NO PERÍODO",
+    "insumos_encontrados": "Previstos no Plano: Programa de Inserção do IRR e Curso Introdutório para Bolsistas (mar–abr/2026), mas não há registro de participação nem certificado. Revisão bibliográfica (mar–dez/2026), com material em docs/referencias/ (ELSI, IVS-BH 2012, IBGE FCU, guia de EDA) e leituras pendentes listadas no ESTADO.md. Reuniões com a orientadora documentadas pelos decks em docs/Apresentacoes_IVS/historico/ (15/05, 22/05, 28/05, 30/05, 15/06, 18/06, 09/08, 21/08), pelo deck da fatorial de 09/2026 e pela apresentação de 10/2026. As 7 demandas de julho foram concluídas em 09/08/2026; as 11 demandas de setembro também estão documentadas.",
+    "falta_perguntar": "Participou de fato do Programa de Inserção e do Curso Introdutório (datas)? Houve outros eventos científicos, cursos (Python, QGIS, estatística), seminários ou clubes de revista do IRR? Já apresentou em alguma RAIC anterior?",
+    "fonte": "scratchpad/plano_trabalho.txt:36-39; GUIA_DO_PROJETO.md:680, :773; relatorio_descritivo/ESTADO.md:14-15, :34; docs/Apresentacoes_IVS/historico/ (nomes dos arquivos); scratchpad/edital.txt:266-267"
+   },
+   {
+    "bloco": "AVALIAÇÃO (processo de formação científica)",
+    "insumos_encontrados": "Não há texto no repositório: é depoimento pessoal. Temas que os documentos mostram e que o Pedro pode usar: dados do Censo por setor e o sigilo do IBGE; a troca de denominador e as correções de método; EDA reprodutível; estudo da análise fatorial; reuniões e demandas da orientadora.",
+    "falta_perguntar": "O Pedro precisa escrever, com as palavras dele: aspectos mais importantes, críticas e sugestões.",
+    "fonte": "scratchpad/edital.txt:268-269; docs/relatorios/Apanhado_Analises_Exploratorias_2026-10.md:36-49"
+   },
+   {
+    "bloco": "APOIO (órgãos financiadores)",
+    "insumos_encontrados": "não encontrado. Há só 'Iniciação Científica (bolsista)'.",
+    "falta_perguntar": "Qual é o órgão ou programa da bolsa (CNPq/PIBIC, FAPEMIG, Fiocruz/IRR, outro)? Algum outro apoio?",
+    "fonte": "GUIA_DO_PROJETO.md:24; scratchpad/edital.txt:249-250, :270"
+   },
+   {
+    "bloco": "V. OBJETIVOS ALCANÇADOS (fora da lista pedida, mas exigido pelo Anexo 1)",
+    "insumos_encontrados": "Objetivo específico 1 (construir o IVS): parcial. A base dos 70 municípios está montada, os 7 indicadores foram calculados, a EDA foi concluída e a fatorial iniciada. Objetivo específico 2 (distribuição espacial): não iniciado, mapas pendentes. A etapa 'Análise da consistência do banco' (mar–jul) está cumprida.",
+    "falta_perguntar": "A orientadora concorda com esse enquadramento como 'parcial'?",
+    "fonte": "scratchpad/plano_trabalho.txt:12-13, :41-43; GUIA_DO_PROJETO.md:678-688"
+   },
+   {
+    "bloco": "OBSERVAÇÃO: mudanças em relação ao Plano (o Anexo 1 pede justificativa)",
+    "insumos_encontrados": "(a) Setores rurais excluídos (recorte urbano), por demanda da orientadora; o Plano fala em setores urbanos ou rurais. (b) QGIS 3.x no lugar do 2.10.1 citado no Plano. (c) Analfabetismo definido para 15 anos ou mais; o Quadro 1 diz só 'pessoas analfabetas'. (d) Lixo em caçamba conta como inadequado, seguindo o Cálculo IVS2012.",
+    "falta_perguntar": "Quais dessas mudanças a orientadora quer que sejam declaradas no relatório?",
+    "fonte": "scratchpad/plano_trabalho.txt:17, :27, :31; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:133-138, :191-194, :765; GUIA_DO_PROJETO.md:763; scratchpad/edital.txt:271"
+   }
+  ],
+  "figuras_disponiveis": [
+   {
+    "caminho": "relatorio_descritivo/figuras/DC02.png",
+    "o_que_mostra": "Mapa de calor da correlação de Spearman entre os 7 componentes, com os valores escritos (conferido).",
+    "serve_para": "R5, correlações. É a melhor figura única dos Resultados."
+   },
+   {
+    "caminho": "relatorio_descritivo/figuras/DS01.png",
+    "o_que_mostra": "Funil de setores: 109.032 → 106.347 → 104.108 → 73.878 (conferido).",
+    "serve_para": "R1, universo amostral. Antes de usar, cortar a barra de 73.878 (base do NB05, L3 em aberto)."
+   },
+   {
+    "caminho": "analises_exploratorias/00_referencia/figuras/F15_sigilo_por_porte_do_setor.png",
+    "o_que_mostra": "% de setores com o dado faltando por décimo de moradores: o analfabetismo cai de 29,4% a 3,9% e a renda fica perto de 0 (conferido).",
+    "serve_para": "R4. Mostra num gráfico só que o sigilo não é aleatório."
+   },
+   {
+    "caminho": "relatorio_descritivo/figuras/DS03.png; DS04.png; DS05.png",
+    "o_que_mostra": "Histogramas de água, esgoto e lixo inadequados nos setores com valor acima de zero; os zeros (77.295, 75.511 e 65.359) estão informados na legenda.",
+    "serve_para": "R2 e R3, saneamento inflado de zeros. Melhor como painel de 3, que precisaria ser montado."
+   },
+   {
+    "caminho": "relatorio_descritivo/figuras/DS14.png; DS15.png; DS16.png; DS19.png",
+    "o_que_mostra": "Histogramas de razão de moradores, analfabetismo 15+ (eixo até o P99), renda média (eixo até o P99, R$ 19.771) e PPI, com a mediana tracejada.",
+    "serve_para": "R2 e R3, bloco socioeconômico. Melhor como painel de 4."
+   },
+   {
+    "caminho": "banco_de_dados/eda/figuras/histogramas.png",
+    "o_que_mostra": "Histogramas dos componentes, segundo o relatório da EDA (não aberta, por regra).",
+    "serve_para": "Alternativa pronta ao painel DS. Conferir se é da rodada vigente."
+   },
+   {
+    "caminho": "banco_de_dados/eda/figuras/boxplots_por_regiao.png",
+    "o_que_mostra": "Boxplots por região, segundo o relatório da EDA (não aberta).",
+    "serve_para": "R6. Conferir antes de usar."
+   },
+   {
+    "caminho": "banco_de_dados/eda/figuras/missing_por_municipio.png",
+    "o_que_mostra": "Faltantes por município, segundo o relatório da EDA (não aberta).",
+    "serve_para": "R4, alternativa à F15."
+   },
+   {
+    "caminho": "banco_de_dados/eda/figuras/matriz_correlacao.png",
+    "o_que_mostra": "Matriz de correlação, segundo o relatório da EDA (não aberta).",
+    "serve_para": "R5, alternativa à DC02."
+   },
+   {
+    "caminho": "relatorio_descritivo/figuras/DS03-2.png (e DS04-2, DS05-2, DS14-2, DS15-2, DS16-2, DS19-2)",
+    "o_que_mostra": "Por indicador: % de setores com valor acima de zero, ou média, por região, município e FCU.",
+    "serve_para": "R6, regional por indicador. São 7 figuras: cabe no máximo uma."
+   },
+   {
+    "caminho": "analises_exploratorias/00_referencia/figuras/F03_boxplots_regiao_saneamento.png; F06_boxplots_regiao_socioeconomica.png",
+    "o_que_mostra": "Boxplots por região de 11 indicadores de saneamento e dos socioeconômicos. Os rótulos de região saem cortados ('No','No','Su','Su','Ce') e há painéis vazios (F03 conferida).",
+    "serve_para": "R6 só depois de regerar. No estado atual, não usar."
+   },
+   {
+    "caminho": "analises_exploratorias/00_referencia/figuras/F20_piramide_etaria.png",
+    "o_que_mostra": "Pirâmide etária do recorte (não aberta).",
+    "serve_para": "R11, envelhecimento. Opcional."
+   },
+   {
+    "caminho": "analises_exploratorias/00_referencia/figuras/F19_fcu_por_indicador.png",
+    "o_que_mostra": "Separação FCU × não FCU por indicador, em AUC (maior: PPI 0,8456).",
+    "serve_para": "R10. Opcional; a linguagem de AUC pode ser lida como validação do índice."
+   },
+   {
+    "caminho": "analises_exploratorias/00_referencia/figuras/F14_mapa_faltantes.png",
+    "o_que_mostra": "Faltantes por indicador × município, com os 31 indicadores; o ponto mais escuro é banheiro graduado em Placas (68,8%).",
+    "serve_para": "R4. Pesada demais para 3 páginas: preferir F15."
+   },
+   {
+    "caminho": "relatorio_descritivo/figuras/FA05.png, FA09.png, FA12.png, FA14.png, FA15.png",
+    "o_que_mostra": "Fatorial e índice: autovalores e Horn, cargas promax, histograma do índice, curva ROC contra FCU e AUC por município.",
+    "serve_para": "NÃO USAR no relatório parcial: são resultados ainda não validados com a orientadora."
+   }
+  ]
+ },
+ "critica": {
+  "problemas": [
+   {
+    "id": "P01",
+    "gravidade": "bloqueia",
+    "problema": "A folha de rosto tem 6 dos 10 campos obrigatórios sem fonte: título, orientador, coorientador, unidade/laboratório, programa e universidade/curso. O edital a chama de 'modelo obrigatório'. O modelo da colega omite coorientador e unidade e se contradiz no programa: PIBIC na capa (projeto.txt:21), FAPEMIG no Apoio (projeto.txt:111-112). O nome da orientadora só aparece no relatório da colega (Amanda Cristina de Souza Andrade, projeto.txt:20), e não se sabe se é a mesma do Pedro.",
+    "correcao_no_plano": "Montar a folha de rosto com os 10 campos do Anexo, na ordem do edital, mais local e data. Campos sem resposta ficam com o marcador [A PREENCHER] em destaque. Coorientador: 'Não se aplica', se não houver. Não copiar Programa nem Apoio do modelo da colega. Não fechar a versão final sem as respostas do Pedro.",
+    "fonte": "scratchpad/edital.txt:244-255; scratchpad/projeto.txt:20-23,31,111-112; GUIA_DO_PROJETO.md:22-28; scratchpad/plano_trabalho.txt:1"
+   },
+   {
+    "id": "P02",
+    "gravidade": "alta",
+    "problema": "A data de ingresso decide qual documento é exigido. Quem ingressou até 31/03/2026 entrega o relatório parcial do Anexo 1 e apresenta oral; quem ingressou de 01/04 a 31/08 entrega subprojeto mais mini-relatório e apresenta pôster. Só se sabe 'Março/2026', sem o dia. O modelo da colega é de quem ingressou em abril/2026, ou seja, ela está, a rigor, sob outra regra do edital.",
+    "correcao_no_plano": "Confirmar o dia de ingresso com o Pedro. Se for até 31/03, seguir o Anexo 1. Se não for, o plano inteiro muda para subprojeto + mini-relatório.",
+    "fonte": "scratchpad/edital.txt:59-64,83-89; GUIA_DO_PROJETO.md:28; scratchpad/plano_trabalho.txt:36; scratchpad/projeto.txt:23"
+   },
+   {
+    "id": "P03",
+    "gravidade": "alta",
+    "problema": "O prazo é curto. A inscrição, com o relatório anexado, fecha em 14/10/2026 (quarta). Hoje é domingo, 11/10, e 12/10 é feriado nacional (isso é conhecimento geral, não está nos arquivos). Sobra cerca de um dia útil para a orientadora revisar. O horário-limite e o formato aceito pela plataforma módulos não constam no edital. Só o Pedro pode submeter: é envio de formulário.",
+    "correcao_no_plano": "Duas entregas. (1) Versão completa com marcadores [A PREENCHER] até a noite de 12/10, já com o PDF conferido em ≤10 páginas. (2) Revisão da orientadora em 13/10, PDF final e inscrição feita pelo Pedro em 14/10, antes do horário-limite.",
+    "fonte": "scratchpad/edital.txt:73,81-85,135"
+   },
+   {
+    "id": "P04",
+    "gravidade": "alta",
+    "problema": "Copiar e colar a Metodologia do Plano entra em conflito com a exatidão. O texto está no futuro ('Serão selecionados', 'será construído', 'serão realizadas'), cita os agregados 'básico, população, domicílio e rendimento' (os arquivos usados são 8, outros), o QGIS 2.10.1 (as análises foram feitas em Python; o QGIS 3.x fica para os mapas) e define setor censitário pela Sinopse 2010. Copiado literal num relatório de andamento, o texto descreve como futuro o que já foi feito.",
+    "correcao_no_plano": "Manter as frases da orientadora e trocar só o tempo verbal e esses 3 itens. Pôr as adequações para 2022 num parágrafo próprio logo depois ('Adequações em relação ao Plano'), para separar o que é dela do que é novo. Pergunta ao Pedro: a orientadora aceita esses ajustes?",
+    "fonte": "scratchpad/plano_trabalho.txt:16-18,31; src/ivs_censo/fontes.py:36-120; GUIA_DO_PROJETO.md:763"
+   },
+   {
+    "id": "P05",
+    "gravidade": "alta",
+    "problema": "O Cálculo IVS2012 não é texto que se possa copiar. É uma ficha técnica do IVS-BH 2012: tabelas e códigos do Censo 2010 (Domicilio01_UF.xls, V013 etc.), 5 componentes (A–E, contra 2 dimensões no Plano), o item 9 (renda per capita até ½ SM), que não está no Quadro 1, e um 'Tratamento dos dados' com números de BH (57/07/41/3831; entorno 99,85%; 75% de improvisados). Também não é citável, porque não tem autor nem ano. O método publicado é SMS (2013), que já está nas referências do Plano e traz as 2 dimensões (Quadro 2) e a fórmula min-max (§3.3).",
+    "correcao_no_plano": "Do Cálculo, aproveitar só a estrutura numerador ÷ denominador. Ampliar o Quadro 1 do Plano com as colunas 'Numerador (Censo 2022)' e 'Denominador (Censo 2022)'. Reescrever a regra Dados_sig com os números de 2022: ZERADO 1.736; SIGILOSO 1.015; COLETIVO 0; OK 106.281; urbanos 104.108. Citar SMS (2013) como origem do método. Omitir entorno, improvisados de BH, item 9 e rótulos de coluna (Agua_Inade...). A min-max deve aparecer como etapa futura, por município.",
+    "fonte": "scratchpad/calculo_ivs2012.txt:31-333; docs/referencias/indice_vulnerabilidade2012 (2).pdf (extraído em scratchpad/sms2013.txt:259-269); docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:119-145"
+   },
+   {
+    "id": "P06",
+    "gravidade": "alta",
+    "problema": "A 'Discussão dos resultados', exigida no item VI, não tem fonte. A EDA descreve os resultados, mas não os discute com a literatura, e as referências do Plano servem à justificativa. Não se pode atribuir a Passarelli-Araujo, Gioia ou Allik achados que o Pedro não conferiu. Na pasta 2026/Março/Arquivos há TD_77.pdf (provavelmente Caiaffa et al., 2021) e um '2194-Texto do artigo...' que não identifiquei.",
+    "correcao_no_plano": "Discussão de cerca de 0,5 página em dois eixos. (a) Implicações metodológicas dos achados, com fonte na EDA: sigilo não aleatório; zeros com sigilo parcial; bloco socioeconômico coeso e lixo isolado; amostra que representa o Brasil urbano de grande porte. (b) Diálogo com a literatura só com obras que o Pedro leu, mais SMS (2013), que está no repositório. Perguntar ao Pedro quais leu.",
+    "fonte": "scratchpad/edital.txt:260; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:26-64,1022-1191; docs/referencias/README.md:5-13; listagem de /Users/pedro/Documents/Iniciacao Cientifica/2026/Março/Arquivos/"
+   },
+   {
+    "id": "P07",
+    "gravidade": "alta",
+    "problema": "Há risco de estourar as 10 páginas. O edital não fixa fonte, espaçamento nem margens. O modelo da colega usa Times New Roman 12, entrelinha 1,08 e margens de 1,27 cm, e com cerca de 2.860 palavras e 2 figuras dá 8 páginas (medi convertendo com soffice). Com ABNT (entrelinha 1,5, margens 3/2 cm), a capacidade cai uns 35–40%. Os levantamentos trazem 12 blocos de resultado e 21 desvios, material para mais de 20 páginas.",
+    "correcao_no_plano": "Fixar a formatação do modelo e seguir o orçamento proposto. Limite de 3 figuras e 3 quadros/tabelas. Cortes já decididos: R8 e R12 fora; R7, R9, R10 e R11 com uma frase cada; D03, D06, D08 (detalhe), D10 e D16–D20 só na tabela ou omitidos. Critério de verificação: exportar para PDF com /usr/local/bin/soffice e contar ≤10 páginas, com a folha de rosto incluída, antes de cada entrega.",
+    "fonte": "scratchpad/edital.txt:242; scratchpad/in_docx/projeto.docx (styles: Times New Roman, sz 24, line 259, pgMar 720; conversão: 8 páginas)"
+   },
+   {
+    "id": "P08",
+    "gravidade": "media",
+    "problema": "A numeração do modelo da colega conflita com a do Anexo 1. O modelo divide 'III. Objetivo geral do projeto' e 'IV. Objetivos específicos do estudante' (que é conteúdo da apresentação oral, edital:165-166) e vai até VIII. O Anexo tem um único III. OBJETIVOS e termina em VII. O pedido do Pedro diz 'neste modelo' e admite duas leituras: o Anexo 1 ou o arquivo da colega.",
+    "correcao_no_plano": "Seguir o Anexo 1 (I–VII mais os blocos sem número), com os subtítulos 'Objetivo geral' e 'Objetivos específicos' dentro do III. Assim fica atendido o conteúdo dos dois. Confirmar com o Pedro qual modelo ele quis dizer.",
+    "fonte": "scratchpad/edital.txt:165-166,240-271; scratchpad/projeto.txt:40-42,48,57,61,86"
+   },
+   {
+    "id": "P09",
+    "gravidade": "media",
+    "problema": "Os objetivos do item III precisam ser os do subprojeto submetido. O GUIA tem 4 objetivos específicos e uma redação ampliada do geral; o Plano tem 1 geral e 2 específicos. O Plano em PDF (06/03/2026, no repositório) e o .docx (27/03/2026) têm objetivos idênticos (conferi), mas nada confirma que esse foi o subprojeto da submissão da bolsa.",
+    "correcao_no_plano": "Copiar literalmente o geral e os 2 específicos do Plano. Não usar os do GUIA. Confirmar com o Pedro que o Plano é o subprojeto submetido.",
+    "fonte": "scratchpad/edital.txt:257; scratchpad/plano_trabalho.txt:8-13; docs/referencias/Plano de trabalho.pdf p.1; GUIA_DO_PROJETO.md:33-63"
+   },
+   {
+    "id": "P10",
+    "gravidade": "media",
+    "problema": "A OBSERVAÇÃO só é exigida em caso de mudança de objetivos, e os objetivos não mudaram. O levantamento B trata o recorte urbano como mudança porque o Plano falaria em setores 'urbanos ou rurais'. Mas plano:17 é apenas a definição de setor censitário do IBGE, e o objetivo já diz 'intraurbano': o recorte urbano o implementa. O modelo da colega não tem OBSERVAÇÃO.",
+    "correcao_no_plano": "OBSERVAÇÃO em 1 linha: 'Não houve mudança dos objetivos; as adequações metodológicas estão descritas na seção IV.' As mudanças de método (urbano, 15+, V06004, Python, caçamba) ficam na Metodologia, que o Anexo chama de 'Adequação da abordagem metodológica'.",
+    "fonte": "scratchpad/edital.txt:258,271; scratchpad/plano_trabalho.txt:9,12,17; scratchpad/projeto.txt:105-112"
+   },
+   {
+    "id": "P11",
+    "gravidade": "media",
+    "problema": "Os objetivos alcançados ficam atrás do cronograma. O Plano previa mapas temáticos em 'Análises dos dados (Março a Setembro/2026)'; eles não foram feitos, e o objetivo específico 2 não começou. O avaliador vai comparar com o cronograma, e não há registro da reprogramação.",
+    "correcao_no_plano": "No item V: o objetivo 1 está em andamento (base montada, 7 indicadores, EDA concluída, fatorial iniciada). O objetivo 2 depende do índice final, e os mapas foram reprogramados (remeter a Perspectivas). Não usar a palavra 'atraso' sem o OK da orientadora.",
+    "fonte": "scratchpad/plano_trabalho.txt:12-13,41-43; GUIA_DO_PROJETO.md:685-688"
+   },
+   {
+    "id": "P12",
+    "gravidade": "media",
+    "problema": "As fontes conflitam sobre a análise fatorial. O GUIA a dá como 'Concluída em 17/09/2026', com pesos 65/35 e AUC 0,813; o Pedro pede só 'iniciada'. O edital pede um relatório 'o mais completo possível' e uma apresentação oral com resultados até outubro, enviada até 02/11.",
+    "correcao_no_plano": "Seguir o pedido do Pedro, com um parágrafo de até 5 linhas no fim dos Resultados. Conteúdo: fatorial iniciada em set/2026 com base em Matos e Rodrigues (2019); testes de adequação da matriz e comparação de métodos de extração e rotação; resultados preliminares em discussão com a orientadora. Não citar KMO, número de fatores, pesos, AUC nem n da base, e não usar as figuras FA*. Não escrever 'sem resultados', para não contradizer a apresentação oral.",
+    "fonte": "GUIA_DO_PROJETO.md:684; docs/relatorios/Relatorio_Analise_Fatorial_NB04.md:21-35,185-196; scratchpad/edital.txt:65,153-154,242"
+   },
+   {
+    "id": "P13",
+    "gravidade": "media",
+    "problema": "A EDA §13 não serve para as Conclusões. Ela traz 6 prescrições e decisões pendentes: normalização, zeros, sigilo, lixo, pesos comparados aos 60/40 do IVS-BH e piso municipal. Não são conclusões, e o item 5 antecipa os pesos da fatorial.",
+    "correcao_no_plano": "Conclusões com 4–5 achados da EDA, tirados do sumário executivo. Os itens da §13 vão para Perspectivas, sem os 60/40.",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:26-64,999-1020"
+   },
+   {
+    "id": "P14",
+    "gravidade": "media",
+    "problema": "Os números do recorte divergem entre as fontes. O T01 faz 109.032 → 106.347 urbanos → 104.108 OK; a EDA faz 109.032 → 106.281 OK → 104.108 urbanos (2.173 rurais). Os rurais aparecem como 2.607 (EDA:93) e 2.685 (T01). A população aparece como 52,1 milhões (recorte) e 52.732.704 (base completa). A figura DS01 segue a ordem do T01 e ainda tem a barra 73.878.",
+    "correcao_no_plano": "Adotar a ordem da EDA (Dados_sig primeiro, depois o filtro urbano; é a mesma ordem do Cálculo) e usar só 109.032 / 106.281 / 104.108 / 2.173 (2,04% dos elegíveis), sempre dizendo a base. DS01 só entra se for regerada nessa ordem e sem a barra 73.878.",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:28-30,93,119-145; analises_exploratorias/00_referencia/tabelas/T01_funil.csv:2-5"
+   },
+   {
+    "id": "P15",
+    "gravidade": "media",
+    "problema": "O ranking municipal do sigilo do analfabetismo é inconsistente entre fontes. EDA:417-418 põe BH como o município mais afetado. EDA:1065 dá máximo de 29,7% em São Caetano e 0% em 11 municípios. O T06 dá 18 municípios com 0% e 9 acima de 20%.",
+    "correcao_no_plano": "Não citar ranking nem contagens municipais. Usar só os números globais: cobertura de 84,10%; 16.552 setores sem dado; renda mediana de R$ 2.313,89 nos setores com dado contra R$ 6.092,84 nos sem dado; média verdadeira entre 3,14% e 3,64%.",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:401-418,1044-1078; analises_exploratorias/00_referencia/tabelas/T06_faltantes_por_municipio.csv"
+   },
+   {
+    "id": "P16",
+    "gravidade": "media",
+    "problema": "Quatro citações do texto copiado não batem com a lista do Plano. (a) 'Agero, 2020': a referência é 'AGERO, P. et al.'. (b) 'Buss; Pellegrinni Filho': a referência grafa 'PELLEGRINI'. (c) 'Gioia et al., 2020': a referência tem 3 autores (Gioia; Pereira; Raminelli), e pela NBR 10520 o 'et al.' é para 4 ou mais (conferir com a norma adotada). (d) 'IBGE, 2022': a referência não tem ano de publicação, só a data de acesso (30 jan. 2026). As demais conferem: Kalache; Gatti 2020; Passarelli-Araujo 2023; Allik et al. 2020; Caiaffa et al. 2021; IBGE 2011; SMS 2013; Matos; Rodrigues 2019. As 13 referências são citadas no texto, mas a lista está fora de ordem alfabética (ALLIK antes de AGERO; GIOIA depois de INSTITUTO).",
+    "correcao_no_plano": "Corrigir (a), (b) e (d) e reordenar a lista. Para (c), decidir com a orientadora. Avisar a ela de cada correção no envio.",
+    "fonte": "scratchpad/plano_trabalho.txt:5-6,57-67"
+   },
+   {
+    "id": "P17",
+    "gravidade": "media",
+    "problema": "Há itens citados no texto copiado sem referência na lista. ELSI-Brasil aparece só como URL (plano:16). A Resolução CNS 510/2016 e a Lei 13.709/2018 (plano:32) não estão na lista; além disso, a lei vem grafada '13,709' e falta o número do artigo em 'nos termos do artigo da Lei'. O QGIS também é só URL. O relatório vai citar fontes novas: os agregados por setor de 2022 com o dicionário do IBGE, e IBGE (2024) sobre favelas, se o R10 entrar.",
+    "correcao_no_plano": "Acrescentar à Bibliografia: a referência do ELSI-Brasil (a do documento docs/referencias/Estudo Longitudinal da Saúde dos Idosos Brasileiros.docx ou a que a orientadora indicar; não inventar); BRASIL, CNS Res. 510/2016; BRASIL, Lei 13.709/2018; IBGE, Agregados por setores censitários 2022; IBGE (2024) FCU, se citado. Não citar o guia_analises.docx, que não tem autoria conhecida.",
+    "fonte": "scratchpad/plano_trabalho.txt:16,31-32; docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:1231-1245; docs/referencias/README.md:5-13"
+   },
+   {
+    "id": "P18",
+    "gravidade": "media",
+    "problema": "Algumas adequações metodológicas precisam constar, e outras não cabem em 10 páginas. Imprescindíveis: recorte urbano (D07); denominador V00001 (D02); analfabetismo 15+ com a nova fórmula (D01); renda V06004, que cobre só responsáveis com rendimento em DPPO, diferença de universo não documentada no repositório (D04); sigilo 'X' tratado como ausente, com parcelas somadas valendo zero (D09); caçamba mantida como inadequada (D05); Python no lugar do QGIS 2.10.1 (D12); min-max por município ainda não aplicada (D11). O IVS-BH tinha 8 indicadores; a renda per capita até ½ SM não existe nos agregados de 2022, e é por isso que o Quadro 1 tem 7.",
+    "correcao_no_plano": "Uma frase para cada item imprescindível, depois do texto do Plano, mais a coluna de códigos 2022 no Quadro 1. D03, D06, D08 (detalhe), D10 e D16–D20 ficam fora ou só na tabela. Nas Perspectivas, citar a diferença de universo da renda como ponto a resolver.",
+    "fonte": "levantamento A (D01–D21); scratchpad/sms2013.txt:257-300; scratchpad/plano_trabalho.txt:20-29"
+   },
+   {
+    "id": "P19",
+    "gravidade": "media",
+    "problema": "Faltam regras de unidade e ressalvas para os resultados. O repositório guarda proporções (0,0696), mas o Quadro 1 fala em 'percentual'. Entre os zeros de saneamento, 22,6%, 22,1% e 30,5% (água, esgoto, lixo) têm parcela sigilosa, então zero não quer dizer adequado. A PPI sai sem a parcela indígena em cerca de 21,5% dos setores. O máximo de renda, R$ 170.418,06, é um setor com dados contraditórios.",
+    "correcao_no_plano": "Tabela em % (×100), com mediana e P75 ao lado da média. Nota da tabela com as 3 ressalvas. Renda em R$ com vírgula decimal.",
+    "fonte": "docs/relatorios/Relatorio_EDA_Fase3_IVS_ELSI.md:160-168,217-224,1165-1189"
+   },
+   {
+    "id": "P20",
+    "gravidade": "media",
+    "problema": "Falta definir formato e ferramenta. Não há python-docx no .venv nem pacote docx no node_modules. Há /usr/local/bin/soffice e /usr/bin/textutil, que fazem HTML→.docx e .docx→PDF sem instalar nada; a conversão do modelo foi testada. O edital não diz se a plataforma aceita PDF ou .docx. Instalar python-docx exigiria OK do Pedro.",
+    "correcao_no_plano": "Gerar o .docx com soffice a partir de HTML/ODT, com os estilos do modelo. Exportar PDF para conferir as páginas. Perguntar o formato de upload. Skill que serve: anthropic-skills:docx (só sugerir ao Pedro, não invocar).",
+    "fonte": "scratchpad/edital.txt:81-85; verificação 'which soffice textutil' e import docx (ModuleNotFoundError)"
+   },
+   {
+    "id": "P21",
+    "gravidade": "media",
+    "problema": "Os blocos finais não têm insumo confirmado. Em Outras atividades, o Programa de Inserção e o Curso Introdutório aparecem no Plano só como previsão. Em Matéria encaminhada, não há submissão registrada. O Apoio não foi encontrado. A Avaliação é texto pessoal do Pedro.",
+    "correcao_no_plano": "Não afirmar participação sem confirmação. Matéria encaminhada: 'Nenhuma até o momento; artigo em planejamento'. Outras atividades: reuniões com a orientadora (datas documentadas nos decks) e demandas atendidas. Avaliação com marcador para o Pedro escrever.",
+    "fonte": "scratchpad/plano_trabalho.txt:36-39,45; GUIA_DO_PROJETO.md:689,783; relatorio_descritivo/ESTADO.md:14-15"
+   },
+   {
+    "id": "P22",
+    "gravidade": "baixa",
+    "problema": "Os números do Cálculo e os do SMS (2013) divergem: sigilosos 57 contra 58; OK 3.831 contra 3.830; cobertura do entorno 99,85% contra 95,5%. As classificações também: 5 componentes contra 2 dimensões. Pela mesma regra 'copiar o que ela escreveu', o Pedro poderia levar números de BH conflitantes para o relatório.",
+    "correcao_no_plano": "Não copiar números de BH. Usar a classificação em 2 dimensões do Plano e do SMS, Quadro 2.",
+    "fonte": "scratchpad/calculo_ivs2012.txt:34,124,171,223,269,322,325,327; scratchpad/sms2013.txt:178,254,259,311"
+   },
+   {
+    "id": "P23",
+    "gravidade": "baixa",
+    "problema": "A cópia literal reproduziria erros de digitação do texto da orientadora: '70 municípios compõem' (falta 'que'), 'paras as', 'compõe o IVS' (compõem), '13,709/2018', 'Pellegrinni'. O Quadro 1 também não tem linha de Fonte.",
+    "correcao_no_plano": "Corrigir e listar as correções no envio à orientadora, ou manter literal se ela preferir. Acrescentar 'Fonte: SMS (2013); IBGE (2022)' ao Quadro 1.",
+    "fonte": "scratchpad/plano_trabalho.txt:6,16,18,20,32"
+   },
+   {
+    "id": "P24",
+    "gravidade": "baixa",
+    "problema": "A Introdução fica curta. A Justificativa tem 188 palavras (cerca de 0,4 página), contra umas 700 no modelo da colega, e termina sem ligar ao objetivo.",
+    "correcao_no_plano": "Manter os 2 parágrafos literais. Acrescentar o trecho do próprio Plano sobre o IVS-BH e o objetivo dele (plano:18, SMS 2013) e uma frase de fecho que leve aos objetivos. Texto novo só se o Pedro pedir.",
+    "fonte": "scratchpad/plano_trabalho.txt:5-6,18; scratchpad/projeto.txt (seção II)"
+   },
+   {
+    "id": "P25",
+    "gravidade": "baixa",
+    "problema": "O nome colide com o 'relatório descritivo' que já existe. relatorio_descritivo/ é o deck de 140 slides entregue à orientadora em 09/10, e o gerador recusa sobrescrevê-lo. O pedido ('relatório descritivo parcial') admite duas leituras: (1) o relatório parcial RAIC do Anexo 1; (2) uma versão em documento desse deck.",
+    "correcao_no_plano": "Tratar como (1), que é o que indicam o edital e o modelo da colega. Salvar numa pasta nova (por exemplo docs/relatorios/RAIC_2026/, ou onde o Pedro indicar) sem tocar em relatorio_descritivo/. De lá, reaproveitar só números e figuras já conferidos.",
+    "fonte": "relatorio_descritivo/ESTADO.md:1-12,41; scratchpad/edital.txt:83-85"
+   },
+   {
+    "id": "P26",
+    "gravidade": "baixa",
+    "problema": "Já há restrições conhecidas para as figuras, que o Pedro vai definir depois. As FA05, FA09, FA12, FA14 e FA15 mostram resultados da fatorial. F03 e F06 têm rótulos cortados. A DS01 precisa ser regerada. As figuras de banco_de_dados/eda/figuras não foram conferidas.",
+    "correcao_no_plano": "Reservar no máximo 3 figuras (cerca de 1,25 página), com marcadores '[FIGURA n — a definir]', legenda-modelo e a linha 'Fonte: elaborado pelo autor a partir de IBGE (2022)'. Numerar Quadro, Tabela e Figura em séries separadas.",
+    "fonte": "levantamento B (figuras_disponiveis); relatorio_descritivo/figuras/"
+   }
+  ],
+  "perguntas_ao_pedro": [
+   "'Neste modelo' quer dizer o Anexo 1 do edital (seções I a VII, Objetivos num único item) ou o relatório da colega (projeto.docx, que separa Objetivo geral e Objetivos específicos e vai até VIII)?",
+   "Qual é o título exato do subprojeto registrado na bolsa? O Plano não tem título; o GUIA usa 'Índice de Vulnerabilidade à Saúde (IVS) intraurbano — Censo Demográfico 2022'.",
+   "Sua orientadora é Amanda Cristina de Souza Andrade, a orientadora que aparece no relatório da colega? Você tem coorientador(es)?",
+   "Qual é a unidade, departamento, laboratório ou grupo de pesquisa?",
+   "Qual é o programa de vínculo e o órgão financiador (PIBIC/CNPq, FAPEMIG, outro)? A resposta preenche também o APOIO.",
+   "Qual foi o dia exato de início na bolsa? Se foi a partir de 01/04/2026, o edital exige outro documento (subprojeto + mini-relatório).",
+   "Qual é sua universidade e seu curso de graduação? Aceita as palavras-chave do Plano do Artigo (Vulnerabilidade em Saúde; Saúde Urbana; Indicadores Socioeconômicos; Censos; Desigualdades em Saúde)?",
+   "A orientadora aceita ajustes no texto copiado (futuro passado para o passado, QGIS 2.10.1 trocado, erros de digitação e citações corrigidos) ou quer o texto literal, com um parágrafo separado de adaptações?",
+   "Que formatação usar? O edital não define. Posso seguir o modelo da colega (Times New Roman 12, entrelinha cerca de 1,08, margens de 1,27 cm)? A folha de rosto conta nas 10 páginas?",
+   "Em que formato a plataforma módulos aceita o anexo (PDF ou .docx), e qual é o horário-limite em 14/10? Quando a orientadora consegue revisar, já que 12/10 é feriado?",
+   "Você participou do Programa de Inserção do IRR e do Curso Introdutório (em que datas)? Participou de outros eventos, cursos ou seminários, ou submeteu algum resumo a congresso?",
+   "Quais referências você leu de fato (Caiaffa et al. 2021/TD 77, Passarelli-Araujo 2023, Gioia et al. 2020, Allik et al. 2020, SMS 2013)? Só essas podem sustentar a Discussão dos resultados.",
+   "Concorda com o corte dos Resultados? Ficam recorte, descritivas, sigilo/faltantes, correlações e regional; Brasil, validação, favelas e envelhecimento entram com uma frase cada; outliers e heterogeneidade municipal saem.",
+   "Quais adequações a orientadora quer declaradas na Metodologia: recorte urbano, analfabetismo 15+, caçamba como inadequada, renda V06004 (só responsáveis com rendimento), Python no lugar do QGIS 2.10.1?",
+   "Onde salvar o relatório? Proponho uma pasta nova, por exemplo docs/relatorios/RAIC_2026/, sem mexer em relatorio_descritivo/. A Avaliação você mesmo escreve?"
+  ],
+  "orcamento_paginas": [
+   {
+    "secao": "I. IDENTIFICAÇÃO (folha de rosto)",
+    "paginas": 1,
+    "conteudo": "Os 10 campos do Anexo na ordem do edital, mais local e data ('Belo Horizonte, __ de outubro de 2026'). Campos sem fonte como [A PREENCHER]."
+   },
+   {
+    "secao": "II. INTRODUÇÃO",
+    "paginas": 0.5,
+    "conteudo": "Justificativa do Plano, 2 parágrafos literais com as citações corrigidas, mais o trecho do Plano sobre o IVS-BH (SMS, 2013) e uma frase de fecho que leve aos objetivos."
+   },
+   {
+    "secao": "III. OBJETIVOS",
+    "paginas": 0.25,
+    "conteudo": "Objetivo geral e os 2 específicos do Plano, literais, com os subtítulos 'Objetivo geral' e 'Objetivos específicos'."
+   },
+   {
+    "secao": "IV. METODOLOGIA",
+    "paginas": 1.75,
+    "conteudo": "Texto do Plano no passado, cerca de 0,6 p.: estudo ecológico, 70 municípios ELSI, setor censitário, SMS 2013, descritivas, fatorial, ética Res. 510/2016 e LGPD. Quadro 1 ampliado com numerador e denominador do Censo 2022, cerca de 0,6 p. Elegibilidade (Dados_sig), sigilo e recorte urbano com os números de 2022, mais as adequações em uma frase cada, cerca de 0,55 p. A min-max por município entra como etapa futura."
+   },
+   {
+    "secao": "V. OBJETIVOS ALCANÇADOS",
+    "paginas": 0.25,
+    "conteudo": "Objetivo 1 em andamento: base, 7 indicadores, EDA concluída, fatorial iniciada. Objetivo 2 depende do índice final, com mapas reprogramados. Etapa de consistência do banco cumprida."
+   },
+   {
+    "secao": "VI. RESULTADOS E DISCUSSÃO",
+    "paginas": 3.25,
+    "conteudo": "Recorte (R1), 1 parágrafo. Tabela 1: descritivas em %, com mediana, P75, CV e % de zeros (R2 e R3). Sigilo e faltantes do analfabetismo (R4). Correlações (R5). Regional (R6), em tabela ou figura. R7, R9, R10 e R11 com uma frase cada. Discussão de cerca de 0,5 p. Parágrafo da fatorial iniciada, até 5 linhas, sem números. Até 3 figuras, cerca de 1,25 p."
+   },
+   {
+    "secao": "VII. CONCLUSÕES",
+    "paginas": 0.5,
+    "conteudo": "4–5 achados da EDA, do sumário executivo, sem pesos nem os 60/40."
+   },
+   {
+    "secao": "BIBLIOGRAFIA",
+    "paginas": 0.75,
+    "conteudo": "As 13 referências do Plano, corrigidas e em ordem alfabética, mais as novas: ELSI-Brasil, Res. CNS 510/2016, Lei 13.709/2018, IBGE agregados 2022 e IBGE 2024 FCU, se citado."
+   },
+   {
+    "secao": "MATÉRIA ENCAMINHADA PARA PUBLICAÇÃO",
+    "paginas": 0.1,
+    "conteudo": "'Nenhuma matéria encaminhada até o momento; artigo em planejamento', a confirmar."
+   },
+   {
+    "secao": "PERSPECTIVAS PARA O TRABALHO",
+    "paginas": 0.4,
+    "conteudo": "Normalização por município (NB03); conclusão da fatorial e definição dos pesos com a orientadora; IVS final e faixas; mapas no QGIS 3.x e análise de Moran (objetivo 2); itens da EDA §13 (zeros, sigilo, lixo, piso municipal, universo da renda); congressos, artigo e relatório final, conforme o cronograma do Plano."
+   },
+   {
+    "secao": "OUTRAS ATIVIDADES DESENVOLVIDAS NO PERÍODO",
+    "paginas": 0.3,
+    "conteudo": "Programa de Inserção e Curso Introdutório, se confirmados. Revisão bibliográfica. Reuniões periódicas com a orientadora e demandas atendidas. Eventos e cursos, a confirmar."
+   },
+   {
+    "secao": "AVALIAÇÃO",
+    "paginas": 0.4,
+    "conteudo": "Texto pessoal do Pedro (aspectos importantes, críticas, sugestões). Fica um marcador no arquivo."
+   },
+   {
+    "secao": "APOIO + OBSERVAÇÃO",
+    "paginas": 0.1,
+    "conteudo": "Órgão financiador, a confirmar. Observação: 'Não houve mudança dos objetivos; adequações metodológicas na seção IV.'"
+   },
+   {
+    "secao": "Folga (quebras de página, figuras maiores que o previsto)",
+    "paginas": 0.45,
+    "conteudo": "Reserva para não passar de 10 páginas. Supõe a formatação do modelo da colega (Times New Roman 12, entrelinha cerca de 1,08–1,15, margens de 1,27–2 cm) e a folha de rosto contada. Com ABNT 1,5 e margens 3/2 cm, cortar Resultados para cerca de 2,25 p. Conferir sempre pelo PDF gerado com soffice."
+   }
+  ]
+ }
+}

@@ -1,0 +1,13 @@
+﻿Dimensão,Indicador,O que mede,IVS-7,indicador
+Saneamento,Água inadequada,Proporção de domicílios com abastecimento de água inadequado ou ausente,Sim,pct_agua_inad
+Saneamento,Esgoto inadequado,Proporção de domicílios com esgotamento sanitário inadequado ou ausente,Sim,pct_esgoto_inad
+Saneamento,Lixo inadequado,Proporção de domicílios com destino do lixo inadequado ou ausente,Sim,pct_lixo_inad
+Saneamento,Sem água canalizada,Proporção de domicílios em que a água não chega encanada até dentro do domicílio,Não,pct_sem_agua_canalizada
+Saneamento,Sem banheiro,Proporção de domicílios sem banheiro de uso exclusivo com chuveiro e vaso sanitário,Não,pct_sem_banheiro
+Socioeconômica,Razão de moradores,Razão de moradores por domicílio,Sim,razao_moradores
+Socioeconômica,Analfabetismo 15+,Taxa de analfabetismo entre pessoas de 15 anos ou mais,Sim,pct_analfab
+Socioeconômica,Renda média (R$),Rendimento nominal médio mensal das pessoas responsáveis (R$),Sim,renda_media_sem_extremo
+Socioeconômica,"Preta, parda ou indígena","Proporção de pessoas de cor/raça preta, parda ou indígena",Sim,pct_raca_pretpardind
+Morfologia,Moradia não convencional,"Proporção de moradias não convencionais (cortiço, maloca, estrutura degradada)",Não,pct_moradia_nao_convencional
+Demografia,Idosos (60 anos ou mais),Proporção de pessoas de 60 anos ou mais na população residente,Não,pct_idoso_60mais
+Demografia,Crianças (0 a 14 anos),Proporção de pessoas com menos de 15 anos na população residente,Não,pct_pop_0a14

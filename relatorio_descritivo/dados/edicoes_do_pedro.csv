@@ -1,0 +1,20 @@
+﻿slide,tabela,linha,coluna,rotulo_da_linha,gerado,editado
+DM08,1,1,2,S0,"IVS-7 (referência, reproduz o NB04)",IVS-7
+DM09,1,1,2,S6,"IVS-7 + as quatro (""tudo isso"")",IVS-7 + as quatro
+DM09,1,3,2,S6_renda_sem_extremo,"IVS-7 + as quatro (""tudo isso""), renda sem_extremo","IVS-7 + as quatro, renda sem_extremo"
+DM09,1,4,2,S6_renda_mediana_mun,"IVS-7 + as quatro (""tudo isso""), renda mediana_mun","IVS-7 + as quatro, renda mediana_mun"
+DM09,1,5,2,S6_postos_mun,"IVS-7 + as quatro (""tudo isso""), postos dentro do município","IVS-7 + as quatro, postos dentro do município"
+DM14,1,1,3,1,"Obstáculo: falta a mediana do setor (V06006). Saída: imputação pela mediana do município, só no setor excluído a pedido da orientadora em 01/09/2026 (310620005650366, R$ 170.418,06). Efeito: 1 setor difere de renda_media.","Obstáculo: falta a mediana do setor (V06006). Saída: imputação pela mediana do município, Efeito: 1 setor difere de renda_media."
+DM14,1,4,1,4,4,
+DM14,1,4,2,4,separar útil × inútil,
+DM14,1,4,3,4,"O deck de 98 slides não é 100% reproduzível por script (base gerada, slides anexados e edição manual). O bloco novo foi anexado ao fim pelo juntador, sem regerar o deck.",
+DM14,1,4,4,4,DM05,
+DM14,1,8,1,8,8,
+DM14,1,8,2,8,fatorial de tudo isso,
+DM14,1,8,3,8,"Nenhum contorno de dado. A leitura de ""tudo isso"" é nossa e está registrada como pergunta à orientadora.",
+DM14,1,8,4,8,DM09,
+DM14,1,9,3,9,"A variável tem variância baixa. Em vez de excluí-la, mostramos o diagnóstico; manter ou não é decisão da orientadora.","A variável tem variância baixa. Em vez de excluí-la, mostramos o diagnóstico;"
+DM05,0,0,0,(slide apagado),existe,apagado
+DM13,0,0,0,(slide apagado),existe,apagado
+DM15,0,0,0,(slide apagado),existe,apagado
+DS34,0,0,0,(slide apagado),existe,apagado
