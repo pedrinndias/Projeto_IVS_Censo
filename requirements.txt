@@ -24,3 +24,6 @@ nbclient>=0.10
 # scripts/gerar_resumo_eda_central.py, scripts/atualizar_roteiro_2a_rodada.py)
 reportlab
 python-docx
+
+# Apresentação oral da RAIC sobre o template da Coordic (scripts/gerar_apresentacao_oral_raic.py)
+python-pptx>=1.0
