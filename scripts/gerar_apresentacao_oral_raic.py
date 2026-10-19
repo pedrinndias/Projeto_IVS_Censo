@@ -9,7 +9,8 @@ Números: os mesmos arquivos que alimentaram o relatório parcial (pecas.json, T
 e, onde o relatório os escreveu à mão, a mesma constante com a linha de origem.
 
 Uso:  ./.venv/bin/python scripts/gerar_apresentacao_oral_raic.py
-Saída: relatorio_parcial_raic/Apresentacao_Oral_RAIC_2026_Pedro.pptx e figuras/oral_*.png
+Saída: relatorio_parcial_raic/Apresentacao_Oral_RAIC_2026_Pedro.pptx (com as falas nas notas),
+       ..._ENVIO.pptx (sem notas, para o envio) e figuras/oral_*.png
 """
 from __future__ import annotations
 
@@ -38,6 +39,7 @@ FIGURAS = PASTA / 'figuras'
 MODELO = PASTA / 'modelos' / 'APRESENTACAO_ORAL_Coordic.pptx'
 ROTEIRO = PASTA / 'ROTEIRO_APRESENTACAO_ORAL.md'
 SAIDA = PASTA / 'Apresentacao_Oral_RAIC_2026_Pedro.pptx'
+SAIDA_ENVIO = PASTA / 'Apresentacao_Oral_RAIC_2026_Pedro_ENVIO.pptx'  # sem as notas, para a Coordic
 TABELAS = RAIZ / 'analises_exploratorias' / '00_referencia' / 'tabelas'
 
 PECAS = json.loads((DADOS / 'pecas.json').read_text(encoding='utf-8'))
@@ -61,6 +63,9 @@ EXTREMO = next(r for r in ler_csv(RAIZ / 'banco_de_dados' / 'eda' / 'renda_outli
 # Escritos à mão no relatório (scripts/gerar_relatorio_raic.py:445): medianas recalculadas no .db
 # na base sem o setor extremo.
 RENDA_MEDIANA_COM_DADO, RENDA_MEDIANA_SIGILO = 2313.87, 6092.84
+# Analfabetismo (scripts/gerar_relatorio_raic.py:444): média observada e a média com 1 analfabeto em cada
+# setor suprimido — a real fica entre as duas.
+MEDIA_ANALFAB_OBS, MEDIA_ANALFAB_MIN = 3.64, 3.14
 N_ANALFAB = 87556
 N_RECORTE = PECAS['setores_no_recorte']
 
@@ -86,7 +91,7 @@ def cor(h: str) -> str:
 # ---------------------------------------------------------------- figuras
 
 def fig_zeros() -> Path:
-    """Slide 6: % de setores em que nenhum domicílio tem o problema (T03, pct_zeros)."""
+    """Slide 6: % de setores sem nenhum domicílio registrado com o problema (T03, pct_zeros)."""
     itens = [('Água inadequada', 'pct_agua_inad'), ('Esgoto inadequado', 'pct_esgoto_inad'),
              ('Lixo inadequado', 'pct_lixo_inad')]
     fig, ax = plt.subplots(figsize=(8.6, 4.6), dpi=200)
@@ -99,7 +104,7 @@ def fig_zeros() -> Path:
     ax.set_xlim(0, 100)
     ax.set_ylim(-0.6, 2.9)
     ax.axis('off')
-    ax.text(0, 2.62, 'setores em que nenhum domicílio tem o problema', color=cor(TEAL), fontsize=14,
+    ax.text(0, 2.62, 'setores sem nenhum domicílio registrado com o problema', color=cor(TEAL), fontsize=14,
             weight='bold')
     ax.text(100, 2.62, 'demais setores', color=cor(CINZA), fontsize=14, ha='right')
     fig.subplots_adjust(left=0.27, right=0.98, top=0.98, bottom=0.02)
@@ -238,9 +243,13 @@ def confirmar(t: str) -> tuple[str, dict]:
     return (t, {'confirmar': True, 'bold': True})
 
 
-def titulo(slide, t: str) -> None:
-    texto(slide, 0.56, 2.35, 32.8, 1.9, [t], tamanho=26, cor_txt=TEXTO, ancora=MSO_ANCHOR.MIDDLE,
-          espaco=0).text_frame.paragraphs[0].runs[0].font.bold = True
+def titulo(slide, t: str, secao: str | None = None) -> None:
+    """Título-afirmação; `secao` põe a etiqueta do edital (Metodologia, Resultados, Conclusões) acima."""
+    if secao:
+        texto(slide, 0.56, 2.2, 20.0, 0.75, [[(secao.upper(), {'bold': True, 'cor': TEAL})]], tamanho=13,
+              espaco=0)
+    texto(slide, 0.56, 2.85 if secao else 2.35, 32.8, 1.7 if secao else 1.9, [t], tamanho=26, cor_txt=TEXTO,
+          ancora=MSO_ANCHOR.MIDDLE, espaco=0).text_frame.paragraphs[0].runs[0].font.bold = True
 
 
 def fonte(slide, t: str = 'Fonte: IBGE, Censo Demográfico 2022 — 104.108 setores urbanos dos 70 municípios '
@@ -305,16 +314,16 @@ def capa(s) -> None:
 
 def s2_media(s) -> None:
     titulo(s, 'A média da cidade esconde o que acontece dentro dela')
-    caixa(s, 1.9, 5.4, 7.2, 7.2, [[('média', {'bold': True, 'cor': 'FFFFFF', 'tamanho': 26})]],
+    caixa(s, 1.6, 5.2, 6.6, 6.6, [[('média', {'bold': True, 'cor': 'FFFFFF', 'tamanho': 26})]],
           fundo=CINZA, alinhar=PP_ALIGN.CENTER, ancora=MSO_ANCHOR.MIDDLE)
-    texto(s, 0.9, 13.0, 9.2, 1.2, [[('1 cidade, 1 número', {'bold': True})]], tamanho=20,
+    texto(s, 0.6, 12.1, 8.6, 1.2, [[('1 cidade, 1 número', {'bold': True})]], tamanho=20,
           alinhar=PP_ALIGN.CENTER)
-    seta = s.shapes.add_shape(MSO_SHAPE.RIGHT_ARROW, Cm(10.0), Cm(8.3), Cm(2.8), Cm(1.4))
+    seta = s.shapes.add_shape(MSO_SHAPE.RIGHT_ARROW, Cm(8.8), Cm(7.8), Cm(2.4), Cm(1.4))
     seta.fill.solid()
     seta.fill.fore_color.rgb = rgb(LARANJA)
     seta.line.fill.background()
     tons = [FUNDO, TEAL_CLARO, TEAL, LAVANDA, CORAL]
-    lado, x0, y0 = 0.72, 13.4, 5.4
+    lado, x0, y0 = 0.66, 11.7, 5.2
     for i in range(10):
         for j in range(10):
             t = tons[(i * 7 + j * 3 + (i * j) % 5) % len(tons)]
@@ -323,45 +332,47 @@ def s2_media(s) -> None:
             q.fill.solid()
             q.fill.fore_color.rgb = rgb(t)
             q.line.fill.background()
-    texto(s, 12.0, 13.0, 10.0, 1.2, [[('centenas de setores censitários', {'bold': True})]], tamanho=20,
+    texto(s, 10.2, 12.1, 9.6, 1.9, [[('centenas de setores censitários', {'bold': True})]], tamanho=20,
           alinhar=PP_ALIGN.CENTER)
-    texto(s, 12.0, 14.3, 10.0, 0.8, ['esquema ilustrativo — não são dados'], tamanho=12, cor_txt=CINZA,
+    texto(s, 10.2, 14.1, 9.6, 0.8, ['esquema ilustrativo — não são dados'], tamanho=12, cor_txt=CINZA,
           alinhar=PP_ALIGN.CENTER)
-    caixa(s, 22.9, 5.4, 10.2, 9.0,
-          [[('Setor censitário', {'bold': True, 'tamanho': 20, 'cor': TEAL})],
-           'a menor área com dados do Censo — como um quarteirão, ou poucos quarteirões',
-           [('Referência', {'bold': True, 'tamanho': 20, 'cor': TEAL})],
-           'Índice de Vulnerabilidade da Saúde de Belo Horizonte, 2012 (SMS-BH, 2013)',
-           [('Lacuna', {'bold': True, 'tamanho': 20, 'cor': TEAL})],
-           'esse índice ainda não existia com o Censo 2022 para várias cidades'],
-          fundo=FUNDO, tamanho=17, espaco=4)
+    pars = []
+    for cab, txt in [('Setor censitário', 'a menor área com dados do Censo: como um quarteirão, ou poucos'),
+                     ('Vulnerabilidade à saúde', 'condições do lugar (saneamento, renda, escolaridade) que deixam '
+                                                 'os moradores mais expostos a adoecer'),
+                     ('Para quê', 'achar, dentro da cidade, as áreas com condições mais desfavoráveis '
+                                  '(IVS de Belo Horizonte, 2012)'),
+                     ('Lacuna', 'não havia esse índice com o Censo 2022 para os municípios estudados')]:
+        pars += [[(cab, {'bold': True, 'tamanho': 19, 'cor': TEAL})], txt]
+    caixa(s, 20.6, 4.6, 12.5, 12.6, pars, fundo=FUNDO, tamanho=17, espaco=4, ancora=MSO_ANCHOR.MIDDLE)
 
 
 def s3_objetivos(s) -> None:
     titulo(s, 'O projeto quer medir a vulnerabilidade onde ela acontece')
-    caixa(s, 0.9, 4.7, 32.0, 3.3,
-          [[('Objetivo geral do projeto da orientadora', {'bold': True, 'cor': TEAL, 'tamanho': 18})],
+    caixa(s, 0.9, 4.6, 32.0, 3.7,
+          [[('Objetivo geral do projeto da orientadora', {'bold': True, 'cor': TEAL, 'tamanho': 19})],
            [confirmar('A CONFIRMAR — texto literal da Profa. Amanda. Provisório (relatório): '),
             ('Avaliar as desigualdades intraurbanas por meio da construção de um Índice de Vulnerabilidade '
              'à Saúde (IVS) de cidades brasileiras.', {})]],
-          fundo=FUNDO, tamanho=18)
+          fundo=FUNDO, tamanho=20)
     for k, (num, txt, status, cor_st) in enumerate([
             ('1', 'Construir o IVS intraurbano com o Censo 2022', 'em andamento', LARANJA),
             ('2', 'Analisar a distribuição espacial do IVS (mapas)', 'a iniciar', CINZA)]):
         x = 0.9 + k * 16.2
-        caixa(s, x, 8.7, 15.8, 4.6,
-              [[('Meu objetivo ' + num, {'bold': True, 'cor': TEAL, 'tamanho': 17})],
-               [(txt, {'bold': True, 'tamanho': 22})]], borda=TEAL_CLARO, tamanho=18)
-        caixa(s, x + 0.35, 12.1, 4.2, 0.9, [[(status, {'bold': True, 'cor': 'FFFFFF'})]], fundo=cor_st,
-              tamanho=15, alinhar=PP_ALIGN.CENTER, ancora=MSO_ANCHOR.MIDDLE, forma=MSO_SHAPE.ROUNDED_RECTANGLE)
-    caixa(s, 0.9, 14.4, 32.0, 1.6,
-          [[('Hoje:  ', {'bold': True, 'cor': TEAL}), ('como montei a base   →   o que os dados me mostraram   '
-                                                       '→   o que muda no índice', {})]],
-          fundo=LAVANDA, tamanho=20, alinhar=PP_ALIGN.CENTER, ancora=MSO_ANCHOR.MIDDLE)
+        caixa(s, x, 8.9, 15.8, 4.9,
+              [[('Meu objetivo ' + num, {'bold': True, 'cor': TEAL, 'tamanho': 19})],
+               [(txt, {'bold': True, 'tamanho': 24})]], borda=TEAL_CLARO, tamanho=19)
+        caixa(s, x + 0.35, 12.5, 4.4, 1.0, [[(status, {'bold': True, 'cor': 'FFFFFF'})]], fundo=cor_st,
+              tamanho=16, alinhar=PP_ALIGN.CENTER, ancora=MSO_ANCHOR.MIDDLE, forma=MSO_SHAPE.ROUNDED_RECTANGLE)
+    caixa(s, 0.9, 14.5, 32.0, 2.4,
+          [[('Hoje: ', {'bold': True, 'cor': TEAL}),
+            ('a etapa que vem antes do índice — o que o Censo 2022 me obrigou a decidir, e como cada decisão '
+             'muda o resultado', {})]],
+          fundo=LAVANDA, tamanho=21, alinhar=PP_ALIGN.CENTER, ancora=MSO_ANCHOR.MIDDLE)
 
 
 def s4_base(s) -> None:
-    titulo(s, 'Reconstruí o IVS de 2012 com o Censo 2022 nos 70 municípios do ELSI-Brasil')
+    titulo(s, 'Reconstruí o IVS de 2012 com o Censo 2022 nos 70 municípios do ELSI-Brasil', 'Metodologia')
     for k, (dim, cor_d, itens) in enumerate([
             ('Saneamento', TEAL, ['água inadequada', 'esgoto inadequado', 'lixo inadequado']),
             ('Socioeconômica', CORAL, ['moradores por domicílio', 'analfabetismo (15 anos ou mais)',
@@ -369,9 +380,10 @@ def s4_base(s) -> None:
         x = 0.9 + k * 8.6
         caixa(s, x, 4.7, 8.2, 1.3, [[(dim, {'bold': True, 'cor': 'FFFFFF'})]], fundo=cor_d, tamanho=20,
               alinhar=PP_ALIGN.CENTER, ancora=MSO_ANCHOR.MIDDLE)
-        caixa(s, x, 6.0, 8.2, 8.2, ['• ' + i for i in itens], fundo=FUNDO, tamanho=18, espaco=10)
-    texto(s, 0.9, 14.5, 16.8, 1.6, ['↑ valor = ↑ vulnerabilidade. Sete variáveis, as mesmas do índice de 2012.'],
-          tamanho=15, cor_txt=CINZA)
+        caixa(s, x, 6.0, 8.2, 8.6, ['• ' + i for i in itens], fundo=FUNDO, tamanho=20, espaco=10)
+    texto(s, 0.9, 14.9, 16.8, 2.2,
+          ['↑ valor = ↑ vulnerabilidade. As variáveis do IVS 2012 que existem no Censo 2022, com adaptações '
+           '(reserva R1).'], tamanho=16, cor_txt=CINZA)
     passos = [('109.032 setores', 'nos 70 municípios', FUNDO, TEXTO),
               ('− 1.736 sem moradores  ·  − 1.015 com sigilo', None, None, CINZA),
               ('106.281 setores', None, FUNDO, TEXTO),
@@ -379,139 +391,154 @@ def s4_base(s) -> None:
               ('104.108 setores urbanos', '52,1 milhões de moradores', TEAL, 'FFFFFF')]
     y = 4.7
     for forte, fraco, fundo_p, cor_p in passos:
-        h = 2.1 if fraco else (1.9 if fundo_p else 1.0)
-        pars = [[(forte, {'bold': fundo_p is not None, 'cor': cor_p, 'tamanho': 22 if fundo_p else 15})]]
+        h = 2.1 if fraco else (1.8 if fundo_p else 1.0)
+        pars = [[(forte, {'bold': fundo_p is not None, 'cor': cor_p, 'tamanho': 22 if fundo_p else 16})]]
         if fraco:
-            pars.append([(fraco, {'cor': cor_p, 'tamanho': 16})])
+            pars.append([(fraco, {'cor': cor_p, 'tamanho': 17})])
         caixa(s, 18.6, y, 14.3, h, pars, fundo=fundo_p, alinhar=PP_ALIGN.CENTER, ancora=MSO_ANCHOR.MIDDLE,
               espaco=0)
-        y += h + 0.25
+        y += h + 0.2
+    mais10 = sum(float(r['pct_excluido']) > 10 for r in RURAL)
+    texto(s, 18.6, y + 0.1, 14.3, 1.6,
+          [[(f'A exclusão rural é desigual: passa de 10% em {mais10} dos 70 municípios (R6).', {'bold': True})]],
+          tamanho=16, cor_txt=CORAL, alinhar=PP_ALIGN.CENTER)
     fonte(s, 'Fonte: IBGE, Censo Demográfico 2022. ELSI-Brasil: Estudo Longitudinal da Saúde dos Idosos '
              'Brasileiros (Lima-Costa et al., 2018).')
 
 
 def s5_validacao(s) -> None:
-    titulo(s, 'Antes de confiar nos dados, conferi o processamento com os números oficiais')
+    titulo(s, 'Antes de confiar nos dados, conferi o processamento com os números oficiais', 'Metodologia')
     for k, (grande, leg) in enumerate([
-            ('203.080.756', 'pessoas: a população oficial do Brasil, reproduzida rodando as mesmas rotinas '
-                            'nos 468.099 setores do país'),
+            ('203.080.756', 'pessoas: o código reproduz a população oficial do Brasil (468.099 setores)'),
             ('79,99  ×  80,0', 'índice de envelhecimento do Brasil: meu cálculo × o publicado pelo IBGE')]):
         x = 0.9 + k * 16.2
-        caixa(s, x, 4.8, 15.8, 6.4,
-              [[(grande, {'bold': True, 'tamanho': 46, 'cor': TEAL})], [(leg, {'tamanho': 18})]],
+        caixa(s, x, 4.8, 15.8, 6.2,
+              [[(grande, {'bold': True, 'tamanho': 48, 'cor': TEAL})], [(leg, {'tamanho': 20})]],
               fundo=FUNDO, alinhar=PP_ALIGN.CENTER, ancora=MSO_ANCHOR.MIDDLE, espaco=8)
-    caixa(s, 0.9, 11.8, 32.0, 3.6,
-          [[('Uma decisão no caminho', {'bold': True, 'cor': CORAL, 'tamanho': 18})],
-           [('Um setor de favela em Belo Horizonte aparecia com renda média de ', {}),
-            ('R$ 170.418,06', {'bold': True}), (' por mês — incoerente com o próprio setor. Retirado da análise.',
-                                                  {})]],
+    e = EXTREMO
+    caixa(s, 0.9, 11.6, 32.0, 4.0,
+          [[('Uma decisão no caminho', {'bold': True, 'cor': CORAL, 'tamanho': 20})],
+           [('Um setor de favela em Belo Horizonte com renda média de ', {}),
+            (f'R$ {br(float(e["renda_media_setor"]), 2)}', {'bold': True}),
+            (f' por mês — {br(float(e["razao_mediana_mun"]), 1)} vezes a mediana do município. Incoerente com o '
+             'perfil do setor: retirado da análise descritiva.', {})]],
           borda=CORAL, tamanho=20)
-    texto(s, 0.9, 15.8, 32.0, 1.4,
+    texto(s, 0.9, 15.9, 32.0, 1.4,
           ['Outras adequações ao Censo 2022: denominador dos domicílios · analfabetismo a partir de 15 anos · '
            'dados sob sigilo tratados como ausentes · caçamba como destino inadequado do lixo (reserva R1).'],
-          tamanho=14, cor_txt=CINZA)
+          tamanho=15, cor_txt=CINZA)
     fonte(s, 'Fonte: IBGE, Censo Demográfico 2022.')
 
 
 def s6_zeros(s, fig: Path) -> None:
-    titulo(s, f'Em {br(float(T03["pct_agua_inad"]["pct_zeros"]), 0)}% dos setores, nenhum domicílio tem '
-              'água inadequada')
+    titulo(s, f'Em {br(float(T03["pct_agua_inad"]["pct_zeros"]), 0)}% dos setores, nenhum domicílio foi '
+              'registrado com água inadequada', 'Resultados')
     s.shapes.add_picture(str(fig), Cm(0.6), Cm(4.6), width=Cm(21.2))
+    texto(s, 0.9, 16.0, 20.6, 1.2, ['Parte dos zeros vem de parcelas pequenas suprimidas pelo IBGE, que entram '
+                                    'como zero.'], tamanho=14, cor_txt=CINZA)
     t1 = {r['indicador']: r for r in TAB1}['renda_media_sem_extremo']
     media = float(t1['Média'].replace('.', '').replace(',', '.'))
     mediana = float(t1['Mediana'].replace('.', '').replace(',', '.'))
-    caixa(s, 22.6, 5.0, 10.4, 5.0,
-          [[('A renda também', {'bold': True, 'cor': TEAL, 'tamanho': 18})],
+    caixa(s, 22.6, 4.8, 10.4, 5.2,
+          [[('A renda também', {'bold': True, 'cor': TEAL, 'tamanho': 19})],
            [(f'média {br((media / mediana - 1) * 100, 0)}% acima da mediana', {'bold': True, 'tamanho': 24})],
-           [(f'R$ {t1["Média"]} × R$ {t1["Mediana"]}', {'tamanho': 17, 'cor': CINZA})]],
-          fundo=FUNDO, espaco=8)
-    caixa(s, 22.6, 10.6, 10.4, 4.6,
-          [[('O que isso muda', {'bold': True, 'cor': CORAL, 'tamanho': 18})],
-           'Com tantos zeros, a média engana: numa escala de 0 a 1, quase todos os setores ficariam '
-           'espremidos num canto.'],
-          borda=CORAL, tamanho=17)
+           [('poucos setores muito ricos puxam a média', {'tamanho': 17, 'cor': CINZA})]],
+          fundo=FUNDO, espaco=6)
+    caixa(s, 22.6, 10.6, 10.4, 5.4,
+          [[('O que isso muda', {'bold': True, 'cor': CORAL, 'tamanho': 19})],
+           'O índice põe tudo na mesma régua, de 0 a 1. Com tantos zeros, quase todos os setores ficariam '
+           'espremidos num canto dela.'],
+          borda=CORAL, tamanho=18)
     fonte(s)
 
 
 def s7_sigilo(s, fig: Path) -> None:
-    titulo(s, 'O dado que falta também diz alguma coisa')
+    titulo(s, 'O dado que falta também diz alguma coisa', 'Resultados')
     s.shapes.add_picture(str(fig), Cm(0.9), Cm(4.4), height=Cm(13.4))
     pct = br((N_RECORTE - N_ANALFAB) / N_RECORTE * 100, 0)
-    caixa(s, 19.2, 5.0, 13.8, 5.2,
-          [[('Sigilo', {'bold': True, 'cor': TEAL, 'tamanho': 18})],
-           'Quando há pouquíssima gente numa categoria, o IBGE esconde o número para ninguém ser identificado.',
-           [(f'No analfabetismo: {pct}% dos setores', {'bold': True})]],
-          fundo=FUNDO, tamanho=18, espaco=6)
-    caixa(s, 19.2, 10.8, 13.8, 5.4,
-          [[('O que isso muda', {'bold': True, 'cor': CORAL, 'tamanho': 18})],
-           'O IBGE esconde onde há poucos analfabetos — nos setores mais ricos. Descartá-los faria o '
-           'analfabetismo parecer maior do que é.'],
+    caixa(s, 19.2, 4.7, 13.8, 5.6,
+          [[(f'{pct}%', {'bold': True, 'tamanho': 44, 'cor': CORAL}),
+            ('  dos setores sem o dado de analfabetismo', {'bold': True, 'tamanho': 20})],
+           'Sigilo: quando há pouquíssima gente numa categoria, o IBGE esconde o número para ninguém ser '
+           'identificado.'],
+          fundo=FUNDO, tamanho=17, espaco=6)
+    caixa(s, 19.2, 10.8, 13.8, 5.8,
+          [[('O que isso muda', {'bold': True, 'cor': CORAL, 'tamanho': 19})],
+           [('Média observada ', {}), (f'{br(MEDIA_ANALFAB_OBS, 2)}%', {'bold': True}), ('; a real fica entre ', {}),
+            (f'{br(MEDIA_ANALFAB_MIN, 2)}%', {'bold': True}), (' e ', {}),
+            (f'{br(MEDIA_ANALFAB_OBS, 2)}%', {'bold': True}), ('.', {})],
+           'O efeito é pequeno, mas o sigilo não é aleatório: precisa de tratamento próprio.'],
           borda=CORAL, tamanho=18)
     fonte(s)
 
 
 def s8_correlacoes(s, fig: Path) -> None:
-    titulo(s, 'Renda, cor/raça e analfabetismo andam juntos; o lixo anda sozinho')
+    titulo(s, 'Renda, cor/raça e analfabetismo andam juntos; o lixo anda sozinho', 'Resultados')
     s.shapes.add_picture(str(fig), Cm(0.6), Cm(4.4), width=Cm(22.6))
-    caixa(s, 23.8, 5.6, 9.2, 4.2,
-          [[('Uma só dimensão?', {'bold': True, 'cor': TEAL, 'tamanho': 18})],
-           'As três parecem medir a mesma coisa: a posição social do setor.'],
-          fundo=FUNDO, tamanho=18)
-    caixa(s, 23.8, 11.0, 9.2, 5.6,
-          [[('Hipótese a testar', {'bold': True, 'cor': CORAL, 'tamanho': 18})],
-           'O Censo conta a caçamba como destino inadequado; ela pode medir o jeito de coletar da cidade, '
-           'não a vulnerabilidade.'],
-          borda=CORAL, tamanho=17)
+    caixa(s, 23.8, 4.8, 9.2, 5.2,
+          [[('Como ler', {'bold': True, 'cor': TEAL, 'tamanho': 19})],
+           'Correlação: 0 = nenhuma relação; 1 = as duas ordenam os setores do mesmo jeito.',
+           [('As três medem a posição social do setor.', {'bold': True})]],
+          fundo=FUNDO, tamanho=17, espaco=6)
+    caixa(s, 23.8, 10.6, 9.2, 6.4,
+          [[('Hipótese a testar', {'bold': True, 'cor': CORAL, 'tamanho': 19})],
+           'Seguindo o IVS 2012, o projeto conta a caçamba como destino inadequado (o Censo só registra o '
+           'destino). Ela pode refletir o jeito de coletar da cidade, não a vulnerabilidade.'],
+          borda=CORAL, tamanho=16)
     fonte(s, f'Correlação de Spearman nos {br(PECAS["figura1"]["n_dados_completos"], 0)} setores com os 12 '
              'indicadores completos (Figura 1 do relatório); renda invertida. Fonte: IBGE, Censo 2022.')
 
 
 def s9_desigualdade(s) -> None:
-    titulo(s, 'A desigualdade aparece entre regiões e entre gerações')
-    reg = {r['regiao']: float(r['media']) for r in T04 if r['indicador'] == 'pct_agua_inad'}
-    n_norte = sum(m['regiao'] == 'Norte' for m in MUNICIPIOS)
-    caixa(s, 0.9, 4.8, 15.8, 11.4,
-          [[(f'{br(reg["Norte"] / reg["Sul"], 0)}×', {'bold': True, 'tamanho': 80, 'cor': TEAL})],
-           [('mais domicílios com água inadequada nos municípios do Norte do que nos do Sul', {'tamanho': 20})],
-           [(f'média por setor: {br(reg["Norte"], 3)} × {br(reg["Sul"], 3)} · o Norte tem {n_norte} municípios '
-             'na amostra — descreve os municípios estudados, não a região', {'tamanho': 14, 'cor': CINZA})]],
-          fundo=FUNDO, alinhar=PP_ALIGN.CENTER, ancora=MSO_ANCHOR.MIDDLE, espaco=10)
+    titulo(s, 'Dentro das cidades, renda mais alta anda junto com mais idosos', 'Resultados')
     neg, tot = ROB['municipios_idoso_renda_negativa'], ROB['municipios_30mais']
-    caixa(s, 17.1, 4.8, 15.8, 11.4,
-          [[(f'{neg} de {tot}', {'bold': True, 'tamanho': 80, 'cor': CORAL})],
-           [('municípios em que os setores de renda mais alta têm mais idosos — e os de renda mais baixa, '
-             'mais crianças', {'tamanho': 20})],
-           [('municípios com pelo menos 30 setores com dados completos', {'tamanho': 14, 'cor': CINZA})]],
+    caixa(s, 0.9, 4.8, 19.4, 11.0,
+          [[(f'{neg} de {tot}', {'bold': True, 'tamanho': 88, 'cor': CORAL})],
+           [('municípios em que a proporção de idosos é maior nos setores de renda mais alta',
+             {'tamanho': 22})],
+           [(f'mediana municipal da correlação: {br(ROB["mediana_municipal_idoso_renda"], 2)}',
+             {'tamanho': 16, 'cor': CINZA})]],
           fundo=FUNDO, alinhar=PP_ALIGN.CENTER, ancora=MSO_ANCHOR.MIDDLE, espaco=10)
-    texto(s, 0.9, 16.5, 32.0, 1.2, [[('Relação entre áreas, não entre pessoas.', {'bold': True})]],
-          tamanho=17, cor_txt=TEXTO, alinhar=PP_ALIGN.CENTER)
+    idoso = R['pct_idoso_60mais']['renda_media_sem_extremo']
+    crianca = R['pct_pop_0a14']['renda_media_sem_extremo']
+    caixa(s, 20.9, 4.8, 12.1, 11.0,
+          [[('No conjunto dos setores', {'bold': True, 'cor': TEAL, 'tamanho': 19})],
+           [('idosos × renda invertida', {'tamanho': 18})],
+           [(br(idoso, 2), {'bold': True, 'tamanho': 40, 'cor': TEAL})],
+           [('crianças × renda invertida', {'tamanho': 18})],
+           [(('+' if crianca > 0 else '') + br(crianca, 2), {'bold': True, 'tamanho': 40, 'cor': CORAL})],
+           [('mais idosos onde a renda é maior; mais crianças onde é menor', {'tamanho': 16, 'cor': CINZA})]],
+          borda=TEAL_CLARO, alinhar=PP_ALIGN.CENTER, ancora=MSO_ANCHOR.MIDDLE, espaco=4)
+    texto(s, 0.9, 16.2, 32.0, 1.6,
+          [[('Associação entre áreas, não entre pessoas.', {'bold': True})],
+           [(f'Municípios com pelo menos 30 setores com dados completos ({tot} dos 70). Spearman; renda '
+             'invertida.', {'tamanho': 13, 'cor': CINZA})]],
+          tamanho=17, cor_txt=TEXTO, alinhar=PP_ALIGN.CENTER, espaco=0)
     fonte(s)
 
 
 def s10_conclusao(s) -> None:
-    titulo(s, 'Três achados mudam como o índice será calculado')
-    linhas = [('Muitos zeros e assimetria', 'tratar antes de padronizar; padronizar dentro de cada município'),
-              ('Sigilo que não é aleatório', 'tratamento próprio para os dados ausentes'),
-              ('Lixo que anda sozinho', 'testar na análise fatorial')]
-    for k, (achado, muda) in enumerate(linhas):
-        y = 4.6 + k * 2.15
-        caixa(s, 0.9, y, 12.0, 1.85, [[(achado, {'bold': True, 'cor': 'FFFFFF'})]], fundo=TEAL, tamanho=19,
-              ancora=MSO_ANCHOR.MIDDLE)
-        texto(s, 13.0, y, 1.4, 1.85, [[('→', {'bold': True, 'cor': LARANJA})]], tamanho=28,
-              alinhar=PP_ALIGN.CENTER, ancora=MSO_ANCHOR.MIDDLE)
-        caixa(s, 14.5, y, 18.4, 1.85, [muda], fundo=FUNDO, tamanho=19, ancora=MSO_ANCHOR.MIDDLE)
-    texto(s, 0.9, 11.2, 32.0, 0.9, [[('Próximos passos', {'bold': True, 'cor': TEAL})]], tamanho=19)
-    passos = ['Análise fatorial', 'Pesos', 'Faixas de vulnerabilidade', 'Mapas no QGIS', 'Artigo']
+    titulo(s, 'Conclusões e próximos passos', 'Conclusões')
+    conc = ['Montar o IVS com o Censo 2022 exige decisões explícitas sobre zeros, sigilo e valores extremos.',
+            'O sigilo se concentra nos setores mais ricos e precisa de tratamento próprio.',
+            'O lixo se comporta à parte e será testado na análise fatorial.']
+    caixa(s, 0.9, 4.6, 18.6, 9.4,
+          [[('Conclusões', {'bold': True, 'cor': 'FFFFFF', 'tamanho': 21})]] +
+          [[(f'{k}  ', {'bold': True, 'cor': 'FFFFFF'}), (c, {'cor': 'FFFFFF'})] for k, c in enumerate(conc, 1)],
+          fundo=TEAL, tamanho=20, espaco=10)
+    passos = ['Análise fatorial', 'Pesos das variáveis', 'Faixas de vulnerabilidade', 'Mapas no QGIS', 'Artigo']
+    caixa(s, 20.1, 4.6, 12.8, 1.2, [[('Próximos passos', {'bold': True, 'cor': TEAL})]], tamanho=21,
+          ancora=MSO_ANCHOR.MIDDLE)
     for k, p in enumerate(passos):
-        caixa(s, 0.9 + k * 6.45, 12.2, 6.2, 1.6, [[(p, {'bold': True})]], fundo=LAVANDA, tamanho=16,
-              alinhar=PP_ALIGN.CENTER, ancora=MSO_ANCHOR.MIDDLE, forma=MSO_SHAPE.CHEVRON if k else MSO_SHAPE.PENTAGON)
-    texto(s, 0.9, 14.0, 32.0, 1.0,
-          [[('Análise fatorial: ', {'bold': True}),
-            confirmar('A CONFIRMAR — frase combinada com a Profa. Amanda (com ou sem resultados)')]], tamanho=16)
-    caixa(s, 0.9, 15.4, 32.0, 2.2,
-          [[('Cada decisão muda o resultado — por isso cada uma está justificada e registrada.',
+        caixa(s, 20.1, 5.9 + k * 1.62, 12.8, 1.42, [[(f'{k + 1}  {p}', {'bold': True})]], fundo=LAVANDA,
+              tamanho=18, ancora=MSO_ANCHOR.MIDDLE)
+    texto(s, 20.1, 14.1, 12.8, 1.3,
+          [[('Fatorial: ', {'bold': True}), confirmar('A CONFIRMAR — frase combinada com a Profa. Amanda')]],
+          tamanho=14)
+    caixa(s, 0.9, 15.5, 32.0, 2.3,
+          [[('Com dados, cada decisão muda o resultado — por isso cada uma está justificada e registrada.',
              {'bold': True, 'tamanho': 21, 'cor': TEAL})],
-           [('Limitação: estudo ecológico — dados de áreas, não de pessoas.', {'tamanho': 15, 'cor': CINZA})]],
+           [('Limitação: estudo ecológico — dados de áreas, não de pessoas.', {'tamanho': 16, 'cor': CINZA})]],
           borda=TEAL_CLARO, alinhar=PP_ALIGN.CENTER, ancora=MSO_ANCHOR.MIDDLE, espaco=2)
 
 
@@ -626,12 +653,15 @@ NOTAS_RESERVA = {
           'moradia não convencional é praticamente independente; idosos e crianças vão em direções opostas.',
     'R3': 'Pergunta: "Quais as descritivas?" — Mediana zero nos três de saneamento; n menor no analfabetismo '
           'e no banheiro por causa do sigilo.',
-    'R4': 'Pergunta: "Dá para generalizar para a região?" — Não: o Norte tem 6 municípios; os contrastes '
-          'descrevem a amostra.',
-    'R5': 'Pergunta: "Por que tirar só esse setor?" — O valor é incoerente com o perfil do próprio setor, uma '
-          'favela; os demais extremos ficaram.',
-    'R6': 'Pergunta: "Por que 53, se são 70?" — A correlação dentro do município só é estável com pelo menos '
-          '30 setores completos; municípios pequenos ficam com poucos setores após o recorte urbano.',
+    'R4': 'Pergunta: "E as diferenças regionais? Dá para generalizar?" — A proporção média de domicílios com '
+          'água inadequada por setor é 16 vezes maior nos municípios do Norte (0,323) que nos do Sul (0,020); '
+          'esgoto 8×, pretos/pardos/indígenas 3×. Não dá para generalizar: o Norte tem 6 municípios, e os '
+          'contrastes descrevem a amostra, não as regiões.',
+    'R5': 'Pergunta: "Por que tirar só esse setor?" — A renda média é 55,7 vezes a mediana do município, num '
+          'setor de favela com 7% de analfabetismo: incoerente com o perfil do setor. Os demais extremos ficaram.',
+    'R6': 'Pergunta: "Por que 53, se são 70?" — Para calcular a correlação dentro de cada município, adotei o '
+          'mínimo de 30 setores com todos os dados; municípios pequenos ficam com poucos setores após o recorte '
+          'urbano.',
     'R7': 'Pergunta: "E a análise fatorial?" — Responder com a frase combinada com a Profa. Amanda.',
 }
 
@@ -680,6 +710,16 @@ def main() -> None:
     lista.remove(el)
     prs.save(str(SAIDA))
     print(f'{SAIDA.relative_to(RAIZ)}: {len(prs.slides)} slides (11 de fala + 7 de reserva)')
+
+    # Versão de envio: os mesmos slides, sem as páginas de notas (as falas e as marcas de ensaio ficam
+    # só no arquivo do Pedro).
+    envio = Presentation(str(SAIDA))
+    for s in envio.slides:
+        for r_id, rel in list(s.part.rels.items()):
+            if rel.reltype.endswith('/notesSlide'):
+                s.part.drop_rel(r_id)
+    envio.save(str(SAIDA_ENVIO))
+    print(f'{SAIDA_ENVIO.relative_to(RAIZ)}: {len(envio.slides)} slides, sem notas')
 
 
 if __name__ == '__main__':
