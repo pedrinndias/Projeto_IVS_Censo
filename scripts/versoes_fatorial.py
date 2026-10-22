@@ -119,16 +119,10 @@ def rodar(v: dict, df: pd.DataFrame, comum: np.ndarray, N: int, estab: bool):
         linha['amp_peso_var_max'] = est['amp_peso_var_max']
     cheio_v = np.full(N, np.nan)
     cheio_v[pos] = val
-    fx = np.full(N, -1, dtype=np.int8)
-    fx[pos] = fb
-    return linha, cargas, est, cheio_v, fx
+    return linha, cargas, est, cheio_v
 
 
-def spearman(a, b) -> float:
-    return float(pd.Series(a).rank().corr(pd.Series(b).rank()))
-
-
-def pares(V: pd.DataFrame, IDX: dict, FX: dict, comum: np.ndarray) -> tuple[pd.DataFrame, pd.DataFrame]:
+def pares(V: pd.DataFrame, IDX: dict, mun: np.ndarray, comum: np.ndarray) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Para cada eixo e cada troca de nível, os pares de versões que só diferem nele."""
     chave = V.set_index(list(EIXOS))['id']
     det = []
@@ -141,7 +135,7 @@ def pares(V: pd.DataFrame, IDX: dict, FX: dict, comum: np.ndarray) -> tuple[pd.D
                 ia = chave[tuple(ka[e] for e in EIXOS)]
                 ib = chave[tuple(kb[e] for e in EIXOS)]
                 ra, rb = V.set_index('id').loc[ia], V.set_index('id').loc[ib]
-                m = comum & ~np.isnan(IDX[ia]) & ~np.isnan(IDX[ib])
+                c = ie.comparar(IDX[ia][comum], IDX[ib][comum], mun[comum])
                 det.append({'eixo': eixo, 'de': a, 'para': b, 'id_de': ia, 'id_para': ib,
                             'd_kmo': rb['kmo'] - ra['kmo'], 'd_var_2f': rb['var_explicada_2f'] - ra['var_explicada_2f'],
                             'd_auc_mun_comum': rb['auc_mun_comum'] - ra['auc_mun_comum'],
@@ -149,8 +143,7 @@ def pares(V: pd.DataFrame, IDX: dict, FX: dict, comum: np.ndarray) -> tuple[pd.D
                             'd_kaiser': rb['fatores_kaiser'] - ra['fatores_kaiser'],
                             'd_horn': rb['fatores_horn'] - ra['fatores_horn'],
                             'elegivel_de': bool(ra['elegivel']), 'elegivel_para': bool(rb['elegivel']),
-                            'spearman': spearman(IDX[ia][m], IDX[ib][m]),
-                            'pct_muda_faixa': 100 * float((FX[ia][m] != FX[ib][m]).mean())})
+                            'spearman': c['spearman_global'], 'pct_muda_faixa': 100 * c['troca_faixa']})
     det = pd.DataFrame(det)
     res = []
     for (eixo, a, b), g in det.groupby(['eixo', 'de', 'para'], sort=False):
@@ -192,28 +185,27 @@ def main() -> None:
     lista = versoes()
     todas = sorted({c for v in lista for c in v['colunas'] if c != 'renda_inv'} | set(fa.RENDAS.values()))
     comum = df[todas].notna().all(axis=1).to_numpy()
+    mun = df['NM_MUN'].to_numpy()
     print(f'base {N} setores; amostra comum {int(comum.sum())} ({time.time() - t0:.0f} s)', flush=True)
-    L, C, E, IDX, FX = [], [], [], {}, {}
+    L, C, E, IDX = [], [], [], {}
     for v in lista:
         if so and v['id'] not in so:
             continue
         t = time.time()
-        linha, cargas, est, iv, fx = rodar(v, df, comum, N, estab)
+        linha, cargas, est, iv = rodar(v, df, comum, N, estab)
         L.append(linha)
         C += cargas
         if est:
             E.append(est)
-        IDX[v['id']], FX[v['id']] = iv, fx
+        IDX[v['id']] = iv
         print(f"{v['id']}: p={linha['p']} n={linha['n']} kmo={linha['kmo']:.4f} "
               f"elegível={linha['elegivel']} ({time.time() - t:.1f} s)", flush=True)
     V = pd.DataFrame(L)
     ref = V.set_index('id')
     if REFERENCIA in IDX:
-        m0 = comum & ~np.isnan(IDX[REFERENCIA])
-        V['spearman_v023_comum'] = [spearman(IDX[REFERENCIA][m0 & ~np.isnan(IDX[i])], IDX[i][m0 & ~np.isnan(IDX[i])])
-                                    for i in V['id']]
-        V['muda_faixa_v023_comum'] = [100 * float((FX[REFERENCIA][m0 & ~np.isnan(IDX[i])]
-                                                  != FX[i][m0 & ~np.isnan(IDX[i])]).mean()) for i in V['id']]
+        c0 = [ie.comparar(IDX[REFERENCIA][comum], IDX[i][comum], mun[comum]) for i in V['id']]
+        V['spearman_v023_comum'] = [c['spearman_global'] for c in c0]
+        V['muda_faixa_v023_comum'] = [100 * c['troca_faixa'] for c in c0]
     erros = conferir_trava(V) if REFERENCIA in ref.index else []
     if erros:
         sys.exit('TRAVA NÃO BATE — nada gravado:\n  ' + '\n  '.join(erros[:20]))
@@ -225,7 +217,7 @@ def main() -> None:
     pd.DataFrame(C).to_csv(SAIDA / 'cargas.csv', index=False)
     if E:
         pd.DataFrame(E).to_csv(SAIDA / 'estabilidade.csv', index=False)
-    res, det = pares(V, IDX, FX, comum)
+    res, det = pares(V, IDX, mun, comum)
     res.to_csv(SAIDA / 'pares_por_eixo.csv', index=False)
     det.to_csv(SAIDA / 'pares_detalhe.csv', index=False)
     print(f"108 versões, {int(V['elegivel'].sum())} elegíveis; trava das "

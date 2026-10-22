@@ -3,6 +3,7 @@ as descritivas da 2ª rodada (`eda/atualizada/`) e o n, o índice, as faixas e a
 municipal da referência proposta do NB05 (`eda/ivs_especificacoes/`), até a 4ª casa."""
 import sys
 from pathlib import Path
+from types import SimpleNamespace
 
 import numpy as np
 import pandas as pd
@@ -14,6 +15,23 @@ import eda_versoes as ev  # noqa: E402
 
 REF = RAIZ / 'analises_exploratorias' / '00_referencia'
 EDA = RAIZ / 'banco_de_dados' / 'eda'
+
+
+def test_faixas_alternativas_aguenta_ivs_ausente():
+    """Município sem régua (IVS ausente) fica com a classe 'indefinida' em todas as regras por posto."""
+    rng = np.random.default_rng(5)
+    n = 60
+    d = pd.DataFrame({'NM_MUN': np.repeat(['M1', 'M2', 'M3'], n // 3), 'x': rng.normal(size=n), 'y': rng.normal(size=n)})
+    s = d[['NM_MUN']].copy()
+    s['ivs'] = np.where(d['NM_MUN'] == 'M3', np.nan, rng.random(n))
+    for regra in ('ivs_bh', 'quartis'):
+        s[f'faixa_{regra}'] = ev.ie.faixas(s['ivs'], s['NM_MUN'], regra)
+    tabelas = {}
+    S = SimpleNamespace(tabela=lambda i, nome, bloco, chave, t, c: tabelas.update({i: t}), figura=lambda *a: None)
+    ev.faixas_alternativas(SimpleNamespace(setores=s, d=d, col=['x', 'y']), S)
+    t = tabelas['T36']
+    indef = t[(t['classe'] == 'indefinida') & t['regra'].isin(['quintis', 'quebras naturais (4 classes)'])]
+    assert indef['setores'].tolist() == [n // 3, n // 3]
 
 
 @pytest.fixture(scope='module')

@@ -216,7 +216,22 @@ def logistica(X, y, iter_max: int = 100, tol: float = 1e-10):
 
 
 def spearman(a, b) -> float:
-    return float(np.corrcoef(pd.Series(a).rank(), pd.Series(b).rank())[0, 1])
+    """Spearman nos pares completos (ausente se sobrarem ≤ 2); Pearson dos postos, sem scipy."""
+    t = pd.DataFrame({'a': np.asarray(a, dtype=float), 'b': np.asarray(b, dtype=float)}).dropna()
+    return float(np.corrcoef(t['a'].rank(), t['b'].rank())[0, 1]) if len(t) > 2 else np.nan
+
+
+def comparar(a, b, mun, regra: str = 'ivs_bh') -> dict:
+    """Spearman global e mediano dentro do município (≥ MIN_GRUPO setores) e fração que troca de
+    faixa entre dois índices, na amostra comum a eles: as faixas dos dois são refeitas nela, senão a
+    troca mede a mudança de amostra (setores a mais mudam a média do município), não a do método."""
+    a, b, mun = np.asarray(a, dtype=float), np.asarray(b, dtype=float), np.asarray(mun)
+    ok = ~np.isnan(a) & ~np.isnan(b)
+    t = pd.DataFrame({'a': a[ok], 'b': b[ok], 'm': mun[ok]})
+    fx, fy = (faixas(t[c].to_numpy(), t['m'].to_numpy(), regra) for c in 'ab')
+    por = [g['a'].rank().corr(g['b'].rank()) for _, g in t.groupby('m') if len(g) >= MIN_GRUPO]
+    return {'n_comum': int(ok.sum()), 'spearman_global': spearman(t['a'], t['b']),
+            'spearman_mun': float(np.nanmedian(por)), 'troca_faixa': float((fx != fy).mean())}
 
 
 def estabilidade(d: pd.DataFrame, colunas: list[str], alvo: set) -> pd.DataFrame:
@@ -411,8 +426,6 @@ def main() -> None:
                        auc_estratos(s, fcu, mun, renda)[0])
                 for nome, s in (('renda', renda), ('postos', postos))}
         z_renda = (renda - renda.mean()) / renda.std()
-        _, _, dev1, eta1 = logistica(z_renda[ok, None], fcu[ok])
-        auc_mod1 = fa.auc_postos(eta1, fcu[ok])
         for (rot, met), (M, rep) in reps.items():
             w = fa.pesos_indice(M, rep)
             dim = np.where(np.abs(M).argmax(axis=1) == fator_renda(M, colunas), 1, 2)
@@ -443,8 +456,11 @@ def main() -> None:
                 linhas.append(linha)
                 if eleg[rot]['elegivel']:
                     ae, ne = auc_estratos(v, fcu, mun, renda)
-                    z = (v - v.mean()) / v.std()
-                    b, ep, dev2, eta2 = logistica(np.column_stack([z_renda, z])[ok], fcu[ok])
+                    # setor sem IVS (município sem régua) fica fora dos dois modelos, que usam a mesma amostra
+                    okv = ok & ~np.isnan(v)
+                    z = (v - np.nanmean(v)) / np.nanstd(v)
+                    _, _, dev1, eta1 = logistica(z_renda[okv, None], fcu[okv])
+                    b, ep, dev2, eta2 = logistica(np.column_stack([z_renda, z])[okv], fcu[okv])
                     acresc.append({'id': linha['id'], **base_id, 'normalizacao': norm, 'n': int(ok.sum()),
                                    'auc_indice_global': linha['auc_global_propria'],
                                    'auc_renda_global': comp['renda'][0], 'auc_postos_global': comp['postos'][0],
@@ -453,8 +469,8 @@ def main() -> None:
                                    'auc_indice_estratos': ae, 'auc_renda_estratos': comp['renda'][2],
                                    'auc_postos_estratos': comp['postos'][2], 'n_estratos': ne,
                                    'deviance_renda': dev1, 'deviance_renda_indice': dev2,
-                                   'queda_deviance': dev1 - dev2, 'auc_modelo_renda': auc_mod1,
-                                   'auc_modelo_renda_indice': fa.auc_postos(eta2, fcu[ok]),
+                                   'queda_deviance': dev1 - dev2, 'auc_modelo_renda': fa.auc_postos(eta1, fcu[okv]),
+                                   'auc_modelo_renda_indice': fa.auc_postos(eta2, fcu[okv]),
                                    'coef_indice': b[2], 'z_indice': b[2] / ep[2]})
         print(f"{ident(chave, '', '', '')[:-3]}: n={len(d)}, elegíveis={sorted(alvo)} "
               f"({time.time() - t0:.0f} s)", flush=True)
@@ -485,16 +501,18 @@ def main() -> None:
     esp['posicao'] = esp['id'].map({i: k + 1 for k, i in enumerate(principal['id'])})
     esp['referencia'] = esp['id'] == ref_id
     ids = esp['id'].to_numpy()
+    mun_all = df['NM_MUN'].to_numpy()
     if ref_id is not None:
         k_ref = int(np.flatnonzero(ids == ref_id)[0])
         rv, rf = IDX[k_ref], FX[k_ref]
         comp_ref = []
         for k in range(len(IDX)):
             linha = {}
-            for amostra, m in (('propria', ~np.isnan(IDX[k]) & ~np.isnan(rv)), ('comum', comum)):
-                linha[f'spearman_ref_{amostra}'] = spearman(IDX[k][m], rv[m])
-                linha[f'muda_faixa_ivs_bh_{amostra}'] = 100 * float(np.mean(FX[k][0, m] != rf[0, m]))
-                linha[f'muda_faixa_quartis_{amostra}'] = 100 * float(np.mean(FX[k][1, m] != rf[1, m]))
+            for amostra, m in (('propria', slice(None)), ('comum', comum)):
+                c = {r: comparar(IDX[k][m], rv[m], mun_all[m], r) for r in ('ivs_bh', 'quartis')}
+                linha[f'spearman_ref_{amostra}'] = c['ivs_bh']['spearman_global']
+                linha[f'muda_faixa_ivs_bh_{amostra}'] = 100 * c['ivs_bh']['troca_faixa']
+                linha[f'muda_faixa_quartis_{amostra}'] = 100 * c['quartis']['troca_faixa']
             comp_ref.append(linha)
         esp = pd.concat([esp, pd.DataFrame(comp_ref)], axis=1)
 
@@ -521,7 +539,6 @@ def main() -> None:
     gravar(pd.DataFrame(refs), 'referencia.csv')
 
     fcu_all = df['is_fcu'].to_numpy(dtype=float)
-    mun_all = df['NM_MUN'].to_numpy()
     rc = -df['renda_media'].to_numpy()
     okc = comum & ~np.isnan(fcu_all)
     renda_comum = {'global': fa.auc_postos(rc[okc], fcu_all[okc]),

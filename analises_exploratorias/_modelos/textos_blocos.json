@@ -73,8 +73,8 @@
     },
     "15": {
       "titulo": "Estabilidade",
-      "pergunta": "Os pesos e as faixas mudam se um município sai ou se os setores são reamostrados?",
-      "nota": "Duas provas de estabilidade da referência. Na primeira, os pesos são reestimados 70 vezes, cada vez sem um município, e o índice é recalculado para todos os setores. Na segunda (reamostragem com reposição, bootstrap), os pesos são reestimados em amostras sorteadas dos setores, com semente fixa, para ver quanto eles variam só pelo acaso da amostra."
+      "pergunta": "Os pesos e as faixas mudam se um município sai ou se os municípios são reamostrados?",
+      "nota": "Duas provas de estabilidade da referência. Na primeira, os pesos são reestimados 70 vezes, cada vez sem um município, e o índice é recalculado para todos os setores. Na segunda (reamostragem com reposição, bootstrap), os pesos são reestimados em amostras sorteadas dos municípios, cada um com todos os seus setores, com semente fixa, para ver quanto eles variam só pelo acaso da amostra."
     },
     "16": {
       "titulo": "Desigualdade intramunicipal entre versões",
@@ -497,13 +497,13 @@
       "titulo": "O peso de {comp} é o que mais varia na reamostragem ({p2_5}% a {p97_5}%)",
       "como_ler": "Uma linha por componente: peso na referência e os percentis 2,5, 50 e 97,5 do peso nas reamostragens.",
       "o_que_mostra": "O intervalo mais largo é o de {comp}: de {p2_5}% a {p97_5}%.",
-      "nota": "A reamostragem sorteia setores com reposição, refaz a fatorial e recalcula os pesos. O intervalo entre os percentis 2,5 e 97,5 contém 95% dos pesos obtidos: é uma medida de quanto o peso varia só pelo acaso da amostra."
+      "nota": "A reamostragem sorteia municípios com reposição (cada um entra com todos os seus setores), refaz a fatorial e recalcula os pesos. O intervalo entre os percentis 2,5 e 97,5 contém 95% dos pesos obtidos: é uma medida de quanto o peso varia só pelo acaso da amostra."
     },
     "e2_medidas": {
       "titulo": "Nas reamostragens, a AUC municipal fica entre {auc_p2_5} e {auc_p97_5}",
       "como_ler": "KMO, correlação de postos com a referência e AUC municipal: valor na referência e percentis nas reamostragens.",
       "o_que_mostra": "{n_boot} reamostragens; ρ com a referência acima de {rho_p2_5} em 97,5% delas; AUC municipal entre {auc_p2_5} e {auc_p97_5}.",
-      "nota": "Medidas estáveis nas reamostragens indicam que o índice não depende de quais setores entraram na amostra."
+      "nota": "Medidas estáveis nas reamostragens indicam que o índice não depende de quais municípios entraram na amostra."
     },
     "e2_loo_fig": {
       "titulo": "Quanto o índice muda quando cada município sai da estimação",

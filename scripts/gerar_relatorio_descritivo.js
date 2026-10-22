@@ -5,7 +5,7 @@
  * é digitado aqui. Cada tipo de slide tem um layout fixo (um por parte), escolhido pelo
  * forma dos dados. O ID vai no canto superior direito; a fonte, só nas notas do apresentador.
  *
- * Uso:  node scripts/gerar_relatorio_descritivo.js
+ * Uso:  node scripts/gerar_relatorio_descritivo.js --saida <arquivo.pptx> [--sobrescrever]
  */
 const fs = require('fs');
 const path = require('path');
@@ -18,7 +18,13 @@ const PRINCIPAL = path.join(PASTA, 'Relatorio_Descritivo_IVS_2026-10.pptx');
 const BASE = path.join(PASTA, 'dados', 'ultimo_gerado.pptx');     // cópia intocada do último gerado
 const HASH = path.join(PASTA, 'dados', 'gerado.sha256');
 const arg = (k) => { const i = process.argv.indexOf(k); return i > 0 ? process.argv[i + 1] : null; };
-const SAIDA = arg('--saida') ? path.resolve(arg('--saida')) : PRINCIPAL;
+// O destino é sempre explícito: o deck principal de antes não existe mais, e gerar por padrão
+// recriaria um "principal" e apagaria o registro do último gerado (hash e cópia intocada).
+if (!arg('--saida')) {
+  console.error('uso: node scripts/gerar_relatorio_descritivo.js --saida <arquivo.pptx> [--sobrescrever]');
+  process.exit(1);
+}
+const SAIDA = path.resolve(arg('--saida'));
 const sha = (f) => require('crypto').createHash('sha256').update(fs.readFileSync(f)).digest('hex');
 
 // Trava (08/10/2026): o Pedro edita o deck principal à mão. Regerar por cima apagaria as edições.

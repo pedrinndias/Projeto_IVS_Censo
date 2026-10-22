@@ -8,7 +8,7 @@ roteiro (A03) e renumera o número impresso no pé de todos os slides (os apagad
 deixado 74 números fora de lugar). Grava um ARQUIVO NOVO; o deck do Pedro fica intocado.
 
     uv run --with python-pptx python scripts/anexar_versoes_ao_relatorio.py \
-        [relatorio_editado.pptx] [saida.pptx]
+        relatorio_editado.pptx [saida.pptx]
 """
 from __future__ import annotations
 
@@ -22,7 +22,6 @@ from pptx import Presentation
 from pptx.util import Emu
 
 RAIZ = Path(__file__).resolve().parents[1]
-EDITADO = RAIZ / 'relatorio_descritivo' / 'Relatorio_Descritivo_IVS_2026-10.pptx'
 PARTE = RAIZ / 'versoes_fatorial' / 'dados' / 'parte_relatorio.pptx'
 SAIDA = RAIZ / 'relatorio_descritivo' / 'Relatorio_Descritivo_IVS_2026-10_com_108_versoes.pptx'
 ID = re.compile(r'^(A|DM|DS|DC|FA|FC|FP|Z|VP)\d{2}(-\d+)?$')
@@ -98,7 +97,9 @@ def linha_roteiro(prs, ids_parte):
 
 
 def main() -> None:
-    editado = Path(sys.argv[1]) if len(sys.argv) > 1 else EDITADO
+    if len(sys.argv) < 2:
+        sys.exit('uso: anexar_versoes_ao_relatorio.py <relatorio_editado.pptx> [saida.pptx]')
+    editado = Path(sys.argv[1])
     saida = Path(sys.argv[2]) if len(sys.argv) > 2 else SAIDA
     if saida.resolve() == editado.resolve():
         sys.exit('A saída não pode ser o deck editado: o script grava sempre um arquivo novo.')

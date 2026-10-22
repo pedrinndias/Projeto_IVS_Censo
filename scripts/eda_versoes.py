@@ -1057,9 +1057,12 @@ def bloco12(b, ix, S):
 # ── Bloco 13. Comparação com a referência ──────────────────────────────────────
 def bloco13(b, ix, S):
     ref = pd.read_csv(REF_SETOR, dtype={'CD_SETOR': str})
-    m = ix.setores.merge(ref[['CD_SETOR', 'ivs_referencia', 'faixa_ivs_bh']].rename(
-        columns={'faixa_ivs_bh': 'faixa_referencia'}), on='CD_SETOR', how='inner')
-    m['faixa_versao'] = m['faixa_ivs_bh'].map(rotulo_faixa)
+    m = ix.setores.merge(ref[['CD_SETOR', 'ivs_referencia']], on='CD_SETOR', how='inner').dropna(
+        subset=['ivs', 'ivs_referencia'])
+    # as faixas das duas, refeitas nos setores comuns: as gravadas vêm de amostras diferentes
+    m['faixa_referencia'] = ie.faixas(m['ivs_referencia'], m['NM_MUN'], 'ivs_bh')
+    m['faixa_versao'] = ie.faixas(m['ivs'], m['NM_MUN'], 'ivs_bh')
+    m[['faixa_referencia', 'faixa_versao']] = m[['faixa_referencia', 'faixa_versao']].map(rotulo_faixa)
     linhas = [{'escopo': 'Total', 'setores_comuns': len(m), 'spearman': rho(m['ivs'], m['ivs_referencia'])}]
     linhas += [{'escopo': mun, 'setores_comuns': len(x),
                 'spearman': rho(x['ivs'], x['ivs_referencia'])}
@@ -1121,11 +1124,11 @@ def sensibilidade(b, ix, cfg, S):
         c2['indice'].update(alt.get('indice', {}))
         b2 = montar_base(c2)
         i2 = calcular_indice(b2.df, c2)
-        m = ix.setores.merge(i2.setores[['CD_SETOR', 'ivs', 'faixa_ivs_bh']], on='CD_SETOR', suffixes=('', '_alt'))
+        m = ix.setores.merge(i2.setores[['CD_SETOR', 'ivs']], on='CD_SETOR', suffixes=('', '_alt'))
         linhas.append({'rotulo': alt['rotulo'], 'setores_recorte': len(b2.df), 'setores_indice': len(i2.d),
                        'kmo': i2.r['kmo'], 'auc_global': i2.auc, 'auc_municipal': i2.auc_mun[0],
                        'elegivel': int(i2.eleg['elegivel']), 'spearman_com_padrao': rho(m['ivs'], m['ivs_alt']),
-                       'pct_mudam_faixa': 100 * (m['faixa_ivs_bh'] != m['faixa_ivs_bh_alt']).mean()})
+                       'pct_mudam_faixa': 100 * ie.comparar(m['ivs'], m['ivs_alt'], m['NM_MUN'])['troca_faixa']})
     t = pd.DataFrame(linhas)
     a = t.iloc[-1]
     S.tabela('T34', 'sensibilidade', 10, 'sensibilidade', t,
@@ -1141,9 +1144,9 @@ def faixas_alternativas(ix, S):
     s, d, col = ix.setores, ix.d, ix.col
     g = s['NM_MUN']
     regras = {'IVS-BH (média ± DP)': s['faixa_ivs_bh'].to_numpy(), 'quartis': s['faixa_quartis'].to_numpy(),
-              'quintis': np.clip(np.ceil(5 * s['ivs'].groupby(g).rank(pct=True)) - 1, 0, 4).astype(int).to_numpy()}
+              'quintis': np.where(s['ivs'].isna(), -1, np.clip(np.ceil(5 * s['ivs'].groupby(g).rank(pct=True)) - 1, 0, 4)).astype(int)}
     qn = pd.Series(-1, index=s.index)
-    for _, x in s.groupby('NM_MUN'):
+    for _, x in s.dropna(subset=['ivs']).groupby('NM_MUN'):
         if len(x) >= 8:
             rot = kmedias(x[['ivs']].to_numpy(), 4)[0]
             qn.loc[x.index] = ordenar_grupos(rot, x['ivs'].to_numpy())

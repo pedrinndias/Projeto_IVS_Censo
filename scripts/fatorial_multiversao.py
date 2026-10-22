@@ -45,7 +45,7 @@ REGUAS = ('global', 'municipal')
 CRIT = {'kmo': 0.70, 'msa': 0.50, 'h2': 0.30, 'carga': 0.40}
 EQUIV = {'spearman': 0.95, 'troca': 0.10}
 EXTRACAO = 'eixo_principal'   # a mesma da camada 1; com ACP o lixo vira um fator sozinho (NB04, achado 8)
-PISO_MUN = 30          # setores por município para entrar nas medianas "dentro do município"
+PISO_MUN = ie.MIN_GRUPO    # setores por município para entrar nas medianas "dentro do município"
 REF = {'conjunto': 'nucleo', 'rotacao': 'promax', 'metodo': '60_40', 'normalizacao': 'municipal',
        'sigilo': 'ausente'}
 
@@ -242,18 +242,6 @@ def faixas_ivs(v, mun) -> dict:
     return {'faixa_ivs_bh': ie.faixas(v, mun, 'ivs_bh'), 'faixa_quartis': ie.faixas(v, mun, 'quartis')}
 
 
-def comparar(a: np.ndarray, b: np.ndarray, mun: np.ndarray) -> dict:
-    """Spearman global e mediano dentro do município (≥ PISO_MUN setores) e % de troca de faixa,
-    na amostra comum às duas versões — as faixas das duas são refeitas nela, senão a troca mede a
-    mudança de amostra (setores a mais mudam a média do município), não a do método."""
-    ok = ~np.isnan(a) & ~np.isnan(b)
-    t = pd.DataFrame({'a': a[ok], 'b': b[ok], 'm': mun[ok]})
-    fa_, fb = (ie.faixas(t[c].to_numpy(), t['m'].to_numpy(), 'ivs_bh') for c in 'ab')
-    por = [g['a'].rank().corr(g['b'].rank()) for _, g in t.groupby('m') if len(g) >= PISO_MUN]
-    return {'n_comum': int(ok.sum()), 'spearman_global': ie.spearman(t['a'], t['b']),
-            'spearman_mun': float(np.nanmedian(por)), 'troca_faixa': float((fa_ != fb).mean())}
-
-
 def rodar_base(df: pd.DataFrame, nome: str, codigos: list[str], sigilo: str):
     """As 9 × 3 especificações de um conjunto com uma política de sigilo."""
     cols = [VARS[c] for c in codigos]
@@ -310,7 +298,7 @@ def camada2(df: pd.DataFrame) -> None:
     ref = vetores[iref].reindex(df['CD_SETOR']).to_numpy()
     comps = []
     for i, v in vetores.items():
-        c = comparar(ref, v.reindex(df['CD_SETOR']).to_numpy(), mun.reindex(df['CD_SETOR']).to_numpy())
+        c = ie.comparar(ref, v.reindex(df['CD_SETOR']).to_numpy(), mun.reindex(df['CD_SETOR']).to_numpy())
         c['equivalente'] = bool(c['spearman_mun'] >= EQUIV['spearman'] and c['troca_faixa'] < EQUIV['troca'])
         comps.append({'id': esp.at[i, 'id'], **c})
     esp = esp.merge(pd.DataFrame(comps), on='id', how='left')
@@ -345,6 +333,16 @@ def pesos_de(X: np.ndarray, metodo: str, cols: list[str], rot: str, met: str):
     r = rodar_cenario(X, metodo=metodo, com_horn=False, extracao=EXTRACAO)
     M, rep = ie.reparticoes(r, ancora(cols))[(rot, met)]
     return r, M, rep
+
+
+def tucker_metades(d: pd.DataFrame, cols: list[str], f, metade: dict) -> np.ndarray:
+    """Tucker de cada fator entre as duas metades de municípios, nas cargas da rotação do finalista
+    (sem rotação: só o primeiro fator), alinhadas."""
+    cargas = []
+    for h in (0, 1):
+        Xh, metodo = matriz_entrada(d[d['NM_MUN'].map(metade) == h], cols, f['normalizacao'])
+        cargas.append(pesos_de(Xh, metodo, cols, f['rotacao'], f['metodo'])[1])
+    return congruencia_tucker(cargas[0], alinhar_cargas(cargas[1], cargas[0]))
 
 
 def camada3(df: pd.DataFrame) -> None:
@@ -386,14 +384,10 @@ def camada3(df: pd.DataFrame) -> None:
             _, Mm, repm = pesos_de(Xm, metodo, cols, f['rotacao'], f['metodo'])
             estab.append({'id': f['id'], 'fora': m, 'peso_F1': ie.peso_f1(Mm, repm, ancora(cols)),
                           **{f'peso_{COD[c]}': x for c, x in zip(cols, fa.pesos_indice(Mm, repm))}})
-        # replicação entre metades de municípios (cargas promax padrão, alinhadas)
-        cargas = []
-        for h in (0, 1):
-            dh = d[d['NM_MUN'].map(metade) == h]
-            Xh, _ = matriz_entrada(dh, cols, f['normalizacao'])
-            cargas.append(rodar_cenario(Xh, metodo=metodo, com_horn=False, extracao=EXTRACAO)['promax_padrao'])
-        tk = congruencia_tucker(cargas[0], alinhar_cargas(cargas[1], cargas[0]))
-        repl.append({'id': f['id'], 'tucker_F1': tk[0], 'tucker_F2': tk[1],
+        # replicação entre metades de municípios, nas cargas da rotação do finalista
+        tk = tucker_metades(d, cols, f, metade)
+        tk2 = tk[1] if len(tk) > 1 else np.nan
+        repl.append({'id': f['id'], 'tucker_F1': tk[0], 'tucker_F2': tk2,
                      'municipios_metade_A': sum(1 for x in metade.values() if x == 0)})
         # perfil dos setores perdidos
         perdidos = ~df['CD_SETOR'].isin(d['CD_SETOR'])
@@ -409,7 +403,7 @@ def camada3(df: pd.DataFrame) -> None:
                        'amp_peso_F1': e['peso_F1'].max() - e['peso_F1'].min(),
                        'fora_no_min': e.loc[e['peso_F1'].idxmin(), 'fora'],
                        'fora_no_max': e.loc[e['peso_F1'].idxmax(), 'fora'],
-                       'tucker_F1': tk[0], 'tucker_F2': tk[1]})
+                       'tucker_F1': tk[0], 'tucker_F2': tk2})
         print(f"  {f['id']} ({f['papel']}): {time.time() - t0:.0f} s", flush=True)
     pd.DataFrame(linhas).to_csv(SAIDA / 'camada3_finalistas.csv', index=False, float_format='%.6g')
     pd.DataFrame(estab).to_csv(SAIDA / 'camada3_estabilidade.csv', index=False, float_format='%.6g')

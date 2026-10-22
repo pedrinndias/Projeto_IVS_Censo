@@ -8,6 +8,7 @@ finais (Base_ELSI_Bruta_Censo2022.csv + CSVs em banco_de_dados/eda/) estão
 presentes e com as características esperadas.
 """
 from __future__ import annotations          # permite anotações de tipo "adiadas" (ex.: -> pd.DataFrame sem aspas) em Python antigo
+import json                                  # leitura do notebook como JSON
 from pathlib import Path                     # caminhos como objetos
 import pandas as pd                          # leitura dos CSVs a verificar
 import pytest                                # framework de testes (asserts, skip, parametrize)
@@ -619,3 +620,9 @@ def test_quadro_de_indicadores_cobre_todos_os_indicadores():
             codigos.update(re.findall(r'\bV\d{5}\b|\bv0001\b', texto))
     faltando = codigos - oficial
     assert not faltando, f'códigos V do quadro sem entrada no dicionário oficial: {sorted(faltando)}'
+
+
+def test_nb01_conta_municipio_faltando_como_erro():  # TESTE: na auditoria do NB01, município faltando reprova a base
+    nb = json.loads((ROOT / 'notebooks/Fase3_EDA_ELSI/01_Extracao_Filtragem_ELSI.ipynb').read_text(encoding='utf-8'))
+    auditoria = next(''.join(c['source']) for c in nb['cells'] if c.get('id') == 'audit')   # célula da auditoria de integridade
+    assert 'erros += 1' in auditoria.split('n_muns == 70')[1].split('checagem 6')[0]        # o ramo "else" da checagem 5 conta o erro

@@ -64,6 +64,9 @@ def fase3() -> None:
     v = pd.read_csv(MV / 'ivs_proposto_por_setor.csv')
     checa(len(v) == 104108 and v['ivs'].dropna().between(0, 1).all(), 'IVS por setor: 104.108 linhas, entre 0 e 1')
     checa(set(v['faixa_ivs_bh'].dropna().unique()) <= {-1, 0, 1, 2, 3}, 'faixas válidas')
+    r = pd.read_csv(MV / 'camada3_replicacao.csv').set_index('id')
+    checa(r.loc[f.loc[f['rotacao'] == 'sem_rotacao', 'id'], 'tucker_F2'].isna().all(),
+          'sem rotação há um fator só: o Tucker do F2 é ausente')
 
 
 def fase4() -> None:
@@ -82,6 +85,9 @@ def fase4() -> None:
         fontes = {re.split(r'[,;]', f)[0].strip() for x in n['slides'].values() for f in x.get('fontes', [])}
         fontes = {f for f in fontes if '/' in f}
         checa(all((RAIZ / f).exists() for f in fontes), f'{js.name}: {len(fontes)} fontes citadas existem')
+    fin = (PASTA / 'dados' / 'FIN.json').read_text(encoding='utf-8')
+    checa('troca duas coisas juntas' in fin and 'junto com a régua' in fin,
+          'FIN: o "Como ler" e as limitações avisam que a normalização por postos também troca a matriz')
     checa(len(list((PASTA / 'dados').glob('*.json'))) == 13, '13 decks com dados')
     checa((PASTA / 'Fatorial_Multiversao_numeros.xlsx').exists(), 'planilha de números')
 

@@ -72,6 +72,35 @@ def test_auc_grupos_bate_com_auc_postos():
         assert t.loc[k, 'auc'] == pytest.approx(ie.fa.auc_postos(e[g == k], y[g == k]))
 
 
+def test_auc_postos_e_spearman_descartam_ausentes():
+    """Setor sem IVS (município sem régua) não conta como 'fora de favela' nem zera a AUC."""
+    rng = np.random.default_rng(5)
+    e = rng.normal(size=300)
+    y = (rng.random(300) < 0.3).astype(float)
+    ausente = np.array([np.flatnonzero(y == 1)[0], np.flatnonzero(y == 0)[0]])
+    com = e.copy()
+    com[ausente] = np.nan
+    resto = np.setdiff1d(np.arange(300), ausente)
+    assert ie.fa.auc_postos(com, y) == pytest.approx(ie.fa.auc_postos(e[resto], y[resto]))
+    assert ie.spearman(com, e) == pytest.approx(ie.spearman(e[resto], e[resto]))
+    assert np.isnan(ie.spearman([1.0, 2.0, np.nan], [1.0, 3.0, 2.0]))
+
+
+def test_comparar_nao_confunde_amostra_com_metodo():
+    """Mesma ordem nos setores comuns, amostras diferentes: troca de faixa zero, Spearman 1."""
+    rng = np.random.default_rng(0)
+    mun = np.repeat(['A', 'B'], 60)
+    a = rng.random(120)
+    b = a.copy()
+    a[:20] = np.nan                       # a versão "a" perde 20 setores do município A
+    b[20:60] = b[20:60] * 0.5 + 0.1       # transformação monótona: mesma ordem
+    for regra in ('ivs_bh', 'quartis'):
+        c = ie.comparar(a, b, mun, regra)
+        assert c['n_comum'] == 100 and c['troca_faixa'] == 0 and c['spearman_mun'] == 1
+    # as faixas de cada uma, na própria amostra, trocariam: é o que a função evita
+    assert (ie.faixas(a, mun, 'quartis') != ie.faixas(b, mun, 'quartis')).mean() > 0
+
+
 def test_logistica_recupera_coeficientes():
     rng = np.random.default_rng(4)
     x = rng.normal(size=(20000, 1))

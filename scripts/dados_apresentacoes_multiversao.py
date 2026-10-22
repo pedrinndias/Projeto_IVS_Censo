@@ -1148,11 +1148,14 @@ def montar_final(df: pd.DataFrame, ivs: pd.DataFrame, fin: pd.DataFrame) -> Deck
               mostra=f"{intbr((eixos['veredito'] == 'equivalentes').sum())} de {len(eixos)} eixos dão \"tanto faz\"."))
     rotulo_esp = {'conjunto': lambda r: r.conjunto, 'rotacao_peso': lambda r: f'{r.rotacao} · {r.metodo}',
                   'normalizacao': lambda r: r.normalizacao, 'sigilo': lambda r: r.sigilo}
+    # pré-registrado: a alternativa por postos troca a matriz da fatorial junto com a régua
+    AVISO_POSTOS = ('Atenção: "postos_municipal" troca duas coisas juntas, a matriz da fatorial (calculada dentro do '
+                    'município) e a régua; a troca de faixa dela não é só efeito da régua.')
     ler_eixo = {'conjunto': '"nucleo-X": o núcleo sem o indicador X; "nucleo+X": com X a mais.',
                 'rotacao_peso': '"ss": pesos pela soma dos quadrados das cargas (dos dados); "50_50" e "60_40": divisão fixa '
                                 'entre as dimensões; "comunalidades": pela variação explicada de cada indicador.',
                 'normalizacao': '"municipal": de 0 a 1 dentro de cada município; "global": de 0 a 1 nos 70 juntos; '
-                                '"postos_municipal": posição do setor no município, o que trata zeros e assimetria.',
+                                '"postos_municipal": posição do setor no município, o que trata zeros e assimetria. ' + AVISO_POSTOS,
                 'sigilo': '"piso": o setor sigiloso recebe o menor valor possível (um analfabeto); "zero": recebe zero.'}
     for e in ('conjunto', 'rotacao_peso', 'normalizacao', 'sigilo'):
         g = esp[esp['eixo'] == e].sort_values('troca_faixa')
@@ -1177,7 +1180,8 @@ def montar_final(df: pd.DataFrame, ivs: pd.DataFrame, fin: pd.DataFrame) -> Deck
               explica=explica(oque='A % de setores que trocam de faixa em cada alternativa do eixo.',
                               serve='Visualiza quais alternativas mudam o resultado prático do índice.',
                               ler=f'Tracejado: o limite de {pct(fm.EQUIV["troca"], 0)} da regra de equivalência. Barras '
-                                  'vermelhas também podem falhar pela correlação, mesmo abaixo do tracejado.', mostra=fr))
+                                  'vermelhas também podem falhar pela correlação, mesmo abaixo do tracejado.'
+                                  + (' ' + AVISO_POSTOS if e == 'normalizacao' else ''), mostra=fr))
     t = esp.groupby(['conjunto', 'normalizacao'])['elegivel'].sum().unstack()
     D.add('Quantas especificações são elegíveis', [mv('camada2_especificacoes.csv')],
           cab=['Conjunto', 'Municipal', 'Global', 'Postos'], colW=[2.4, 1.3, 1.3, 1.3],
@@ -1467,6 +1471,7 @@ def montar_final(df: pd.DataFrame, ivs: pd.DataFrame, fin: pd.DataFrame) -> Deck
         ['Autocorrelação espacial.', 'Setores vizinhos não são independentes; o I de Moran fica para o geoprocessamento.'],
         ['Sigilo.', 'O ausente não é aleatório: cai nos setores de renda mais alta.'],
         ['Amostras diferentes.', 'Cada versão roda nos setores com todos os seus indicadores; as comparações usam a amostra comum.'],
+        ['Régua e matriz.', 'No eixo da normalização, a alternativa por postos troca a matriz da fatorial junto com a régua: o efeito não é só da régua.'],
         ['Validação externa.', 'Desfechos de saúde do ELSI-Brasil não estão no projeto; a AUC contra favela é só descrição.']])
     D.add('Próximos passos', ['docs/prompts/prompt_fatorial_multiversao_2026-10.md'], blocos=[
         ['1.', 'Levar as cinco decisões à orientadora.'],

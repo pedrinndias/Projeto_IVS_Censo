@@ -5,8 +5,8 @@ PowerPoint. Este script compara, slide a slide e célula a célula, as tabelas d
 editada com as do deck gerado e grava cada diferença com o ID do slide, para a mudança ser
 levada à origem (protocolo de correção, seção 5 do prompt) antes de regerar.
 
-Uso:  ./.venv/bin/python scripts/comparar_edicoes_relatorio.py [deck_editado.pptx]
-      (sem argumento, compara o deck principal, que o Pedro edita, com dados/ultimo_gerado.pptx)
+Uso:  ./.venv/bin/python scripts/comparar_edicoes_relatorio.py deck_editado.pptx
+      (compara-o com dados/ultimo_gerado.pptx; o deck que o Pedro edita não tem nome fixo)
 Saída: relatorio_descritivo/dados/edicoes_do_pedro.csv (e as primeiras linhas na tela)
 """
 from __future__ import annotations
@@ -22,7 +22,6 @@ import pandas as pd
 RAIZ = Path(__file__).resolve().parents[1]
 PASTA = RAIZ / 'relatorio_descritivo'
 GERADO = PASTA / 'dados' / 'ultimo_gerado.pptx'          # o último deck gerado, intocado
-PRINCIPAL = PASTA / 'Relatorio_Descritivo_IVS_2026-10.pptx'
 
 
 ID = re.compile(r'^(A|DM|DS|FA|FP|Z)\d{2}$')
@@ -53,7 +52,9 @@ def slides(arq: Path) -> dict[str, list]:
 
 
 def main() -> None:
-    editado = Path(sys.argv[1]) if len(sys.argv) > 1 else PRINCIPAL
+    if len(sys.argv) < 2:
+        sys.exit('uso: comparar_edicoes_relatorio.py <deck_editado.pptx>')
+    editado = Path(sys.argv[1])
     a, b = slides(GERADO), slides(editado)
     sumidos = [k for k in a if k not in b]
     novos = [k for k in b if k not in a]

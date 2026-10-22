@@ -22,6 +22,21 @@ def test_tucker():
     assert np.allclose(fm.congruencia_tucker(A, -A), -1)
 
 
+def test_replicacao_usa_a_rotacao_do_finalista():
+    """Sem rotação há um fator só: o Tucker mede esse fator (o F2 fica ausente), não o promax de dois."""
+    rng = np.random.default_rng(1)
+    n = 2000
+    cargas = np.array([[.8, .1], [.7, .2], [.1, .8], [.2, .7], [.75, .1], [.1, .75], [.7, .3]])
+    cols = [fm.VARS[c] for c in fm.NUCLEO]
+    d = pd.DataFrame(rng.normal(size=(n, 2)) @ cargas.T + .5 * rng.normal(size=(n, 7)), columns=cols)
+    d['NM_MUN'] = np.tile(['A', 'B', 'C', 'D'], n // 4)
+    metade = {'A': 0, 'B': 1, 'C': 0, 'D': 1}
+    f = {'normalizacao': 'municipal', 'rotacao': 'promax', 'metodo': '60_40'}
+    assert len(fm.tucker_metades(d, cols, f, metade)) == 2
+    assert len(fm.tucker_metades(d, cols, {**f, 'rotacao': 'sem_rotacao', 'metodo': 'unico'}, metade)) == 1
+    assert len(fm.tucker_metades(d, cols, {**f, 'rotacao': 'varimax', 'metodo': 'ss'}, metade)) == 2
+
+
 def test_sinais_invertem_carga_negativa():
     M = np.array([[.8, .1], [-.7, .2], [.1, -.9]])
     assert list(fm.sinais(M)) == [1, -1, -1]
@@ -40,13 +55,3 @@ def test_postos_municipal_sem_variacao_fica_ausente():
     assert np.isnan(v[3]) and np.all((v[:3] > 0) & (v[:3] <= 1))
 
 
-def test_comparar_nao_confunde_amostra_com_metodo():
-    """Mesma ordem nos setores comuns, amostras diferentes: troca de faixa zero, Spearman 1."""
-    rng = np.random.default_rng(0)
-    mun = np.repeat(['A', 'B'], 60)
-    a = rng.random(120)
-    b = a.copy()
-    a[:20] = np.nan                       # a versão "a" perde 20 setores do município A
-    b[20:60] = b[20:60] * 0.5 + 0.1       # transformação monótona: mesma ordem
-    c = fm.comparar(a, b, mun)
-    assert c['n_comum'] == 100 and c['troca_faixa'] == 0 and c['spearman_mun'] == 1

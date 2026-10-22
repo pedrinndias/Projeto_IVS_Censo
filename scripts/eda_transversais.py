@@ -130,6 +130,13 @@ def pesos_de(d, col):
     return ev.fa.pesos_indice(M, rep), r['kmo']
 
 
+def sortear_municipios(pos: dict, rng) -> np.ndarray:
+    """Posições dos setores de uma reamostragem por município (com reposição): a unidade é o
+    município, que entra com todos os seus setores; reamostrar setores subestima a incerteza."""
+    nomes = list(pos)
+    return np.concatenate([pos[nomes[i]] for i in rng.integers(0, len(nomes), len(nomes))])
+
+
 def e2(S, cfg_ref):
     b = ev.montar_base(cfg_ref)
     ix = ev.calcular_indice(b.df, cfg_ref)
@@ -148,10 +155,10 @@ def e2(S, cfg_ref):
            'pct_max': pctbr(t43['pct_mudam_faixa'].max())}
     S.tabela('T43', 'um_municipio_de_fora', 15, 'e2_loo', t43, c43)
     rng = np.random.default_rng(SEMENTE)
+    pos = d.groupby('NM_MUN').indices
     boot = []
     for _ in range(N_BOOT):
-        dd = d.iloc[rng.integers(0, len(d), len(d))]
-        w, kmo = pesos_de(dd, col)
+        w, kmo = pesos_de(d.iloc[sortear_municipios(pos, rng)], col)
         v = ie.indice(d, col, w, 'municipal')
         boot.append({'kmo': kmo, 'spearman': rho(pd.Series(v), s['ivs']),
                      'auc_municipal': ie.auc_municipal(v, d['is_fcu'], d['NM_MUN'])[0], **dict(zip(col, 100 * w))})

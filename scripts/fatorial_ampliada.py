@@ -205,9 +205,11 @@ def indice_01(d, colunas, peso):
 
 
 def auc_postos(escore, positivo):
-    """AUC por Mann–Whitney, como no NB04 (célula 39)."""
-    r = pd.Series(np.asarray(escore, dtype=float)).rank().to_numpy()
-    pos = np.asarray(positivo) == 1
+    """AUC por Mann–Whitney, como no NB04 (célula 39), nos pares com escore e rótulo."""
+    e, y = np.asarray(escore, dtype=float), np.asarray(positivo, dtype=float)
+    ok = ~(np.isnan(e) | np.isnan(y))
+    r = pd.Series(e[ok]).rank().to_numpy()
+    pos = y[ok] == 1
     n1, n0 = pos.sum(), (~pos).sum()
     return float((r[pos].sum() - n1 * (n1 + 1) / 2) / (n1 * n0))
 
