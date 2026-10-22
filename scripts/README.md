@@ -78,6 +78,17 @@ documentos.
 | [`anexar_versoes_ao_relatorio.py`](anexar_versoes_ao_relatorio.py) | `relatorio_descritivo/Relatorio_Descritivo_IVS_2026-10_com_108_versoes.pptx` — o relatório descritivo editado pelo Pedro com a parte 5 (as 108 versões) copiada para dentro, sem regerar; renumera o pé | `python-pptx` (via `uv run --with`) |
 | [`inserir_no_relatorio.py`](inserir_no_relatorio.py) | Copia slides novos do relatório (lista em `relatorio_descritivo/dados/insercoes_<rodada>.json`) para dentro do deck editado pelo Pedro, sem regerar; grava arquivo novo e renumera o pé | `python-pptx` (via `uv run --with`) |
 
+## Fatorial multiversão (out/2026)
+
+Prompt e estado em `docs/prompts/*fatorial_multiversao_2026-10.md`. Ordem: motor (camadas 1 → 2 → 3) → números → decks → verificador.
+
+| Script | O que gera |
+|---|---|
+| [`fatorial_multiversao.py`](fatorial_multiversao.py) `--camada 1\|2\|3` | `banco_de_dados/eda/fatorial_multiversao/` — as 4.017 combinações (~22 min), as 999 especificações (~5 min), os finalistas e o IVS proposto (~1 min) |
+| [`dados_apresentacoes_multiversao.py`](dados_apresentacoes_multiversao.py) | `apresentacoes_multiversao/dados/*.json`, `figuras/` e `Fatorial_Multiversao_numeros.xlsx` |
+| [`gerar_decks_multiversao.js`](gerar_decks_multiversao.js) `<COD\|todos\|FIN>` | os 12 decks de indicador (`fichas/`) e o deck final, com trava contra sobrescrita |
+| [`verificar_multiversao.py`](verificar_multiversao.py) `--fase N` | conferência de cada fase (1 a 7) |
+
 ## Duas coisas que é preciso saber antes de rodar
 
 **Cinco scripts exigem dependências que não estão no `requirements.txt`.** `reportlab` e

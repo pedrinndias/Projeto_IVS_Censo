@@ -1,9 +1,10 @@
 """Apresentação oral da RAIC 2026 sobre o template da Coordic.
 
-Segue o roteiro v2 (`relatorio_parcial_raic/ROTEIRO_APRESENTACAO_ORAL.md`): 11 slides de fala e
-7 de reserva para a arguição. As falas do roteiro entram nas notas do apresentador — editar a
-fala é editar o roteiro e rodar de novo. Os pontos que dependem da orientadora saem com
-marca-texto amarelo ("A CONFIRMAR").
+Segue o roteiro (`relatorio_parcial_raic/ROTEIRO_APRESENTACAO_ORAL.md`): 11 slides de fala e
+6 de reserva para a arguição. As falas do roteiro entram nas notas do apresentador — editar a
+fala é editar o roteiro e rodar de novo. Um ponto que ainda dependa da orientadora pode sair com
+marca-texto amarelo (`confirmar`). Inclui as edições que o Pedro fez à mão no _ENVIO em 19/10:
+grupo NESPE, objetivo sem a marca de provisório, sem a linha da fatorial no slide 10 e sem a R7.
 
 Números: os mesmos arquivos que alimentaram o relatório parcial (pecas.json, Tabela 1, T03, T04)
 e, onde o relatório os escreveu à mão, a mesma constante com a linha de origem.
@@ -269,7 +270,7 @@ def falas_do_roteiro() -> dict[int, str]:
         n = int(bloco.split('.')[0])
         m = re.search(r'\*\*Fala[^*]*\*\*:?\s*(.*?)(?=\n- \*\*|\n\s*\n|\Z)', bloco, re.S)
         t = re.sub(r'\*\*\(decorar\)\*\*\s*', '[DECORAR] ', m[1]) if m else ''
-        t = re.sub(r'\*\(([^)]*)\)\*', r'[\1]', t).replace('*', '')
+        t = re.sub(r'\*\(([^)]*)\)\*', r'[\1]', t).replace('*', '').replace('==', '')
         falas[n] = re.sub(r'\s+', ' ', t).strip()
     return falas
 
@@ -305,7 +306,7 @@ def capa(s) -> None:
              tamanho=16, alinhar=PP_ALIGN.CENTER, espaco=0)
     escrever(caixas['CaixaDeTexto 4'].text_frame,
              [[('Grupo de Pesquisa no Programa: ', {}),
-               confirmar('A CONFIRMAR (o relatório traz o núcleo NESPE)')]],
+               ('NESPE', {'bold': True})]],
              tamanho=16, alinhar=PP_ALIGN.CENTER, espaco=0)
     escrever(caixas['CaixaDeTexto 6'].text_frame,
              ['Data de ingresso no Programa: 06/03/2026', 'Programa de vínculo: FAPEMIG'],
@@ -351,8 +352,7 @@ def s3_objetivos(s) -> None:
     titulo(s, 'O projeto quer medir a vulnerabilidade onde ela acontece')
     caixa(s, 0.9, 4.6, 32.0, 3.7,
           [[('Objetivo geral do projeto da orientadora', {'bold': True, 'cor': TEAL, 'tamanho': 19})],
-           [confirmar('A CONFIRMAR — texto literal da Profa. Amanda. Provisório (relatório): '),
-            ('Avaliar as desigualdades intraurbanas por meio da construção de um Índice de Vulnerabilidade '
+           [('Avaliar as desigualdades intraurbanas por meio da construção de um Índice de Vulnerabilidade '
              'à Saúde (IVS) de cidades brasileiras.', {})]],
           fundo=FUNDO, tamanho=20)
     for k, (num, txt, status, cor_st) in enumerate([
@@ -532,9 +532,6 @@ def s10_conclusao(s) -> None:
     for k, p in enumerate(passos):
         caixa(s, 20.1, 5.9 + k * 1.62, 12.8, 1.42, [[(f'{k + 1}  {p}', {'bold': True})]], fundo=LAVANDA,
               tamanho=18, ancora=MSO_ANCHOR.MIDDLE)
-    texto(s, 20.1, 14.1, 12.8, 1.3,
-          [[('Fatorial: ', {'bold': True}), confirmar('A CONFIRMAR — frase combinada com a Profa. Amanda')]],
-          tamanho=14)
     caixa(s, 0.9, 15.5, 32.0, 2.3,
           [[('Com dados, cada decisão muda o resultado — por isso cada uma está justificada e registrada.',
              {'bold': True, 'tamanho': 21, 'cor': TEAL})],
@@ -636,15 +633,6 @@ def r6_criterio53(s) -> None:
              'exclusao_rural_conferencia.csv).')
 
 
-def r7_fatorial(s) -> None:
-    titulo(s, 'Reserva R7 · Análise fatorial')
-    caixa(s, 0.9, 5.5, 32.0, 6.0,
-          [[confirmar('A CONFIRMAR — só entra com autorização da Profa. Amanda.')],
-           'Se autorizado: incluir aqui os resultados combinados. Se não: tirar este slide e responder na '
-           'arguição com a frase combinada.'],
-          fundo=FUNDO, tamanho=22, alinhar=PP_ALIGN.CENTER, ancora=MSO_ANCHOR.MIDDLE, espaco=12)
-
-
 NOTAS_RESERVA = {
     'R1': 'Pergunta: "É comparável com o IVS de 2012?" — Mesmas dimensões, com adaptações documentadas: '
           'analfabetismo a partir de 15 anos (2012: 5+) e renda média do responsável no lugar das faixas de '
@@ -662,7 +650,6 @@ NOTAS_RESERVA = {
     'R6': 'Pergunta: "Por que 53, se são 70?" — Para calcular a correlação dentro de cada município, adotei o '
           'mínimo de 30 setores com todos os dados; municípios pequenos ficam com poucos setores após o recorte '
           'urbano.',
-    'R7': 'Pergunta: "E a análise fatorial?" — Responder com a frase combinada com a Profa. Amanda.',
 }
 
 
@@ -697,7 +684,7 @@ def main() -> None:
     notas(final_s, falas[11])
 
     for chave, f in [('R1', r1_adequacoes), ('R2', r2_matriz), ('R3', r3_tabela1), ('R4', r4_regioes),
-                     ('R5', r5_extremo), ('R6', r6_criterio53), ('R7', r7_fatorial)]:
+                     ('R5', r5_extremo), ('R6', r6_criterio53)]:
         s = prs.slides.add_slide(conteudo)
         f(s)
         notas(s, NOTAS_RESERVA[chave])
@@ -709,7 +696,7 @@ def main() -> None:
     prs.part.drop_rel(el.rId)
     lista.remove(el)
     prs.save(str(SAIDA))
-    print(f'{SAIDA.relative_to(RAIZ)}: {len(prs.slides)} slides (11 de fala + 7 de reserva)')
+    print(f'{SAIDA.relative_to(RAIZ)}: {len(prs.slides)} slides (11 de fala + 6 de reserva)')
 
     # Versão de envio: os mesmos slides, sem as páginas de notas (as falas e as marcas de ensaio ficam
     # só no arquivo do Pedro).

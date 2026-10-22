@@ -1,0 +1,2226 @@
+{
+ "deck": "MNC",
+ "titulo": "Moradia não convencional",
+ "arquivo": "fichas/MNC_Moradia_nao_convencional.pptx",
+ "ordem": [
+  "MNC-01",
+  "MNC-02",
+  "MNC-03",
+  "MNC-04",
+  "MNC-05",
+  "MNC-06",
+  "MNC-07",
+  "MNC-08",
+  "MNC-09",
+  "MNC-10",
+  "MNC-11",
+  "MNC-12",
+  "MNC-13",
+  "MNC-14",
+  "MNC-15",
+  "MNC-16",
+  "MNC-17",
+  "MNC-18",
+  "MNC-19",
+  "MNC-20",
+  "MNC-21",
+  "MNC-22",
+  "MNC-23",
+  "MNC-24",
+  "MNC-25",
+  "MNC-26",
+  "MNC-27",
+  "MNC-28",
+  "MNC-29",
+  "MNC-30",
+  "MNC-31",
+  "MNC-32",
+  "MNC-33",
+  "MNC-34",
+  "MNC-35",
+  "MNC-36",
+  "MNC-37"
+ ],
+ "slides": {
+  "MNC-01": {
+   "titulo": "Moradia não convencional",
+   "fontes": [
+    "relatorio_parcial_raic/Relatorio_Parcial_RAIC_2026_Pedro_corrigido.pdf, Quadro 2"
+   ],
+   "capa": true,
+   "kicker": "INDICADOR MNC · MORFOLOGIA",
+   "sub": "Proporção de moradias não convencionais (cortiço, maloca, estrutura degradada). Indicador complementar (Quadro 2), fora do IVS de 2012. Parte A: análise exploratória. Parte B: o indicador na análise fatorial.",
+   "rodape": "Fatorial multiversão e IVS · Censo Demográfico 2022 · 70 municípios do ELSI-Brasil · Pedro Dias Soares · out/2026"
+  },
+  "MNC-02": {
+   "titulo": "Análise exploratória",
+   "fontes": [],
+   "numero": "1",
+   "sub": "O que o indicador mede, como se distribui nos setores, onde é mais alto e como se relaciona com renda, favela e o Brasil — antes de qualquer análise fatorial."
+  },
+  "MNC-03": {
+   "titulo": "O que o indicador mede e por que importa",
+   "fontes": [
+    "src/ivs_censo/indicadores.py"
+   ],
+   "blocos": [
+    [
+     "O que mede.",
+     "Proporção de moradias não convencionais (cortiço, maloca, estrutura degradada), em proporção de 0 a 1."
+    ],
+    [
+     "Por que importa para a saúde.",
+     "Cortiço, maloca ou estrutura degradada: moradia precária, que expõe a risco estrutural, umidade e adensamento."
+    ],
+    [
+     "Direção.",
+     "Quanto maior, mais vulnerável — como no IVS de 2012."
+    ],
+    [
+     "No índice.",
+     "Fora do IVS de 2012; entra na análise fatorial como indicador que pode ou não acrescentar."
+    ]
+   ]
+  },
+  "MNC-04": {
+   "titulo": "Como é calculado",
+   "fontes": [
+    "src/ivs_censo/indicadores.py",
+    "src/ivs_censo/fontes.py"
+   ],
+   "cab": [
+    "Parte",
+    "Definição"
+   ],
+   "colW": [
+    1.9,
+    5.3
+   ],
+   "linhas": [
+    [
+     "Numerador",
+     "V00050 + V00051 + V00052"
+    ],
+    [
+     "Denominador",
+     "V00001"
+    ],
+    [
+     "Escala",
+     "proporção de 0 a 1"
+    ],
+    [
+     "Arquivos do IBGE",
+     "Agregados_por_setores_caracteristicas_domicilio1_BR.csv"
+    ],
+    [
+     "Na análise fatorial",
+     "entra como está"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "A receita do indicador: quais variáveis do Censo vão em cima (numerador) e em baixo (denominador) da divisão, e de que arquivo do IBGE cada uma sai."
+    ],
+    [
+     "Para que serve.",
+     "Permite refazer a conta e conferir qualquer número. As variáveis \"V0…\" são os códigos do dicionário oficial dos agregados por setor do Censo 2022."
+    ],
+    [
+     "Como ler.",
+     "Uma soma no numerador junta categorias (por exemplo, todas as formas inadequadas). O cálculo é por setor censitário, a menor área com dado do Censo."
+    ]
+   ]
+  },
+  "MNC-05": {
+   "titulo": "As adequações ao Censo 2022",
+   "fontes": [
+    "relatorio_parcial_raic/Relatorio_Parcial_RAIC_2026_Pedro_corrigido.pdf, seção IV"
+   ],
+   "blocos": [
+    [
+     "Denominador",
+     "domicílios particulares permanentes ocupados (V00001), equivalente ao de 2012; moradores de domicílios coletivos não entram (relatório, item a)."
+    ],
+    [
+     "Fora do índice",
+     "indicador complementar do Quadro 2: descreve o setor, não compõe o IVS de 2012."
+    ],
+    [
+     "Por que existem.",
+     "O IVS de 2012 foi feito com o Censo 2010. Quando o Censo 2022 não traz a mesma variável, a troca é declarada aqui, como o relatório parcial faz na seção IV."
+    ]
+   ]
+  },
+  "MNC-06": {
+   "titulo": "100,0% dos setores têm o dado",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Setores",
+    "Quantidade",
+    "% do recorte",
+    "Renda mediana",
+    "% favela",
+    "% Sudeste"
+   ],
+   "colW": [
+    1.3,
+    1.1,
+    1.1,
+    1.5,
+    1.0,
+    1.1
+   ],
+   "linhas": [
+    [
+     "com o dado",
+     "104.108",
+     "100,0%",
+     "R$ 2.572,39",
+     "18,7%",
+     "59,5%"
+    ],
+    [
+     "sem o dado",
+     "0",
+     "0,0%",
+     "—",
+     "—",
+     "—"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Quantos setores têm o indicador calculado e quantos ficaram sem ele, com o perfil de cada grupo."
+    ],
+    [
+     "Para que serve.",
+     "O IBGE esconde (sigilo) números muito pequenos para ninguém ser identificado. Se o dado falta mais num tipo de setor, as médias ficam enviesadas — por isso o perfil dos dois grupos."
+    ],
+    [
+     "Como ler.",
+     "Compare a renda mediana, a % de favela e a % de Sudeste entre \"com o dado\" e \"sem o dado\". Se forem parecidas, a falta é próxima do acaso."
+    ],
+    [
+     "O que mostra.",
+     "104.108 dos 104.108 setores (100,0%) têm o dado. A ausência é desprezível."
+    ]
+   ]
+  },
+  "MNC-07": {
+   "titulo": "Onde falta o dado",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/MNC_ausente_regiao.png",
+   "legenda": "Moradia não convencional: proporção de setores sem o dado, por região.",
+   "explica": [
+    [
+     "O que é.",
+     "A proporção de setores sem o indicador em cada região."
+    ],
+    [
+     "Para que serve.",
+     "Mostra se a falta de dado se concentra numa parte do país, o que pesaria nas comparações regionais."
+    ],
+    [
+     "Como ler.",
+     "Cada barra é uma região; quanto mais longa, mais setores sem o dado."
+    ],
+    [
+     "O que mostra.",
+     "Nenhum setor está sem o dado, em nenhuma região."
+    ]
+   ]
+  },
+  "MNC-08": {
+   "titulo": "Estatísticas descritivas",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Medida",
+    "Valor"
+   ],
+   "colW": [
+    3.0,
+    2.2
+   ],
+   "linhas": [
+    [
+     "Setores com o dado",
+     "104.108"
+    ],
+    [
+     "Média",
+     "0,006"
+    ],
+    [
+     "Desvio-padrão",
+     "0,039"
+    ],
+    [
+     "Mínimo",
+     "0,000"
+    ],
+    [
+     "Percentil 10",
+     "0,000"
+    ],
+    [
+     "Percentil 25",
+     "0,000"
+    ],
+    [
+     "Mediana",
+     "0,000"
+    ],
+    [
+     "Percentil 75",
+     "0,000"
+    ],
+    [
+     "Percentil 90",
+     "0,000"
+    ],
+    [
+     "Máximo",
+     "1,000"
+    ],
+    [
+     "Assimetria",
+     "13,01"
+    ],
+    [
+     "% de setores com zero",
+     "93,0%"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "O resumo numérico do indicador nos setores urbanos dos 70 municípios."
+    ],
+    [
+     "Para que serve.",
+     "A média é puxada por valores extremos; a mediana é o valor do setor do meio. O percentil 25 (ou 75) é o valor abaixo do qual estão 25% (ou 75%) dos setores. A assimetria mede o quanto a distribuição tem cauda longa para um lado."
+    ],
+    [
+     "Como ler.",
+     "Assimetria perto de zero: distribuição equilibrada. Acima de 1: cauda longa à direita, poucos setores com valores muito altos. Muitos zeros e assimetria alta pedem cuidado ao padronizar."
+    ],
+    [
+     "O que mostra.",
+     "A média (0,006) e a mediana (0,000) se afastam: assimetria de 13,01. Em 93,0% dos setores o valor é zero."
+    ]
+   ]
+  },
+  "MNC-09": {
+   "titulo": "O histograma",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/MNC_histograma.png",
+   "legenda": "Moradia não convencional: número de setores em cada faixa de valor (104.108 setores).",
+   "explica": [
+    [
+     "O que é.",
+     "Os setores agrupados em faixas de valor do indicador; a altura de cada barra é quantos setores caem naquela faixa."
+    ],
+    [
+     "Para que serve.",
+     "Mostra a forma da distribuição: onde está a maioria dos setores e se há cauda longa."
+    ],
+    [
+     "Como ler.",
+     "Barra alta à esquerda e cauda à direita: muitos setores com valor baixo e poucos com valor alto. A linha vermelha é a média; a tracejada, a mediana — quanto mais afastadas, mais assimétrica."
+    ],
+    [
+     "O que mostra.",
+     "A média (0,006) e a mediana (0,000) se afastam: assimetria de 13,01. Em 93,0% dos setores o valor é zero."
+    ]
+   ]
+  },
+  "MNC-10": {
+   "titulo": "O boxplot",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/MNC_boxplot.png",
+   "legenda": "Moradia não convencional: boxplot de todos os setores, com os valores extremos.",
+   "explica": [
+    [
+     "O que é.",
+     "Um resumo da distribuição numa figura: caixa, mediana, bigodes e pontos extremos."
+    ],
+    [
+     "Para que serve.",
+     "Mostra de uma vez onde está a metade central dos setores e quantos fogem do padrão."
+    ],
+    [
+     "Como ler.",
+     "A caixa vai do percentil 25 ao 75; a linha vermelha é a mediana; os bigodes vão até 1,5 vez a altura da caixa; cada ponto além deles é um setor extremo."
+    ],
+    [
+     "O que mostra.",
+     "O percentil 25 e o 75 são iguais (caixa sem altura): todo valor diferente deles aparece como extremo."
+    ]
+   ]
+  },
+  "MNC-11": {
+   "titulo": "A distribuição acumulada",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/MNC_acumulada.png",
+   "legenda": "Moradia não convencional: proporção de setores com valor até cada ponto do eixo horizontal.",
+   "explica": [
+    [
+     "O que é.",
+     "Para cada valor no eixo horizontal, a curva dá a proporção de setores com valor igual ou menor."
+    ],
+    [
+     "Para que serve.",
+     "Lê qualquer percentil direto no gráfico, sem depender das faixas do histograma."
+    ],
+    [
+     "Como ler.",
+     "Escolha uma altura (as linhas pontilhadas marcam 25%, 50% e 75%) e desça até o eixo: é o valor daquele percentil. Uma subida vertical no começo indica muitos setores com o mesmo valor (por exemplo, zero)."
+    ],
+    [
+     "O que mostra.",
+     "Metade dos setores tem até 0,000; três quartos, até 0,000."
+    ]
+   ]
+  },
+  "MNC-12": {
+   "titulo": "A régua dos percentis",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/MNC_percentis.png",
+   "legenda": "Moradia não convencional: valor nos percentis 10, 25, 50, 75, 90 e 99, e a média.",
+   "explica": [
+    [
+     "O que é.",
+     "O valor do indicador em seis pontos da distribuição: do setor no percentil 10 ao do percentil 99."
+    ],
+    [
+     "Para que serve.",
+     "Mostra quanto o indicador cresce do setor típico para os mais altos — onde está a desigualdade."
+    ],
+    [
+     "Como ler.",
+     "Barras que sobem devagar e explodem no fim (p90, p99): o problema se concentra em poucos setores. A linha vermelha é a média."
+    ],
+    [
+     "O que mostra.",
+     "Do percentil 50 (0,000) ao 99 (0,150)."
+    ]
+   ]
+  },
+  "MNC-13": {
+   "titulo": "Por região: a tabela",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Grupo",
+    "Setores",
+    "Média",
+    "Mediana",
+    "p75",
+    "% zeros"
+   ],
+   "linhas": [
+    [
+     "Norte",
+     "5.915",
+     "0,006",
+     "0,000",
+     "0,000",
+     "87,4%"
+    ],
+    [
+     "Nordeste",
+     "19.497",
+     "0,004",
+     "0,000",
+     "0,000",
+     "93,7%"
+    ],
+    [
+     "Sudeste",
+     "61.989",
+     "0,007",
+     "0,000",
+     "0,000",
+     "93,6%"
+    ],
+    [
+     "Sul",
+     "7.217",
+     "0,001",
+     "0,000",
+     "0,000",
+     "97,0%"
+    ],
+    [
+     "Centro-Oeste",
+     "9.490",
+     "0,010",
+     "0,000",
+     "0,000",
+     "87,5%"
+    ]
+   ],
+   "colW": [
+    1.5,
+    1.1,
+    1.3,
+    1.3,
+    1.2,
+    0.9
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "As estatísticas do indicador separadas pelas cinco grandes regiões."
+    ],
+    [
+     "Para que serve.",
+     "Mostra se o indicador tem padrão regional, o que pesa na escolha da régua (dentro de cada município ou no conjunto)."
+    ],
+    [
+     "Como ler.",
+     "Compare média e mediana entre as linhas; \"% zeros\" é a parte dos setores sem nenhum domicílio ou pessoa na condição."
+    ],
+    [
+     "O que mostra.",
+     "A maior média é a do Centro-Oeste (0,010); a menor, a do Sul (0,001). O Norte tem só 6 municípios: os contrastes descrevem os municípios estudados, não a região inteira."
+    ]
+   ]
+  },
+  "MNC-14": {
+   "titulo": "Por região: o boxplot",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/MNC_regiao.png",
+   "legenda": "Moradia não convencional por região.",
+   "explica": [
+    [
+     "O que é.",
+     "Um boxplot por região, lado a lado."
+    ],
+    [
+     "Para que serve.",
+     "Compara não só a média, mas a dispersão de cada região."
+    ],
+    [
+     "Como ler.",
+     "A caixa vai do percentil 25 ao 75 (metade central dos setores); a linha vermelha é a mediana; o losango, a média; os bigodes vão até 1,5 vez a altura da caixa. Os extremos além dos bigodes não são desenhados, para a escala não ficar presa a poucos setores."
+    ],
+    [
+     "O que mostra.",
+     "A maior média é a do Centro-Oeste (0,010); a menor, a do Sul (0,001). O Norte tem só 6 municípios: os contrastes descrevem os municípios estudados, não a região inteira."
+    ]
+   ]
+  },
+  "MNC-15": {
+   "titulo": "Por porte do município: a tabela",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Grupo",
+    "Setores",
+    "Média",
+    "Mediana",
+    "p75",
+    "% zeros"
+   ],
+   "linhas": [
+    [
+     "até 100 mil",
+     "1.223",
+     "0,001",
+     "0,000",
+     "0,000",
+     "97,5%"
+    ],
+    [
+     "100 a 500 mil",
+     "7.674",
+     "0,003",
+     "0,000",
+     "0,000",
+     "96,0%"
+    ],
+    [
+     "mais de 500 mil",
+     "95.211",
+     "0,006",
+     "0,000",
+     "0,000",
+     "92,7%"
+    ]
+   ],
+   "colW": [
+    1.6,
+    1.1,
+    1.3,
+    1.3,
+    1.1,
+    0.8
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "As estatísticas do indicador por tamanho do município (moradores somados nos setores da base)."
+    ],
+    [
+     "Para que serve.",
+     "Testa se o indicador acompanha o tamanho da cidade — se sim, parte dele mede porte urbano, não vulnerabilidade."
+    ],
+    [
+     "Como ler.",
+     "Três grupos: até 100 mil, de 100 a 500 mil e mais de 500 mil moradores."
+    ],
+    [
+     "O que mostra.",
+     "A maior média é a dos municípios de mais de 500 mil (0,006); a menor, a dos de até 100 mil (0,001)."
+    ]
+   ]
+  },
+  "MNC-16": {
+   "titulo": "Por porte do município: o boxplot",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/MNC_porte.png",
+   "legenda": "Moradia não convencional por porte do município.",
+   "explica": [
+    [
+     "O que é.",
+     "Um boxplot por porte de município."
+    ],
+    [
+     "Para que serve.",
+     "Mostra se cidades maiores ou menores concentram o problema."
+    ],
+    [
+     "Como ler.",
+     "A caixa vai do percentil 25 ao 75 (metade central dos setores); a linha vermelha é a mediana; o losango, a média; os bigodes vão até 1,5 vez a altura da caixa. Os extremos além dos bigodes não são desenhados, para a escala não ficar presa a poucos setores."
+    ],
+    [
+     "O que mostra.",
+     "A maior média é a dos municípios de mais de 500 mil (0,006); a menor, a dos de até 100 mil (0,001)."
+    ]
+   ]
+  },
+  "MNC-17": {
+   "titulo": "Os 70 municípios: maiores e menores médias",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Município",
+    "Região",
+    "Setores",
+    "Média",
+    "Mediana"
+   ],
+   "colW": [
+    2.4,
+    1.3,
+    0.9,
+    1.3,
+    1.3
+   ],
+   "linhas": [
+    [
+     "Goiânia",
+     "Centro-Oeste",
+     "2.272",
+     "0,021",
+     "0,000"
+    ],
+    [
+     "São Luís",
+     "Nordeste",
+     "1.674",
+     "0,019",
+     "0,000"
+    ],
+    [
+     "São Caetano do Sul",
+     "Sudeste",
+     "421",
+     "0,010",
+     "0,000"
+    ],
+    [
+     "Belo Horizonte",
+     "Sudeste",
+     "5.113",
+     "0,010",
+     "0,000"
+    ],
+    [
+     "São Bernardo do Campo",
+     "Sudeste",
+     "1.685",
+     "0,009",
+     "0,000"
+    ],
+    [
+     "Manaus",
+     "Norte",
+     "3.094",
+     "0,009",
+     "0,000"
+    ],
+    [
+     "Brasília",
+     "Centro-Oeste",
+     "4.924",
+     "0,008",
+     "0,000"
+    ],
+    [
+     "Guarulhos",
+     "Sudeste",
+     "2.416",
+     "0,008",
+     "0,000"
+    ],
+    [
+     "São Paulo",
+     "Sudeste",
+     "26.512",
+     "0,008",
+     "0,000"
+    ],
+    [
+     "Rio de Janeiro",
+     "Sudeste",
+     "13.370",
+     "0,007",
+     "0,000"
+    ],
+    [
+     "Marechal Deodoro",
+     "Nordeste",
+     "88",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Orizânia",
+     "Sudeste",
+     "5",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Santa Maria do Oeste",
+     "Sul",
+     "8",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Salinas",
+     "Sudeste",
+     "53",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Placas",
+     "Norte",
+     "16",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Portel",
+     "Norte",
+     "26",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "São Paulo das Missões",
+     "Sul",
+     "6",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "São Raimundo do Doca Bezerra",
+     "Nordeste",
+     "3",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Taió",
+     "Sul",
+     "50",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Urandi",
+     "Nordeste",
+     "9",
+     "0,000",
+     "0,000"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Os 10 municípios com a maior média do indicador e os 10 com a menor."
+    ],
+    [
+     "Para que serve.",
+     "Identifica onde o indicador é mais e menos presente. A tabela completa está no apêndice."
+    ],
+    [
+     "Como ler.",
+     "Atenção à coluna \"Setores\": município com poucos setores tem média instável, que muda muito com um setor a mais ou a menos."
+    ],
+    [
+     "O que mostra.",
+     "Maior média: Goiânia (0,021, 2.272 setores); menor: Urandi (0,000)."
+    ]
+   ]
+  },
+  "MNC-18": {
+   "titulo": "Os 70 municípios, ordenados pela mediana",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/MNC_municipios.png",
+   "legenda": "Moradia não convencional: mediana (ponto) e intervalo entre os percentis 25 e 75 (traço) de cada município.",
+   "explica": [
+    [
+     "O que é.",
+     "Cada coluna é um município: o ponto é a mediana dos setores dele e o traço vai do percentil 25 ao 75."
+    ],
+    [
+     "Para que serve.",
+     "Mostra ao mesmo tempo o nível de cada cidade (o ponto) e a desigualdade dentro dela (o tamanho do traço)."
+    ],
+    [
+     "Como ler.",
+     "Da esquerda para a direita, das cidades com mediana mais baixa às mais altas. Traço longo: setores muito diferentes entre si na mesma cidade."
+    ],
+    [
+     "O que mostra.",
+     "70 dos 70 municípios têm mediana zero."
+    ]
+   ]
+  },
+  "MNC-19": {
+   "titulo": "A desigualdade dentro das cidades: a tabela",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Município",
+    "Setores",
+    "Intervalo interquartil",
+    "Gini"
+   ],
+   "colW": [
+    2.6,
+    1.0,
+    2.0,
+    1.2
+   ],
+   "linhas": [
+    [
+     "Araçatuba",
+     "489",
+     "0,000",
+     "0,996"
+    ],
+    [
+     "Divinópolis",
+     "496",
+     "0,000",
+     "0,994"
+    ],
+    [
+     "São Pedro da Aldeia",
+     "333",
+     "0,000",
+     "0,993"
+    ],
+    [
+     "Limoeiro do Norte",
+     "97",
+     "0,000",
+     "0,990"
+    ],
+    [
+     "Camaragibe",
+     "272",
+     "0,000",
+     "0,989"
+    ],
+    [
+     "Pato Branco",
+     "151",
+     "0,000",
+     "0,988"
+    ],
+    [
+     "Cachoeiro de Itapemirim",
+     "365",
+     "0,000",
+     "0,988"
+    ],
+    [
+     "Maceió",
+     "1.531",
+     "0,000",
+     "0,986"
+    ],
+    [
+     "Ibatiba",
+     "35",
+     "0,000",
+     "—"
+    ],
+    [
+     "Marechal Deodoro",
+     "88",
+     "0,000",
+     "—"
+    ],
+    [
+     "Salinas",
+     "53",
+     "0,000",
+     "—"
+    ],
+    [
+     "Taió",
+     "50",
+     "0,000",
+     "—"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Duas medidas de quanto os setores de uma mesma cidade diferem entre si: o intervalo interquartil (percentil 75 menos 25) e o Gini."
+    ],
+    [
+     "Para que serve.",
+     "O IVS é intraurbano: quer achar as diferenças dentro da cidade. Indicador que varia pouco dentro das cidades contribui pouco para isso."
+    ],
+    [
+     "Como ler.",
+     "O Gini vai de 0 (todos os setores iguais) a 1 (tudo concentrado num setor). Mostra os 8 municípios mais desiguais e os 4 menos."
+    ],
+    [
+     "O que mostra.",
+     "Entre os 56 municípios com pelo menos 30 setores, o Gini vai de 0,841 (São Luís) a 0,996 (Araçatuba)."
+    ]
+   ]
+  },
+  "MNC-20": {
+   "titulo": "A desigualdade dentro das cidades: o gráfico",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/MNC_desigualdade.png",
+   "legenda": "Moradia não convencional: mediana × Gini de cada município (tamanho do ponto = número de setores).",
+   "explica": [
+    [
+     "O que é.",
+     "Cada ponto é um município: na horizontal, o nível do indicador; na vertical, a desigualdade entre os setores dele."
+    ],
+    [
+     "Para que serve.",
+     "Separa cidades com o problema espalhado (nível alto, Gini baixo) de cidades com o problema concentrado em poucos setores (Gini alto)."
+    ],
+    [
+     "Como ler.",
+     "Pontos maiores são cidades com mais setores. Os nomes marcados são os extremos de desigualdade."
+    ],
+    [
+     "O que mostra.",
+     "Entre os 56 municípios com pelo menos 30 setores, o Gini vai de 0,841 (São Luís) a 0,996 (Araçatuba)."
+    ]
+   ]
+  },
+  "MNC-21": {
+   "titulo": "Favela e fora da favela: a tabela",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Grupo",
+    "Setores",
+    "Média",
+    "Mediana",
+    "p75",
+    "% zeros"
+   ],
+   "linhas": [
+    [
+     "Favela e comunidade urbana",
+     "19.452",
+     "0,013",
+     "0,000",
+     "0,000",
+     "89,1%"
+    ],
+    [
+     "Fora de favela",
+     "84.656",
+     "0,004",
+     "0,000",
+     "0,000",
+     "93,8%"
+    ]
+   ],
+   "colW": [
+    2.3,
+    1.0,
+    1.2,
+    1.2,
+    1.0,
+    0.8
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "As estatísticas do indicador nos setores de favela e comunidade urbana (classificação do IBGE) e nos demais."
+    ],
+    [
+     "Para que serve.",
+     "Favela é um território sabidamente vulnerável: um indicador de vulnerabilidade deveria ser mais alto nela. É uma checagem de bom senso, não uma validação."
+    ],
+    [
+     "Como ler.",
+     "Compare as médias; a razão diz quantas vezes o valor na favela é o de fora."
+    ],
+    [
+     "O que mostra.",
+     "Média de 0,013 nos setores de favela e de 0,004 fora delas (razão de 2,9)."
+    ]
+   ]
+  },
+  "MNC-22": {
+   "titulo": "Favela e fora da favela: o boxplot",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/MNC_favela.png",
+   "legenda": "Moradia não convencional: setores de favela e fora de favela.",
+   "explica": [
+    [
+     "O que é.",
+     "Um boxplot para os setores de favela e outro para os demais."
+    ],
+    [
+     "Para que serve.",
+     "Mostra se a diferença está em todos os setores ou só em alguns."
+    ],
+    [
+     "Como ler.",
+     "A caixa vai do percentil 25 ao 75 (metade central dos setores); a linha vermelha é a mediana; o losango, a média; os bigodes vão até 1,5 vez a altura da caixa. Os extremos além dos bigodes não são desenhados, para a escala não ficar presa a poucos setores."
+    ],
+    [
+     "O que mostra.",
+     "Média de 0,013 nos setores de favela e de 0,004 fora delas (razão de 2,9)."
+    ]
+   ]
+  },
+  "MNC-23": {
+   "titulo": "O indicador ao longo da renda",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/MNC_gradiente.png",
+   "legenda": "Moradia não convencional por decil de renda do setor no município (1 = mais pobre).",
+   "explica": [
+    [
+     "O que é.",
+     "Os setores de cada município ordenados pela renda e divididos em 10 grupos iguais (decis); o gráfico dá a média e a mediana do indicador em cada grupo."
+    ],
+    [
+     "Para que serve.",
+     "Mostra o gradiente social: se o indicador piora à medida que a renda cai. Como os decis são feitos dentro de cada município, a comparação é sempre entre setores da mesma cidade."
+    ],
+    [
+     "Como ler.",
+     "Linha descendente da esquerda para a direita: o indicador é maior nos setores mais pobres. Linha plana: não depende da renda."
+    ],
+    [
+     "O que mostra.",
+     "No decil 1 a média é 0,014; no decil 10, 0,000."
+    ]
+   ]
+  },
+  "MNC-24": {
+   "titulo": "Os 70 municípios e o Brasil urbano: a tabela",
+   "fontes": [
+    "banco_de_dados/nacional/Base_Brasil_Censo2022.db",
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Grupo",
+    "Setores",
+    "Média",
+    "Mediana",
+    "p75",
+    "% zeros"
+   ],
+   "linhas": [
+    [
+     "Brasil, setores urbanos",
+     "347.399",
+     "0,003",
+     "0,000",
+     "0,000",
+     "95,5%"
+    ],
+    [
+     "70 municípios do ELSI",
+     "104.108",
+     "0,006",
+     "0,000",
+     "0,000",
+     "93,0%"
+    ]
+   ],
+   "colW": [
+    2.3,
+    1.0,
+    1.2,
+    1.2,
+    1.0,
+    0.8
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "O indicador nos setores urbanos de todo o Brasil e nos dos 70 municípios do ELSI-Brasil."
+    ],
+    [
+     "Para que serve.",
+     "Diz se o recorte do estudo é parecido com o país urbano, ou se há viés de seleção dos municípios."
+    ],
+    [
+     "Como ler.",
+     "Médias próximas: o recorte representa bem o Brasil urbano neste indicador."
+    ],
+    [
+     "O que mostra.",
+     "No Brasil urbano a média é 0,003; nos 70 municípios, 0,006."
+    ]
+   ]
+  },
+  "MNC-25": {
+   "titulo": "Os 70 municípios e o Brasil urbano: o gráfico",
+   "fontes": [
+    "banco_de_dados/nacional/Base_Brasil_Censo2022.db",
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/MNC_brasil.png",
+   "legenda": "Moradia não convencional: distribuição acumulada no Brasil urbano e nos 70 municípios.",
+   "explica": [
+    [
+     "O que é.",
+     "As duas distribuições acumuladas sobrepostas."
+    ],
+    [
+     "Para que serve.",
+     "Compara a distribuição inteira, não só a média."
+    ],
+    [
+     "Como ler.",
+     "Curva mais à direita: valores mais altos. Curvas coladas: as duas populações de setores são parecidas."
+    ],
+    [
+     "O que mostra.",
+     "No Brasil urbano a média é 0,003; nos 70 municípios, 0,006."
+    ]
+   ]
+  },
+  "MNC-26": {
+   "titulo": "Os valores extremos",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Município",
+    "Favela",
+    "Moradores",
+    "Valor"
+   ],
+   "colW": [
+    2.8,
+    1.0,
+    1.3,
+    1.9
+   ],
+   "linhas": [
+    [
+     "Belo Horizonte",
+     "sim",
+     "176",
+     "1,000"
+    ],
+    [
+     "Rio de Janeiro",
+     "não",
+     "12",
+     "1,000"
+    ],
+    [
+     "Rio de Janeiro",
+     "sim",
+     "475",
+     "1,000"
+    ],
+    [
+     "Rio de Janeiro",
+     "sim",
+     "447",
+     "1,000"
+    ],
+    [
+     "Rio de Janeiro",
+     "sim",
+     "389",
+     "1,000"
+    ],
+    [
+     "Rio de Janeiro",
+     "sim",
+     "375",
+     "1,000"
+    ],
+    [
+     "Rio de Janeiro",
+     "não",
+     "8",
+     "1,000"
+    ],
+    [
+     "São Paulo",
+     "sim",
+     "60",
+     "1,000"
+    ],
+    [
+     "São Bernardo do Campo",
+     "sim",
+     "265",
+     "0,990"
+    ],
+    [
+     "São Bernardo do Campo",
+     "sim",
+     "497",
+     "0,988"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Os 10 setores com o maior valor do indicador."
+    ],
+    [
+     "Para que serve.",
+     "Ajuda a separar extremo verdadeiro (um setor realmente muito carente, ou muito rico) de erro de dado. A coluna \"Moradores\" mostra setores pequenos, onde um domicílio muda muito a proporção."
+    ],
+    [
+     "Como ler.",
+     "Proporção 1 quer dizer todos os domicílios (ou pessoas) do setor na condição."
+    ],
+    [
+     "O que mostra.",
+     "O percentil 99 é 0,150; 1.042 setores ficam acima dele."
+    ]
+   ]
+  },
+  "MNC-27": {
+   "titulo": "Na análise fatorial",
+   "fontes": [],
+   "numero": "2",
+   "sub": "Como o indicador se relaciona com os outros 11, quanto compartilha com eles, o que acontece quando entra ou sai e o peso que recebe no índice."
+  },
+  "MNC-28": {
+   "titulo": "Correlação com os outros 11: a tabela",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_global_correlacao.csv",
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_municipal_correlacao.csv"
+   ],
+   "cab": [
+    "Indicador",
+    "No conjunto",
+    "Dentro dos municípios"
+   ],
+   "colW": [
+    3.2,
+    1.6,
+    2.2
+   ],
+   "linhas": [
+    [
+     "Sem banheiro",
+     "0,13",
+     "0,10"
+    ],
+    [
+     "Preta, parda ou indígena",
+     "0,08",
+     "0,07"
+    ],
+    [
+     "Analfabetismo (15 anos ou mais)",
+     "0,07",
+     "0,09"
+    ],
+    [
+     "Sem água canalizada",
+     "0,06",
+     "0,06"
+    ],
+    [
+     "Renda média do responsável",
+     "0,06",
+     "0,07"
+    ],
+    [
+     "Esgoto inadequado",
+     "0,05",
+     "0,04"
+    ],
+    [
+     "Idosos (60 anos ou mais)",
+     "-0,05",
+     "-0,02"
+    ],
+    [
+     "Água inadequada",
+     "0,04",
+     "0,01"
+    ],
+    [
+     "Crianças (0 a 14 anos)",
+     "0,04",
+     "0,03"
+    ],
+    [
+     "Razão de moradores",
+     "0,03",
+     "-0,01"
+    ],
+    [
+     "Lixo inadequado",
+     "0,02",
+     "0,02"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "A correlação do indicador com cada um dos outros 11, nos setores que têm os 12."
+    ],
+    [
+     "Para que serve.",
+     "A análise fatorial agrupa os indicadores que andam juntos. Correlações altas dizem com quem este indicador vai formar uma dimensão."
+    ],
+    [
+     "Como ler.",
+     "A correlação de Spearman vai de −1 a 1: perto de 1, os setores com valor alto num indicador também têm valor alto no outro; perto de 0, não há relação; negativa, um sobe quando o outro desce. \"No conjunto\" compara todos os setores; \"dentro dos municípios\", cada setor só com os da própria cidade."
+    ],
+    [
+     "O que mostra.",
+     "A correlação mais forte é com Sem banheiro: 0,13 no conjunto e 0,10 dentro dos municípios."
+    ]
+   ]
+  },
+  "MNC-29": {
+   "titulo": "Correlação com os outros 11: o gráfico",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_global_correlacao.csv",
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_municipal_correlacao.csv"
+   ],
+   "figura": "figuras/MNC_correlacao.png",
+   "legenda": "Spearman nos setores com os 12 indicadores; renda invertida.",
+   "explica": [
+    [
+     "O que é.",
+     "As mesmas correlações em barras: verde, no conjunto; vermelho, dentro dos municípios."
+    ],
+    [
+     "Para que serve.",
+     "Quando a barra vermelha encolhe, parte da relação vinha de diferenças entre cidades, não de diferenças dentro delas."
+    ],
+    [
+     "Como ler.",
+     "Barra para a direita: relação positiva; para a esquerda, negativa. Ordenado da mais forte para a mais fraca."
+    ],
+    [
+     "O que mostra.",
+     "A correlação mais forte é com Sem banheiro: 0,13 no conjunto e 0,10 dentro dos municípios."
+    ]
+   ]
+  },
+  "MNC-30": {
+   "titulo": "Na análise fatorial das 12: a tabela",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_global_cargas.csv",
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_municipal_cargas.csv"
+   ],
+   "cab": [
+    "Medida",
+    "No conjunto",
+    "Dentro dos municípios"
+   ],
+   "colW": [
+    2.8,
+    1.6,
+    2.2
+   ],
+   "linhas": [
+    [
+     "MSA",
+     "0,730",
+     "0,771"
+    ],
+    [
+     "Comunalidade",
+     "0,012",
+     "0,012"
+    ],
+    [
+     "Sem rotação, F1",
+     "0,086",
+     "0,073"
+    ],
+    [
+     "Sem rotação, F2",
+     "0,069",
+     "0,081"
+    ],
+    [
+     "Varimax, F1",
+     "0,047",
+     "0,049"
+    ],
+    [
+     "Varimax, F2",
+     "0,100",
+     "0,097"
+    ],
+    [
+     "Promax padrão, F1",
+     "0,002",
+     "0,006"
+    ],
+    [
+     "Promax padrão, F2",
+     "0,110",
+     "0,105"
+    ],
+    [
+     "Promax estrutura, F1",
+     "0,068",
+     "0,061"
+    ],
+    [
+     "Promax estrutura, F2",
+     "0,111",
+     "0,109"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "O resultado da análise fatorial dos 12 indicadores juntos (eixo principal, 2 fatores), nas duas réguas."
+    ],
+    [
+     "Para que serve.",
+     "A carga diz quanto o indicador \"pertence\" a cada fator (F1, F2). A comunalidade é a parte da variação dele explicada pelos fatores; o MSA, o quanto ele combina com os outros para uma fatorial."
+    ],
+    [
+     "Como ler.",
+     "Carga perto de 1 (ou −1): pertence ao fator; perto de 0, não. Comunalidade abaixo de 0,30 e MSA abaixo de 0,50 são os limites pré-registrados. Varimax mantém os fatores independentes; promax deixa que se correlacionem."
+    ],
+    [
+     "O que mostra.",
+     "Comunalidade de 0,012 no conjunto e 0,012 dentro dos municípios (critério: 0,30); MSA de 0,730 (critério: 0,50)."
+    ]
+   ]
+  },
+  "MNC-31": {
+   "titulo": "Na análise fatorial das 12: as cargas",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_global_cargas.csv",
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_municipal_cargas.csv"
+   ],
+   "figura": "figuras/MNC_cargas.png",
+   "legenda": "Moradia não convencional: carga em F1 (cor cheia) e F2 (cor clara), por rotação e régua.",
+   "explica": [
+    [
+     "O que é.",
+     "As cargas do indicador nos dois fatores, em cada forma de rotação, nas duas réguas."
+    ],
+    [
+     "Para que serve.",
+     "Mostra se o indicador fica sempre no mesmo fator, seja qual for a rotação — sinal de que a posição dele na estrutura é estável."
+    ],
+    [
+     "Como ler.",
+     "Barra alta em F1 e baixa em F2: o indicador pertence a F1. Barras parecidas nas quatro rotações: a conclusão não depende do método."
+    ],
+    [
+     "O que mostra.",
+     "Comunalidade de 0,012 no conjunto e 0,012 dentro dos municípios (critério: 0,30); MSA de 0,730 (critério: 0,50)."
+    ]
+   ]
+  },
+  "MNC-32": {
+   "titulo": "O que acontece quando ele entra ou sai",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_efeito_variavel.csv"
+   ],
+   "cab": [
+    "Nas 4.017 combinações",
+    "No conjunto",
+    "Dentro dos municípios"
+   ],
+   "colW": [
+    3.4,
+    1.5,
+    2.1
+   ],
+   "linhas": [
+    [
+     "Pares comparados",
+     "1.981",
+     "1.981"
+    ],
+    [
+     "Variação mediana do KMO",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "Setores perdidos (mediana)",
+     "0",
+     "0"
+    ],
+    [
+     "% elegível sem ele",
+     "6,8%",
+     "1,2%"
+    ],
+    [
+     "% elegível com ele",
+     "0,0%",
+     "0,0%"
+    ],
+    [
+     "% dos pares em que derruba",
+     "6,8%",
+     "1,2%"
+    ],
+    [
+     "Comunalidade mediana",
+     "0,012",
+     "0,013"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Foram rodadas todas as 4.017 combinações de 3 ou mais dos 12 indicadores. Aqui se comparam os pares de combinações que só diferem por este indicador."
+    ],
+    [
+     "Para que serve.",
+     "Isola o efeito de incluir este indicador: se melhora ou piora a adequação (KMO), quantos setores custa (por sigilo) e se faz a combinação deixar de passar nos critérios."
+    ],
+    [
+     "Como ler.",
+     "KMO vai de 0 a 1 e mede se os indicadores compartilham variação suficiente para uma fatorial; acima de 0,70 é adequado. \"Elegível\" = passa nos quatro critérios pré-registrados."
+    ],
+    [
+     "O que mostra.",
+     "Na régua municipal, em 1,2% dos pares a combinação era elegível sem ele e deixa de ser com ele; ao entrar, custa na mediana 0 setores e muda o KMO em 0,000."
+    ]
+   ]
+  },
+  "MNC-33": {
+   "titulo": "A comunalidade dele nas 4.017 combinações",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_subconjuntos.csv"
+   ],
+   "figura": "figuras/MNC_comunalidade.png",
+   "legenda": "Moradia não convencional: comunalidade em cada combinação em que entra; tracejado: critério 0,30.",
+   "explica": [
+    [
+     "O que é.",
+     "A comunalidade do indicador em cada uma das combinações em que ele entra, nas duas réguas."
+    ],
+    [
+     "Para que serve.",
+     "Mostra se o indicador compartilha variação com os outros de forma consistente, ou só em algumas combinações."
+    ],
+    [
+     "Como ler.",
+     "Histograma à direita da linha tracejada: o indicador costuma passar no critério. À esquerda: costuma ficar de fora da estrutura comum."
+    ],
+    [
+     "O que mostra.",
+     "Dentro dos municípios, fica abaixo do critério em 99,6% das combinações em que entra."
+    ]
+   ]
+  },
+  "MNC-34": {
+   "titulo": "O peso no índice",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada3_finalistas.csv",
+    "banco_de_dados/eda/fatorial_multiversao/camada3_estabilidade.csv"
+   ],
+   "cab": [
+    "Finalista",
+    "Especificação",
+    "Peso",
+    "Menor sem 1 município",
+    "Maior"
+   ],
+   "colW": [
+    2.0,
+    1.1,
+    1.0,
+    1.9,
+    1.0
+   ],
+   "linhas": [
+    [
+     "proposta",
+     "E0009",
+     "fora",
+     "—",
+     "—"
+    ],
+    [
+     "alt. conjunto",
+     "E0171",
+     "fora",
+     "—",
+     "—"
+    ],
+    [
+     "alt. normalizacao",
+     "E0027",
+     "fora",
+     "—",
+     "—"
+    ],
+    [
+     "alt. rotacao peso",
+     "E0001",
+     "fora",
+     "—",
+     "—"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "O peso do indicador no índice em cada especificação finalista (a proposta e as alternativas de maior impacto), e o menor e o maior peso quando se tira um município por vez."
+    ],
+    [
+     "Para que serve.",
+     "Mostra quanto o indicador conta no IVS e se esse peso depende de uma cidade específica."
+    ],
+    [
+     "Como ler.",
+     "Peso é a fração do índice que vem deste indicador (os pesos de todos somam 100%). \"Fora\": não entra naquela especificação."
+    ],
+    [
+     "O que mostra.",
+     "No IVS proposto o peso é fora."
+    ]
+   ]
+  },
+  "MNC-35": {
+   "titulo": "Síntese",
+   "fontes": [
+    "seções anteriores deste deck"
+   ],
+   "blocos": [
+    [
+     "Distribuição.",
+     "A média (0,006) e a mediana (0,000) se afastam: assimetria de 13,01. Em 93,0% dos setores o valor é zero."
+    ],
+    [
+     "Cobertura.",
+     "104.108 dos 104.108 setores (100,0%) têm o dado. A ausência é desprezível."
+    ],
+    [
+     "Onde é mais alto.",
+     "A maior média é a do Centro-Oeste (0,010); a menor, a do Sul (0,001). O Norte tem só 6 municípios: os contrastes descrevem os municípios estudados, não a região inteira."
+    ],
+    [
+     "Gradiente social.",
+     "No decil 1 a média é 0,014; no decil 10, 0,000."
+    ],
+    [
+     "Relações.",
+     "A correlação mais forte é com Sem banheiro: 0,13 no conjunto e 0,10 dentro dos municípios."
+    ],
+    [
+     "Na fatorial.",
+     "Comunalidade mediana de 0,013 dentro dos municípios; atende a 2 dos 3 critérios da Fase 1 (comunalidade, perda de base, elegibilidade)."
+    ],
+    [
+     "Proposta.",
+     "Fica fora do IVS proposto (padrão P2); a decisão é da orientadora."
+    ]
+   ]
+  },
+  "MNC-36": {
+   "titulo": "Apêndice: os 70 municípios (1 de 2)",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Município",
+    "Região",
+    "Setores",
+    "Média",
+    "Mediana"
+   ],
+   "linhas": [
+    [
+     "Goiânia",
+     "Centro-Oeste",
+     "2.272",
+     "0,021",
+     "0,000"
+    ],
+    [
+     "São Luís",
+     "Nordeste",
+     "1.674",
+     "0,019",
+     "0,000"
+    ],
+    [
+     "São Caetano do Sul",
+     "Sudeste",
+     "421",
+     "0,010",
+     "0,000"
+    ],
+    [
+     "Belo Horizonte",
+     "Sudeste",
+     "5.113",
+     "0,010",
+     "0,000"
+    ],
+    [
+     "São Bernardo do Campo",
+     "Sudeste",
+     "1.685",
+     "0,009",
+     "0,000"
+    ],
+    [
+     "Manaus",
+     "Norte",
+     "3.094",
+     "0,009",
+     "0,000"
+    ],
+    [
+     "Brasília",
+     "Centro-Oeste",
+     "4.924",
+     "0,008",
+     "0,000"
+    ],
+    [
+     "Guarulhos",
+     "Sudeste",
+     "2.416",
+     "0,008",
+     "0,000"
+    ],
+    [
+     "São Paulo",
+     "Sudeste",
+     "26.512",
+     "0,008",
+     "0,000"
+    ],
+    [
+     "Rio de Janeiro",
+     "Sudeste",
+     "13.370",
+     "0,007",
+     "0,000"
+    ],
+    [
+     "Guarujá",
+     "Sudeste",
+     "689",
+     "0,005",
+     "0,000"
+    ],
+    [
+     "São José de Ribamar",
+     "Nordeste",
+     "580",
+     "0,005",
+     "0,000"
+    ],
+    [
+     "Autazes",
+     "Norte",
+     "43",
+     "0,005",
+     "0,000"
+    ],
+    [
+     "Recife",
+     "Nordeste",
+     "2.796",
+     "0,005",
+     "0,000"
+    ],
+    [
+     "Rosário",
+     "Nordeste",
+     "36",
+     "0,004",
+     "0,000"
+    ],
+    [
+     "Ananindeua",
+     "Norte",
+     "732",
+     "0,003",
+     "0,000"
+    ],
+    [
+     "Belém",
+     "Norte",
+     "2.004",
+     "0,003",
+     "0,000"
+    ],
+    [
+     "Goianésia",
+     "Centro-Oeste",
+     "88",
+     "0,003",
+     "0,000"
+    ],
+    [
+     "Mauá",
+     "Sudeste",
+     "824",
+     "0,003",
+     "0,000"
+    ],
+    [
+     "Campinas",
+     "Sudeste",
+     "2.461",
+     "0,003",
+     "0,000"
+    ],
+    [
+     "Duque de Caxias",
+     "Sudeste",
+     "1.788",
+     "0,003",
+     "0,000"
+    ],
+    [
+     "Teresina",
+     "Nordeste",
+     "1.368",
+     "0,002",
+     "0,000"
+    ],
+    [
+     "Salto",
+     "Sudeste",
+     "196",
+     "0,002",
+     "0,000"
+    ],
+    [
+     "Fortaleza",
+     "Nordeste",
+     "4.280",
+     "0,002",
+     "0,000"
+    ],
+    [
+     "Anápolis",
+     "Centro-Oeste",
+     "558",
+     "0,002",
+     "0,000"
+    ],
+    [
+     "Nova Iguaçu",
+     "Sudeste",
+     "1.569",
+     "0,002",
+     "0,000"
+    ],
+    [
+     "Salvador",
+     "Nordeste",
+     "4.476",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "Tabatinga",
+     "Sudeste",
+     "31",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "Campo Grande",
+     "Centro-Oeste",
+     "1.603",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "Porto Alegre",
+     "Sul",
+     "2.677",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "Chapada dos Guimarães",
+     "Centro-Oeste",
+     "34",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "Natal",
+     "Nordeste",
+     "1.076",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "Vicentinópolis",
+     "Centro-Oeste",
+     "11",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "São Gonçalo",
+     "Sudeste",
+     "2.357",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "Divinópolis",
+     "Sudeste",
+     "496",
+     "0,001",
+     "0,000"
+    ]
+   ],
+   "duas": true
+  },
+  "MNC-37": {
+   "titulo": "Apêndice: os 70 municípios (2 de 2)",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Município",
+    "Região",
+    "Setores",
+    "Média",
+    "Mediana"
+   ],
+   "linhas": [
+    [
+     "Macaé",
+     "Sudeste",
+     "618",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "Curitiba",
+     "Sul",
+     "3.168",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "Feira de Santana",
+     "Nordeste",
+     "997",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "Canoas",
+     "Sul",
+     "645",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "Cachoeiro de Itapemirim",
+     "Sudeste",
+     "365",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "Itajuípe",
+     "Nordeste",
+     "29",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "Maceió",
+     "Nordeste",
+     "1.531",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "Igarapava",
+     "Sudeste",
+     "56",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "Itapetinga",
+     "Nordeste",
+     "104",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "São José dos Pinhais",
+     "Sul",
+     "456",
+     "0,001",
+     "0,000"
+    ],
+    [
+     "Camaragibe",
+     "Nordeste",
+     "272",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "São Pedro da Aldeia",
+     "Sudeste",
+     "333",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Araçatuba",
+     "Sudeste",
+     "489",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Água Preta",
+     "Nordeste",
+     "32",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Charqueadas",
+     "Sul",
+     "56",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Pato Branco",
+     "Sul",
+     "151",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Limoeiro do Norte",
+     "Nordeste",
+     "97",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Arara",
+     "Nordeste",
+     "19",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Capelinha",
+     "Sudeste",
+     "56",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Japoatã",
+     "Nordeste",
+     "7",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Jaqueira",
+     "Nordeste",
+     "9",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Guapiaçu",
+     "Sudeste",
+     "40",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Ibatiba",
+     "Sudeste",
+     "35",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Groaíras",
+     "Nordeste",
+     "14",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Coroaci",
+     "Sudeste",
+     "11",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Marechal Deodoro",
+     "Nordeste",
+     "88",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Orizânia",
+     "Sudeste",
+     "5",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Santa Maria do Oeste",
+     "Sul",
+     "8",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Salinas",
+     "Sudeste",
+     "53",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Placas",
+     "Norte",
+     "16",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Portel",
+     "Norte",
+     "26",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "São Paulo das Missões",
+     "Sul",
+     "6",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "São Raimundo do Doca Bezerra",
+     "Nordeste",
+     "3",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Taió",
+     "Sul",
+     "50",
+     "0,000",
+     "0,000"
+    ],
+    [
+     "Urandi",
+     "Nordeste",
+     "9",
+     "0,000",
+     "0,000"
+    ]
+   ],
+   "duas": true
+  }
+ }
+}

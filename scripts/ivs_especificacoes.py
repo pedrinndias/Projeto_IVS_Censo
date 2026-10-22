@@ -144,7 +144,10 @@ def indice(d: pd.DataFrame, colunas: list[str], peso: np.ndarray, normalizacao: 
         return fa.indice_01(d, colunas, peso)
     out = pd.Series(np.nan, index=d.index)
     for _, g in d.groupby('NM_MUN'):
-        out.loc[g.index] = fa.indice_01(g, colunas, peso)
+        # município sem variação em nenhum componente (ex.: um setor só) não tem régua: fica ausente,
+        # em vez do 0 que a soma de NaN daria
+        if (g[colunas].max() > g[colunas].min()).any():
+            out.loc[g.index] = fa.indice_01(g, colunas, peso)
     return out.to_numpy()
 
 
@@ -157,7 +160,8 @@ def faixas(valor, municipio, regra: str) -> np.ndarray:
         z = ((s - g.transform('mean')) / g.transform('std')).to_numpy()
         f = np.select([z < -0.5, z <= 0.5, z <= 1.5], [0, 1, 2], 3)
     else:
-        z = g.rank(pct=True).to_numpy()
+        # quartis exigem ao menos 4 setores no município; com menos, um setor só virava "muito elevado"
+        z = g.rank(pct=True).where(g.transform('count') >= 4).to_numpy()
         f = np.clip(np.ceil(4 * z) - 1, 0, 3)
     return np.where(np.isnan(z), -1, f).astype(np.int8)
 

@@ -1,0 +1,2257 @@
+{
+ "deck": "CRI",
+ "titulo": "Crianças (0 a 14 anos)",
+ "arquivo": "fichas/CRI_Criancas.pptx",
+ "ordem": [
+  "CRI-01",
+  "CRI-02",
+  "CRI-03",
+  "CRI-04",
+  "CRI-05",
+  "CRI-06",
+  "CRI-07",
+  "CRI-08",
+  "CRI-09",
+  "CRI-10",
+  "CRI-11",
+  "CRI-12",
+  "CRI-13",
+  "CRI-14",
+  "CRI-15",
+  "CRI-16",
+  "CRI-17",
+  "CRI-18",
+  "CRI-19",
+  "CRI-20",
+  "CRI-21",
+  "CRI-22",
+  "CRI-23",
+  "CRI-24",
+  "CRI-25",
+  "CRI-26",
+  "CRI-27",
+  "CRI-28",
+  "CRI-29",
+  "CRI-30",
+  "CRI-31",
+  "CRI-32",
+  "CRI-33",
+  "CRI-34",
+  "CRI-35",
+  "CRI-36",
+  "CRI-37",
+  "CRI-38"
+ ],
+ "slides": {
+  "CRI-01": {
+   "titulo": "Crianças (0 a 14 anos)",
+   "fontes": [
+    "relatorio_parcial_raic/Relatorio_Parcial_RAIC_2026_Pedro_corrigido.pdf, Quadro 2"
+   ],
+   "capa": true,
+   "kicker": "INDICADOR CRI · DEMOGRAFIA",
+   "sub": "Proporção de pessoas com menos de 15 anos na população residente. Indicador complementar (Quadro 2), fora do IVS de 2012. Parte A: análise exploratória. Parte B: o indicador na análise fatorial.",
+   "rodape": "Fatorial multiversão e IVS · Censo Demográfico 2022 · 70 municípios do ELSI-Brasil · Pedro Dias Soares · out/2026"
+  },
+  "CRI-02": {
+   "titulo": "Análise exploratória",
+   "fontes": [],
+   "numero": "1",
+   "sub": "O que o indicador mede, como se distribui nos setores, onde é mais alto e como se relaciona com renda, favela e o Brasil — antes de qualquer análise fatorial."
+  },
+  "CRI-03": {
+   "titulo": "O que o indicador mede e por que importa",
+   "fontes": [
+    "src/ivs_censo/indicadores.py"
+   ],
+   "blocos": [
+    [
+     "O que mede.",
+     "Proporção de pessoas com menos de 15 anos na população residente, em proporção de 0 a 1."
+    ],
+    [
+     "Por que importa para a saúde.",
+     "Crianças de 0 a 14 anos: com os idosos, descrevem a estrutura etária do setor. Não é vulnerabilidade em si; ajuda a ler o IVS pela composição etária."
+    ],
+    [
+     "Direção.",
+     "Quanto maior, mais vulnerável — no sentido de mais crianças, que não é vulnerabilidade em si."
+    ],
+    [
+     "No índice.",
+     "Fora do IVS de 2012; entra na análise fatorial como indicador que pode ou não acrescentar."
+    ]
+   ]
+  },
+  "CRI-04": {
+   "titulo": "Como é calculado",
+   "fontes": [
+    "src/ivs_censo/indicadores.py",
+    "src/ivs_censo/fontes.py"
+   ],
+   "cab": [
+    "Parte",
+    "Definição"
+   ],
+   "colW": [
+    1.9,
+    5.3
+   ],
+   "linhas": [
+    [
+     "Numerador",
+     "V01031 + V01032 + V01033"
+    ],
+    [
+     "Denominador",
+     "v0001"
+    ],
+    [
+     "Escala",
+     "proporção de 0 a 1"
+    ],
+    [
+     "Arquivos do IBGE",
+     "Agregados_por_setores_basico_BR_20250417.csv; Agregados_por_setores_demografia_BR.csv"
+    ],
+    [
+     "Na análise fatorial",
+     "entra como está"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "A receita do indicador: quais variáveis do Censo vão em cima (numerador) e em baixo (denominador) da divisão, e de que arquivo do IBGE cada uma sai."
+    ],
+    [
+     "Para que serve.",
+     "Permite refazer a conta e conferir qualquer número. As variáveis \"V0…\" são os códigos do dicionário oficial dos agregados por setor do Censo 2022."
+    ],
+    [
+     "Como ler.",
+     "Uma soma no numerador junta categorias (por exemplo, todas as formas inadequadas). O cálculo é por setor censitário, a menor área com dado do Censo."
+    ]
+   ]
+  },
+  "CRI-05": {
+   "titulo": "As adequações ao Censo 2022",
+   "fontes": [
+    "relatorio_parcial_raic/Relatorio_Parcial_RAIC_2026_Pedro_corrigido.pdf, seção IV"
+   ],
+   "blocos": [
+    [
+     "Denominador",
+     "população residente total; moradores de domicílios coletivos entram (item a)."
+    ],
+    [
+     "Faixas de idade",
+     "grupos etários dos agregados por setor; idosos e crianças dividem o mesmo denominador e são o numerador e o denominador do índice de envelhecimento (Galvão et al., 2025)."
+    ],
+    [
+     "Fora do índice",
+     "demografia, não vulnerabilidade: descreve a estrutura etária e serve para ler o IVS proposto pelo tema do ELSI-Brasil."
+    ],
+    [
+     "Por que existem.",
+     "O IVS de 2012 foi feito com o Censo 2010. Quando o Censo 2022 não traz a mesma variável, a troca é declarada aqui, como o relatório parcial faz na seção IV."
+    ]
+   ]
+  },
+  "CRI-06": {
+   "titulo": "99,8% dos setores têm o dado",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Setores",
+    "Quantidade",
+    "% do recorte",
+    "Renda mediana",
+    "% favela",
+    "% Sudeste"
+   ],
+   "colW": [
+    1.3,
+    1.1,
+    1.1,
+    1.5,
+    1.0,
+    1.1
+   ],
+   "linhas": [
+    [
+     "com o dado",
+     "103.850",
+     "99,8%",
+     "R$ 2.570,48",
+     "18,7%",
+     "59,5%"
+    ],
+    [
+     "sem o dado",
+     "258",
+     "0,2%",
+     "R$ 4.757,22",
+     "4,7%",
+     "70,9%"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Quantos setores têm o indicador calculado e quantos ficaram sem ele, com o perfil de cada grupo."
+    ],
+    [
+     "Para que serve.",
+     "O IBGE esconde (sigilo) números muito pequenos para ninguém ser identificado. Se o dado falta mais num tipo de setor, as médias ficam enviesadas — por isso o perfil dos dois grupos."
+    ],
+    [
+     "Como ler.",
+     "Compare a renda mediana, a % de favela e a % de Sudeste entre \"com o dado\" e \"sem o dado\". Se forem parecidas, a falta é próxima do acaso."
+    ],
+    [
+     "O que mostra.",
+     "103.850 dos 104.108 setores (99,8%) têm o dado. Nos 258 sem o dado, a renda mediana do responsável é R$ 4.757,22, contra R$ 2.570,48 nos que têm: o ausente não é aleatório."
+    ]
+   ]
+  },
+  "CRI-07": {
+   "titulo": "Onde falta o dado",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/CRI_ausente_regiao.png",
+   "legenda": "Crianças (0 a 14 anos): proporção de setores sem o dado, por região.",
+   "explica": [
+    [
+     "O que é.",
+     "A proporção de setores sem o indicador em cada região."
+    ],
+    [
+     "Para que serve.",
+     "Mostra se a falta de dado se concentra numa parte do país, o que pesaria nas comparações regionais."
+    ],
+    [
+     "Como ler.",
+     "Cada barra é uma região; quanto mais longa, mais setores sem o dado."
+    ],
+    [
+     "O que mostra.",
+     "A maior proporção sem dado é no Sul (0,3%); a menor, no Norte (0,03%)."
+    ]
+   ]
+  },
+  "CRI-08": {
+   "titulo": "Estatísticas descritivas",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Medida",
+    "Valor"
+   ],
+   "colW": [
+    3.0,
+    2.2
+   ],
+   "linhas": [
+    [
+     "Setores com o dado",
+     "103.850"
+    ],
+    [
+     "Média",
+     "0,173"
+    ],
+    [
+     "Desvio-padrão",
+     "0,058"
+    ],
+    [
+     "Mínimo",
+     "0,000"
+    ],
+    [
+     "Percentil 10",
+     "0,101"
+    ],
+    [
+     "Percentil 25",
+     "0,134"
+    ],
+    [
+     "Mediana",
+     "0,172"
+    ],
+    [
+     "Percentil 75",
+     "0,210"
+    ],
+    [
+     "Percentil 90",
+     "0,245"
+    ],
+    [
+     "Máximo",
+     "0,488"
+    ],
+    [
+     "Assimetria",
+     "0,11"
+    ],
+    [
+     "% de setores com zero",
+     "0,5%"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "O resumo numérico do indicador nos setores urbanos dos 70 municípios."
+    ],
+    [
+     "Para que serve.",
+     "A média é puxada por valores extremos; a mediana é o valor do setor do meio. O percentil 25 (ou 75) é o valor abaixo do qual estão 25% (ou 75%) dos setores. A assimetria mede o quanto a distribuição tem cauda longa para um lado."
+    ],
+    [
+     "Como ler.",
+     "Assimetria perto de zero: distribuição equilibrada. Acima de 1: cauda longa à direita, poucos setores com valores muito altos. Muitos zeros e assimetria alta pedem cuidado ao padronizar."
+    ],
+    [
+     "O que mostra.",
+     "A média (0,173) e a mediana (0,172) estão próximas: assimetria de 0,11."
+    ]
+   ]
+  },
+  "CRI-09": {
+   "titulo": "O histograma",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/CRI_histograma.png",
+   "legenda": "Crianças (0 a 14 anos): número de setores em cada faixa de valor (103.850 setores).",
+   "explica": [
+    [
+     "O que é.",
+     "Os setores agrupados em faixas de valor do indicador; a altura de cada barra é quantos setores caem naquela faixa."
+    ],
+    [
+     "Para que serve.",
+     "Mostra a forma da distribuição: onde está a maioria dos setores e se há cauda longa."
+    ],
+    [
+     "Como ler.",
+     "Barra alta à esquerda e cauda à direita: muitos setores com valor baixo e poucos com valor alto. A linha vermelha é a média; a tracejada, a mediana — quanto mais afastadas, mais assimétrica."
+    ],
+    [
+     "O que mostra.",
+     "A média (0,173) e a mediana (0,172) estão próximas: assimetria de 0,11."
+    ]
+   ]
+  },
+  "CRI-10": {
+   "titulo": "O boxplot",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/CRI_boxplot.png",
+   "legenda": "Crianças (0 a 14 anos): boxplot de todos os setores, com os valores extremos.",
+   "explica": [
+    [
+     "O que é.",
+     "Um resumo da distribuição numa figura: caixa, mediana, bigodes e pontos extremos."
+    ],
+    [
+     "Para que serve.",
+     "Mostra de uma vez onde está a metade central dos setores e quantos fogem do padrão."
+    ],
+    [
+     "Como ler.",
+     "A caixa vai do percentil 25 ao 75; a linha vermelha é a mediana; os bigodes vão até 1,5 vez a altura da caixa; cada ponto além deles é um setor extremo."
+    ],
+    [
+     "O que mostra.",
+     "817 setores ficam além do bigode direito."
+    ]
+   ]
+  },
+  "CRI-11": {
+   "titulo": "A distribuição acumulada",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/CRI_acumulada.png",
+   "legenda": "Crianças (0 a 14 anos): proporção de setores com valor até cada ponto do eixo horizontal.",
+   "explica": [
+    [
+     "O que é.",
+     "Para cada valor no eixo horizontal, a curva dá a proporção de setores com valor igual ou menor."
+    ],
+    [
+     "Para que serve.",
+     "Lê qualquer percentil direto no gráfico, sem depender das faixas do histograma."
+    ],
+    [
+     "Como ler.",
+     "Escolha uma altura (as linhas pontilhadas marcam 25%, 50% e 75%) e desça até o eixo: é o valor daquele percentil. Uma subida vertical no começo indica muitos setores com o mesmo valor (por exemplo, zero)."
+    ],
+    [
+     "O que mostra.",
+     "Metade dos setores tem até 0,172; três quartos, até 0,210."
+    ]
+   ]
+  },
+  "CRI-12": {
+   "titulo": "A régua dos percentis",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/CRI_percentis.png",
+   "legenda": "Crianças (0 a 14 anos): valor nos percentis 10, 25, 50, 75, 90 e 99, e a média.",
+   "explica": [
+    [
+     "O que é.",
+     "O valor do indicador em seis pontos da distribuição: do setor no percentil 10 ao do percentil 99."
+    ],
+    [
+     "Para que serve.",
+     "Mostra quanto o indicador cresce do setor típico para os mais altos — onde está a desigualdade."
+    ],
+    [
+     "Como ler.",
+     "Barras que sobem devagar e explodem no fim (p90, p99): o problema se concentra em poucos setores. A linha vermelha é a média."
+    ],
+    [
+     "O que mostra.",
+     "Do percentil 50 (0,172) ao 99 (0,316)."
+    ]
+   ]
+  },
+  "CRI-13": {
+   "titulo": "Por região: a tabela",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Grupo",
+    "Setores",
+    "Média",
+    "Mediana",
+    "p75",
+    "% zeros"
+   ],
+   "linhas": [
+    [
+     "Norte",
+     "5.913",
+     "0,210",
+     "0,206",
+     "0,248",
+     "0,08%"
+    ],
+    [
+     "Nordeste",
+     "19.467",
+     "0,183",
+     "0,183",
+     "0,218",
+     "0,3%"
+    ],
+    [
+     "Sudeste",
+     "61.806",
+     "0,165",
+     "0,164",
+     "0,203",
+     "0,6%"
+    ],
+    [
+     "Sul",
+     "7.194",
+     "0,159",
+     "0,158",
+     "0,197",
+     "0,5%"
+    ],
+    [
+     "Centro-Oeste",
+     "9.470",
+     "0,186",
+     "0,185",
+     "0,219",
+     "0,3%"
+    ]
+   ],
+   "colW": [
+    1.5,
+    1.1,
+    1.3,
+    1.3,
+    1.2,
+    0.9
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "As estatísticas do indicador separadas pelas cinco grandes regiões."
+    ],
+    [
+     "Para que serve.",
+     "Mostra se o indicador tem padrão regional, o que pesa na escolha da régua (dentro de cada município ou no conjunto)."
+    ],
+    [
+     "Como ler.",
+     "Compare média e mediana entre as linhas; \"% zeros\" é a parte dos setores sem nenhum domicílio ou pessoa na condição."
+    ],
+    [
+     "O que mostra.",
+     "A maior média é a do Norte (0,210); a menor, a do Sul (0,159). O Norte tem só 6 municípios: os contrastes descrevem os municípios estudados, não a região inteira."
+    ]
+   ]
+  },
+  "CRI-14": {
+   "titulo": "Por região: o boxplot",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/CRI_regiao.png",
+   "legenda": "Crianças (0 a 14 anos) por região.",
+   "explica": [
+    [
+     "O que é.",
+     "Um boxplot por região, lado a lado."
+    ],
+    [
+     "Para que serve.",
+     "Compara não só a média, mas a dispersão de cada região."
+    ],
+    [
+     "Como ler.",
+     "A caixa vai do percentil 25 ao 75 (metade central dos setores); a linha vermelha é a mediana; o losango, a média; os bigodes vão até 1,5 vez a altura da caixa. Os extremos além dos bigodes não são desenhados, para a escala não ficar presa a poucos setores."
+    ],
+    [
+     "O que mostra.",
+     "A maior média é a do Norte (0,210); a menor, a do Sul (0,159). O Norte tem só 6 municípios: os contrastes descrevem os municípios estudados, não a região inteira."
+    ]
+   ]
+  },
+  "CRI-15": {
+   "titulo": "Por porte do município: a tabela",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Grupo",
+    "Setores",
+    "Média",
+    "Mediana",
+    "p75",
+    "% zeros"
+   ],
+   "linhas": [
+    [
+     "até 100 mil",
+     "1.219",
+     "0,199",
+     "0,196",
+     "0,236",
+     "1,4%"
+    ],
+    [
+     "100 a 500 mil",
+     "7.652",
+     "0,185",
+     "0,184",
+     "0,218",
+     "0,6%"
+    ],
+    [
+     "mais de 500 mil",
+     "94.979",
+     "0,171",
+     "0,170",
+     "0,209",
+     "0,5%"
+    ]
+   ],
+   "colW": [
+    1.6,
+    1.1,
+    1.3,
+    1.3,
+    1.1,
+    0.8
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "As estatísticas do indicador por tamanho do município (moradores somados nos setores da base)."
+    ],
+    [
+     "Para que serve.",
+     "Testa se o indicador acompanha o tamanho da cidade — se sim, parte dele mede porte urbano, não vulnerabilidade."
+    ],
+    [
+     "Como ler.",
+     "Três grupos: até 100 mil, de 100 a 500 mil e mais de 500 mil moradores."
+    ],
+    [
+     "O que mostra.",
+     "A maior média é a dos municípios de até 100 mil (0,199); a menor, a dos de mais de 500 mil (0,171)."
+    ]
+   ]
+  },
+  "CRI-16": {
+   "titulo": "Por porte do município: o boxplot",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/CRI_porte.png",
+   "legenda": "Crianças (0 a 14 anos) por porte do município.",
+   "explica": [
+    [
+     "O que é.",
+     "Um boxplot por porte de município."
+    ],
+    [
+     "Para que serve.",
+     "Mostra se cidades maiores ou menores concentram o problema."
+    ],
+    [
+     "Como ler.",
+     "A caixa vai do percentil 25 ao 75 (metade central dos setores); a linha vermelha é a mediana; o losango, a média; os bigodes vão até 1,5 vez a altura da caixa. Os extremos além dos bigodes não são desenhados, para a escala não ficar presa a poucos setores."
+    ],
+    [
+     "O que mostra.",
+     "A maior média é a dos municípios de até 100 mil (0,199); a menor, a dos de mais de 500 mil (0,171)."
+    ]
+   ]
+  },
+  "CRI-17": {
+   "titulo": "Os 70 municípios: maiores e menores médias",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Município",
+    "Região",
+    "Setores",
+    "Média",
+    "Mediana"
+   ],
+   "colW": [
+    2.4,
+    1.3,
+    0.9,
+    1.3,
+    1.3
+   ],
+   "linhas": [
+    [
+     "Portel",
+     "Norte",
+     "26",
+     "0,307",
+     "0,283"
+    ],
+    [
+     "Autazes",
+     "Norte",
+     "43",
+     "0,285",
+     "0,286"
+    ],
+    [
+     "Placas",
+     "Norte",
+     "16",
+     "0,260",
+     "0,268"
+    ],
+    [
+     "Água Preta",
+     "Nordeste",
+     "32",
+     "0,231",
+     "0,234"
+    ],
+    [
+     "São Raimundo do Doca Bezerra",
+     "Nordeste",
+     "3",
+     "0,231",
+     "0,232"
+    ],
+    [
+     "Rosário",
+     "Nordeste",
+     "36",
+     "0,231",
+     "0,231"
+    ],
+    [
+     "Manaus",
+     "Norte",
+     "3.093",
+     "0,230",
+     "0,230"
+    ],
+    [
+     "Jaqueira",
+     "Nordeste",
+     "9",
+     "0,224",
+     "0,235"
+    ],
+    [
+     "São José de Ribamar",
+     "Nordeste",
+     "580",
+     "0,223",
+     "0,221"
+    ],
+    [
+     "Japoatã",
+     "Nordeste",
+     "7",
+     "0,222",
+     "0,234"
+    ],
+    [
+     "Campinas",
+     "Sudeste",
+     "2.455",
+     "0,161",
+     "0,156"
+    ],
+    [
+     "Rio de Janeiro",
+     "Sudeste",
+     "13.331",
+     "0,161",
+     "0,157"
+    ],
+    [
+     "Araçatuba",
+     "Sudeste",
+     "487",
+     "0,160",
+     "0,154"
+    ],
+    [
+     "Taió",
+     "Sul",
+     "49",
+     "0,158",
+     "0,174"
+    ],
+    [
+     "Curitiba",
+     "Sul",
+     "3.163",
+     "0,157",
+     "0,158"
+    ],
+    [
+     "Belo Horizonte",
+     "Sudeste",
+     "5.097",
+     "0,152",
+     "0,148"
+    ],
+    [
+     "São Caetano do Sul",
+     "Sudeste",
+     "421",
+     "0,151",
+     "0,146"
+    ],
+    [
+     "Porto Alegre",
+     "Sul",
+     "2.663",
+     "0,147",
+     "0,136"
+    ],
+    [
+     "Coroaci",
+     "Sudeste",
+     "11",
+     "0,147",
+     "0,144"
+    ],
+    [
+     "São Paulo das Missões",
+     "Sul",
+     "6",
+     "0,121",
+     "0,133"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Os 10 municípios com a maior média do indicador e os 10 com a menor."
+    ],
+    [
+     "Para que serve.",
+     "Identifica onde o indicador é mais e menos presente. A tabela completa está no apêndice."
+    ],
+    [
+     "Como ler.",
+     "Atenção à coluna \"Setores\": município com poucos setores tem média instável, que muda muito com um setor a mais ou a menos."
+    ],
+    [
+     "O que mostra.",
+     "Maior média: Portel (0,307, 26 setores); menor: São Paulo das Missões (0,121)."
+    ]
+   ]
+  },
+  "CRI-18": {
+   "titulo": "Os 70 municípios, ordenados pela mediana",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/CRI_municipios.png",
+   "legenda": "Crianças (0 a 14 anos): mediana (ponto) e intervalo entre os percentis 25 e 75 (traço) de cada município.",
+   "explica": [
+    [
+     "O que é.",
+     "Cada coluna é um município: o ponto é a mediana dos setores dele e o traço vai do percentil 25 ao 75."
+    ],
+    [
+     "Para que serve.",
+     "Mostra ao mesmo tempo o nível de cada cidade (o ponto) e a desigualdade dentro dela (o tamanho do traço)."
+    ],
+    [
+     "Como ler.",
+     "Da esquerda para a direita, das cidades com mediana mais baixa às mais altas. Traço longo: setores muito diferentes entre si na mesma cidade."
+    ],
+    [
+     "O que mostra.",
+     "A mediana vai de 0,133 a 0,286."
+    ]
+   ]
+  },
+  "CRI-19": {
+   "titulo": "A desigualdade dentro das cidades: a tabela",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Município",
+    "Setores",
+    "Intervalo interquartil",
+    "Gini"
+   ],
+   "colW": [
+    2.6,
+    1.0,
+    2.0,
+    1.2
+   ],
+   "linhas": [
+    [
+     "Porto Alegre",
+     "2.663",
+     "0,097",
+     "0,253"
+    ],
+    [
+     "Taió",
+     "49",
+     "0,057",
+     "0,250"
+    ],
+    [
+     "Campinas",
+     "2.455",
+     "0,085",
+     "0,217"
+    ],
+    [
+     "Araçatuba",
+     "487",
+     "0,074",
+     "0,208"
+    ],
+    [
+     "Rio de Janeiro",
+     "13.331",
+     "0,082",
+     "0,205"
+    ],
+    [
+     "São Paulo",
+     "26.423",
+     "0,076",
+     "0,201"
+    ],
+    [
+     "Belo Horizonte",
+     "5.097",
+     "0,065",
+     "0,188"
+    ],
+    [
+     "Guarujá",
+     "684",
+     "0,062",
+     "0,183"
+    ],
+    [
+     "Água Preta",
+     "32",
+     "0,052",
+     "0,110"
+    ],
+    [
+     "Salinas",
+     "53",
+     "0,045",
+     "0,107"
+    ],
+    [
+     "Autazes",
+     "43",
+     "0,055",
+     "0,099"
+    ],
+    [
+     "Ibatiba",
+     "35",
+     "0,040",
+     "0,077"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Duas medidas de quanto os setores de uma mesma cidade diferem entre si: o intervalo interquartil (percentil 75 menos 25) e o Gini."
+    ],
+    [
+     "Para que serve.",
+     "O IVS é intraurbano: quer achar as diferenças dentro da cidade. Indicador que varia pouco dentro das cidades contribui pouco para isso."
+    ],
+    [
+     "Como ler.",
+     "O Gini vai de 0 (todos os setores iguais) a 1 (tudo concentrado num setor). Mostra os 8 municípios mais desiguais e os 4 menos."
+    ],
+    [
+     "O que mostra.",
+     "Entre os 56 municípios com pelo menos 30 setores, o Gini vai de 0,077 (Ibatiba) a 0,253 (Porto Alegre)."
+    ]
+   ]
+  },
+  "CRI-20": {
+   "titulo": "A desigualdade dentro das cidades: o gráfico",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/CRI_desigualdade.png",
+   "legenda": "Crianças (0 a 14 anos): mediana × Gini de cada município (tamanho do ponto = número de setores).",
+   "explica": [
+    [
+     "O que é.",
+     "Cada ponto é um município: na horizontal, o nível do indicador; na vertical, a desigualdade entre os setores dele."
+    ],
+    [
+     "Para que serve.",
+     "Separa cidades com o problema espalhado (nível alto, Gini baixo) de cidades com o problema concentrado em poucos setores (Gini alto)."
+    ],
+    [
+     "Como ler.",
+     "Pontos maiores são cidades com mais setores. Os nomes marcados são os extremos de desigualdade."
+    ],
+    [
+     "O que mostra.",
+     "Entre os 56 municípios com pelo menos 30 setores, o Gini vai de 0,077 (Ibatiba) a 0,253 (Porto Alegre)."
+    ]
+   ]
+  },
+  "CRI-21": {
+   "titulo": "Favela e fora da favela: a tabela",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Grupo",
+    "Setores",
+    "Média",
+    "Mediana",
+    "p75",
+    "% zeros"
+   ],
+   "linhas": [
+    [
+     "Favela e comunidade urbana",
+     "19.440",
+     "0,222",
+     "0,219",
+     "0,251",
+     "0,1%"
+    ],
+    [
+     "Fora de favela",
+     "84.410",
+     "0,161",
+     "0,161",
+     "0,196",
+     "0,6%"
+    ]
+   ],
+   "colW": [
+    2.3,
+    1.0,
+    1.2,
+    1.2,
+    1.0,
+    0.8
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "As estatísticas do indicador nos setores de favela e comunidade urbana (classificação do IBGE) e nos demais."
+    ],
+    [
+     "Para que serve.",
+     "Favela é um território sabidamente vulnerável: um indicador de vulnerabilidade deveria ser mais alto nela. É uma checagem de bom senso, não uma validação."
+    ],
+    [
+     "Como ler.",
+     "Compare as médias; a razão diz quantas vezes o valor na favela é o de fora."
+    ],
+    [
+     "O que mostra.",
+     "Média de 0,222 nos setores de favela e de 0,161 fora delas (razão de 1,4)."
+    ]
+   ]
+  },
+  "CRI-22": {
+   "titulo": "Favela e fora da favela: o boxplot",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/CRI_favela.png",
+   "legenda": "Crianças (0 a 14 anos): setores de favela e fora de favela.",
+   "explica": [
+    [
+     "O que é.",
+     "Um boxplot para os setores de favela e outro para os demais."
+    ],
+    [
+     "Para que serve.",
+     "Mostra se a diferença está em todos os setores ou só em alguns."
+    ],
+    [
+     "Como ler.",
+     "A caixa vai do percentil 25 ao 75 (metade central dos setores); a linha vermelha é a mediana; o losango, a média; os bigodes vão até 1,5 vez a altura da caixa. Os extremos além dos bigodes não são desenhados, para a escala não ficar presa a poucos setores."
+    ],
+    [
+     "O que mostra.",
+     "Média de 0,222 nos setores de favela e de 0,161 fora delas (razão de 1,4)."
+    ]
+   ]
+  },
+  "CRI-23": {
+   "titulo": "O indicador ao longo da renda",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/CRI_gradiente.png",
+   "legenda": "Crianças (0 a 14 anos) por decil de renda do setor no município (1 = mais pobre).",
+   "explica": [
+    [
+     "O que é.",
+     "Os setores de cada município ordenados pela renda e divididos em 10 grupos iguais (decis); o gráfico dá a média e a mediana do indicador em cada grupo."
+    ],
+    [
+     "Para que serve.",
+     "Mostra o gradiente social: se o indicador piora à medida que a renda cai. Como os decis são feitos dentro de cada município, a comparação é sempre entre setores da mesma cidade."
+    ],
+    [
+     "Como ler.",
+     "Linha descendente da esquerda para a direita: o indicador é maior nos setores mais pobres. Linha plana: não depende da renda."
+    ],
+    [
+     "O que mostra.",
+     "No decil 1 a média é 0,239; no decil 10, 0,143."
+    ]
+   ]
+  },
+  "CRI-24": {
+   "titulo": "Os 70 municípios e o Brasil urbano: a tabela",
+   "fontes": [
+    "banco_de_dados/nacional/Base_Brasil_Censo2022.db",
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Grupo",
+    "Setores",
+    "Média",
+    "Mediana",
+    "p75",
+    "% zeros"
+   ],
+   "linhas": [
+    [
+     "Brasil, setores urbanos",
+     "346.371",
+     "0,187",
+     "0,186",
+     "0,224",
+     "0,7%"
+    ],
+    [
+     "70 municípios do ELSI",
+     "103.850",
+     "0,173",
+     "0,172",
+     "0,210",
+     "0,5%"
+    ]
+   ],
+   "colW": [
+    2.3,
+    1.0,
+    1.2,
+    1.2,
+    1.0,
+    0.8
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "O indicador nos setores urbanos de todo o Brasil e nos dos 70 municípios do ELSI-Brasil."
+    ],
+    [
+     "Para que serve.",
+     "Diz se o recorte do estudo é parecido com o país urbano, ou se há viés de seleção dos municípios."
+    ],
+    [
+     "Como ler.",
+     "Médias próximas: o recorte representa bem o Brasil urbano neste indicador."
+    ],
+    [
+     "O que mostra.",
+     "No Brasil urbano a média é 0,187; nos 70 municípios, 0,173."
+    ]
+   ]
+  },
+  "CRI-25": {
+   "titulo": "Os 70 municípios e o Brasil urbano: o gráfico",
+   "fontes": [
+    "banco_de_dados/nacional/Base_Brasil_Censo2022.db",
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/CRI_brasil.png",
+   "legenda": "Crianças (0 a 14 anos): distribuição acumulada no Brasil urbano e nos 70 municípios.",
+   "explica": [
+    [
+     "O que é.",
+     "As duas distribuições acumuladas sobrepostas."
+    ],
+    [
+     "Para que serve.",
+     "Compara a distribuição inteira, não só a média."
+    ],
+    [
+     "Como ler.",
+     "Curva mais à direita: valores mais altos. Curvas coladas: as duas populações de setores são parecidas."
+    ],
+    [
+     "O que mostra.",
+     "No Brasil urbano a média é 0,187; nos 70 municípios, 0,173."
+    ]
+   ]
+  },
+  "CRI-26": {
+   "titulo": "Os valores extremos",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Município",
+    "Favela",
+    "Moradores",
+    "Valor"
+   ],
+   "colW": [
+    2.8,
+    1.0,
+    1.3,
+    1.9
+   ],
+   "linhas": [
+    [
+     "Portel",
+     "não",
+     "41",
+     "0,488"
+    ],
+    [
+     "Brasília",
+     "não",
+     "64",
+     "0,484"
+    ],
+    [
+     "Teresina",
+     "não",
+     "21",
+     "0,476"
+    ],
+    [
+     "São José dos Pinhais",
+     "não",
+     "100",
+     "0,470"
+    ],
+    [
+     "Nova Iguaçu",
+     "sim",
+     "105",
+     "0,467"
+    ],
+    [
+     "Campo Grande",
+     "sim",
+     "235",
+     "0,464"
+    ],
+    [
+     "São Paulo",
+     "não",
+     "52",
+     "0,462"
+    ],
+    [
+     "Portel",
+     "não",
+     "910",
+     "0,451"
+    ],
+    [
+     "Guarulhos",
+     "não",
+     "20",
+     "0,450"
+    ],
+    [
+     "Salvador",
+     "não",
+     "29",
+     "0,448"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Os 10 setores com o maior valor do indicador."
+    ],
+    [
+     "Para que serve.",
+     "Ajuda a separar extremo verdadeiro (um setor realmente muito carente, ou muito rico) de erro de dado. A coluna \"Moradores\" mostra setores pequenos, onde um domicílio muda muito a proporção."
+    ],
+    [
+     "Como ler.",
+     "Proporção 1 quer dizer todos os domicílios (ou pessoas) do setor na condição."
+    ],
+    [
+     "O que mostra.",
+     "O percentil 99 é 0,316; 1.039 setores ficam acima dele."
+    ]
+   ]
+  },
+  "CRI-27": {
+   "titulo": "Na análise fatorial",
+   "fontes": [],
+   "numero": "2",
+   "sub": "Como o indicador se relaciona com os outros 11, quanto compartilha com eles, o que acontece quando entra ou sai e o peso que recebe no índice."
+  },
+  "CRI-28": {
+   "titulo": "Correlação com os outros 11: a tabela",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_global_correlacao.csv",
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_municipal_correlacao.csv"
+   ],
+   "cab": [
+    "Indicador",
+    "No conjunto",
+    "Dentro dos municípios"
+   ],
+   "colW": [
+    3.2,
+    1.6,
+    2.2
+   ],
+   "linhas": [
+    [
+     "Idosos (60 anos ou mais)",
+     "-0,79",
+     "-0,77"
+    ],
+    [
+     "Renda média do responsável",
+     "0,62",
+     "0,64"
+    ],
+    [
+     "Razão de moradores",
+     "0,61",
+     "0,59"
+    ],
+    [
+     "Preta, parda ou indígena",
+     "0,56",
+     "0,66"
+    ],
+    [
+     "Analfabetismo (15 anos ou mais)",
+     "0,54",
+     "0,54"
+    ],
+    [
+     "Esgoto inadequado",
+     "0,39",
+     "0,34"
+    ],
+    [
+     "Sem água canalizada",
+     "0,24",
+     "0,21"
+    ],
+    [
+     "Água inadequada",
+     "0,22",
+     "0,12"
+    ],
+    [
+     "Sem banheiro",
+     "0,19",
+     "0,16"
+    ],
+    [
+     "Lixo inadequado",
+     "0,19",
+     "0,22"
+    ],
+    [
+     "Moradia não convencional",
+     "0,04",
+     "0,03"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "A correlação do indicador com cada um dos outros 11, nos setores que têm os 12."
+    ],
+    [
+     "Para que serve.",
+     "A análise fatorial agrupa os indicadores que andam juntos. Correlações altas dizem com quem este indicador vai formar uma dimensão."
+    ],
+    [
+     "Como ler.",
+     "A correlação de Spearman vai de −1 a 1: perto de 1, os setores com valor alto num indicador também têm valor alto no outro; perto de 0, não há relação; negativa, um sobe quando o outro desce. \"No conjunto\" compara todos os setores; \"dentro dos municípios\", cada setor só com os da própria cidade."
+    ],
+    [
+     "O que mostra.",
+     "A correlação mais forte é com Idosos (60 anos ou mais): -0,79 no conjunto e -0,77 dentro dos municípios."
+    ]
+   ]
+  },
+  "CRI-29": {
+   "titulo": "Correlação com os outros 11: o gráfico",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_global_correlacao.csv",
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_municipal_correlacao.csv"
+   ],
+   "figura": "figuras/CRI_correlacao.png",
+   "legenda": "Spearman nos setores com os 12 indicadores; renda invertida.",
+   "explica": [
+    [
+     "O que é.",
+     "As mesmas correlações em barras: verde, no conjunto; vermelho, dentro dos municípios."
+    ],
+    [
+     "Para que serve.",
+     "Quando a barra vermelha encolhe, parte da relação vinha de diferenças entre cidades, não de diferenças dentro delas."
+    ],
+    [
+     "Como ler.",
+     "Barra para a direita: relação positiva; para a esquerda, negativa. Ordenado da mais forte para a mais fraca."
+    ],
+    [
+     "O que mostra.",
+     "A correlação mais forte é com Idosos (60 anos ou mais): -0,79 no conjunto e -0,77 dentro dos municípios."
+    ]
+   ]
+  },
+  "CRI-30": {
+   "titulo": "Na análise fatorial das 12: a tabela",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_global_cargas.csv",
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_municipal_cargas.csv"
+   ],
+   "cab": [
+    "Medida",
+    "No conjunto",
+    "Dentro dos municípios"
+   ],
+   "colW": [
+    2.8,
+    1.6,
+    2.2
+   ],
+   "linhas": [
+    [
+     "MSA",
+     "0,783",
+     "0,803"
+    ],
+    [
+     "Comunalidade",
+     "0,791",
+     "0,705"
+    ],
+    [
+     "Sem rotação, F1",
+     "0,813",
+     "0,828"
+    ],
+    [
+     "Sem rotação, F2",
+     "-0,360",
+     "-0,141"
+    ],
+    [
+     "Varimax, F1",
+     "0,889",
+     "0,836"
+    ],
+    [
+     "Varimax, F2",
+     "0,033",
+     "0,081"
+    ],
+    [
+     "Promax padrão, F1",
+     "0,998",
+     "0,854"
+    ],
+    [
+     "Promax padrão, F2",
+     "-0,204",
+     "-0,028"
+    ],
+    [
+     "Promax estrutura, F1",
+     "0,875",
+     "0,840"
+    ],
+    [
+     "Promax estrutura, F2",
+     "0,400",
+     "0,417"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "O resultado da análise fatorial dos 12 indicadores juntos (eixo principal, 2 fatores), nas duas réguas."
+    ],
+    [
+     "Para que serve.",
+     "A carga diz quanto o indicador \"pertence\" a cada fator (F1, F2). A comunalidade é a parte da variação dele explicada pelos fatores; o MSA, o quanto ele combina com os outros para uma fatorial."
+    ],
+    [
+     "Como ler.",
+     "Carga perto de 1 (ou −1): pertence ao fator; perto de 0, não. Comunalidade abaixo de 0,30 e MSA abaixo de 0,50 são os limites pré-registrados. Varimax mantém os fatores independentes; promax deixa que se correlacionem."
+    ],
+    [
+     "O que mostra.",
+     "Comunalidade de 0,791 no conjunto e 0,705 dentro dos municípios (critério: 0,30); MSA de 0,783 (critério: 0,50)."
+    ]
+   ]
+  },
+  "CRI-31": {
+   "titulo": "Na análise fatorial das 12: as cargas",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_global_cargas.csv",
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_municipal_cargas.csv"
+   ],
+   "figura": "figuras/CRI_cargas.png",
+   "legenda": "Crianças (0 a 14 anos): carga em F1 (cor cheia) e F2 (cor clara), por rotação e régua.",
+   "explica": [
+    [
+     "O que é.",
+     "As cargas do indicador nos dois fatores, em cada forma de rotação, nas duas réguas."
+    ],
+    [
+     "Para que serve.",
+     "Mostra se o indicador fica sempre no mesmo fator, seja qual for a rotação — sinal de que a posição dele na estrutura é estável."
+    ],
+    [
+     "Como ler.",
+     "Barra alta em F1 e baixa em F2: o indicador pertence a F1. Barras parecidas nas quatro rotações: a conclusão não depende do método."
+    ],
+    [
+     "O que mostra.",
+     "Comunalidade de 0,791 no conjunto e 0,705 dentro dos municípios (critério: 0,30); MSA de 0,783 (critério: 0,50)."
+    ]
+   ]
+  },
+  "CRI-32": {
+   "titulo": "O que acontece quando ele entra ou sai",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_efeito_variavel.csv"
+   ],
+   "cab": [
+    "Nas 4.017 combinações",
+    "No conjunto",
+    "Dentro dos municípios"
+   ],
+   "colW": [
+    3.4,
+    1.5,
+    2.1
+   ],
+   "linhas": [
+    [
+     "Pares comparados",
+     "1.981",
+     "1.981"
+    ],
+    [
+     "Variação mediana do KMO",
+     "0,033",
+     "0,056"
+    ],
+    [
+     "Setores perdidos (mediana)",
+     "158",
+     "158"
+    ],
+    [
+     "% elegível sem ele",
+     "2,5%",
+     "0,2%"
+    ],
+    [
+     "% elegível com ele",
+     "4,2%",
+     "0,9%"
+    ],
+    [
+     "% dos pares em que derruba",
+     "1,1%",
+     "0,05%"
+    ],
+    [
+     "Comunalidade mediana",
+     "0,757",
+     "0,764"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Foram rodadas todas as 4.017 combinações de 3 ou mais dos 12 indicadores. Aqui se comparam os pares de combinações que só diferem por este indicador."
+    ],
+    [
+     "Para que serve.",
+     "Isola o efeito de incluir este indicador: se melhora ou piora a adequação (KMO), quantos setores custa (por sigilo) e se faz a combinação deixar de passar nos critérios."
+    ],
+    [
+     "Como ler.",
+     "KMO vai de 0 a 1 e mede se os indicadores compartilham variação suficiente para uma fatorial; acima de 0,70 é adequado. \"Elegível\" = passa nos quatro critérios pré-registrados."
+    ],
+    [
+     "O que mostra.",
+     "Na régua municipal, em 0,05% dos pares a combinação era elegível sem ele e deixa de ser com ele; ao entrar, custa na mediana 158 setores e muda o KMO em 0,056."
+    ]
+   ]
+  },
+  "CRI-33": {
+   "titulo": "A comunalidade dele nas 4.017 combinações",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_subconjuntos.csv"
+   ],
+   "figura": "figuras/CRI_comunalidade.png",
+   "legenda": "Crianças (0 a 14 anos): comunalidade em cada combinação em que entra; tracejado: critério 0,30.",
+   "explica": [
+    [
+     "O que é.",
+     "A comunalidade do indicador em cada uma das combinações em que ele entra, nas duas réguas."
+    ],
+    [
+     "Para que serve.",
+     "Mostra se o indicador compartilha variação com os outros de forma consistente, ou só em algumas combinações."
+    ],
+    [
+     "Como ler.",
+     "Histograma à direita da linha tracejada: o indicador costuma passar no critério. À esquerda: costuma ficar de fora da estrutura comum."
+    ],
+    [
+     "O que mostra.",
+     "Dentro dos municípios, fica abaixo do critério em 1,7% das combinações em que entra."
+    ]
+   ]
+  },
+  "CRI-34": {
+   "titulo": "O peso no índice",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada3_finalistas.csv",
+    "banco_de_dados/eda/fatorial_multiversao/camada3_estabilidade.csv"
+   ],
+   "cab": [
+    "Finalista",
+    "Especificação",
+    "Peso",
+    "Menor sem 1 município",
+    "Maior"
+   ],
+   "colW": [
+    2.0,
+    1.1,
+    1.0,
+    1.9,
+    1.0
+   ],
+   "linhas": [
+    [
+     "proposta",
+     "E0009",
+     "fora",
+     "—",
+     "—"
+    ],
+    [
+     "alt. conjunto",
+     "E0171",
+     "fora",
+     "—",
+     "—"
+    ],
+    [
+     "alt. normalizacao",
+     "E0027",
+     "fora",
+     "—",
+     "—"
+    ],
+    [
+     "alt. rotacao peso",
+     "E0001",
+     "fora",
+     "—",
+     "—"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "O peso do indicador no índice em cada especificação finalista (a proposta e as alternativas de maior impacto), e o menor e o maior peso quando se tira um município por vez."
+    ],
+    [
+     "Para que serve.",
+     "Mostra quanto o indicador conta no IVS e se esse peso depende de uma cidade específica."
+    ],
+    [
+     "Como ler.",
+     "Peso é a fração do índice que vem deste indicador (os pesos de todos somam 100%). \"Fora\": não entra naquela especificação."
+    ],
+    [
+     "O que mostra.",
+     "Fora do índice. Correlação de Spearman com o IVS proposto: 0,62. Média por faixa, de baixo a muito elevado: 0,140 · 0,180 · 0,219 · 0,238."
+    ]
+   ]
+  },
+  "CRI-35": {
+   "titulo": "Ao longo das faixas do IVS proposto",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/ivs_proposto_por_setor.csv"
+   ],
+   "figura": "figuras/CRI_por_faixa.png",
+   "legenda": "Crianças (0 a 14 anos): média por faixa do IVS proposto.",
+   "explica": [
+    [
+     "O que é.",
+     "A média do indicador nos setores de cada faixa de vulnerabilidade do IVS proposto."
+    ],
+    [
+     "Para que serve.",
+     "Responde à pergunta do ELSI: os idosos (ou as crianças) moram mais nos setores mais ou menos vulneráveis?"
+    ],
+    [
+     "Como ler.",
+     "Barras que sobem para a direita: mais presentes nos setores mais vulneráveis."
+    ],
+    [
+     "O que mostra.",
+     "Fora do índice. Correlação de Spearman com o IVS proposto: 0,62. Média por faixa, de baixo a muito elevado: 0,140 · 0,180 · 0,219 · 0,238."
+    ]
+   ]
+  },
+  "CRI-36": {
+   "titulo": "Síntese",
+   "fontes": [
+    "seções anteriores deste deck"
+   ],
+   "blocos": [
+    [
+     "Distribuição.",
+     "A média (0,173) e a mediana (0,172) estão próximas: assimetria de 0,11."
+    ],
+    [
+     "Cobertura.",
+     "103.850 dos 104.108 setores (99,8%) têm o dado. Nos 258 sem o dado, a renda mediana do responsável é R$ 4.757,22, contra R$ 2.570,48 nos que têm: o ausente não é aleatório."
+    ],
+    [
+     "Onde é mais alto.",
+     "A maior média é a do Norte (0,210); a menor, a do Sul (0,159). O Norte tem só 6 municípios: os contrastes descrevem os municípios estudados, não a região inteira."
+    ],
+    [
+     "Gradiente social.",
+     "No decil 1 a média é 0,239; no decil 10, 0,143."
+    ],
+    [
+     "Relações.",
+     "A correlação mais forte é com Idosos (60 anos ou mais): -0,79 no conjunto e -0,77 dentro dos municípios."
+    ],
+    [
+     "Na fatorial.",
+     "Comunalidade mediana de 0,764 dentro dos municípios; atende a 3 dos 3 critérios da Fase 1 (comunalidade, perda de base, elegibilidade)."
+    ],
+    [
+     "Proposta.",
+     "Fica fora do IVS proposto (padrão P2); a decisão é da orientadora."
+    ]
+   ]
+  },
+  "CRI-37": {
+   "titulo": "Apêndice: os 70 municípios (1 de 2)",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Município",
+    "Região",
+    "Setores",
+    "Média",
+    "Mediana"
+   ],
+   "linhas": [
+    [
+     "Portel",
+     "Norte",
+     "26",
+     "0,307",
+     "0,283"
+    ],
+    [
+     "Autazes",
+     "Norte",
+     "43",
+     "0,285",
+     "0,286"
+    ],
+    [
+     "Placas",
+     "Norte",
+     "16",
+     "0,260",
+     "0,268"
+    ],
+    [
+     "Água Preta",
+     "Nordeste",
+     "32",
+     "0,231",
+     "0,234"
+    ],
+    [
+     "São Raimundo do Doca Bezerra",
+     "Nordeste",
+     "3",
+     "0,231",
+     "0,232"
+    ],
+    [
+     "Rosário",
+     "Nordeste",
+     "36",
+     "0,231",
+     "0,231"
+    ],
+    [
+     "Manaus",
+     "Norte",
+     "3.093",
+     "0,230",
+     "0,230"
+    ],
+    [
+     "Jaqueira",
+     "Nordeste",
+     "9",
+     "0,224",
+     "0,235"
+    ],
+    [
+     "São José de Ribamar",
+     "Nordeste",
+     "580",
+     "0,223",
+     "0,221"
+    ],
+    [
+     "Japoatã",
+     "Nordeste",
+     "7",
+     "0,222",
+     "0,234"
+    ],
+    [
+     "Marechal Deodoro",
+     "Nordeste",
+     "88",
+     "0,217",
+     "0,219"
+    ],
+    [
+     "Santa Maria do Oeste",
+     "Sul",
+     "8",
+     "0,210",
+     "0,213"
+    ],
+    [
+     "Vicentinópolis",
+     "Centro-Oeste",
+     "11",
+     "0,210",
+     "0,198"
+    ],
+    [
+     "São José dos Pinhais",
+     "Sul",
+     "456",
+     "0,206",
+     "0,208"
+    ],
+    [
+     "Ibatiba",
+     "Sudeste",
+     "35",
+     "0,204",
+     "0,203"
+    ],
+    [
+     "Campo Grande",
+     "Centro-Oeste",
+     "1.602",
+     "0,204",
+     "0,203"
+    ],
+    [
+     "Orizânia",
+     "Sudeste",
+     "5",
+     "0,203",
+     "0,213"
+    ],
+    [
+     "Capelinha",
+     "Sudeste",
+     "56",
+     "0,202",
+     "0,201"
+    ],
+    [
+     "Maceió",
+     "Nordeste",
+     "1.531",
+     "0,202",
+     "0,202"
+    ],
+    [
+     "Itapetinga",
+     "Nordeste",
+     "104",
+     "0,202",
+     "0,201"
+    ],
+    [
+     "Urandi",
+     "Nordeste",
+     "9",
+     "0,201",
+     "0,214"
+    ],
+    [
+     "Macaé",
+     "Sudeste",
+     "616",
+     "0,199",
+     "0,200"
+    ],
+    [
+     "Ananindeua",
+     "Norte",
+     "732",
+     "0,198",
+     "0,199"
+    ],
+    [
+     "Teresina",
+     "Nordeste",
+     "1.365",
+     "0,196",
+     "0,190"
+    ],
+    [
+     "Guarulhos",
+     "Sudeste",
+     "2.410",
+     "0,196",
+     "0,195"
+    ],
+    [
+     "Groaíras",
+     "Nordeste",
+     "14",
+     "0,196",
+     "0,194"
+    ],
+    [
+     "Feira de Santana",
+     "Nordeste",
+     "997",
+     "0,196",
+     "0,197"
+    ],
+    [
+     "Chapada dos Guimarães",
+     "Centro-Oeste",
+     "34",
+     "0,195",
+     "0,192"
+    ],
+    [
+     "São Luís",
+     "Nordeste",
+     "1.673",
+     "0,194",
+     "0,190"
+    ],
+    [
+     "Goianésia",
+     "Centro-Oeste",
+     "88",
+     "0,194",
+     "0,195"
+    ],
+    [
+     "Duque de Caxias",
+     "Sudeste",
+     "1.788",
+     "0,194",
+     "0,192"
+    ],
+    [
+     "Tabatinga",
+     "Sudeste",
+     "31",
+     "0,193",
+     "0,193"
+    ],
+    [
+     "Anápolis",
+     "Centro-Oeste",
+     "556",
+     "0,193",
+     "0,193"
+    ],
+    [
+     "Camaragibe",
+     "Nordeste",
+     "272",
+     "0,192",
+     "0,188"
+    ],
+    [
+     "Nova Iguaçu",
+     "Sudeste",
+     "1.569",
+     "0,192",
+     "0,191"
+    ]
+   ],
+   "duas": true
+  },
+  "CRI-38": {
+   "titulo": "Apêndice: os 70 municípios (2 de 2)",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Município",
+    "Região",
+    "Setores",
+    "Média",
+    "Mediana"
+   ],
+   "linhas": [
+    [
+     "Pato Branco",
+     "Sul",
+     "151",
+     "0,190",
+     "0,189"
+    ],
+    [
+     "Arara",
+     "Nordeste",
+     "19",
+     "0,189",
+     "0,187"
+    ],
+    [
+     "Salinas",
+     "Sudeste",
+     "53",
+     "0,187",
+     "0,183"
+    ],
+    [
+     "São Pedro da Aldeia",
+     "Sudeste",
+     "332",
+     "0,186",
+     "0,190"
+    ],
+    [
+     "Fortaleza",
+     "Nordeste",
+     "4.268",
+     "0,185",
+     "0,184"
+    ],
+    [
+     "Brasília",
+     "Centro-Oeste",
+     "4.909",
+     "0,184",
+     "0,185"
+    ],
+    [
+     "Mauá",
+     "Sudeste",
+     "822",
+     "0,182",
+     "0,180"
+    ],
+    [
+     "Itajuípe",
+     "Nordeste",
+     "29",
+     "0,182",
+     "0,177"
+    ],
+    [
+     "Salto",
+     "Sudeste",
+     "196",
+     "0,181",
+     "0,183"
+    ],
+    [
+     "Belém",
+     "Norte",
+     "2.003",
+     "0,181",
+     "0,179"
+    ],
+    [
+     "Cachoeiro de Itapemirim",
+     "Sudeste",
+     "363",
+     "0,180",
+     "0,181"
+    ],
+    [
+     "Guapiaçu",
+     "Sudeste",
+     "39",
+     "0,179",
+     "0,184"
+    ],
+    [
+     "Guarujá",
+     "Sudeste",
+     "684",
+     "0,178",
+     "0,179"
+    ],
+    [
+     "Natal",
+     "Nordeste",
+     "1.076",
+     "0,178",
+     "0,177"
+    ],
+    [
+     "Recife",
+     "Nordeste",
+     "2.795",
+     "0,177",
+     "0,176"
+    ],
+    [
+     "Limoeiro do Norte",
+     "Nordeste",
+     "95",
+     "0,176",
+     "0,180"
+    ],
+    [
+     "Igarapava",
+     "Sudeste",
+     "56",
+     "0,175",
+     "0,181"
+    ],
+    [
+     "Goiânia",
+     "Centro-Oeste",
+     "2.270",
+     "0,173",
+     "0,174"
+    ],
+    [
+     "Canoas",
+     "Sul",
+     "642",
+     "0,172",
+     "0,173"
+    ],
+    [
+     "Charqueadas",
+     "Sul",
+     "56",
+     "0,172",
+     "0,171"
+    ],
+    [
+     "São Bernardo do Campo",
+     "Sudeste",
+     "1.684",
+     "0,168",
+     "0,165"
+    ],
+    [
+     "Divinópolis",
+     "Sudeste",
+     "493",
+     "0,163",
+     "0,158"
+    ],
+    [
+     "São Gonçalo",
+     "Sudeste",
+     "2.349",
+     "0,162",
+     "0,161"
+    ],
+    [
+     "São Paulo",
+     "Sudeste",
+     "26.423",
+     "0,162",
+     "0,162"
+    ],
+    [
+     "Salvador",
+     "Nordeste",
+     "4.465",
+     "0,162",
+     "0,166"
+    ],
+    [
+     "Campinas",
+     "Sudeste",
+     "2.455",
+     "0,161",
+     "0,156"
+    ],
+    [
+     "Rio de Janeiro",
+     "Sudeste",
+     "13.331",
+     "0,161",
+     "0,157"
+    ],
+    [
+     "Araçatuba",
+     "Sudeste",
+     "487",
+     "0,160",
+     "0,154"
+    ],
+    [
+     "Taió",
+     "Sul",
+     "49",
+     "0,158",
+     "0,174"
+    ],
+    [
+     "Curitiba",
+     "Sul",
+     "3.163",
+     "0,157",
+     "0,158"
+    ],
+    [
+     "Belo Horizonte",
+     "Sudeste",
+     "5.097",
+     "0,152",
+     "0,148"
+    ],
+    [
+     "São Caetano do Sul",
+     "Sudeste",
+     "421",
+     "0,151",
+     "0,146"
+    ],
+    [
+     "Porto Alegre",
+     "Sul",
+     "2.663",
+     "0,147",
+     "0,136"
+    ],
+    [
+     "Coroaci",
+     "Sudeste",
+     "11",
+     "0,147",
+     "0,144"
+    ],
+    [
+     "São Paulo das Missões",
+     "Sul",
+     "6",
+     "0,121",
+     "0,133"
+    ]
+   ],
+   "duas": true
+  }
+ }
+}

@@ -93,3 +93,21 @@ def test_banheiro_graduado():
 def test_trava_nb04():
     """IVS-6 sem lixo, renda original, Varimax SS, normalização global = o índice do NB04."""
     assert ie.trava(ie.carregar_base()) == ie.TRAVA
+
+
+def test_municipio_sem_variacao_fica_ausente():
+    """Um setor só (ou todos iguais) não tem régua municipal: IVS ausente, faixa −1."""
+    d, colunas = _dados()
+    d.loc[len(d)] = {**{c: 0.3 for c in colunas}, 'NM_MUN': 'UNICO'}
+    peso = np.full(len(colunas), 1 / len(colunas))
+    v = ie.indice(d, colunas, peso, 'municipal')
+    assert np.isnan(v[-1]) and not np.isnan(v[:-1]).any()
+    for regra in ('ivs_bh', 'quartis'):
+        assert ie.faixas(v, d['NM_MUN'], regra)[-1] == -1
+
+
+def test_quartis_exigem_4_setores():
+    v = np.array([0.1, 0.9, 0.2, 0.3, 0.4, 0.5])
+    mun = np.array(['A', 'A', 'B', 'B', 'B', 'B'])
+    f = ie.faixas(v, mun, 'quartis')
+    assert list(f[:2]) == [-1, -1] and list(f[2:]) == [0, 1, 2, 3]

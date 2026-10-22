@@ -1,0 +1,5 @@
+eixo,alternativas,equivalentes,veredito,maior_troca_faixa,spearman_mun_min,alternativa_mais_distante
+conjunto,12,5,decisao_necessaria,0.361487,0.79401,E0171
+normalizacao,2,1,decisao_necessaria,0.317806,0.941944,E0027
+rotacao_peso,8,5,decisao_necessaria,0.185381,0.964988,E0001
+sigilo,2,2,equivalentes,0.0267637,0.998412,E0063
