@@ -34,7 +34,7 @@ def texto(no: str) -> str:
                     for par in re.findall(r'<a:p>.*?</a:p>', no, re.S)).strip()
 
 
-def slides(arq: Path) -> dict[str, list]:
+def slides(arq: Path, ident=ID) -> dict[str, list]:
     """{ID do slide: tabelas}. O ID é a caixa de texto do canto (DM02, DS20…); slide sem ID
     fica como 'sem ID n'. Assim, apagar ou mover slides não desalinha a comparação."""
     out = {}
@@ -43,7 +43,7 @@ def slides(arq: Path) -> dict[str, list]:
                        key=lambda n: int(re.findall(r'\d+', n)[0]))
         for k, n in enumerate(nomes):
             xml = z.read(n).decode('utf-8')
-            ids = [t for t in (texto(sp) for sp in re.findall(r'<p:sp>.*?</p:sp>', xml, re.S)) if ID.match(t)]
+            ids = [t for t in (texto(sp) for sp in re.findall(r'<p:sp>.*?</p:sp>', xml, re.S)) if ident.match(t)]
             tabs = [[[texto(tc) for tc in re.findall(r'<a:tc[ >].*?</a:tc>', tr, re.S)]
                      for tr in re.findall(r'<a:tr[ >].*?</a:tr>', tb, re.S)]
                     for tb in re.findall(r'<a:tbl>.*?</a:tbl>', xml, re.S)]
@@ -51,11 +51,9 @@ def slides(arq: Path) -> dict[str, list]:
     return out
 
 
-def main() -> None:
-    if len(sys.argv) < 2:
-        sys.exit('uso: comparar_edicoes_relatorio.py <deck_editado.pptx>')
-    editado = Path(sys.argv[1])
-    a, b = slides(GERADO), slides(editado)
+def relatar(gerado: Path, editado: Path, ident, saida: Path) -> None:
+    """Compara as tabelas dos dois decks slide a slide (pelo ID) e grava as diferenças em `saida`."""
+    a, b = slides(gerado, ident), slides(editado, ident)
     sumidos = [k for k in a if k not in b]
     novos = [k for k in b if k not in a]
     print(f'Gerado: {len(a)} slides; editado: {len(b)}. Apagados: {sumidos or "nenhum"}. '
@@ -79,11 +77,16 @@ def main() -> None:
         difs.append(dict(slide=k, tabela=0, linha=0, coluna=0, rotulo_da_linha='(slide apagado)',
                          gerado='existe', editado='apagado'))
     df = pd.DataFrame(difs, columns=['slide', 'tabela', 'linha', 'coluna', 'rotulo_da_linha', 'gerado', 'editado'])
-    saida = PASTA / 'dados' / 'edicoes_do_pedro.csv'
     df.to_csv(saida, index=False, encoding='utf-8-sig')
     print(f'{len(df)} diferenças em {df["slide"].nunique()} slides → {saida.relative_to(RAIZ)}')
     if len(df):
         print(df.head(25).to_string(index=False, max_colwidth=38))
+
+
+def main() -> None:
+    if len(sys.argv) < 2:
+        sys.exit('uso: comparar_edicoes_relatorio.py <deck_editado.pptx>')
+    relatar(GERADO, Path(sys.argv[1]), ID, PASTA / 'dados' / 'edicoes_do_pedro.csv')
 
 
 if __name__ == '__main__':

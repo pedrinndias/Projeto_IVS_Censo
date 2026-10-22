@@ -76,7 +76,6 @@ import pandas as pd
 
 COLUNA_RENDA = 'V06004'          # rendimento nominal médio mensal do responsável
 COLUNA_VARIANCIA = 'V06005'      # variância do rendimento no setor (mesmo arquivo do IBGE)
-COLUNA_N_RESP = 'V06001'         # nº de pessoas responsáveis no setor
 K_TUKEY = 3.0                    # k=3 (outlier "extremo"); k=1.5 seria "moderado"
 MIN_SETORES_MUNICIPIO = 20       # abaixo disso o quartil do município não é confiável
 RAZAO_IMPLAUSIVEL = 20.0         # renda do setor > 20× a mediana do município

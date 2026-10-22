@@ -22,12 +22,10 @@ from __future__ import annotations
 
 import copy
 import re
-import sys
 from pathlib import Path
 
 import pandas as pd
 from docx import Document
-from docx.shared import Pt
 
 RAIZ = Path(__file__).resolve().parents[1]
 APRES = RAIZ / "docs" / "Apresentacoes_IVS" / "complementos"
@@ -230,7 +228,7 @@ def main() -> None:
          f"Os pontos vermelhos são os {S} suspeitos"),
         ("com assimetria 3,74", f"com assimetria {n['assimetria']}"),
         ("Com assimetria de 3,74", f"Com assimetria de {n['assimetria']}"),
-        (f"renda_outliers_rastreados.csv — 3.358", f"renda_outliers_rastreados.csv — {R}"),
+        ("renda_outliers_rastreados.csv — 3.358", f"renda_outliers_rastreados.csv — {R}"),
         # Belo Horizonte deixou de ser o caso da normalização: o extremo já saiu da coluna
         ("Em Belo Horizonte são 98,8% dos setores espremidos no primeiro decil, com dois "
          "valores ruins numa cidade de cinco mil setores.",

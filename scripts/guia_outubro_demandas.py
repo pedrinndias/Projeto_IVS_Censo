@@ -157,7 +157,7 @@ canto de cima, à esquerda, melhor.""",
 maior ao de favela em cerca de 81% dos pares. A renda sozinha faz isso em cerca de 88% ({N.auc_renda}). A
 curva foi calculada sobre {N.fcu_s1} setores de favela contra {N.nfcu_s1} que não são. Sem São Paulo, o peso
 socioeconômico cairia para {N.p_sem_sp}% — o que mostra quanto um município grande pode pesar.""",
-             apresentar=f"""“Este é o ponto de partida. Os dados servem para análise fatorial, a análise divide os pesos em
+             apresentar="""“Este é o ponto de partida. Os dados servem para análise fatorial, a análise divide os pesos em
 aproximadamente dois terços socioeconômico e um terço saneamento, e o índice separa bem as favelas — mas a
 renda sozinha separa melhor. Guardem esse sexto número, porque ele volta.”""",
              perguntas=[("Uma AUC de 0,81 é boa?", "É boa: bem acima do acaso (0,5). O ponto não é que o índice seja ruim, e sim que a renda, sozinha, já é melhor nessa tarefa específica."),
@@ -232,7 +232,7 @@ NB04).""",
              mostra="""Uma tabela de oito linhas (S0 a S7) e nove colunas: o nome, o que entra, a demanda que o cenário
 responde, o número de variáveis, o número de setores, o KMO, o MSA mínimo, os fatores pelas regras de
 Kaiser e de Horn (K/H) e a variância explicada por dois fatores.""",
-             zero=f"""Os cenários:
+             zero="""Os cenários:
 
 • <b>S0</b>: o IVS-7, que reproduz o NB04 — o ponto de comparação;
 • <b>S1</b>: o IVS-6, sem o lixo (demanda 10);
@@ -261,7 +261,7 @@ quantos setores sobram e quantas dimensões os dados pedem. Com tudo junto, os d
 
         dict(n=14, titulo="Demandas 3 e 11: sem rotação, Varimax e promax",
              frase="Como os pesos se repartem entre os dois fatores em cada rotação — e a correlação entre os fatores quando se deixa que eles se correlacionem.",
-             mostra=f"""Uma tabela com quatro cenários (S0, S1, S6 e S7) e sete colunas: os pesos do fator 1 e do fator 2 sem
+             mostra="""Uma tabela com quatro cenários (S0, S1, S6 e S7) e sete colunas: os pesos do fator 1 e do fator 2 sem
 rotação, com Varimax, com promax pela matriz padrão e com promax pela matriz estrutura; o Φ; e a variável
 que puxa o fator 2. Embaixo, dois blocos: a leitura e "o que não está dito".""",
              zero=f"""Cada célula como "{N.pw_s0_varimax}" quer dizer: o fator 1 leva {N.pw_s0_varimax.split(' / ')[0]}% do peso e o
@@ -358,7 +358,7 @@ dez setores, ela é zero. Não é um problema da variável — é que ela descre
              mostra="""À esquerda, uma tabela com o S6, o S7 e três variantes do S6 (renda sem o extremo, renda com a mediana
 e postos no município), com o número de variáveis, de setores, o KMO, os fatores K/H e a variância
 explicada por dois fatores. À direita, o <i>scree plot</i> do S6. Embaixo, à esquerda, a leitura.""",
-             zero=f"""O <b>scree plot</b> (A.6) mostra os autovalores em ordem: a linha com pontos é o que os dados dão; a linha
+             zero="""O <b>scree plot</b> (A.6) mostra os autovalores em ordem: a linha com pontos é o que os dados dão; a linha
 tracejada vermelha é o que dados aleatórios dariam (a regra de Horn); a linha pontilhada em 1 é a regra de
 Kaiser. Ficam os fatores cujo ponto está acima das duas linhas. No S6, são quatro.
 
@@ -540,7 +540,7 @@ apontam uma referência.”"""),
              mostra="""Uma tabela com seis linhas (renda × lixo) e três colunas de banheiro (fora, `V00495`, graduado). Cada
 célula diz quantas das 18 especificações daquela base são elegíveis (9 esquemas × 2 normalizações).
 Embaixo, em vermelho, "Por que cai".""",
-             zero=f"""O padrão da tabela:
+             zero="""O padrão da tabela:
 
 • a <b>renda não muda nada</b>: as três linhas de cada lixo são iguais;
 • <b>sem lixo</b>, as três versões de banheiro passam (16 de 18 cada);
@@ -702,7 +702,7 @@ fora uma base por um milésimo. São cinco motivos para tratá-la como ponto de 
 
         dict(n=38, titulo="As faixas da referência",
              frase="Como a referência se divide em faixas pelas duas regras, e quanto ela concorda com quatro alternativas.",
-             mostra=f"""Em cima, uma figura com quatro quadros (matrizes de concordância). Em cada um, as linhas são as faixas da
+             mostra="""Em cima, uma figura com quatro quadros (matrizes de concordância). Em cada um, as linhas são as faixas da
 referência proposta e as colunas, as faixas de uma alternativa, todas pela regra do IVS-BH 2012; cada célula é
 a porcentagem de setores. Embaixo, uma tabela com quantos setores caem em cada faixa pela regra do IVS-BH
 2012 e pelos quartis municipais.""",

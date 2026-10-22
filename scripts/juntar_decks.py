@@ -110,7 +110,7 @@ class Merge:
         apontam para partes que também precisam ser copiadas (mídia, etc.)."""
         rels = parse_rels(xml_texto)
         novo_texto = xml_texto
-        for rid, (tipo, target) in rels.items():
+        for _, target in rels.values():
             if target.startswith("http"):
                 continue
             alvo_abs = resolver_target(caminho_antigo_parte, target)
@@ -139,7 +139,7 @@ class Merge:
             texto = ler(self.za, rels_antigo)
             rels = parse_rels(texto)
             novo_texto = texto
-            for rid, (tipo, target) in rels.items():
+            for tipo, target in rels.values():
                 alvo_abs = resolver_target(caminho_master, target)
                 if tipo.endswith("/theme"):
                     novo_alvo = self.copiar_tema(alvo_abs)
@@ -166,7 +166,7 @@ class Merge:
             texto = ler(self.za, rels_antigo)
             rels = parse_rels(texto)
             novo_texto = texto
-            for rid, (tipo, target) in rels.items():
+            for tipo, target in rels.values():
                 alvo_abs = resolver_target(caminho_layout, target)
                 if tipo.endswith("/slideMaster"):
                     # a referência de volta ao master é resolvida depois de copiar o
@@ -207,7 +207,7 @@ class Merge:
             texto = ler(self.za, rels_antigo)
             rels = parse_rels(texto)
             novo_texto_rels = texto
-            for rid, (tipo, target) in rels.items():
+            for tipo, target in rels.values():
                 if target.startswith("../slideLayouts/"):
                     alvo_abs = resolver_target(caminho_slide, target)
                     novo_alvo = self.copiar_layout(alvo_abs)

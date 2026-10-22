@@ -28,12 +28,11 @@ from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import cm
 from reportlab.platypus import (CondPageBreak, Image, KeepTogether, PageBreak, Paragraph, SimpleDocTemplate,
-                                Spacer, Table, TableStyle)
+                                Spacer)
 
 AQUI = Path(__file__).resolve().parent
 sys.path.insert(0, str(AQUI))
 from gerar_pdf_guia_decks_outubro import registrar_fontes  # noqa: E402
-import eda_versoes as ev  # noqa: E402
 from eda_versoes import br, intbr, pctbr  # noqa: E402
 
 RAIZ = AQUI.parent

@@ -9,8 +9,12 @@ orientadora, e é daqui que os scripts sabem o que ler.
 """
 from __future__ import annotations
 
+import unicodedata
 from dataclasses import dataclass, field
+from itertools import islice
 from pathlib import Path
+
+import pandas as pd
 
 
 @dataclass(frozen=True)
@@ -143,3 +147,54 @@ def encontrar_raiz(inicio: Path | None = None) -> Path:
         if (d / 'requirements.txt').is_file() and (d / 'dados').is_dir() and (d / 'docs').is_dir():
             return d
     raise RuntimeError(f'Raiz do projeto não encontrada a partir de: {atual}')
+
+
+# ── Leitura e limpeza dos CSVs do IBGE ───────────────────────────────────────
+# Colunas da base bruta do Notebook 01 que são texto (identificação e classificação territorial);
+# as demais são variáveis V… e viram número.
+COLS_TEXTO_BASE_BRUTA = ['CD_SETOR', 'CD_UF', 'CD_MUN', 'NM_MUN', 'NM_BAIRRO', 'SITUACAO',
+                         'CD_SIT', 'CD_TIPO', 'CD_FCU', 'NM_FCU', 'Moradia_Predominante']
+
+
+def para_numero(bloco: pd.DataFrame) -> pd.DataFrame:
+    """Converte colunas-texto do IBGE em número: 'X' (sigilo) vira ausente, a vírgula decimal
+    vira ponto e o que não for número vira ausente."""
+    bloco = bloco.replace({'X': None, 'x': None})
+    bloco = bloco.apply(lambda c: c.astype(str).str.replace(',', '.', regex=False))
+    return bloco.apply(pd.to_numeric, errors='coerce')
+
+
+def ler_base_bruta(raiz: Path) -> pd.DataFrame:
+    """A base do Notebook 01, lida como texto, com as colunas V… convertidas em número."""
+    caminho = raiz / 'banco_de_dados' / 'Base_ELSI_Bruta_Censo2022.csv'
+    if not caminho.exists():
+        raise SystemExit(f'Base bruta não encontrada: {caminho}\n'
+                         'Rode antes o notebook 01_Extracao_Filtragem_ELSI.ipynb.')
+    df = pd.read_csv(caminho, sep=';', dtype=str)
+    cols_num = [c for c in df.columns if c not in COLS_TEXTO_BASE_BRUTA]
+    df[cols_num] = para_numero(df[cols_num])
+    return df
+
+
+def normaliza_nome(s) -> str:
+    """Minúsculas, sem acento e com espaços colapsados, para cruzar nomes de municípios."""
+    if pd.isna(s):
+        return ''
+    s = unicodedata.normalize('NFD', str(s).strip().lower())
+    return ' '.join(''.join(c for c in s if not unicodedata.combining(c)).split())
+
+
+def ler_csv_ibge(caminho, usecols, tratar=None, chunksize=None, limite_chunks=None) -> tuple[list, str]:
+    """Lê um CSV do IBGE (`;`, tudo texto) tentando utf-8 e, se falhar, latin1, que decodifica qualquer
+    byte. Devolve os pedaços (um só DataFrame sem `chunksize`), cada um passado por `tratar`, e o encoding."""
+    for enc in ('utf-8', 'latin1'):
+        try:
+            leitor = pd.read_csv(caminho, sep=';', dtype=str, usecols=usecols, encoding=enc,
+                                 chunksize=chunksize, low_memory=False)
+            pedacos = islice([leitor] if chunksize is None else leitor, limite_chunks)
+            return [tratar(p) if tratar else p for p in pedacos], enc
+        except UnicodeDecodeError:
+            continue
+    # latin1 decodifica qualquer byte: só se chega aqui se o arquivo sumir ou vier truncado.
+    # RuntimeError, e não UnicodeDecodeError, que exige cinco argumentos.
+    raise RuntimeError(f'Não foi possível ler {caminho}.')

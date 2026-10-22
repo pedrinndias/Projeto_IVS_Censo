@@ -27,13 +27,12 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))  # torna o pacote importável sem instalar
 
 from ivs_censo import ARQUIVOS_CENSO, encontrar_raiz, tabela_variaveis          # noqa: E402
+from ivs_censo.fontes import ler_base_bruta                                      # noqa: E402
 from ivs_censo.indicadores import (TODOS_INDICADORES, calcular_indicadores,     # noqa: E402
                                    classificar_dados_sig)
 from ivs_censo.renda import (SETORES_RENDA_EXCLUIDA, renda_imputada_mediana_municipal,  # noqa: E402
                              renda_sem_extremos)
 
-COLS_TEXTO = ['CD_SETOR', 'CD_UF', 'CD_MUN', 'NM_MUN', 'NM_BAIRRO', 'SITUACAO',
-              'CD_SIT', 'CD_TIPO', 'CD_FCU', 'NM_FCU', 'Moradia_Predominante']
 
 MAPA_MORADIA_AGRUPADA = {
     'Casa': 'Convencional', 'Casa de Vila/Condomínio': 'Convencional', 'Apartamento': 'Convencional',
@@ -63,17 +62,8 @@ DESC_DERIVADAS = {
 
 def preparar_base(raiz: Path) -> pd.DataFrame:
     """Lê a base bruta do Notebook 01 e aplica tipagem, elegibilidade e indicadores."""
-    caminho = raiz / 'banco_de_dados' / 'Base_ELSI_Bruta_Censo2022.csv'
-    if not caminho.exists():
-        raise SystemExit(f'Base bruta não encontrada: {caminho}\n'
-                         'Rode antes o notebook 01_Extracao_Filtragem_ELSI.ipynb.')
-    df = pd.read_csv(caminho, sep=';', dtype=str)
+    df = ler_base_bruta(raiz)
     print(f'Base bruta: {len(df):,} setores × {len(df.columns)} colunas')
-
-    cols_num = [c for c in df.columns if c not in COLS_TEXTO]
-    df[cols_num] = (df[cols_num].replace({'X': None, 'x': None})
-                    .apply(lambda c: c.astype(str).str.replace(',', '.', regex=False))
-                    .apply(pd.to_numeric, errors='coerce'))
 
     df['Dados_sig'] = classificar_dados_sig(df)
     df['urbano'] = df['SITUACAO'].eq('Urbana').astype(int)
@@ -101,7 +91,7 @@ def preparar_base(raiz: Path) -> pd.DataFrame:
               renda_imputada_mediana_municipal(df, 'renda_media'))
     n_imputados = int((df['renda_media'].notna() & (df['renda_media'] != df['renda_media_mediana_mun'])).sum())
 
-    print(f'  elegibilidade: ' + ' | '.join(f'{k}={v:,}' for k, v in df['Dados_sig'].value_counts().items()))
+    print('  elegibilidade: ' + ' | '.join(f'{k}={v:,}' for k, v in df['Dados_sig'].value_counts().items()))
     recorte = (df['Dados_sig'] == 'OK') & (df['urbano'] == 1)
     print(f'  urbanos na base: {int(df["urbano"].sum()):,} | '
           f'recorte de análise (OK e urbano): {int(recorte.sum()):,}')

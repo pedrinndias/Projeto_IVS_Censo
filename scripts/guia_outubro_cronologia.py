@@ -167,7 +167,7 @@ IVS final. Os números embaixo de cada mês mostram onde o trabalho se concentro
              perguntas=[("Por que julho tem só um commit?", "Porque as demandas de julho foram trabalhadas em julho e começo de agosto e registradas no git só em 20 e 21/08. O commit de julho é o do primeiro grafo do projeto.")]),
 
         dict(n=7, titulo="O ritmo do trabalho",
-             frase=f"Dois gráficos de barras: quantos commits por mês e de que tipo — e os cinco dias mais intensos.",
+             frase="Dois gráficos de barras: quantos commits por mês e de que tipo — e os cinco dias mais intensos.",
              mostra=f"""À esquerda, um gráfico de colunas com os commits de cada mês, de março a outubro, com o número em
 cima de cada coluna. À direita, um gráfico de barras deitadas com os commits por tipo de mudança, do mais
 frequente para o menos frequente: documentação ({N.t_docs}), funcionalidade nova ({N.t_feat}), correção
@@ -441,7 +441,7 @@ de estudo antes de programar a análise fatorial.”""",
 
         dict(n=20, titulo="Setembro, 1 a 17 (continuação)",
              frase="O NB04 entrega a análise fatorial completa — e um resultado incômodo: a renda sozinha separa as favelas melhor que o índice.",
-             mostra=f"""Quatro entradas, todas de 17/09, o segundo dia mais intenso do histórico: o NB04 com os números
+             mostra="""Quatro entradas, todas de 17/09, o segundo dia mais intenso do histórico: o NB04 com os números
 principais, o relatório e o deck com as correções da primeira revisão, a auditoria integral (22 achados) e a
 reorganização da pasta `docs/`.""",
              zero=f"""• <b>O NB04</b>. O notebook da análise fatorial (A.6). Um módulo novo faz rotação oblíqua (promax),
@@ -715,7 +715,7 @@ manter (A.6) indicam um fator só: a vulnerabilidade vira uma dimensão única. 
 sozinho. É uma pista de que a estrutura em duas dimensões depende do lixo.
 • <b>26/09 — a partição exata</b>. A falta de banheiro (`V00495`) é exatamente a soma das suas três partes
 em {N.part_bate} de {N.part_pres} setores (slide 25).""",
-             apresentar=f"""“Em setembro, os achados ficam mais incômodos: a renda sozinha, e até uma média simples sem peso,
+             apresentar="""“Em setembro, os achados ficam mais incômodos: a renda sozinha, e até uma média simples sem peso,
 separam as favelas melhor que o índice; e, sem o lixo, a análise fatorial enxerga uma dimensão só. Também
 apareceram dois erros de código, ambos corrigidos.”""",
              perguntas=[("Se a média sem peso é melhor, a fatorial é inútil?", "Não para o que ela faz — descobrir como os indicadores se agrupam. Mas o achado mostra que a validação contra favelas, sozinha, não justifica os pesos. Por isso a escolha da especificação usa três critérios, e não só a AUC.")]),

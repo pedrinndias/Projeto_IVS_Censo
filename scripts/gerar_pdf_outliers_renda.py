@@ -516,9 +516,9 @@ S.append(P("8  As quatro limitações do critério, nomeadas", "h1"))
 S.append(tabela(
     ["Limitação", "O que ela significa"],
     [["<b>A separação favela / não favela é definição</b>",
-      f"<font face='Courier'>e_favela</font> é um dos testes, então todo setor de favela que "
-      f"seja outlier municipal cai obrigatoriamente em SUSPEITO e nenhum pode cair em EXTREMO. "
-      f"A coluna 'São favela?' da apresentação repete a regra; ela não a valida."],
+      "<font face='Courier'>e_favela</font> é um dos testes, então todo setor de favela que "
+      "seja outlier municipal cai obrigatoriamente em SUSPEITO e nenhum pode cair em EXTREMO. "
+      "A coluna 'São favela?' da apresentação repete a regra; ela não a valida."],
      ["<b>O sinal do analfabetismo é fraco</b>",
       f"Estar acima da mediana do município é evento de cerca de 50% por construção, e "
       f"{int(MOTIVOS.get('pct_analfab_acima', 0))} dos {N_SUS} suspeitos são flagrados só por "

@@ -62,7 +62,10 @@ def _casos() -> list:
     ]
 
 
-CASOS = [(d, n, g) for d, n, gs in _casos() for g in gs]
+try:
+    CASOS = [(d, n, g) for d, n, gs in _casos() for g in gs]
+except FileNotFoundError:     # sem os dados da entrega, os casos ficam vazios e o teste é pulado
+    CASOS = []
 
 
 @pytest.mark.parametrize('descricao, numero, gerador', CASOS, ids=[f'{g[7:14]}-{d}' for d, _, g in CASOS])

@@ -75,7 +75,7 @@ def main() -> None:
     with pd.ExcelWriter(xlsx_saida, engine='xlsxwriter') as xls:
         tabela.to_excel(xls, sheet_name='Todas as variáveis', index=False)
         formulas.to_excel(xls, sheet_name='Fórmulas dos indicadores', index=False)
-        for chave, fonte in ARQUIVOS_CENSO.items():                       # uma aba por arquivo do Censo
+        for fonte in ARQUIVOS_CENSO.values():                       # uma aba por arquivo do Censo
             recorte = tabela[tabela['arquivo_fonte'] == fonte.arquivo]
             if len(recorte):
                 recorte.to_excel(xls, sheet_name=fonte.rotulo[:31], index=False)

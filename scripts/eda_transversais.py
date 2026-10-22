@@ -27,7 +27,7 @@ import pandas as pd
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import eda_versoes as ev  # noqa: E402
-from eda_versoes import (ARGILA, CINZA, PETROLEO, TINTA, br, estilo, ie, intbr, pctbr, plt,  # noqa: E402
+from eda_versoes import (ARGILA, CINZA, PETROLEO, br, estilo, ie, intbr, pctbr, plt,  # noqa: E402
                          rho)
 
 PASTAS = ev.RAIZ / 'analises_exploratorias'

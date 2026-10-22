@@ -42,6 +42,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))  # torna o pacote importável sem instalar
 
 from ivs_censo import ARQUIVOS_CENSO, encontrar_raiz                                  # noqa: E402
+from ivs_censo.fontes import ler_csv_ibge, normaliza_nome, para_numero                # noqa: E402
 from ivs_censo.indicadores import (INDICADORES_IVS, TODOS_INDICADORES,                # noqa: E402
                                    calcular_indicadores, classificar_dados_sig)
 
@@ -50,53 +51,32 @@ COLS_CATEGORIA = ['SITUACAO', 'CD_SIT', 'CD_TIPO', 'NM_MUN']   # texto repetitiv
 COLS_TEXTO = ['CD_FCU', 'NM_FCU', 'NM_BAIRRO']                 # texto livre
 
 
-def _para_numero(bloco: pd.DataFrame) -> pd.DataFrame:
-    """Converte um bloco de colunas-texto do IBGE em número: 'X' (sigilo) -> NaN,
-    vírgula decimal -> ponto, e o resto para float64.
-
-    **float64 é obrigatório aqui, não é preciosismo.** Com float32 (24 bits de mantissa)
-    a soma da população do país erra por arredondamento acumulado: dá 203.080.736 em vez
-    dos 203.080.756 do Censo 2022. O erro relativo é ínfimo (1e-7) e não muda nenhuma
-    proporção, mas os totais publicados deixam de bater com o IBGE — e é justamente por
-    eles que o resultado vai ser conferido. Custo: ~0,3 GB a mais de RAM.
-    """
-    bloco = bloco.replace({'X': None, 'x': None})
-    bloco = bloco.apply(lambda c: c.astype(str).str.replace(',', '.', regex=False))
-    return bloco.apply(pd.to_numeric, errors='coerce').astype('float64')
-
-
 def ler_arquivo_nacional(caminho_dados: Path, chave: str, limite_chunks: int | None = None) -> pd.DataFrame:
     """Lê um dos arquivos do Censo inteiro (sem filtro), já convertido, indexado por CD_SETOR."""
     fonte = ARQUIVOS_CENSO[chave]
     caminho = caminho_dados / fonte.arquivo
     inicio = time.time()
 
-    for encoding in ('utf-8', 'latin1'):                     # os CSVs do IBGE alternam entre os dois
-        try:
-            pedacos = []
-            leitor = pd.read_csv(caminho, sep=';', dtype=str, usecols=fonte.colunas,
-                                 encoding=encoding, chunksize=CHUNK, low_memory=False)
-            for i, pedaco in enumerate(leitor):
-                if limite_chunks is not None and i >= limite_chunks:
-                    break
-                pedaco = pedaco.rename(columns={fonte.chave: 'CD_SETOR'}).set_index('CD_SETOR')
-                numericas = [c for c in pedaco.columns if c not in COLS_CATEGORIA + COLS_TEXTO]
-                convertido = _para_numero(pedaco[numericas])                       # V… viram float64
-                for c in [c for c in pedaco.columns if c in COLS_CATEGORIA]:       # códigos repetitivos
-                    convertido[c] = pedaco[c].astype('category')
-                for c in [c for c in pedaco.columns if c in COLS_TEXTO]:           # texto livre
-                    convertido[c] = pedaco[c]
-                pedacos.append(convertido)
-            df = pd.concat(pedacos)
-            print(f'  {fonte.rotulo:<22} {len(df):>8,} setores  '
-                  f'({encoding}, {time.time() - inicio:.0f}s, {df.memory_usage(deep=True).sum() / 1e6:.0f} MB)')
-            return df
-        except UnicodeDecodeError:
-            continue
-    # latin1 decodifica qualquer byte, então este ponto só é alcançável se o arquivo
-    # sumir ou vier truncado. RuntimeError, e não UnicodeDecodeError: esta última exige
-    # cinco argumentos e levantá-la com um só trocaria o erro real por um TypeError.
-    raise RuntimeError(f'Não foi possível ler {caminho}')
+    def converter(pedaco: pd.DataFrame) -> pd.DataFrame:
+        pedaco = pedaco.rename(columns={fonte.chave: 'CD_SETOR'}).set_index('CD_SETOR')
+        numericas = [c for c in pedaco.columns if c not in COLS_CATEGORIA + COLS_TEXTO]
+        # float64 é obrigatório aqui, não é preciosismo. Com float32 (24 bits de mantissa) a soma da
+        # população do país erra por arredondamento acumulado: dá 203.080.736 em vez dos 203.080.756
+        # do Censo 2022. O erro relativo é ínfimo (1e-7) e não muda nenhuma proporção, mas os totais
+        # publicados deixam de bater com o IBGE — e é por eles que o resultado vai ser conferido.
+        # Custo: ~0,3 GB a mais de RAM.
+        convertido = para_numero(pedaco[numericas]).astype('float64')              # V… viram float64
+        for c in [c for c in pedaco.columns if c in COLS_CATEGORIA]:       # códigos repetitivos
+            convertido[c] = pedaco[c].astype('category')
+        for c in [c for c in pedaco.columns if c in COLS_TEXTO]:           # texto livre
+            convertido[c] = pedaco[c]
+        return convertido
+
+    pedacos, encoding = ler_csv_ibge(caminho, fonte.colunas, converter, CHUNK, limite_chunks)
+    df = pd.concat(pedacos)
+    print(f'  {fonte.rotulo:<22} {len(df):>8,} setores  '
+          f'({encoding}, {time.time() - inicio:.0f}s, {df.memory_usage(deep=True).sum() / 1e6:.0f} MB)')
+    return df
 
 
 def montar_base_nacional(caminho_dados: Path, limite_chunks: int | None = None) -> pd.DataFrame:
@@ -105,7 +85,7 @@ def montar_base_nacional(caminho_dados: Path, limite_chunks: int | None = None) 
     partes = {chave: ler_arquivo_nacional(caminho_dados, chave, limite_chunks) for chave in ARQUIVOS_CENSO}
 
     base = partes.pop('basico')                                        # o básico define o universo de setores
-    for chave, parte in partes.items():
+    for parte in partes.values():
         base = base.join(parte, how='left')                            # LEFT JOIN: mantém todos os setores
     base['CD_UF'] = base.index.str[:2]                                 # UF = 2 primeiros dígitos do geocódigo
     base['CD_MUN'] = base.index.str[:7]                                # município = 7 primeiros dígitos
@@ -192,14 +172,8 @@ def main() -> None:
 
     # ── 3. Municípios do ELSI (para separar os recortes) ──────────────────────
     elsi = pd.read_csv(raiz / 'dados' / 'municipios_elsi_brasil.csv', sep=';', dtype=str)
-    import unicodedata
-
-    def normaliza(s):
-        s = unicodedata.normalize('NFD', str(s).strip().lower())
-        return ' '.join(''.join(c for c in s if not unicodedata.combining(c)).split())
-
-    chaves_elsi = set(elsi['uf_codigo'].str.zfill(2) + '|' + elsi['nm_municipio'].map(normaliza))
-    base['is_elsi'] = (base['CD_UF'] + '|' + base['NM_MUN'].astype(str).map(normaliza)).isin(chaves_elsi)
+    chaves_elsi = set(elsi['uf_codigo'].str.zfill(2) + '|' + elsi['nm_municipio'].map(normaliza_nome))
+    base['is_elsi'] = (base['CD_UF'] + '|' + base['NM_MUN'].astype(str).map(normaliza_nome)).isin(chaves_elsi)
     print(f"Setores nos 70 municípios do ELSI: {int(base['is_elsi'].sum()):,} "
           f"({base['is_elsi'].mean() * 100:.2f}% do país) | "
           f"municípios casados: {base.loc[base['is_elsi'], 'CD_MUN'].nunique()}")

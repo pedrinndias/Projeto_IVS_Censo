@@ -72,10 +72,8 @@ AUC_IDX, AUC_ESC = VAL.auc[0], VAL.auc[1]
 KMO7, KMO6 = RES.loc["ivs7_spearman", "kmo"], RES.loc["ivs6_sem_lixo_spearman", "kmo"]
 VAR7 = RES.loc["ivs7_spearman", "var_acumulada_k"]
 VAR6 = RES.loc["ivs6_sem_lixo_spearman", "var_acumulada_k"]
-BART = RES.loc["ivs7_spearman", "bartlett_qui2"]
 LIXO = EXTR[(EXTR.cenario == "ivs7_spearman") & (EXTR.variavel == "Lixo inadequado")].iloc[0]
 A6 = AUTOV[AUTOV.cenario == "ivs6_sem_lixo_spearman"].reset_index(drop=True)
-A7 = AUTOV[AUTOV.cenario == "ivs7_spearman"].reset_index(drop=True)
 RM = CARG.loc["Razão de moradores"]
 RENDA_MUDA = int(RENDA.loc["setores que mudam de faixa", "com renda_media_sem_extremo"])
 

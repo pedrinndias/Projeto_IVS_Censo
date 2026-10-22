@@ -229,10 +229,7 @@ def calcular_indice(df: pd.DataFrame, cfg: dict) -> SimpleNamespace:
                            auc_mun=ie.auc_municipal(v, d['is_fcu'], d['NM_MUN']))
 
 
-def rho(a: pd.Series, b: pd.Series) -> float:
-    """Spearman de dois vetores, nos pares completos (sem scipy: Pearson dos postos)."""
-    m = a.notna() & b.notna()
-    return float(a[m].rank().corr(b[m].rank())) if m.sum() > 2 else np.nan
+rho = ie.spearman
 
 
 def indice_versao(d, col, w, normalizacao, agregacao='soma') -> np.ndarray:
@@ -1182,7 +1179,7 @@ def faixas_alternativas(ix, S):
     S.tabela('T37', 'faixas_concordancia', 10, 'faixas_concordancia', t37, c36)
     S.tabela('T38', 'silhueta', 10, 'silhueta', t38, {'k': intbr(kmelhor), 'sil': br(t38['silhueta'].max())})
     fig, ax = plt.subplots(figsize=(9, 0.5 * len(regras) + 1.2))
-    for i, (nome, f) in enumerate(regras.items()):
+    for i, f in enumerate(regras.values()):
         vc = pd.Series(f[f >= 0]).value_counts(normalize=True).sort_index()
         esq = 0
         for c, p in vc.items():

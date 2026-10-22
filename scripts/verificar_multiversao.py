@@ -103,7 +103,7 @@ def deck(cod: str) -> None:
                     key=lambda x: int(re.findall(r'\d+', x)[0]))
     checa(len(slides) == len(n['ordem']), f'{p.name}: {len(slides)} slides = {len(n["ordem"])} do JSON')
     sem_id, com_nan = [], []
-    for i, (sid, x) in enumerate(zip(n['ordem'], slides)):
+    for sid, x in zip(n['ordem'], slides):
         t = ''.join(re.findall(r'<a:t>([^<]*)</a:t>', z.read(x).decode('utf-8')))
         if sid not in t:
             sem_id.append(sid)

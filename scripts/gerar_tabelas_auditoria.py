@@ -31,11 +31,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))  # torna o 
 
 from ivs_censo import (INDICADORES_IVS, calcular_indicadores,          # noqa: E402
                        classificar_dados_sig, encontrar_raiz)
+from ivs_censo.fontes import ler_base_bruta                            # noqa: E402
 
-# Colunas de identificação — não viram número (mesma lista do Notebook 02).
-COLS_TEXTO = ['CD_SETOR', 'CD_UF', 'CD_MUN', 'NM_MUN', 'NM_BAIRRO',
-              'SITUACAO', 'CD_SIT', 'CD_TIPO', 'CD_FCU', 'NM_FCU',
-              'Moradia_Predominante']
 
 INDICADORES = [ind.nome for ind in INDICADORES_IVS]     # os 7 componentes do IVS
 ORDEM_REGIAO = ['Norte', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Sul']  # ordem das colunas na morfologia
@@ -79,16 +76,7 @@ def carregar_setores_ok(raiz: Path) -> pd.DataFrame:
     Repete o pré-processamento das seções 2 e 3 do Notebook 02: sigilo `X` -> `NaN`,
     vírgula decimal -> ponto, classificação `Dados_sig` e mapa UF -> região.
     """
-    base = raiz / 'banco_de_dados' / 'Base_ELSI_Bruta_Censo2022.csv'
-    if not base.exists():
-        raise SystemExit(f'Base não encontrada: {base}\nRode antes o Notebook 01 da Fase 3.')
-
-    df = pd.read_csv(base, sep=';', dtype=str)                      # tudo como texto (preserva 'X' e zeros à esquerda)
-    cols_num = [c for c in df.columns if c not in COLS_TEXTO]       # as demais são variáveis V…
-    df[cols_num] = df[cols_num].replace({'X': None, 'x': None})     # sigilo do IBGE -> nulo
-    df[cols_num] = df[cols_num].apply(lambda c: c.astype(str).str.replace(',', '.', regex=False))  # decimal
-    df[cols_num] = df[cols_num].apply(pd.to_numeric, errors='coerce')                              # -> número
-
+    df = ler_base_bruta(raiz)
     df['Dados_sig'] = classificar_dados_sig(df)                     # mesma regra do Notebook 02
     ref = pd.read_csv(raiz / 'dados' / 'municipios_elsi_brasil.csv', sep=';', dtype=str)
     df['regiao'] = df['CD_UF'].map(dict(zip(ref['uf_codigo'].str.zfill(2), ref['regiao'])))

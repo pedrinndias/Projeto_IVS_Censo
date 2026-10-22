@@ -38,13 +38,11 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'src'))
 
 from ivs_censo import (INDICADORES_IVS, calcular_indicadores,        # noqa: E402
                        classificar_dados_sig, encontrar_raiz)
+from ivs_censo.fontes import ler_base_bruta                          # noqa: E402
 from ivs_censo.renda import (COLUNA_RENDA, EXTREMO, K_TUKEY, NORMAL,  # noqa: E402
                              SETORES_RENDA_EXCLUIDA, SUSPEITO, rastrear_outliers_renda,
                              renda_sem_extremos, resumo_por_classe)
 
-COLS_TEXTO = ['CD_SETOR', 'CD_UF', 'CD_MUN', 'NM_MUN', 'NM_BAIRRO',
-              'SITUACAO', 'CD_SIT', 'CD_TIPO', 'CD_FCU', 'NM_FCU',
-              'Moradia_Predominante']
 INDICADORES = [ind.nome for ind in INDICADORES_IVS]
 ORDEM_REGIAO = ['Norte', 'Nordeste', 'Centro-Oeste', 'Sudeste', 'Sul']
 
@@ -57,14 +55,7 @@ ROTULOS_DOM = ['1 a 50', '51 a 100', '101 a 200', '201 a 400', 'mais de 400']
 
 def carregar(raiz: Path) -> pd.DataFrame:
     """Base do Notebook 01 -> recorte urbano elegível, com os 7 indicadores calculados."""
-    base = raiz / 'banco_de_dados' / 'Base_ELSI_Bruta_Censo2022.csv'
-    if not base.exists():
-        raise SystemExit(f'Base não encontrada: {base}\nRode antes o Notebook 01 da Fase 3.')
-    df = pd.read_csv(base, sep=';', dtype=str)
-    cols_num = [c for c in df.columns if c not in COLS_TEXTO]
-    df[cols_num] = df[cols_num].replace({'X': None, 'x': None})
-    df[cols_num] = df[cols_num].apply(lambda c: c.astype(str).str.replace(',', '.', regex=False))
-    df[cols_num] = df[cols_num].apply(pd.to_numeric, errors='coerce')
+    df = ler_base_bruta(raiz)
     df['Dados_sig'] = classificar_dados_sig(df)
     ref = pd.read_csv(raiz / 'dados' / 'municipios_elsi_brasil.csv', sep=';', dtype=str)
     df['regiao'] = df['CD_UF'].map(dict(zip(ref['uf_codigo'].str.zfill(2), ref['regiao'])))
@@ -459,7 +450,7 @@ def figura_tamanho_vs_renda(ok: pd.DataFrame, r: pd.DataFrame, destino: Path) ->
     barras = ax2.barh(range(len(taxa)), taxa.values, height=0.6, color=CRITICO, zorder=2)
     ax2.set_yticks(range(len(taxa)), taxa.index, fontsize=8.5, color=TINTA_2)
     ax2.invert_yaxis()
-    for i, (b, v) in enumerate(zip(barras, taxa.values)):
+    for i, (_, v) in enumerate(zip(barras, taxa.values)):
         ax2.text(v + 0.008, i, f'{v:.3f}%'.replace('.', ','), va='center',
                  fontsize=8.5, color=TINTA_2)
     ax2.set_xlim(0, taxa.max() * 1.35)

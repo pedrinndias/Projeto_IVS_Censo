@@ -20,7 +20,7 @@ from pathlib import Path
 
 import pandas as pd
 
-from .fontes import ARQUIVOS_CENSO, MAPA_VARIAVEL_ARQUIVO
+from .fontes import ARQUIVOS_CENSO
 from .indicadores import USO_DAS_VARIAVEIS
 
 DIC_AGREGADOS = 'dicionario_de_dados_agregados_por_setores_censitarios_20260520.xlsx'
@@ -86,7 +86,7 @@ def tabela_variaveis(caminho_dados: Path) -> pd.DataFrame:
     dic = carregar_dicionario_oficial(caminho_dados).set_index('variavel')
 
     linhas = []
-    for chave, fonte in ARQUIVOS_CENSO.items():
+    for fonte in ARQUIVOS_CENSO.values():
         for var in fonte.colunas:
             if any(l['variavel'] == var for l in linhas):        # a chave do setor repete entre arquivos
                 continue

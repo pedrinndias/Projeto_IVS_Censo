@@ -232,8 +232,8 @@ tabela(doc,
        ],
        larguras=[4.4, 4.8, 2.6, 5.4], tam=8)
 comentario(doc,
-           f"Cada corte tem critério escrito e nenhum é definitivo: a base bruta guarda os "
-           f"109.032 setores, então qualquer exclusão pode ser refeita.",
+           "Cada corte tem critério escrito e nenhum é definitivo: a base bruta guarda os "
+           "109.032 setores, então qualquer exclusão pode ser refeita.",
            f"O filtro urbano cobra um preço. {D['exclusao']['perdem_10pct']} dos {D['exclusao']['municipios']} "
            f"municípios perdem mais de 10% dos setores e {D['exclusao']['menos_de_10_setores']} "
            f"ficam com menos de 10, o que torna instável a descritiva desses municípios. A "

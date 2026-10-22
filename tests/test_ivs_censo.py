@@ -280,3 +280,30 @@ def test_banheiro_graduado_fica_entre_0_e_1_e_zera_sem_banheiro():
     assert graduado.iloc[1] == pytest.approx(1 / 3)                        # todos só no "uso comum"
     assert graduado.iloc[2] == pytest.approx(1.0)                          # todos sem nada (pior caso)
     assert graduado.iloc[3] == pytest.approx((1 * 30 + 2 * 20 + 3 * 10) / (3 * 100))  # mistura dos três graus
+
+
+# ── leitura e limpeza dos CSVs do IBGE (src/ivs_censo/fontes.py) ──────────────
+from ivs_censo.fontes import ler_csv_ibge, normaliza_nome, para_numero  # noqa: E402
+
+
+def test_ler_csv_ibge_cai_para_latin1(tmp_path):
+    utf, lat = tmp_path / 'u.csv', tmp_path / 'l.csv'
+    utf.write_text('setor;NM\n1;São Paulo\n', encoding='utf-8')
+    lat.write_bytes('setor;NM\n1;São Paulo\n'.encode('latin1'))
+    (a,), enc_a = ler_csv_ibge(utf, ['setor', 'NM'])
+    (b,), enc_b = ler_csv_ibge(lat, ['setor', 'NM'])
+    assert (enc_a, enc_b) == ('utf-8', 'latin1') and a['NM'][0] == b['NM'][0] == 'São Paulo'
+
+
+def test_ler_csv_ibge_em_pedacos_trata_e_limita(tmp_path):
+    arq = tmp_path / 'c.csv'
+    arq.write_text('setor;V\n' + ''.join(f'{i};{i}\n' for i in range(10)), encoding='utf-8')
+    pedacos, _ = ler_csv_ibge(arq, ['setor', 'V'], lambda p: p[p['V'].astype(int) % 2 == 0], chunksize=4, limite_chunks=2)
+    assert [p['V'].tolist() for p in pedacos] == [['0', '2'], ['4', '6']]      # só os 8 primeiros, só os pares
+
+
+def test_para_numero_e_normaliza_nome():
+    n = para_numero(pd.DataFrame({'a': ['1,5', 'X', 'x', '3'], 'b': ['2', '0,25', 'abc', '7']}))
+    assert n['a'].tolist()[0] == 1.5 and n['a'].isna().tolist() == [False, True, True, False]
+    assert n['b'][1] == 0.25 and np.isnan(n['b'][2])                           # texto que não é número vira ausente
+    assert normaliza_nome('  São  Paulo ') == 'sao paulo' and normaliza_nome(np.nan) == ''

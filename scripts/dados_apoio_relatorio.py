@@ -116,7 +116,7 @@ def ds(sid):
     dtxt = 'não tem denominador (é o valor médio do setor)' if 'sem denominador' in den else f'denominador: {dcod}'
     q = [Q('De onde vem esse indicador?', f'{origem} Numerador: {lista or numer}; {dtxt}.',
            f'{sid}, tabela "Como é calculado"; Quadro_Indicadores.csv; aba Indicadores da planilha de gerenciamento')]
-    z, nf = num(zeros), num(falt)
+    z = num(zeros)
     if z >= 50:
         q.append(Q('Por que a mediana é zero?',
                    f'Em {zeros} dos setores nenhum domicílio está nessa situação: a condição se concentra em poucos '

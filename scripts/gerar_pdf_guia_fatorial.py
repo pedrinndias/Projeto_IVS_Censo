@@ -28,7 +28,7 @@ from reportlab.lib.enums import TA_JUSTIFY
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle
 from reportlab.lib.units import cm
-from reportlab.platypus import (BaseDocTemplate, Frame, KeepTogether, PageBreak,
+from reportlab.platypus import (BaseDocTemplate, Frame, PageBreak,
                                 PageTemplate, Paragraph, Spacer, Table, TableStyle)
 
 RAIZ = Path(__file__).resolve().parents[1]

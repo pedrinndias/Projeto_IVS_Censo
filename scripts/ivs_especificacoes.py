@@ -45,6 +45,8 @@ FAIXAS = ['baixo', 'medio', 'elevado', 'muito_elevado']
 ROT_FAIXA = ['baixo', 'médio', 'elevado', 'muito elevado']
 FIXOS = ('unico', '50_50', '60_40')    # métodos em que o peso de F1 não depende dos dados
 MIN_GRUPO = 30    # setores de FCU e fora dela, por município, para entrar na AUC municipal
+PISO_MUN = 30     # setores do município para entrar nas medianas "dentro do município" de `comparar`
+CRIT = {'kmo': 0.70, 'msa': 0.50, 'h2': 0.30, 'carga': 0.40}    # elegibilidade: mínimos de KMO, MSA, comunalidade e carga
 TRAVA = {'peso_f1': 65.01, 'auc_indice': 0.8131, 'auc_renda': 0.8819}
 IVS_BH = {'renda': 'original', 'lixo': 'com', 'banheiro': 'fora', 'metodo': '60_40'}
 # leituras dos critérios da seção 2.2: nome, normalização, critério (a), critério (b)
@@ -120,18 +122,22 @@ def reparticoes(r: dict, colunas: list[str]) -> dict:
     return out
 
 
-def elegibilidade(r: dict, rotacao: str, colunas: list[str]) -> dict:
-    """Critérios da seção 2.2, fixados antes de rodar (a promax lê a matriz padrão)."""
+def cargas_rotacao(r: dict, rotacao: str) -> tuple[np.ndarray, np.ndarray]:
+    """Cargas e comunalidades da rotação (sem rotação: só o 1º fator; a promax lê a matriz padrão)."""
     if rotacao == 'sem_rotacao':
         M = r['sem_rotacao'][:, :1]
-        h2 = M[:, 0] ** 2
-    elif rotacao == 'varimax':
-        M, h2 = r['varimax'], r['comunalidade']
-    else:
-        M, h2 = r['promax_padrao'], r['comunalidade_obliqua']
+        return M, M[:, 0] ** 2
+    if rotacao == 'varimax':
+        return r['varimax'], r['comunalidade']
+    return r['promax_padrao'], r['comunalidade_obliqua']
+
+
+def elegibilidade(r: dict, rotacao: str, colunas: list[str]) -> dict:
+    """Critérios da seção 2.2, fixados antes de rodar."""
+    M, h2 = cargas_rotacao(r, rotacao)
     carga = np.abs(M).max(axis=1)
-    e = {'kmo_ok': bool(r['kmo'] >= 0.70), 'msa_ok': bool(r['msa'].min() >= 0.50),
-         'comunalidade_ok': bool(h2.min() >= 0.30), 'cargas_ok': bool(carga.min() >= 0.40),
+    e = {'kmo_ok': bool(r['kmo'] >= CRIT['kmo']), 'msa_ok': bool(r['msa'].min() >= CRIT['msa']),
+         'comunalidade_ok': bool(h2.min() >= CRIT['h2']), 'cargas_ok': bool(carga.min() >= CRIT['carga']),
          'comunalidade_min': float(h2.min()), 'comunalidade_min_variavel': ROT[colunas[int(h2.argmin())]],
          'carga_max_min': float(carga.min()), 'carga_max_min_variavel': ROT[colunas[int(carga.argmin())]]}
     e['elegivel'] = e['kmo_ok'] and e['msa_ok'] and e['comunalidade_ok'] and e['cargas_ok']
@@ -216,20 +222,21 @@ def logistica(X, y, iter_max: int = 100, tol: float = 1e-10):
 
 
 def spearman(a, b) -> float:
-    """Spearman nos pares completos (ausente se sobrarem ≤ 2); Pearson dos postos, sem scipy."""
+    """Spearman nos pares completos (ausente se sobrarem ≤ 2); Pearson dos postos, sem scipy.
+    Pareia por posição, não por índice: quem passa duas Series de índices diferentes deve alinhá-las antes."""
     t = pd.DataFrame({'a': np.asarray(a, dtype=float), 'b': np.asarray(b, dtype=float)}).dropna()
     return float(np.corrcoef(t['a'].rank(), t['b'].rank())[0, 1]) if len(t) > 2 else np.nan
 
 
 def comparar(a, b, mun, regra: str = 'ivs_bh') -> dict:
-    """Spearman global e mediano dentro do município (≥ MIN_GRUPO setores) e fração que troca de
+    """Spearman global e mediano dentro do município (≥ PISO_MUN setores) e fração que troca de
     faixa entre dois índices, na amostra comum a eles: as faixas dos dois são refeitas nela, senão a
     troca mede a mudança de amostra (setores a mais mudam a média do município), não a do método."""
     a, b, mun = np.asarray(a, dtype=float), np.asarray(b, dtype=float), np.asarray(mun)
     ok = ~np.isnan(a) & ~np.isnan(b)
     t = pd.DataFrame({'a': a[ok], 'b': b[ok], 'm': mun[ok]})
     fx, fy = (faixas(t[c].to_numpy(), t['m'].to_numpy(), regra) for c in 'ab')
-    por = [g['a'].rank().corr(g['b'].rank()) for _, g in t.groupby('m') if len(g) >= MIN_GRUPO]
+    por = [g['a'].rank().corr(g['b'].rank()) for _, g in t.groupby('m') if len(g) >= PISO_MUN]
     return {'n_comum': int(ok.sum()), 'spearman_global': spearman(t['a'], t['b']),
             'spearman_mun': float(np.nanmedian(por)), 'troca_faixa': float((fx != fy).mean())}
 

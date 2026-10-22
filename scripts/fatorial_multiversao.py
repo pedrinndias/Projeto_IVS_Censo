@@ -42,10 +42,10 @@ COD = {v: k for k, v in VARS.items()}
 NUCLEO = ['AGU', 'ESG', 'LIX', 'MOR', 'ANA', 'REN', 'PPI']
 COMPLEMENTARES = ['CAN', 'BAN', 'MNC', 'IDO', 'CRI']
 REGUAS = ('global', 'municipal')
-CRIT = {'kmo': 0.70, 'msa': 0.50, 'h2': 0.30, 'carga': 0.40}
+CRIT = ie.CRIT
 EQUIV = {'spearman': 0.95, 'troca': 0.10}
 EXTRACAO = 'eixo_principal'   # a mesma da camada 1; com ACP o lixo vira um fator sozinho (NB04, achado 8)
-PISO_MUN = ie.MIN_GRUPO    # setores por município para entrar nas medianas "dentro do município"
+PISO_MUN = ie.PISO_MUN    # setores por município para entrar nas medianas "dentro do município"
 REF = {'conjunto': 'nucleo', 'rotacao': 'promax', 'metodo': '60_40', 'normalizacao': 'municipal',
        'sigilo': 'ausente'}
 
@@ -65,8 +65,9 @@ def matriz(d: pd.DataFrame, cols: list[str], regua: str) -> np.ndarray:
     return np.corrcoef(d.groupby('NM_MUN')[cols].rank(pct=True).to_numpy(), rowvar=False)
 
 
-def diagnostico(R: np.ndarray, cols: list[str], horn_p: np.ndarray) -> dict:
-    """Estrutura de uma combinação: adequação, número de fatores e eixo principal com promax."""
+def diagnostico(R: np.ndarray, cols: list[str], horn_p: np.ndarray) -> tuple[dict, np.ndarray, np.ndarray]:
+    """Estrutura de uma combinação: adequação, número de fatores e eixo principal com promax
+    (e as comunalidades e os MSA, que a camada 1 grava por variável)."""
     k_, msa = kmo(R)
     val = np.sort(np.linalg.eigvalsh(R))[::-1]
     L, h2, info = fatoracao_eixo_principal(R, 2)
@@ -78,7 +79,7 @@ def diagnostico(R: np.ndarray, cols: list[str], horn_p: np.ndarray) -> dict:
          'carga_min': carga.min(), 'phi': abs(phi[0, 1]), 'heywood': info['heywood']}
     d['elegivel'] = bool(k_ >= CRIT['kmo'] and msa.min() >= CRIT['msa'] and h2.min() >= CRIT['h2']
                          and carga.min() >= CRIT['carga'])
-    return d, h2
+    return d, h2, msa
 
 
 # ─────────────────────────────────────────────────────────────────────────────
@@ -152,8 +153,7 @@ def camada1(df: pd.DataFrame) -> None:
         s = df.dropna(subset=cols)
         for regua in REGUAS:
             R = matriz(s, cols, regua)
-            dg, h2 = diagnostico(R, cols, horn_p[len(cols)])
-            _, msa = kmo(R)
+            dg, h2, msa = diagnostico(R, cols, horn_p[len(cols)])
             linha = {'codigos': '+'.join(comb), 'p': len(comb), 'regua': regua, 'n': len(s),
                      'pct_recorte': len(s) / len(df), **{c: int(c in comb) for c in VARS},
                      'demografia_dupla': int('IDO' in comb and 'CRI' in comb), **dg}
@@ -207,12 +207,7 @@ def ancora(cols: list[str]) -> list[str]:
 
 
 def elegivel(r: dict, rot: str) -> dict:
-    if rot == 'sem_rotacao':
-        M, h2 = r['sem_rotacao'][:, :1], r['sem_rotacao'][:, 0] ** 2
-    elif rot == 'varimax':
-        M, h2 = r['varimax'], r['comunalidade']
-    else:
-        M, h2 = r['promax_padrao'], r['comunalidade_obliqua']
+    M, h2 = ie.cargas_rotacao(r, rot)
     carga = np.abs(M).max(axis=1)
     e = {'kmo': r['kmo'], 'msa_min': r['msa'].min(), 'h2_min': h2.min(), 'carga_min': carga.min()}
     e['elegivel'] = bool(e['kmo'] >= CRIT['kmo'] and e['msa_min'] >= CRIT['msa']
