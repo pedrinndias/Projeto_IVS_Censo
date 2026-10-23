@@ -1453,7 +1453,7 @@
    },
    {
     "p": "Por que entra (ou não) no índice?",
-    "r": "Está no IVS-7 (os sete indicadores adaptados do IVS-BH 2012) e na referência proposta do NB05, invertida: quanto menor a renda, maior a vulnerabilidade.",
+    "r": "Está no IVS-7, mas a referência proposta do NB05 é a versão sem lixo: com o lixo, ele forma um fator próprio (FP08).",
     "de_onde": "DS16, linhas \"Entra no IVS-7?\" e \"Entra na referência proposta?\"; T20_variaveis_cargas.csv"
    }
   ],
@@ -1461,7 +1461,7 @@
    "Setores com valor: 104.096; faltantes: 12 (0,01%)",
    "Média R$ 4.187,41; mediana R$ 2.572,39",
    "Setores com zero: 0,00%",
-   "IVS-7: Sim; referência: Sim, como renda invertida"
+   "IVS-7: Sim; referência: Não"
   ],
   "ver": [
    "DM01",

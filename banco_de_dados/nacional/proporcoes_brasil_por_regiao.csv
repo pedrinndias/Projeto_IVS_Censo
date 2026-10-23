@@ -18,6 +18,8 @@ Centro-Oeste;pct_agua_nao_encanada;Saneamento;False;23069;0.003337;0.035910;0.00
 Centro-Oeste;pct_agua_so_terreno;Saneamento;False;20456;0.010971;0.061015;0.000000;0.000000;0.000000;0.010235
 Centro-Oeste;pct_sem_banheiro;Saneamento;False;22612;0.001306;0.022387;0.000000;0.000000;0.000000;0.000823
 Centro-Oeste;pct_sem_banheiro_nem_sanitario;Saneamento;False;25000;0.000025;0.001127;0.000000;0.000000;0.000000;0.000022
+Centro-Oeste;pct_so_sanitario;Saneamento;False;24577;0.000482;0.015360;0.000000;0.000000;0.000000;0.000228
+Centro-Oeste;pct_banheiro_comum;Saneamento;False;23471;0.000537;0.010909;0.000000;0.000000;0.000000;0.000391
 Centro-Oeste;pct_resp_feminino;Socioeconômica;False;25456;0.487152;0.108403;0.419039;0.493789;0.562138;0.489278
 Centro-Oeste;pct_crianca_0a4;Demografia;False;25278;0.066204;0.022540;0.050847;0.064912;0.080436;0.068211
 Centro-Oeste;pct_pop_0a14;Demografia;False;25510;0.201203;0.054957;0.166457;0.200984;0.236786;0.208523
@@ -44,6 +46,8 @@ Nordeste;pct_agua_nao_encanada;Saneamento;False;58096;0.026247;0.091205;0.000000
 Nordeste;pct_agua_so_terreno;Saneamento;False;56967;0.033455;0.087100;0.000000;0.000000;0.026201;0.031533
 Nordeste;pct_sem_banheiro;Saneamento;False;57808;0.015861;0.054985;0.000000;0.000000;0.000000;0.014177
 Nordeste;pct_sem_banheiro_nem_sanitario;Saneamento;False;66554;0.001455;0.012591;0.000000;0.000000;0.000000;0.001155
+Nordeste;pct_so_sanitario;Saneamento;False;64024;0.007618;0.038275;0.000000;0.000000;0.000000;0.006988
+Nordeste;pct_banheiro_comum;Saneamento;False;61148;0.003387;0.020223;0.000000;0.000000;0.000000;0.003199
 Nordeste;pct_resp_feminino;Socioeconômica;False;74976;0.546407;0.100301;0.482759;0.550374;0.615385;0.546181
 Nordeste;pct_crianca_0a4;Demografia;False;74457;0.065019;0.022255;0.049767;0.063613;0.078767;0.065786
 Nordeste;pct_pop_0a14;Demografia;False;75003;0.204489;0.054265;0.169261;0.203797;0.239290;0.208188
@@ -70,6 +74,8 @@ Norte;pct_agua_nao_encanada;Saneamento;False;17243;0.022397;0.085878;0.000000;0.
 Norte;pct_agua_so_terreno;Saneamento;False;16789;0.055580;0.114555;0.000000;0.013453;0.056995;0.051414
 Norte;pct_sem_banheiro;Saneamento;False;16727;0.036632;0.098305;0.000000;0.000000;0.027424;0.030892
 Norte;pct_sem_banheiro_nem_sanitario;Saneamento;False;19339;0.001492;0.013353;0.000000;0.000000;0.000000;0.001195
+Norte;pct_so_sanitario;Saneamento;False;18627;0.016888;0.072003;0.000000;0.000000;0.000000;0.014044
+Norte;pct_banheiro_comum;Saneamento;False;16692;0.012939;0.041182;0.000000;0.000000;0.010274;0.011704
 Norte;pct_resp_feminino;Socioeconômica;False;21786;0.524841;0.104578;0.463054;0.531449;0.593866;0.528238
 Norte;pct_crianca_0a4;Demografia;False;21688;0.077154;0.025233;0.059402;0.075581;0.092503;0.077894
 Norte;pct_pop_0a14;Demografia;False;21834;0.237513;0.060511;0.196509;0.236046;0.277447;0.241587
@@ -96,6 +102,8 @@ Sudeste;pct_agua_nao_encanada;Saneamento;False;163344;0.003658;0.039876;0.000000
 Sudeste;pct_agua_so_terreno;Saneamento;False;152266;0.006617;0.048915;0.000000;0.000000;0.000000;0.005891
 Sudeste;pct_sem_banheiro;Saneamento;False;159794;0.000624;0.010722;0.000000;0.000000;0.000000;0.000543
 Sudeste;pct_sem_banheiro_nem_sanitario;Saneamento;False;172246;0.000032;0.002556;0.000000;0.000000;0.000000;0.000022
+Sudeste;pct_so_sanitario;Saneamento;False;171513;0.000098;0.004083;0.000000;0.000000;0.000000;0.000090
+Sudeste;pct_banheiro_comum;Saneamento;False;163524;0.000371;0.008516;0.000000;0.000000;0.000000;0.000319
 Sudeste;pct_resp_feminino;Socioeconômica;False;174388;0.498493;0.105375;0.432540;0.506550;0.571429;0.499774
 Sudeste;pct_crianca_0a4;Demografia;False;171042;0.055187;0.021963;0.040000;0.053208;0.068047;0.056553
 Sudeste;pct_pop_0a14;Demografia;False;174485;0.173491;0.054991;0.137931;0.173034;0.208726;0.180316
@@ -122,6 +130,8 @@ Sul;pct_agua_nao_encanada;Saneamento;False;46075;0.001572;0.023472;0.000000;0.00
 Sul;pct_agua_so_terreno;Saneamento;False;42787;0.001998;0.024607;0.000000;0.000000;0.000000;0.001555
 Sul;pct_sem_banheiro;Saneamento;False;43637;0.001374;0.017478;0.000000;0.000000;0.000000;0.001155
 Sul;pct_sem_banheiro_nem_sanitario;Saneamento;False;48763;0.000054;0.002390;0.000000;0.000000;0.000000;0.000053
+Sul;pct_so_sanitario;Saneamento;False;48409;0.000176;0.007634;0.000000;0.000000;0.000000;0.000128
+Sul;pct_banheiro_comum;Saneamento;False;44466;0.000862;0.013136;0.000000;0.000000;0.000000;0.000747
 Sul;pct_resp_feminino;Socioeconômica;False;49428;0.485453;0.113373;0.410714;0.492597;0.566667;0.489989
 Sul;pct_crianca_0a4;Demografia;False;48450;0.058384;0.022051;0.043771;0.056628;0.071197;0.059982
 Sul;pct_pop_0a14;Demografia;False;49539;0.178003;0.054957;0.145228;0.177986;0.211669;0.185869

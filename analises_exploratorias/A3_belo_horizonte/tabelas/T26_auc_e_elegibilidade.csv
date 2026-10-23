@@ -2,7 +2,7 @@ medida,valor,detalhe
 AUC global contra FCU,0.9171830779269418,
 AUC municipal (mediana),0.9171830779269418,
 municípios na AUC municipal,1.0,ao menos 30 setores de FCU e fora
-peso da dimensão socioeconômica (%),60.0,
+peso da dimensão F1 (socioeconômica) (%),60.0,
 "KMO ≥ 0,70",1.0,sim
 "MSA ≥ 0,50 em todas",1.0,sim
 comunalidade mínima,0.018212590886286822,Banheiro graduado

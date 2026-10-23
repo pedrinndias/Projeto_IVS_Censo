@@ -18,6 +18,8 @@ Brasil (todos os setores elegíveis);pct_agua_nao_encanada;Saneamento;False;3944
 Brasil (todos os setores elegíveis);pct_agua_so_terreno;Saneamento;False;373826;0.036235;0.115908;0.000000;0.000000;0.000000;0.025015
 Brasil (todos os setores elegíveis);pct_sem_banheiro;Saneamento;False;385939;0.041510;0.147382;0.000000;0.000000;0.000000;0.020859
 Brasil (todos os setores elegíveis);pct_sem_banheiro_nem_sanitario;Saneamento;False;420151;0.011814;0.079284;0.000000;0.000000;0.000000;0.004815
+Brasil (todos os setores elegíveis);pct_so_sanitario;Saneamento;False;413172;0.017444;0.089934;0.000000;0.000000;0.000000;0.009374
+Brasil (todos os setores elegíveis);pct_banheiro_comum;Saneamento;False;389711;0.007009;0.051176;0.000000;0.000000;0.000000;0.004036
 Brasil (todos os setores elegíveis);pct_resp_feminino;Socioeconômica;False;443095;0.474320;0.141855;0.397136;0.494444;0.571429;0.491966
 Brasil (todos os setores elegíveis);pct_crianca_0a4;Demografia;False;436522;0.062486;0.027160;0.045031;0.059524;0.076149;0.062866
 Brasil (todos os setores elegíveis);pct_pop_0a14;Demografia;False;447937;0.192556;0.066577;0.151844;0.189591;0.229075;0.197790
@@ -44,6 +46,8 @@ Brasil (apenas urbanos);pct_agua_nao_encanada;Saneamento;False;307827;0.008635;0
 Brasil (apenas urbanos);pct_agua_so_terreno;Saneamento;False;289265;0.014369;0.063979;0.000000;0.000000;0.000000;0.013781
 Brasil (apenas urbanos);pct_sem_banheiro;Saneamento;False;300578;0.005719;0.036788;0.000000;0.000000;0.000000;0.005262
 Brasil (apenas urbanos);pct_sem_banheiro_nem_sanitario;Saneamento;False;331902;0.000405;0.006848;0.000000;0.000000;0.000000;0.000340
+Brasil (apenas urbanos);pct_so_sanitario;Saneamento;False;327150;0.002566;0.025259;0.000000;0.000000;0.000000;0.002377
+Brasil (apenas urbanos);pct_banheiro_comum;Saneamento;False;309301;0.001729;0.015908;0.000000;0.000000;0.000000;0.001647
 Brasil (apenas urbanos);pct_resp_feminino;Socioeconômica;False;346034;0.507836;0.107945;0.440367;0.515625;0.581818;0.509958
 Brasil (apenas urbanos);pct_crianca_0a4;Demografia;False;340915;0.060003;0.023163;0.044017;0.058052;0.073879;0.061895
 Brasil (apenas urbanos);pct_pop_0a14;Demografia;False;346371;0.186925;0.058238;0.149321;0.186000;0.223555;0.194874
@@ -70,6 +74,8 @@ ELSI 70 municípios (apenas urbanos);pct_agua_nao_encanada;Saneamento;False;9440
 ELSI 70 municípios (apenas urbanos);pct_agua_so_terreno;Saneamento;False;88211;0.010505;0.057620;0.000000;0.000000;0.000000;0.010106
 ELSI 70 municípios (apenas urbanos);pct_sem_banheiro;Saneamento;False;91912;0.002346;0.021435;0.000000;0.000000;0.000000;0.002082
 ELSI 70 municípios (apenas urbanos);pct_sem_banheiro_nem_sanitario;Saneamento;False;101139;0.000160;0.004922;0.000000;0.000000;0.000000;0.000119
+ELSI 70 municípios (apenas urbanos);pct_so_sanitario;Saneamento;False;100297;0.000628;0.010490;0.000000;0.000000;0.000000;0.000577
+ELSI 70 municípios (apenas urbanos);pct_banheiro_comum;Saneamento;False;94414;0.001122;0.013625;0.000000;0.000000;0.000000;0.001005
 ELSI 70 municípios (apenas urbanos);pct_resp_feminino;Socioeconômica;False;103961;0.528130;0.089506;0.473958;0.533898;0.588000;0.528034
 ELSI 70 municípios (apenas urbanos);pct_crianca_0a4;Demografia;False;102288;0.054103;0.022080;0.038513;0.052083;0.067151;0.055721
 ELSI 70 municípios (apenas urbanos);pct_pop_0a14;Demografia;False;103850;0.172590;0.057872;0.134211;0.171946;0.209756;0.179662

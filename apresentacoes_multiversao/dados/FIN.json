@@ -2027,7 +2027,7 @@
     ],
     [
      "Como ler.",
-     "\"municipal\": de 0 a 1 dentro de cada município; \"global\": de 0 a 1 nos 70 juntos; \"postos_municipal\": posição do setor no município, o que trata zeros e assimetria."
+     "\"municipal\": de 0 a 1 dentro de cada município; \"global\": de 0 a 1 nos 70 juntos; \"postos_municipal\": posição do setor no município, o que trata zeros e assimetria. Atenção: \"postos_municipal\" troca duas coisas juntas, a matriz da fatorial (calculada dentro do município) e a régua; a troca de faixa dela não é só efeito da régua."
     ],
     [
      "O que mostra.",
@@ -2053,7 +2053,7 @@
     ],
     [
      "Como ler.",
-     "Tracejado: o limite de 10% da regra de equivalência. Barras vermelhas também podem falhar pela correlação, mesmo abaixo do tracejado."
+     "Tracejado: o limite de 10% da regra de equivalência. Barras vermelhas também podem falhar pela correlação, mesmo abaixo do tracejado. Atenção: \"postos_municipal\" troca duas coisas juntas, a matriz da fatorial (calculada dentro do município) e a régua; a troca de faixa dela não é só efeito da régua."
     ],
     [
      "O que mostra.",
@@ -2835,8 +2835,8 @@
     [
      "E0001",
      "alternativa rotacao peso",
-     "0,967",
-     "0,924"
+     "0,996",
+     "—"
     ]
    ],
    "explica": [
@@ -3690,6 +3690,10 @@
     [
      "Amostras diferentes.",
      "Cada versão roda nos setores com todos os seus indicadores; as comparações usam a amostra comum."
+    ],
+    [
+     "Régua e matriz.",
+     "No eixo da normalização, a alternativa por postos troca a matriz da fatorial junto com a régua: o efeito não é só da régua."
     ],
     [
      "Validação externa.",
