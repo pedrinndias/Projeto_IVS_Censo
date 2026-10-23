@@ -1,8 +1,13 @@
 # `scripts/` — os executáveis versionados
 
-Trinta e um scripts. A pipeline de análise **são os notebooks**; estes existem para o que
-precisa rodar fora deles — o Brasil inteiro, o pacote de entrega, os decks e os
+Setenta e um arquivos (57 `.py` e 14 `.js`). A pipeline de análise **são os notebooks**; estes existem
+para o que precisa rodar fora deles — o Brasil inteiro, o pacote de entrega, os decks e os
 documentos.
+
+> **Código compartilhado:** o que vários scripts e os notebooks 01 e 02 usam mora em
+> `src/ivs_censo/fontes.py` (leitura dos CSVs do IBGE: `ler_csv_ibge`, `para_numero`, `ler_base_bruta`,
+> `normaliza_nome`) e em `ivs_especificacoes.py` (`spearman`, `faixas`, `comparar` — a troca de faixa
+> entre dois índices, refeita na amostra comum —, `CRIT` e `cargas_rotacao`, da elegibilidade). Corrija lá, uma vez.
 
 > **A regra que vale para todos:** número que aparece num deck ou num documento sai de
 > um arquivo gerado, nunca digitado no gerador. O projeto já apresentou três números do
@@ -62,9 +67,9 @@ documentos.
 | [`gerar_catalogo_analises.py`](gerar_catalogo_analises.py) | `docs/relatorios/Catalogo_Analises_Exploratorias.xlsx` — cada tabela, figura, deck e relatório já produzido, com situação, tema e onde aparece cada indicador | `pandas`, `openpyxl`, `git` |
 | [`dados_relatorio_descritivo.py`](dados_relatorio_descritivo.py) | `relatorio_descritivo/dados/` (`numeros.json`, `manifesto.csv`), `relatorio_descritivo/figuras/` e `Relatorio_Descritivo_numeros.xlsx` — os números e textos do relatório descritivo, lidos das tabelas da `00_referencia` e do registro das demandas | `pandas`, `matplotlib`, `openpyxl` |
 | [`pecas_relatorio_raic.py`](pecas_relatorio_raic.py) | `relatorio_parcial_raic/figuras/fig1_correlacao.png` e `relatorio_parcial_raic/dados/` (`tabela1_descritivas.csv`, `quadro2_indicadores.csv`, `matriz_spearman.csv`, `pecas.json`) — Figura 1, Tabela 1 e Quadro 2 do relatório parcial RAIC 2026, com os 12 indicadores da matriz; três travas (reproduz a S6, confere a T03 contra o `.db` e a tabela aprovada, confere a contagem do quadro) | `pandas`, `matplotlib` |
-| [`gerar_relatorio_descritivo.js`](gerar_relatorio_descritivo.js) | `relatorio_descritivo/Relatorio_Descritivo_IVS_2026-10.pptx` — o deck inteiro, do zero, a partir do `numeros.json` | `pptxgenjs`, `deck_comum.js` |
+| [`gerar_relatorio_descritivo.js`](gerar_relatorio_descritivo.js) | o deck inteiro, do zero, a partir do `numeros.json`, no arquivo de `--saida <arquivo.pptx>` (obrigatório: o deck principal de antes não existe mais) | `pptxgenjs`, `deck_comum.js` |
 | [`verificar_relatorio_descritivo.py`](verificar_relatorio_descritivo.py) | Conferência do relatório descritivo (IDs, números contra as tabelas e o registro, recálculo direto do `.db`, origem dos indicadores) | `pandas` |
-| [`comparar_edicoes_relatorio.py`](comparar_edicoes_relatorio.py) | `relatorio_descritivo/dados/edicoes_do_pedro.csv` — as células de tabela mudadas à mão numa cópia do deck, por ID de slide | `pandas` |
+| [`comparar_edicoes_relatorio.py`](comparar_edicoes_relatorio.py) | `relatorio_descritivo/dados/edicoes_do_pedro.csv` — as células de tabela mudadas à mão no deck passado como argumento (obrigatório), por ID de slide | `pandas` |
 | [`versoes_fatorial.py`](versoes_fatorial.py) | `banco_de_dados/eda/versoes_fatorial/` — as 108 versões da fatorial (renda × lixo × água canalizada × banheiro × moradia) com o método da referência proposta, estabilidade e pares por eixo; trava contra as 18 do NB05 | `pandas`, `numpy`, motor do NB05 |
 | [`dados_versoes_fatorial.py`](dados_versoes_fatorial.py) | `versoes_fatorial/dados/`, `figuras/` e `Versoes_Fatorial_numeros.xlsx` — números e textos dos dois decks das 108 versões | `pandas`, `matplotlib`, `openpyxl` |
 | [`gerar_versoes_fatorial.js`](gerar_versoes_fatorial.js) | `versoes_fatorial/Versoes_Fatorial_Principal.pptx` e `Caderno_Fichas_108.pptx`, com trava contra sobrescrita | `pptxgenjs`, `deck_comum.js` |

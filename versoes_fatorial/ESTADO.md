@@ -32,3 +32,4 @@ Lista: `VERSOES.md`
 |---|---|---|
 | — | 08/10/2026 | Lista, interpretação, estado e prompt gravados; nada rodado |
 | 0–5 | 08/10/2026 | Motor, trava, 108 versões com estabilidade, pares por eixo, decks, planilha, READMEs. Na folha de contato: figura de grade pequena (o "contain" do pptxgenjs sem o tamanho original — encaixe calculado à mão), "—" nas trocas de eixo (passou a frase do eixo), "-0,000" (zerado), "comunalidade" estourando a célula da grade e o cabeçalho da ficha — corrigidos. Item 6 do verificador aceitava "não escolhida" como erro — regra ajustada para a negação |
+| — | 22/10/2026 | **Dados e CSVs regerados** (108 versões, trava das 18 do NB05 OK) com a troca de faixa refeita na amostra comum. Os decks têm trava e **não** foram regerados: mudaram o principal (VP08–VP13) e 97 fichas do caderno. Lista e valores em `docs/relatorios/Simplificacao_e_Correcoes_2026-10.md` |

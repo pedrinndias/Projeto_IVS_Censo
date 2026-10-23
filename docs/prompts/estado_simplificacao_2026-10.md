@@ -2,14 +2,16 @@
 
 Prompt: `docs/prompts/prompt_simplificacao_correcoes_2026-10.md` · ramo `simplificacao-codigo`
 
-## Situação: fase 2 concluída (commit abaixo) — próximo: fase 3 (regeneração, passo 1: NB01 em background; conferir o sha256 da base bruta)
+## Situação: **concluído** (fases 0 a 4). Relatório: `docs/relatorios/Simplificacao_e_Correcoes_2026-10.md`. Nada a retomar; falta só o Pedro rever o ramo e decidir os itens da última seção.
 
 ## Commits
 | Fase | Hash | Data |
 |---|---|---|
 | 0 | 7fcf56a | 2026-10-22 |
 | 1 | 537fc52 | 2026-10-22 |
-| 2 | ver `git log --oneline simplificacao-codigo` (refactor: simplificação sem mudança de saída) | 2026-10-22 |
+| 2 | eebb6e0 | 2026-10-22 |
+| 3 | ae11a98 (399 arquivos) e 85ced4a (notebook 05) | 2026-10-22 |
+| 4 | `git log -1 --format=%h` do commit "docs: relatório da simplificação e das correções" | 2026-10-22 |
 
 ## Linha de base (Fase 0)
 - 98 figuras `* 2.png` apagadas (cmp idêntico, sem citação em .json/.js/.py/.md).
@@ -51,6 +53,18 @@ Linhas (de `.baseline/medidas.txt`): src 1429 → 1483 (+54: os helpers novos de
 ## Regeneração (Fase 3)
 | Passo | Situação | Mudou fora do esperado? |
 |---|---|---|
+| 1 NB01 | ok (jupyter-execute sem `--inplace`; o `./.venv/bin/jupyter` tem shebang quebrado) | não: sha256 da base bruta e do `.db` nacional iguais |
+| 2 NB02 | ok | não: nenhum CSV de `eda/` mudou (prova da S8 e das edições do NB02) |
+| 3 entrega | ok | não: os dois `.db` só mudam `gerado_em` |
+| 4 nacional | ok, 7,5 min | **sim:** 2 indicadores novos nos 5 CSVs (arquivos de 25/09 defasados); linhas antigas idênticas |
+| 5 renda e auditoria | ok (`--sem-extremo` repetido: erro meu de shell na 1ª vez) | não: nada mudou |
+| 6 `ivs_especificacoes` | ok, trava OK | só o esperado (4.1); `pesos`, `estabilidade`, `referencia` idênticos; 0 `nan` na logística |
+| 7 NB05 | relatório ok; o notebook falhou 2×: 1ª por estouro de 30 min (carga), 2ª porque o guarda compara com o `HEAD` (ainda com as saídas antigas); passou depois do commit da Fase 3 | — |
+| 8 108 versões | ok, trava das 18 OK | ruído ≤ 1e-15 em `cargas`, `estabilidade`, `versoes` (a investigar) |
+| 9 24 versões | ok; reverificação em sequência | B5 e B3: `k_fatores` (defeito anterior); 437 cópias " 2" apagadas |
+| 10 E1–E6, síntese | ok | não |
+| 11 multiversão | ok; verificadores 3–7 verdes; deck final regerado | FIN-39, 40, 56, 75 (esperado) |
+| 12 dados dos relatórios | dados ok; os dois verificadores falham por motivo anterior ou por deck com trava | FA12, FA13, FP13, DS16; VP08–VP13 e 97 fichas |
 
 ## Achados do /ponytail-review
 | Achado | Corrigido / registrado |
@@ -64,3 +78,6 @@ Linhas (de `.baseline/medidas.txt`): src 1429 → 1483 (+54: os helpers novos de
 | 7. `fig_concordancia` do `ie.main` ainda usa as faixas gravadas de cada especificação | registrado (E2, só figura) |
 
 ## A investigar e decisões para o Pedro
+Tudo está na seção 4 e na seção 5 do relatório (`docs/relatorios/Simplificacao_e_Correcoes_2026-10.md`). Em resumo: E4 (separar matriz e régua?), E6 (nada errado nos 29 casos), regerar ou não os decks com trava, tirar o projeto do iCloud, e 13 itens a investigar (defeitos anteriores e ruído numérico).
+
+Lição: rodar `pytest` logo depois da Fase 3 (um teste que lê saída regerada, `test_indice_da_referencia`, ficou vermelho até eu atualizá-lo).

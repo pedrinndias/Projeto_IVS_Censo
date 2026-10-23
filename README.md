@@ -25,7 +25,7 @@ A pipeline ativa é a **Fase 3 (`notebooks/Fase3_EDA_ELSI/`)**, que aplica o fil
 | Validação das variáveis de esgoto | ✅ Concluída — **V00312–V00316** confirmado no dicionário oficial do IBGE (V00249–V00253 é tipologia de habitação) |
 | Demandas da orientadora (jul/2026) — 7 itens | ✅ Concluídas (ver abaixo) |
 | Linha de base nacional (~468 mil setores) | ✅ [`scripts/proporcoes_brasil.py`](scripts/proporcoes_brasil.py) |
-| Normalização de renda por município | 🔴 Pendente (a fazer no Notebook 03) |
+| Normalização de renda por município | ✅ Feita no cálculo do índice (`ie.indice`, em [`scripts/ivs_especificacoes.py`](scripts/ivs_especificacoes.py), usada no NB05); não há Notebook 03 |
 | Análise fatorial / ACP — definição dos pesos | ✅ Concluída em 17/09/2026 — [`notebooks/Fase3_EDA_ELSI/04_Analise_Fatorial.ipynb`](notebooks/Fase3_EDA_ELSI/04_Analise_Fatorial.ipynb), relatório em [`docs/relatorios/`](docs/relatorios/) |
 | Cálculo do IVS final + categorização em 4 faixas | 🔴 Pendente (Notebook 05) |
 | Mapas temáticos (QGIS 3.x) | 🔴 Pendente |
@@ -180,7 +180,7 @@ Projeto_IVS_Censo22/
 │   ├── ETL/, formatar/, banco_de_dados/
 │   └── DIAGNOSTICO_COMPLETO_PROJETO.md
 │
-└── tests/                             74 testes (artefatos, fórmulas e a álgebra da fatorial)
+└── tests/                             165 testes (artefatos, fórmulas, a álgebra da fatorial e os motores do IVS)
 ```
 
 ## Problemas Conhecidos
@@ -190,7 +190,7 @@ Lista resumida — detalhamento técnico em [`docs/relatorios/Relatorio_Integrid
 | # | Problema | Gravidade |
 |---|---|---|
 | 1 | ~~**Variáveis de esgoto**~~ — o dicionário oficial do IBGE (versionado em `dados/`) confirma **V00312–V00316** como esgoto inadequado; V00249–V00253 é tipologia de habitação. O diagnóstico empírico (célula `step4b` do Notebook 02, `diagnostico_esgoto_312_vs_249.csv`) corrobora. | ✅ Resolvido |
-| 2 | **Normalização de renda global** — usa min/max global; será trocada para por município no Notebook 03 (a criar). | 🟡 Pendente (próxima fase) |
+| 2 | ~~**Normalização de renda global**~~ — o índice de referência usa min/max dentro de cada município (`ie.indice`, `normalizacao='municipal'`); a global ficou como sensibilidade. | ✅ Resolvido |
 | 3 | ~~**Ausência do filtro ELSI**~~ | ✅ Resolvido (Fase 3) |
 | 4 | ~~**Denominadores divergentes**~~ — consolidado **V00001** (Dom. Particulares Permanentes Ocupados) na revisão de 22/05/2026; `V01042` descartado (é contagem de pessoas, não de domicílios). | ✅ Resolvido |
 | 5 | **Dados duplicados em `Backup/`** — ~8 GB de arquivos obsoletos. Limpeza opcional. | 🟢 Organizacional |

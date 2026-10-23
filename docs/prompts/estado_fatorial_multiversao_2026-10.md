@@ -127,3 +127,4 @@ referência do NB05 muda 1 setor (São Raimundo do Doca Bezerra); `eda_versoes.i
 | 1–3 | 22/10/2026 | Motor `fatorial_multiversao.py`, 6 testes; camadas rodadas e verificadas | — |
 | 4–7 | 22/10/2026 | `dados_apresentacoes_multiversao.py`, `gerar_decks_multiversao.js`, `verificar_multiversao.py`; 13 decks; suíte 125 verde | — |
 | 4–7, 2ª rodada | 22/10/2026 | Decks reescritos com explicação por slide e EDA completa: 12 × 37–38 slides + final de 81 | — |
+| correção | 22/10/2026 | Camada 3 regerada: o Tucker do finalista sem rotação (E0001) passa de 0,967/0,924 para 0,996/— (E3); FIN-39/40 avisam que o eixo da normalização troca a matriz junto com a régua (E4); FIN-56 e FIN-75 atualizados; verificadores das fases 3–7 verdes. Ver `docs/relatorios/Simplificacao_e_Correcoes_2026-10.md` | — |

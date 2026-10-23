@@ -6,10 +6,10 @@
     "semantic_hash": "fdb8e89c302d988c6d9658561072914e"
   },
   "tests/test_pipeline_fase3.py": {
-    "mtime": 1790340994.5028052,
-    "seen": 1790837560.07955,
-    "ast_hash": "4936d67e1e01099d2df802b11de035ca",
-    "semantic_hash": "4936d67e1e01099d2df802b11de035ca"
+    "mtime": 1792709644.592984,
+    "seen": 1792718887.882524,
+    "ast_hash": "6161b3b9a9f305880ad0297f5fe90e15",
+    "semantic_hash": ""
   },
   "GUIA_DO_PROJETO.md": {
     "mtime": 1790545797.8092465,
@@ -18,10 +18,10 @@
     "semantic_hash": "824e791b7ac0490f15d1ac12bcc2894a"
   },
   "README.md": {
-    "mtime": 1790435408.1125014,
-    "seen": 1790837560.079552,
-    "ast_hash": "d9eb0d9fc666bb49d0f0c93afb9da978",
-    "semantic_hash": "d9eb0d9fc666bb49d0f0c93afb9da978"
+    "mtime": 1792711073.7895622,
+    "seen": 1792718887.882528,
+    "ast_hash": "51b86735aa546ff61696aad5f6094032",
+    "semantic_hash": ""
   },
   "banco_de_dados/eda/README.md": {
     "mtime": 1789653266.7902684,
@@ -48,22 +48,22 @@
     "semantic_hash": "4e7a58e03c05844c0b7ce410e018c973"
   },
   "requirements.txt": {
-    "mtime": 1790374439.1462739,
-    "seen": 1790837560.079595,
-    "ast_hash": "bead0842a242a19ffcdbce18e74277a6",
-    "semantic_hash": "bead0842a242a19ffcdbce18e74277a6"
+    "mtime": 1792405809.1640766,
+    "seen": 1792718887.882637,
+    "ast_hash": "1192ec3fc81accffdda6e0780e119fbc",
+    "semantic_hash": ""
   },
   "scripts/atualizar_roteiro_2a_rodada.py": {
-    "mtime": 1788375676.4812355,
-    "seen": 1790837560.0795012,
-    "ast_hash": "97ad8f2e94b9ce7f5e54b6382cc4b9b1",
-    "semantic_hash": "97ad8f2e94b9ce7f5e54b6382cc4b9b1"
+    "mtime": 1792709972.3686888,
+    "seen": 1792718887.882427,
+    "ast_hash": "adc425620d3895b95cb4c8be1501c332",
+    "semantic_hash": ""
   },
   "scripts/auditoria_renda.py": {
-    "mtime": 1790374810.4513836,
-    "seen": 1790837560.079505,
-    "ast_hash": "0229b18b648b4f043ab36f4a41ab167a",
-    "semantic_hash": "0229b18b648b4f043ab36f4a41ab167a"
+    "mtime": 1792710350.3660815,
+    "seen": 1792718887.882429,
+    "ast_hash": "ff79370c274b322cea6030787483b022",
+    "semantic_hash": ""
   },
   "scripts/dados_criterio_renda.py": {
     "mtime": 1788279701.3484583,
@@ -96,10 +96,10 @@
     "semantic_hash": "593b9b11fec01e03550be0d0fa76dc71"
   },
   "scripts/eda_extremo_belo_horizonte.py": {
-    "mtime": 1790374810.4499836,
-    "seen": 1790837560.0795121,
-    "ast_hash": "af164fc30262cb6fc708f618c91dce22",
-    "semantic_hash": "af164fc30262cb6fc708f618c91dce22"
+    "mtime": 1792709972.3645241,
+    "seen": 1792718887.882447,
+    "ast_hash": "47f5901212fc095efe7fde175bd8452b",
+    "semantic_hash": ""
   },
   "scripts/gerar_deck_criterio_renda.js": {
     "mtime": 1788373156.3493755,
@@ -120,34 +120,34 @@
     "semantic_hash": "036b9839ab7616709b962b342e234809"
   },
   "scripts/gerar_entrega_orientadora.py": {
-    "mtime": 1790340977.7961128,
-    "seen": 1790837560.0795178,
-    "ast_hash": "eda3083126e2e8a92a2a5c1d8704c9d9",
-    "semantic_hash": "eda3083126e2e8a92a2a5c1d8704c9d9"
+    "mtime": 1792710343.2876382,
+    "seen": 1792718887.8824651,
+    "ast_hash": "f3be4335a350ca4caa14603fe90bf426",
+    "semantic_hash": ""
   },
   "scripts/gerar_pdf_guia_fatorial.py": {
-    "mtime": 1790366554.2432086,
-    "seen": 1790837560.079521,
-    "ast_hash": "eeec2a50ecc8fda2feb6a0e511aab20c",
-    "semantic_hash": "eeec2a50ecc8fda2feb6a0e511aab20c"
+    "mtime": 1792709972.369732,
+    "seen": 1792718887.8824692,
+    "ast_hash": "8c9bcb506f5d442032511a9557e5e00a",
+    "semantic_hash": ""
   },
   "scripts/gerar_pdf_outliers_renda.py": {
-    "mtime": 1788373156.3474176,
-    "seen": 1790837560.0795221,
-    "ast_hash": "19682f84a43e182a38e6aea4b1381b39",
-    "semantic_hash": "19682f84a43e182a38e6aea4b1381b39"
+    "mtime": 1792709972.3671758,
+    "seen": 1792718887.88247,
+    "ast_hash": "68c4cf92ec92c3070b74e58bd6bdab41",
+    "semantic_hash": ""
   },
   "scripts/gerar_pdf_plano_emergencia.py": {
-    "mtime": 1789652747.9796243,
-    "seen": 1790837560.079523,
-    "ast_hash": "77bad1ce4989e7d224dc213e2b916d7c",
-    "semantic_hash": "77bad1ce4989e7d224dc213e2b916d7c"
+    "mtime": 1792710779.962308,
+    "seen": 1792718887.8824708,
+    "ast_hash": "07fd22c3e9ed31a65062b548df82d162",
+    "semantic_hash": ""
   },
   "scripts/gerar_resumo_eda_central.py": {
-    "mtime": 1788373156.348569,
-    "seen": 1790837560.079527,
-    "ast_hash": "42b909d50607c2bc609a0cd4db2ce8e6",
-    "semantic_hash": "42b909d50607c2bc609a0cd4db2ce8e6"
+    "mtime": 1792709972.363741,
+    "seen": 1792718887.882477,
+    "ast_hash": "bf54cf0f5bb565a00929b0e1767b8a86",
+    "semantic_hash": ""
   },
   "scripts/gerar_slides_extremo_bh.js": {
     "mtime": 1790366305.187189,
@@ -156,22 +156,22 @@
     "semantic_hash": "da488d24a5819ffbbda10e9c74bfc2b0"
   },
   "scripts/gerar_tabela_variaveis.py": {
-    "mtime": 1790340977.7993698,
-    "seen": 1790837560.0795321,
-    "ast_hash": "bf548c37a44d793462003bd55b70d3dd",
-    "semantic_hash": "bf548c37a44d793462003bd55b70d3dd"
+    "mtime": 1792709994.6145344,
+    "seen": 1792718887.882483,
+    "ast_hash": "7627ffdb5c9d084a520930af4b16c702",
+    "semantic_hash": ""
   },
   "scripts/gerar_tabelas_auditoria.py": {
-    "mtime": 1787266246.1214368,
-    "seen": 1790837560.079533,
-    "ast_hash": "92b23abb243acc9b9ef150b6771d1d24",
-    "semantic_hash": "92b23abb243acc9b9ef150b6771d1d24"
+    "mtime": 1792710350.3655436,
+    "seen": 1792718887.882484,
+    "ast_hash": "d7ecdb805cbc9dc0b023bc05c0a57887",
+    "semantic_hash": ""
   },
   "scripts/proporcoes_brasil.py": {
-    "mtime": 1790374810.4484618,
-    "seen": 1790837560.079537,
-    "ast_hash": "590847d078ed3f68f7863a49ed8ac265",
-    "semantic_hash": "590847d078ed3f68f7863a49ed8ac265"
+    "mtime": 1792710311.053246,
+    "seen": 1792718887.882498,
+    "ast_hash": "20501886d3f84b76dce65244d00a4410",
+    "semantic_hash": ""
   },
   "src/ivs_censo/__init__.py": {
     "mtime": 1787264627.9700623,
@@ -180,10 +180,10 @@
     "semantic_hash": "9724c74b52d7769832f7051a8127fec3"
   },
   "src/ivs_censo/dicionario.py": {
-    "mtime": 1787593193.7835047,
-    "seen": 1790837560.079539,
-    "ast_hash": "7bfd0d922c0a231cc5e1599ee7025352",
-    "semantic_hash": "7bfd0d922c0a231cc5e1599ee7025352"
+    "mtime": 1792709994.6194973,
+    "seen": 1792718887.882509,
+    "ast_hash": "358f32ea00b40fc927752d34b25bc26e",
+    "semantic_hash": ""
   },
   "src/ivs_censo/fatorial.py": {
     "mtime": 1791405929.18378,
@@ -192,22 +192,22 @@
     "semantic_hash": "6e832cae5e3e6656f1a5d190e84a735e"
   },
   "src/ivs_censo/fontes.py": {
-    "mtime": 1790434807.4983344,
-    "seen": 1790837560.079542,
-    "ast_hash": "fcdda30f22d91a583a33b1baa44f1702",
-    "semantic_hash": "fcdda30f22d91a583a33b1baa44f1702"
+    "mtime": 1792710297.1928155,
+    "seen": 1792718887.8825111,
+    "ast_hash": "d001583c2cbf7f9645191805e919e8e3",
+    "semantic_hash": ""
   },
   "src/ivs_censo/indicadores.py": {
-    "mtime": 1790434807.4993682,
-    "seen": 1790837560.079543,
-    "ast_hash": "b2dc8bc341ec5921fa5b6d6f676d1f1d",
-    "semantic_hash": "b2dc8bc341ec5921fa5b6d6f676d1f1d"
+    "mtime": 1792709972.3611941,
+    "seen": 1792718887.8825119,
+    "ast_hash": "b0e49472e0a29771f61b2898884459bd",
+    "semantic_hash": ""
   },
   "src/ivs_censo/renda.py": {
-    "mtime": 1790374810.4471812,
-    "seen": 1790837560.079544,
-    "ast_hash": "a3b5f8414ac4bef67b65bb415d4bcc96",
-    "semantic_hash": "a3b5f8414ac4bef67b65bb415d4bcc96"
+    "mtime": 1792709977.5651581,
+    "seen": 1792718887.8825128,
+    "ast_hash": "265dbcf4b80d8698cd7ef5cdedd63b39",
+    "semantic_hash": ""
   },
   "tests/test_fatorial.py": {
     "mtime": 1791405945.1863225,
@@ -216,10 +216,10 @@
     "semantic_hash": "0577ace8678cf415de33dc54a3df5a0f"
   },
   "tests/test_ivs_censo.py": {
-    "mtime": 1790435393.9789631,
-    "seen": 1790837560.0795462,
-    "ast_hash": "714a908078bbd12162cfe1ef1c57a4ce",
-    "semantic_hash": "714a908078bbd12162cfe1ef1c57a4ce"
+    "mtime": 1792710929.2582493,
+    "seen": 1792718887.88252,
+    "ast_hash": "7b080c35dcf0ca579b6c17173d0a066a",
+    "semantic_hash": ""
   },
   "banco_de_dados/eda/atualizada/README.md": {
     "mtime": 1789666933.4024467,
@@ -288,10 +288,10 @@
     "semantic_hash": "10a9202d5b70b21a20f39234f1dcf762"
   },
   "docs/prompts/README.md": {
-    "mtime": 1791558394.7960665,
-    "seen": 1792359281.859898,
-    "ast_hash": "35f7c80c7fc14546effa6b1c0ca28854",
-    "semantic_hash": "35f7c80c7fc14546effa6b1c0ca28854"
+    "mtime": 1792718874.1145542,
+    "seen": 1792718887.882592,
+    "ast_hash": "b91b23c615ff68dd7cb7ba5f9cd95c30",
+    "semantic_hash": ""
   },
   "docs/prompts/prompt_auditoria_integral.md": {
     "mtime": 1789653138.5151389,
@@ -366,10 +366,10 @@
     "semantic_hash": "388717c962eea138856e98aeb4516798"
   },
   "scripts/README.md": {
-    "mtime": 1791734663.1112692,
-    "seen": 1792359281.8599522,
-    "ast_hash": "5ffbc7ddbe8088710aba604c96fe1247",
-    "semantic_hash": "5ffbc7ddbe8088710aba604c96fe1247"
+    "mtime": 1792711090.6607683,
+    "seen": 1792718887.882638,
+    "ast_hash": "ab63e3296f06d618d607ba3a8db22a4f",
+    "semantic_hash": ""
   },
   "docs/referencias/Plano de trabalho.pdf": {
     "mtime": 1772833827.0,
@@ -396,16 +396,16 @@
     "semantic_hash": "047fe66389ce0d7ae9e41d893358db50"
   },
   "scripts/fatorial_ampliada.py": {
-    "mtime": 1790341689.5955482,
-    "seen": 1790837560.079513,
-    "ast_hash": "f74a5571a4335d42974570c660c1271a",
-    "semantic_hash": "f74a5571a4335d42974570c660c1271a"
+    "mtime": 1792709211.9856958,
+    "seen": 1792718887.8824499,
+    "ast_hash": "c299088b5fa112cf087a29a7cb0fc558",
+    "semantic_hash": ""
   },
   "scripts/gerar_notebook_ivs_final.py": {
-    "mtime": 1790540538.0390465,
-    "seen": 1790837560.07952,
-    "ast_hash": "b9458f12bdbb460fb2344eab6c58756b",
-    "semantic_hash": "b9458f12bdbb460fb2344eab6c58756b"
+    "mtime": 1792709972.363301,
+    "seen": 1792718887.882466,
+    "ast_hash": "810f8e9db95aa764a85a79cb4e0f0ba2",
+    "semantic_hash": ""
   },
   "scripts/gerar_quadro_indicadores.py": {
     "mtime": 1790340946.8183517,
@@ -438,22 +438,22 @@
     "semantic_hash": "b03addc60061448b73510ca77fbf5298"
   },
   "scripts/ivs_especificacoes.py": {
-    "mtime": 1790539440.0246253,
-    "seen": 1790837560.079535,
-    "ast_hash": "2245d955a13494476a8a96d285121f13",
-    "semantic_hash": "2245d955a13494476a8a96d285121f13"
+    "mtime": 1792710916.0199962,
+    "seen": 1792718887.8824909,
+    "ast_hash": "e8c9b645ed41d14420d678dd129752e8",
+    "semantic_hash": ""
   },
   "scripts/juntar_decks.py": {
-    "mtime": 1790790734.6285784,
-    "seen": 1790837560.0795362,
-    "ast_hash": "22c8f0c9b6fa3f3626a867a66e10af1a",
-    "semantic_hash": "22c8f0c9b6fa3f3626a867a66e10af1a"
+    "mtime": 1792709994.6173255,
+    "seen": 1792718887.8824918,
+    "ast_hash": "667b616f95b433ea262ea1698ca6cc68",
+    "semantic_hash": ""
   },
   "tests/test_ivs_especificacoes.py": {
-    "mtime": 1790538801.9440129,
-    "seen": 1790837560.079547,
-    "ast_hash": "3c354175193f1d8bf6733c5f046661a3",
-    "semantic_hash": "3c354175193f1d8bf6733c5f046661a3"
+    "mtime": 1792709394.898717,
+    "seen": 1792718887.8825212,
+    "ast_hash": "4588a55f9de3c1dbb02d8b1ca8c8d161",
+    "semantic_hash": ""
   },
   "tests/test_juntar_decks.py": {
     "mtime": 1790790762.4259706,
@@ -516,10 +516,10 @@
     "semantic_hash": "66b49a7943709093dd354727b207b5c5"
   },
   "docs/relatorios/Relatorio_IVS_Final_NB05.md": {
-    "mtime": 1790545736.2564752,
-    "seen": 1790837560.0795891,
-    "ast_hash": "b527b9211bb81681b67e3542183c6504",
-    "semantic_hash": "b527b9211bb81681b67e3542183c6504"
+    "mtime": 1792711840.7186067,
+    "seen": 1792718887.8826208,
+    "ast_hash": "3c1e4815bb3be51fb008b81b48dbfd6d",
+    "semantic_hash": ""
   },
   "analises_exploratorias/00_referencia/config.json": {
     "mtime": 1791313528.8584976,
@@ -1002,16 +1002,16 @@
     "semantic_hash": "c09494ccd737eb15e6e0185bebe0a580"
   },
   "analises_exploratorias/_modelos/textos_blocos.json": {
-    "mtime": 1791322967.8927503,
-    "seen": 1792359281.8596869,
-    "ast_hash": "4d63a11b2cd4b37eedb56e652002db8f",
-    "semantic_hash": "4d63a11b2cd4b37eedb56e652002db8f"
+    "mtime": 1792709612.2840629,
+    "seen": 1792718887.88242,
+    "ast_hash": "33a9f1115e2721f3db82ea7f395f2f27",
+    "semantic_hash": ""
   },
   "relatorio_descritivo/apoio/apoio.json": {
-    "mtime": 1791558330.3275485,
-    "seen": 1792359281.859691,
-    "ast_hash": "5f2f15efe7549321d703d3af695075e7",
-    "semantic_hash": "5f2f15efe7549321d703d3af695075e7"
+    "mtime": 1792717136.7817426,
+    "seen": 1792718887.882423,
+    "ast_hash": "2a6bd6300bcbe7cb4cdb11e7cff4cda0",
+    "semantic_hash": ""
   },
   "relatorio_parcial_raic/levantamento_2026-10-11.json": {
     "mtime": 1791731568.1196747,
@@ -1020,10 +1020,10 @@
     "semantic_hash": "8bd32087d6a784e37e1ac3ad214d668a"
   },
   "scripts/anexar_versoes_ao_relatorio.py": {
-    "mtime": 1791479810.7473602,
-    "seen": 1792359281.859694,
-    "ast_hash": "75a1dfa7b25a48e042ed23ce463e2135",
-    "semantic_hash": "75a1dfa7b25a48e042ed23ce463e2135"
+    "mtime": 1792709713.225365,
+    "seen": 1792718887.882425,
+    "ast_hash": "fede8653491bb149ce4c3d068094f6ba",
+    "semantic_hash": ""
   },
   "scripts/base_nacional_versoes.py": {
     "mtime": 1791316121.9010148,
@@ -1032,22 +1032,22 @@
     "semantic_hash": "fbbad3c59c233ac51fca3ed6cda9cc41"
   },
   "scripts/comparar_edicoes_relatorio.py": {
-    "mtime": 1791463610.6330414,
-    "seen": 1792359281.859702,
-    "ast_hash": "5688bc8dde0f75d2161ca44918e5c6ba",
-    "semantic_hash": "5688bc8dde0f75d2161ca44918e5c6ba"
+    "mtime": 1792710131.080254,
+    "seen": 1792718887.882431,
+    "ast_hash": "4e660d7f3af8e6e45a1c17065f7c8c27",
+    "semantic_hash": ""
   },
   "scripts/comparar_edicoes_versoes.py": {
-    "mtime": 1791469944.5532804,
-    "seen": 1792359281.859703,
-    "ast_hash": "e6abaa3a239df35eaa993d9c254078b6",
-    "semantic_hash": "e6abaa3a239df35eaa993d9c254078b6"
+    "mtime": 1792710137.6213062,
+    "seen": 1792718887.882432,
+    "ast_hash": "79d2b08423a99f9fc58d396f5cddbb63",
+    "semantic_hash": ""
   },
   "scripts/dados_apoio_relatorio.py": {
-    "mtime": 1791558329.4595175,
-    "seen": 1792359281.859705,
-    "ast_hash": "53e245a97e81a203fbe9e863b3d2ef99",
-    "semantic_hash": "53e245a97e81a203fbe9e863b3d2ef99"
+    "mtime": 1792709972.383109,
+    "seen": 1792718887.8824341,
+    "ast_hash": "6ce9e8c2580943b3369d4e521aa46db9",
+    "semantic_hash": ""
   },
   "scripts/dados_deck_orientadora.py": {
     "mtime": 1791323118.5110176,
@@ -1068,16 +1068,16 @@
     "semantic_hash": "7e898d418987160613b628434afeb366"
   },
   "scripts/eda_transversais.py": {
-    "mtime": 1791406192.2939374,
-    "seen": 1792359281.85972,
-    "ast_hash": "27ffe62cc557c017ada25f10bfa5b9b6",
-    "semantic_hash": "27ffe62cc557c017ada25f10bfa5b9b6"
+    "mtime": 1792709972.3651316,
+    "seen": 1792718887.882448,
+    "ast_hash": "3d2663ed99c40a95d61b7eb0e0041044",
+    "semantic_hash": ""
   },
   "scripts/eda_versoes.py": {
-    "mtime": 1791405926.9743087,
-    "seen": 1792359281.859722,
-    "ast_hash": "d39c0b2db9ccfc792b03170c1e36d685",
-    "semantic_hash": "d39c0b2db9ccfc792b03170c1e36d685"
+    "mtime": 1792710034.3711376,
+    "seen": 1792718887.882449,
+    "ast_hash": "6341b79f172c0ca3d34c3d07eb4419a2",
+    "semantic_hash": ""
   },
   "scripts/folha_contato.swift": {
     "mtime": 1791323118.50984,
@@ -1116,10 +1116,10 @@
     "semantic_hash": "0c5f752acb41a74e57a5e941e5e51c0c"
   },
   "scripts/gerar_pdf_guia_deck_orientadora.py": {
-    "mtime": 1791323280.142884,
-    "seen": 1792359281.85974,
-    "ast_hash": "2b37edb8b1e955a552f8019300fb4e73",
-    "semantic_hash": "2b37edb8b1e955a552f8019300fb4e73"
+    "mtime": 1792709972.368841,
+    "seen": 1792718887.882467,
+    "ast_hash": "a9acf763a41f29687c19f693f0c8c818",
+    "semantic_hash": ""
   },
   "scripts/gerar_pdf_guia_decks_outubro.py": {
     "mtime": 1791205284.4347289,
@@ -1128,10 +1128,10 @@
     "semantic_hash": "c912be52bbbf1cb6762ba6664dce1b00"
   },
   "scripts/gerar_relatorio_descritivo.js": {
-    "mtime": 1791480169.9822445,
-    "seen": 1792359281.8597498,
-    "ast_hash": "6b453705e99a0cb77ec3cf2a7e0d2f89",
-    "semantic_hash": "6b453705e99a0cb77ec3cf2a7e0d2f89"
+    "mtime": 1792709715.9081392,
+    "seen": 1792718887.882473,
+    "ast_hash": "31dbc2eae12b5906772a6f305d6a2441",
+    "semantic_hash": ""
   },
   "scripts/gerar_relatorio_raic.py": {
     "mtime": 1791823901.4337907,
@@ -1152,16 +1152,16 @@
     "semantic_hash": "ebea9913ef60097c3c069870837f241a"
   },
   "scripts/guia_outubro_cronologia.py": {
-    "mtime": 1791204761.5794878,
-    "seen": 1792359281.859767,
-    "ast_hash": "a60843583cd294d507c1db90638a700e",
-    "semantic_hash": "a60843583cd294d507c1db90638a700e"
+    "mtime": 1792709972.363719,
+    "seen": 1792718887.882487,
+    "ast_hash": "131bfb367249c687c7c5ee10dfb36df0",
+    "semantic_hash": ""
   },
   "scripts/guia_outubro_demandas.py": {
-    "mtime": 1791205284.437621,
-    "seen": 1792359281.8597682,
-    "ast_hash": "8c306c07641965d2dd922ba88d409f07",
-    "semantic_hash": "8c306c07641965d2dd922ba88d409f07"
+    "mtime": 1792709972.3681617,
+    "seen": 1792718887.882488,
+    "ast_hash": "440ac6003bbf99ecfa13a7164f1dcaf9",
+    "semantic_hash": ""
   },
   "scripts/inserir_no_relatorio.py": {
     "mtime": 1791479810.7682402,
@@ -1170,10 +1170,10 @@
     "semantic_hash": "1558aab246a67fb83f9199a2d3663290"
   },
   "scripts/montar_apoio_relatorio.py": {
-    "mtime": 1791558154.7624424,
-    "seen": 1792359281.859775,
-    "ast_hash": "c5d9babb9454efe2bdefaeea4fd11210",
-    "semantic_hash": "c5d9babb9454efe2bdefaeea4fd11210"
+    "mtime": 1792709972.365958,
+    "seen": 1792718887.882494,
+    "ast_hash": "86a43cd02fa09a38a8d57eacd2849c02",
+    "semantic_hash": ""
   },
   "scripts/pecas_relatorio_raic.py": {
     "mtime": 1791748104.787757,
@@ -1230,16 +1230,16 @@
     "semantic_hash": "ccdf8c58416b2979785be9f5ea643ab4"
   },
   "scripts/versoes_fatorial.py": {
-    "mtime": 1791469740.4319017,
-    "seen": 1792359281.85979,
-    "ast_hash": "7981d00b04859f8e4ddc9db85f7a0dd4",
-    "semantic_hash": "7981d00b04859f8e4ddc9db85f7a0dd4"
+    "mtime": 1792709469.6079988,
+    "seen": 1792718887.882506,
+    "ast_hash": "6a6754fcc5d749ff940a457de99fee18",
+    "semantic_hash": ""
   },
   "tests/test_eda_versoes.py": {
-    "mtime": 1791405977.9645307,
-    "seen": 1792359281.8598,
-    "ast_hash": "f31a327f633920187850490ab423e71a",
-    "semantic_hash": "f31a327f633920187850490ab423e71a"
+    "mtime": 1792718737.3497853,
+    "seen": 1792718887.882516,
+    "ast_hash": "debd3ed8c0a25a726e12f83b32b46e91",
+    "semantic_hash": ""
   },
   "tests/test_versoes_fatorial.py": {
     "mtime": 1791469768.9887776,
@@ -1440,10 +1440,10 @@
     "semantic_hash": "56bfec0cc25d8b2da2228ffff8f83d90"
   },
   "analises_exploratorias/ESTADO.md": {
-    "mtime": 1791320382.5250025,
-    "seen": 1792359281.859861,
-    "ast_hash": "5913fd89bee838fe5bdae58c0a1552db",
-    "semantic_hash": "5913fd89bee838fe5bdae58c0a1552db"
+    "mtime": 1792718874.1108863,
+    "seen": 1792718887.882565,
+    "ast_hash": "a911d75e35e57758c783c322334ba243",
+    "semantic_hash": ""
   },
   "analises_exploratorias/PERGUNTAS.md": {
     "mtime": 1791319096.5201151,
@@ -1452,10 +1452,10 @@
     "semantic_hash": "86eb9dd024a4df651deeef9f9b2e1d13"
   },
   "analises_exploratorias/README.md": {
-    "mtime": 1791406113.8698406,
-    "seen": 1792359281.859864,
-    "ast_hash": "b9e9769c7b97e3d35f58f7e135d838b1",
-    "semantic_hash": "b9e9769c7b97e3d35f58f7e135d838b1"
+    "mtime": 1792717794.0848875,
+    "seen": 1792718887.882568,
+    "ast_hash": "77b736579291b576f2920470a775001f",
+    "semantic_hash": ""
   },
   "analises_exploratorias/X_bloqueadas.md": {
     "mtime": 1791319467.5433505,
@@ -1518,10 +1518,10 @@
     "semantic_hash": "bfedb63efa9d890deb7113db96cc391e"
   },
   "relatorio_descritivo/ESTADO.md": {
-    "mtime": 1791558394.794058,
-    "seen": 1792359281.859945,
-    "ast_hash": "2a54fb005fee342ef20e681756c28230",
-    "semantic_hash": "2a54fb005fee342ef20e681756c28230"
+    "mtime": 1792718874.1129725,
+    "seen": 1792718887.8826308,
+    "ast_hash": "d19630613c1c2ed2aef2d734e1d4f2ca",
+    "semantic_hash": ""
   },
   "relatorio_descritivo/INTERPRETACAO.md": {
     "mtime": 1791558394.792725,
@@ -1554,10 +1554,10 @@
     "semantic_hash": "6f5995a839b8830749c8ecd600bfc2ab"
   },
   "versoes_fatorial/ESTADO.md": {
-    "mtime": 1791470659.9062345,
-    "seen": 1792359281.859957,
-    "ast_hash": "cc40e1e7ab95ce0e267b7f6ac59c6822",
-    "semantic_hash": "cc40e1e7ab95ce0e267b7f6ac59c6822"
+    "mtime": 1792718874.1119566,
+    "seen": 1792718887.882642,
+    "ast_hash": "76d0191d3505432a1910e3ea2c78dff9",
+    "semantic_hash": ""
   },
   "versoes_fatorial/INTERPRETACAO.md": {
     "mtime": 1791463648.7533126,
@@ -1571,40 +1571,124 @@
     "ast_hash": "2bf5f80db1a7765d1f77fd1dc68f6f35",
     "semantic_hash": "2bf5f80db1a7765d1f77fd1dc68f6f35"
   },
-  "relatorio_descritivo/Relatorio_Descritivo_IVS_2026-10_v3.pdf": {
-    "mtime": 1791557329.3803124,
-    "seen": 1792358609.628906,
-    "ast_hash": "c05016ffbce1adc9dbe07dda295ebb37",
-    "semantic_hash": ""
-  },
-  "relatorio_descritivo/Relatorio_Descritivo_IVS_2026-10_v4_APOIO.pdf": {
-    "mtime": 1791558364.6709905,
-    "seen": 1792358609.628907,
-    "ast_hash": "c9f98c570270d38b2604c66b8958ee13",
-    "semantic_hash": ""
-  },
   "relatorio_parcial_raic/Relatorio_Parcial_RAIC_2026_Pedro.pdf": {
     "mtime": 1791824580.3734107,
     "seen": 1792359281.859964,
     "ast_hash": "738d08431847b6ce31bd3d245e6bc052",
     "semantic_hash": "738d08431847b6ce31bd3d245e6bc052"
   },
-  "relatorio_parcial_raic/Relatorio_Parcial_RAIC_2026_Pedro_v1.pdf": {
-    "mtime": 1791823941.9211512,
-    "seen": 1792358609.628909,
-    "ast_hash": "fab3f78b8a1fded30588d2e2310cc480",
-    "semantic_hash": ""
-  },
-  "relatorio_parcial_raic/Relatorio_Parcial_RAIC_2026_Pedro_v1_GRIFADO_conferencia.pdf": {
-    "mtime": 1791823959.5970922,
-    "seen": 1792358609.62891,
-    "ast_hash": "f2444ae114e314388a085aec7d86be65",
-    "semantic_hash": ""
-  },
   "docs/prompts/prompt_graphify_update_2026-10.md": {
-    "mtime": 1792359130.14435,
-    "seen": 1792359281.859914,
-    "ast_hash": "7654df6538958b105bf9a84f168dbde5",
-    "semantic_hash": "7654df6538958b105bf9a84f168dbde5"
+    "mtime": 1792359302.926109,
+    "seen": 1792718887.8826072,
+    "ast_hash": "71192a8bf96947bb2bd162a9f17c19e9",
+    "semantic_hash": ""
+  },
+  "scripts/dados_apresentacoes_multiversao.py": {
+    "mtime": 1792709778.8252373,
+    "seen": 1792718887.882435,
+    "ast_hash": "23a2746abdfad93020465e696051cd63",
+    "semantic_hash": ""
+  },
+  "scripts/fatorial_multiversao.py": {
+    "mtime": 1792710916.020506,
+    "seen": 1792718887.882451,
+    "ast_hash": "1fe2b7e34742d35b471cde0c7601a338",
+    "semantic_hash": ""
+  },
+  "scripts/gerar_apresentacao_oral_raic.py": {
+    "mtime": 1792442493.4397418,
+    "seen": 1792718887.882453,
+    "ast_hash": "be03e0aaf4ed9505c451a8c3a28b8463",
+    "semantic_hash": ""
+  },
+  "scripts/gerar_decks_multiversao.js": {
+    "mtime": 1792696839.155641,
+    "seen": 1792718887.882464,
+    "ast_hash": "005ba5004d9471a4e6c97dc34ab73f50",
+    "semantic_hash": ""
+  },
+  "scripts/gerar_roteiro_word_raic.py": {
+    "mtime": 1792442617.5277414,
+    "seen": 1792718887.882478,
+    "ast_hash": "2915a85f94b090c9fc2ea44811dd2bf2",
+    "semantic_hash": ""
+  },
+  "scripts/verificar_multiversao.py": {
+    "mtime": 1792709994.6190493,
+    "seen": 1792718887.8825018,
+    "ast_hash": "61778e4e0c19b199c67ebbdc3b57d41d",
+    "semantic_hash": ""
+  },
+  "tests/test_decks_caminho_obrigatorio.py": {
+    "mtime": 1792709703.0405512,
+    "seen": 1792718887.882514,
+    "ast_hash": "9de16192b8c18af7039816d30a431ce4",
+    "semantic_hash": ""
+  },
+  "tests/test_eda_transversais.py": {
+    "mtime": 1792709602.1188135,
+    "seen": 1792718887.882515,
+    "ast_hash": "9a4408db8ffbbc65039b31d7a844ba63",
+    "semantic_hash": ""
+  },
+  "tests/test_fatorial_multiversao.py": {
+    "mtime": 1792709551.8073463,
+    "seen": 1792718887.882519,
+    "ast_hash": "8cba3339cec22693b0467b1e301fa4eb",
+    "semantic_hash": ""
+  },
+  "tests/test_numeros_raic.py": {
+    "mtime": 1792710916.0213635,
+    "seen": 1792718887.8825228,
+    "ast_hash": "855f4d26d0310e6b3254339d2888813f",
+    "semantic_hash": ""
+  },
+  "docs/prompts/estado_fatorial_multiversao_2026-10.md": {
+    "mtime": 1792718874.113995,
+    "seen": 1792718887.882594,
+    "ast_hash": "5a73c64dc5919218592cacd888271890",
+    "semantic_hash": ""
+  },
+  "docs/prompts/estado_simplificacao_2026-10.md": {
+    "mtime": 1792710978.2320676,
+    "seen": 1792718887.882596,
+    "ast_hash": "3c982d72ad46e056d24710c432190bc0",
+    "semantic_hash": ""
+  },
+  "docs/prompts/prompt_fatorial_multiversao_2026-10.md": {
+    "mtime": 1792692978.6871884,
+    "seen": 1792718887.882603,
+    "ast_hash": "f54211bfdebd1e4ffd5d61453fb5b081",
+    "semantic_hash": ""
+  },
+  "docs/prompts/prompt_simplificacao_correcoes_2026-10.md": {
+    "mtime": 1792705575.6292055,
+    "seen": 1792718887.882611,
+    "ast_hash": "f03a2b67be259916072b693c8a16f29f",
+    "semantic_hash": ""
+  },
+  "docs/relatorios/Simplificacao_e_Correcoes_2026-10.md": {
+    "mtime": 1792718858.3393104,
+    "seen": 1792718887.882624,
+    "ast_hash": "24477222bdd80ee19b759e808bad3a5a",
+    "semantic_hash": ""
+  },
+  "relatorio_parcial_raic/ROTEIRO_APRESENTACAO_ORAL.md": {
+    "mtime": 1792442513.9211442,
+    "seen": 1792718887.882635,
+    "ast_hash": "76e7f0cbe6d8672c39d74c081b402ef3",
+    "semantic_hash": ""
+  },
+  "relatorio_parcial_raic/historico/ROTEIRO_APRESENTACAO_ORAL_v1_2026-10-19.md": {
+    "mtime": 1792405027.991258,
+    "seen": 1792718887.882636,
+    "ast_hash": "09e344b3917d69c7313f18113a046be7",
+    "semantic_hash": ""
+  },
+  "relatorio_parcial_raic/Relatorio_Parcial_RAIC_2026_Pedro_corrigido.pdf": {
+    "mtime": 1792404339.9558222,
+    "seen": 1792718887.8826492,
+    "ast_hash": "a9dee990d00af3f47922c4db026ea975",
+    "semantic_hash": ""
   }
 }

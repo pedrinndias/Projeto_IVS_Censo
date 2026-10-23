@@ -154,3 +154,4 @@ tamanho > 90 slides seguem como pontos abertos.
 | 2b–6 | 06/10/2026 | B5–B8, C1–C6, D1–D5, E1–E6, 00_sintese, Catalogo_Mestre.xlsx, README e X_bloqueadas |
 | 2a | 06/10/2026 | B1–B4 (61–62 slides cada); T34 com trocas de componente; indicadores externos |
 | 1b | 06/10/2026 | A4 (5 regiões, 82–83 slides; N, NE, CO não elegíveis), A5 (3 portes, 82–85), A6 Brasil (77; base nacional) |
+| — | 22/10/2026 | **Regeradas** as 24 versões, E1–E6 e a 00_sintese com os erros da revisão corrigidos (IVS ausente, troca de faixa na amostra comum, E2 com reamostragem de municípios); a C5 volta a gerar T36–T38 e F30; 437 cópias " 2" apagadas. Números antes → depois e pendências em `docs/relatorios/Simplificacao_e_Correcoes_2026-10.md` |
