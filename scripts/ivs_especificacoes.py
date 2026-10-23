@@ -468,7 +468,7 @@ def main() -> None:
                     z = (v - np.nanmean(v)) / np.nanstd(v)
                     _, _, dev1, eta1 = logistica(z_renda[okv, None], fcu[okv])
                     b, ep, dev2, eta2 = logistica(np.column_stack([z_renda, z])[okv], fcu[okv])
-                    acresc.append({'id': linha['id'], **base_id, 'normalizacao': norm, 'n': int(ok.sum()),
+                    acresc.append({'id': linha['id'], **base_id, 'normalizacao': norm, 'n': int(okv.sum()),
                                    'auc_indice_global': linha['auc_global_propria'],
                                    'auc_renda_global': comp['renda'][0], 'auc_postos_global': comp['postos'][0],
                                    'auc_indice_mun': am, 'auc_renda_mun': comp['renda'][1],
@@ -511,7 +511,7 @@ def main() -> None:
     mun_all = df['NM_MUN'].to_numpy()
     if ref_id is not None:
         k_ref = int(np.flatnonzero(ids == ref_id)[0])
-        rv, rf = IDX[k_ref], FX[k_ref]
+        rv = IDX[k_ref]
         comp_ref = []
         for k in range(len(IDX)):
             linha = {}
@@ -569,8 +569,15 @@ def main() -> None:
                                       'municipal') for lx in ('com', 'sem')]
         cand.append(o.iloc[0]['id'] if not o.empty else None)
         alternativas = list(dict.fromkeys(a for a in cand if a and a != ref_id))[:4]
-        fig_concordancia([('\n'.join(textwrap.wrap(a.replace('·', ' · '), 36)), rf[0, comum],
-                           FX[int(np.flatnonzero(ids == a)[0])][0, comum]) for a in alternativas])
+        # faixas das duas refeitas nos setores comuns a elas, como em `comparar` (senão a figura
+        # mede a mudança de amostra e não bate com muda_faixa_ivs_bh_comum)
+        pares = []
+        for a in alternativas:
+            va = IDX[int(np.flatnonzero(ids == a)[0])]
+            m = comum & ~np.isnan(rv) & ~np.isnan(va)
+            pares.append(('\n'.join(textwrap.wrap(a.replace('·', ' · '), 36)),
+                          faixas(rv[m], mun_all[m], 'ivs_bh'), faixas(va[m], mun_all[m], 'ivs_bh')))
+        fig_concordancia(pares)
 
     print(f'{len(esp)} especificações; elegíveis: {int(esp["elegivel"].sum())} '
           f'({esp[esp["elegivel"]].groupby("rotacao").size().to_dict()}); amostra comum {int(comum.sum())} '
