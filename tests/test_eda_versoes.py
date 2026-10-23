@@ -70,7 +70,8 @@ def test_descritivas_da_segunda_rodada(base):
 def test_indice_da_referencia(indice):
     pub = pd.read_csv(EDA / 'ivs_especificacoes' / 'ivs_referencia_por_setor.csv', dtype={'CD_SETOR': str})
     s = indice.setores
-    assert len(s) == len(pub) == 73_878
+    # o setor único de São Raimundo do Doca Bezerra não tem régua municipal: IVS ausente, fora do arquivo publicado
+    assert len(s) == 73_878 and s['ivs'].notna().sum() == len(pub) == 73_877
     m = s.merge(pub, on='CD_SETOR', how='inner', validate='one_to_one')
     assert len(m) == len(pub)
     assert np.abs(m['ivs'] - m['ivs_referencia']).max() < 1e-4
