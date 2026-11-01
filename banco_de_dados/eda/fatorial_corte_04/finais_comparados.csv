@@ -1,0 +1,4 @@
+a,b,n_comum,spearman_global,spearman_mun,troca_faixa
+12,12_sem_idade,75629,0.890501,0.883351,0.255458
+12,anterior_7,75629,0.876842,0.854787,0.300057
+12_sem_idade,anterior_7,75926,0.98493,0.975948,0.148342

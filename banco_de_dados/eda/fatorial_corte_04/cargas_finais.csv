@@ -1,0 +1,51 @@
+familia,rotacao,codigo,indicador,h2,F1,F2,estrutura_F1,estrutura_F2
+12,sem_rotacao,AGU,Água inadequada,0.183943,0.428886,,,
+12,sem_rotacao,ESG,Esgoto inadequado,0.327394,0.572184,,,
+12,sem_rotacao,MOR,Razão de moradores,0.332946,0.577015,,,
+12,sem_rotacao,ANA,Analfabetismo 15+,0.537695,0.733277,,,
+12,sem_rotacao,REN,Renda (invertida),0.686043,0.828277,,,
+12,sem_rotacao,PPI,Cor/raça PPI,0.626586,0.791572,,,
+12,sem_rotacao,CAN,Sem água canalizada,0.254911,0.504887,,,
+12,sem_rotacao,IDO,Pessoas 60+,0.497416,-0.705277,,,
+12,sem_rotacao,CRI,População 0–14,0.689881,0.830591,,,
+12,varimax,AGU,Água inadequada,0.382122,0.140017,0.602094,,
+12,varimax,ESG,Esgoto inadequado,0.379041,0.374767,0.488458,,
+12,varimax,MOR,Razão de moradores,0.354059,0.569911,0.171057,,
+12,varimax,ANA,Analfabetismo 15+,0.53778,0.62485,0.383853,,
+12,varimax,REN,Renda (invertida),0.686138,0.71614,0.41627,,
+12,varimax,PPI,Cor/raça PPI,0.630702,0.646748,0.460889,,
+12,varimax,CAN,Sem água canalizada,0.507935,0.175618,0.690719,,
+12,varimax,IDO,Pessoas 60+,0.602552,-0.771773,-0.0831704,,
+12,varimax,CRI,População 0–14,0.8309,0.905655,0.103386,,
+12,promax,AGU,Água inadequada,0.380296,-0.095402,0.669042,0.305132,0.611928
+12,promax,ESG,Esgoto inadequado,0.367568,0.230187,0.439752,0.493452,0.577557
+12,promax,MOR,Razão de moradores,0.357102,0.608388,-0.0183553,0.597399,0.345866
+12,promax,ANA,Analfabetismo 15+,0.539243,0.622938,0.165834,0.722217,0.538767
+12,promax,REN,Renda (invertida),0.684054,0.723109,0.157497,0.817398,0.590399
+12,promax,PPI,Cor/raça PPI,0.630368,0.631237,0.23424,0.771469,0.612141
+12,promax,CAN,Sem água canalizada,0.532015,-0.123152,0.796419,0.353638,0.722692
+12,promax,BAN,Sem banheiro,0.180763,-0.00190597,0.426301,0.253306,0.42516
+12,promax,IDO,Pessoas 60+,0.565303,-0.840602,0.168662,-0.73963,-0.334579
+12,promax,CRI,População 0–14,0.788183,0.989207,-0.191755,0.874409,0.40045
+12_sem_idade,sem_rotacao,AGU,Água inadequada,0.275555,0.524933,,,
+12_sem_idade,sem_rotacao,ESG,Esgoto inadequado,0.341294,0.584204,,,
+12_sem_idade,sem_rotacao,MOR,Razão de moradores,0.239498,0.489385,,,
+12_sem_idade,sem_rotacao,ANA,Analfabetismo 15+,0.589791,0.767979,,,
+12_sem_idade,sem_rotacao,REN,Renda (invertida),0.769807,0.877387,,,
+12_sem_idade,sem_rotacao,PPI,Cor/raça PPI,0.651565,0.807196,,,
+12_sem_idade,sem_rotacao,CAN,Sem água canalizada,0.30587,0.553055,,,
+12_sem_idade,varimax,AGU,Água inadequada,0.684382,0.147819,0.81396,,
+12_sem_idade,varimax,ESG,Esgoto inadequado,0.374204,0.422293,0.442575,,
+12_sem_idade,varimax,MOR,Razão de moradores,0.240312,0.441513,0.213022,,
+12_sem_idade,varimax,ANA,Analfabetismo 15+,0.652991,0.793321,0.153728,,
+12_sem_idade,varimax,REN,Renda (invertida),0.881205,0.928974,0.134949,,
+12_sem_idade,varimax,PPI,Cor/raça PPI,0.671501,0.774008,0.269094,,
+12_sem_idade,varimax,CAN,Sem água canalizada,0.402834,0.331875,0.541011,,
+12_sem_idade,promax,AGU,Água inadequada,0.487324,-0.171262,0.793415,0.329474,0.685329
+12_sem_idade,promax,ESG,Esgoto inadequado,0.372282,0.218919,0.447879,0.501582,0.586042
+12_sem_idade,promax,MOR,Razão de moradores,0.243178,0.424175,0.0996088,0.48704,0.367312
+12_sem_idade,promax,ANA,Analfabetismo 15+,0.657896,0.84508,-0.0556495,0.809959,0.477693
+12_sem_idade,promax,REN,Renda (invertida),0.882003,1.0151,-0.128785,0.933822,0.51186
+12_sem_idade,promax,PPI,Cor/raça PPI,0.675423,0.772852,0.0744084,0.819812,0.562167
+12_sem_idade,promax,CAN,Sem água canalizada,0.46843,-0.0199824,0.696855,0.419813,0.684244
+12_sem_idade,promax,BAN,Sem banheiro,0.182314,0.00633337,0.422957,0.273268,0.426954

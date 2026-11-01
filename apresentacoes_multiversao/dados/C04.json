@@ -1,0 +1,5229 @@
+{
+ "deck": "C04",
+ "titulo": "O corte de carga fatorial < 0,4 e as duas propostas de IVS",
+ "arquivo": "Corte_Carga_04_Duas_Propostas_2026-11.pptx",
+ "ordem": [
+  "C04-01",
+  "C04-02",
+  "C04-03",
+  "C04-04",
+  "C04-05",
+  "C04-06",
+  "C04-07",
+  "C04-08",
+  "C04-09",
+  "C04-10",
+  "C04-11",
+  "C04-12",
+  "C04-13",
+  "C04-14",
+  "C04-15",
+  "C04-16",
+  "C04-17",
+  "C04-18",
+  "C04-19",
+  "C04-20",
+  "C04-21",
+  "C04-22",
+  "C04-23",
+  "C04-24",
+  "C04-25",
+  "C04-26",
+  "C04-27",
+  "C04-28",
+  "C04-29",
+  "C04-30",
+  "C04-31",
+  "C04-32",
+  "C04-33",
+  "C04-34",
+  "C04-35",
+  "C04-36",
+  "C04-37",
+  "C04-38",
+  "C04-39",
+  "C04-40",
+  "C04-41",
+  "C04-42",
+  "C04-43",
+  "C04-44",
+  "C04-45",
+  "C04-46",
+  "C04-47",
+  "C04-48",
+  "C04-49",
+  "C04-50",
+  "C04-51",
+  "C04-52",
+  "C04-53",
+  "C04-54",
+  "C04-55",
+  "C04-56",
+  "C04-57",
+  "C04-58",
+  "C04-59",
+  "C04-60",
+  "C04-61",
+  "C04-62",
+  "C04-63",
+  "C04-64",
+  "C04-65",
+  "C04-66",
+  "C04-67",
+  "C04-68",
+  "C04-69",
+  "C04-70",
+  "C04-71",
+  "C04-72",
+  "C04-73",
+  "C04-74",
+  "C04-75",
+  "C04-76",
+  "C04-77",
+  "C04-78",
+  "C04-79",
+  "C04-80",
+  "C04-81",
+  "C04-82"
+ ],
+ "slides": {
+  "C04-01": {
+   "titulo": "O corte de carga fatorial < 0,4 e as duas propostas de IVS",
+   "fontes": [
+    "docs/prompts/ (demanda de nov/2026)"
+   ],
+   "capa": true,
+   "kicker": "ÍNDICE DE VULNERABILIDADE À SAÚDE · CENSO 2022 · 70 MUNICÍPIOS DO ELSI-BRASIL",
+   "sub": "Os 12 indicadores na mesma análise fatorial; os de carga menor que 0,4 saem. O corte em cada rotação, as versões comparadas e duas propostas de IVS lado a lado — para a orientadora escolher.",
+   "rodape": "Pedro Dias Soares · Fiocruz Minas — IRR · nov/2026"
+  },
+  "C04-02": {
+   "titulo": "Como esta apresentação está organizada",
+   "fontes": [
+    "scripts/fatorial_corte_04.py"
+   ],
+   "blocos": [
+    [
+     "O ponto de partida.",
+     "A demanda da orientadora, a base do relatório parcial e os 12 indicadores."
+    ],
+    [
+     "A análise exploratória e as matrizes.",
+     "Os 12 lado a lado, as correlações, a adequação e o número de fatores — os mesmos slides da apresentação de outubro."
+    ],
+    [
+     "O corte.",
+     "Quem sai em cada rotação, em que ordem, e se o resultado se mantém sem cada município."
+    ],
+    [
+     "As versões.",
+     "Rotações e métodos de peso sobre a lista que sobrou."
+    ],
+    [
+     "As duas propostas.",
+     "A (promax, mantém o sem banheiro) e B (Varimax, a regra tira o sem banheiro), lado a lado: cargas, pesos, estabilidade, faixas, quem mora em cada faixa e quem fica sem IVS."
+    ],
+    [
+     "Idosos, sensibilidade e decisões.",
+     "Por que idosos e crianças ficam fora, quanto o IVS muda com cada alternativa e o que fica para a orientadora decidir (slide \"O que levar à orientação\")."
+    ]
+   ]
+  },
+  "C04-03": {
+   "titulo": "Ponto de partida",
+   "fontes": [],
+   "numero": "1",
+   "sub": "A demanda da orientadora, a base e os 12 indicadores."
+  },
+  "C04-04": {
+   "titulo": "A demanda e como ela foi atendida",
+   "fontes": [
+    "scripts/fatorial_corte_04.py"
+   ],
+   "blocos": [
+    [
+     "A demanda.",
+     "\"Acionar todos os indicadores que já selecionamos na carga fatorial. Os indicadores com carga fatorial menor que 0,4, retirar.\""
+    ],
+    [
+     "Os indicadores.",
+     "Os 12 do relatório parcial entram juntos na mesma fatorial."
+    ],
+    [
+     "A fatorial.",
+     "Extração por eixo principal, 2 fatores, correlação de Spearman entre os setores dos 70 municípios; analfabetismo sob sigilo fica ausente."
+    ],
+    [
+     "O corte.",
+     "Sai um indicador por vez, o de menor carga, e a fatorial é refeita sem ele, até todos ficarem com carga de pelo menos 0,4. Retirar um indicador muda a carga dos outros: por isso o corte não é feito de uma vez."
+    ],
+    [
+     "As versões.",
+     "O corte é repetido em cada rotação (sem rotação, Varimax, promax), porque a carga depende dela. Depois, cada rotação calcula o índice com os seus métodos de peso."
+    ],
+    [
+     "Duas famílias.",
+     "Os 12 completos, como a regra pede, e os 12 sem idosos e crianças. Idosos e crianças passam no corte; tirá-los é decisão do projeto, não da regra: eles descrevem a estrutura etária, não a vulnerabilidade."
+    ],
+    [
+     "Duas propostas.",
+     "Ambas sem idosos e crianças e com pesos 60/40 (o IVS de 2012): A com promax, em que o sem banheiro passa no corte, e B com Varimax, em que ele sai. A escolha é da orientadora."
+    ]
+   ]
+  },
+  "C04-05": {
+   "titulo": "A base é a do relatório parcial",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Etapa",
+    "Setores"
+   ],
+   "colW": [
+    5.0,
+    1.6
+   ],
+   "linhas": [
+    [
+     "Setores dos 70 municípios",
+     "109.032"
+    ],
+    [
+     "Com moradores e sem sigilo (Dados_sig = OK)",
+     "106.281"
+    ],
+    [
+     "Urbanos — recorte de análise",
+     "104.108"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "O funil que leva dos setores censitários dos 70 municípios ao recorte desta análise."
+    ],
+    [
+     "Para que serve.",
+     "Garante que todos os números partem da mesma base da seção VI do relatório parcial."
+    ],
+    [
+     "Como ler.",
+     "Saem os setores sem moradores, os que o IBGE escondeu por sigilo e os rurais (o índice é intraurbano)."
+    ],
+    [
+     "O que mostra.",
+     "O recorte tem 104.108 setores urbanos."
+    ]
+   ]
+  },
+  "C04-06": {
+   "titulo": "Os 12 indicadores",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Código",
+    "Indicador",
+    "Dimensão",
+    "No IVS",
+    "Setores"
+   ],
+   "colW": [
+    0.8,
+    2.9,
+    1.5,
+    0.8,
+    1.1
+   ],
+   "linhas": [
+    [
+     "AGU",
+     "Água inadequada",
+     "Saneamento",
+     "sim",
+     "104.108"
+    ],
+    [
+     "ESG",
+     "Esgoto inadequado",
+     "Saneamento",
+     "sim",
+     "104.107"
+    ],
+    [
+     "LIX",
+     "Lixo inadequado",
+     "Saneamento",
+     "sim",
+     "104.108"
+    ],
+    [
+     "MOR",
+     "Razão de moradores",
+     "Socioeconômica",
+     "sim",
+     "104.108"
+    ],
+    [
+     "ANA",
+     "Analfabetismo (15 anos ou mais)",
+     "Socioeconômica",
+     "sim",
+     "87.556"
+    ],
+    [
+     "REN",
+     "Renda média do responsável",
+     "Socioeconômica",
+     "sim",
+     "104.095"
+    ],
+    [
+     "PPI",
+     "Preta, parda ou indígena",
+     "Socioeconômica",
+     "sim",
+     "104.106"
+    ],
+    [
+     "CAN",
+     "Sem água canalizada",
+     "Saneamento",
+     "não",
+     "104.067"
+    ],
+    [
+     "BAN",
+     "Sem banheiro",
+     "Saneamento",
+     "não",
+     "91.912"
+    ],
+    [
+     "MNC",
+     "Moradia não convencional",
+     "Morfologia",
+     "não",
+     "104.108"
+    ],
+    [
+     "IDO",
+     "Idosos (60 anos ou mais)",
+     "Demografia",
+     "não",
+     "103.823"
+    ],
+    [
+     "CRI",
+     "Crianças (0 a 14 anos)",
+     "Demografia",
+     "não",
+     "103.850"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Os 12 indicadores do Quadro 2 do relatório: os 7 do IVS de 2012 e 5 complementares."
+    ],
+    [
+     "Para que serve.",
+     "O código de três letras identifica o indicador em todos os slides e nas 12 apresentações próprias."
+    ],
+    [
+     "Como ler.",
+     "\"No IVS\" = compõe o IVS de 2012 (Quadro 1). \"Setores\" = setores com o dado; a diferença para o recorte é sigilo do IBGE."
+    ]
+   ]
+  },
+  "C04-07": {
+   "titulo": "A análise exploratória dos 12",
+   "fontes": [],
+   "numero": "2",
+   "sub": "Os 12 indicadores lado a lado, antes da fatorial. A exploração completa de cada um está na apresentação própria dele."
+  },
+  "C04-08": {
+   "titulo": "Painel descritivo dos 12",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "cab": [
+    "Indicador",
+    "Média",
+    "Mediana",
+    "p75",
+    "Assim.",
+    "% zeros"
+   ],
+   "colW": [
+    2.5,
+    1.2,
+    1.2,
+    1.2,
+    0.7,
+    0.8
+   ],
+   "linhas": [
+    [
+     "Água inadequada",
+     "0,070",
+     "0,000",
+     "0,012",
+     "3,42",
+     "74,2%"
+    ],
+    [
+     "Esgoto inadequado",
+     "0,082",
+     "0,000",
+     "0,018",
+     "2,98",
+     "72,5%"
+    ],
+    [
+     "Lixo inadequado",
+     "0,116",
+     "0,000",
+     "0,059",
+     "2,38",
+     "62,8%"
+    ],
+    [
+     "Razão de moradores",
+     "2,69",
+     "2,71",
+     "2,93",
+     "-0,22",
+     "0,0%"
+    ],
+    [
+     "Analfabetismo (15 anos ou mais)",
+     "0,036",
+     "0,027",
+     "0,050",
+     "2,34",
+     "10,6%"
+    ],
+    [
+     "Renda média do responsável",
+     "R$ 4.185,81",
+     "R$ 2.572,39",
+     "R$ 4.835,83",
+     "3,20",
+     "0,0%"
+    ],
+    [
+     "Preta, parda ou indígena",
+     "0,527",
+     "0,572",
+     "0,704",
+     "-0,39",
+     "0,1%"
+    ],
+    [
+     "Sem água canalizada",
+     "0,015",
+     "0,000",
+     "0,005",
+     "8,70",
+     "69,7%"
+    ],
+    [
+     "Sem banheiro",
+     "0,002",
+     "0,000",
+     "0,000",
+     "21,31",
+     "95,6%"
+    ],
+    [
+     "Moradia não convencional",
+     "0,006",
+     "0,000",
+     "0,000",
+     "13,01",
+     "93,0%"
+    ],
+    [
+     "Idosos (60 anos ou mais)",
+     "0,175",
+     "0,166",
+     "0,231",
+     "0,55",
+     "0,3%"
+    ],
+    [
+     "Crianças (0 a 14 anos)",
+     "0,173",
+     "0,172",
+     "0,210",
+     "0,11",
+     "0,5%"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Média, mediana, percentil 75, assimetria e % de setores com zero de cada indicador."
+    ],
+    [
+     "Para que serve.",
+     "Mostra de uma vez quais indicadores se concentram em poucos setores — o que pesa na padronização antes do índice."
+    ],
+    [
+     "Como ler.",
+     "Assimetria acima de 1 e muitos zeros: poucos setores concentram o problema. Proporções de 0 a 1; renda em reais; razão de moradores em moradores por domicílio."
+    ],
+    [
+     "O que mostra.",
+     "É a Tabela 1 do relatório parcial, com os 12 indicadores."
+    ]
+   ]
+  },
+  "C04-09": {
+   "titulo": "As 12 distribuições",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/FIN_eda_histogramas.png",
+   "legenda": "Histograma de cada indicador nos setores urbanos dos 70 municípios.",
+   "explica": [
+    [
+     "O que é.",
+     "Um histograma por indicador: quantos setores caem em cada faixa de valor."
+    ],
+    [
+     "Para que serve.",
+     "Compara a forma das distribuições lado a lado, antes de pôr todas na mesma régua do índice."
+    ],
+    [
+     "Como ler.",
+     "Cada painel tem a sua escala. Barra alta no começo e cauda à direita: muitos setores com valor baixo e poucos com valor alto. Distribuição em sino: valores espalhados em torno do meio."
+    ]
+   ]
+  },
+  "C04-10": {
+   "titulo": "Zeros e dados faltantes",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/FIN_eda_zeros_faltantes.png",
+   "legenda": "Proporção de setores com valor zero e sem o dado, por indicador.",
+   "explica": [
+    [
+     "O que é.",
+     "Para cada indicador, quantos setores têm valor zero (verde) e quantos não têm o dado (vermelho)."
+    ],
+    [
+     "Para que serve.",
+     "São os dois problemas que o relatório parcial apontou antes do índice: zeros demais distorcem a régua de 0 a 1; dado faltante por sigilo não é aleatório."
+    ],
+    [
+     "Como ler.",
+     "Barra verde longa: o indicador é zero na maioria dos setores. Barra vermelha: setores perdidos se o indicador entrar no índice."
+    ],
+    [
+     "O que mostra.",
+     "Mais zeros: Sem banheiro (95,6%). Mais faltantes: Analfabetismo (15 anos ou mais) (15,9%)."
+    ]
+   ]
+  },
+  "C04-11": {
+   "titulo": "Os 12 por região",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/FIN_eda_regiao.png",
+   "legenda": "Média de cada indicador em cada região dividida pela média dos 70 municípios (1 = igual à média).",
+   "explica": [
+    [
+     "O que é.",
+     "Cada célula é a média do indicador na região dividida pela média geral."
+    ],
+    [
+     "Para que serve.",
+     "Põe na mesma escala indicadores com unidades diferentes e mostra quais têm padrão regional forte."
+    ],
+    [
+     "Como ler.",
+     "1 = igual à média dos 70 municípios; 2 = o dobro; 0,5 = a metade. Laranja: acima da média; roxo: abaixo."
+    ],
+    [
+     "O que mostra.",
+     "Maior contraste: Sem banheiro no Norte (4,8 vezes a média)."
+    ]
+   ]
+  },
+  "C04-12": {
+   "titulo": "O gradiente de renda dos 12",
+   "fontes": [
+    "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db"
+   ],
+   "figura": "figuras/FIN_eda_gradiente.png",
+   "legenda": "Média de cada indicador por decil de renda do setor no município (1 = mais pobre); a renda, por decil de cor/raça.",
+   "explica": [
+    [
+     "O que é.",
+     "Os setores de cada município divididos em 10 grupos pela renda; cada painel mostra a média do indicador em cada grupo."
+    ],
+    [
+     "Para que serve.",
+     "Mostra quais indicadores seguem o gradiente social dentro das cidades — candidatos naturais à dimensão socioeconômica — e quais não seguem."
+    ],
+    [
+     "Como ler.",
+     "Linha que desce da esquerda para a direita: o indicador é pior nos setores mais pobres. Linha plana: independe da renda."
+    ]
+   ]
+  },
+  "C04-13": {
+   "titulo": "As matrizes",
+   "fontes": [],
+   "numero": "3",
+   "sub": "Correlação no conjunto e dentro dos municípios, anti-imagem e adequação."
+  },
+  "C04-14": {
+   "titulo": "Correlação no conjunto dos setores",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_global_correlacao.csv"
+   ],
+   "figura": "figuras/FIN_correlacao_global.png",
+   "legenda": "Spearman entre os 12 indicadores, 75.629 setores com todos os dados.",
+   "explica": [
+    [
+     "O que é.",
+     "A matriz de correlação de Spearman entre os 12 indicadores, comparando todos os setores dos 70 municípios."
+    ],
+    [
+     "Para que serve.",
+     "É a matéria-prima da análise fatorial: a fatorial procura grupos de indicadores muito correlacionados entre si (os fatores)."
+    ],
+    [
+     "Como ler.",
+     "Cada célula é a correlação entre o indicador da linha e o da coluna, de −1 a 1. Vermelho forte: andam juntos; azul: andam em sentidos opostos; branco: sem relação. A diagonal é sempre 1. A renda entra invertida, para que \"mais\" seja sempre \"mais vulnerável\"."
+    ],
+    [
+     "O que mostra.",
+     "O par mais forte é Preta, parda ou indígena × Renda média do responsável (0,79)."
+    ]
+   ]
+  },
+  "C04-15": {
+   "titulo": "Correlação dentro dos municípios",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_municipal_correlacao.csv"
+   ],
+   "figura": "figuras/FIN_correlacao_municipal.png",
+   "legenda": "Correlação entre as posições (postos) de cada setor dentro do próprio município.",
+   "explica": [
+    [
+     "O que é.",
+     "A mesma matriz, mas cada setor é comparado só com os setores da própria cidade (posição de 0 a 1 dentro do município)."
+    ],
+    [
+     "Para que serve.",
+     "O IVS é intraurbano. Esta matriz mostra a estrutura que sobra quando se tiram as diferenças entre cidades — a que importa para achar desigualdade dentro delas."
+    ],
+    [
+     "Como ler.",
+     "Cada célula é a correlação entre o indicador da linha e o da coluna, de −1 a 1. Vermelho forte: andam juntos; azul: andam em sentidos opostos; branco: sem relação. A diagonal é sempre 1. A renda entra invertida, para que \"mais\" seja sempre \"mais vulnerável\"."
+    ],
+    [
+     "O que mostra.",
+     "O par mais forte é Preta, parda ou indígena × Renda média do responsável (0,84)."
+    ]
+   ]
+  },
+  "C04-16": {
+   "titulo": "O que muda ao comparar dentro da cidade: o mapa",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_global_correlacao.csv",
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_municipal_correlacao.csv"
+   ],
+   "figura": "figuras/FIN_correlacao_diferenca.png",
+   "legenda": "Diferença: correlação dentro dos municípios menos correlação no conjunto.",
+   "explica": [
+    [
+     "O que é.",
+     "A diferença entre as duas matrizes anteriores, célula a célula."
+    ],
+    [
+     "Para que serve.",
+     "Mostra quais relações vinham de diferenças entre cidades (somem dentro delas) e quais existem também dentro das cidades."
+    ],
+    [
+     "Como ler.",
+     "Azul: a relação enfraquece dentro das cidades — parte dela era diferença entre cidades. Vermelho: fica mais forte dentro delas. Branco: não muda."
+    ],
+    [
+     "O que mostra.",
+     "A maior mudança é em Água inadequada × Preta, parda ou indígena: de 0,33 para 0,08."
+    ]
+   ]
+  },
+  "C04-17": {
+   "titulo": "O que muda ao comparar dentro da cidade: os pares",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_global_correlacao.csv",
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_municipal_correlacao.csv"
+   ],
+   "cab": [
+    "Par",
+    "No conjunto",
+    "Dentro",
+    "Diferença"
+   ],
+   "colW": [
+    3.6,
+    1.2,
+    1.1,
+    1.1
+   ],
+   "linhas": [
+    [
+     "Água inadequada × Preta, parda ou indígena",
+     "0,33",
+     "0,08",
+     "-0,25"
+    ],
+    [
+     "Água inadequada × Sem água canalizada",
+     "0,47",
+     "0,28",
+     "-0,19"
+    ],
+    [
+     "Água inadequada × Esgoto inadequado",
+     "0,40",
+     "0,22",
+     "-0,18"
+    ],
+    [
+     "Água inadequada × Renda média do responsável",
+     "0,23",
+     "0,07",
+     "-0,16"
+    ],
+    [
+     "Água inadequada × Razão de moradores",
+     "0,23",
+     "0,08",
+     "-0,15"
+    ],
+    [
+     "Sem água canalizada × Preta, parda ou indígena",
+     "0,38",
+     "0,24",
+     "-0,15"
+    ],
+    [
+     "Água inadequada × Sem banheiro",
+     "0,25",
+     "0,12",
+     "-0,13"
+    ],
+    [
+     "Sem água canalizada × Renda média do responsável",
+     "0,36",
+     "0,25",
+     "-0,11"
+    ],
+    [
+     "Água inadequada × Analfabetismo (15 anos ou mais)",
+     "0,22",
+     "0,10",
+     "-0,11"
+    ],
+    [
+     "Água inadequada × Crianças (0 a 14 anos)",
+     "0,22",
+     "0,12",
+     "-0,10"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Os 10 pares de indicadores cuja correlação mais muda entre as duas réguas."
+    ],
+    [
+     "Para que serve.",
+     "Aponta onde a escolha da régua (no conjunto ou dentro do município) mais pesa."
+    ],
+    [
+     "Como ler.",
+     "Diferença negativa: a relação era, em boa parte, diferença entre cidades."
+    ],
+    [
+     "O que mostra.",
+     "A maior mudança é em Água inadequada × Preta, parda ou indígena: de 0,33 para 0,08."
+    ]
+   ]
+  },
+  "C04-18": {
+   "titulo": "Tabela: correlação no conjunto",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_global_correlacao.csv"
+   ],
+   "cab": [
+    "",
+    "AGU",
+    "ESG",
+    "LIX",
+    "MOR",
+    "ANA",
+    "REN",
+    "PPI",
+    "CAN",
+    "BAN",
+    "MNC",
+    "IDO",
+    "CRI"
+   ],
+   "linhas": [
+    [
+     "Água inadequada",
+     "1,00",
+     "0,40",
+     "0,10",
+     "0,23",
+     "0,22",
+     "0,23",
+     "0,33",
+     "0,47",
+     "0,25",
+     "0,04",
+     "-0,19",
+     "0,22"
+    ],
+    [
+     "Esgoto inadequado",
+     "0,40",
+     "1,00",
+     "0,21",
+     "0,32",
+     "0,42",
+     "0,42",
+     "0,40",
+     "0,37",
+     "0,25",
+     "0,05",
+     "-0,34",
+     "0,39"
+    ],
+    [
+     "Lixo inadequado",
+     "0,10",
+     "0,21",
+     "1,00",
+     "-0,05",
+     "0,14",
+     "0,19",
+     "0,21",
+     "0,17",
+     "0,13",
+     "0,02",
+     "-0,25",
+     "0,19"
+    ],
+    [
+     "Razão de moradores",
+     "0,23",
+     "0,32",
+     "-0,05",
+     "1,00",
+     "0,42",
+     "0,40",
+     "0,42",
+     "0,19",
+     "0,16",
+     "0,03",
+     "-0,45",
+     "0,61"
+    ],
+    [
+     "Analfabetismo (15 anos ou mais)",
+     "0,22",
+     "0,42",
+     "0,14",
+     "0,42",
+     "1,00",
+     "0,76",
+     "0,63",
+     "0,32",
+     "0,21",
+     "0,07",
+     "-0,41",
+     "0,54"
+    ],
+    [
+     "Renda média do responsável",
+     "0,23",
+     "0,42",
+     "0,19",
+     "0,40",
+     "0,76",
+     "1,00",
+     "0,79",
+     "0,36",
+     "0,23",
+     "0,06",
+     "-0,52",
+     "0,62"
+    ],
+    [
+     "Preta, parda ou indígena",
+     "0,33",
+     "0,40",
+     "0,21",
+     "0,42",
+     "0,63",
+     "0,79",
+     "1,00",
+     "0,38",
+     "0,22",
+     "0,08",
+     "-0,53",
+     "0,56"
+    ],
+    [
+     "Sem água canalizada",
+     "0,47",
+     "0,37",
+     "0,17",
+     "0,19",
+     "0,32",
+     "0,36",
+     "0,38",
+     "1,00",
+     "0,34",
+     "0,06",
+     "-0,19",
+     "0,24"
+    ],
+    [
+     "Sem banheiro",
+     "0,25",
+     "0,25",
+     "0,13",
+     "0,16",
+     "0,21",
+     "0,23",
+     "0,22",
+     "0,34",
+     "1,00",
+     "0,13",
+     "-0,17",
+     "0,19"
+    ],
+    [
+     "Moradia não convencional",
+     "0,04",
+     "0,05",
+     "0,02",
+     "0,03",
+     "0,07",
+     "0,06",
+     "0,08",
+     "0,06",
+     "0,13",
+     "1,00",
+     "-0,05",
+     "0,04"
+    ],
+    [
+     "Idosos (60 anos ou mais)",
+     "-0,19",
+     "-0,34",
+     "-0,25",
+     "-0,45",
+     "-0,41",
+     "-0,52",
+     "-0,53",
+     "-0,19",
+     "-0,17",
+     "-0,05",
+     "1,00",
+     "-0,79"
+    ],
+    [
+     "Crianças (0 a 14 anos)",
+     "0,22",
+     "0,39",
+     "0,19",
+     "0,61",
+     "0,54",
+     "0,62",
+     "0,56",
+     "0,24",
+     "0,19",
+     "0,04",
+     "-0,79",
+     "1,00"
+    ]
+   ],
+   "matriz": true
+  },
+  "C04-19": {
+   "titulo": "Matriz anti-imagem e o MSA de cada indicador",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_global_antiimagem.csv"
+   ],
+   "figura": "figuras/FIN_antiimagem.png",
+   "legenda": "Fora da diagonal, correlações parciais com sinal trocado; na diagonal, o MSA.",
+   "explica": [
+    [
+     "O que é.",
+     "Fora da diagonal, a correlação entre dois indicadores depois de descontar o efeito de todos os outros (correlação parcial). Na diagonal, o MSA de cada indicador."
+    ],
+    [
+     "Para que serve.",
+     "Numa boa fatorial, o que dois indicadores têm em comum vem dos fatores, então as parciais devem ser pequenas. O MSA resume isso por indicador."
+    ],
+    [
+     "Como ler.",
+     "Fora da diagonal: quanto mais branco, melhor. Na diagonal: MSA de 0 a 1; abaixo de 0,50 o indicador não combina com os outros."
+    ],
+    [
+     "O que mostra.",
+     "MSA de 0,73 (Moradia não convencional) a 0,92 (Esgoto inadequado)."
+    ]
+   ]
+  },
+  "C04-20": {
+   "titulo": "Adequação da matriz: KMO, Bartlett e determinante",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_global_adequacao.csv",
+    "banco_de_dados/eda/fatorial_multiversao/camada1_nucleo_global_adequacao.csv"
+   ],
+   "cab": [
+    "Conjunto",
+    "Setores",
+    "KMO",
+    "Bartlett",
+    "Determ.",
+    "Kaiser",
+    "Horn"
+   ],
+   "colW": [
+    2.2,
+    0.9,
+    0.7,
+    1.0,
+    1.0,
+    0.7,
+    0.7
+   ],
+   "linhas": [
+    [
+     "12, no conjunto",
+     "75.629",
+     "0,826",
+     "386.540",
+     "0,00603",
+     "4",
+     "3"
+    ],
+    [
+     "12, dentro dos municípios",
+     "75.629",
+     "0,833",
+     "368.921",
+     "0,00761",
+     "3",
+     "3"
+    ],
+    [
+     "núcleo (7), no conjunto",
+     "87.544",
+     "0,783",
+     "235.110",
+     "0,06817",
+     "2",
+     "2"
+    ],
+    [
+     "núcleo (7), dentro",
+     "87.544",
+     "0,799",
+     "226.520",
+     "0,07520",
+     "2",
+     "2"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Três testes de se a matriz serve para uma análise fatorial, e duas regras para o número de fatores."
+    ],
+    [
+     "Para que serve.",
+     "KMO: quanto da correlação é compartilhada (0 a 1). Bartlett: testa se a matriz difere de \"nenhuma correlação\". Determinante perto de zero: indicadores redundantes. Kaiser e Horn: quantos fatores reter."
+    ],
+    [
+     "Como ler.",
+     "KMO acima de 0,70 é adequado. Com dezenas de milhares de setores o Bartlett sempre rejeita, então pouco informa. Kaiser conta autovalores acima de 1; Horn, os acima do esperado em dados aleatórios."
+    ],
+    [
+     "O que mostra.",
+     "KMO dos 12 no conjunto: 0,826; dentro dos municípios: 0,833."
+    ]
+   ]
+  },
+  "C04-21": {
+   "titulo": "Quantos fatores",
+   "fontes": [],
+   "numero": "4",
+   "sub": "Autovalores, scree plot, Kaiser e a análise paralela de Horn."
+  },
+  "C04-22": {
+   "titulo": "Autovalores: os 12 indicadores",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_global_autovalores.csv",
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_municipal_autovalores.csv"
+   ],
+   "figura": "figuras/FIN_scree_12.png",
+   "legenda": "Autovalores observados (verde) e médios de dados aleatórios (vermelho); linha cinza em 1.",
+   "explica": [
+    [
+     "O que é.",
+     "O scree plot: cada ponto é um componente, e a altura (autovalor) diz quanta variação ele resume."
+    ],
+    [
+     "Para que serve.",
+     "Decide quantos fatores a análise deve ter. Poucos fatores resumem muitos indicadores; fatores demais só reproduzem ruído."
+    ],
+    [
+     "Como ler.",
+     "Kaiser: retém os pontos acima da linha 1. Horn: retém os pontos verdes acima da linha vermelha — o que dados sem estrutura nenhuma produziriam. O \"cotovelo\" da curva também sugere o número."
+    ],
+    [
+     "O que mostra.",
+     "Horn retém 3 fatores no conjunto e 3 dentro dos municípios."
+    ]
+   ]
+  },
+  "C04-23": {
+   "titulo": "Autovalores: o núcleo (os 7 do Quadro 1)",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_nucleo_global_autovalores.csv",
+    "banco_de_dados/eda/fatorial_multiversao/camada1_nucleo_municipal_autovalores.csv"
+   ],
+   "figura": "figuras/FIN_scree_nucleo.png",
+   "legenda": "Autovalores observados (verde) e médios de dados aleatórios (vermelho); linha cinza em 1.",
+   "explica": [
+    [
+     "O que é.",
+     "O scree plot: cada ponto é um componente, e a altura (autovalor) diz quanta variação ele resume."
+    ],
+    [
+     "Para que serve.",
+     "Decide quantos fatores a análise deve ter. Poucos fatores resumem muitos indicadores; fatores demais só reproduzem ruído."
+    ],
+    [
+     "Como ler.",
+     "Kaiser: retém os pontos acima da linha 1. Horn: retém os pontos verdes acima da linha vermelha — o que dados sem estrutura nenhuma produziriam. O \"cotovelo\" da curva também sugere o número."
+    ],
+    [
+     "O que mostra.",
+     "Horn retém 2 fatores no conjunto e 2 dentro dos municípios."
+    ]
+   ]
+  },
+  "C04-24": {
+   "titulo": "O corte",
+   "fontes": [],
+   "numero": "5",
+   "sub": "Quem sai em cada rotação, em que ordem e com que carga."
+  },
+  "C04-25": {
+   "titulo": "Os 12 indicadores antes do corte",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/corte_passos.csv"
+   ],
+   "cab": [
+    "Indicador",
+    "sem rotação",
+    "Varimax",
+    "promax"
+   ],
+   "colW": [
+    2.9,
+    1.4,
+    1.4,
+    1.4
+   ],
+   "linhas": [
+    [
+     "Água inadequada",
+     "0,42",
+     "0,57",
+     "0,65"
+    ],
+    [
+     "Esgoto inadequado",
+     "0,57",
+     "0,45",
+     "0,44"
+    ],
+    [
+     "Lixo inadequado",
+     "0,24 ✗",
+     "0,18 ✗",
+     "0,16 ✗"
+    ],
+    [
+     "Razão de moradores",
+     "0,56",
+     "0,58",
+     "0,62"
+    ],
+    [
+     "Analfabetismo (15 anos ou mais)",
+     "0,73",
+     "0,68",
+     "0,63"
+    ],
+    [
+     "Renda média do responsável",
+     "0,82",
+     "0,77",
+     "0,73"
+    ],
+    [
+     "Preta, parda ou indígena",
+     "0,80",
+     "0,72",
+     "0,63"
+    ],
+    [
+     "Sem água canalizada",
+     "0,50",
+     "0,70",
+     "0,80"
+    ],
+    [
+     "Sem banheiro",
+     "0,33 ✗",
+     "0,40",
+     "0,44"
+    ],
+    [
+     "Moradia não convencional",
+     "0,09 ✗",
+     "0,10 ✗",
+     "0,11 ✗"
+    ],
+    [
+     "Idosos (60 anos ou mais)",
+     "0,69",
+     "0,75",
+     "0,84"
+    ],
+    [
+     "Crianças (0 a 14 anos)",
+     "0,81",
+     "0,89",
+     "1,00"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "A carga máxima de cada indicador na fatorial com os 12 juntos, no primeiro passo, em cada rotação."
+    ],
+    [
+     "Para que serve.",
+     "Mostra quem começa abaixo do corte. ✗ marca carga menor que 0,4 (com duas casas, 0,40 pode ser 0,3995 ou 0,4004)."
+    ],
+    [
+     "Como ler.",
+     "Sem rotação conta só o 1º fator, porque é o único que entra no índice; na Varimax, a carga é a correlação do indicador com o fator; na promax, a matriz padrão (o efeito próprio do fator, como um coeficiente de regressão)."
+    ],
+    [
+     "O que mostra.",
+     "Começam abaixo de 0,4 em ao menos uma rotação: lixo inadequado, sem banheiro, moradia não convencional."
+    ]
+   ]
+  },
+  "C04-26": {
+   "titulo": "O corte passo a passo",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/corte_passos.csv"
+   ],
+   "figura": "figuras/C04_trajetoria.png",
+   "legenda": "Carga máxima no primeiro passo (círculo vazio) e no último (cheio); ✗: quando o indicador saiu. Os 12.",
+   "explica": [
+    [
+     "O que é.",
+     "A trajetória do corte nos 12, em cada rotação."
+    ],
+    [
+     "Para que serve.",
+     "Mostra que a carga muda quando outro indicador sai: o corte precisa ser refeito a cada passo."
+    ],
+    [
+     "Como ler.",
+     "Linha tracejada: o corte de 0,4. Um ✗ à esquerda dela é um indicador retirado; o rótulo diz em que passo."
+    ],
+    [
+     "O que mostra.",
+     "Saem nas três rotações: lixo inadequado e moradia não convencional. Depende da rotação: sem banheiro fica só com promax."
+    ]
+   ]
+  },
+  "C04-27": {
+   "titulo": "O que sai em cada rotação",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/corte_passos.csv",
+    "banco_de_dados/eda/fatorial_corte_04/versoes.csv"
+   ],
+   "cab": [
+    "Família",
+    "Rotação",
+    "Saem, na ordem (carga ao sair)",
+    "Ficam",
+    "Setores"
+   ],
+   "colW": [
+    1.6,
+    1.1,
+    3.2,
+    0.75,
+    0.9
+   ],
+   "linhas": [
+    [
+     "os 12",
+     "sem rotação",
+     "Moradia não convencional (0,09) → Lixo inadequado (0,24) → Sem banheiro (0,33)",
+     "9",
+     "87.189"
+    ],
+    [
+     "os 12",
+     "Varimax",
+     "Moradia não convencional (0,10) → Lixo inadequado (0,18) → Sem banheiro (0,39)",
+     "9",
+     "87.189"
+    ],
+    [
+     "os 12",
+     "promax",
+     "Moradia não convencional (0,11) → Lixo inadequado (0,17)",
+     "10",
+     "75.629"
+    ],
+    [
+     "sem idosos e crianças",
+     "sem rotação",
+     "Moradia não convencional (0,10) → Lixo inadequado (0,22) → Sem banheiro (0,35)",
+     "7",
+     "87.511"
+    ],
+    [
+     "sem idosos e crianças",
+     "Varimax",
+     "Moradia não convencional (0,09) → Lixo inadequado (0,18) → Sem banheiro (0,38)",
+     "7",
+     "87.511"
+    ],
+    [
+     "sem idosos e crianças",
+     "promax",
+     "Moradia não convencional (0,09) → Lixo inadequado (0,18)",
+     "8",
+     "75.926"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "A lista dos retirados em cada rotação e nas duas famílias, com a carga que cada um tinha ao sair."
+    ],
+    [
+     "Para que serve.",
+     "É a resposta direta à demanda: quem a regra do 0,4 tira."
+    ],
+    [
+     "Como ler.",
+     "\"Setores\": os que têm todos os indicadores que ficaram, a base daquela versão. Na família sem idosos e crianças, eles saíram antes, por decisão do projeto."
+    ],
+    [
+     "O que mostra.",
+     "Saem em todas as 6: lixo inadequado e moradia não convencional. Depende da rotação: sem banheiro fica só com promax."
+    ]
+   ]
+  },
+  "C04-28": {
+   "titulo": "O sem banheiro: o caso que depende da rotação",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/corte_passos.csv",
+    "banco_de_dados/eda/fatorial_corte_04/versoes.csv"
+   ],
+   "cab": [
+    "Família",
+    "Rotação",
+    "Carga",
+    "Comunalidade",
+    "Corte",
+    "Setores"
+   ],
+   "colW": [
+    1.8,
+    1.1,
+    0.9,
+    1.2,
+    0.8,
+    1.0
+   ],
+   "linhas": [
+    [
+     "os 12",
+     "sem rotação",
+     "0,326",
+     "0,106",
+     "sai",
+     "87.189"
+    ],
+    [
+     "os 12",
+     "Varimax",
+     "0,392",
+     "0,181",
+     "sai",
+     "87.189"
+    ],
+    [
+     "os 12",
+     "promax",
+     "0,426",
+     "0,181",
+     "fica",
+     "75.629"
+    ],
+    [
+     "sem idosos e crianças",
+     "sem rotação",
+     "0,352",
+     "0,124",
+     "sai",
+     "87.511"
+    ],
+    [
+     "sem idosos e crianças",
+     "Varimax",
+     "0,383",
+     "0,182",
+     "sai",
+     "87.511"
+    ],
+    [
+     "sem idosos e crianças",
+     "promax",
+     "0,423",
+     "0,182",
+     "fica",
+     "75.926"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "A carga e a comunalidade do sem banheiro no passo em que ele saiu ou no último."
+    ],
+    [
+     "Para que serve.",
+     "É o único indicador cujo destino muda com a rotação — e é o que separa as propostas A e B."
+    ],
+    [
+     "Como ler.",
+     "Comunalidade: quanto da variação do indicador os fatores explicam (sem rotação, só o F1). O projeto tinha fixado 0,30 como mínimo, além da carga de 0,40."
+    ],
+    [
+     "O que mostra.",
+     "Na promax ele passa no 0,4 por pouco, mas a comunalidade fica abaixo de 0,30. Mantê-lo custa 11.585 setores à proposta A, que não têm o dado do banheiro."
+    ]
+   ]
+  },
+  "C04-29": {
+   "titulo": "O corte se mantém sem cada município?",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/corte_estabilidade.csv"
+   ],
+   "cab": [
+    "Proposta",
+    "Rodadas",
+    "O que muda na lista",
+    "Municípios retirados"
+   ],
+   "colW": [
+    1.9,
+    0.9,
+    2.6,
+    1.8
+   ],
+   "linhas": [
+    [
+     "proposta A (promax)",
+     "68 de 70",
+     "mesma lista",
+     "—"
+    ],
+    [
+     "proposta A (promax)",
+     "1",
+     "sai razão de moradores",
+     "São Paulo"
+    ],
+    [
+     "proposta A (promax)",
+     "1",
+     "sai esgoto inadequado, sem água canalizada e sem banheiro",
+     "São Luís"
+    ],
+    [
+     "proposta B (Varimax)",
+     "69 de 70",
+     "mesma lista",
+     "—"
+    ],
+    [
+     "proposta B (Varimax)",
+     "1",
+     "sai razão de moradores",
+     "São Paulo"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "O corte de cada proposta refeito 70 vezes, cada vez sem um dos municípios."
+    ],
+    [
+     "Para que serve.",
+     "Testa se a lista que sobra é dos dados ou de uma cidade: a regra do 0,4 é aplicada de novo em cada rodada."
+    ],
+    [
+     "Como ler.",
+     "A primeira linha de cada proposta conta as rodadas que dão a mesma lista; as outras, as que mudam."
+    ],
+    [
+     "O que mostra.",
+     "Mesma lista em 68 de 70 rodadas na A e 69 de 70 rodadas na B; as mudanças vêm de indicadores perto de 0,40 quando sai um município grande."
+    ]
+   ]
+  },
+  "C04-30": {
+   "titulo": "As versões",
+   "fontes": [],
+   "numero": "6",
+   "sub": "Rotações e métodos de peso sobre a lista que sobrou, comparados à promax · 60/40 da família."
+  },
+  "C04-31": {
+   "titulo": "Como as versões foram comparadas",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/versoes.csv"
+   ],
+   "blocos": [
+    [
+     "As versões.",
+     "Sem rotação há um método de peso (o fator único leva tudo). Com Varimax, três: soma dos quadrados das cargas, 50/50 e 60/40. Com promax, cinco: soma dos quadrados da matriz padrão, da estrutura, comunalidades, 50/50 e 60/40."
+    ],
+    [
+     "A referência.",
+     "Cada versão contra a promax · 60/40 da sua família — na família sem idosos e crianças, a proposta A. A proposta B é a linha \"Varimax · 60/40\" dessa família."
+    ],
+    [
+     "A comparação.",
+     "Só nos setores que as duas versões têm: as faixas das duas são refeitas nesses setores. O índice de cada versão continua o da sua amostra (a régua mín-máx não é refeita)."
+    ],
+    [
+     "Spearman.",
+     "Concordância da ordem dos setores dentro de cada município (mediana entre municípios); 1 é a mesma ordem."
+    ],
+    [
+     "Troca de faixa.",
+     "A % de setores que mudam de faixa (baixo, médio, elevado, muito elevado) pela regra do IVS-BH. Até 10% é tratado como equivalente."
+    ]
+   ]
+  },
+  "C04-32": {
+   "titulo": "As versões: sem idosos e crianças",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/versoes.csv"
+   ],
+   "cab": [
+    "Versão",
+    "Ind.",
+    "Setores",
+    "KMO",
+    "h² mín.",
+    "Peso socioec.",
+    "Spearman",
+    "Troca"
+   ],
+   "colW": [
+    2.5,
+    0.45,
+    0.85,
+    0.65,
+    0.7,
+    0.95,
+    1.0,
+    0.75
+   ],
+   "linhas": [
+    [
+     "sem rotação · fator único",
+     "7",
+     "87.511",
+     "0,809",
+     "0,24",
+     "100,0%",
+     "0,984",
+     "9,6%"
+    ],
+    [
+     "Varimax · soma dos quadrados",
+     "7",
+     "87.511",
+     "0,809",
+     "0,24",
+     "66,5%",
+     "0,998",
+     "2,7%"
+    ],
+    [
+     "Varimax · 50/50",
+     "7",
+     "87.511",
+     "0,809",
+     "0,24",
+     "50,0%",
+     "0,985",
+     "10,8%"
+    ],
+    [
+     "Varimax · 60/40 (B)",
+     "7",
+     "87.511",
+     "0,809",
+     "0,24",
+     "60,0%",
+     "0,996",
+     "4,4%"
+    ],
+    [
+     "promax · soma dos quadrados (padrão)",
+     "8",
+     "75.926",
+     "0,814",
+     "0,18",
+     "63,0%",
+     "0,999",
+     "1,9%"
+    ],
+    [
+     "promax · soma dos quadrados (estrutura)",
+     "8",
+     "75.926",
+     "0,814",
+     "0,18",
+     "55,9%",
+     "0,999",
+     "2,6%"
+    ],
+    [
+     "promax · comunalidades",
+     "8",
+     "75.926",
+     "0,814",
+     "0,18",
+     "61,9%",
+     "1,000",
+     "1,2%"
+    ],
+    [
+     "promax · 50/50",
+     "8",
+     "75.926",
+     "0,814",
+     "0,18",
+     "50,0%",
+     "0,995",
+     "6,7%"
+    ],
+    [
+     "promax · 60/40 (A)",
+     "8",
+     "75.926",
+     "0,814",
+     "0,18",
+     "60,0%",
+     "1,000",
+     "0,0%"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "As 9 versões da família \"sem idosos e crianças\" e a distância de cada uma a a proposta A."
+    ],
+    [
+     "Para que serve.",
+     "Mostra quanto a rotação e o método de peso mudam o índice depois do corte."
+    ],
+    [
+     "Como ler.",
+     "h² mín.: a menor comunalidade da versão. Peso socioec.: a fração do índice que vem do fator da renda. Versões de rotações diferentes podem ter listas e setores diferentes."
+    ],
+    [
+     "O que mostra.",
+     "Spearman de 0,984 a 1,000. A mais distante é Varimax · 50/50, com 10,8% dos setores mudando de faixa."
+    ]
+   ]
+  },
+  "C04-33": {
+   "titulo": "As versões: os 12",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/versoes.csv"
+   ],
+   "cab": [
+    "Versão",
+    "Ind.",
+    "Setores",
+    "KMO",
+    "h² mín.",
+    "Peso socioec.",
+    "Spearman",
+    "Troca"
+   ],
+   "colW": [
+    2.5,
+    0.45,
+    0.85,
+    0.65,
+    0.7,
+    0.95,
+    1.0,
+    0.75
+   ],
+   "linhas": [
+    [
+     "sem rotação · fator único",
+     "9",
+     "87.189",
+     "0,826",
+     "0,18",
+     "100,0%",
+     "0,964",
+     "13,3%"
+    ],
+    [
+     "Varimax · soma dos quadrados",
+     "9",
+     "87.189",
+     "0,826",
+     "0,35",
+     "66,2%",
+     "0,997",
+     "3,9%"
+    ],
+    [
+     "Varimax · 50/50",
+     "9",
+     "87.189",
+     "0,826",
+     "0,35",
+     "50,0%",
+     "0,986",
+     "10,6%"
+    ],
+    [
+     "Varimax · 60/40",
+     "9",
+     "87.189",
+     "0,826",
+     "0,35",
+     "60,0%",
+     "0,996",
+     "5,3%"
+    ],
+    [
+     "promax · soma dos quadrados (padrão)",
+     "10",
+     "75.629",
+     "0,828",
+     "0,18",
+     "67,9%",
+     "0,997",
+     "3,9%"
+    ],
+    [
+     "promax · soma dos quadrados (estrutura)",
+     "10",
+     "75.629",
+     "0,828",
+     "0,18",
+     "58,6%",
+     "1,000",
+     "0,8%"
+    ],
+    [
+     "promax · comunalidades",
+     "10",
+     "75.629",
+     "0,828",
+     "0,18",
+     "70,9%",
+     "0,995",
+     "5,4%"
+    ],
+    [
+     "promax · 50/50",
+     "10",
+     "75.629",
+     "0,828",
+     "0,18",
+     "50,0%",
+     "0,995",
+     "5,5%"
+    ],
+    [
+     "promax · 60/40",
+     "10",
+     "75.629",
+     "0,828",
+     "0,18",
+     "60,0%",
+     "1,000",
+     "0,0%"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "As 9 versões da família \"os 12\" e a distância de cada uma a os 12 · promax · 60/40."
+    ],
+    [
+     "Para que serve.",
+     "Mostra quanto a rotação e o método de peso mudam o índice depois do corte."
+    ],
+    [
+     "Como ler.",
+     "h² mín.: a menor comunalidade da versão. Peso socioec.: a fração do índice que vem do fator da renda. Versões de rotações diferentes podem ter listas e setores diferentes."
+    ],
+    [
+     "O que mostra.",
+     "Spearman de 0,964 a 1,000. A mais distante é sem rotação · fator único, com 13,3% dos setores mudando de faixa."
+    ]
+   ]
+  },
+  "C04-34": {
+   "titulo": "Troca de faixa de cada versão",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/versoes.csv"
+   ],
+   "figura": "figuras/C04_troca_faixa.png",
+   "legenda": "% dos setores que mudam de faixa em relação à promax · 60/40 da família; vermelho: 10% ou mais.",
+   "explica": [
+    [
+     "O que é.",
+     "A troca de faixa de todas as versões, nas duas famílias, ordenada."
+    ],
+    [
+     "Para que serve.",
+     "Separa as escolhas que mudam o índice das que não mudam."
+    ],
+    [
+     "Como ler.",
+     "Barra vermelha: a versão muda a faixa de 10% ou mais dos setores e não é equivalente."
+    ],
+    [
+     "O que mostra.",
+     "3 versões chegam a 10%: sem rotação · fator único (os 12, 13,3%), Varimax · 50/50 (os 12, 10,6%) e Varimax · 50/50 (sem idosos e crianças, 10,8%). As demais ficam abaixo."
+    ]
+   ]
+  },
+  "C04-35": {
+   "titulo": "Os critérios que o projeto tinha fixado",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/versoes.csv"
+   ],
+   "cab": [
+    "Família",
+    "Rotação",
+    "KMO",
+    "MSA mín.",
+    "h² mín.",
+    "Carga mín.",
+    "Elegível",
+    "AUC mun."
+   ],
+   "colW": [
+    1.9,
+    1.2,
+    0.7,
+    0.85,
+    0.8,
+    0.95,
+    0.9,
+    0.9
+   ],
+   "linhas": [
+    [
+     "os 12",
+     "sem rotação",
+     "0,826",
+     "0,77",
+     "0,18",
+     "0,43",
+     "não",
+     "0,838"
+    ],
+    [
+     "os 12",
+     "Varimax",
+     "0,826",
+     "0,77",
+     "0,35",
+     "0,49",
+     "sim",
+     "0,803"
+    ],
+    [
+     "os 12",
+     "promax",
+     "0,828",
+     "0,78",
+     "0,18",
+     "0,43",
+     "não",
+     "0,816"
+    ],
+    [
+     "sem idosos e crianças",
+     "sem rotação",
+     "0,809",
+     "0,74",
+     "0,24",
+     "0,49",
+     "não",
+     "0,833"
+    ],
+    [
+     "sem idosos e crianças",
+     "Varimax",
+     "0,809",
+     "0,74",
+     "0,24",
+     "0,44",
+     "não",
+     "0,804"
+    ],
+    [
+     "sem idosos e crianças",
+     "promax",
+     "0,814",
+     "0,74",
+     "0,18",
+     "0,42",
+     "não",
+     "0,820"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Os critérios fixados antes da multiversão (KMO ≥ 0,70; MSA ≥ 0,50; comunalidade ≥ 0,30; carga ≥ 0,40), por família e rotação."
+    ],
+    [
+     "Para que serve.",
+     "A regra da orientadora cobre só a carga; aqui se vê se as versões passam também nos outros critérios."
+    ],
+    [
+     "Como ler.",
+     "Uma linha por rotação: os critérios dependem da fatorial, não do método de peso. Sem rotação, a comunalidade é a carga ao quadrado no F1, então o corte de 0,40 deixa passar comunalidade de só 0,16. AUC mun.: separação entre setores de favela e os demais, dentro do município, só como descrição."
+    ],
+    [
+     "O que mostra.",
+     "Elegíveis em todos os critérios: os 12 com Varimax. Nenhuma das duas propostas é elegível: 5 versões ficam de fora pela comunalidade abaixo de 0,30."
+    ]
+   ]
+  },
+  "C04-36": {
+   "titulo": "As duas propostas",
+   "fontes": [],
+   "numero": "7",
+   "sub": "Ambas sem idosos e crianças, pesos 60/40, régua municipal. A: promax, mantém o sem banheiro. B: Varimax, a regra tira o sem banheiro."
+  },
+  "C04-37": {
+   "titulo": "As duas propostas",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/finalistas.csv"
+   ],
+   "blocos": [
+    [
+     "Comum às duas.",
+     "Partem dos 12; lixo inadequado e moradia não convencional saem pela regra do 0,4; Idosos (60 anos ou mais) e Crianças (0 a 14 anos) ficam fora por decisão do projeto (passam no corte, com cargas 0,84 e 0,99 nos 12). Eixo principal, 2 fatores, pesos 60/40, régua mín-máx dentro do município."
+    ],
+    [
+     "Proposta A — promax.",
+     "8 indicadores, com o sem banheiro (carga 0,423). 75.926 setores (72,9% do recorte)."
+    ],
+    [
+     "Proposta B — Varimax.",
+     "7 indicadores; a regra tira o sem banheiro (carga 0,383). 87.511 setores (84,1% do recorte)."
+    ],
+    [
+     "O que nenhuma resolve.",
+     "Nenhuma passa na comunalidade de 0,30 fixada pelo projeto: na A, a menor é a do sem banheiro (0,182); na B, a da razão de moradores (0,240). A única versão que passa em todos os critérios é a dos 12 com Varimax, que inclui idosos e crianças."
+    ],
+    [
+     "A diferença.",
+     "A proposta A troca 11.585 setores de cobertura pela presença do sem banheiro; os setores sem o dado do banheiro são os mais pobres (slide \"Quem cada proposta deixa sem IVS\")."
+    ]
+   ]
+  },
+  "C04-38": {
+   "titulo": "O que a regra tirou e o que foi decisão",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/corte_passos.csv"
+   ],
+   "cab": [
+    "Indicador",
+    "Proposta A (promax)",
+    "Proposta B (Varimax)"
+   ],
+   "colW": [
+    2.9,
+    2.0,
+    2.0
+   ],
+   "linhas": [
+    [
+     "Água inadequada",
+     "fica",
+     "fica"
+    ],
+    [
+     "Esgoto inadequado",
+     "fica",
+     "fica"
+    ],
+    [
+     "Lixo inadequado",
+     "sai pela regra (0,18)",
+     "sai pela regra (0,18)"
+    ],
+    [
+     "Razão de moradores",
+     "fica",
+     "fica"
+    ],
+    [
+     "Analfabetismo (15 anos ou mais)",
+     "fica",
+     "fica"
+    ],
+    [
+     "Renda média do responsável",
+     "fica",
+     "fica"
+    ],
+    [
+     "Preta, parda ou indígena",
+     "fica",
+     "fica"
+    ],
+    [
+     "Sem água canalizada",
+     "fica",
+     "fica"
+    ],
+    [
+     "Sem banheiro",
+     "fica",
+     "sai pela regra (0,38)"
+    ],
+    [
+     "Moradia não convencional",
+     "sai pela regra (0,09)",
+     "sai pela regra (0,09)"
+    ],
+    [
+     "Idosos (60 anos ou mais)",
+     "fora por decisão",
+     "fora por decisão"
+    ],
+    [
+     "Crianças (0 a 14 anos)",
+     "fora por decisão",
+     "fora por decisão"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Os 12 indicadores em três grupos: os que ficam, os que a regra do 0,4 tirou (com a carga ao sair) e os que ficaram fora por decisão do projeto."
+    ],
+    [
+     "Para que serve.",
+     "Separa o que é da regra da orientadora do que é escolha nossa."
+    ],
+    [
+     "Como ler.",
+     "Idosos e crianças passam no corte; saem porque descrevem a estrutura etária e dominariam o fator socioeconômico (seção \"Idosos e crianças\")."
+    ],
+    [
+     "O que mostra.",
+     "A regra tira lixo inadequado e moradia não convencional nas duas; o sem banheiro só na B."
+    ]
+   ]
+  },
+  "C04-39": {
+   "titulo": "As cargas das duas propostas",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/finalistas.csv"
+   ],
+   "cab": [
+    "Indicador",
+    "A F1",
+    "A F2",
+    "A h²",
+    "B F1",
+    "B F2",
+    "B h²"
+   ],
+   "colW": [
+    2.6,
+    0.75,
+    0.75,
+    0.75,
+    0.75,
+    0.75,
+    0.75
+   ],
+   "linhas": [
+    [
+     "Água inadequada",
+     "-0,171",
+     "0,793",
+     "0,487",
+     "0,148",
+     "0,814",
+     "0,684"
+    ],
+    [
+     "Esgoto inadequado",
+     "0,219",
+     "0,448",
+     "0,372",
+     "0,422",
+     "0,443",
+     "0,374"
+    ],
+    [
+     "Razão de moradores",
+     "0,424",
+     "0,100",
+     "0,243",
+     "0,442",
+     "0,213",
+     "0,240"
+    ],
+    [
+     "Analfabetismo (15 anos ou mais)",
+     "0,845",
+     "-0,056",
+     "0,658",
+     "0,793",
+     "0,154",
+     "0,653"
+    ],
+    [
+     "Renda média do responsável",
+     "1,015",
+     "-0,129",
+     "0,882",
+     "0,929",
+     "0,135",
+     "0,881"
+    ],
+    [
+     "Preta, parda ou indígena",
+     "0,773",
+     "0,074",
+     "0,675",
+     "0,774",
+     "0,269",
+     "0,672"
+    ],
+    [
+     "Sem água canalizada",
+     "-0,020",
+     "0,697",
+     "0,468",
+     "0,332",
+     "0,541",
+     "0,403"
+    ],
+    [
+     "Sem banheiro",
+     "0,006",
+     "0,423",
+     "0,182",
+     "—",
+     "—",
+     "—"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "As cargas e a comunalidade (h²) de cada indicador: na A, a matriz padrão da promax; na B, a Varimax."
+    ],
+    [
+     "Para que serve.",
+     "As cargas definem a que dimensão cada indicador pertence e como o peso se reparte dentro dela."
+    ],
+    [
+     "Como ler.",
+     "F1 é a dimensão em que a renda carrega mais (socioeconômica); F2, a outra (saneamento). Na Varimax a carga é a correlação com o fator; na padrão da promax, o efeito próprio do fator, que pode passar de 1. Carga perto de 1 ou acima pede cautela."
+    ],
+    [
+     "O que mostra.",
+     "Na A, a renda tem carga 1,015 no F1; na B, 0,929."
+    ]
+   ]
+  },
+  "C04-40": {
+   "titulo": "Proposta A: matriz de estrutura e correlação entre fatores",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/finalistas.csv"
+   ],
+   "cab": [
+    "Indicador",
+    "Estrutura F1",
+    "Estrutura F2",
+    "MSA"
+   ],
+   "colW": [
+    2.9,
+    1.3,
+    1.3,
+    1.0
+   ],
+   "linhas": [
+    [
+     "Água inadequada",
+     "0,329",
+     "0,685",
+     "0,759"
+    ],
+    [
+     "Esgoto inadequado",
+     "0,502",
+     "0,586",
+     "0,898"
+    ],
+    [
+     "Razão de moradores",
+     "0,487",
+     "0,367",
+     "0,913"
+    ],
+    [
+     "Analfabetismo (15 anos ou mais)",
+     "0,810",
+     "0,478",
+     "0,834"
+    ],
+    [
+     "Renda média do responsável",
+     "0,934",
+     "0,512",
+     "0,738"
+    ],
+    [
+     "Preta, parda ou indígena",
+     "0,820",
+     "0,562",
+     "0,806"
+    ],
+    [
+     "Sem água canalizada",
+     "0,420",
+     "0,684",
+     "0,831"
+    ],
+    [
+     "Sem banheiro",
+     "0,273",
+     "0,427",
+     "0,877"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Na promax os fatores podem se correlacionar; a estrutura é a correlação simples entre indicador e fator."
+    ],
+    [
+     "Para que serve.",
+     "Completa a matriz padrão: um indicador pode ter estrutura alta num fator só por causa da correlação entre os fatores (Φ)."
+    ],
+    [
+     "Como ler.",
+     "Φ (fi) perto de 1 seria um fator só; perto de 0, dois fatores independentes. Na Varimax (B), Φ é 0 por construção."
+    ],
+    [
+     "O que mostra.",
+     "Φ = 0,631. A renda tem estrutura 0,934 no F1, abaixo de 1."
+    ]
+   ]
+  },
+  "C04-41": {
+   "titulo": "As cargas em mapa de calor",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/finalistas.csv"
+   ],
+   "figura": "figuras/C04_cargas_mapa.png",
+   "legenda": "Cargas da proposta A (matriz padrão da promax) e da proposta B (Varimax).",
+   "explica": [
+    [
+     "O que é.",
+     "As duas matrizes de cargas em cores."
+    ],
+    [
+     "Para que serve.",
+     "Mostra de relance a que fator cada indicador pertence."
+    ],
+    [
+     "Como ler.",
+     "Vermelho forte numa coluna: o indicador pertence àquele fator. Células claras nas duas colunas: o indicador não pertence bem a nenhum."
+    ]
+   ]
+  },
+  "C04-42": {
+   "titulo": "O plano fatorial",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/finalistas.csv"
+   ],
+   "figura": "figuras/C04_plano_fatorial.png",
+   "legenda": "Cargas da proposta A (padrão da promax) e da proposta B (Varimax).",
+   "explica": [
+    [
+     "O que é.",
+     "Cada ponto é um indicador, posicionado pelas cargas nos dois fatores."
+    ],
+    [
+     "Para que serve.",
+     "Mostra os grupos que a fatorial encontrou: indicadores próximos medem a mesma coisa."
+    ],
+    [
+     "Como ler.",
+     "À direita e perto do eixo horizontal: dimensão socioeconômica. No alto e perto do eixo vertical: saneamento. Perto da origem: o indicador quase não se explica pelos fatores."
+    ]
+   ]
+  },
+  "C04-43": {
+   "titulo": "As duas propostas em números",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/finalistas.csv",
+    "banco_de_dados/eda/fatorial_corte_04/replicacao.csv"
+   ],
+   "cab": [
+    "Medida",
+    "Proposta A (promax)",
+    "Proposta B (Varimax)"
+   ],
+   "colW": [
+    2.8,
+    2.1,
+    2.1
+   ],
+   "linhas": [
+    [
+     "Indicadores",
+     "8",
+     "7"
+    ],
+    [
+     "Setores (% do recorte)",
+     "75.926 (72,9%)",
+     "87.511 (84,1%)"
+    ],
+    [
+     "KMO",
+     "0,814",
+     "0,809"
+    ],
+    [
+     "MSA mínimo",
+     "0,738",
+     "0,737"
+    ],
+    [
+     "Comunalidade mínima",
+     "0,182 (sem banheiro)",
+     "0,240 (razão de moradores)"
+    ],
+    [
+     "Carga mínima",
+     "0,423 (sem banheiro)",
+     "0,442 (razão de moradores)"
+    ],
+    [
+     "Elegível (4 critérios)",
+     "não",
+     "não"
+    ],
+    [
+     "Variância comum dos 2 fatores",
+     "49,6%",
+     "55,8%"
+    ],
+    [
+     "Fatores retidos (Horn · Kaiser)",
+     "2 · 2",
+     "2 · 2"
+    ],
+    [
+     "Φ entre os fatores",
+     "0,631",
+     "0 (ortogonal)"
+    ],
+    [
+     "Tucker F1 · F2 (metades)",
+     "0,982 · 0,980",
+     "0,993 · 0,988"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "A adequação, a base e a replicação de cada proposta."
+    ],
+    [
+     "Para que serve.",
+     "Resume, numa tabela, o que muda entre A e B."
+    ],
+    [
+     "Como ler.",
+     "Horn e Kaiser contam os fatores pedidos pelos dados de cada lista; o índice usa 2. Tucker: as cargas de duas metades sorteadas de municípios comparadas (0,95 ou mais: replicado)."
+    ],
+    [
+     "O que mostra.",
+     "A B cobre 11.585 setores a mais; as duas replicam (Tucker acima de 0,95 nos dois fatores)."
+    ]
+   ]
+  },
+  "C04-44": {
+   "titulo": "Os pesos",
+   "fontes": [],
+   "numero": "8",
+   "sub": "Por dimensão e por indicador, a estabilidade por município e a replicação entre metades."
+  },
+  "C04-45": {
+   "titulo": "O peso da dimensão socioeconômica em cada método",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/versoes.csv"
+   ],
+   "cab": [
+    "Rotação",
+    "Método de peso",
+    "Peso socioeconômico"
+   ],
+   "colW": [
+    2.0,
+    2.8,
+    2.0
+   ],
+   "linhas": [
+    [
+     "sem rotação",
+     "fator único",
+     "100,0%"
+    ],
+    [
+     "Varimax",
+     "soma dos quadrados",
+     "66,5%"
+    ],
+    [
+     "Varimax",
+     "50/50",
+     "50,0%"
+    ],
+    [
+     "Varimax",
+     "60/40 (B)",
+     "60,0%"
+    ],
+    [
+     "promax",
+     "soma dos quadrados (padrão)",
+     "63,0%"
+    ],
+    [
+     "promax",
+     "soma dos quadrados (estrutura)",
+     "55,9%"
+    ],
+    [
+     "promax",
+     "comunalidades",
+     "61,9%"
+    ],
+    [
+     "promax",
+     "50/50",
+     "50,0%"
+    ],
+    [
+     "promax",
+     "60/40 (A)",
+     "60,0%"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Quanto do índice vem da dimensão socioeconômica em cada forma de calcular os pesos (família sem idosos e crianças)."
+    ],
+    [
+     "Para que serve.",
+     "O IVS de 2012 usa 60% socioeconômica e 40% saneamento. Aqui se vê quanto os dados dariam."
+    ],
+    [
+     "Como ler.",
+     "\"Soma dos quadrados\" e \"comunalidades\" saem dos dados; 50/50 e 60/40 são fixos. Sem rotação há um fator só. A composição das dimensões não é a de 2012: o lixo saiu e entraram sem água canalizada e, na A, sem banheiro."
+    ],
+    [
+     "O que mostra.",
+     "As duas propostas usam 60/40. Pelos dados, a dimensão socioeconômica levaria de 50,0% a 66,5%."
+    ]
+   ]
+  },
+  "C04-46": {
+   "titulo": "O peso de cada indicador nas duas propostas",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/finalistas.csv",
+    "banco_de_dados/eda/fatorial_corte_04/estabilidade.csv"
+   ],
+   "cab": [
+    "Indicador",
+    "A peso",
+    "A sem 1 mun.",
+    "B peso",
+    "B sem 1 mun."
+   ],
+   "colW": [
+    2.6,
+    0.9,
+    1.5,
+    0.9,
+    1.5
+   ],
+   "linhas": [
+    [
+     "Água inadequada",
+     "16,8%",
+     "15,9% a 17,4%",
+     "23,0%",
+     "21,8% a 27,5%"
+    ],
+    [
+     "Esgoto inadequado",
+     "5,4%",
+     "4,8% a 6,8%",
+     "6,8%",
+     "4,6% a 8,1%"
+    ],
+    [
+     "Razão de moradores",
+     "4,3%",
+     "2,3% a 5,8%",
+     "5,1%",
+     "4,0% a 5,8%"
+    ],
+    [
+     "Analfabetismo (15 anos ou mais)",
+     "17,0%",
+     "15,6% a 18,0%",
+     "16,5%",
+     "15,2% a 17,0%"
+    ],
+    [
+     "Renda média do responsável",
+     "24,5%",
+     "22,6% a 27,4%",
+     "22,6%",
+     "19,5% a 24,3%"
+    ],
+    [
+     "Preta, parda ou indígena",
+     "14,2%",
+     "13,5% a 14,7%",
+     "15,7%",
+     "14,2% a 15,9%"
+    ],
+    [
+     "Sem água canalizada",
+     "13,0%",
+     "11,5% a 14,5%",
+     "10,2%",
+     "9,8% a 12,6%"
+    ],
+    [
+     "Sem banheiro",
+     "4,8%",
+     "4,2% a 5,1%",
+     "—",
+     "—"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "A fração do índice que vem de cada indicador, e o menor e o maior valor ao tirar um município."
+    ],
+    [
+     "Para que serve.",
+     "É o que define o índice: IVS = soma de cada indicador padronizado vezes o seu peso."
+    ],
+    [
+     "Como ler.",
+     "Dentro de cada dimensão, o peso se reparte pelo quadrado das cargas: quem carrega mais pesa mais. Variação pequena em pontos pode ser grande em proporção para indicadores de peso baixo."
+    ],
+    [
+     "O que mostra.",
+     "O maior peso é o de Renda média do responsável nas duas: 24,5% na A e 23,0% na B."
+    ]
+   ]
+  },
+  "C04-47": {
+   "titulo": "O peso de cada indicador: o gráfico",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/finalistas.csv"
+   ],
+   "figura": "figuras/C04_pesos_ab.png",
+   "legenda": "Pesos nas duas propostas.",
+   "explica": [
+    [
+     "O que é.",
+     "Os mesmos pesos em barras, A e B lado a lado."
+    ],
+    [
+     "Para que serve.",
+     "Mostra quem domina cada índice."
+    ],
+    [
+     "Como ler.",
+     "Barras longas: indicadores que mais determinam a posição de um setor no IVS."
+    ]
+   ]
+  },
+  "C04-48": {
+   "titulo": "A estabilidade: um município de fora por vez",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/estabilidade.csv"
+   ],
+   "figura": "figuras/C04_estabilidade.png",
+   "legenda": "Peso de cada indicador nas 70 rodadas, cada uma sem um município.",
+   "explica": [
+    [
+     "O que é.",
+     "Os pesos recalculados 70 vezes, cada vez sem um dos municípios (a lista fica fixa)."
+    ],
+    [
+     "Para que serve.",
+     "É a medida de incerteza adotada: os municípios são a unidade de replicação do ELSI."
+    ],
+    [
+     "Como ler.",
+     "Caixa estreita: peso estável. Pontos isolados: um município que, sozinho, muda o peso. O peso socioeconômico fica em 60% por construção."
+    ],
+    [
+     "O que mostra.",
+     "Na A, o peso que mais varia é o de Renda média do responsável (22,6% a 27,4%); na B, o que mais varia é o de Água inadequada (21,8% a 27,5%)."
+    ]
+   ]
+  },
+  "C04-49": {
+   "titulo": "A replicação entre metades dos municípios",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/replicacao.csv"
+   ],
+   "cab": [
+    "Finalista",
+    "Tucker F1",
+    "Tucker F2"
+   ],
+   "colW": [
+    3.4,
+    1.4,
+    1.4
+   ],
+   "linhas": [
+    [
+     "proposta A (promax)",
+     "0,982",
+     "0,980"
+    ],
+    [
+     "proposta B (Varimax)",
+     "0,993",
+     "0,988"
+    ],
+    [
+     "os 12 (regra literal)",
+     "0,939",
+     "0,927"
+    ],
+    [
+     "sem rotação",
+     "0,997",
+     "—"
+    ],
+    [
+     "proposta anterior (os 7)",
+     "0,967",
+     "0,924"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Os municípios foram divididos em duas metades sorteadas dentro de cada região (as mesmas da multiversão); a fatorial rodou em cada metade e as cargas foram comparadas pelo coeficiente de Tucker, uma correlação entre as duas colunas de cargas."
+    ],
+    [
+     "Para que serve.",
+     "Testa se a estrutura é dos dados ou de um grupo de municípios."
+    ],
+    [
+     "Como ler.",
+     "Tucker de 0,95 ou mais: fator replicado; de 0,85 a 0,94: parecido; abaixo: diferente. Sem rotação há um fator só."
+    ],
+    [
+     "O que mostra.",
+     "A: 0,982 e 0,980; B: 0,993 e 0,988."
+    ]
+   ]
+  },
+  "C04-50": {
+   "titulo": "O IVS das duas propostas",
+   "fontes": [],
+   "numero": "9",
+   "sub": "Faixas, quem mora em cada uma e quem fica sem IVS."
+  },
+  "C04-51": {
+   "titulo": "A distribuição do IVS",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "figura": "figuras/C04_ivs_hist.png",
+   "legenda": "IVS por setor nas duas propostas.",
+   "explica": [
+    [
+     "O que é.",
+     "O histograma do IVS de cada proposta: cada setor recebe um valor de 0 a 1."
+    ],
+    [
+     "Para que serve.",
+     "0 = o setor menos vulnerável da sua cidade em todos os indicadores; 1 = o mais."
+    ],
+    [
+     "Como ler.",
+     "Como a régua é de cada município, o valor diz onde o setor fica dentro da própria cidade."
+    ],
+    [
+     "O que mostra.",
+     "A: 75.926 setores (mediana 0,358); B: 87.511 (mediana 0,358)."
+    ]
+   ]
+  },
+  "C04-52": {
+   "titulo": "As quatro faixas: setores e moradores",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "cab": [
+    "Faixa",
+    "A setores",
+    "A moradores",
+    "A %",
+    "B setores",
+    "B moradores",
+    "B %"
+   ],
+   "colW": [
+    1.3,
+    0.95,
+    1.2,
+    0.7,
+    0.95,
+    1.2,
+    0.7
+   ],
+   "linhas": [
+    [
+     "baixo",
+     "21.263",
+     "9.846.694",
+     "25,3%",
+     "24.802",
+     "11.857.377",
+     "25,9%"
+    ],
+    [
+     "médio",
+     "32.769",
+     "17.767.045",
+     "45,7%",
+     "38.924",
+     "21.459.513",
+     "46,8%"
+    ],
+    [
+     "elevado",
+     "18.234",
+     "9.636.178",
+     "24,8%",
+     "19.234",
+     "10.385.183",
+     "22,7%"
+    ],
+    [
+     "muito elevado",
+     "3.660",
+     "1.639.836",
+     "4,2%",
+     "4.551",
+     "2.127.188",
+     "4,6%"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Quantos setores e quantos moradores ficam em cada faixa, nas duas propostas."
+    ],
+    [
+     "Para que serve.",
+     "As faixas são o produto que vai para os mapas e para a gestão: onde priorizar."
+    ],
+    [
+     "Como ler.",
+     "Regra do IVS-BH 2012, dentro de cada município: médio = média ± 0,5 desvio-padrão; elevado até +1,5; acima, muito elevado; abaixo de −0,5, baixo."
+    ],
+    [
+     "O que mostra.",
+     "Moradores em setores de faixa elevada ou muito elevada: 11.276.014 na A e 12.512.371 na B."
+    ]
+   ]
+  },
+  "C04-53": {
+   "titulo": "As quatro faixas: o gráfico",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "figura": "figuras/C04_faixas.png",
+   "legenda": "Moradores por faixa nas duas propostas.",
+   "explica": [
+    [
+     "O que é.",
+     "Os moradores de cada faixa, em milhões."
+    ],
+    [
+     "Para que serve.",
+     "Dá a dimensão da população em cada nível."
+    ],
+    [
+     "Como ler.",
+     "Regra do IVS-BH 2012, dentro de cada município: médio = média ± 0,5 desvio-padrão; elevado até +1,5; acima, muito elevado; abaixo de −0,5, baixo. A B cobre mais setores, por isso tem mais moradores em todas as faixas."
+    ]
+   ]
+  },
+  "C04-54": {
+   "titulo": "As faixas: duas regras e duas propostas",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "cab": [
+    "Comparação",
+    "Resultado"
+   ],
+   "colW": [
+    3.0,
+    3.6
+   ],
+   "linhas": [
+    [
+     "proposta A (promax)",
+     "54,9%"
+    ],
+    [
+     "proposta B (Varimax)",
+     "53,6%"
+    ],
+    [
+     "A × B (setores comuns)",
+     "troca 4,4%; Spearman 0,996"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "A concordância entre a regra do IVS-BH e os quartis (25% dos setores de cada município em cada faixa) em cada proposta, e a troca de faixa entre A e B nos setores que as duas têm."
+    ],
+    [
+     "Para que serve.",
+     "Mostra o quanto a regra de faixa e a escolha entre A e B mudam a classificação."
+    ],
+    [
+     "Como ler.",
+     "A regra do IVS-BH põe a maioria no \"médio\"; os quartis forçam 25% em cada faixa — a discordância vem em parte da construção das regras."
+    ],
+    [
+     "O que mostra.",
+     "Entre A e B, 4,4% dos setores comuns mudam de faixa."
+    ]
+   ]
+  },
+  "C04-55": {
+   "titulo": "Os idosos em cada faixa: a tabela",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "cab": [
+    "Faixa",
+    "A pessoas 60+",
+    "A % idosos",
+    "B pessoas 60+",
+    "B % idosos"
+   ],
+   "colW": [
+    1.4,
+    1.4,
+    1.2,
+    1.4,
+    1.2
+   ],
+   "linhas": [
+    [
+     "baixo",
+     "2.119.470",
+     "33,3%",
+     "2.492.103",
+     "33,9%"
+    ],
+    [
+     "médio",
+     "2.956.786",
+     "46,4%",
+     "3.456.258",
+     "47,0%"
+    ],
+    [
+     "elevado",
+     "1.137.472",
+     "17,9%",
+     "1.198.116",
+     "16,3%"
+    ],
+    [
+     "muito elevado",
+     "157.849",
+     "2,5%",
+     "203.943",
+     "2,8%"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Quantas pessoas de 60 anos ou mais moram em cada faixa, nas duas propostas."
+    ],
+    [
+     "Para que serve.",
+     "É a pergunta do ELSI-Brasil: onde moram os idosos em relação à vulnerabilidade do território. Com os idosos fora do índice, a pergunta não é circular."
+    ],
+    [
+     "Como ler.",
+     "\"% idosos\": distribuição dos idosos com IVS entre as faixas."
+    ],
+    [
+     "O que mostra.",
+     "Idosos em setores de faixa elevada ou muito elevada — proposta A (promax): 1.295.321 (20,3%); proposta B (Varimax): 1.402.059 (19,1%)."
+    ]
+   ]
+  },
+  "C04-56": {
+   "titulo": "Os idosos em cada faixa: o gráfico",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "figura": "figuras/C04_idosos_faixa.png",
+   "legenda": "Proporção média de idosos nos setores de cada faixa.",
+   "explica": [
+    [
+     "O que é.",
+     "A proporção média de pessoas de 60 anos ou mais nos setores de cada faixa."
+    ],
+    [
+     "Para que serve.",
+     "Mostra se os setores mais vulneráveis são mais jovens ou mais envelhecidos."
+    ],
+    [
+     "Como ler.",
+     "Barras que caem para a direita: os setores mais vulneráveis têm menos idosos proporcionalmente."
+    ]
+   ]
+  },
+  "C04-57": {
+   "titulo": "As favelas em cada faixa",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "cab": [
+    "Faixa",
+    "A setores",
+    "A % favela",
+    "B setores",
+    "B % favela"
+   ],
+   "colW": [
+    1.5,
+    1.3,
+    1.3,
+    1.3,
+    1.3
+   ],
+   "linhas": [
+    [
+     "baixo",
+     "21.263",
+     "2,4%",
+     "24.802",
+     "4,3%"
+    ],
+    [
+     "médio",
+     "32.769",
+     "12,7%",
+     "38.924",
+     "15,9%"
+    ],
+    [
+     "elevado",
+     "18.234",
+     "43,3%",
+     "19.234",
+     "47,2%"
+    ],
+    [
+     "muito elevado",
+     "3.660",
+     "57,9%",
+     "4.551",
+     "56,4%"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "A proporção de setores de favela e comunidade urbana em cada faixa."
+    ],
+    [
+     "Para que serve.",
+     "Checagem de bom senso: favela deveria se concentrar nas faixas mais altas."
+    ],
+    [
+     "Como ler.",
+     "Descrição, não validação: o critério de favela do IBGE já incorpora moradia."
+    ],
+    [
+     "O que mostra.",
+     "Na faixa muito elevada: 57,9% de favela na A e 56,4% na B."
+    ]
+   ]
+  },
+  "C04-58": {
+   "titulo": "Por região: a distribuição das faixas",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "figura": "figuras/C04_faixas_regiao.png",
+   "legenda": "Distribuição das faixas por região, nas duas propostas.",
+   "explica": [
+    [
+     "O que é.",
+     "A parte dos setores em cada faixa, para cada grupo."
+    ],
+    [
+     "Para que serve.",
+     "Mostra se algum grupo concentra setores nas faixas altas."
+    ],
+    [
+     "Como ler.",
+     "Com a régua do município, a faixa diz onde o setor fica dentro da própria cidade: comparar grupos descreve a forma das distribuições internas, não o nível de vulnerabilidade de cada um."
+    ],
+    [
+     "O que mostra.",
+     "% em faixa muito elevada (A / B): Norte 7,0% / 7,4%; Nordeste 4,6% / 5,2%; Sudeste 4,6% / 4,9%; Sul 5,4% / 5,4%; Centro-Oeste 4,9% / 5,5%."
+    ]
+   ]
+  },
+  "C04-59": {
+   "titulo": "Por porte do município: a distribuição das faixas",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "figura": "figuras/C04_faixas_porte.png",
+   "legenda": "Distribuição das faixas por porte do município, nas duas propostas.",
+   "explica": [
+    [
+     "O que é.",
+     "A parte dos setores em cada faixa, para cada grupo."
+    ],
+    [
+     "Para que serve.",
+     "Mostra se algum grupo concentra setores nas faixas altas."
+    ],
+    [
+     "Como ler.",
+     "Com a régua do município, a faixa diz onde o setor fica dentro da própria cidade: comparar grupos descreve a forma das distribuições internas, não o nível de vulnerabilidade de cada um."
+    ],
+    [
+     "O que mostra.",
+     "% em faixa muito elevada (A / B): até 100 mil 6,2% / 5,6%; 100 a 500 mil 5,9% / 6,3%; mais de 500 mil 4,7% / 5,1%."
+    ]
+   ]
+  },
+  "C04-60": {
+   "titulo": "Os municípios com mais moradores em faixa elevada ou muito elevada",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "cab": [
+    "Município",
+    "A moradores",
+    "B moradores"
+   ],
+   "colW": [
+    2.8,
+    1.8,
+    1.8
+   ],
+   "linhas": [
+    [
+     "São Paulo",
+     "2.792.228",
+     "2.892.000"
+    ],
+    [
+     "Rio de Janeiro",
+     "1.422.707",
+     "1.460.388"
+    ],
+    [
+     "Belo Horizonte",
+     "508.547",
+     "546.892"
+    ],
+    [
+     "Brasília",
+     "473.333",
+     "338.292"
+    ],
+    [
+     "Fortaleza",
+     "462.374",
+     "583.384"
+    ],
+    [
+     "Salvador",
+     "426.606",
+     "438.855"
+    ],
+    [
+     "Curitiba",
+     "362.296",
+     "382.391"
+    ],
+    [
+     "Manaus",
+     "342.047",
+     "475.364"
+    ],
+    [
+     "Goiânia",
+     "335.275",
+     "328.445"
+    ],
+    [
+     "Recife",
+     "279.335",
+     "368.557"
+    ],
+    [
+     "Campinas",
+     "277.300",
+     "296.237"
+    ],
+    [
+     "Porto Alegre",
+     "273.050",
+     "351.884"
+    ],
+    [
+     "Guarulhos",
+     "271.026",
+     "294.742"
+    ],
+    [
+     "Belém",
+     "226.270",
+     "332.432"
+    ],
+    [
+     "São Bernardo do Campo",
+     "214.991",
+     "225.225"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Os 15 municípios com mais moradores em setores de faixa elevada ou muito elevada na proposta A, com o mesmo número na B."
+    ],
+    [
+     "Para que serve.",
+     "Mostra onde está, em números absolutos, a população que o índice aponta como mais vulnerável."
+    ],
+    [
+     "Como ler.",
+     "São contagens, não médias: a média de um índice padronizado por município não se compara entre cidades. A diferença entre A e B vem sobretudo dos setores sem o dado do banheiro."
+    ]
+   ]
+  },
+  "C04-61": {
+   "titulo": "Quem cada proposta deixa sem IVS",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv",
+    "banco_de_dados/eda/fatorial_corte_04/perfil_perdidos.csv"
+   ],
+   "cab": [
+    "Grupo",
+    "Setores",
+    "Moradores",
+    "Renda mediana",
+    "% favela",
+    "% N e NE"
+   ],
+   "colW": [
+    2.6,
+    0.95,
+    1.2,
+    1.25,
+    0.85,
+    1.0
+   ],
+   "linhas": [
+    [
+     "Sem IVS nas duas",
+     "16.597",
+     "6.268.812",
+     "R$ 6.078,40",
+     "3,4%",
+     "12,9%"
+    ],
+    [
+     "Sem IVS só na A (falta o banheiro)",
+     "11.585",
+     "6.939.508",
+     "R$ 1.775,61",
+     "36,2%",
+     "44,4%"
+    ],
+    [
+     "Com IVS nas duas",
+     "75.926",
+     "38.889.753",
+     "R$ 2.436,89",
+     "19,4%",
+     "23,9%"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Os setores do recorte divididos pelo que acontece com eles: sem IVS nas duas propostas (falta o analfabetismo, sob sigilo), sem IVS só na A (falta o dado do banheiro) e com IVS nas duas."
+    ],
+    [
+     "Para que serve.",
+     "Perder setores é decisão: se os perdidos são diferentes dos mantidos, o índice fica enviesado."
+    ],
+    [
+     "Como ler.",
+     "Compare cada grupo com o dos setores com IVS. A média dos perdidos da A junta os dois primeiros grupos, que são opostos, e esconde isso."
+    ],
+    [
+     "O que mostra.",
+     "Os 11.585 setores que só a A perde têm renda mediana de R$ 1.775,61 e 36,2% de favela: são mais pobres que os que ficam. Os que as duas perdem são mais ricos."
+    ]
+   ]
+  },
+  "C04-62": {
+   "titulo": "A cobertura do IVS por município",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "cab": [
+    "Município",
+    "Setores",
+    "Cobertura A",
+    "Cobertura B"
+   ],
+   "colW": [
+    2.8,
+    1.2,
+    1.4,
+    1.4
+   ],
+   "linhas": [
+    [
+     "Canoas",
+     "645",
+     "59,5%",
+     "79,1%"
+    ],
+    [
+     "Porto Alegre",
+     "2.677",
+     "59,7%",
+     "72,5%"
+    ],
+    [
+     "Belém",
+     "2.004",
+     "66,4%",
+     "93,0%"
+    ],
+    [
+     "São Caetano do Sul",
+     "421",
+     "66,5%",
+     "70,3%"
+    ],
+    [
+     "Manaus",
+     "3.094",
+     "66,6%",
+     "90,3%"
+    ],
+    [
+     "São Pedro da Aldeia",
+     "333",
+     "67,0%",
+     "76,3%"
+    ],
+    [
+     "Ananindeua",
+     "732",
+     "67,2%",
+     "90,3%"
+    ],
+    [
+     "São Luís",
+     "1.674",
+     "68,6%",
+     "90,1%"
+    ],
+    [
+     "Belo Horizonte",
+     "5.113",
+     "68,9%",
+     "77,5%"
+    ],
+    [
+     "Recife",
+     "2.796",
+     "69,0%",
+     "89,6%"
+    ],
+    [
+     "São José de Ribamar",
+     "580",
+     "69,7%",
+     "89,5%"
+    ],
+    [
+     "Curitiba",
+     "3.168",
+     "70,0%",
+     "76,9%"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "A % de setores de cada município que recebem IVS, nos 12 municípios (com 100 setores ou mais) de menor cobertura na A."
+    ],
+    [
+     "Para que serve.",
+     "Mostra onde a falta do dado do banheiro mais pesa."
+    ],
+    [
+     "Como ler.",
+     "Cobertura baixa: muitos setores do município ficam fora dos mapas e das faixas."
+    ],
+    [
+     "O que mostra.",
+     "Menor cobertura na A: Canoas (59,5%, contra 79,1% na B)."
+    ]
+   ]
+  },
+  "C04-63": {
+   "titulo": "A troca de faixa entre A e B por município",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "cab": [
+    "Município",
+    "Setores comuns",
+    "Troca A × B"
+   ],
+   "colW": [
+    2.8,
+    1.6,
+    1.6
+   ],
+   "linhas": [
+    [
+     "São Luís",
+     "1.149",
+     "14,5%"
+    ],
+    [
+     "Camaragibe",
+     "209",
+     "12,4%"
+    ],
+    [
+     "Ananindeua",
+     "492",
+     "10,0%"
+    ],
+    [
+     "São José de Ribamar",
+     "404",
+     "9,9%"
+    ],
+    [
+     "Belém",
+     "1.330",
+     "9,8%"
+    ],
+    [
+     "Recife",
+     "1.929",
+     "9,3%"
+    ],
+    [
+     "Maceió",
+     "1.206",
+     "9,0%"
+    ],
+    [
+     "Nova Iguaçu",
+     "1.190",
+     "8,7%"
+    ],
+    [
+     "Manaus",
+     "2.062",
+     "8,5%"
+    ],
+    [
+     "Goiânia",
+     "1.766",
+     "8,3%"
+    ],
+    [
+     "Duque de Caxias",
+     "1.326",
+     "8,1%"
+    ],
+    [
+     "Brasília",
+     "3.766",
+     "7,0%"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "A % de setores que mudam de faixa entre A e B em cada município (com 100 setores comuns ou mais), com as faixas refeitas nos setores comuns; os 12 maiores."
+    ],
+    [
+     "Para que serve.",
+     "Mostra se a escolha entre A e B pesa mais em algumas cidades."
+    ],
+    [
+     "Como ler.",
+     "Até 10% é tratado como equivalente."
+    ],
+    [
+     "O que mostra.",
+     "Mediana entre os municípios: 5,3%; 2 de 40 chegam a 10%."
+    ]
+   ]
+  },
+  "C04-64": {
+   "titulo": "As finalistas lado a lado",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/finalistas.csv"
+   ],
+   "cab": [
+    "Finalista",
+    "Ind.",
+    "Método",
+    "Setores",
+    "Troca vs A",
+    "Troca vs B"
+   ],
+   "colW": [
+    2.3,
+    0.5,
+    1.7,
+    1.0,
+    1.0,
+    1.0
+   ],
+   "linhas": [
+    [
+     "proposta A (promax)",
+     "8",
+     "promax · 60/40",
+     "75.926",
+     "—",
+     "4,4%"
+    ],
+    [
+     "proposta B (Varimax)",
+     "7",
+     "Varimax · 60/40",
+     "87.511",
+     "4,4%",
+     "—"
+    ],
+    [
+     "os 12 (regra literal)",
+     "10",
+     "promax · 60/40",
+     "75.629",
+     "25,5%",
+     "25,9%"
+    ],
+    [
+     "sem rotação",
+     "7",
+     "sem rotação · fator único",
+     "87.511",
+     "9,6%",
+     "12,0%"
+    ],
+    [
+     "proposta anterior (os 7)",
+     "7",
+     "promax · 60/40",
+     "87.544",
+     "14,8%",
+     "13,7%"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "As duas propostas e as alternativas: a regra literal (com idosos e crianças), sem rotação e a proposta anterior."
+    ],
+    [
+     "Para que serve.",
+     "São as especificações para decidir, com o custo de cada uma."
+    ],
+    [
+     "Como ler.",
+     "\"Troca\": % de setores que mudam de faixa, nos setores comuns. Até 10%: equivalente."
+    ]
+   ]
+  },
+  "C04-65": {
+   "titulo": "Idosos e crianças",
+   "fontes": [],
+   "numero": "10",
+   "sub": "Passam no corte, mas mudam o que o índice mede."
+  },
+  "C04-66": {
+   "titulo": "O peso de cada indicador com e sem idosos e crianças",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/versoes.csv"
+   ],
+   "figura": "figuras/C04_pesos.png",
+   "legenda": "Peso no índice de cada indicador, promax · 60/40; barra à esquerda do zero: entra invertido.",
+   "explica": [
+    [
+     "O que é.",
+     "O peso de cada indicador nos 12 (regra literal), na proposta A e na proposta anterior."
+    ],
+    [
+     "Para que serve.",
+     "Mostra o que pesa no índice quando idosos e crianças ficam."
+    ],
+    [
+     "Como ler.",
+     "O peso é a fração do índice que vem do indicador. Peso negativo: o indicador entra invertido."
+    ],
+    [
+     "O que mostra.",
+     "Nos 12, idosos e crianças somam 30,0% do índice (em módulo) e a renda fica com 9,3%. Os idosos entram invertidos: menos idosos conta como mais vulnerabilidade."
+    ]
+   ]
+  },
+  "C04-67": {
+   "titulo": "As cargas dos 12 com promax (regra literal)",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/cargas_finais.csv"
+   ],
+   "cab": [
+    "Indicador",
+    "Padrão F1",
+    "Padrão F2",
+    "Estrutura F1",
+    "Estrutura F2",
+    "Comunalidade"
+   ],
+   "colW": [
+    2.4,
+    0.9,
+    0.9,
+    1.05,
+    1.05,
+    1.3
+   ],
+   "linhas": [
+    [
+     "Água inadequada",
+     "-0,095",
+     "0,669",
+     "0,305",
+     "0,612",
+     "0,380"
+    ],
+    [
+     "Esgoto inadequado",
+     "0,230",
+     "0,440",
+     "0,493",
+     "0,578",
+     "0,368"
+    ],
+    [
+     "Razão de moradores",
+     "0,608",
+     "-0,018",
+     "0,597",
+     "0,346",
+     "0,357"
+    ],
+    [
+     "Analfabetismo (15 anos ou mais)",
+     "0,623",
+     "0,166",
+     "0,722",
+     "0,539",
+     "0,539"
+    ],
+    [
+     "Renda média do responsável",
+     "0,723",
+     "0,157",
+     "0,817",
+     "0,590",
+     "0,684"
+    ],
+    [
+     "Preta, parda ou indígena",
+     "0,631",
+     "0,234",
+     "0,771",
+     "0,612",
+     "0,630"
+    ],
+    [
+     "Sem água canalizada",
+     "-0,123",
+     "0,796",
+     "0,354",
+     "0,723",
+     "0,532"
+    ],
+    [
+     "Sem banheiro",
+     "-0,002",
+     "0,426",
+     "0,253",
+     "0,425",
+     "0,181"
+    ],
+    [
+     "Idosos (60 anos ou mais)",
+     "-0,841",
+     "0,169",
+     "-0,740",
+     "-0,335",
+     "0,565"
+    ],
+    [
+     "Crianças (0 a 14 anos)",
+     "0,989",
+     "-0,192",
+     "0,874",
+     "0,400",
+     "0,788"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "As cargas dos indicadores que ficam nos 12 com promax: a matriz padrão (que define o corte e os pesos) e a de estrutura."
+    ],
+    [
+     "Para que serve.",
+     "Mostra quem forma cada fator quando idosos e crianças entram."
+    ],
+    [
+     "Como ler.",
+     "F1 é o fator da renda (socioeconômico); F2, o do saneamento. Carga perto de 1 ou acima pede cautela (pode indicar solução imprópria) — vale para as crianças aqui e para a renda na proposta A."
+    ],
+    [
+     "O que mostra.",
+     "Crianças têm a maior carga do F1 (0,989), acima da renda (0,723): com os 12, o F1 passa a medir a estrutura etária."
+    ]
+   ]
+  },
+  "C04-68": {
+   "titulo": "Com e sem idosos e crianças, e a proposta anterior",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/finais_comparados.csv"
+   ],
+   "cab": [
+    "Versão",
+    "Contra",
+    "Setores",
+    "Spearman",
+    "Troca"
+   ],
+   "colW": [
+    2.6,
+    2.4,
+    0.9,
+    0.9,
+    0.8
+   ],
+   "linhas": [
+    [
+     "Os 12",
+     "Proposta A (sem idosos e crianças)",
+     "75.629",
+     "0,883",
+     "25,5%"
+    ],
+    [
+     "Os 12",
+     "Proposta anterior (os 7)",
+     "75.629",
+     "0,855",
+     "30,0%"
+    ],
+    [
+     "Proposta A (sem idosos e crianças)",
+     "Proposta anterior (os 7)",
+     "75.926",
+     "0,976",
+     "14,8%"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Os 12, a proposta A e a proposta anterior, duas a duas, nos setores comuns (todas promax · 60/40)."
+    ],
+    [
+     "Para que serve.",
+     "Mede o efeito de idosos e crianças e o efeito do corte sobre o IVS que já existia."
+    ],
+    [
+     "Como ler.",
+     "Mesmas medidas das versões: Spearman dentro do município e troca de faixa; até 10% é equivalente."
+    ],
+    [
+     "O que mostra.",
+     "Tirar idosos e crianças muda a faixa de 25,5% dos setores. A proposta A fica a 14,8% de troca da proposta anterior: mais perto dela que os 12, mas acima do limite de equivalência."
+    ]
+   ]
+  },
+  "C04-69": {
+   "titulo": "A troca de faixa por município: com e sem idosos e crianças",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "cab": [
+    "Município",
+    "Setores comuns",
+    "Troca A × os 12"
+   ],
+   "colW": [
+    2.8,
+    1.6,
+    1.6
+   ],
+   "linhas": [
+    [
+     "São Caetano do Sul",
+     "279",
+     "52,7%"
+    ],
+    [
+     "Salto",
+     "168",
+     "43,5%"
+    ],
+    [
+     "Feira de Santana",
+     "731",
+     "43,0%"
+    ],
+    [
+     "Araçatuba",
+     "384",
+     "41,4%"
+    ],
+    [
+     "Divinópolis",
+     "425",
+     "37,2%"
+    ],
+    [
+     "Anápolis",
+     "465",
+     "34,2%"
+    ],
+    [
+     "Goiânia",
+     "1.762",
+     "34,0%"
+    ],
+    [
+     "Cachoeiro de Itapemirim",
+     "291",
+     "33,0%"
+    ],
+    [
+     "São José dos Pinhais",
+     "356",
+     "32,3%"
+    ],
+    [
+     "São Bernardo do Campo",
+     "1.279",
+     "31,7%"
+    ],
+    [
+     "Guarulhos",
+     "1.944",
+     "31,1%"
+    ],
+    [
+     "Curitiba",
+     "2.216",
+     "31,0%"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "A % de setores que mudam de faixa entre a proposta A e os 12 em cada município (com 100 setores comuns ou mais); os 12 maiores."
+    ],
+    [
+     "Para que serve.",
+     "Mostra que a decisão sobre idosos e crianças pesa por cidade, não só em média."
+    ],
+    [
+     "Como ler.",
+     "Até 10% é tratado como equivalente."
+    ],
+    [
+     "O que mostra.",
+     "Mediana entre os municípios: 26,7%; 13 de 40 passam de 30%."
+    ]
+   ]
+  },
+  "C04-70": {
+   "titulo": "Sensibilidade",
+   "fontes": [],
+   "numero": "11",
+   "sub": "Quanto o IVS muda com cada alternativa."
+  },
+  "C04-71": {
+   "titulo": "Concordância entre as finalistas",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "figura": "figuras/C04_concordancia.png",
+   "legenda": "Spearman entre os IVS das finalistas, nos setores que cada par tem.",
+   "explica": [
+    [
+     "O que é.",
+     "A correlação de Spearman entre os IVS de cada par de finalistas, no conjunto dos setores."
+    ],
+    [
+     "Para que serve.",
+     "Mostra o quanto as alternativas ordenam os setores do mesmo jeito."
+    ],
+    [
+     "Como ler.",
+     "1 = mesma ordem dos setores; quanto mais claro, mais as duas versões discordam."
+    ]
+   ]
+  },
+  "C04-72": {
+   "titulo": "A AUC contra favela, como descrição",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/finalistas.csv",
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "cab": [
+    "Finalista",
+    "AUC (amostra própria)",
+    "Renda (amostra própria)",
+    "AUC nos setores da A"
+   ],
+   "colW": [
+    2.4,
+    1.5,
+    1.6,
+    1.6
+   ],
+   "linhas": [
+    [
+     "proposta A (promax)",
+     "0,839",
+     "0,890",
+     "0,839"
+    ],
+    [
+     "proposta B (Varimax)",
+     "0,824",
+     "0,882",
+     "0,833"
+    ],
+    [
+     "os 12 (regra literal)",
+     "0,840",
+     "0,890",
+     "0,840"
+    ],
+    [
+     "sem rotação",
+     "0,847",
+     "0,882",
+     "0,856"
+    ],
+    [
+     "proposta anterior (os 7)",
+     "0,831",
+     "0,882",
+     "0,841"
+    ],
+    [
+     "renda sozinha",
+     "—",
+     "—",
+     "0,890"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "A AUC mede o quanto o índice separa os setores de favela dos demais: 0,5 = acaso; 1 = separação perfeita."
+    ],
+    [
+     "Para que serve.",
+     "Era usada como validação nas versões anteriores. Fica aqui como descrição."
+    ],
+    [
+     "Como ler.",
+     "As duas primeiras colunas usam a amostra de cada finalista e não se comparam entre linhas (a própria renda muda de amostra para amostra). A última usa os mesmos setores (os da A) para todas."
+    ],
+    [
+     "O que mostra.",
+     "Nos mesmos setores, a renda sozinha separa favela tão bem ou melhor que qualquer índice: a AUC mede o conteúdo socioeconômico, não a qualidade dos pesos."
+    ]
+   ]
+  },
+  "C04-73": {
+   "titulo": "Quantos setores cada finalista perde",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/perfil_perdidos.csv"
+   ],
+   "cab": [
+    "Finalista",
+    "Perdidos",
+    "% recorte",
+    "Renda mediana",
+    "% favela"
+   ],
+   "colW": [
+    2.4,
+    1.1,
+    1.0,
+    1.6,
+    1.0
+   ],
+   "linhas": [
+    [
+     "proposta A (promax)",
+     "28.182",
+     "27,1%",
+     "R$ 3.412,00",
+     "16,9%"
+    ],
+    [
+     "proposta B (Varimax)",
+     "16.597",
+     "15,9%",
+     "R$ 6.078,40",
+     "3,4%"
+    ],
+    [
+     "os 12 (regra literal)",
+     "28.479",
+     "27,4%",
+     "R$ 3.405,93",
+     "16,9%"
+    ],
+    [
+     "sem rotação",
+     "16.597",
+     "15,9%",
+     "R$ 6.078,40",
+     "3,4%"
+    ],
+    [
+     "proposta anterior (os 7)",
+     "16.564",
+     "15,9%",
+     "R$ 6.092,84",
+     "3,3%"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Os setores do recorte que ficam sem IVS em cada finalista, por dado ausente num componente."
+    ],
+    [
+     "Para que serve.",
+     "Perder setores é decisão."
+    ],
+    [
+     "Como ler.",
+     "No recorte, faltam o analfabetismo em 16.552 setores e o sem banheiro em 12.196. Nas finalistas com o sem banheiro, os perdidos misturam os dois grupos."
+    ],
+    [
+     "O que mostra.",
+     "A mediana dos perdidos da A parece \"mais rica\", mas junta dois grupos opostos (slide \"Quem cada proposta deixa sem IVS\")."
+    ]
+   ]
+  },
+  "C04-74": {
+   "titulo": "As decisões",
+   "fontes": [],
+   "numero": "12",
+   "sub": "O que a regra resolve e o que continua com a orientação."
+  },
+  "C04-75": {
+   "titulo": "O que levar à orientação",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/corte_passos.csv",
+    "banco_de_dados/eda/fatorial_corte_04/versoes.csv",
+    "banco_de_dados/eda/fatorial_corte_04/finais_comparados.csv",
+    "banco_de_dados/eda/fatorial_corte_04/corte_estabilidade.csv",
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "cab": [
+    "#",
+    "Ponto",
+    "O que os dados mostram",
+    "Pergunta"
+   ],
+   "colW": [
+    0.35,
+    1.6,
+    3.6,
+    1.75
+   ],
+   "linhas": [
+    [
+     "1",
+     "Lixo inadequado e moradia não convencional",
+     "saem nas 6 combinações de rotação e família",
+     "— (a regra resolve)"
+    ],
+    [
+     "2",
+     "Proposta A ou B",
+     "A (promax) mantém o sem banheiro, com comunalidade 0,18; custa 11.585 setores, 36,2% deles favela e mais pobres. B (Varimax) cobre 84,1% do recorte. A × B: 4,4% de troca",
+     "qual rotação?"
+    ],
+    [
+     "3",
+     "Idosos e crianças",
+     "passam no corte, mas levam 30,0% do índice e invertem os idosos; 25,5% de troca (mediana por município 26,7%)",
+     "ficam fora, como contexto?"
+    ],
+    [
+     "4",
+     "Critérios do projeto",
+     "nenhuma proposta passa na comunalidade de 0,30 (A: 0,18; B: 0,24); só os 12 com Varimax passam em tudo",
+     "a comunalidade vira critério?"
+    ],
+    [
+     "5",
+     "Método de peso",
+     "dentro da família sem idosos e crianças, os métodos que saem dos dados e o 60/40 ficam a no máximo 4,4% de troca da A; 50/50 vai a 10,8% e sem rotação a 9,6%",
+     "manter 60/40?"
+    ]
+   ],
+   "explica": [
+    [
+     "O que é.",
+     "Os cinco pontos que saem desta análise, com a pergunta que cada um deixa."
+    ],
+    [
+     "Para que serve.",
+     "É o que precisa de decisão da orientadora."
+    ],
+    [
+     "Como ler.",
+     "A regra do 0,4 resolve o ponto 1; os outros são escolhas."
+    ],
+    [
+     "O que mostra.",
+     "A decisão principal é entre A e B: rotação contra cobertura dos setores mais pobres."
+    ]
+   ]
+  },
+  "C04-76": {
+   "titulo": "Limitações",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_global_adequacao.csv",
+    "banco_de_dados/eda/fatorial_corte_04/versoes.csv"
+   ],
+   "blocos": [
+    [
+     "Estudo ecológico.",
+     "As relações são entre setores, não entre pessoas."
+    ],
+    [
+     "Número de fatores.",
+     "O corte usa 2 fatores em todos os passos, como o IVS de 2012. Com os 12 juntos, Kaiser retém 4 e Horn 3; Kaiser e Horn não são refeitos a cada retirada."
+    ],
+    [
+     "Critérios que não cabem juntos.",
+     "Com um fator, comunalidade é carga ao quadrado: a carga de 0,40 da regra corresponde a comunalidade 0,16, abaixo do mínimo de 0,30."
+    ],
+    [
+     "Sigilo.",
+     "O analfabetismo sob sigilo fica ausente, e o ausente cai nos setores de renda mais alta; o sem banheiro ausente cai nos mais pobres."
+    ],
+    [
+     "Carga acima de 1.",
+     "Na proposta A a renda tem carga padrão de 1,015: possível na promax, mas pede cautela ao ler o peso da renda."
+    ],
+    [
+     "Amostras.",
+     "Cada versão roda nos setores com todos os seus indicadores; as comparações refazem as faixas nos setores comuns, mas não a régua mín-máx."
+    ],
+    [
+     "Autocorrelação espacial.",
+     "Setores vizinhos não são independentes; o I de Moran fica para o geoprocessamento."
+    ],
+    [
+     "Validação.",
+     "Não há desfecho de saúde no projeto; a AUC contra favela é só descrição."
+    ]
+   ]
+  },
+  "C04-77": {
+   "titulo": "Próximos passos",
+   "fontes": [
+    "scripts/fatorial_corte_04.py"
+   ],
+   "blocos": [
+    [
+     "1.",
+     "Levar os cinco pontos à orientadora, começando pela escolha entre A e B."
+    ],
+    [
+     "2.",
+     "Recalcular o IVS com as escolhas dela (o motor roda qualquer família, rotação e peso)."
+    ],
+    [
+     "3.",
+     "Se a orientadora pedir: o corte com 3 fatores, como Horn indica para os 12."
+    ],
+    [
+     "4.",
+     "Mapas temáticos no QGIS 3.x e I de Moran; redação do artigo e do relatório final."
+    ]
+   ]
+  },
+  "C04-78": {
+   "titulo": "Apêndice: correlação dentro dos municípios",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_municipal_correlacao.csv"
+   ],
+   "cab": [
+    "",
+    "AGU",
+    "ESG",
+    "LIX",
+    "MOR",
+    "ANA",
+    "REN",
+    "PPI",
+    "CAN",
+    "BAN",
+    "MNC",
+    "IDO",
+    "CRI"
+   ],
+   "linhas": [
+    [
+     "Água inadequada",
+     "1,00",
+     "0,22",
+     "0,14",
+     "0,08",
+     "0,10",
+     "0,07",
+     "0,08",
+     "0,28",
+     "0,12",
+     "0,01",
+     "-0,10",
+     "0,12"
+    ],
+    [
+     "Esgoto inadequado",
+     "0,22",
+     "1,00",
+     "0,24",
+     "0,25",
+     "0,36",
+     "0,36",
+     "0,33",
+     "0,27",
+     "0,18",
+     "0,04",
+     "-0,30",
+     "0,34"
+    ],
+    [
+     "Lixo inadequado",
+     "0,14",
+     "0,24",
+     "1,00",
+     "-0,00",
+     "0,15",
+     "0,15",
+     "0,16",
+     "0,16",
+     "0,14",
+     "0,02",
+     "-0,29",
+     "0,22"
+    ],
+    [
+     "Razão de moradores",
+     "0,08",
+     "0,25",
+     "-0,00",
+     "1,00",
+     "0,41",
+     "0,44",
+     "0,46",
+     "0,17",
+     "0,07",
+     "-0,01",
+     "-0,38",
+     "0,59"
+    ],
+    [
+     "Analfabetismo (15 anos ou mais)",
+     "0,10",
+     "0,36",
+     "0,15",
+     "0,41",
+     "1,00",
+     "0,75",
+     "0,69",
+     "0,28",
+     "0,20",
+     "0,09",
+     "-0,39",
+     "0,54"
+    ],
+    [
+     "Renda média do responsável",
+     "0,07",
+     "0,36",
+     "0,15",
+     "0,44",
+     "0,75",
+     "1,00",
+     "0,84",
+     "0,25",
+     "0,18",
+     "0,07",
+     "-0,54",
+     "0,64"
+    ],
+    [
+     "Preta, parda ou indígena",
+     "0,08",
+     "0,33",
+     "0,16",
+     "0,46",
+     "0,69",
+     "0,84",
+     "1,00",
+     "0,24",
+     "0,16",
+     "0,07",
+     "-0,60",
+     "0,66"
+    ],
+    [
+     "Sem água canalizada",
+     "0,28",
+     "0,27",
+     "0,16",
+     "0,17",
+     "0,28",
+     "0,25",
+     "0,24",
+     "1,00",
+     "0,30",
+     "0,06",
+     "-0,17",
+     "0,21"
+    ],
+    [
+     "Sem banheiro",
+     "0,12",
+     "0,18",
+     "0,14",
+     "0,07",
+     "0,20",
+     "0,18",
+     "0,16",
+     "0,30",
+     "1,00",
+     "0,10",
+     "-0,12",
+     "0,16"
+    ],
+    [
+     "Moradia não convencional",
+     "0,01",
+     "0,04",
+     "0,02",
+     "-0,01",
+     "0,09",
+     "0,07",
+     "0,07",
+     "0,06",
+     "0,10",
+     "1,00",
+     "-0,02",
+     "0,03"
+    ],
+    [
+     "Idosos (60 anos ou mais)",
+     "-0,10",
+     "-0,30",
+     "-0,29",
+     "-0,38",
+     "-0,39",
+     "-0,54",
+     "-0,60",
+     "-0,17",
+     "-0,12",
+     "-0,02",
+     "1,00",
+     "-0,77"
+    ],
+    [
+     "Crianças (0 a 14 anos)",
+     "0,12",
+     "0,34",
+     "0,22",
+     "0,59",
+     "0,54",
+     "0,64",
+     "0,66",
+     "0,21",
+     "0,16",
+     "0,03",
+     "-0,77",
+     "1,00"
+    ]
+   ],
+   "matriz": true
+  },
+  "C04-79": {
+   "titulo": "Apêndice: cargas dos 12, no conjunto",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_global_cargas.csv"
+   ],
+   "matriz": true,
+   "cab": [
+    "Indicador",
+    "MSA",
+    "h²",
+    "Sem rot. F1",
+    "Sem rot. F2",
+    "Varimax F1",
+    "Varimax F2",
+    "Promax F1",
+    "Promax F2"
+   ],
+   "linhas": [
+    [
+     "Água inadequada",
+     "0,78",
+     "0,37",
+     "0,42",
+     "0,43",
+     "0,19",
+     "0,57",
+     "-0,09",
+     "0,65"
+    ],
+    [
+     "Esgoto inadequado",
+     "0,92",
+     "0,37",
+     "0,57",
+     "0,23",
+     "0,41",
+     "0,45",
+     "0,23",
+     "0,44"
+    ],
+    [
+     "Lixo inadequado",
+     "0,74",
+     "0,06",
+     "0,24",
+     "0,08",
+     "0,18",
+     "0,18",
+     "0,12",
+     "0,16"
+    ],
+    [
+     "Razão de moradores",
+     "0,82",
+     "0,35",
+     "0,56",
+     "-0,17",
+     "0,58",
+     "0,09",
+     "0,62",
+     "-0,05"
+    ],
+    [
+     "Analfabetismo (15 anos ou mais)",
+     "0,88",
+     "0,54",
+     "0,73",
+     "-0,05",
+     "0,68",
+     "0,28",
+     "0,63",
+     "0,16"
+    ],
+    [
+     "Renda média do responsável",
+     "0,80",
+     "0,68",
+     "0,82",
+     "-0,07",
+     "0,77",
+     "0,30",
+     "0,73",
+     "0,15"
+    ],
+    [
+     "Preta, parda ou indígena",
+     "0,85",
+     "0,63",
+     "0,80",
+     "-0,00",
+     "0,72",
+     "0,35",
+     "0,63",
+     "0,23"
+    ],
+    [
+     "Sem água canalizada",
+     "0,84",
+     "0,53",
+     "0,50",
+     "0,53",
+     "0,21",
+     "0,70",
+     "-0,12",
+     "0,80"
+    ],
+    [
+     "Sem banheiro",
+     "0,88",
+     "0,19",
+     "0,33",
+     "0,28",
+     "0,17",
+     "0,40",
+     "-0,01",
+     "0,44"
+    ],
+    [
+     "Moradia não convencional",
+     "0,73",
+     "0,01",
+     "0,09",
+     "0,07",
+     "0,05",
+     "0,10",
+     "0,00",
+     "0,11"
+    ],
+    [
+     "Idosos (60 anos ou mais)",
+     "0,79",
+     "0,57",
+     "-0,69",
+     "0,30",
+     "-0,75",
+     "-0,03",
+     "-0,84",
+     "0,17"
+    ],
+    [
+     "Crianças (0 a 14 anos)",
+     "0,78",
+     "0,79",
+     "0,81",
+     "-0,36",
+     "0,89",
+     "0,03",
+     "1,00",
+     "-0,20"
+    ]
+   ]
+  },
+  "C04-80": {
+   "titulo": "Apêndice: cargas dos 12, dentro dos municípios",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_multiversao/camada1_12_municipal_cargas.csv"
+   ],
+   "matriz": true,
+   "cab": [
+    "Indicador",
+    "MSA",
+    "h²",
+    "Sem rot. F1",
+    "Sem rot. F2",
+    "Varimax F1",
+    "Varimax F2",
+    "Promax F1",
+    "Promax F2"
+   ],
+   "linhas": [
+    [
+     "Água inadequada",
+     "0,74",
+     "0,18",
+     "0,18",
+     "0,38",
+     "0,08",
+     "0,41",
+     "-0,12",
+     "0,47"
+    ],
+    [
+     "Esgoto inadequado",
+     "0,92",
+     "0,29",
+     "0,46",
+     "0,27",
+     "0,38",
+     "0,38",
+     "0,22",
+     "0,39"
+    ],
+    [
+     "Lixo inadequado",
+     "0,79",
+     "0,11",
+     "0,25",
+     "0,22",
+     "0,19",
+     "0,28",
+     "0,07",
+     "0,30"
+    ],
+    [
+     "Razão de moradores",
+     "0,83",
+     "0,32",
+     "0,55",
+     "-0,13",
+     "0,57",
+     "0,02",
+     "0,60",
+     "-0,06"
+    ],
+    [
+     "Analfabetismo (15 anos ou mais)",
+     "0,89",
+     "0,55",
+     "0,74",
+     "-0,00",
+     "0,72",
+     "0,19",
+     "0,68",
+     "0,12"
+    ],
+    [
+     "Renda média do responsável",
+     "0,83",
+     "0,75",
+     "0,85",
+     "-0,13",
+     "0,86",
+     "0,10",
+     "0,87",
+     "-0,01"
+    ],
+    [
+     "Preta, parda ou indígena",
+     "0,86",
+     "0,77",
+     "0,86",
+     "-0,17",
+     "0,88",
+     "0,06",
+     "0,91",
+     "-0,05"
+    ],
+    [
+     "Sem água canalizada",
+     "0,82",
+     "0,38",
+     "0,36",
+     "0,51",
+     "0,21",
+     "0,58",
+     "-0,05",
+     "0,64"
+    ],
+    [
+     "Sem banheiro",
+     "0,81",
+     "0,17",
+     "0,25",
+     "0,33",
+     "0,15",
+     "0,39",
+     "-0,02",
+     "0,43"
+    ],
+    [
+     "Moradia não convencional",
+     "0,77",
+     "0,01",
+     "0,07",
+     "0,08",
+     "0,05",
+     "0,10",
+     "0,01",
+     "0,11"
+    ],
+    [
+     "Idosos (60 anos ou mais)",
+     "0,79",
+     "0,49",
+     "-0,70",
+     "0,10",
+     "-0,70",
+     "-0,09",
+     "-0,70",
+     "0,00"
+    ],
+    [
+     "Crianças (0 a 14 anos)",
+     "0,80",
+     "0,71",
+     "0,83",
+     "-0,14",
+     "0,84",
+     "0,08",
+     "0,85",
+     "-0,03"
+    ]
+   ]
+  },
+  "C04-81": {
+   "titulo": "Apêndice: os 70 municípios (1 de 2) · * menos de 30 setores",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "cab": [
+    "Município",
+    "A setores",
+    "A % elev.",
+    "B setores",
+    "B % elev."
+   ],
+   "linhas": [
+    [
+     "Água Preta *",
+     "19",
+     "26,3%",
+     "32",
+     "21,9%"
+    ],
+    [
+     "Ananindeua",
+     "492",
+     "35,8%",
+     "661",
+     "38,1%"
+    ],
+    [
+     "Anápolis",
+     "468",
+     "28,8%",
+     "525",
+     "26,9%"
+    ],
+    [
+     "Araçatuba",
+     "384",
+     "26,3%",
+     "397",
+     "25,4%"
+    ],
+    [
+     "Arara *",
+     "12",
+     "25,0%",
+     "19",
+     "36,8%"
+    ],
+    [
+     "Autazes",
+     "34",
+     "38,2%",
+     "42",
+     "38,1%"
+    ],
+    [
+     "Belém",
+     "1.330",
+     "28,5%",
+     "1.864",
+     "29,3%"
+    ],
+    [
+     "Belo Horizonte",
+     "3.522",
+     "31,7%",
+     "3.963",
+     "29,5%"
+    ],
+    [
+     "Brasília",
+     "3.766",
+     "21,8%",
+     "4.116",
+     "14,8%"
+    ],
+    [
+     "Cachoeiro de Itapemirim",
+     "293",
+     "32,1%",
+     "326",
+     "31,9%"
+    ],
+    [
+     "Camaragibe",
+     "209",
+     "25,8%",
+     "268",
+     "25,7%"
+    ],
+    [
+     "Campinas",
+     "1.870",
+     "29,8%",
+     "1.968",
+     "29,9%"
+    ],
+    [
+     "Campo Grande",
+     "1.273",
+     "27,5%",
+     "1.428",
+     "27,0%"
+    ],
+    [
+     "Canoas",
+     "384",
+     "23,4%",
+     "510",
+     "26,3%"
+    ],
+    [
+     "Capelinha",
+     "44",
+     "25,0%",
+     "55",
+     "27,3%"
+    ],
+    [
+     "Chapada dos Guimarães *",
+     "25",
+     "36,0%",
+     "30",
+     "33,3%"
+    ],
+    [
+     "Charqueadas",
+     "44",
+     "25,0%",
+     "53",
+     "28,3%"
+    ],
+    [
+     "Coroaci *",
+     "11",
+     "45,5%",
+     "11",
+     "45,5%"
+    ],
+    [
+     "Curitiba",
+     "2.218",
+     "29,2%",
+     "2.436",
+     "27,8%"
+    ],
+    [
+     "Divinópolis",
+     "428",
+     "25,9%",
+     "446",
+     "24,4%"
+    ],
+    [
+     "Duque de Caxias",
+     "1.326",
+     "32,3%",
+     "1.640",
+     "34,2%"
+    ],
+    [
+     "Feira de Santana",
+     "734",
+     "24,7%",
+     "934",
+     "25,5%"
+    ],
+    [
+     "Fortaleza",
+     "3.243",
+     "29,0%",
+     "4.028",
+     "28,0%"
+    ],
+    [
+     "Goianésia",
+     "70",
+     "28,6%",
+     "86",
+     "33,7%"
+    ],
+    [
+     "Goiânia",
+     "1.766",
+     "28,9%",
+     "1.946",
+     "24,9%"
+    ],
+    [
+     "Groaíras *",
+     "8",
+     "12,5%",
+     "14",
+     "28,6%"
+    ],
+    [
+     "Guapiaçu",
+     "37",
+     "18,9%",
+     "39",
+     "23,1%"
+    ],
+    [
+     "Guarujá",
+     "527",
+     "25,6%",
+     "580",
+     "25,7%"
+    ],
+    [
+     "Guarulhos",
+     "1.953",
+     "25,6%",
+     "2.130",
+     "24,6%"
+    ],
+    [
+     "Ibatiba",
+     "32",
+     "28,1%",
+     "35",
+     "28,6%"
+    ],
+    [
+     "Igarapava",
+     "52",
+     "25,0%",
+     "56",
+     "26,8%"
+    ],
+    [
+     "Itajuípe *",
+     "19",
+     "36,8%",
+     "29",
+     "31,0%"
+    ],
+    [
+     "Itapetinga",
+     "80",
+     "27,5%",
+     "103",
+     "30,1%"
+    ],
+    [
+     "Japoatã *",
+     "5",
+     "40,0%",
+     "7",
+     "42,9%"
+    ],
+    [
+     "Jaqueira *",
+     "8",
+     "37,5%",
+     "9",
+     "33,3%"
+    ]
+   ],
+   "duas": true
+  },
+  "C04-82": {
+   "titulo": "Apêndice: os 70 municípios (2 de 2) · * menos de 30 setores",
+   "fontes": [
+    "banco_de_dados/eda/fatorial_corte_04/ivs_final_por_setor.csv"
+   ],
+   "cab": [
+    "Município",
+    "A setores",
+    "A % elev.",
+    "B setores",
+    "B % elev."
+   ],
+   "linhas": [
+    [
+     "Limoeiro do Norte",
+     "79",
+     "25,3%",
+     "96",
+     "24,0%"
+    ],
+    [
+     "Macaé",
+     "464",
+     "27,2%",
+     "512",
+     "27,0%"
+    ],
+    [
+     "Maceió",
+     "1.206",
+     "27,6%",
+     "1.440",
+     "27,8%"
+    ],
+    [
+     "Manaus",
+     "2.062",
+     "24,3%",
+     "2.794",
+     "24,6%"
+    ],
+    [
+     "Marechal Deodoro",
+     "62",
+     "32,3%",
+     "87",
+     "37,9%"
+    ],
+    [
+     "Mauá",
+     "688",
+     "27,6%",
+     "754",
+     "26,8%"
+    ],
+    [
+     "Natal",
+     "839",
+     "32,7%",
+     "1.022",
+     "31,0%"
+    ],
+    [
+     "Nova Iguaçu",
+     "1.190",
+     "29,1%",
+     "1.459",
+     "30,6%"
+    ],
+    [
+     "Orizânia *",
+     "4",
+     "25,0%",
+     "5",
+     "20,0%"
+    ],
+    [
+     "Pato Branco",
+     "112",
+     "33,0%",
+     "122",
+     "27,0%"
+    ],
+    [
+     "Placas *",
+     "13",
+     "23,1%",
+     "16",
+     "31,2%"
+    ],
+    [
+     "Portel *",
+     "24",
+     "33,3%",
+     "26",
+     "34,6%"
+    ],
+    [
+     "Porto Alegre",
+     "1.599",
+     "28,6%",
+     "1.941",
+     "29,6%"
+    ],
+    [
+     "Recife",
+     "1.929",
+     "28,7%",
+     "2.504",
+     "28,8%"
+    ],
+    [
+     "Rio de Janeiro",
+     "9.565",
+     "30,3%",
+     "10.691",
+     "27,4%"
+    ],
+    [
+     "Rosário",
+     "32",
+     "25,0%",
+     "36",
+     "25,0%"
+    ],
+    [
+     "Salinas",
+     "39",
+     "25,6%",
+     "53",
+     "30,2%"
+    ],
+    [
+     "Salto",
+     "168",
+     "25,0%",
+     "179",
+     "25,1%"
+    ],
+    [
+     "Salvador",
+     "3.143",
+     "24,5%",
+     "3.894",
+     "20,1%"
+    ],
+    [
+     "Santa Maria do Oeste *",
+     "5",
+     "20,0%",
+     "8",
+     "37,5%"
+    ],
+    [
+     "São Bernardo do Campo",
+     "1.282",
+     "32,8%",
+     "1.374",
+     "32,0%"
+    ],
+    [
+     "São Caetano do Sul",
+     "280",
+     "30,0%",
+     "296",
+     "28,4%"
+    ],
+    [
+     "São Gonçalo",
+     "1.735",
+     "23,9%",
+     "2.029",
+     "23,9%"
+    ],
+    [
+     "São José de Ribamar",
+     "404",
+     "28,0%",
+     "519",
+     "25,4%"
+    ],
+    [
+     "São José dos Pinhais",
+     "358",
+     "29,3%",
+     "409",
+     "27,6%"
+    ],
+    [
+     "São Luís",
+     "1.149",
+     "29,7%",
+     "1.509",
+     "28,4%"
+    ],
+    [
+     "São Paulo",
+     "19.518",
+     "30,6%",
+     "21.297",
+     "28,7%"
+    ],
+    [
+     "São Paulo das Missões *",
+     "4",
+     "25,0%",
+     "5",
+     "20,0%"
+    ],
+    [
+     "São Pedro da Aldeia",
+     "223",
+     "25,6%",
+     "254",
+     "24,0%"
+    ],
+    [
+     "São Raimundo do Doca Bezerra *",
+     "3",
+     "33,3%",
+     "3",
+     "33,3%"
+    ],
+    [
+     "Tabatinga *",
+     "27",
+     "29,6%",
+     "30",
+     "30,0%"
+    ],
+    [
+     "Taió",
+     "37",
+     "24,3%",
+     "39",
+     "23,1%"
+    ],
+    [
+     "Teresina",
+     "979",
+     "30,2%",
+     "1.302",
+     "29,0%"
+    ],
+    [
+     "Urandi *",
+     "7",
+     "28,6%",
+     "9",
+     "33,3%"
+    ],
+    [
+     "Vicentinópolis *",
+     "11",
+     "27,3%",
+     "11",
+     "27,3%"
+    ]
+   ],
+   "duas": true
+  }
+ }
+}
