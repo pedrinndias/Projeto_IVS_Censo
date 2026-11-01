@@ -2,7 +2,7 @@
 
 Lê as falas, "Se der branco", "Passo para", as perguntas, as reservas e a lista de números de
 `relatorio_parcial_raic/ROTEIRO_APRESENTACAO_ORAL.md` (a mesma fonte das notas do pptx). Uma página por
-slide (o 1 junto com o 2 e o 10 junto com o 11), fala em 14 pt, Calibri, e a cor da 34ª RAIC só no
+slide (o 1 junto com o 2 e o 14 junto com o 15), fala em 14 pt, Calibri, e a cor da 34ª RAIC só no
 cabeçalho de cada slide e na faixa do topo da primeira página (tirada do modelo da Coordic).
 
 Marcação das falas no roteiro: **âncora** (negrito) e *(pausa)*.
@@ -32,8 +32,8 @@ SAIDA = PASTA / 'Roteiro_Apresentacao_Oral_RAIC_2026_Pedro.docx'
 
 TEAL, CINZA, CINZA_CLARO = '3B848E', '6B7780', 'C9CED2'
 PALAVRAS_POR_MIN = 130          # ritmo calmo; cada (pausa) soma 2 s e cada slide 2 s de transição
-TITULO_CURTO = {1: 'Abertura', 11: 'Obrigado'}
-JUNTO_DO_ANTERIOR = {2, 11}     # sem quebra de página antes
+TITULO_CURTO = {1: 'Abertura', 15: 'Obrigado'}
+JUNTO_DO_ANTERIOR = {2, 15}     # sem quebra de página antes
 
 
 # ---------------------------------------------------------------- leitura do roteiro
@@ -183,11 +183,11 @@ def pagina_tempos(doc, slides) -> None:
 
     p = par(doc, antes=14, depois=4)
     run(p, 'Passou de 10 min: ', 12, True)
-    run(p, 'corto, não acelero. Ordem de corte: a definição da correlação no 8, a explicação da caçamba no 8 '
-           'e a definição do índice de envelhecimento no 5.', 12)
+    run(p, 'corto, não acelero. Ordem de corte: o slide 11 (esgoto) sai e vira uma frase no 10; '
+           'depois, a Tabela 1 (slide 8).', 12)
     p = par(doc, depois=4)
     run(p, 'De cor: ', 12, True)
-    run(p, 'a abertura (slides 1 e 2) e as duas últimas frases do 10.', 12)
+    run(p, 'a abertura (slides 1 e 2) e as duas últimas frases do 14.', 12)
 
 
 def pagina_slide(doc, s) -> None:
@@ -224,15 +224,16 @@ def pagina_perguntas(doc, perguntas) -> None:
 
 def pagina_reservas(doc, reservas, cola) -> None:
     quebra(doc)
-    p = par(doc, depois=8)
-    run(p, 'Reservas, depois do Obrigado', 16, True, TEAL)
-    filete(p)
-    for r in reservas:
-        p = par(doc, depois=3)
-        run(p, f'{r["id"]}  ', 12, True, TEAL)
-        run(p, f'{r["slide"]}. ', 12)
-        run(p, r['pergunta'], 12, italic=True, cor=CINZA)
-    p = par(doc, antes=16, depois=8)
+    if reservas:  # o deck de 30/10 não tem slides de reserva
+        p = par(doc, depois=8)
+        run(p, 'Reservas, depois do Obrigado', 16, True, TEAL)
+        filete(p)
+        for r in reservas:
+            p = par(doc, depois=3)
+            run(p, f'{r["id"]}  ', 12, True, TEAL)
+            run(p, f'{r["slide"]}. ', 12)
+            run(p, r['pergunta'], 12, italic=True, cor=CINZA)
+    p = par(doc, antes=16 if reservas else 0, depois=8)
     run(p, 'Números que não posso errar', 16, True, TEAL)
     filete(p)
     for linha in cola:
