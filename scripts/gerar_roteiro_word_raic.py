@@ -38,7 +38,7 @@ JUNTO_DO_ANTERIOR = {2, 15}     # sem quebra de página antes
 
 # ---------------------------------------------------------------- leitura do roteiro
 
-def ler_roteiro() -> tuple[list[dict], list[dict], list[dict], list[str]]:
+def ler_roteiro() -> tuple[list[dict], list[dict], list[dict], list[str], list[str]]:
     md = ROTEIRO.read_text(encoding='utf-8')
     corpo, resto = md.split('## Reserva para a arguição', 1)
     slides = []
@@ -66,7 +66,9 @@ def ler_roteiro() -> tuple[list[dict], list[dict], list[dict], list[str]]:
         perguntas.append({'p': q, 'r': re.sub(r'\s*\(R\d\)', '', a), 'reserva': ', '.join(r)})
     cola_md = resto.split('## Números que não posso errar', 1)[1].split('\n---', 1)[0]
     cola = [re.sub(r'\s+', ' ', x).strip() for x in re.split(r'(?m)^- ', cola_md) if x.strip()]
-    return slides, reservas, perguntas, cola
+    treino_md = resto.split('## Plano de treino', 1)[1].split('\n---', 1)[0]
+    treino = [re.sub(r'\s+', ' ', x).strip() for x in re.split(r'(?m)^- ', treino_md) if x.strip()]
+    return slides, reservas, perguntas, cola, treino
 
 
 def faixa_raic() -> io.BytesIO:
@@ -183,8 +185,8 @@ def pagina_tempos(doc, slides) -> None:
 
     p = par(doc, antes=14, depois=4)
     run(p, 'Passou de 10 min: ', 12, True)
-    run(p, 'corto, não acelero. Ordem de corte: o slide 11 (esgoto) sai e vira uma frase no 10; '
-           'depois, a Tabela 1 (slide 8).', 12)
+    run(p, 'corto, não acelero. Ordem de corte: o slide 11 (esgoto) vira uma frase no 10; a Tabela 1 (slide 8) '
+           'passa direto; o slide 12 vira uma frase no 13.', 12)
     p = par(doc, depois=4)
     run(p, 'De cor: ', 12, True)
     run(p, 'a abertura (slides 1 e 2) e as duas últimas frases do 14.', 12)
@@ -216,6 +218,7 @@ def pagina_perguntas(doc, perguntas) -> None:
     for i, q in enumerate(perguntas, 1):
         p = par(doc, depois=1)
         run(p, f'{i}. {q["p"]}', 12.5, True)
+        p.paragraph_format.keep_with_next = True
         p = par(doc, depois=8, entre=1.15)
         run(p, q['r'], 12)
         if q['reserva']:
@@ -243,8 +246,19 @@ def pagina_reservas(doc, reservas, cola) -> None:
         run(p, resto, 12)
 
 
+def pagina_treino(doc, treino) -> None:
+    p = par(doc, antes=16, depois=8)
+    run(p, 'Plano de treino', 16, True, TEAL)
+    filete(p)
+    for linha in treino:
+        p = par(doc, depois=3)
+        rot, _, resto = linha.partition(':')
+        run(p, rot + ':', 12, True)
+        run(p, resto, 12)
+
+
 def main() -> None:
-    slides, reservas, perguntas, cola = ler_roteiro()
+    slides, reservas, perguntas, cola, treino = ler_roteiro()
     doc = Document()
     preparar(doc)
     pagina_tempos(doc, slides)
@@ -252,6 +266,7 @@ def main() -> None:
         pagina_slide(doc, s)
     pagina_perguntas(doc, perguntas)
     pagina_reservas(doc, reservas, cola)
+    pagina_treino(doc, treino)
     doc.save(str(SAIDA))
     total = sum(s['seg'] for s in slides)
     print(f'{SAIDA.relative_to(RAIZ)}: {len(slides)} slides, {mm_ss(total)} de fala estimada, '

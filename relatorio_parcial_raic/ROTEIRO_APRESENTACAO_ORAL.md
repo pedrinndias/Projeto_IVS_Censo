@@ -1,4 +1,11 @@
-# Roteiro — apresentação oral RAIC 2026 (v4)
+# Roteiro — apresentação oral RAIC 2026 (v4.1)
+
+**Versão 4.1, 04/11/2026.** Para treinar. O deck `_ENVIO_v4.pptx` não mudou: tudo aqui muda só a fala e a
+arguição. Depois de um novo council e de uma nova conferência dos dados (cerca de 125 valores, nenhum
+errado), as falas passam a contar as três coisas (sigilo, zeros, lixo), explicam os termos que faltavam,
+tratam o 3,14% como cenário e o −0,79 como parte construção, e deixam de dizer que o lixo "será testado".
+A arguição ganhou respostas sobre o setor de R$ 170 mil, sigilo e tamanho do setor, setores completos e a
+fatorial depois do envio. Entraram o plano de treino e um terceiro corte de emergência.
 
 **Versão 4, 30/10/2026.** Segue o deck `_ENVIO_v4.pptx`, montado sobre a versão que editei à mão:
 15 slides, todos na fala (sigilo antes dos zeros, a Tabela 1 e a matriz na sequência, três grafos de
@@ -26,13 +33,12 @@ no git (commit `0e00a0a`) e a v1 em `historico/`.
 relatório ou nos dados que o geraram.
 **Template:** `APRESENTAÇÃO ORAL.pptx` da Coordic, em 16:9 e Calibri, com os layouts Capa,
 Conteúdo e Final.
-**Regras:** até 10 min de fala e ~10 min de arguição, com 2 doutores. Envio até 02/11/2026 (é
-Finados, então mirar até domingo, 01/11). No assunto do e-mail: "Pedro Dias Soares – Oral". Enviar
-o arquivo **`_ENVIO_v4.pptx`**, que vai sem as notas.
+**Regras:** até 10 min de fala e ~10 min de arguição, com 2 doutores. O prazo de envio foi 02/11/2026.
+Levar o mesmo arquivo que foi enviado; se não foi o **`_ENVIO_v4.pptx`**, conferir este roteiro com ele.
 **Orçamento:** 15 slides de fala. Os tempos abaixo são calculados a 130 palavras/min, com as
-pausas, e somam **9 min 30 s**. Em ritmo lento (110 palavras/min) passa de 10 min: se o
-ensaio passar de 9 min 30 s, o slide 11 (esgoto) sai e vira uma frase no 10; se ainda passar, a
-Tabela 1 (slide 8) sai.
+pausas, e somam **9 min 25 s**. É estimativa: só o cronômetro em voz alta confirma. Se o ensaio passar de
+9 min 30 s, corte nesta ordem: o slide 11 (esgoto) vira uma frase no 10; a Tabela 1 (slide 8) passa
+direto; o slide 12 vira uma frase no 13.
 
 ---
 
@@ -115,7 +121,7 @@ resultado*. Ninguém é inventado, e nenhum número é inventado.
   esgoto e lixo inadequados. Na parte socioeconômica, entram o número de moradores por domicílio, o
   analfabetismo, a renda e a proporção de pessoas pretas, pardas e indígenas. As cidades são as **70
   do ELSI-Brasil**, o estudo de envelhecimento feito aqui no René Rachou. Dos **109 mil** setores,
-  tirei os que não têm moradores, os omitidos por sigilo e os rurais, porque o índice é urbano.
+  tirei os que não têm moradores, os omitidos inteiros por sigilo e os rurais, porque o índice é urbano.
   Ficaram pouco mais de **104 mil**, onde moram 52 milhões de pessoas. No total os rurais são só 2%,
   mas em **29 municípios** eles passam de 10%, e isso entra nas limitações."
 - **Se der branco:** "Duas dimensões, 70 cidades, 104 mil setores."
@@ -129,64 +135,47 @@ resultado*. Ninguém é inventado, e nenhum número é inventado.
   adequações.
 - **Fala:** "Antes de olhar qualquer resultado, eu precisava saber se o meu código **lia o Censo
   corretamente**. Então rodei as mesmas rotinas para o Brasil inteiro e comparei com o que o IBGE
-  publica. A população bateu exatamente, **203 milhões**. O índice de envelhecimento deu **79,99**, e o
-  do IBGE é 80. *(pausa)*
+  publica. A população bateu exatamente, **203 milhões**. O índice de envelhecimento, que compara
+  idosos e crianças, deu **79,99**, e o do IBGE é 80. *(pausa)*
   No caminho também tive que tomar decisões. Um setor de favela em Belo Horizonte aparecia com renda
   média de **170 mil reais** por mês, quase 56 vezes a mediana dos setores da cidade. Esse valor não
   é coerente com o perfil do próprio setor, então tirei esse setor da análise descritiva e
   **registrei o motivo**."
 - **Se der branco:** "O código bate com o IBGE, e um setor saiu, com motivo."
-- **Passo para:** os zeros.
+- **Passo para:** o dado que falta.
 
-### 6. RESULTADOS · O dado que falta diz alguma coisa — 50 s
+### 6. RESULTADOS · O dado que falta diz alguma coisa — 45 s
 - **Visual:** barras de renda mediana do responsável, R$ 2.313,87 onde o analfabetismo existe
   e **R$ 6.092,84** onde ele está sob sigilo. À direita, em destaque: "**16%** dos setores sem o
   dado de analfabetismo". Caixa: "Média observada 3,64%; a real fica entre 3,14% e 3,64%. O
   efeito é pequeno, mas o sigilo não é aleatório."
-- **Fala:** "Agora, o que os dados mostraram. A primeira coisa foi o **sigilo**. Quando um setor tem
-  muito pouca gente numa categoria, o IBGE omite o número para que ninguém seja identificado. No
-  analfabetismo, o dado falta em **16%** dos setores, e eu fui ver que setores eram esses. *(pausa)*
-  Onde o dado existe, a renda mediana é de uns **2.300 reais**. Onde ele falta, passa de **6 mil**.
-  Ou seja, o sigilo cai principalmente nos setores de renda mais alta, onde o analfabetismo é raro.
-  A média verdadeira fica entre **3,1 e 3,6%**. O efeito é pequeno, mas o dado não falta ao acaso."
-- **Se der branco:** "O sigilo cai nos setores ricos."
+- **Fala:** "Agora, o que os dados mostraram. São **três coisas**. A primeira é o **sigilo**: quando há muito pouca gente numa categoria, o IBGE omite o número para proteger as pessoas. No analfabetismo, o dado falta em **16%** dos setores. *(pausa)* Onde ele existe, a renda mediana é de uns **2.300 reais**. Onde falta, passa de **6 mil**. O sigilo cai mais nos setores de renda alta. A média observada é de **3,6%**; com um analfabeto em cada setor sem o dado, seria **3,1%**. O efeito é pequeno, mas o dado não falta ao acaso."
+- **Se der branco:** "O sigilo cai mais nos setores ricos."
 - **Passo para:** os zeros do saneamento.
 
-### 7. RESULTADOS · Só 26% dos setores têm algum domicílio registrado com água inadequada — 50 s
+### 7. RESULTADOS · Só 26% dos setores têm algum domicílio registrado com água inadequada — 45 s
 - **Visual:** barras com o % de setores com ao menos um domicílio registrado com o problema, em
   coral: água 26% · esgoto 27% · lixo 37%; em cinza, o resto, "74% · 73% · 63% sem nenhum". À
   direita: "A renda também: média 63% acima da mediana", com mediana R$ 2.572,39 e média
   R$ 4.185,81, e "O que isso muda: na régua de 0 a 1 do índice, quase todos os setores ficariam
   espremidos num canto". Nota pequena: "parte dos zeros vem do sigilo: quando o IBGE suprime só
   algumas parcelas, elas entram como zero".
-- **Fala:** "No saneamento, só **26%** dos setores têm algum domicílio registrado com água
-  inadequada. Nos outros 74%, nenhum. No esgoto são 27%, e no lixo, 37%. Para a cidade isso é bom, mas para o cálculo cria uma dificuldade, porque quase todos os setores ficam no
-  zero, poucos concentram o problema e a distribuição fica **muito assimétrica**. A renda tem o mesmo
-  desequilíbrio. A média, de uns **4.200 reais**, fica **63% acima da mediana**, de uns 2.600,
-  puxada por poucos setores muito ricos. Como o índice coloca todas as variáveis na mesma **régua,
-  de zero a um**, com tantos zeros quase todos os setores ficariam espremidos num canto dela."
+- **Fala:** "A segunda coisa são os **zeros**. Só **26%** dos setores têm algum domicílio registrado com água inadequada. No esgoto são 27%, e no lixo, 37%. Para a cidade é bom, mas no cálculo quase todos os setores ficam no zero e a distribuição fica **muito assimétrica**. A renda tem o mesmo desequilíbrio. A média, de uns **4.200 reais**, fica **63% acima da mediana**, de uns 2.600, puxada por poucos setores muito ricos. Como o índice coloca tudo na mesma **régua, de zero a um**, quase todos os setores ficariam espremidos num canto dela."
 - **Se der branco:** "Poucos setores com o problema, régua espremida."
 - **Passo para:** a Tabela 1.
 
 ### 8. RESULTADOS · Estatísticas descritivas dos 12 indicadores (Tabela 1) — 30 s
 - **Tela:** a Tabela 1 (n, média, mediana, p75, máximo e assimetria dos 12 indicadores); em
   negrito, os 5 complementares, fora do IVS 2012.
-- **Fala:** "Esta é a **Tabela 1**, com os doze indicadores, os sete do índice e, em negrito, cinco
-  que eu uso para comparar. Não vou ler a tabela, só duas colunas. A **mediana** é zero nos três de
-  saneamento e a **assimetria** é alta no saneamento e na
-  renda. E o n do analfabetismo, 87 mil setores, é o sigilo."
+- **Fala:** "Esta é a **Tabela 1**: os sete do índice e, em negrito, cinco complementares que eu também analiso. Só duas colunas. A **mediana** é zero nos três de saneamento. A **assimetria**, muitos valores baixos e poucos muito altos, é alta no saneamento e na renda. E o n do analfabetismo, 87 mil setores, é o sigilo."
 - **Se der branco:** "Mediana zero, assimetria alta, o n é o sigilo."
 - **Passo para:** como as variáveis andam juntas.
 
-### 9. RESULTADOS · Matriz de correlação de Spearman entre os 12 indicadores — 35 s
+### 9. RESULTADOS · Matriz de correlação de Spearman entre os 12 indicadores — 40 s
 - **Visual:** a matriz da Figura 1 (n = 75.629), com quadrados nos pares que aparecem nos grafos
   dos slides 10 a 12.
-- **Fala:** "Depois, olhei como as variáveis andam juntas, com a **correlação de Spearman**. Ela vai
-  de zero, quando não há relação, a um, quando os setores que estão no alto de uma variável também
-  estão no alto da outra. Os quadrados marcam os pares que eu mostro a seguir. Antes, olhem a linha do
-  **lixo**. Com os outros seis indicadores do índice, ela fica entre **menos 0,05 e 0,21**, quase
-  nenhuma relação."
-- **Se der branco:** "De zero a um, e o lixo quase não se liga."
+- **Fala:** "Depois, olhei como as variáveis andam juntas, com a **correlação de Spearman**. Perto de um, os dois indicadores ordenam os setores do mesmo jeito. Perto de zero, não têm relação. Negativa, vão em sentidos opostos. Os quadrados são os pares que vêm a seguir. Antes, a **terceira coisa**: olhem a linha do **lixo**. *(pausa)* Com os outros seis do índice, ela fica entre **menos 0,05 e 0,21**. O lixo quase não conversa com o resto."
+- **Se der branco:** "Perto de um, mesma ordem; e o lixo quase não se liga."
 - **Passo para:** o triângulo.
 
 ### 10. RESULTADOS · Renda, cor/raça e analfabetismo andam juntos — 25 s
@@ -201,19 +190,14 @@ resultado*. Ninguém é inventado, e nenhum número é inventado.
 
 ### 11. RESULTADOS · O esgoto inadequado acompanha esse bloco, mas com força moderada — 25 s
 - **Visual:** o mesmo triângulo com o esgoto no centro, ligado às três por 0,42 / 0,42 / 0,40.
-- **Fala:** "O **esgoto** inadequado também acompanha esse bloco, mas com força moderada, em torno
-  de **0,4** com cada uma das três. Junto com o lixo, isso mostra que o saneamento **não se comporta
-  como um bloco só**, e é isso que a análise fatorial vai testar."
+- **Fala:** "O **esgoto** inadequado também acompanha esse bloco, mas com força moderada, em torno de **0,4** com cada uma das três. Junto com o que vimos no lixo, isso mostra que o saneamento **não se comporta como um bloco só**. É isso que a **análise fatorial**, a técnica que mostra quais indicadores andam em grupo, testa."
 - **Se der branco:** "O esgoto vem junto, mais fraco."
 - **Passo para:** idosos e crianças.
 
 ### 12. RESULTADOS · Mais idosos onde a renda é maior; mais crianças onde ela é menor — 30 s
 - **Visual:** grafo de seis círculos (cor/raça, moradores por domicílio, idosos, renda,
   crianças, analfabetismo), 15 pares; coral tracejado = relação inversa. Idosos × crianças −0,79.
-- **Fala:** "Aqui entra o tema do nosso núcleo, o **envelhecimento**. As linhas tracejadas em coral são relações **inversas**. Onde há mais **crianças**, há
-  mais moradores por domicílio, renda menor e mais analfabetismo. Os **idosos** vão no sentido
-  oposto, e a relação entre idosos e crianças é de **menos 0,79**, tão forte quanto a de renda com
-  cor/raça."
+- **Fala:** "Aqui entra o tema do nosso núcleo, o **envelhecimento**. As linhas tracejadas em coral são relações **inversas**. Onde há mais **crianças**, há mais moradores por domicílio, renda menor e mais analfabetismo. Os **idosos** vão no sentido oposto. A relação entre idosos e crianças é de **menos 0,79**, em parte por construção, porque as duas são parcelas da mesma população."
 - **Se der branco:** "Crianças com o bloco social, idosos ao contrário."
 - **Passo para:** dentro de cada cidade.
 
@@ -238,16 +222,8 @@ resultado*. Ninguém é inventado, e nenhum número é inventado.
   renda mais alta têm mais idosos (associação entre áreas). À direita, **Próximos
   passos**: análise fatorial → pesos → faixas de vulnerabilidade → mapas no QGIS → artigo.
   Embaixo, a frase do trabalho e a limitação (estudo ecológico).
-- **Fala:** "Resumindo, antes de calcular o índice, os dados me mostraram coisas que mudam o
-  cálculo. Os **zeros** precisam de um ajuste antes de as variáveis irem para a mesma régua, que vai
-  ser a de cada município. O **sigilo** do analfabetismo precisa de um tratamento próprio. E o
-  **lixo** vai ser testado na **análise fatorial**, que ajuda a definir os pesos. Ela começou entre agosto e setembro, e os resultados ainda são
-  **preliminares**. Para o nosso núcleo, fica o achado de que, em **50 de 53** cidades, os idosos
-  estão mais nos setores de renda mais alta. Tudo isso é um **estudo ecológico**, de áreas, e não de
-  pessoas.
-  *(pausa)* O que eu levo desta etapa é que, com dados, **cada decisão muda o resultado**. Por isso
-  cada uma das minhas está justificada e registrada."
-- **Se der branco:** "Zeros, sigilo, lixo, fatorial preliminar, 50 de 53, estudo ecológico."
+- **Fala:** "Resumindo, antes de calcular o índice, os dados me mostraram três coisas que mudam o cálculo. O **sigilo** do analfabetismo precisa de um tratamento próprio. Os **zeros** e os valores extremos precisam de um ajuste antes de as variáveis irem para a mesma régua, que vai ser a de cada município. E o **lixo** entra na **análise fatorial**, que ajuda a definir os pesos. Ela já está em andamento, em discussão com a minha orientadora. Para o nosso núcleo: em **50 de 53** cidades, os idosos estão mais nos setores de renda mais alta. Tudo isso é um **estudo ecológico**, de áreas, e não de pessoas. *(pausa)* O que eu levo desta etapa é que, com dados, **cada decisão muda o resultado**. Por isso cada uma das minhas está justificada e registrada."
+- **Se der branco:** "Sigilo, zeros, lixo, fatorial em andamento, 50 de 53, estudo ecológico."
 - **Passo para:** o agradecimento.
 
 ### 15. Obrigado! — 5 s · layout Final
@@ -264,7 +240,7 @@ e R6 não estão no deck. As perguntas abaixo se respondem de boca.
 
 1. **"Cadê o índice?"** Hoje eu trouxe a etapa anterior ao índice. Os zeros, o sigilo e o lixo mudam
    o cálculo, calcular sem tratá-los daria um índice distorcido, e o índice e os mapas são os
-   próximos passos.
+   próximos passos. O que reconstruí até aqui foram as dimensões e as variáveis.
 2. **"Isso não é falácia ecológica?"** É um estudo ecológico, e as relações são entre áreas. Não
    concluo nada sobre indivíduos, e isso está nas limitações.
 3. **"Como mede vulnerabilidade à saúde sem dado de saúde?"** Ele mede condições do lugar que
@@ -274,27 +250,44 @@ e R6 não estão no deck. As perguntas abaixo se respondem de boca.
    analfabetismo agora é a partir de 15 anos (antes era a partir de 5), e a renda média do
    responsável substitui as faixas de salário mínimo, que o Censo 2022 não traz por setor.
 5. **"Por que 53 e não 70?"** Para calcular a correlação dentro de cada município, exigi pelo menos
-   30 setores com todos os dados. Alguns municípios pequenos ficam com poucos setores depois do
-   recorte urbano.
-6. **"Por que tirar o setor de R$ 170 mil?"** A renda média dele é 55,7 vezes a mediana do
-   município, num setor de favela com 7% de analfabetismo. Só esse saiu, e os demais extremos ficaram
-.
+   30 setores com todos os dados. Os municípios pequenos ficam com poucos setores depois do recorte
+   urbano e do sigilo.
+6. **"Por que tirar o setor de R$ 170 mil, e não os outros?"** Era o maior valor da base, 55,7 vezes
+   a mediana do município, num setor de favela com 7% de analfabetismo. Foi uma decisão de julgamento,
+   não uma regra automática, e por isso está registrada. A auditoria marcou 65 setores suspeitos, como
+   um em Belém, com 43,5 vezes a mediana. Eles ficaram, porque não tenho prova de que o dado está errado.
 7. **"A validação com o Brasil prova que os indicadores estão certos?"** Não prova cada indicador.
    Prova que o código lê e soma o Censo como o IBGE.
-8. **"E a análise fatorial?"** Começou entre agosto e setembro, os resultados ainda são preliminares
-   e estão em discussão com a minha orientadora, por isso ficam para o relatório final.
+8. **"E a análise fatorial?"** Curta: está em andamento e em discussão com a minha orientadora, por
+   isso não trouxe resultado no slide. Se insistirem, e só com o OK da Amanda: depois do envio, com
+   corte de carga menor que 0,4, o lixo e a moradia não convencional saíram em todas as rotações. O que
+   isso muda no índice ainda é decisão da orientadora.
 9. **"Por que padronizar dentro de cada município?"** O índice é intraurbano, então a régua é a
-   própria cidade, como no IVS de Belo Horizonte, que foi calculado para um só município.
+   própria cidade, como no IVS de Belo Horizonte, que foi calculado para um só município. O custo é
+   que ele mostra a posição do setor na cidade e não compara o nível entre cidades.
 10. **"Cor/raça como variável de vulnerabilidade?"** Entra como marcador de desigualdade social
    estrutural, como no IVS de 2012.
 11. **"E as diferenças entre regiões?"** A água inadequada é 16 vezes maior nos municípios do Norte
    que nos do Sul, mas o Norte tem só 6 municípios, então isso descreve a amostra, não a região.
-12. **"Por que o lixo fica à parte?"** Tenho uma hipótese a testar. Seguindo o IVS de 2012, conto a
+12. **"Por que o lixo fica à parte?"** Ele quase não se liga aos outros indicadores, e é isso que a
+   análise fatorial examina (pergunta 8). Tenho uma hipótese. Seguindo o IVS de 2012, conto a
    caçamba, o contêiner coletivo, como destino inadequado, e o Censo só registra o destino. A
    caçamba pode refletir o modo de coleta da cidade, não a vulnerabilidade.
 13. **"O sigilo vira ausente ou zero?"** Depende de quanto foi escondido. Se o IBGE suprimiu todo o
    numerador, o indicador fica ausente. Se suprimiu só algumas parcelas, elas entram como zero, e
-   isso subestima um pouco os valores.
+   isso subestima um pouco os valores. O sem banheiro também tem sigilo: são 91.912 setores com o dado.
+14. **"O sigilo depende da renda ou do tamanho do setor?"** Dos dois. Ele cai de 29% nos setores menores
+   para 4% nos maiores. Mas, em setores de tamanho parecido, de 421 a 478 moradores, vai de 1% nos mais
+   pobres a 47% nos mais ricos. A renda pesa mesmo controlando o tamanho.
+15. **"O 3,14% é um limite?"** Não, é um cenário: supõe um analfabeto em cada setor sem o dado. Serve para
+   mostrar que o efeito sobre a média é pequeno.
+16. **"O −0,79 entre idosos e crianças não é só matemática?"** Em parte, sim. As duas são parcelas da mesma
+   população, então não leio esse número como achado. O achado é a relação de cada uma com a renda.
+17. **"As correlações usam só 73% dos setores?"** Sim, os 75.629 com os 12 indicadores completos. Faltam
+   dois grupos opostos: sem analfabetismo, de renda mais alta, e sem banheiro, mais pobres. É uma
+   limitação. Com os pares completos, a faixa do lixo quase não muda.
+18. **"Por que o −0,46 é negativo, se a renda alta anda com mais idosos?"** Porque a renda entra invertida:
+   valor alto quer dizer renda baixa. O sinal negativo diz que mais idosos andam com renda mais alta.
 
 ---
 
@@ -304,36 +297,33 @@ e R6 não estão no deck. As perguntas abaixo se respondem de boca.
   problema (74%, 73% e 63% sem nenhum).
 - Renda: mediana R$ 2.572,39, média R$ 4.185,81 (63% acima).
 - Sigilo no analfabetismo: 16% dos setores; renda mediana R$ 2.313,87 com o dado e R$ 6.092,84 sem;
-  média observada 3,64%, a real entre 3,14% e 3,64%.
+  média observada 3,64%; 3,14% no cenário de um analfabeto por setor; sigilo de 29% a 4% do menor ao
+  maior tamanho de setor.
 - Correlações: renda, cor/raça e analfabetismo de 0,63 a 0,79; esgoto com as três, 0,40 a 0,42;
-  lixo com os outros 6 do IVS, de −0,05 a 0,21; idosos × crianças −0,79.
+  lixo com os outros 6 do IVS, de −0,05 a 0,21; idosos × crianças −0,79 (em parte por construção).
 - Idosos e renda: 50 de 53 municípios.
 - Validação: 203.080.756 pessoas; índice de envelhecimento 79,99 contra 80.
 - Recorte: 109.032 → 104.108 setores, 52,1 milhões de moradores; 29 municípios com mais de 10% de rurais.
-- Setor retirado: R$ 170.418,06, 55,7 vezes a mediana do município.
+- Setor retirado: R$ 170.418,06, 55,7 vezes a mediana do município; 65 setores suspeitos ficaram.
 
 ---
 
-## Antes do envio
+## Plano de treino
 
-- [ ] **Hoje:** mandar à Amanda uma mensagem única pedindo até 23/10: (a) o grupo de pesquisa;
-  (b) o texto do objetivo geral do projeto; (c) a frase sobre a análise fatorial, com ou sem
-  números, mesmo que só na reserva; (d) se "Coorientador(a): não se aplica" serve. Sem resposta,
-  usar o provisório: NESPE, o objetivo do relatório, "análise fatorial em andamento, sem
-  resultados apresentados" e tirar a R7.
-- [x] As edições feitas à mão no `_ENVIO.pptx` em 19/10 (grupo NESPE, objetivo sem a marca, sem
-  a linha da fatorial no slide 10) foram levadas ao gerador, e a R7 saiu do deck. A pergunta
-  sobre a análise fatorial é respondida com a frase do slide 10.
-- [x] Ajustes do council de 30/10 aplicados ao `_ENVIO_v4.pptx` (títulos dos slides 6 e 7, cores
-  do 13, rótulo do grafo de idade, digitação).
-- [x] Pente fino do council (30/10, à noite): 122 números recalculados do `.db`, todos certos.
-  Aplicados: etiqueta RESULTADOS nos slides 8 e 9, sem remissões a R1/R6, sigilo descrito pelos dois
-  casos, "Objetivo específico", "Assimetria" e legenda do negrito na Tabela 1, conclusões com o
-  50 de 53, "Obrigado!".
+- Hoje, 04/11: mandar à Amanda a frase da pergunta 8 e pedir o OK; sem resposta, usar só a versão curta.
+  Confirmar qual arquivo foi enviado.
+- 05/11: decorar a abertura (slides 1 e 2) e o fim do 14; depois uma fala inteira, em voz alta, com
+  cronômetro.
+- 06/11: arguição: alguém faz sem aviso as perguntas 1, 6, 8, 14, 15, 16 e 17.
+- 07/11: simulação completa gravada, com um ouvinte de fora da área. Alvo de 8 a 9,5 min.
+- 08/11: revisão leve: frases-chave, "Se der branco", os três cortes e os números. Nada novo.
+
+---
+
+## Antes do evento
+
 - [ ] Confirmar com a orientadora o "Programa de vínculo: FAPEMIG" e o "Coorientador(a): não se
-  aplica" da capa.
-- [ ] Confirmar com a Coordic o formato do arquivo (pptx ou PDF).
-- [ ] Ensaiar duas vezes com cronômetro, uma delas gravada, com um ouvinte de fora da área. O
-  alvo é de 8 a 9,5 min. Se ficar abaixo de 8, desacelere e faça as pausas; não acrescente
-  conteúdo.
-- [ ] Ensaiar a arguição: alguém faz as perguntas 1, 2, 5 e 7 sem aviso.
+  aplica" da capa, e até onde falar da fatorial (pergunta 8).
+- [ ] Confirmar que o arquivo enviado à Coordic foi o `_ENVIO_v4.pptx`.
+- [ ] Levar o arquivo em pen drive e neste roteiro impresso.
+- [ ] Se ficar abaixo de 8 min no ensaio, desacelerar e fazer as pausas; não acrescentar conteúdo.
