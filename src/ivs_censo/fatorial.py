@@ -595,8 +595,9 @@ def rodar_cenario(X: np.ndarray, k: int = 2, metodo: str = 'spearman',
     kmo_global, msa = kmo(R)
     qui, gl, _ = bartlett(R, n)
     val, cargas = acp(R, k)          # os autovalores (Kaiser, Horn) são sempre os da ACP
+    info = {'heywood': False, 'convergiu': True}
     if extracao == 'eixo_principal':
-        cargas = fatoracao_eixo_principal(R, k)[0]
+        cargas, _, info = fatoracao_eixo_principal(R, k)
     elif extracao == 'maxima_verossimilhanca':
         cargas = fatoracao_maxima_verossimilhanca(R, k)[0]
     vmax = varimax(cargas)
@@ -619,6 +620,7 @@ def rodar_cenario(X: np.ndarray, k: int = 2, metodo: str = 'spearman',
         'var_explicada_k': float(100 * (val[:k].sum() if extracao == 'acp' else (cargas ** 2).sum()) / p),
         'sem_rotacao': cargas, 'varimax': vmax,
         'promax_padrao': padrao, 'promax_estrutura': estrutura, 'phi': phi,
+        'heywood': info['heywood'], 'convergiu': info['convergiu'],
         'comunalidade': (cargas ** 2).sum(axis=1),
         'comunalidade_obliqua': comunalidades_obliquas(padrao, phi),
         'pesos': {'sem_rotacao': reparticao(cargas), 'varimax': reparticao(vmax),

@@ -1,0 +1,40 @@
+variante,rotulo,familia,fatores,mantidos,p,n,ban_fica,ban_carga,carga_min,alerta
+varimax,Varimax (proposta B),12,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+IDO+CRI,9,87189,False,0.392212,0.488458,False
+varimax,Varimax (proposta B),12_sem_idade,2,AGU+ESG+MOR+ANA+REN+PPI+CAN,7,87511,False,0.383339,0.441513,False
+varimax_kaiser,Varimax com Kaiser,12,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN+IDO+CRI,10,75629,True,0.403032,0.403032,False
+varimax_kaiser,Varimax com Kaiser,12_sem_idade,2,AGU+ESG+MOR+ANA+REN+PPI+CAN,7,87511,False,0.397269,0.428905,False
+promax,"promax, kappa 4 (proposta A)",12,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN+IDO+CRI,10,75629,True,0.426301,0.426301,False
+promax,"promax, kappa 4 (proposta A)",12_sem_idade,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN,8,75926,True,0.422957,0.422957,False
+promax,"promax, kappa 4 (proposta A)",sem_idade_sem_banheiro,2,AGU+MOR+ANA+REN+PPI,5,87545,False,,0.470773,True
+promax_estrutura,"promax, matriz de estrutura",12,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN+IDO+CRI,10,75629,True,0.42516,0.42516,False
+promax_estrutura,"promax, matriz de estrutura",12_sem_idade,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN,8,75926,True,0.426954,0.426954,False
+promax_k2_nenhuma,"promax, kappa 2",12,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+IDO+CRI,9,87189,False,0.396745,0.463503,False
+promax_k2_nenhuma,"promax, kappa 2",12_sem_idade,2,AGU+ANA+REN+PPI,4,87545,False,0.390865,0.483483,True
+promax_k2_r,"promax, kappa 2, Kaiser (R)",12,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN+IDO+CRI,10,75629,True,0.405868,0.405868,False
+promax_k2_r,"promax, kappa 2, Kaiser (R)",12_sem_idade,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN,8,75926,True,0.401331,0.401331,False
+promax_k2_spss,"promax, kappa 2, Kaiser (SPSS)",12,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+IDO+CRI,9,87189,False,0.399862,0.457184,False
+promax_k2_spss,"promax, kappa 2, Kaiser (SPSS)",12_sem_idade,2,AGU+ESG+MOR+ANA+REN+PPI+CAN,7,87511,False,0.39056,0.404136,False
+promax_k3_nenhuma,"promax, kappa 3",12,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN+IDO+CRI,10,75629,True,0.412843,0.412843,False
+promax_k3_nenhuma,"promax, kappa 3",12_sem_idade,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN,8,75926,True,0.411231,0.411231,False
+promax_k3_r,"promax, kappa 3, Kaiser (R)",12,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN+IDO+CRI,10,75629,True,0.420397,0.420397,False
+promax_k3_r,"promax, kappa 3, Kaiser (R)",12_sem_idade,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN,8,75926,True,0.416782,0.412118,False
+promax_k3_spss,"promax, kappa 3, Kaiser (SPSS)",12,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN+IDO+CRI,10,75629,True,0.411304,0.411304,False
+promax_k3_spss,"promax, kappa 3, Kaiser (SPSS)",12_sem_idade,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN,8,75926,True,0.402876,0.402876,False
+promax_k4_r,"promax, kappa 4, Kaiser (R)",12,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN+IDO+CRI,10,75629,True,0.434015,0.434015,False
+promax_k4_r,"promax, kappa 4, Kaiser (R)",12_sem_idade,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN,8,75926,True,0.42612,0.418128,False
+promax_k4_spss,"promax, kappa 4, Kaiser (SPSS)",12,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN+IDO+CRI,10,75629,True,0.420572,0.420572,False
+promax_k4_spss,"promax, kappa 4, Kaiser (SPSS)",12_sem_idade,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN,8,75926,True,0.411609,0.411609,False
+promax_k5_nenhuma,"promax, kappa 5",12,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN+IDO+CRI,10,75629,True,0.438484,0.438484,False
+promax_k5_nenhuma,"promax, kappa 5",12_sem_idade,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN,8,75926,True,0.429898,0.425892,False
+promax_k5_r,"promax, kappa 5, Kaiser (R)",12,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN+IDO+CRI,10,75629,True,0.447216,0.447216,False
+promax_k5_r,"promax, kappa 5, Kaiser (R)",12_sem_idade,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN,8,75926,True,0.432054,0.421831,False
+promax_k5_spss,"promax, kappa 5, Kaiser (SPSS)",12,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN+IDO+CRI,10,75629,True,0.428097,0.428097,False
+promax_k5_spss,"promax, kappa 5, Kaiser (SPSS)",12_sem_idade,2,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN,8,75926,True,0.417273,0.417273,False
+varimax_municipal,"Varimax, postos no município",12,2,MOR+ANA+REN+PPI+IDO+CRI,6,87222,False,0.370842,0.465366,True
+varimax_municipal,"Varimax, postos no município",12_sem_idade,2,AGU+MOR+ANA+REN+PPI+CAN,6,87512,False,0.333017,0.426899,False
+promax_municipal,"promax, postos no município",12,2,MOR+ANA+REN+PPI+IDO+CRI,6,87222,False,0.289321,0.42804,True
+promax_municipal,"promax, postos no município",12_sem_idade,2,AGU+MOR+ANA+REN+PPI+CAN,6,87512,False,0.337121,0.463877,False
+varimax_3f,"Varimax, 3 fatores",12,3,AGU+ESG+MOR+ANA+REN+PPI+CAN+IDO+CRI,9,87189,False,0.379344,0.438101,True
+varimax_3f,"Varimax, 3 fatores",12_sem_idade,3,AGU+ESG+MOR+ANA+REN+PPI+CAN,7,87511,False,0.375617,0.435531,True
+promax_3f,"promax, 3 fatores",12,3,AGU+ESG+MOR+ANA+REN+PPI+CAN+BAN+IDO+CRI,10,75629,True,0.430281,0.430281,True
+promax_3f,"promax, 3 fatores",12_sem_idade,3,AGU+MOR+ANA+REN+PPI+CAN,6,87512,False,0.352239,0.547203,True

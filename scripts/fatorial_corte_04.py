@@ -65,11 +65,10 @@ def cortar(d: pd.DataFrame, codigos: list[str], rot: str) -> tuple[list[str], di
         i = int(carga.argmin())
         sai = carga[i] < CORTE and len(atuais) > MINIMO
         passos += [{'rotacao': rot, 'passo': passo, 'codigo': c, 'carga_max': x, 'h2': h, 'n': len(s),
-                    'retirado': sai and j == i} for j, (c, x, h) in enumerate(zip(atuais, carga, h2))]
+                    'heywood': r['heywood'], 'convergiu': r['convergiu'], 'retirado': sai and j == i} for j, (c, x, h) in enumerate(zip(atuais, carga, h2))]
         if not sai:
             return atuais, r, s, passos
         atuais.pop(i)
-    raise RuntimeError('corte sem fim')  # inalcançável: o laço para em MINIMO
 
 
 def versoes(nome: str, codigos: list[str], r: dict, s: pd.DataFrame, rot: str, retirados: list[str]):
@@ -199,7 +198,7 @@ def main() -> None:
             regs.append(esp)
             vetores[('anterior_7', 'promax', esp['metodo'])] = v
 
-    setores, mun = df['CD_SETOR'], df.set_index('CD_SETOR')['NM_MUN'].reindex(df['CD_SETOR']).to_numpy()
+    setores, mun = df['CD_SETOR'], df['NM_MUN'].to_numpy()
     alinhado = {k: v.reindex(setores).to_numpy() for k, v in vetores.items()}
     esp = pd.DataFrame(regs)
     esp['id'] = [f'{f}·{r_}·{m}' for f, r_, m in zip(esp['familia'], esp['rotacao'], esp['metodo'])]

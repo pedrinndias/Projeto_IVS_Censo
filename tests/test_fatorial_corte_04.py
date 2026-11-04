@@ -8,7 +8,9 @@ import pandas as pd
 RAIZ = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(RAIZ / 'scripts'))
 import fatorial_corte_04 as fc  # noqa: E402
+import fatorial_corte_04_sensibilidade as fs  # noqa: E402
 import fatorial_multiversao as fm  # noqa: E402
+from ivs_censo.fatorial import fatoracao_eixo_principal, rotacao_promax  # noqa: E402
 
 CODIGOS = ['AGU', 'ESG', 'CAN', 'REN', 'PPI', 'ANA', 'LIX', 'MNC']
 
@@ -44,3 +46,22 @@ def test_corte_nao_desce_abaixo_do_minimo():
                      columns=[fm.VARS[c] for c in CODIGOS[:5]])
     ficam, _, _, _ = fc.cortar(d, CODIGOS[:5], 'varimax')
     assert len(ficam) == fc.MINIMO
+
+
+def test_corte_guarda_os_alertas_da_fatorial():
+    p = pd.DataFrame(fc.cortar(base(), CODIGOS, 'varimax')[3])
+    assert not p['heywood'].any() and p['convergiu'].all()
+
+
+def test_sensibilidade_repete_o_corte_e_a_promax_do_modulo():
+    d = base()
+    cols = [fm.VARS[c] for c in CODIGOS]
+    R = fm.matriz(d, cols, 'global')
+    L = fatoracao_eixo_principal(R, 2)[0]
+    assert np.allclose(fs.promax_variante(L, 4, 'nenhuma'), rotacao_promax(L)[0])
+
+    def matriz(lista):
+        i = [CODIGOS.index(c) for c in lista]
+        return R[np.ix_(i, i)]
+    for rot in ('varimax', 'promax'):
+        assert fs.cortar_R(matriz, CODIGOS, fs.VARIANTES[rot][1])[0] == fc.cortar(d, CODIGOS, rot)[0]

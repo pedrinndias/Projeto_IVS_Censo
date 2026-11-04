@@ -7,7 +7,8 @@ indicadores. O resto sai de `scripts/fatorial_corte_04.py` (`banco_de_dados/eda/
 corte, as versões, as duas propostas lado a lado (sem idosos e crianças; A com promax · 60/40, B com
 Varimax · 60/40), os pesos, o IVS das duas, idosos e crianças, a sensibilidade e as decisões. Grava
 `apresentacoes_multiversao/dados/C04.json` e as figuras `figuras/C04_*.png`, no formato de
-`scripts/gerar_decks_multiversao.js`. Nenhum número é digitado.
+`scripts/gerar_decks_multiversao.js`. Os números saem dos CSVs; as frases de interpretação são escritas à
+mão e precisam ser conferidas com eles a cada nova rodada.
 
     ./.venv/bin/python scripts/dados_deck_corte_04.py
     node scripts/gerar_decks_multiversao.js C04
@@ -44,6 +45,7 @@ F_PASSOS, F_CARGAS, F_VERSOES, F_FINAIS = (f'{ENT}{n}.csv' for n in
 F_FINALISTAS, F_ESTAB, F_REPL, F_PERF, F_CORTE, F_IVS = (
     f'{ENT}{n}' for n in ('finalistas.csv', 'estabilidade.csv', 'replicacao.csv', 'perfil_perdidos.csv',
                           'corte_estabilidade.csv', 'ivs_final_por_setor.csv'))
+F_SC, F_SR, F_SE = (f'{ENT}sensibilidade_{n}.csv' for n in ('corte', 'reamostragem', 'reentrada'))
 F_ADEQ = 'banco_de_dados/eda/fatorial_multiversao/camada1_12_global_adequacao.csv'
 ROTA = {'sem_rotacao': 'sem rotação', 'varimax': 'Varimax', 'promax': 'promax'}
 METODO = {'unico': 'fator único', 'ss': 'soma dos quadrados', 'ss_padrao': 'soma dos quadrados (padrão)',
@@ -65,7 +67,7 @@ class Deck(dm.Deck):
     def gravar(self) -> None:
         dm.DADOS.mkdir(parents=True, exist_ok=True)
         (dm.DADOS / f'{self.cod}.json').write_text(json.dumps(
-            {'deck': self.cod, 'titulo': self.titulo, 'arquivo': 'Corte_Carga_04_Duas_Propostas_2026-11.pptx',
+            {'deck': self.cod, 'titulo': self.titulo, 'arquivo': 'Corte_Carga_04_Duas_Propostas_2026-11_v2.pptx',
              'ordem': self.ordem, 'slides': self.slides}, ensure_ascii=False, indent=1), encoding='utf-8')
 
     def do_fin(self, ids: list[str]) -> None:
@@ -195,7 +197,9 @@ def fig_planos(M: dict, nm: dict) -> str:
         ax.axvline(0, color=CINZA, lw=.6)
         ax.scatter(P[:, 0], P[:, 1], color=COR_AB[x])
         for i, n_ in enumerate(nm[x]):
-            ax.annotate(n_, (P[i, 0], P[i, 1]), fontsize=8, xytext=(4, 4), textcoords='offset points')
+            perto = any(abs(P[i, 1] - P[j, 1]) < 0.08 and abs(P[i, 0] - P[j, 0]) < 0.25 for j in range(i))
+            ax.annotate(n_, (P[i, 0], P[i, 1]), fontsize=8, xytext=(4, -11 if perto else 4), textcoords='offset points')
+        ax.set_xlim(-0.3, 1.7)    # espaço para os rótulos à direita dos pontos
         ax.set_title(tit, fontsize=11, loc='left')
         estilo(ax, 'carga em F1 (socioeconômica)', 'carga em F2 (saneamento)' if x == 'a' else '')
     fig.tight_layout()
@@ -239,6 +243,7 @@ def main() -> None:
     corte = pd.read_csv(RAIZ / F_CORTE)
     ivs = pd.read_csv(RAIZ / F_IVS, dtype={'CD_SETOR': str})
     adeq = pd.read_csv(RAIZ / F_ADEQ).iloc[0]
+    sc, sr, se = pd.read_csv(RAIZ / F_SC), pd.read_csv(RAIZ / F_SR).set_index('rotacao'), pd.read_csv(RAIZ / F_SE)
     df = fm.carregar()
     df['porte'] = pd.cut(df['pop_municipio'], [0, 100_000, 500_000, np.inf], labels=PORTES, right=True)
     prop = fin_.set_index('papel')
@@ -260,17 +265,8 @@ def main() -> None:
           sub='Os 12 indicadores na mesma análise fatorial; os de carga menor que 0,4 saem. O corte em cada rotação, '
               'as versões comparadas e duas propostas de IVS lado a lado — para a orientadora escolher.',
           rodape='Pedro Dias Soares · Fiocruz Minas — IRR · nov/2026')
-    D.add('Como esta apresentação está organizada', ['scripts/fatorial_corte_04.py'], blocos=[
-        ['O ponto de partida.', 'A demanda da orientadora, a base do relatório parcial e os 12 indicadores.'],
-        ['A análise exploratória e as matrizes.', 'Os 12 lado a lado, as correlações, a adequação e o número de '
-                                                   'fatores — os mesmos slides da apresentação de outubro.'],
-        ['O corte.', 'Quem sai em cada rotação, em que ordem, e se o resultado se mantém sem cada município.'],
-        ['As versões.', 'Rotações e métodos de peso sobre a lista que sobrou.'],
-        ['As duas propostas.', 'A (promax, mantém o sem banheiro) e B (Varimax, a regra tira o sem banheiro), lado a '
-                               'lado: cargas, pesos, estabilidade, faixas, quem mora em cada faixa e quem fica sem IVS.'],
-        ['Idosos, sensibilidade e decisões.', 'Por que idosos e crianças ficam fora, quanto o IVS muda com cada '
-                                              'alternativa e o que fica para a orientadora decidir (slide "O que levar '
-                                              'à orientação").']])
+    sumario = D.add('Como esta apresentação está organizada', ['scripts/fatorial_corte_04.py'],
+                    cab=['Seção', 'Título', 'Slide'], colW=[0.8, 4.6, 0.9], linhas=[])
 
     # ── 1. ponto de partida
     D.secao('Ponto de partida', 'A demanda da orientadora, a base e os 12 indicadores.')
@@ -286,10 +282,24 @@ def main() -> None:
         ['As versões.', 'O corte é repetido em cada rotação (sem rotação, Varimax, promax), porque a carga depende '
                         'dela. Depois, cada rotação calcula o índice com os seus métodos de peso.'],
         ['Duas famílias.', 'Os 12 completos, como a regra pede, e os 12 sem idosos e crianças. Idosos e crianças '
-                           'passam no corte; tirá-los é decisão do projeto, não da regra: eles descrevem a estrutura '
-                           'etária, não a vulnerabilidade.'],
+                           'passam no corte; tirá-los é decisão do projeto, não da regra: o projeto os lê como estrutura '
+                           'etária, não como vulnerabilidade.'],
         ['Duas propostas.', 'Ambas sem idosos e crianças e com pesos 60/40 (o IVS de 2012): A com promax, em que o sem '
                             'banheiro passa no corte, e B com Varimax, em que ele sai. A escolha é da orientadora.']])
+    resumo = D.add('A decisão em uma página', [F_FINALISTAS, F_CORTE, F_SR, F_PASSOS],
+                   cab=['Medida', 'Proposta A (promax)', 'Proposta B (Varimax)'], colW=[2.9, 2.1, 2.1], linhas=[])
+    termos = D.add('Os termos desta apresentação', ['scripts/fatorial_corte_04.py'], blocos=[
+        ['Carga.', 'O quanto um indicador acompanha um fator. Na Varimax é a correlação; na promax, o efeito próprio do '
+                   'fator, que pode passar de 1.'],
+        ['Comunalidade (h²).', 'A parte da variação do indicador que os fatores explicam.'],
+        ['Regra literal.', 'Os 12 indicadores só com a regra do 0,4, sem tirar idosos e crianças.'],
+        ['Núcleo ou proposta anterior.', 'Os 7 indicadores do Quadro 1, com lixo e sem corte. Não são os 7 da proposta B, '
+                                         'que tem sem água canalizada no lugar do lixo.'],
+        ['Finalistas.', 'As propostas A e B e as três alternativas comparadas a elas: a regra literal, sem rotação e a '
+                        'proposta anterior.'],
+        ['Troca de faixa.', 'A % de setores que mudam de faixa entre dois índices. Até 10% é tratado como equivalente.'],
+        ['Normalização de Kaiser.', 'Ajuste que dá o mesmo peso a todos os indicadores na rotação. SPSS e R usam; '
+                                    'aqui ela não foi usada, e o slide "O corte muda com as escolhas de método" mostra o efeito.']])
     D.do_fin(DO_FIN['partida'])
     D.do_fin(DO_FIN['exploratoria'])
     D.do_fin(DO_FIN['matrizes'])
@@ -350,7 +360,8 @@ def main() -> None:
               'É o único indicador cujo destino muda com a rotação — e é o que separa as propostas A e B.',
               'Comunalidade: quanto da variação do indicador os fatores explicam (sem rotação, só o F1). O projeto '
               'tinha fixado 0,30 como mínimo, além da carga de 0,40.',
-              f'Na promax ele passa no 0,4 por pouco, mas a comunalidade fica abaixo de 0,30. Mantê-lo custa '
+              f'Nas duas rotações ele fica perto do corte: passa por pouco na promax e sai por pouco na Varimax. A '
+              f'comunalidade fica abaixo de 0,30. Mantê-lo custa '
               f'{intbr(perda)} setores à proposta A, que não têm o dado do banheiro.'))
     linhas = []
     for x in AB:
@@ -371,7 +382,8 @@ def main() -> None:
               'A primeira linha de cada proposta conta as rodadas que dão a mesma lista; as outras, as que mudam.',
               'Mesma lista em ' + ' e '.join(f"{int(corte.loc[corte['proposta'] == x, 'igual_a_proposta'].sum())} de "
                                               f"{int((corte['proposta'] == x).sum())} rodadas na {x.upper()}" for x in AB)
-              + '; as mudanças vêm de indicadores perto de 0,40 quando sai um município grande.'))
+              + f"; as listas só mudam sem {junta(sorted(corte.loc[~corte['igual_a_proposta'], 'fora'].unique()))}, e nem todo "
+                'indicador que sai nessas rodadas estava perto de 0,40.'))
 
     # ── as versões
     D.secao('As versões', 'Rotações e métodos de peso sobre a lista que sobrou, comparados à promax · 60/40 da família.')
@@ -548,6 +560,7 @@ def main() -> None:
     # ── os pesos
     D.secao('Os pesos', 'Por dimensão e por indicador, a estabilidade por município e a replicação entre metades.')
     base_p = v[v['familia'] == '12_sem_idade']
+    dos_dados = base_p[~base_p['metodo'].isin(['unico', '50_50', '60_40'])]
     D.add('O peso da dimensão socioeconômica em cada método', [F_VERSOES],
           cab=['Rotação', 'Método de peso', 'Peso socioeconômico'], colW=[2.0, 2.8, 2.0],
           linhas=[[ROTA[x.rotacao], METODO[x.metodo] + (' (A)' if (x.rotacao, x.metodo) == fc.FINAL else
@@ -560,8 +573,7 @@ def main() -> None:
                   'fator só. A composição das dimensões não é a de 2012: o lixo saiu e entraram sem água canalizada '
                   'e, na A, sem banheiro.',
               mostra='As duas propostas usam 60/40. Pelos dados, a dimensão socioeconômica levaria de '
-                     f"{pct(base_p[base_p['metodo'] != 'unico']['peso_F1'].min() / 100)} a "
-                     f"{pct(base_p[base_p['metodo'] != 'unico']['peso_F1'].max() / 100)}."))
+                     f"{pct(dos_dados['peso_F1'].min() / 100)} a {pct(dos_dados['peso_F1'].max() / 100)}."))
     pesos = {x: pd.Series({k: prop.at[x, f'peso_{k}'] for k in cods[x]}) for x in AB}
     e = {x: est[est['id'] == x] for x in AB}
     def faixa_peso(x, k):  # noqa: E306
@@ -653,16 +665,19 @@ def main() -> None:
               oque='Os moradores de cada faixa, em milhões.', serve='Dá a dimensão da população em cada nível.',
               ler=ler_fx + ' A B cobre mais setores, por isso tem mais moradores em todas as faixas.'))
     cab_ab = ie.comparar(vv['ivs_a'].to_numpy(), vv['ivs_b'].to_numpy(), vv['NM_MUN'].to_numpy())
-    linhas = [[PAPEL[x], pct((vv.loc[vv[f'faixa_{x}'] >= 0, f'faixa_{x}'] == vv.loc[vv[f'faixa_{x}'] >= 0, f'quartis_{x}']).mean())]
+    comuns = vv[vv['ivs_a'].notna() & vv['ivs_b'].notna()]
+    sem_refazer = (comuns['faixa_a'] != comuns['faixa_b']).mean()
+    linhas = [[f'{PAPEL[x]}: IVS-BH igual aos quartis', pct((vv.loc[vv[f'faixa_{x}'] >= 0, f'faixa_{x}'] == vv.loc[vv[f'faixa_{x}'] >= 0, f'quartis_{x}']).mean())]
               for x in AB] + [['A × B (setores comuns)', f"troca {pct(cab_ab['troca_faixa'])}; Spearman {br(cab_ab['spearman_mun'], 3)}"]]
     D.add('As faixas: duas regras e duas propostas', [F_IVS], cab=['Comparação', 'Resultado'], colW=[3.0, 3.6],
           linhas=linhas, explica=explica(
               oque='A concordância entre a regra do IVS-BH e os quartis (25% dos setores de cada município em cada faixa) '
                    'em cada proposta, e a troca de faixa entre A e B nos setores que as duas têm.',
               serve='Mostra o quanto a regra de faixa e a escolha entre A e B mudam a classificação.',
-              ler='A regra do IVS-BH põe a maioria no "médio"; os quartis forçam 25% em cada faixa — a discordância vem '
+              ler='A regra do IVS-BH põe mais setores no "médio" que em outra faixa; os quartis forçam 25% em cada faixa — a discordância vem '
                   'em parte da construção das regras.',
-              mostra=f"Entre A e B, {pct(cab_ab['troca_faixa'])} dos setores comuns mudam de faixa."))
+              mostra=f"Entre A e B, {pct(cab_ab['troca_faixa'])} dos setores comuns mudam de faixa. Sem refazer as faixas nesses "
+                     f"setores, são {pct(sem_refazer)}: a diferença vem dos setores a mais da B, que mudam a média do município."))
     fr_ido = '; '.join(f"{PAPEL[x]}: {intbr(t[x].p60.iloc[-2:].sum())} ({pct(t[x].p60.iloc[-2:].sum() / t[x].p60.sum())})"
                        for x in AB)
     D.add('Os idosos em cada faixa: a tabela', [F_IVS],
@@ -766,7 +781,7 @@ def main() -> None:
               serve='Mostra se a escolha entre A e B pesa mais em algumas cidades.',
               ler='Até 10% é tratado como equivalente.',
               mostra=f"Mediana entre os municípios: {pct(tm['mean'].median())}; "
-                     f"{int((tm['mean'] >= 0.10).sum())} de {len(tm)} chegam a 10%."))
+                     f"{int((tm['mean'] >= 0.10).sum())} de {len(tm)} chegam a 10% sem arredondar."))
     D.add('As finalistas lado a lado', [F_FINALISTAS],
           cab=['Finalista', 'Ind.', 'Método', 'Setores', 'Troca vs A', 'Troca vs B'], colW=[2.3, 0.5, 1.7, 1.0, 1.0, 1.0],
           linhas=[[PAPEL[x.papel], str(len(x.codigos.split('+'))), f'{ROTA[x.rotacao]} · {METODO[x.metodo]}', intbr(x.n),
@@ -794,6 +809,7 @@ def main() -> None:
     linhas = [[NOME[x['codigo']], br(x['F1'], 3), br(x['F2'], 3), br(x['estrutura_F1'], 3), br(x['estrutura_F2'], 3),
                br(x['h2'], 3)] for _, x in g.iterrows()]
     cri, ren = g.set_index('codigo').loc['CRI'], g.set_index('codigo').loc['REN']
+    cri1 = p[(p['familia'] == '12') & (p['rotacao'] == 'promax') & (p['passo'] == 1) & (p['codigo'] == 'CRI')]['carga_max'].iloc[0]
     D.add('As cargas dos 12 com promax (regra literal)', [F_CARGAS],
           cab=['Indicador', 'Padrão F1', 'Padrão F2', 'Estrutura F1', 'Estrutura F2', 'Comunalidade'],
           colW=[2.4, 0.9, 0.9, 1.05, 1.05, 1.3], linhas=linhas, explica=explica(
@@ -801,9 +817,10 @@ def main() -> None:
               'e a de estrutura.',
               'Mostra quem forma cada fator quando idosos e crianças entram.',
               'F1 é o fator da renda (socioeconômico); F2, o do saneamento. Carga perto de 1 ou acima pede cautela '
-              '(pode indicar solução imprópria) — vale para as crianças aqui e para a renda na proposta A.',
+              '(pode indicar solução imprópria) — vale para as crianças aqui e para a renda na proposta A. Estas são as '
+              f'cargas depois do corte; no 1º passo, as crianças têm {br(cri1, 3)}.',
               f'Crianças têm a maior carga do F1 ({br(cri["F1"], 3)}), acima da renda ({br(ren["F1"], 3)}): com os 12, '
-              'o F1 passa a medir a estrutura etária.'))
+              'o F1 passa a misturar a estrutura etária com a renda.'))
     rotulo = {'12': 'Os 12', '12_sem_idade': 'Proposta A (sem idosos e crianças)', 'anterior_7': 'Proposta anterior (os 7)'}
     linhas = [[rotulo[x['a']], rotulo[x['b']], intbr(x['n_comum']), br(x['spearman_mun'], 3), pct(x['troca_faixa'])]
               for _, x in f.iterrows()]
@@ -830,15 +847,73 @@ def main() -> None:
                      f"{len(tm12)} passam de 30%."))
 
     # ── sensibilidade
-    D.secao('Sensibilidade', 'Quanto o IVS muda com cada alternativa.')
+    D.secao('Sensibilidade', 'Quanto o corte e o IVS mudam com cada alternativa.')
+    s_sem, s_12 = (sc[sc['familia'] == x].set_index('variante') for x in ('12_sem_idade', '12'))
+    def ban_em(r):  # noqa: E306
+        return f"{'fica' if r['ban_fica'] else 'sai'} ({br(r['ban_carga'], 3)})" + (' †' if r['alerta'] else '')
+    mostrar = ['varimax', 'varimax_kaiser', 'promax', 'promax_k3_nenhuma', 'promax_k2_nenhuma', 'promax_k4_spss',
+               'promax_k2_spss', 'promax_estrutura', 'varimax_municipal', 'promax_municipal', 'varimax_3f', 'promax_3f']
+    ficam_sem = int(s_sem['ban_fica'].sum())
+    sem_ban = sc[sc['familia'] == 'sem_idade_sem_banheiro'].iloc[0]
+    tira = [x for x in fc.FAMILIAS['12_sem_idade'] if x not in sem_ban['mantidos'].split('+') and x not in ('BAN', 'LIX', 'MNC')]
+    lm_fora = sc[sc['familia'] != 'sem_idade_sem_banheiro']['mantidos'].map(lambda s: not {'LIX', 'MNC'} & set(s.split('+')))
+    D.add('O corte muda com as escolhas de método', [F_SC],
+          cab=['Variante', 'Sem banheiro (sem idosos)', 'Ficam', 'Sem banheiro (os 12)', 'Ficam'],
+          colW=[2.7, 1.6, 0.6, 1.6, 0.6],
+          linhas=[[s_sem.at[k, 'rotulo'], ban_em(s_sem.loc[k]), str(s_sem.at[k, 'p']), ban_em(s_12.loc[k]), str(s_12.at[k, 'p'])]
+                  for k in mostrar], explica=explica(
+              'O corte refeito mudando uma escolha por vez: normalização de Kaiser, kappa da promax, matriz de estrutura, '
+              'postos dentro do município e 3 fatores.',
+              'Mostra se a saída do sem banheiro é dos dados ou do método. É o indicador que separa A e B.',
+              'Entre parênteses, a última carga do sem banheiro. † marca alerta de solução imprópria (Heywood) ou falta de '
+              f'convergência em algum passo. "Ficam": indicadores que sobram. Nas {len(s_sem)} variantes rodadas, a tabela '
+              'mostra as principais.',
+              f'Sem idosos e crianças, ele fica em {ficam_sem} de {len(s_sem)} variantes. Lixo e moradia não convencional saem '
+              f"em {int(lm_fora.sum())} de {len(lm_fora)}. O esgoto também é frágil: sai em {int((~s_sem['mantidos'].str.contains('ESG')).sum())} "
+              f'de {len(s_sem)}. Tirar o sem banheiro da promax não basta: {junta(nomes(tira)) if tira else "nada mais"} '
+              'também saem.'))
+    igual = {x: int(corte.loc[corte['proposta'] == x, 'igual_a_proposta'].sum()) for x in AB}
+    D.add('O sem banheiro quando os municípios mudam', [F_SR, F_CORTE],
+          cab=['Rotação', 'Réplicas', 'Corte mantém o sem banheiro', 'Carga mediana', 'Faixa de 95%'],
+          colW=[1.3, 0.9, 2.1, 1.2, 1.4],
+          linhas=[[ROTA[k], intbr(x['replicas']), pct(x['ban_fica']), br(x['carga_mediana'], 3),
+                   f"{br(x['carga_p025'], 3)} a {br(x['carga_p975'], 3)}"] for k, x in sr.iterrows()], explica=explica(
+              'Os 70 municípios sorteados com reposição, e o corte refeito em cada sorteio.',
+              'Mede o quanto o destino do sem banheiro depende de quais municípios entram. Não é erro amostral: o Censo não '
+              'é amostra.',
+              f'Tirar uma cidade por vez repete a lista em {igual["a"]} (A) e {igual["b"]} (B) de {corte["fora"].nunique()} '
+              'rodadas: nenhuma cidade sozinha decide. O sorteio muda os 70 de uma vez, e a carga oscila mais. Os dois '
+              'resultados são compatíveis.',
+              'A faixa de 95% da carga cobre o 0,40 nas duas rotações: a regra não separa A e B com folga.'))
+    D.add('Os retirados voltam à lista?', [F_SE], cab=['Proposta', 'Indicador que volta', 'Carga', 'Passa no 0,4?'],
+          colW=[2.0, 2.8, 1.0, 1.2],
+          linhas=[[PAPEL[x['proposta']], NOME[x['codigo']], br(x['carga'], 3), 'sim' if x['passa'] else 'não']
+                  for _, x in se.iterrows()], explica=explica(
+              'Cada indicador retirado volta sozinho à lista final da proposta, e a fatorial é refeita.',
+              'A amostra cresce quando o sem banheiro sai, e o corte retira um por vez: confere se a ordem deixou de fora '
+              'alguém que passaria.',
+              'Carga do indicador que voltou, na mesma rotação da proposta.',
+              f"{int(se['passa'].sum())} de {len(se)} voltas passam no 0,4."))
+    cruz = []
+    for x in AB:
+        ordenada = np.sort(np.abs(M[x]), axis=1)
+        cruz += [[PAPEL[x], NOME[k], br(ordenada[i, 1], 3), br(ordenada[i, 0], 3)] for i, k in enumerate(cods[x])
+                 if ordenada[i, 0] >= 0.30]
+    D.add('As cargas cruzadas das propostas', [F_FINALISTAS], cab=['Proposta', 'Indicador', 'Maior carga', 'Outra carga'],
+          colW=[2.0, 2.8, 1.1, 1.1], linhas=cruz or [['—', 'nenhuma', '—', '—']], explica=explica(
+              'Os indicadores com carga de pelo menos 0,30 nos dois fatores.',
+              'O índice põe cada indicador só no fator de maior carga. Carga alta nos dois enfraquece essa escolha.',
+              'Quanto mais perto as duas cargas, mais frágil é dizer a que dimensão o indicador pertence.',
+              f'{len(cruz)} casos. A regra do 0,4 olha só a maior carga e não testa a outra.'))
     cols_ivs = [f'ivs_{x}' for x in fin_['papel']]
-    Rf = ivs[cols_ivs].rank().corr()
+    Rf = ivs[cols_ivs].corr(method='spearman')
+    piso_r = np.floor(20 * Rf.to_numpy().min()) / 20
     D.add('Concordância entre as finalistas', [F_IVS],
-          figura=mapa_calor(Rf, 'C04_concordancia.png', 0, 1, 'Greens', rot={x: PAPEL[x[4:]] for x in cols_ivs}),
+          figura=mapa_calor(Rf, 'C04_concordancia.png', piso_r, 1, 'Greens', rot={x: PAPEL[x[4:]] for x in cols_ivs}),
           legenda='Spearman entre os IVS das finalistas, nos setores que cada par tem.', explica=explica(
               oque='A correlação de Spearman entre os IVS de cada par de finalistas, no conjunto dos setores.',
               serve='Mostra o quanto as alternativas ordenam os setores do mesmo jeito.',
-              ler='1 = mesma ordem dos setores; quanto mais claro, mais as duas versões discordam.'))
+              ler=f'1 = mesma ordem dos setores; quanto mais claro, mais as duas versões discordam. A escala começa em {br(piso_r, 2)}.'))
     comum = vv[vv['ivs_a'].notna()]
     fcu_c = comum['is_fcu'].to_numpy(dtype=float)
     renda_c = -comum['renda_media_sem_extremo'].to_numpy()
@@ -854,7 +929,7 @@ def main() -> None:
               ler='As duas primeiras colunas usam a amostra de cada finalista e não se comparam entre linhas (a própria '
                   'renda muda de amostra para amostra). A última usa os mesmos setores (os da A) para todas.',
               mostra='Nos mesmos setores, a renda sozinha separa favela tão bem ou melhor que qualquer índice: a AUC '
-                     'mede o conteúdo socioeconômico, não a qualidade dos pesos.'))
+                     'acompanha o conteúdo socioeconômico e não serve para julgar os pesos.'))
     pp = perf[perf['grupo'] == 'perdidos']
     falta = {k: int(df[fm.VARS[k]].isna().sum()) for k in ('ANA', 'BAN')}
     D.add('Quantos setores cada finalista perde', [F_PERF],
@@ -872,13 +947,14 @@ def main() -> None:
     # ── decisões
     D.secao('As decisões', 'O que a regra resolve e o que continua com a orientação.')
     alt = v[(v['familia'] == '12_sem_idade') & ~((v['rotacao'] == fc.FINAL[0]) & (v['metodo'] == fc.FINAL[1]))]
-    mesmo_metodo = alt[alt['metodo'].isin(['60_40', 'ss', 'ss_padrao', 'ss_estrutura', 'comunalidades'])
-                       & (alt['rotacao'] != 'sem_rotacao')]
+    troca_alt = alt.set_index(['rotacao', 'metodo'])['troca_faixa_vs_final']
+    ban_b = p[(p['familia'] == '12_sem_idade') & (p['rotacao'] == 'varimax') & (p['codigo'] == 'BAN')].sort_values('passo')['carga_max']
     D.add('O que levar à orientação', [F_PASSOS, F_VERSOES, F_FINAIS, F_CORTE, F_IVS],
           cab=['#', 'Ponto', 'O que os dados mostram', 'Pergunta'], colW=[0.35, 1.6, 3.6, 1.75], linhas=[
               ['1', junta(nomes(sempre)).capitalize(), f'saem nas {len(saem)} combinações de rotação e família',
-               '— (a regra resolve)'],
-              ['2', 'Proposta A ou B', f'A (promax) mantém o sem banheiro, com comunalidade {br(ban.loc[("12_sem_idade", "promax"), "h2"], 2)}; '
+               '— (a regra resolve, com 2 fatores)'],
+              ['2', 'Proposta A ou B', f'A (promax) mantém o sem banheiro, com peso de {pct(prop.at["a", "peso_BAN"])} e comunalidade {br(ban.loc[("12_sem_idade", "promax"), "h2"], 2)}; '
+                                       f'na Varimax ele começa em {br(ban_b.iloc[0], 3)} e sai em {br(ban_b.iloc[-1], 3)}. A '
                                        f'custa {intbr(perda)} setores, {pct(so_a["is_fcu"].mean())} deles favela e mais '
                                        f'pobres. B (Varimax) cobre {pct(prop.at["b", "pct_recorte"])} do recorte. A × B: '
                                        f'{pct(cab_ab["troca_faixa"])} de troca', 'qual rotação?'],
@@ -888,27 +964,32 @@ def main() -> None:
               ['4', 'Critérios do projeto', f'nenhuma proposta passa na comunalidade de 0,30 (A: {br(pior["a"][1], 2)}; '
                                             f'B: {br(pior["b"][1], 2)}); só os 12 com Varimax passam em tudo',
                'a comunalidade vira critério?'],
-              ['5', 'Método de peso', 'dentro da família sem idosos e crianças, os métodos que saem dos dados e o 60/40 '
-                                      f'ficam a no máximo {pct(mesmo_metodo["troca_faixa_vs_final"].max())} de troca da A; '
-                                      f'50/50 vai a {pct(alt.loc[alt["metodo"] == "50_50", "troca_faixa_vs_final"].max())} e '
-                                      f'sem rotação a {pct(alt.loc[alt["rotacao"] == "sem_rotacao", "troca_faixa_vs_final"].max())}',
+              ['5', 'Método de peso', 'contra a A, os métodos da promax que saem dos dados ficam a no máximo '
+                                      f'{pct(troca_alt["promax"].drop("50_50").max())} de troca; o 50/50 vai a '
+                                      f'{pct(troca_alt["promax", "50_50"])} na promax e {pct(troca_alt["varimax", "50_50"])} na Varimax, '
+                                      f'e sem rotação a {pct(troca_alt["sem_rotacao"].max())}',
                'manter 60/40?']],
           explica=explica(
               'Os cinco pontos que saem desta análise, com a pergunta que cada um deixa.',
               'É o que precisa de decisão da orientadora.',
-              'A regra do 0,4 resolve o ponto 1; os outros são escolhas.',
-              'A decisão principal é entre A e B: rotação contra cobertura dos setores mais pobres.'))
+              'A regra do 0,4 resolve o ponto 1, dada a escolha de 2 fatores; os outros são escolhas.',
+              'A decisão principal é entre A e B: rotação contra cobertura dos setores mais pobres, com o sem banheiro '
+              'perto do corte nas duas.'))
     D.add('Limitações', [F_ADEQ, F_VERSOES], blocos=[
         ['Estudo ecológico.', 'As relações são entre setores, não entre pessoas.'],
         ['Número de fatores.', f'O corte usa 2 fatores em todos os passos, como o IVS de 2012. Com os 12 juntos, Kaiser '
                                f'retém {int(adeq["kaiser"])} e Horn {int(adeq["horn"])}; Kaiser e Horn não são refeitos a '
-                               'cada retirada.'],
+                               'cada retirada. O corte com 3 fatores está em "O corte muda com as escolhas de método".'],
         ['Critérios que não cabem juntos.', 'Com um fator, comunalidade é carga ao quadrado: a carga de 0,40 da regra '
                                             'corresponde a comunalidade 0,16, abaixo do mínimo de 0,30.'],
         ['Sigilo.', 'O analfabetismo sob sigilo fica ausente, e o ausente cai nos setores de renda mais alta; o sem '
                     'banheiro ausente cai nos mais pobres.'],
         ['Carga acima de 1.', f"Na proposta A a renda tem carga padrão de {br(M['a'][cods['a'].index('REN'), 0], 3)}: "
                               'possível na promax, mas pede cautela ao ler o peso da renda.'],
+        ['Sem normalização de Kaiser.', 'Varimax e promax foram calculadas sem ela, ao contrário do padrão de SPSS e R. '
+                                        'O efeito está no slide "O corte muda com as escolhas de método".'],
+        ['Faixas relativas.', 'As faixas são calculadas dentro de cada município: dizem a posição do setor na própria '
+                              'cidade, não comparam o nível de vulnerabilidade entre cidades.'],
         ['Amostras.', 'Cada versão roda nos setores com todos os seus indicadores; as comparações refazem as faixas nos '
                       'setores comuns, mas não a régua mín-máx.'],
         ['Autocorrelação espacial.', 'Setores vizinhos não são independentes; o I de Moran fica para o geoprocessamento.'],
@@ -916,7 +997,7 @@ def main() -> None:
     D.add('Próximos passos', ['scripts/fatorial_corte_04.py'], blocos=[
         ['1.', 'Levar os cinco pontos à orientadora, começando pela escolha entre A e B.'],
         ['2.', 'Recalcular o IVS com as escolhas dela (o motor roda qualquer família, rotação e peso).'],
-        ['3.', 'Se a orientadora pedir: o corte com 3 fatores, como Horn indica para os 12.'],
+        ['3.', 'Se a orientadora pedir: um caminho híbrido para os setores sem o dado do banheiro, que exige outra régua.'],
         ['4.', 'Mapas temáticos no QGIS 3.x e I de Moran; redação do artigo e do relatório final.']])
 
     # ── apêndices
@@ -929,8 +1010,32 @@ def main() -> None:
             cel_ += [intbr(len(ok)), pct((ok[f'faixa_{x}'] >= 2).mean()) if len(ok) else '—']
         rows.append([mun_ + (' *' if len(g[g['faixa_a'] >= 0]) < 30 else ''), *cel_])
     for k, parte in enumerate((rows[:35], rows[35:])):
-        D.add(f'Apêndice: os 70 municípios ({k + 1} de 2) · * menos de 30 setores', [F_IVS],
+        D.add(f'Apêndice: os 70 municípios ({k + 1} de 2) · * menos de 30 setores na A', [F_IVS],
               cab=['Município', 'A setores', 'A % elev.', 'B setores', 'B % elev.'], linhas=parte, duas=True)
+    secoes = [(D.slides[i]['numero'], D.slides[i]['titulo'], D.ordem.index(i) + 1) for i in D.ordem if 'numero' in D.slides[i]]
+    n_de = {D.slides[i]['titulo']: D.ordem.index(i) + 1 for i in D.ordem}
+    D.slides[sumario].update(linhas=[[a_, b_, str(c_)] for a_, b_, c_ in secoes], explica=explica(
+        'As seções, na ordem em que aparecem.', 'Para ir direto ao que interessa.',
+        f"A decisão resumida está no slide {n_de['A decisão em uma página']}, os termos no {n_de['Os termos desta apresentação']} "
+        f"e as perguntas à orientadora no {n_de['O que levar à orientação']}."))
+    D.slides[resumo].update(linhas=[
+        ['Indicadores', str(len(cods['a'])), str(len(cods['b']))],
+        ['Setores com IVS', f"{intbr(n_ab['a'])} ({pct(prop.at['a', 'pct_recorte'])})", f"{intbr(n_ab['b'])} ({pct(prop.at['b', 'pct_recorte'])})"],
+        ['Sem banheiro no corte', f"fica ({br(ban.loc[('12_sem_idade', 'promax'), 'carga_max'], 3)})",
+         f"sai ({br(ban_b.iloc[0], 3)} no 1º passo, {br(ban_b.iloc[-1], 3)} ao sair)"],
+        ['Peso do sem banheiro', pct(prop.at['a', 'peso_BAN']), '—'],
+        ['Corte mantém o sem banheiro ao sortear municípios', pct(sr.at['promax', 'ban_fica']), pct(sr.at['varimax', 'ban_fica'])],
+        ['Comunalidade mínima (mínimo do projeto: 0,30)', br(pior['a'][1], 3), br(pior['b'][1], 3)],
+        ['Tucker F1 · F2', f"{br(rep.at['a', 'tucker_F1'], 3)} · {br(rep.at['a', 'tucker_F2'], 3)}",
+         f"{br(rep.at['b', 'tucker_F1'], 3)} · {br(rep.at['b', 'tucker_F2'], 3)}"],
+        ['Fatores correlacionados (Φ)', br(r_['a']['phi'][0, 1], 3) + ': a promax admite', br(r_['b']['phi'][0, 1], 3) + ': a Varimax ignora'],
+    ], explica=explica(
+        'As duas propostas e o que cada uma custa. Ambas tiram idosos e crianças por decisão do projeto, não pela regra.',
+        'É a decisão que esta apresentação leva à orientadora.',
+        'A leva o sem banheiro e perde setores; B cobre mais setores e usa uma rotação que trata os fatores como '
+        'independentes, embora estejam correlacionados.',
+        f'A × B: {pct(cab_ab["troca_faixa"])} de troca de faixa nos setores comuns. A regra do 0,4 não decide sozinha, porque o sem '
+        f'banheiro fica perto do corte; A deixa sem IVS {intbr(perda)} setores mais pobres. Pergunta: que regra de corte vale?'))
     D.gravar()
     print(f'{len(D.ordem)} slides → {dm.DADOS.relative_to(RAIZ)}/C04.json')
 
