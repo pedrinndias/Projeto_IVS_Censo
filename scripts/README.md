@@ -1,6 +1,6 @@
 # `scripts/` — os executáveis versionados
 
-Setenta e um arquivos (57 `.py` e 14 `.js`). A pipeline de análise **são os notebooks**; estes existem
+Setenta e seis arquivos (61 `.py`, 14 `.js` e 1 `.swift`). A pipeline de análise **são os notebooks**; estes existem
 para o que precisa rodar fora deles — o Brasil inteiro, o pacote de entrega, os decks e os
 documentos.
 
@@ -30,6 +30,8 @@ documentos.
 | [`dados_criterio_renda.py`](dados_criterio_renda.py) | o JSON que alimenta o deck do critério de renda | sim |
 | [`eda_central_dados.py`](eda_central_dados.py) | o JSON que alimenta o deck e o resumo da EDA Central | sim |
 | [`ivs_especificacoes.py`](ivs_especificacoes.py) | `banco_de_dados/eda/ivs_especificacoes/` — as 324 especificações do IVS final (Fase C) | sim · ~3 min |
+| [`auditoria_banheiro_particao.py`](auditoria_banheiro_particao.py) | testa se `V00495` é exatamente a soma de `V00236`, `V00237` e `V00238` | sim |
+| [`base_nacional_versoes.py`](base_nacional_versoes.py) | a base nacional por setor, no formato da entrega, para a versão `A6_brasil` | sim · ~10 min |
 
 ## Apresentações
 
@@ -44,6 +46,9 @@ documentos.
 | [`gerar_slides_ivs_final.js`](gerar_slides_ivs_final.js) | os 8 slides do NB05 (especificação de referência do IVS final), **anexados** ao mesmo deck | `pptxgenjs` |
 | [`gerar_deck_cronologia.js`](gerar_deck_cronologia.js) | `complementos/Cronologia_Projeto_IVS_2026-10.pptx` — a cronologia do projeto, do `git log` e dos CSVs | `pptxgenjs`, `git` |
 | [`gerar_deck_demandas_setembro.js`](gerar_deck_demandas_setembro.js) | `complementos/Demandas_Setembro_IVS_2026-10.pptx` — as demandas de setembro, números só de CSV | `pptxgenjs` |
+| [`dados_deck_orientadora.py`](dados_deck_orientadora.py) | `analises_exploratorias/00_sintese/unificada/deck_orientadora.json` — o conteúdo do deck para a orientadora | `pandas` |
+| [`gerar_deck_orientadora.js`](gerar_deck_orientadora.js) | o deck para a orientadora: EDA unificada, EDA da versão final, fatorial e catálogos visuais | `pptxgenjs` |
+| [`folha_contato.swift`](folha_contato.swift) | a folha de contato de um PDF: as páginas em miniatura, numa imagem só ou uma por página | macOS (PDFKit) |
 | [`juntar_decks.py`](juntar_decks.py) | funde os slides de um `.pptx` anexo ao fim de um `.pptx` base, sem regerar nenhum dos dois, e conserta a estrutura (masters/layouts) do resultado | — |
 
 > `deck_comum.js` é usado pelo gerador da fatorial, pelos três de slides anexados e pelos
@@ -59,10 +64,12 @@ documentos.
 | [`gerar_pdf_plano_emergencia.py`](gerar_pdf_plano_emergencia.py) | o livro condensado, o roteiro da fala e as perguntas prováveis | `reportlab` |
 | [`gerar_pdf_outliers_renda.py`](gerar_pdf_outliers_renda.py) | o critério de outlier de renda por extenso | `reportlab` |
 | [`gerar_pdf_guia_decks_outubro.py`](gerar_pdf_guia_decks_outubro.py) | `complementos/Guia_Apoio_Cronologia_e_Demandas.pdf` — os dois decks de outubro explicados slide a slide, com as miniaturas; os textos ficam em `guia_outubro_base.py`, `guia_outubro_cronologia.py` e `guia_outubro_demandas.py`, que não geram nada sozinhos | `reportlab`, `pypdf`, LibreOffice |
+| [`gerar_pdf_guia_deck_orientadora.py`](gerar_pdf_guia_deck_orientadora.py) | o guia de estudo do deck para a orientadora, cada slide explicado do zero | `reportlab` |
 | [`gerar_resumo_eda_central.py`](gerar_resumo_eda_central.py) | o resumo da EDA em Word | `python-docx` |
 | [`atualizar_roteiro_2a_rodada.py`](atualizar_roteiro_2a_rodada.py) | migra o roteiro da 1ª para a 2ª rodada | `python-docx` |
 | [`gerar_relatorio_ivs_final.py`](gerar_relatorio_ivs_final.py) | `docs/relatorios/Relatorio_IVS_Final_NB05.md` | — |
 | [`gerar_notebook_ivs_final.py`](gerar_notebook_ivs_final.py) | `notebooks/Fase3_EDA_ELSI/05_Calculo_IVS_Final.ipynb`, por `nbformat`/`nbclient` | — |
+| [`planilha_indicadores_ic.py`](planilha_indicadores_ic.py) | a aba "Indicadores" na planilha de artigos e fichamentos da IC | `openpyxl` |
 | [`inventario_apresentacao.py`](inventario_apresentacao.py) | o mapa dos artefatos de apresentação (ATUAL/SUPERADO/HISTÓRICO) | `python-pptx`, `pandas` |
 | [`gerar_catalogo_analises.py`](gerar_catalogo_analises.py) | `docs/relatorios/Catalogo_Analises_Exploratorias.xlsx` — cada tabela, figura, deck e relatório já produzido, com situação, tema e onde aparece cada indicador | `pandas`, `openpyxl`, `git` |
 | [`dados_relatorio_descritivo.py`](dados_relatorio_descritivo.py) | `relatorio_descritivo/dados/` (`numeros.json`, `manifesto.csv`), `relatorio_descritivo/figuras/` e `Relatorio_Descritivo_numeros.xlsx` — os números e textos do relatório descritivo, lidos das tabelas da `00_referencia` e do registro das demandas | `pandas`, `matplotlib`, `openpyxl` |
@@ -83,6 +90,18 @@ documentos.
 | [`anexar_versoes_ao_relatorio.py`](anexar_versoes_ao_relatorio.py) | `relatorio_descritivo/Relatorio_Descritivo_IVS_2026-10_com_108_versoes.pptx` — o relatório descritivo editado pelo Pedro com a parte 5 (as 108 versões) copiada para dentro, sem regerar; renumera o pé | `python-pptx` (via `uv run --with`) |
 | [`inserir_no_relatorio.py`](inserir_no_relatorio.py) | Copia slides novos do relatório (lista em `relatorio_descritivo/dados/insercoes_<rodada>.json`) para dentro do deck editado pelo Pedro, sem regerar; grava arquivo novo e renumera o pé | `python-pptx` (via `uv run --with`) |
 
+## Análises exploratórias por versão (out/2026)
+
+Prompt e estado em `docs/prompts/prompt_analises_exploratorias_versoes_2026-10.md` e `analises_exploratorias/ESTADO.md`. Ordem: motor → deck → verificador, versão a versão; a síntese vem no fim. No máximo 3 ou 4 versões ao mesmo tempo.
+
+| Script | O que gera |
+|---|---|
+| [`eda_versoes.py`](eda_versoes.py) `<versao>` | motor único: lê `config.json` e grava `tabelas/`, `figuras/`, `catalogo.csv` e `setores_indice.csv` da versão |
+| [`eda_transversais.py`](eda_transversais.py) `<E…>` | as análises que atravessam as versões (E1 a E6), no mesmo formato |
+| [`gerar_deck_versao.js`](gerar_deck_versao.js) `<versao>` | o deck de cada versão |
+| [`verificar_versao.py`](verificar_versao.py) `<versao>` | conferência de uma versão: `pytest`, deck em PDF e o resto da lista no próprio script |
+| [`sintese_versoes.py`](sintese_versoes.py) | a síntese entre as versões, sem recalcular nenhum índice |
+
 ## Fatorial multiversão (out/2026)
 
 Prompt e estado em `docs/prompts/*fatorial_multiversao_2026-10.md`. Ordem: motor (camadas 1 → 2 → 3) → números → decks → verificador.
@@ -91,14 +110,36 @@ Prompt e estado em `docs/prompts/*fatorial_multiversao_2026-10.md`. Ordem: motor
 |---|---|
 | [`fatorial_multiversao.py`](fatorial_multiversao.py) `--camada 1\|2\|3` | `banco_de_dados/eda/fatorial_multiversao/` — as 4.017 combinações (~22 min), as 999 especificações (~5 min), os finalistas e o IVS proposto (~1 min) |
 | [`dados_apresentacoes_multiversao.py`](dados_apresentacoes_multiversao.py) | `apresentacoes_multiversao/dados/*.json`, `figuras/` e `Fatorial_Multiversao_numeros.xlsx` |
-| [`gerar_decks_multiversao.js`](gerar_decks_multiversao.js) `<COD\|todos\|FIN>` | os 12 decks de indicador (`fichas/`) e o deck final, com trava contra sobrescrita |
+| [`gerar_decks_multiversao.js`](gerar_decks_multiversao.js) `<COD\|todos\|FIN\|C04>` | os 12 decks de indicador (`fichas/`) e o deck final, com trava contra sobrescrita |
 | [`verificar_multiversao.py`](verificar_multiversao.py) `--fase N` | conferência de cada fase (1 a 7) |
+
+## Corte de carga < 0,4 (nov/2026)
+
+Demanda da orientadora. Ordem: corte → sensibilidade → números → deck (`gerar_decks_multiversao.js C04`). As frases de interpretação do deck são escritas à mão: confira com os CSVs a cada nova rodada.
+
+| Script | O que gera |
+|---|---|
+| [`fatorial_corte_04.py`](fatorial_corte_04.py) | `banco_de_dados/eda/fatorial_corte_04/` — o corte em cada rotação, as 19 versões de peso e as propostas A e B |
+| [`fatorial_corte_04_sensibilidade.py`](fatorial_corte_04_sensibilidade.py) | `sensibilidade_*.csv` — o corte refeito mudando uma escolha de método por vez, a reamostragem dos municípios e a volta dos retirados |
+| [`dados_deck_corte_04.py`](dados_deck_corte_04.py) | `apresentacoes_multiversao/dados/C04.json` e as figuras `C04_*.png` |
+
+## RAIC 2026
+
+| Script | O que gera |
+|---|---|
+| [`gerar_relatorio_raic.py`](gerar_relatorio_raic.py) | o relatório parcial em `.docx` e PDF |
+| [`gerar_apresentacao_oral_raic.py`](gerar_apresentacao_oral_raic.py) | a apresentação oral sobre o template da Coordic. O `_ENVIO_v4` tem edição à mão: não regere por cima |
+| [`ajustar_apresentacao_oral_raic.py`](ajustar_apresentacao_oral_raic.py) `ENTRADA SAIDA` | os ajustes de 29/10 sobre um deck editado à mão, sem regerá-lo |
+| [`gerar_roteiro_word_raic.py`](gerar_roteiro_word_raic.py) | o roteiro em Word, a partir de `ROTEIRO_APRESENTACAO_ORAL.md` |
 
 ## Duas coisas que é preciso saber antes de rodar
 
-**Cinco scripts exigem dependências que não estão no `requirements.txt`.** `reportlab` e
-`python-docx` não estão declarados nem instalados no `.venv`; `pptxgenjs` está, mas no
-`package.json`. Os cinco rodam assim:
+**Nem toda dependência está no `.venv`.** O `reportlab` está no `requirements.txt`, mas não
+está instalado no `.venv` atual: os cinco `gerar_pdf_*.py` que usam o pacote só rodam depois
+de instalar o `requirements.txt` de novo ou com `uv run`. O `pypdf` é o inverso: está no `.venv`,
+mas não é declarado, e quatro scripts o usam (`gerar_relatorio_raic.py`,
+`gerar_pdf_guia_decks_outubro.py`, `montar_apoio_relatorio.py`, `preparar_entrega_relatorio.py`).
+O `pptxgenjs` fica no `package.json`. Exemplos:
 
 ```bash
 uv run --with reportlab --with pandas python scripts/gerar_pdf_guia_fatorial.py <saida.pdf>
@@ -106,7 +147,7 @@ uv run --with python-docx python scripts/gerar_resumo_eda_central.py <saida.docx
 node scripts/gerar_deck_fatorial.js <saida.pptx>
 ```
 
-A versão vem resolvida na hora, não fixada. Declará-las é dívida em aberto.
+Com `uv run`, a versão vem resolvida na hora, não fixada. Declarar o `pypdf` é dívida em aberto.
 
 **`atualizar_roteiro_2a_rodada.py` NÃO é reexecutável.** É migração de mão única da 1ª
 para a 2ª rodada do roteiro, que é o único artefato escrito à mão da pasta de

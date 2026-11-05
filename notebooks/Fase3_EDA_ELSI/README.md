@@ -11,14 +11,15 @@ Brasil inteiro).
 | 01 | [`01_Extracao_Filtragem_ELSI.ipynb`](01_Extracao_Filtragem_ELSI.ipynb) | Lê os 8 CSVs do Censo 2022, cruza com `dados/municipios_elsi_brasil.csv`, filtra apenas os setores dos 70 municípios e exporta `banco_de_dados/Base_ELSI_Bruta_Censo2022.csv` (109.032 setores × 74 colunas). |
 | 02 | [`02_Analises_Descritivas.ipynb`](02_Analises_Descritivas.ipynb) | EDA completa da base filtrada — tipagem e sigilo, elegibilidade (`Dados_sig`), **recorte urbano**, cálculo das 7 proporções (denominador V00001), descritivas globais/por município/por região, variáveis complementares (habitação precária, banheiro, chefia feminina, envelhecimento, tipo de domicílio, favelas), histogramas, boxplots, outliers (IQR), missing e correlações (Pearson + Spearman). Exporta os CSVs e figuras de `banco_de_dados/eda/`. |
 | 04 | [`04_Analise_Fatorial.ipynb`](04_Analise_Fatorial.ipynb) | Análise fatorial sobre os 87.545 setores completos do IVS-7: KMO, Bartlett, Horn, ACP, Varimax/promax, escores e validação contra favela (FCU). Importa `src/ivs_censo/fatorial.py`. Exporta CSVs e figuras de `banco_de_dados/eda/fatorial/`. |
+| 04b | [`04b_Analise_Fatorial_Ampliada.ipynb`](04b_Analise_Fatorial_Ampliada.ipynb) | Fatorial ampliada, sem bootstrap: cenários com novas variáveis e sem lixo, as versões de renda, postos dentro do município e sensibilidade com um município de fora por vez. Chama `scripts/fatorial_ampliada.py` e exporta para `banco_de_dados/eda/fatorial_ampliada/`. |
 | 05 | [`05_Calculo_IVS_Final.ipynb`](05_Calculo_IVS_Final.ipynb) | Testes de especificação do IVS final: renda × lixo × banheiro × rotação × peso × normalização (324 combinações), chamando `scripts/ivs_especificacoes.py`. Referência proposta pelos critérios da seção 2.2 do prompt e alternativas lado a lado, sem fechar nenhuma escolha. Exporta para `banco_de_dados/eda/ivs_especificacoes/`. |
 
 ## Como usar
 
-Executar na ordem `01 → 02 → 04`. O notebook 01 deve rodar uma única vez (ou sempre que a
+Executar na ordem `01 → 02 → 04 → 04b → 05` (não há Notebook 03). O notebook 01 deve rodar uma única vez (ou sempre que a
 lista ELSI, os dados-fonte ou o conjunto de colunas extraídas forem atualizados).
 
-Os notebooks 01 e 02 são versionados **sem outputs**; o 04 guarda as saídas (KMO, Bartlett, figuras) para leitura direta no GitHub. Para conferir a execução sem sujar o
+Os notebooks 01 e 02 são versionados **sem outputs**; o 04, o 04b e o 05 guardam as saídas para leitura direta no GitHub. O 05 é gerado por `scripts/gerar_notebook_ivs_final.py`: mude o gerador, não o `.ipynb`. Para conferir a execução sem sujar o
 `.ipynb`, dá para rodar as células como script.
 
 ## Convenções desta fase
@@ -55,8 +56,8 @@ Os notebooks 01 e 02 são versionados **sem outputs**; o 04 guarda as saídas (K
 |---|---|---|
 | Escopo | Brasil inteiro (~468 mil setores) | 70 municípios ELSI, recorte urbano |
 | Filtro de município | Inexistente | `dados/municipios_elsi_brasil.csv` |
-| Foco | Cálculo dos indicadores compostos | EDA + futura análise fatorial |
-| Cálculo do IVS | Calcula 7 indicadores 0–1 | Calcula as 7 proporções brutas na EDA; índice final pendente (fatorial, Notebooks 03+) |
+| Foco | Cálculo dos indicadores compostos | EDA, análise fatorial e testes de especificação do IVS |
+| Cálculo do IVS | Calcula 7 indicadores 0–1 | Calcula as 7 proporções brutas na EDA; o NB05 testa as especificações do índice, e a escolha final aguarda a orientadora |
 
 > O Brasil inteiro voltou ao projeto por outro caminho: `scripts/proporcoes_brasil.py`
 > calcula as mesmas proporções para os ~468 mil setores do país, como **linha de base de
