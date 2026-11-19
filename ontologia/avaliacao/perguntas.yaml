@@ -1,0 +1,55 @@
+# Perguntas para avaliar a skill ontologia-dados no banco da entrega à orientadora.
+# O gabarito vem de gabarito.py, calculado pelo código do projeto (src/ivs_censo), nunca à mão.
+# tipo: contagem | recorte | sigilo | comparacao | sem_resposta
+# tolerancia: diferença absoluta aceita (0 = exato); sem_resposta: o certo é dizer que não há dado.
+
+- id: Q01
+  tipo: contagem
+  pergunta: "Quantos setores censitários existem na base?"
+  tolerancia: 0
+- id: Q02
+  tipo: recorte
+  pergunta: "Quantos setores entram nas análises do IVS?"
+  tolerancia: 0
+- id: Q03
+  tipo: contagem
+  pergunta: "Quantos setores são de favela ou comunidade urbana?"
+  tolerancia: 0
+- id: Q04
+  tipo: recorte
+  pergunta: "Quantos setores de favela ou comunidade urbana entram nas análises do IVS?"
+  tolerancia: 0
+- id: Q05
+  tipo: sigilo
+  pergunta: "Qual a proporção média, entre os setores analisados pelo IVS, de domicílios com abastecimento de água inadequado?"
+  tolerancia: 0.0005
+- id: Q06
+  tipo: comparacao
+  pergunta: "Nos setores analisados pelo IVS, qual a proporção média de domicílios com esgotamento inadequado nos setores de favela e nos demais? Responda os dois números."
+  tolerancia: 0.0005
+- id: Q07
+  tipo: recorte
+  pergunta: "Qual município tem mais setores nas análises do IVS, e quantos?"
+  tolerancia: 0
+- id: Q08
+  tipo: recorte
+  pergunta: "Qual a taxa média de analfabetismo entre os setores analisados de Belo Horizonte?"
+  tolerancia: 0.0005
+- id: Q09
+  tipo: recorte
+  pergunta: "Quantos setores analisados pelo IVS têm renda média dos responsáveis acima de R$ 5.000?"
+  tolerancia: 0
+- id: Q10
+  tipo: recorte
+  pergunta: "Qual a média da proporção de pessoas com 60 anos ou mais nos setores analisados de São Paulo?"
+  tolerancia: 0.0005
+- id: Q11
+  tipo: contagem
+  pergunta: "Qual a população total somada de todos os setores da base?"
+  tolerancia: 0
+- id: Q12
+  tipo: sem_resposta
+  pergunta: "Qual a taxa média de mortalidade infantil nos setores analisados pelo IVS?"
+- id: Q13
+  tipo: sem_resposta
+  pergunta: "Quantos domicílios dos setores de favela têm acesso à internet?"

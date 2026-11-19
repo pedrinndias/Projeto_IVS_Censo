@@ -1,0 +1,2649 @@
+{
+ "versao": 1,
+ "fonte": {
+  "tipo": "sqlite",
+  "alvo": "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
+  "gerado_em": "2026-11-18T23:47:56+00:00",
+  "amostra_por_tabela": 1000,
+  "sem_valores": false
+ },
+ "tabelas": [
+  {
+   "nome": "dicionario_variaveis",
+   "linhas_total": 108,
+   "colunas": [
+    {
+     "nome": "coluna",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "texto",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 108,
+     "razao_distintos": 1.0,
+     "unica_na_amostra": true,
+     "possivel_pii": false,
+     "exemplos": [
+      "CD_FCU",
+      "CD_MUN",
+      "CD_SETOR"
+     ]
+    },
+    {
+     "nome": "descricao",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "texto",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 108,
+     "razao_distintos": 1.0,
+     "unica_na_amostra": true,
+     "possivel_pii": false,
+     "exemplos": [
+      "0 a 4 anos",
+      "1 se SITUACAO = Urbana (recorte de análise do IVS); 0 caso contrário",
+      "1 se o setor é de Favela e Comunidade Urbana (CD_TIPO = 1)"
+     ]
+    },
+    {
+     "nome": "tema",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "texto",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 12,
+     "razao_distintos": 0.1111,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "valores": [
+      "Alfabetização",
+      "Básico",
+      "Características do Domicílio - Parte 1",
+      "Características do Domicílio - Parte 2",
+      "Cor ou Raça",
+      "Demografia",
+      "Identificação",
+      "Morfologia",
+      "Parentesco",
+      "Renda do Responsável",
+      "Saneamento",
+      "Socioeconômica"
+     ]
+    },
+    {
+     "nome": "origem",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "texto",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 3,
+     "razao_distintos": 0.0278,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "valores": [
+      "Calculado pela pipeline",
+      "Censo 2022 (IBGE)",
+      "Derivado pela pipeline"
+     ]
+    },
+    {
+     "nome": "arquivo_fonte",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "texto",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 9,
+     "razao_distintos": 0.0833,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "valores": [
+      "(derivado)",
+      "Agregados_por_setores_alfabetizacao_BR.csv",
+      "Agregados_por_setores_basico_BR_20250417.csv",
+      "Agregados_por_setores_caracteristicas_domicilio1_BR.csv",
+      "Agregados_por_setores_caracteristicas_domicilio2_BR_20250417.csv",
+      "Agregados_por_setores_cor_ou_raca_BR.csv",
+      "Agregados_por_setores_demografia_BR.csv",
+      "Agregados_por_setores_parentesco_BR.csv",
+      "Agregados_por_setores_renda_responsavel_BR.csv"
+     ]
+    },
+    {
+     "nome": "formula",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "texto",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 29,
+     "razao_distintos": 0.2685,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "exemplos": [
+      "",
+      "(V00002) / (V00001 + V00002)",
+      "(V00005 + V00006) / (V00001 + V00002)"
+     ]
+    }
+   ],
+   "pk_declarada": [],
+   "fks_declaradas": [],
+   "linhas_amostra": 108
+  },
+  {
+   "nome": "metadados",
+   "linhas_total": 16,
+   "colunas": [
+    {
+     "nome": "chave",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "texto",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 16,
+     "razao_distintos": 1.0,
+     "unica_na_amostra": true,
+     "possivel_pii": false,
+     "valores": [
+      "arquivos_do_censo",
+      "denominador_domiciliar",
+      "fonte",
+      "gerado_em",
+      "gerado_por",
+      "n_municipios",
+      "n_setores",
+      "n_setores_favela_fcu",
+      "n_setores_favela_fcu_no_recorte",
+      "n_setores_ok",
+      "n_setores_recorte_analise",
+      "n_setores_urbanos",
+      "recorte",
+      "recorte_de_analise",
+      "setores_excluidos_de_renda_media_sem_extremo",
+      "setores_imputados_de_renda_media_mediana_mun"
+     ]
+    },
+    {
+     "nome": "valor",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "texto",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 16,
+     "razao_distintos": 1.0,
+     "unica_na_amostra": true,
+     "possivel_pii": false,
+     "valores": [
+      "1",
+      "104,108",
+      "106,281",
+      "106,347",
+      "109,032",
+      "19,452",
+      "19,507",
+      "2026-10-22",
+      "310620005650366",
+      "70",
+      "70 municípios da amostra ELSI-Brasil",
+      "Agregados_por_setores_basico_BR_20250417.csv | Agregados_por_setores_caracteristicas_domicilio1_BR.csv | Agregados_por_setores_caracteristicas_domicilio2_BR_20250417.csv | Agregados_por_setores_alfabetizacao_BR.csv | Agregados_por_setores_cor_ou_raca_BR.csv | Agregados_por_setores_renda_responsavel_BR.csv | Agregados_por_setores_demografia_BR.csv | Agregados_por_setores_parentesco_BR.csv",
+      "IBGE — Censo Demográfico 2022, Agregados por Setores Censitários",
+      "Setores urbanos (SITUACAO = Urbana) com Dados_sig = OK",
+      "V00001 — Domicílios Particulares Permanentes Ocupados",
+      "scripts/gerar_entrega_orientadora.py"
+     ]
+    }
+   ],
+   "pk_declarada": [],
+   "fks_declaradas": [],
+   "linhas_amostra": 16
+  },
+  {
+   "nome": "setores_censitarios",
+   "linhas_total": 109032,
+   "colunas": [
+    {
+     "nome": "CD_SETOR",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "inteiro",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 1000,
+     "razao_distintos": 1.0,
+     "unica_na_amostra": true,
+     "possivel_pii": false,
+     "min": 130030005000155,
+     "max": 530010805440111,
+     "exemplos": [
+      "130030005000155",
+      "130030010000075",
+      "130260305000081"
+     ],
+     "dicionario": {
+      "descricao": "Geocódigo do setor censitário (15 dígitos): UF(2) + município(5) + distrito, subdistrito e setor",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "SITUACAO",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "texto",
+     "nulos_pct": 0.1,
+     "distintos_amostra": 2,
+     "razao_distintos": 0.002,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "valores": [
+      "Rural",
+      "Urbana"
+     ],
+     "dicionario": {
+      "descricao": "Situação do setor: Urbana ou Rural (vazia nos setores de massa d'água)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "CD_SIT",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "inteiro",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 7,
+     "razao_distintos": 0.007,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 1,
+     "max": 9,
+     "valores": [
+      "1",
+      "2",
+      "3",
+      "5",
+      "7",
+      "8",
+      "9"
+     ],
+     "dicionario": {
+      "descricao": "Código da situação do setor: 1-3 = urbana; 5-8 = rural; 9 = massa d'água (população zero)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "CD_TIPO",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "inteiro",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 6,
+     "razao_distintos": 0.006,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0,
+     "max": 9,
+     "valores": [
+      "0",
+      "1",
+      "4",
+      "5",
+      "7",
+      "9"
+     ],
+     "dicionario": {
+      "descricao": "Tipo de setor. 1 = Favela e Comunidade Urbana (FCU); 0 = setor não especial; demais códigos = outros setores especiais",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "NM_MUN",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "texto",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 55,
+     "razao_distintos": 0.055,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "exemplos": [
+      "Ananindeua",
+      "Anápolis",
+      "Araçatuba"
+     ],
+     "dicionario": {
+      "descricao": "Nome do município",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "NM_BAIRRO",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "texto",
+     "nulos_pct": 41.0,
+     "distintos_amostra": 437,
+     "razao_distintos": 0.7407,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "exemplos": [
+      "Acari",
+      "Aero Rancho",
+      "Aerolândia"
+     ],
+     "dicionario": {
+      "descricao": "Nome do bairro, quando o setor pertence a um bairro delimitado",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "CD_FCU",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "texto",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 182,
+     "razao_distintos": 0.182,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "exemplos": [
+      ".",
+      "13026030002",
+      "13026030022"
+     ],
+     "dicionario": {
+      "descricao": "Código da Favela ou Comunidade Urbana à qual o setor pertence",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "NM_FCU",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "texto",
+     "nulos_pct": 81.0,
+     "distintos_amostra": 181,
+     "razao_distintos": 0.9526,
+     "unica_na_amostra": true,
+     "possivel_pii": false,
+     "exemplos": [
+      "A.M. e Amigos do Fontela",
+      "Aldeia do Índio",
+      "Aleixo"
+     ],
+     "dicionario": {
+      "descricao": "Nome da Favela ou Comunidade Urbana à qual o setor pertence",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "v0001",
+     "tipo_declarado": "INTEGER",
+     "tipo_inferido": "inteiro",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 587,
+     "razao_distintos": 0.587,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0,
+     "max": 2254,
+     "exemplos": [
+      "0",
+      "10",
+      "1001"
+     ],
+     "dicionario": {
+      "descricao": "Total de pessoas",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "CD_UF",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "inteiro",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 18,
+     "razao_distintos": 0.018,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 13,
+     "max": 53,
+     "valores": [
+      "13",
+      "15",
+      "21",
+      "22",
+      "23",
+      "24",
+      "26",
+      "27",
+      "29",
+      "31",
+      "32",
+      "33",
+      "35",
+      "41",
+      "43",
+      "50",
+      "52",
+      "53"
+     ],
+     "dicionario": {
+      "descricao": "Código IBGE da Unidade da Federação (2 primeiros dígitos do CD_SETOR)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "CD_MUN",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "inteiro",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 55,
+     "razao_distintos": 0.055,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 1300300,
+     "max": 5300108,
+     "exemplos": [
+      "1300300",
+      "1302603",
+      "1500800"
+     ],
+     "dicionario": {
+      "descricao": "Código IBGE do município (7 primeiros dígitos do CD_SETOR)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00001",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 313,
+     "razao_distintos": 0.321,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 7.0,
+     "max": 833.0,
+     "exemplos": [
+      "10.0",
+      "100.0",
+      "101.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00002",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 7.3,
+     "distintos_amostra": 4,
+     "razao_distintos": 0.0043,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 40.0,
+     "valores": [
+      "0.0",
+      "3.0",
+      "40.0",
+      "5.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Improvisados Ocupados",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00005",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 587,
+     "razao_distintos": 0.6021,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 17.0,
+     "max": 2254.0,
+     "exemplos": [
+      "1001.0",
+      "1010.0",
+      "1024.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Quantidade de moradores",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00006",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 5.8,
+     "distintos_amostra": 9,
+     "razao_distintos": 0.0096,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 97.0,
+     "valores": [
+      "0.0",
+      "10.0",
+      "3.0",
+      "4.0",
+      "5.0",
+      "6.0",
+      "7.0",
+      "8.0",
+      "97.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Improvisados Ocupados, Quantidade de moradores",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00047",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 6.1,
+     "distintos_amostra": 302,
+     "razao_distintos": 0.3216,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 566.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "100.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Tipo de espécie é casa",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00048",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 14.7,
+     "distintos_amostra": 70,
+     "razao_distintos": 0.0821,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 229.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "100.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Tipo de espécie é casa de vila ou em condomínio",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00049",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 10.8,
+     "distintos_amostra": 213,
+     "razao_distintos": 0.2388,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 478.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "101.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Tipo de espécie é apartamento",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00050",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 9.1,
+     "distintos_amostra": 26,
+     "razao_distintos": 0.0286,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 87.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "11.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Tipo de espécie é habitação em casa de cômodos ou cortiço",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00051",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 1,
+     "razao_distintos": 0.001,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.0,
+     "valores": [
+      "0.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Tipo de espécie é habitação indígena sem paredes ou maloca",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00052",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 3.7,
+     "distintos_amostra": 3,
+     "razao_distintos": 0.0031,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 19.0,
+     "valores": [
+      "0.0",
+      "13.0",
+      "19.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Tipo de espécie é estrutura residencial permanente degradada ou inacabada",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00053",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 3.9,
+     "distintos_amostra": 3,
+     "razao_distintos": 0.0031,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 4.0,
+     "valores": [
+      "0.0",
+      "3.0",
+      "4.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Improvisados Ocupados, Tipo de espécie é tenda ou barraca de lona, plástico ou tecido",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00054",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 5.0,
+     "distintos_amostra": 1,
+     "razao_distintos": 0.0011,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.0,
+     "valores": [
+      "0.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Improvisados Ocupados, Tipo de espécie é dentro de estabelecimento em funcionamento",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00055",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 3.0,
+     "distintos_amostra": 2,
+     "razao_distintos": 0.0021,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 4.0,
+     "valores": [
+      "0.0",
+      "4.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Improvisados Ocupados, Tipo de espécie é abrigo natural e outras estruturas improvisadas",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00056",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 3.1,
+     "distintos_amostra": 1,
+     "razao_distintos": 0.001,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.0,
+     "valores": [
+      "0.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Improvisados Ocupados, Tipo de espécie é estrutura improvisada em logradouro público, exceto tenda ou barraca",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00057",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 3.2,
+     "distintos_amostra": 2,
+     "razao_distintos": 0.0021,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 40.0,
+     "valores": [
+      "0.0",
+      "40.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Improvisados Ocupados, Tipo de espécie é estrutura não residencial permanente degradada ou inacabada",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00058",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 1,
+     "razao_distintos": 0.001,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.0,
+     "valores": [
+      "0.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Improvisados Ocupados, Tipo de espécie é veículo (carro, caminhão, trailer, barco etc)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00112",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 12.2,
+     "distintos_amostra": 97,
+     "razao_distintos": 0.1105,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 462.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "102.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Utiliza poço profundo ou artesiano",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00113",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 10.5,
+     "distintos_amostra": 26,
+     "razao_distintos": 0.0291,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 105.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "105.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Utiliza poço raso, freático ou cacimba",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00114",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 5.8,
+     "distintos_amostra": 13,
+     "razao_distintos": 0.0138,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 120.0,
+     "valores": [
+      "0.0",
+      "120.0",
+      "18.0",
+      "19.0",
+      "22.0",
+      "3.0",
+      "33.0",
+      "37.0",
+      "4.0",
+      "5.0",
+      "60.0",
+      "7.0",
+      "9.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Utiliza fonte, nascente ou mina",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00115",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 5.1,
+     "distintos_amostra": 12,
+     "razao_distintos": 0.0126,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 37.0,
+     "valores": [
+      "0.0",
+      "10.0",
+      "15.0",
+      "18.0",
+      "24.0",
+      "3.0",
+      "30.0",
+      "37.0",
+      "4.0",
+      "5.0",
+      "6.0",
+      "7.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Utiliza carro-pipa",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00116",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 4.0,
+     "distintos_amostra": 3,
+     "razao_distintos": 0.0031,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 8.0,
+     "valores": [
+      "0.0",
+      "3.0",
+      "8.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Utiliza água da chuva armazenada",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00117",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 4.5,
+     "distintos_amostra": 5,
+     "razao_distintos": 0.0052,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 21.0,
+     "valores": [
+      "0.0",
+      "16.0",
+      "21.0",
+      "3.0",
+      "9.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Utiliza rios, açudes, córregos, lagos e igarapés",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00118",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 15.4,
+     "distintos_amostra": 17,
+     "razao_distintos": 0.0201,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 56.0,
+     "valores": [
+      "0.0",
+      "10.0",
+      "11.0",
+      "12.0",
+      "13.0",
+      "25.0",
+      "3.0",
+      "35.0",
+      "37.0",
+      "4.0",
+      "43.0",
+      "5.0",
+      "56.0",
+      "6.0",
+      "7.0",
+      "8.0",
+      "9.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Utiliza outra forma de abastecimento de água",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00199",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.8,
+     "distintos_amostra": 322,
+     "razao_distintos": 0.3313,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 7.0,
+     "max": 833.0,
+     "exemplos": [
+      "10.0",
+      "100.0",
+      "101.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Água chega encanada até dentro da casa, apartamento ou habitação",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00200",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 16.9,
+     "distintos_amostra": 40,
+     "razao_distintos": 0.0481,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 527.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "11.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Água chega encanada, mas apenas ao terreno",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00201",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 11.3,
+     "distintos_amostra": 20,
+     "razao_distintos": 0.0225,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 150.0,
+     "valores": [
+      "0.0",
+      "10.0",
+      "11.0",
+      "12.0",
+      "128.0",
+      "13.0",
+      "150.0",
+      "18.0",
+      "22.0",
+      "24.0",
+      "3.0",
+      "30.0",
+      "35.0",
+      "38.0",
+      "39.0",
+      "4.0",
+      "5.0",
+      "6.0",
+      "7.0",
+      "8.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Água não chega encanada ao domicílio",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00236",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 12.3,
+     "distintos_amostra": 10,
+     "razao_distintos": 0.0114,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 38.0,
+     "valores": [
+      "0.0",
+      "15.0",
+      "16.0",
+      "22.0",
+      "3.0",
+      "38.0",
+      "4.0",
+      "5.0",
+      "6.0",
+      "7.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Apenas banheiro de uso comum a mais de um domicílio",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00237",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 6.3,
+     "distintos_amostra": 10,
+     "razao_distintos": 0.0107,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 64.0,
+     "valores": [
+      "0.0",
+      "10.0",
+      "12.0",
+      "3.0",
+      "32.0",
+      "5.0",
+      "6.0",
+      "64.0",
+      "7.0",
+      "8.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Apenas sanitário ou buraco para dejeções, inclusive os localizados no terreno",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00238",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 4.7,
+     "distintos_amostra": 7,
+     "razao_distintos": 0.0073,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 25.0,
+     "valores": [
+      "0.0",
+      "11.0",
+      "13.0",
+      "25.0",
+      "3.0",
+      "4.0",
+      "9.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Não tinham banheiro nem sanitário",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00312",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 13.1,
+     "distintos_amostra": 72,
+     "razao_distintos": 0.0829,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 323.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "109.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Destinação do esgoto do banheiro ou sanitário ou buraco para dejeções é fossa rudimentar ou buraco",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00313",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 9.7,
+     "distintos_amostra": 42,
+     "razao_distintos": 0.0465,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 525.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "11.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Destinação do esgoto do banheiro ou sanitário ou buraco para dejeções é vala",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00314",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 8.1,
+     "distintos_amostra": 55,
+     "razao_distintos": 0.0598,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 286.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "104.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Destinação do esgoto do banheiro ou sanitário ou buraco para dejeções é rio, lago, córrego ou mar",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00315",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 12.6,
+     "distintos_amostra": 17,
+     "razao_distintos": 0.0195,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 70.0,
+     "valores": [
+      "0.0",
+      "13.0",
+      "16.0",
+      "18.0",
+      "21.0",
+      "24.0",
+      "25.0",
+      "3.0",
+      "31.0",
+      "4.0",
+      "45.0",
+      "5.0",
+      "53.0",
+      "6.0",
+      "70.0",
+      "8.0",
+      "9.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Destinação do esgoto do banheiro ou sanitário ou buraco para dejeções é outra forma",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00316",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 4.7,
+     "distintos_amostra": 7,
+     "razao_distintos": 0.0073,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 25.0,
+     "valores": [
+      "0.0",
+      "11.0",
+      "13.0",
+      "25.0",
+      "3.0",
+      "4.0",
+      "9.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Destinação do esgoto inexistente, pois não tinham banheiro nem sanitário",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00398",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 16.2,
+     "distintos_amostra": 137,
+     "razao_distintos": 0.1635,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 508.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "100.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Lixo depositado em caçamba de serviço de limpeza",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00399",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 5.7,
+     "distintos_amostra": 24,
+     "razao_distintos": 0.0255,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 161.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "11.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Lixo queimado na propriedade",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00400",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 3.5,
+     "distintos_amostra": 5,
+     "razao_distintos": 0.0052,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 20.0,
+     "valores": [
+      "0.0",
+      "17.0",
+      "20.0",
+      "3.0",
+      "6.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Lixo enterrado na propriedade",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00401",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 6.1,
+     "distintos_amostra": 27,
+     "razao_distintos": 0.0288,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 173.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "11.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Lixo jogado em terreno baldio, encosta ou área pública",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00402",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 6.2,
+     "distintos_amostra": 9,
+     "razao_distintos": 0.0096,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 31.0,
+     "valores": [
+      "0.0",
+      "13.0",
+      "15.0",
+      "17.0",
+      "3.0",
+      "31.0",
+      "5.0",
+      "6.0",
+      "9.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Outro destino do lixo",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00495",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 13.2,
+     "distintos_amostra": 19,
+     "razao_distintos": 0.0219,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 81.0,
+     "valores": [
+      "0.0",
+      "10.0",
+      "11.0",
+      "12.0",
+      "14.0",
+      "18.0",
+      "21.0",
+      "22.0",
+      "23.0",
+      "3.0",
+      "33.0",
+      "36.0",
+      "38.0",
+      "4.0",
+      "5.0",
+      "6.0",
+      "7.0",
+      "8.0",
+      "81.0"
+     ],
+     "dicionario": {
+      "descricao": "Domicílios Particulares Permanentes Ocupados, Sem banheiro de uso exclusivo com chuveiro e vaso sanitário",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00900",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 509,
+     "razao_distintos": 0.5221,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 14.0,
+     "max": 1719.0,
+     "exemplos": [
+      "102.0",
+      "1028.0",
+      "104.0"
+     ],
+     "dicionario": {
+      "descricao": "15 anos ou mais, Morador sabe ler e escrever",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V00901",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 16.8,
+     "distintos_amostra": 81,
+     "razao_distintos": 0.0974,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 173.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "107.0"
+     ],
+     "dicionario": {
+      "descricao": "15 anos ou mais, Morador não sabe ler e escrever",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V01318",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 4.3,
+     "distintos_amostra": 191,
+     "razao_distintos": 0.1996,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 451.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "100.0"
+     ],
+     "dicionario": {
+      "descricao": "Cor ou raça é preta",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V01320",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.7,
+     "distintos_amostra": 442,
+     "razao_distintos": 0.4543,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 1222.0,
+     "exemplos": [
+      "0.0",
+      "100.0",
+      "101.0"
+     ],
+     "dicionario": {
+      "descricao": "Cor ou raça é parda",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V01321",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 24.1,
+     "distintos_amostra": 17,
+     "razao_distintos": 0.0224,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 58.0,
+     "valores": [
+      "0.0",
+      "10.0",
+      "11.0",
+      "12.0",
+      "13.0",
+      "15.0",
+      "23.0",
+      "24.0",
+      "3.0",
+      "36.0",
+      "38.0",
+      "4.0",
+      "5.0",
+      "58.0",
+      "6.0",
+      "7.0",
+      "8.0"
+     ],
+     "dicionario": {
+      "descricao": "Cor ou raça é indígena",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V06001",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 313,
+     "razao_distintos": 0.321,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 7.0,
+     "max": 833.0,
+     "exemplos": [
+      "10.0",
+      "100.0",
+      "101.0"
+     ],
+     "dicionario": {
+      "descricao": "Pessoas responsáveis em domicílios particulares permanentes ocupados",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V06004",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 974,
+     "razao_distintos": 0.999,
+     "unica_na_amostra": true,
+     "possivel_pii": false,
+     "min": 900.56,
+     "max": 28972.4,
+     "exemplos": [
+      "1008.87",
+      "10101.13",
+      "10117.91"
+     ],
+     "dicionario": {
+      "descricao": "Valor do rendimento nominal médio mensal das pessoas responsáveis com rendimentos por domicílios particulares permanentes ocupados",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V06005",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 975,
+     "razao_distintos": 1.0,
+     "unica_na_amostra": true,
+     "possivel_pii": false,
+     "min": 32857.14,
+     "max": 16899962777.03,
+     "exemplos": [
+      "100024696.62",
+      "10020200.78",
+      "1003268.7"
+     ],
+     "dicionario": {
+      "descricao": "Variância do rendimento nominal mensal das pessoas responsáveis com rendimentos por domicílios particulares permanentes ocupados",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V01031",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 4.6,
+     "distintos_amostra": 89,
+     "razao_distintos": 0.0933,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 206.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "107.0"
+     ],
+     "dicionario": {
+      "descricao": "0 a 4 anos",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V01032",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 3.6,
+     "distintos_amostra": 99,
+     "razao_distintos": 0.1027,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 208.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "102.0"
+     ],
+     "dicionario": {
+      "descricao": "5 a 9 anos",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V01033",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 3.9,
+     "distintos_amostra": 99,
+     "razao_distintos": 0.103,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 155.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "11.0"
+     ],
+     "dicionario": {
+      "descricao": "10 a 14 anos",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V01034",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 3.8,
+     "distintos_amostra": 100,
+     "razao_distintos": 0.104,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 191.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "101.0"
+     ],
+     "dicionario": {
+      "descricao": "15 a 19 anos",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V01035",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 3.4,
+     "distintos_amostra": 113,
+     "razao_distintos": 0.117,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 209.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "101.0"
+     ],
+     "dicionario": {
+      "descricao": "20 a 24 anos",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V01036",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 3.4,
+     "distintos_amostra": 110,
+     "razao_distintos": 0.1139,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 300.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "101.0"
+     ],
+     "dicionario": {
+      "descricao": "25 a 29 anos",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V01037",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 3.1,
+     "distintos_amostra": 182,
+     "razao_distintos": 0.1878,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 4.0,
+     "max": 552.0,
+     "exemplos": [
+      "10.0",
+      "100.0",
+      "101.0"
+     ],
+     "dicionario": {
+      "descricao": "30 a 39 anos",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V01038",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.7,
+     "distintos_amostra": 181,
+     "razao_distintos": 0.186,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 302.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "100.0"
+     ],
+     "dicionario": {
+      "descricao": "40 a 49 anos",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V01039",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.9,
+     "distintos_amostra": 150,
+     "razao_distintos": 0.1545,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 219.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "100.0"
+     ],
+     "dicionario": {
+      "descricao": "50 a 59 anos",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V01040",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 3.6,
+     "distintos_amostra": 116,
+     "razao_distintos": 0.1203,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 156.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "100.0"
+     ],
+     "dicionario": {
+      "descricao": "60 a 69 anos",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V01041",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 4.3,
+     "distintos_amostra": 115,
+     "razao_distintos": 0.1202,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 180.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "100.0"
+     ],
+     "dicionario": {
+      "descricao": "70 anos ou mais",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V01042",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 316,
+     "razao_distintos": 0.3241,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 7.0,
+     "max": 833.0,
+     "exemplos": [
+      "10.0",
+      "100.0",
+      "101.0"
+     ],
+     "dicionario": {
+      "descricao": "Pessoa responsável pelo domicílio",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V01062",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.7,
+     "distintos_amostra": 193,
+     "razao_distintos": 0.1984,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 3.0,
+     "max": 522.0,
+     "exemplos": [
+      "100.0",
+      "101.0",
+      "102.0"
+     ],
+     "dicionario": {
+      "descricao": "Pessoa responsável pelo domicílio, Sexo masculino",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "V01063",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.7,
+     "distintos_amostra": 210,
+     "razao_distintos": 0.2158,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 367.0,
+     "exemplos": [
+      "0.0",
+      "10.0",
+      "100.0"
+     ],
+     "dicionario": {
+      "descricao": "Pessoa responsável pelo domicílio, Sexo feminino",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "Moradia_Predominante",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "texto",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 5,
+     "razao_distintos": 0.005,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "valores": [
+      "Apartamento",
+      "Casa",
+      "Casa de Vila/Condomínio",
+      "Cortiço/Casa de Cômodos",
+      "Indefinido/Sem Moradia"
+     ],
+     "dicionario": {
+      "descricao": "Tipo de moradia com maior contagem no setor (classificação derivada)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "Dados_sig",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "texto",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 3,
+     "razao_distintos": 0.003,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "valores": [
+      "OK",
+      "SIGILOSO",
+      "ZERADO"
+     ],
+     "dicionario": {
+      "descricao": "Elegibilidade do setor: OK / SIGILOSO / ZERADO / COLETIVO (regra do Cálculo IVS2012.docx)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "urbano",
+     "tipo_declarado": "INTEGER",
+     "tipo_inferido": "inteiro",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 2,
+     "razao_distintos": 0.002,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0,
+     "max": 1,
+     "valores": [
+      "0",
+      "1"
+     ],
+     "dicionario": {
+      "descricao": "1 se SITUACAO = Urbana (recorte de análise do IVS); 0 caso contrário",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "is_fcu",
+     "tipo_declarado": "INTEGER",
+     "tipo_inferido": "inteiro",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 2,
+     "razao_distintos": 0.002,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0,
+     "max": 1,
+     "valores": [
+      "0",
+      "1"
+     ],
+     "dicionario": {
+      "descricao": "1 se o setor é de Favela e Comunidade Urbana (CD_TIPO = 1)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "Moradia_Predominante_Agrupada",
+     "tipo_declarado": "TEXT",
+     "tipo_inferido": "texto",
+     "nulos_pct": 0.0,
+     "distintos_amostra": 3,
+     "razao_distintos": 0.003,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "valores": [
+      "Convencional",
+      "Indefinido",
+      "Não convencional"
+     ],
+     "dicionario": {
+      "descricao": "Moradia predominante agrupada em Convencional / Não convencional / Indefinido",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_agua_inad",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 255,
+     "razao_distintos": 0.2615,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 1.0,
+     "exemplos": [
+      "0.0",
+      "0.00819672131147541",
+      "0.00967741935483871"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de domicílios com abastecimento de água inadequado ou ausente",
+      "formula": "(V00112 + V00113 + V00114 + V00115 + V00116 + V00117 + V00118) / (V00001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_esgoto_inad",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 258,
+     "razao_distintos": 0.2646,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 1.0,
+     "exemplos": [
+      "0.0",
+      "0.008547008547008548",
+      "0.009009009009009009"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de domicílios com esgotamento sanitário inadequado ou ausente",
+      "formula": "(V00312 + V00313 + V00314 + V00315 + V00316) / (V00001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_lixo_inad",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 379,
+     "razao_distintos": 0.3887,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 1.0,
+     "exemplos": [
+      "0.0",
+      "0.007653061224489796",
+      "0.00872093023255814"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de domicílios com destino do lixo inadequado ou ausente",
+      "formula": "(V00398 + V00399 + V00400 + V00401 + V00402) / (V00001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "razao_moradores",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 919,
+     "razao_distintos": 0.9426,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 1.3587786259541985,
+     "max": 4.3202614379084965,
+     "exemplos": [
+      "1.3587786259541985",
+      "1.3744075829383886",
+      "1.450261780104712"
+     ],
+     "dicionario": {
+      "descricao": "Razão de moradores por domicílio (reproduz o V0005 do IBGE)",
+      "formula": "(V00005 + V00006) / (V00001 + V00002)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_analfab",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 16.8,
+     "distintos_amostra": 691,
+     "razao_distintos": 0.8305,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.3654618473895582,
+     "exemplos": [
+      "0.0",
+      "0.004120879120879121",
+      "0.004316546762589928"
+     ],
+     "dicionario": {
+      "descricao": "Taxa de analfabetismo entre pessoas de 15 anos ou mais",
+      "formula": "(V00901) / (V00900 + V00901)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "renda_media",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 974,
+     "razao_distintos": 0.999,
+     "unica_na_amostra": true,
+     "possivel_pii": false,
+     "min": 900.56,
+     "max": 28972.4,
+     "exemplos": [
+      "1008.87",
+      "10101.13",
+      "10117.91"
+     ],
+     "dicionario": {
+      "descricao": "Rendimento nominal médio mensal das pessoas responsáveis (R$)",
+      "formula": "(V06004) / ((sem denominador))",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "renda_media_sem_extremo",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 974,
+     "razao_distintos": 0.999,
+     "unica_na_amostra": true,
+     "possivel_pii": false,
+     "min": 900.56,
+     "max": 28972.4,
+     "exemplos": [
+      "1008.87",
+      "10101.13",
+      "10117.91"
+     ],
+     "dicionario": {
+      "descricao": "Igual a renda_media, exceto nos setores excluídos nominalmente, onde fica vazia. Hoje é um só: 310620005650366 — Belo Horizonte, bairro Senhor dos Passos: R$ 170.418,06, maior valor da base e 55,7× a mediana do município. Setor de favela (CD_TIPO=1) com 186 domicílios, 518 pessoas e 31 analfabetos — classificado SUSPEITO por três testes de incoerência. Excluído a pedido da orientadora em 01/09/2026. A coluna renda_media continua ao lado, sem alteração, para a exclusão ser auditável.",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "renda_media_mediana_mun",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 974,
+     "razao_distintos": 0.999,
+     "unica_na_amostra": true,
+     "possivel_pii": false,
+     "min": 900.56,
+     "max": 28972.4,
+     "exemplos": [
+      "1008.87",
+      "10101.13",
+      "10117.91"
+     ],
+     "dicionario": {
+      "descricao": "Igual a renda_media, exceto nos setores de SETORES_RENDA_EXCLUIDA, onde entra a mediana do próprio município (sem eles), no recorte urbano e Dados_sig=OK — alternativa a deixar vazio, já que a mediana do setor (V06006) não existe no arquivo.",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_raca_pretpardind",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 958,
+     "razao_distintos": 0.9826,
+     "unica_na_amostra": true,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 1.0,
+     "exemplos": [
+      "0.0",
+      "0.02304147465437788",
+      "0.02348993288590604"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de pessoas de cor/raça preta, parda ou indígena",
+      "formula": "(V01318 + V01320 + V01321) / (v0001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_dom_improv",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 7.3,
+     "distintos_amostra": 7,
+     "razao_distintos": 0.0076,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.6060606060606061,
+     "valores": [
+      "0.0",
+      "0.01171875",
+      "0.016835016835016835",
+      "0.018072289156626505",
+      "0.022222222222222223",
+      "0.050505050505050504",
+      "0.6060606060606061"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de domicílios particulares improvisados",
+      "formula": "(V00002) / (V00001 + V00002)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_hab_precaria",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 67,
+     "razao_distintos": 0.0687,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.9191919191919192,
+     "exemplos": [
+      "0.0",
+      "0.009389671361502348",
+      "0.00967741935483871"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de domicílios em habitação precária (cortiço, estrutura degradada, improvisados)",
+      "formula": "(V00050 + V00052 + V00053 + V00054 + V00055 + V00056 + V00057 + V00058) / (V00001 + V00002)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_moradia_convencional",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 259,
+     "razao_distintos": 0.2656,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.07446808510638298,
+     "max": 1.0,
+     "exemplos": [
+      "0.07446808510638298",
+      "0.6687116564417178",
+      "0.6818181818181818"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de moradias convencionais (casa, casa de vila/condomínio, apartamento)",
+      "formula": "(V00047 + V00048 + V00049) / (V00001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_moradia_nao_convencional",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.5,
+     "distintos_amostra": 64,
+     "razao_distintos": 0.0656,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.925531914893617,
+     "exemplos": [
+      "0.0",
+      "0.009389671361502348",
+      "0.00967741935483871"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de moradias não convencionais (cortiço, maloca, estrutura degradada)",
+      "formula": "(V00050 + V00051 + V00052) / (V00001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_apartamento",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 10.8,
+     "distintos_amostra": 446,
+     "razao_distintos": 0.5,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 1.0,
+     "exemplos": [
+      "0.0",
+      "0.007653061224489796",
+      "0.00906344410876133"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de domicílios do tipo apartamento",
+      "formula": "(V00049) / (V00001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_casa",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 6.1,
+     "distintos_amostra": 597,
+     "razao_distintos": 0.6358,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 1.0,
+     "exemplos": [
+      "0.0",
+      "0.011857707509881422",
+      "0.013937282229965157"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de domicílios do tipo casa",
+      "formula": "(V00047) / (V00001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_casa_vila_condominio",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 14.7,
+     "distintos_amostra": 248,
+     "razao_distintos": 0.2907,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.9770114942528736,
+     "exemplos": [
+      "0.0",
+      "0.007481296758104738",
+      "0.009615384615384616"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de domicílios do tipo casa de vila ou em condomínio",
+      "formula": "(V00048) / (V00001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_sem_agua_canalizada",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.8,
+     "distintos_amostra": 267,
+     "razao_distintos": 0.2747,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.9327433628318584,
+     "exemplos": [
+      "0.0",
+      "0.002136752136752129",
+      "0.0023255813953488857"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de domicílios em que a água não chega encanada até dentro do domicílio (complemento de V00199; equivale a V00200+V00201 sobre V00001)",
+      "formula": "(V00199) / (V00001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_agua_nao_encanada",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 11.3,
+     "distintos_amostra": 66,
+     "razao_distintos": 0.0744,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.7,
+     "exemplos": [
+      "0.0",
+      "0.00819672131147541",
+      "0.008316008316008316"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de domicílios em que a água não chega encanada ao domicílio (V00201)",
+      "formula": "(V00201) / (V00001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_agua_so_terreno",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 16.9,
+     "distintos_amostra": 108,
+     "razao_distintos": 0.13,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.9865470852017937,
+     "exemplos": [
+      "0.0",
+      "0.008547008547008548",
+      "0.008982035928143712"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de domicílios em que a água chega encanada apenas ao terreno (V00200)",
+      "formula": "(V00200) / (V00001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_sem_banheiro",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 13.2,
+     "distintos_amostra": 52,
+     "razao_distintos": 0.0599,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.9166666666666666,
+     "exemplos": [
+      "0.0",
+      "0.008316008316008316",
+      "0.008875739644970414"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de domicílios sem banheiro de uso exclusivo com chuveiro e vaso sanitário",
+      "formula": "(V00495) / (V00001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_sem_banheiro_nem_sanitario",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 4.7,
+     "distintos_amostra": 9,
+     "razao_distintos": 0.0094,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.9166666666666666,
+     "valores": [
+      "0.0",
+      "0.017045454545454544",
+      "0.01932367149758454",
+      "0.02694610778443114",
+      "0.05128205128205128",
+      "0.08737864077669903",
+      "0.11504424778761062",
+      "0.16129032258064516",
+      "0.9166666666666666"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de domicílios sem banheiro nem sanitário",
+      "formula": "(V00238) / (V00001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_so_sanitario",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 6.3,
+     "distintos_amostra": 17,
+     "razao_distintos": 0.0181,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.41025641025641024,
+     "valores": [
+      "0.0",
+      "0.01195219123505976",
+      "0.016483516483516484",
+      "0.016853932584269662",
+      "0.017045454545454544",
+      "0.019305019305019305",
+      "0.03184713375796178",
+      "0.03278688524590164",
+      "0.03870967741935484",
+      "0.057692307692307696",
+      "0.05982905982905983",
+      "0.06666666666666667",
+      "0.07079646017699115",
+      "0.0970873786407767",
+      "0.19393939393939394",
+      "0.3",
+      "0.41025641025641024"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de domicílios com apenas sanitário ou buraco para dejeções",
+      "formula": "(V00237) / (V00001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_banheiro_comum",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 12.3,
+     "distintos_amostra": 28,
+     "razao_distintos": 0.0319,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.2727272727272727,
+     "exemplos": [
+      "0.0",
+      "0.008316008316008316",
+      "0.008875739644970414"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de domicílios com apenas banheiro de uso comum",
+      "formula": "(V00236) / (V00001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_resp_feminino",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.7,
+     "distintos_amostra": 845,
+     "razao_distintos": 0.8684,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 1.0,
+     "exemplos": [
+      "0.0",
+      "0.1348314606741573",
+      "0.13513513513513514"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de domicílios com pessoa responsável do sexo feminino",
+      "formula": "(V01063) / (V01062 + V01063)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_crianca_0a4",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 4.6,
+     "distintos_amostra": 878,
+     "razao_distintos": 0.9203,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.18421052631578946,
+     "exemplos": [
+      "0.0",
+      "0.007564296520423601",
+      "0.010830324909747292"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de crianças de 0 a 4 anos na população residente",
+      "formula": "(V01031) / (v0001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_pop_0a14",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 3.1,
+     "distintos_amostra": 925,
+     "razao_distintos": 0.9546,
+     "unica_na_amostra": true,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.42105263157894735,
+     "exemplos": [
+      "0.0",
+      "0.021660649819494584",
+      "0.02247191011235955"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de pessoas com menos de 15 anos na população residente",
+      "formula": "(V01031 + V01032 + V01033) / (v0001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "pct_idoso_60mais",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.9,
+     "distintos_amostra": 932,
+     "razao_distintos": 0.9598,
+     "unica_na_amostra": true,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 0.47058823529411764,
+     "exemplos": [
+      "0.0",
+      "0.011217948717948718",
+      "0.013452914798206279"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de pessoas de 60 anos ou mais na população residente",
+      "formula": "(V01040 + V01041) / (v0001)",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "iep_setor",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 3.5,
+     "distintos_amostra": 878,
+     "razao_distintos": 0.9098,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 1600.0,
+     "exemplos": [
+      "0.0",
+      "100.0",
+      "1000.0"
+     ],
+     "dicionario": {
+      "descricao": "Índice de Envelhecimento Populacional: 60+ por 100 menores de 15 anos",
+      "formula": "(V01040 + V01041) / (V01031 + V01032 + V01033) × 100",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "rdi_setor",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 2.9,
+     "distintos_amostra": 928,
+     "razao_distintos": 0.9557,
+     "unica_na_amostra": true,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 118.5185185185185,
+     "exemplos": [
+      "0.0",
+      "1.3972055888223553",
+      "10.015649452269171"
+     ],
+     "dicionario": {
+      "descricao": "Razão de Dependência de Idosos: 60+ por 100 pessoas de 15 a 59 anos",
+      "formula": "(V01040 + V01041) / (V01034 + V01035 + V01036 + V01037 + V01038 + V01039) × 100",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    },
+    {
+     "nome": "prop_70mais_entre_60mais",
+     "tipo_declarado": "REAL",
+     "tipo_inferido": "decimal",
+     "nulos_pct": 4.6,
+     "distintos_amostra": 638,
+     "razao_distintos": 0.6688,
+     "unica_na_amostra": false,
+     "possivel_pii": false,
+     "min": 0.0,
+     "max": 100.0,
+     "exemplos": [
+      "0.0",
+      "100.0",
+      "11.76470588235294"
+     ],
+     "dicionario": {
+      "descricao": "Proporção de pessoas de 70+ entre os de 60+ (proxy de longevidade; NÃO é o LI, que exigiria a faixa 75+, inexistente nos agregados por setor)",
+      "formula": "(V01041) / (V01040 + V01041) × 100",
+      "referencia": "tabela dicionario_variaveis da fonte"
+     }
+    }
+   ],
+   "pk_declarada": [],
+   "fks_declaradas": [],
+   "linhas_amostra": 1000
+  }
+ ],
+ "fks_candidatas": []
+}

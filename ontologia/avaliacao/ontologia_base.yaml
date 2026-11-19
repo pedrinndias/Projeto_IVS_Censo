@@ -1,0 +1,826 @@
+# ontologia/ontologia.yaml — linha de base (skill ontologia-dados antes das melhorias)
+versao: 1
+dominio: Censo 2022 (IBGE), agregados por setor censitário dos 70 municípios da amostra ELSI-Brasil, com os indicadores
+  do IVS calculados pela pipeline do projeto.
+tabelas:
+  setores_censitarios:
+    termo: Setor censitário
+    descricao: Variáveis do Censo 2022 e indicadores derivados por setor censitário.
+    granularidade: uma linha por setor censitário
+    chave:
+    - CD_SETOR
+    fonte: dicionario
+    certificado: false
+    colunas:
+      CD_SETOR:
+        descricao: 'Geocódigo do setor censitário (15 dígitos): UF(2) + município(5) + distrito, subdistrito e setor'
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        certificado: false
+      SITUACAO:
+        descricao: 'Situação do setor: Urbana ou Rural (vazia nos setores de massa d''água)'
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        valores:
+          Urbana: setor urbano
+          Rural: setor rural
+          'NULL': massa d'água
+        certificado: false
+      CD_SIT:
+        descricao: 'Código da situação do setor: 1-3 = urbana; 5-8 = rural; 9 = massa d''água (população zero)'
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        valores:
+          1-3: urbana
+          5-8: rural
+          '9': massa d'água (população zero)
+        certificado: false
+      CD_TIPO:
+        descricao: Tipo de setor. 1 = Favela e Comunidade Urbana (FCU); 0 = setor não especial; demais códigos =
+          outros setores especiais
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        valores:
+          '0': setor não especial
+          '1': Favela e Comunidade Urbana (FCU)
+          2-9: outros setores especiais
+        certificado: false
+      NM_MUN:
+        descricao: Nome do município
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        certificado: false
+      NM_BAIRRO:
+        descricao: Nome do bairro, quando o setor pertence a um bairro delimitado
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        certificado: false
+      CD_FCU:
+        descricao: Código da Favela ou Comunidade Urbana à qual o setor pertence
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        certificado: false
+      NM_FCU:
+        descricao: Nome da Favela ou Comunidade Urbana à qual o setor pertence
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        certificado: false
+      v0001:
+        descricao: Total de pessoas
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      CD_UF:
+        descricao: Código IBGE da Unidade da Federação (2 primeiros dígitos do CD_SETOR)
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
+        certificado: false
+      CD_MUN:
+        descricao: Código IBGE do município (7 primeiros dígitos do CD_SETOR)
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
+        certificado: false
+      V00001:
+        descricao: Domicílios Particulares Permanentes Ocupados
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00002:
+        descricao: Domicílios Particulares Improvisados Ocupados
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00005:
+        descricao: Domicílios Particulares Permanentes Ocupados, Quantidade de moradores
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00006:
+        descricao: Domicílios Particulares Improvisados Ocupados, Quantidade de moradores
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00047:
+        descricao: Domicílios Particulares Permanentes Ocupados, Tipo de espécie é casa
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00048:
+        descricao: Domicílios Particulares Permanentes Ocupados, Tipo de espécie é casa de vila ou em condomínio
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00049:
+        descricao: Domicílios Particulares Permanentes Ocupados, Tipo de espécie é apartamento
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00050:
+        descricao: Domicílios Particulares Permanentes Ocupados, Tipo de espécie é habitação em casa de cômodos
+          ou cortiço
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00051:
+        descricao: Domicílios Particulares Permanentes Ocupados, Tipo de espécie é habitação indígena sem paredes
+          ou maloca
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00052:
+        descricao: Domicílios Particulares Permanentes Ocupados, Tipo de espécie é estrutura residencial permanente
+          degradada ou inacabada
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00053:
+        descricao: Domicílios Particulares Improvisados Ocupados, Tipo de espécie é tenda ou barraca de lona, plástico
+          ou tecido
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00054:
+        descricao: Domicílios Particulares Improvisados Ocupados, Tipo de espécie é dentro de estabelecimento em
+          funcionamento
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00055:
+        descricao: Domicílios Particulares Improvisados Ocupados, Tipo de espécie é abrigo natural e outras estruturas
+          improvisadas
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00056:
+        descricao: Domicílios Particulares Improvisados Ocupados, Tipo de espécie é estrutura improvisada em logradouro
+          público, exceto tenda ou barraca
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00057:
+        descricao: Domicílios Particulares Improvisados Ocupados, Tipo de espécie é estrutura não residencial permanente
+          degradada ou inacabada
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00058:
+        descricao: Domicílios Particulares Improvisados Ocupados, Tipo de espécie é veículo (carro, caminhão, trailer,
+          barco etc)
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00112:
+        descricao: Domicílios Particulares Permanentes Ocupados, Utiliza poço profundo ou artesiano
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00113:
+        descricao: Domicílios Particulares Permanentes Ocupados, Utiliza poço raso, freático ou cacimba
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00114:
+        descricao: Domicílios Particulares Permanentes Ocupados, Utiliza fonte, nascente ou mina
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00115:
+        descricao: Domicílios Particulares Permanentes Ocupados, Utiliza carro-pipa
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00116:
+        descricao: Domicílios Particulares Permanentes Ocupados, Utiliza água da chuva armazenada
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00117:
+        descricao: Domicílios Particulares Permanentes Ocupados, Utiliza rios, açudes, córregos, lagos e igarapés
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00118:
+        descricao: Domicílios Particulares Permanentes Ocupados, Utiliza outra forma de abastecimento de água
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00199:
+        descricao: Domicílios Particulares Permanentes Ocupados, Água chega encanada até dentro da casa, apartamento
+          ou habitação
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00200:
+        descricao: Domicílios Particulares Permanentes Ocupados, Água chega encanada, mas apenas ao terreno
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00201:
+        descricao: Domicílios Particulares Permanentes Ocupados, Água não chega encanada ao domicílio
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00236:
+        descricao: Domicílios Particulares Permanentes Ocupados, Apenas banheiro de uso comum a mais de um domicílio
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00237:
+        descricao: Domicílios Particulares Permanentes Ocupados, Apenas sanitário ou buraco para dejeções, inclusive
+          os localizados no terreno
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00238:
+        descricao: Domicílios Particulares Permanentes Ocupados, Não tinham banheiro nem sanitário
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00312:
+        descricao: Domicílios Particulares Permanentes Ocupados, Destinação do esgoto do banheiro ou sanitário ou
+          buraco para dejeções é fossa rudimentar ou buraco
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00313:
+        descricao: Domicílios Particulares Permanentes Ocupados, Destinação do esgoto do banheiro ou sanitário ou
+          buraco para dejeções é vala
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00314:
+        descricao: Domicílios Particulares Permanentes Ocupados, Destinação do esgoto do banheiro ou sanitário ou
+          buraco para dejeções é rio, lago, córrego ou mar
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00315:
+        descricao: Domicílios Particulares Permanentes Ocupados, Destinação do esgoto do banheiro ou sanitário ou
+          buraco para dejeções é outra forma
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00316:
+        descricao: Domicílios Particulares Permanentes Ocupados, Destinação do esgoto inexistente, pois não tinham
+          banheiro nem sanitário
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00398:
+        descricao: Domicílios Particulares Permanentes Ocupados, Lixo depositado em caçamba de serviço de limpeza
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00399:
+        descricao: Domicílios Particulares Permanentes Ocupados, Lixo queimado na propriedade
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00400:
+        descricao: Domicílios Particulares Permanentes Ocupados, Lixo enterrado na propriedade
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00401:
+        descricao: Domicílios Particulares Permanentes Ocupados, Lixo jogado em terreno baldio, encosta ou área
+          pública
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00402:
+        descricao: Domicílios Particulares Permanentes Ocupados, Outro destino do lixo
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00495:
+        descricao: Domicílios Particulares Permanentes Ocupados, Sem banheiro de uso exclusivo com chuveiro e vaso
+          sanitário
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: domicílios
+        certificado: false
+      V00900:
+        descricao: 15 anos ou mais, Morador sabe ler e escrever
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V00901:
+        descricao: 15 anos ou mais, Morador não sabe ler e escrever
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V01318:
+        descricao: Cor ou raça é preta
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V01320:
+        descricao: Cor ou raça é parda
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V01321:
+        descricao: Cor ou raça é indígena
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V06001:
+        descricao: Pessoas responsáveis em domicílios particulares permanentes ocupados
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V06004:
+        descricao: Valor do rendimento nominal médio mensal das pessoas responsáveis com rendimentos por domicílios
+          particulares permanentes ocupados
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: BRL
+        certificado: false
+      V06005:
+        descricao: Variância do rendimento nominal mensal das pessoas responsáveis com rendimentos por domicílios
+          particulares permanentes ocupados
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: BRL²
+        certificado: false
+      V01031:
+        descricao: 0 a 4 anos
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V01032:
+        descricao: 5 a 9 anos
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V01033:
+        descricao: 10 a 14 anos
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V01034:
+        descricao: 15 a 19 anos
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V01035:
+        descricao: 20 a 24 anos
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V01036:
+        descricao: 25 a 29 anos
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V01037:
+        descricao: 30 a 39 anos
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V01038:
+        descricao: 40 a 49 anos
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V01039:
+        descricao: 50 a 59 anos
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V01040:
+        descricao: 60 a 69 anos
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V01041:
+        descricao: 70 anos ou mais
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V01042:
+        descricao: Pessoa responsável pelo domicílio
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V01062:
+        descricao: Pessoa responsável pelo domicílio, Sexo masculino
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      V01063:
+        descricao: Pessoa responsável pelo domicílio, Sexo feminino
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        unidade: pessoas
+        certificado: false
+      Moradia_Predominante:
+        descricao: Tipo de moradia com maior contagem no setor (classificação derivada)
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
+        certificado: false
+      Dados_sig:
+        descricao: 'Elegibilidade do setor: OK / SIGILOSO / ZERADO / COLETIVO (regra do Cálculo IVS2012.docx)'
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
+        valores:
+          OK: elegível
+          SIGILOSO: população ou domicílios sigilosos
+          ZERADO: setor sem população
+          COLETIVO: população só em domicílios coletivos
+        certificado: false
+      urbano:
+        descricao: 1 se SITUACAO = Urbana (recorte de análise do IVS); 0 caso contrário
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
+        valores:
+          1: SITUACAO = Urbana
+          0: caso contrário
+        certificado: false
+      is_fcu:
+        descricao: 1 se o setor é de Favela e Comunidade Urbana (CD_TIPO = 1)
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
+        valores:
+          1: setor de favela/comunidade urbana (CD_TIPO = 1)
+          0: não FCU
+        certificado: false
+      Moradia_Predominante_Agrupada:
+        descricao: Moradia predominante agrupada em Convencional / Não convencional / Indefinido
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
+        valores:
+        - Convencional
+        - Não convencional
+        - Indefinido
+        certificado: false
+      pct_agua_inad:
+        descricao: Proporção de domicílios com abastecimento de água inadequado ou ausente
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00112 + V00113 + V00114 + V00115 + V00116 + V00117 + V00118) / (V00001)
+        certificado: false
+      pct_esgoto_inad:
+        descricao: Proporção de domicílios com esgotamento sanitário inadequado ou ausente
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00312 + V00313 + V00314 + V00315 + V00316) / (V00001)
+        certificado: false
+      pct_lixo_inad:
+        descricao: Proporção de domicílios com destino do lixo inadequado ou ausente
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00398 + V00399 + V00400 + V00401 + V00402) / (V00001)
+        certificado: false
+      razao_moradores:
+        descricao: Razão de moradores por domicílio (reproduz o V0005 do IBGE)
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: pessoas por domicílio
+        formula: (V00005 + V00006) / (V00001 + V00002)
+        certificado: false
+      pct_analfab:
+        descricao: Taxa de analfabetismo entre pessoas de 15 anos ou mais
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00901) / (V00900 + V00901)
+        certificado: false
+      renda_media:
+        descricao: Rendimento nominal médio mensal das pessoas responsáveis (R$)
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: BRL
+        formula: (V06004) / ((sem denominador))
+        certificado: false
+      renda_media_sem_extremo:
+        descricao: 'Igual a renda_media, exceto nos setores excluídos nominalmente, onde fica vazia. Hoje é um só:
+          310620005650366 — Belo Horizonte, bairro Senhor dos Passos: R$ 170.418,06, maior valor da base e 55,7×
+          a mediana do município. Setor de favela (CD_TIPO=1) com 186 domicílios, 518 pessoas e 31 analfabetos —
+          classificado SUSPEITO por três testes de incoerência. Excluído a pedido da orientadora em 01/09/2026.
+          A coluna renda_media continua ao lado, sem alteração, para a exclusão ser auditável.'
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
+        unidade: BRL
+        certificado: false
+      renda_media_mediana_mun:
+        descricao: Igual a renda_media, exceto nos setores de SETORES_RENDA_EXCLUIDA, onde entra a mediana do próprio
+          município (sem eles), no recorte urbano e Dados_sig=OK — alternativa a deixar vazio, já que a mediana
+          do setor (V06006) não existe no arquivo.
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
+        unidade: BRL
+        certificado: false
+      pct_raca_pretpardind:
+        descricao: Proporção de pessoas de cor/raça preta, parda ou indígena
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V01318 + V01320 + V01321) / (v0001)
+        certificado: false
+      pct_dom_improv:
+        descricao: Proporção de domicílios particulares improvisados
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00002) / (V00001 + V00002)
+        certificado: false
+      pct_hab_precaria:
+        descricao: Proporção de domicílios em habitação precária (cortiço, estrutura degradada, improvisados)
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00050 + V00052 + V00053 + V00054 + V00055 + V00056 + V00057 + V00058) / (V00001 + V00002)
+        certificado: false
+      pct_moradia_convencional:
+        descricao: Proporção de moradias convencionais (casa, casa de vila/condomínio, apartamento)
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00047 + V00048 + V00049) / (V00001)
+        certificado: false
+      pct_moradia_nao_convencional:
+        descricao: Proporção de moradias não convencionais (cortiço, maloca, estrutura degradada)
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00050 + V00051 + V00052) / (V00001)
+        certificado: false
+      pct_apartamento:
+        descricao: Proporção de domicílios do tipo apartamento
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00049) / (V00001)
+        certificado: false
+      pct_casa:
+        descricao: Proporção de domicílios do tipo casa
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00047) / (V00001)
+        certificado: false
+      pct_casa_vila_condominio:
+        descricao: Proporção de domicílios do tipo casa de vila ou em condomínio
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00048) / (V00001)
+        certificado: false
+      pct_sem_agua_canalizada:
+        descricao: Proporção de domicílios em que a água não chega encanada até dentro do domicílio (complemento
+          de V00199; equivale a V00200+V00201 sobre V00001)
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00199) / (V00001)
+        certificado: false
+      pct_agua_nao_encanada:
+        descricao: Proporção de domicílios em que a água não chega encanada ao domicílio (V00201)
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00201) / (V00001)
+        certificado: false
+      pct_agua_so_terreno:
+        descricao: Proporção de domicílios em que a água chega encanada apenas ao terreno (V00200)
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00200) / (V00001)
+        certificado: false
+      pct_sem_banheiro:
+        descricao: Proporção de domicílios sem banheiro de uso exclusivo com chuveiro e vaso sanitário
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00495) / (V00001)
+        certificado: false
+      pct_sem_banheiro_nem_sanitario:
+        descricao: Proporção de domicílios sem banheiro nem sanitário
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00238) / (V00001)
+        certificado: false
+      pct_so_sanitario:
+        descricao: Proporção de domicílios com apenas sanitário ou buraco para dejeções
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00237) / (V00001)
+        certificado: false
+      pct_banheiro_comum:
+        descricao: Proporção de domicílios com apenas banheiro de uso comum
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V00236) / (V00001)
+        certificado: false
+      pct_resp_feminino:
+        descricao: Proporção de domicílios com pessoa responsável do sexo feminino
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V01063) / (V01062 + V01063)
+        certificado: false
+      pct_crianca_0a4:
+        descricao: Proporção de crianças de 0 a 4 anos na população residente
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V01031) / (v0001)
+        certificado: false
+      pct_pop_0a14:
+        descricao: Proporção de pessoas com menos de 15 anos na população residente
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V01031 + V01032 + V01033) / (v0001)
+        certificado: false
+      pct_idoso_60mais:
+        descricao: Proporção de pessoas de 60 anos ou mais na população residente
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: proporção
+        formula: (V01040 + V01041) / (v0001)
+        certificado: false
+      iep_setor:
+        descricao: 'Índice de Envelhecimento Populacional: 60+ por 100 menores de 15 anos'
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: índice ×100
+        formula: (V01040 + V01041) / (V01031 + V01032 + V01033) × 100
+        certificado: false
+      rdi_setor:
+        descricao: 'Razão de Dependência de Idosos: 60+ por 100 pessoas de 15 a 59 anos'
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: índice ×100
+        formula: (V01040 + V01041) / (V01034 + V01035 + V01036 + V01037 + V01038 + V01039) × 100
+        certificado: false
+      prop_70mais_entre_60mais:
+        descricao: Proporção de pessoas de 70+ entre os de 60+ (proxy de longevidade; NÃO é o LI, que exigiria a
+          faixa 75+, inexistente nos agregados por setor)
+        fonte: dicionario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        unidade: índice ×100
+        formula: (V01041) / (V01040 + V01041) × 100
+        certificado: false
+  dicionario_variaveis:
+    termo: Variável do dicionário
+    descricao: Dicionário das colunas de setores_censitarios.
+    granularidade: uma linha por coluna de setores_censitarios
+    chave:
+    - coluna
+    fonte: amostra
+    certificado: false
+  metadados:
+    termo: Metadado da base
+    descricao: Pares chave/valor sobre a geração da base (recorte, contagens, fontes).
+    granularidade: uma linha por chave
+    chave:
+    - chave
+    fonte: amostra
+    certificado: false
+relacoes: []
+metricas:
+  n_setores_recorte:
+    descricao: Número de setores no recorte de análise do IVS.
+    expressao: COUNT(*) FILTER (WHERE SITUACAO = 'Urbana' AND Dados_sig = 'OK')
+    tabelas:
+    - setores_censitarios
+    armadilhas: Recorte definido em metadados.recorte_de_analise.
+    fonte: dicionario
+    certificado: false
+  media_pct_agua_inad:
+    descricao: Média, entre setores, de pct_agua_inad (Proporção de domicílios com abastecimento de água inadequado
+      ou ausente).
+    expressao: AVG(setores_censitarios.pct_agua_inad)
+    tabelas:
+    - setores_censitarios
+    armadilhas: 'Médias do projeto usam o recorte de análise: SITUACAO = ''Urbana'' AND Dados_sig = ''OK''. Sigilo
+      do IBGE: X vira NULL; parcelas sigilosas entram valendo zero no numerador (viés para baixo). '
+    fonte: dicionario
+    certificado: false
+  media_pct_esgoto_inad:
+    descricao: Média, entre setores, de pct_esgoto_inad (Proporção de domicílios com esgotamento sanitário inadequado
+      ou ausente).
+    expressao: AVG(setores_censitarios.pct_esgoto_inad)
+    tabelas:
+    - setores_censitarios
+    armadilhas: 'Médias do projeto usam o recorte de análise: SITUACAO = ''Urbana'' AND Dados_sig = ''OK''. Sigilo
+      do IBGE: X vira NULL; parcelas sigilosas entram valendo zero no numerador (viés para baixo). '
+    fonte: dicionario
+    certificado: false
+  media_pct_lixo_inad:
+    descricao: Média, entre setores, de pct_lixo_inad (Proporção de domicílios com destino do lixo inadequado ou
+      ausente).
+    expressao: AVG(setores_censitarios.pct_lixo_inad)
+    tabelas:
+    - setores_censitarios
+    armadilhas: 'Médias do projeto usam o recorte de análise: SITUACAO = ''Urbana'' AND Dados_sig = ''OK''. Sigilo
+      do IBGE: X vira NULL; parcelas sigilosas entram valendo zero no numerador (viés para baixo). '
+    fonte: dicionario
+    certificado: false
+  media_pct_analfab:
+    descricao: Média, entre setores, de pct_analfab (Taxa de analfabetismo entre pessoas de 15 anos ou mais).
+    expressao: AVG(setores_censitarios.pct_analfab)
+    tabelas:
+    - setores_censitarios
+    armadilhas: 'Médias do projeto usam o recorte de análise: SITUACAO = ''Urbana'' AND Dados_sig = ''OK''. '
+    fonte: dicionario
+    certificado: false
+  media_pct_raca_pretpardind:
+    descricao: Média, entre setores, de pct_raca_pretpardind (Proporção de pessoas de cor/raça preta, parda ou indígena).
+    expressao: AVG(setores_censitarios.pct_raca_pretpardind)
+    tabelas:
+    - setores_censitarios
+    armadilhas: 'Médias do projeto usam o recorte de análise: SITUACAO = ''Urbana'' AND Dados_sig = ''OK''. '
+    fonte: dicionario
+    certificado: false
+  media_razao_moradores:
+    descricao: Média, entre setores, de razao_moradores (Razão de moradores por domicílio (reproduz o V0005 do IBGE)).
+    expressao: AVG(setores_censitarios.razao_moradores)
+    tabelas:
+    - setores_censitarios
+    armadilhas: 'Médias do projeto usam o recorte de análise: SITUACAO = ''Urbana'' AND Dados_sig = ''OK''. '
+    fonte: dicionario
+    certificado: false
+  media_renda_media:
+    descricao: Média, entre setores, de renda_media (Rendimento nominal médio mensal das pessoas responsáveis (R$)).
+    expressao: AVG(setores_censitarios.renda_media)
+    tabelas:
+    - setores_censitarios
+    armadilhas: 'Médias do projeto usam o recorte de análise: SITUACAO = ''Urbana'' AND Dados_sig = ''OK''. Existem
+      variantes renda_media_sem_extremo e renda_media_mediana_mun.'
+    fonte: dicionario
+    certificado: false
+glossario:
+  favela: tabelas.setores_censitarios.colunas.is_fcu
+  comunidade urbana: tabelas.setores_censitarios.colunas.is_fcu
+  recorte de análise: metricas.n_setores_recorte
+  domicílios: tabelas.setores_censitarios.colunas.V00001
+  população: tabelas.setores_censitarios.colunas.v0001
