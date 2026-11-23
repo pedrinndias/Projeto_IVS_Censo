@@ -514,8 +514,9 @@ def test_coluna_de_renda_sem_o_extremo_de_belo_horizonte():
     # fora esse setor, a coluna é idêntica — não é uma renda recalculada
     assert iguais == 0, 'renda_media_sem_extremo mudou valores além do setor excluído'
 
-    # e a exclusão se explica sozinha para quem abrir o arquivo
-    assert meta['setores_excluidos_de_renda_media_sem_extremo'] == '310620005650366'
+    # e a exclusão se explica sozinha para quem abrir o arquivo (chave renomeada em 23/11/2026, D04:
+    # guarda o código do setor, não uma contagem)
+    assert meta['cd_setor_excluido_de_renda_media_sem_extremo'] == '310620005650366'
     assert descricao and 'Senhor dos Passos' in descricao[0]
 
 
