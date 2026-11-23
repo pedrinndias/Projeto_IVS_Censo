@@ -2,9 +2,9 @@
 
 Prompt: [`prompt_ontologia_dados_2026-11.md`](prompt_ontologia_dados_2026-11.md). Branch `feat/ontologia-dados`. Commits: `9f8210e` (lotes 1-2) e o do `CLAUDE.md`.
 
-**Ponto atual:** ontologia 100% certificada (**128/128**). Lotes 3 a 10 aprovados em bloco pelo Pedro em 23/11 ("Siga todos os
-lotes de forma automática…"), com 40 correções documentadas em `ontologia/avaliacao/certificacao_2026-11.md`. As mudanças dos
-lotes 3 a 10 ainda não foram commitadas.
+**Ponto atual:** ontologia 100% certificada (**128/128**) e reavaliada (13/13 com Sonnet e Haiku). D04 corrigido no script
+da entrega (o banco não foi regerado). `feat/ontologia-dados` juntada à `main` e enviada ao `origin` em 23/11. Fase 6 não
+executada: o IVS não está congelado.
 
 ## O que funcionou (com evidência)
 - **Fase 0:** branch certa; `checar.py` → `certificado: 0/128 itens`, sem PROBLEMA.
@@ -39,17 +39,26 @@ lotes 3 a 10 ainda não foram commitadas.
 - `fonte` só aceita `dicionario | usuario | amostra`, então o `arquivo:linha` foi para `referencia`, não para `fonte`.
 - Nenhum item NÃO BATE.
 
+- **Reavaliação (Fase 5, passo 2), com OK do Pedro em 23/11:** dois agentes novos, Sonnet e Haiku, com o protocolo de
+  `resultados.md` (usei o Agent direto em vez do `skill-creator`, por ser o mesmo protocolo e mais barato). Sonnet 13/13,
+  73.822 tokens, 3 chamadas; Haiku 13/13, 86.392 tokens, 7 chamadas. Detalhe em `ontologia/avaliacao/resultados.md`.
+- **D04:** `scripts/gerar_entrega_orientadora.py` grava os números de `metadados` sem separador de milhar e renomeia a chave
+  para `cd_setor_excluido_de_renda_media_sem_extremo` (commit `c32b7c9`). Testado gravando num diretório temporário: CAST dá
+  109032. Os 6 testes da entrega passam; o ruff tem os mesmos 5 avisos de antes. O banco entregue (22/10) **não** foi regerado,
+  e a armadilha de `metadados.valor` diz isso.
+- **Revisão das 40 correções:** os 8 números escritos à mão nas correções foram reconferidos no banco e batem.
+- **O03:** `main` avançada por fast-forward até a `feat/ontologia-dados`, sem troca de branch, e enviada ao `origin`.
+
 ## Não executado (registrado)
-- Fase 5, passo 2 (reavaliar as 13 perguntas com `/anthropic-skills:skill-creator`): sem OK do Pedro.
 - Fase 6 (camada do IVS final): não executada, porque o IVS não está congelado.
 
 ## O que falta
-1. Commit das mudanças dos lotes 3 a 10 (com OK do Pedro).
-2. Revisão do Pedro, quando quiser, das 40 correções aprovadas em bloco (lista em `certificacao_2026-11.md`).
-3. Fase 5, passo 2 (reavaliação com modelos, opcional, com OK) e Fase 6 (só com o IVS congelado).
-4. O03, pendente de OK: juntar `feat/ontologia-dados` à `main` e enviar ao `origin` (a `main` está 2 commits à frente:
-   `8e1e1ca`, `482c37d`).
-5. Fora da ontologia: corrigir o formato de `metadados` (D04) em `scripts/gerar_entrega_orientadora.py`.
-
-Os scripts (`certificar.py`, `validar.py`, `evid_lotes3.py`, `lotes3a10.py`) e o log `log_lotes3a10.json` ficaram no scratchpad
-da sessão de 23/11 e podem ter sido apagados. O que importa deles está em `certificacao_2026-11.md`.
+1. **IVS final (Fase 6):** só depois de o IVS ser congelado e de o Pedro dizer qual arquivo é o final. A revisão de ponta a
+   ponta recomenda congelar como proposta com prazo de veto da orientadora; a decisão é dela.
+2. **Regerar o banco da entrega** com o script corrigido (decisão do Pedro: muda o arquivo já entregue). Depois, rodar
+   `perfil.py` e `checar.py`, tirar a armadilha do D04 de `metadados.valor` e trocar o nome da chave na ontologia.
+3. Revisão do Pedro, quando quiser, das 40 correções aprovadas em bloco (lista em `certificacao_2026-11.md`).
+4. O prompt e a auditoria de 22/11 (`docs/prompts/prompt_ontologia_dados_2026-11.md`,
+   `docs/relatorios/Auditoria_Projeto_e_Dados_2026-11-22.md`) ainda não estão no git, e os documentos da ontologia apontam
+   para eles.
+5. Sugestão para a skill (fora do projeto): o `resumo.py` marcar certificação também nas colunas.

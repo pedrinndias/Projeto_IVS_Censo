@@ -51,6 +51,30 @@ e o histórico dela. Usaram o recorte `analise` pelo glossário, filtraram munic
 - **MCP (Fase 4):** não construir. O critério era haver erro que regra de texto não evita (filtro
   ignorado, métrica reinventada, tentativa de escrita) e nenhuma das 4 rodadas teve um.
 
+## Reavaliação com a ontologia certificada (23/11/2026)
+
+Mesmo protocolo: agente novo, sem contexto do projeto, proibido de abrir `ontologia/avaliacao/`; lê `ontologia/resumo.md`
+primeiro e o YAML só por trecho; consulta o banco com `sqlite3 -readonly`. Ontologia: 128/128 itens certificados (commit
+`9a30bab`). Diferença de contexto: o projeto agora tem um `CLAUDE.md` com o bloco "Dados", carregado pelos agentes.
+
+| Modelo | Acertos | Tokens | Chamadas | vs. rodada "Nova" (18/11) |
+|---|---|---|---|---|
+| Sonnet | 13/13 | 73.822 | 3 | −16% tokens (88.225), −1 chamada |
+| Haiku | 13/13 | 86.392 | 7 | −26% tokens (116.285), mesmas chamadas |
+
+As respostas batem com `gabarito.json`: Q09 = 25.029 com `renda_media_sem_extremo`, Q12 e Q13 sem dado. Os dois usaram
+`is_fcu` em vez de `CD_FCU`, igualdade em `NM_MUN` e o recorte certificado, e citaram as armadilhas de NULL.
+
+O que os agentes apontaram:
+- O `resumo.md` só marca certificação em recortes e métricas, não em colunas. O Sonnet não viu que `is_fcu`, `v0001` e `NM_MUN`
+  estão certificadas; o Haiku abriu o YAML para ver. A mudança seria no `resumo.py` da skill, fora deste projeto.
+- Não há métrica pronta para idosos nem para esgoto por grupo (favela × demais); os agentes compuseram a consulta com a
+  coluna e o recorte.
+- Para Q12 e Q13, a ausência foi concluída por busca no YAML. A ontologia não lista explicitamente o que o banco não tem.
+
+**Leitura:** o acerto continua 13/13, então as perguntas ainda não separam as versões. Os tokens caíram nos dois modelos, mas é
+uma rodada por modelo e com o `CLAUDE.md` novo junto: não dá para atribuir a queda só à certificação.
+
 ## Para refazer
 
 ```bash
