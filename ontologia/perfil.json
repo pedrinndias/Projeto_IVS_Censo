@@ -3,7 +3,7 @@
  "fonte": {
   "tipo": "sqlite",
   "alvo": "banco_de_dados/entrega_orientadora/Base_ELSI_70Municipios_Censo2022.db",
-  "gerado_em": "2026-11-18T23:47:56+00:00",
+  "gerado_em": "2026-11-23T10:45:03+00:00",
   "amostra_por_tabela": 1000,
   "sem_valores": false
  },
@@ -137,6 +137,7 @@
      "possivel_pii": false,
      "valores": [
       "arquivos_do_censo",
+      "cd_setor_excluido_de_renda_media_sem_extremo",
       "denominador_domiciliar",
       "fonte",
       "gerado_em",
@@ -150,7 +151,6 @@
       "n_setores_urbanos",
       "recorte",
       "recorte_de_analise",
-      "setores_excluidos_de_renda_media_sem_extremo",
       "setores_imputados_de_renda_media_mediana_mun"
      ]
     },
@@ -165,13 +165,13 @@
      "possivel_pii": false,
      "valores": [
       "1",
-      "104,108",
-      "106,281",
-      "106,347",
-      "109,032",
-      "19,452",
-      "19,507",
-      "2026-10-22",
+      "104108",
+      "106281",
+      "106347",
+      "109032",
+      "19452",
+      "19507",
+      "2026-11-23",
       "310620005650366",
       "70",
       "70 municípios da amostra ELSI-Brasil",

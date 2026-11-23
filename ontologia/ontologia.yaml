@@ -1055,13 +1055,13 @@ tabelas:
       valor:
         descricao: Valor do metadado, em texto.
         fonte: amostra
-        armadilhas: 'Tudo é texto, e os números têm vírgula de milhar (''109,032''): CAST(valor AS INTEGER) dá 109.
-          Use CAST(REPLACE(valor, '','', '''') AS INTEGER). A chave setores_excluidos_de_renda_media_sem_extremo
-          guarda o código do setor excluído (310620005650366), não uma contagem. O script da entrega foi corrigido
-          em 23/11/2026 (números sem separador; a chave passa a cd_setor_excluido_de_renda_media_sem_extremo), mas
-          este banco é de 22/10: a armadilha vale até ele ser regerado.'
-        referencia: 'scripts/gerar_entrega_orientadora.py:138-166 (montagem da tabela, números formatados com :,);
-          correção do script: scripts/gerar_entrega_orientadora.py (bloco metadados), 23/11/2026'
+        armadilhas: 'A coluna é texto: para somar ou comparar números, use CAST(valor AS INTEGER) (ex.: n_setores_recorte_analise
+          dá 104108). A chave cd_setor_excluido_de_renda_media_sem_extremo guarda o código do setor excluído, não
+          uma contagem. Histórico (D04): até o banco de 22/10/2026 os números tinham vírgula de milhar (''109,032'',
+          e o CAST dava 109) e a chave se chamava setores_excluidos_de_renda_media_sem_extremo; corrigido no script
+          e regerado em 23/11/2026.'
+        referencia: scripts/gerar_entrega_orientadora.py:139-167 (bloco metadados); banco regerado em 23/11/2026
+          com tabelas de dados idênticas às de 22/10
         certificado: true
 relacoes: []
 metricas:

@@ -2,9 +2,9 @@
 
 Prompt: [`prompt_ontologia_dados_2026-11.md`](prompt_ontologia_dados_2026-11.md). Branch `feat/ontologia-dados`. Commits: `9f8210e` (lotes 1-2) e o do `CLAUDE.md`.
 
-**Ponto atual:** ontologia 100% certificada (**128/128**) e reavaliada (13/13 com Sonnet e Haiku). D04 corrigido no script
-da entrega (o banco não foi regerado). `feat/ontologia-dados` juntada à `main` e enviada ao `origin` em 23/11. Fase 6 não
-executada: o IVS não está congelado.
+**Ponto atual:** ontologia 100% certificada (**128/128**) e reavaliada (13/13 com Sonnet e Haiku). Banco da entrega regerado em
+23/11 com o D04 corrigido e auditado: os dados são idênticos aos de 22/10, e o código está estável (170/170 testes). Prompt e
+auditoria de 22/11 versionados. Tudo na `main` e no `origin`. Fase 6 não executada: o IVS não está congelado.
 
 ## O que funcionou (com evidência)
 - **Fase 0:** branch certa; `checar.py` → `certificado: 0/128 itens`, sem PROBLEMA.
@@ -49,16 +49,22 @@ executada: o IVS não está congelado.
 - **Revisão das 40 correções:** os 8 números escritos à mão nas correções foram reconferidos no banco e batem.
 - **O03:** `main` avançada por fast-forward até a `feat/ontologia-dados`, sem troca de branch, e enviada ao `origin`.
 
+- **Regeração do banco (23/11):** cópia dos `.db` antigos guardada; CSVs byte a byte iguais; `setores_censitarios` e
+  `dicionario_variaveis` idênticos nos dois bancos; `metadados` só com as mudanças esperadas. `pytest`: um teste lia a chave
+  antiga e foi atualizado, depois 170/170. As falhas dos verificadores de decks são anteriores (C09 e item 4, sem leitura do
+  banco). Perfil regerado; armadilha de `metadados.valor` reescrita, com o D04 como histórico. Relatório:
+  `ontologia/avaliacao/auditoria_regeracao_2026-11-23.md`.
+- **Documentos:** `docs/prompts/prompt_ontologia_dados_2026-11.md` e `docs/relatorios/Auditoria_Projeto_e_Dados_2026-11-22.md`
+  versionados (os links da ontologia deixam de estar quebrados).
+
 ## Não executado (registrado)
 - Fase 6 (camada do IVS final): não executada, porque o IVS não está congelado.
 
 ## O que falta
 1. **IVS final (Fase 6):** só depois de o IVS ser congelado e de o Pedro dizer qual arquivo é o final. A revisão de ponta a
    ponta recomenda congelar como proposta com prazo de veto da orientadora; a decisão é dela.
-2. **Regerar o banco da entrega** com o script corrigido (decisão do Pedro: muda o arquivo já entregue). Depois, rodar
-   `perfil.py` e `checar.py`, tirar a armadilha do D04 de `metadados.valor` e trocar o nome da chave na ontologia.
+2. **Avisar a orientadora** de que o `.db` foi regerado: os dados são os mesmos, e só a tabela `metadados` mudou de formato.
 3. Revisão do Pedro, quando quiser, das 40 correções aprovadas em bloco (lista em `certificacao_2026-11.md`).
-4. O prompt e a auditoria de 22/11 (`docs/prompts/prompt_ontologia_dados_2026-11.md`,
-   `docs/relatorios/Auditoria_Projeto_e_Dados_2026-11-22.md`) ainda não estão no git, e os documentos da ontologia apontam
-   para eles.
+4. Pendências anteriores, fora da ontologia: `verificar_relatorio_descritivo.py` com `IndexError` (C09) e o item 4 de
+   `verificar_versoes_fatorial.py` (células dos decks VP09–VP11).
 5. Sugestão para a skill (fora do projeto): o `resumo.py` marcar certificação também nas colunas.
