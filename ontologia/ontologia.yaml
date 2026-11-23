@@ -34,7 +34,7 @@ tabelas:
           1-3: urbana
           5-8: rural
           '9': massa d'água (população zero)
-        certificado: false
+        certificado: true
       CD_TIPO:
         descricao: Tipo de setor. 1 = Favela e Comunidade Urbana (FCU); 0 = setor não especial; demais códigos =
           outros setores especiais
@@ -49,40 +49,49 @@ tabelas:
         descricao: Nome do município
         fonte: dicionario
         referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
-        certificado: false
+        certificado: true
         armadilhas: 'Filtre por igualdade (NM_MUN = ''São Paulo''), nunca LIKE: existe ''São Paulo das Missões''.'
       NM_BAIRRO:
         descricao: Nome do bairro, quando o setor pertence a um bairro delimitado
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
-        certificado: false
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
+        certificado: true
+        armadilhas: NULL em 41.431 setores do recorte (39,8%); em 34 dos 70 municípios nenhum setor do recorte tem
+          bairro. Contagens por bairro deixam esses setores de fora.
       CD_FCU:
         descricao: Código da Favela ou Comunidade Urbana à qual o setor pertence
         fonte: dicionario
         referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
         valores:
           .: setor fora de FCU (marca de ausência; a coluna não tem NULL)
-        armadilhas: 'Não use CD_FCU para contar favela: no projeto, favela é CD_TIPO = ''1'' (is_fcu). No recorte, 19
-          setores têm CD_FCU preenchido e CD_TIPO = ''0'' (25 na base); contar por CD_FCU <> ''.'' dá 19.471 setores,
-          não 19.452. A ausência é ''.'', não NULL.'
+        armadilhas: 'Não use CD_FCU para contar favela: no projeto, favela é CD_TIPO = ''1'' (is_fcu). No recorte,
+          19 setores têm CD_FCU preenchido e CD_TIPO = ''0'' (25 na base); contar por CD_FCU <> ''.'' dá 19.471
+          setores, não 19.452. A ausência é ''.'', não NULL.'
         certificado: true
       NM_FCU:
         descricao: Nome da Favela ou Comunidade Urbana à qual o setor pertence
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
-        certificado: false
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
+        certificado: true
+        armadilhas: Preenchido exatamente onde CD_FCU <> '.' (19.471 setores no recorte, incluindo os 19 com CD_TIPO
+          = '0'). Para contar favela, use CD_TIPO = '1' (is_fcu).
       v0001:
         descricao: Total de pessoas
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
         armadilhas: 'Minúsculo: total de pessoas. Não confundir com V00001 (domicílios). Pode ser NULL por sigilo.'
       CD_UF:
         descricao: Código IBGE da Unidade da Federação (2 primeiros dígitos do CD_SETOR)
         fonte: dicionario
         referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
-        certificado: false
+        certificado: true
       CD_MUN:
         descricao: Código IBGE do município (7 primeiros dígitos do CD_SETOR)
         fonte: dicionario
@@ -91,403 +100,477 @@ tabelas:
       V00001:
         descricao: Domicílios Particulares Permanentes Ocupados
         fonte: usuario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); armadilha corrigida pelo
-          Pedro em 23/11/2026'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); armadilha corrigida
+          pelo Pedro em 23/11/2026; dicionário oficial do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
         certificado: true
-        armadilhas: Denominador domiciliar padrão. NULL em todos os setores SIGILOSO (1.015) e ZERADO (1.736) da base; no
-          recorte nunca é NULL.
+        armadilhas: Denominador domiciliar padrão. NULL em todos os setores SIGILOSO (1.015) e ZERADO (1.736) da
+          base; no recorte nunca é NULL.
       V00002:
         descricao: Domicílios Particulares Improvisados Ocupados
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00005:
         descricao: Domicílios Particulares Permanentes Ocupados, Quantidade de moradores
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
-        unidade: domicílios
-        certificado: false
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro; dicionário oficial do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
+        unidade: pessoas
+        certificado: true
       V00006:
         descricao: Domicílios Particulares Improvisados Ocupados, Quantidade de moradores
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
-        unidade: domicílios
-        certificado: false
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro; dicionário oficial do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
+        unidade: pessoas
+        certificado: true
       V00047:
         descricao: Domicílios Particulares Permanentes Ocupados, Tipo de espécie é casa
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00048:
         descricao: Domicílios Particulares Permanentes Ocupados, Tipo de espécie é casa de vila ou em condomínio
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00049:
         descricao: Domicílios Particulares Permanentes Ocupados, Tipo de espécie é apartamento
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00050:
         descricao: Domicílios Particulares Permanentes Ocupados, Tipo de espécie é habitação em casa de cômodos
           ou cortiço
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00051:
         descricao: Domicílios Particulares Permanentes Ocupados, Tipo de espécie é habitação indígena sem paredes
           ou maloca
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00052:
         descricao: Domicílios Particulares Permanentes Ocupados, Tipo de espécie é estrutura residencial permanente
           degradada ou inacabada
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00053:
         descricao: Domicílios Particulares Improvisados Ocupados, Tipo de espécie é tenda ou barraca de lona, plástico
           ou tecido
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00054:
         descricao: Domicílios Particulares Improvisados Ocupados, Tipo de espécie é dentro de estabelecimento em
           funcionamento
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00055:
         descricao: Domicílios Particulares Improvisados Ocupados, Tipo de espécie é abrigo natural e outras estruturas
           improvisadas
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00056:
         descricao: Domicílios Particulares Improvisados Ocupados, Tipo de espécie é estrutura improvisada em logradouro
           público, exceto tenda ou barraca
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00057:
         descricao: Domicílios Particulares Improvisados Ocupados, Tipo de espécie é estrutura não residencial permanente
           degradada ou inacabada
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00058:
         descricao: Domicílios Particulares Improvisados Ocupados, Tipo de espécie é veículo (carro, caminhão, trailer,
           barco etc)
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00112:
         descricao: Domicílios Particulares Permanentes Ocupados, Utiliza poço profundo ou artesiano
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00113:
         descricao: Domicílios Particulares Permanentes Ocupados, Utiliza poço raso, freático ou cacimba
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00114:
         descricao: Domicílios Particulares Permanentes Ocupados, Utiliza fonte, nascente ou mina
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00115:
         descricao: Domicílios Particulares Permanentes Ocupados, Utiliza carro-pipa
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00116:
         descricao: Domicílios Particulares Permanentes Ocupados, Utiliza água da chuva armazenada
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00117:
         descricao: Domicílios Particulares Permanentes Ocupados, Utiliza rios, açudes, córregos, lagos e igarapés
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00118:
         descricao: Domicílios Particulares Permanentes Ocupados, Utiliza outra forma de abastecimento de água
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00199:
         descricao: Domicílios Particulares Permanentes Ocupados, Água chega encanada até dentro da casa, apartamento
           ou habitação
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00200:
         descricao: Domicílios Particulares Permanentes Ocupados, Água chega encanada, mas apenas ao terreno
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00201:
         descricao: Domicílios Particulares Permanentes Ocupados, Água não chega encanada ao domicílio
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00236:
         descricao: Domicílios Particulares Permanentes Ocupados, Apenas banheiro de uso comum a mais de um domicílio
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00237:
         descricao: Domicílios Particulares Permanentes Ocupados, Apenas sanitário ou buraco para dejeções, inclusive
           os localizados no terreno
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00238:
         descricao: Domicílios Particulares Permanentes Ocupados, Não tinham banheiro nem sanitário
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00312:
         descricao: Domicílios Particulares Permanentes Ocupados, Destinação do esgoto do banheiro ou sanitário ou
           buraco para dejeções é fossa rudimentar ou buraco
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00313:
         descricao: Domicílios Particulares Permanentes Ocupados, Destinação do esgoto do banheiro ou sanitário ou
           buraco para dejeções é vala
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00314:
         descricao: Domicílios Particulares Permanentes Ocupados, Destinação do esgoto do banheiro ou sanitário ou
           buraco para dejeções é rio, lago, córrego ou mar
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00315:
         descricao: Domicílios Particulares Permanentes Ocupados, Destinação do esgoto do banheiro ou sanitário ou
           buraco para dejeções é outra forma
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00316:
         descricao: Domicílios Particulares Permanentes Ocupados, Destinação do esgoto inexistente, pois não tinham
           banheiro nem sanitário
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00398:
         descricao: Domicílios Particulares Permanentes Ocupados, Lixo depositado em caçamba de serviço de limpeza
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00399:
         descricao: Domicílios Particulares Permanentes Ocupados, Lixo queimado na propriedade
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00400:
         descricao: Domicílios Particulares Permanentes Ocupados, Lixo enterrado na propriedade
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00401:
         descricao: Domicílios Particulares Permanentes Ocupados, Lixo jogado em terreno baldio, encosta ou área
           pública
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00402:
         descricao: Domicílios Particulares Permanentes Ocupados, Outro destino do lixo
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00495:
         descricao: Domicílios Particulares Permanentes Ocupados, Sem banheiro de uso exclusivo com chuveiro e vaso
           sanitário
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: domicílios
-        certificado: false
+        certificado: true
       V00900:
         descricao: 15 anos ou mais, Morador sabe ler e escrever
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V00901:
         descricao: 15 anos ou mais, Morador não sabe ler e escrever
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V01318:
         descricao: Cor ou raça é preta
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V01320:
         descricao: Cor ou raça é parda
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V01321:
         descricao: Cor ou raça é indígena
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V06001:
         descricao: Pessoas responsáveis em domicílios particulares permanentes ocupados
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V06004:
         descricao: Valor do rendimento nominal médio mensal das pessoas responsáveis com rendimentos por domicílios
           particulares permanentes ocupados
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: BRL
-        certificado: false
+        certificado: true
       V06005:
         descricao: Variância do rendimento nominal mensal das pessoas responsáveis com rendimentos por domicílios
           particulares permanentes ocupados
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: BRL²
-        certificado: false
+        certificado: true
       V01031:
         descricao: 0 a 4 anos
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V01032:
         descricao: 5 a 9 anos
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V01033:
         descricao: 10 a 14 anos
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V01034:
         descricao: 15 a 19 anos
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V01035:
         descricao: 20 a 24 anos
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V01036:
         descricao: 25 a 29 anos
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V01037:
         descricao: 30 a 39 anos
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V01038:
         descricao: 40 a 49 anos
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V01039:
         descricao: 50 a 59 anos
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V01040:
         descricao: 60 a 69 anos
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V01041:
         descricao: 70 anos ou mais
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V01042:
         descricao: Pessoa responsável pelo domicílio
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V01062:
         descricao: Pessoa responsável pelo domicílio, Sexo masculino
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       V01063:
         descricao: Pessoa responsável pelo domicílio, Sexo feminino
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); dicionário oficial
+          do IBGE em dados/ (descrição idêntica, conferida em 23/11/2026)'
         unidade: pessoas
-        certificado: false
+        certificado: true
       Moradia_Predominante:
-        descricao: Tipo de moradia com maior contagem no setor (classificação derivada)
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
-        certificado: false
+        descricao: Tipo de espécie de domicílio (V00047 a V00052) com maior contagem no setor (classificação derivada
+          no Notebook 01)
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
+        certificado: true
+        valores:
+          Casa: V00047
+          Casa de Vila/Condomínio: V00048
+          Apartamento: V00049
+          Cortiço/Casa de Cômodos: V00050
+          Maloca Indígena: V00051 (não ocorre na base)
+          Estrutura Degradada/Inacabada: V00052
+          Indefinido/Sem Moradia: sem domicílio permanente (2.751 na base; nenhum no recorte)
       Dados_sig:
         descricao: 'Elegibilidade do setor: OK / SIGILOSO / ZERADO / COLETIVO (regra do Cálculo IVS2012.docx)'
         fonte: dicionario
@@ -504,14 +587,14 @@ tabelas:
           (pct_*, razao_moradores, renda_media) só são calculados para OK: nos demais setores ficam NULL.'
         certificado: true
       urbano:
-        descricao: 1 se SITUACAO = Urbana; 0 caso contrário. Sozinho não é o recorte de análise (106.347 setores); o
-          recorte é urbano = 1 e Dados_sig = 'OK' (104.108), ver recortes.analise
+        descricao: 1 se SITUACAO = Urbana; 0 caso contrário. Sozinho não é o recorte de análise (106.347 setores);
+          o recorte é urbano = 1 e Dados_sig = 'OK' (104.108), ver recortes.analise
         fonte: dicionario
         referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
         valores:
           1: SITUACAO = Urbana
           0: caso contrário
-        certificado: false
+        certificado: true
       is_fcu:
         descricao: 1 se o setor é de Favela e Comunidade Urbana (CD_TIPO = 1)
         fonte: dicionario
@@ -526,40 +609,51 @@ tabelas:
         - FCU
       Moradia_Predominante_Agrupada:
         descricao: Moradia predominante agrupada em Convencional / Não convencional / Indefinido
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline; scripts/gerar_entrega_orientadora.py:37-41,
+          71; fonte original: dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada
+          em bloco pelo Pedro'
         valores:
-        - Convencional
-        - Não convencional
-        - Indefinido
-        certificado: false
+          Convencional: Casa, Casa de Vila/Condomínio, Apartamento
+          Não convencional: Cortiço/Casa de Cômodos, Maloca Indígena, Estrutura Degradada/Inacabada
+          Indefinido: Indefinido/Sem Moradia (nenhum no recorte)
+        certificado: true
       pct_agua_inad:
         descricao: Proporção de domicílios com abastecimento de água inadequado ou ausente
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V00112 + V00113 + V00114 + V00115 + V00116 + V00117 + V00118) / (V00001)
         certificado: true
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, nenhum setor fica NULL. Se só
+          algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL fica fora do AVG.
       pct_esgoto_inad:
         descricao: Proporção de domicílios com esgotamento sanitário inadequado ou ausente
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V00312 + V00313 + V00314 + V00315 + V00316) / (V00001)
         certificado: true
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, 1 setor fica NULL, pelo numerador.
+          Se só algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL fica fora do AVG.
       pct_lixo_inad:
         descricao: Proporção de domicílios com destino do lixo inadequado ou ausente
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V00398 + V00399 + V00400 + V00401 + V00402) / (V00001)
         certificado: true
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, nenhum setor fica NULL. Se só
+          algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL fica fora do AVG.
       razao_moradores:
         descricao: Razão de moradores por domicílio (reproduz o V0005 do IBGE)
         fonte: dicionario
@@ -574,19 +668,22 @@ tabelas:
         unidade: proporção
         formula: (V00901) / (V00900 + V00901)
         certificado: true
-        armadilhas: 'NULL quando qualquer parcela do denominador é sigilosa (min_count_den=2): no recorte, 16.552 setores
-          (15,9%) ficam sem valor; em BH, ~22%.'
+        armadilhas: 'NULL quando qualquer parcela do denominador é sigilosa (min_count_den=2): no recorte, 16.552
+          setores (15,9%) ficam sem valor; em BH, ~22%.'
         sinonimos:
         - analfabetismo
         - taxa de analfabetismo
       renda_media:
         descricao: Rendimento nominal médio mensal das pessoas responsáveis (R$)
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: BRL
         formula: V06004 (valor direto, sem denominador)
-        certificado: false
+        certificado: true
         armadilhas: Valor original com o setor extremo 310620005650366; as análises usam renda_media_sem_extremo.
+          No recorte, 12 setores ficam NULL (V06004 ausente).
       renda_media_sem_extremo:
         descricao: 'Igual a renda_media, exceto nos setores excluídos nominalmente, onde fica vazia. Hoje é um só:
           310620005650366 — Belo Horizonte, bairro Senhor dos Passos: R$ 170.418,06, maior valor da base e 55,7×
@@ -602,207 +699,297 @@ tabelas:
         descricao: Igual a renda_media, exceto nos setores de SETORES_RENDA_EXCLUIDA, onde entra a mediana do próprio
           município (sem eles), no recorte urbano e Dados_sig=OK — alternativa a deixar vazio, já que a mediana
           do setor (V06006) não existe no arquivo.
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline; src/ivs_censo/renda.py:129
+          (renda_imputada_mediana_municipal); fonte original: dicionario; correção de 23/11/2026 proposta pelo Claude
+          com evidência do banco e aprovada em bloco pelo Pedro'
         unidade: BRL
-        certificado: false
+        certificado: true
+        armadilhas: 'Variante de sensibilidade; o padrão das análises é renda_media_sem_extremo. Difere de renda_media
+          em um setor só: 310620005650366 recebe 3.058,23 (mediana de Belo Horizonte no recorte, sem ele). No recorte,
+          12 setores ficam NULL (os mesmos de renda_media).'
       pct_raca_pretpardind:
         descricao: Proporção de pessoas de cor/raça preta, parda ou indígena
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V01318 + V01320 + V01321) / (v0001)
         certificado: true
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, 2 setores ficam NULL, sempre pelo
+          numerador. Se só algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL fica
+          fora do AVG.
       pct_dom_improv:
         descricao: Proporção de domicílios particulares improvisados
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V00002) / (V00001 + V00002)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, 5.139 setores ficam NULL, sempre
+          pelo numerador. Se só algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL
+          fica fora do AVG.
       pct_hab_precaria:
         descricao: Proporção de domicílios em habitação precária (cortiço, estrutura degradada, improvisados)
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V00050 + V00052 + V00053 + V00054 + V00055 + V00056 + V00057 + V00058) / (V00001 + V00002)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, nenhum setor fica NULL. Se só
+          algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL fica fora do AVG.
       pct_moradia_convencional:
         descricao: Proporção de moradias convencionais (casa, casa de vila/condomínio, apartamento)
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V00047 + V00048 + V00049) / (V00001)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, nenhum setor fica NULL. Se só
+          algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL fica fora do AVG.
       pct_moradia_nao_convencional:
         descricao: Proporção de moradias não convencionais (cortiço, maloca, estrutura degradada)
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V00050 + V00051 + V00052) / (V00001)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, nenhum setor fica NULL. Se só
+          algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL fica fora do AVG.
       pct_apartamento:
         descricao: Proporção de domicílios do tipo apartamento
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V00049) / (V00001)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, 9.103 setores ficam NULL, sempre
+          pelo numerador. Se só algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL
+          fica fora do AVG.
       pct_casa:
         descricao: Proporção de domicílios do tipo casa
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V00047) / (V00001)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, 4.466 setores ficam NULL, sempre
+          pelo numerador. Se só algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL
+          fica fora do AVG.
       pct_casa_vila_condominio:
         descricao: Proporção de domicílios do tipo casa de vila ou em condomínio
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V00048) / (V00001)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, 12.804 setores ficam NULL, sempre
+          pelo numerador. Se só algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL
+          fica fora do AVG.
       pct_sem_agua_canalizada:
         descricao: Proporção de domicílios em que a água não chega encanada até dentro do domicílio (complemento
           de V00199; equivale a V00200+V00201 sobre V00001)
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V00199) / (V00001)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, 41 setores ficam NULL, sempre
+          pelo numerador. Se só algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL
+          fica fora do AVG.
       pct_agua_nao_encanada:
         descricao: Proporção de domicílios em que a água não chega encanada ao domicílio (V00201)
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V00201) / (V00001)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, 9.706 setores ficam NULL, sempre
+          pelo numerador. Se só algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL
+          fica fora do AVG.
       pct_agua_so_terreno:
         descricao: Proporção de domicílios em que a água chega encanada apenas ao terreno (V00200)
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V00200) / (V00001)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, 15.897 setores ficam NULL, sempre
+          pelo numerador. Se só algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL
+          fica fora do AVG.
       pct_sem_banheiro:
         descricao: Proporção de domicílios sem banheiro de uso exclusivo com chuveiro e vaso sanitário
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V00495) / (V00001)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, 12.196 setores ficam NULL, sempre
+          pelo numerador. Se só algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL
+          fica fora do AVG.
       pct_sem_banheiro_nem_sanitario:
         descricao: Proporção de domicílios sem banheiro nem sanitário
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V00238) / (V00001)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, 2.969 setores ficam NULL, sempre
+          pelo numerador. Se só algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL
+          fica fora do AVG.
       pct_so_sanitario:
         descricao: Proporção de domicílios com apenas sanitário ou buraco para dejeções
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V00237) / (V00001)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, 3.811 setores ficam NULL, sempre
+          pelo numerador. Se só algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL
+          fica fora do AVG.
       pct_banheiro_comum:
         descricao: Proporção de domicílios com apenas banheiro de uso comum
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V00236) / (V00001)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, 9.694 setores ficam NULL, sempre
+          pelo numerador. Se só algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL
+          fica fora do AVG.
       pct_resp_feminino:
         descricao: Proporção de domicílios com pessoa responsável do sexo feminino
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V01063) / (V01062 + V01063)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, 147 setores ficam NULL, sempre
+          pelo numerador. Se só algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL
+          fica fora do AVG.
       pct_crianca_0a4:
         descricao: Proporção de crianças de 0 a 4 anos na população residente
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V01031) / (v0001)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, 1.820 setores ficam NULL, sempre
+          pelo numerador. Se só algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL
+          fica fora do AVG.
       pct_pop_0a14:
         descricao: Proporção de pessoas com menos de 15 anos na população residente
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V01031 + V01032 + V01033) / (v0001)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, 258 setores ficam NULL, sempre
+          pelo numerador. Se só algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL
+          fica fora do AVG.
       pct_idoso_60mais:
         descricao: Proporção de pessoas de 60 anos ou mais na população residente
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: proporção
         formula: (V01040 + V01041) / (v0001)
-        certificado: false
-        armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
-          zero (viés para baixo).
+        certificado: true
+        armadilhas: NULL quando o denominador é zero ou sigiloso, ou quando todas as parcelas do numerador são sigilosas
+          (com uma variável só no numerador, basta ela ser sigilosa). No recorte, 285 setores ficam NULL, sempre
+          pelo numerador. Se só algumas parcelas são sigilosas, elas entram valendo zero (viés para baixo). NULL
+          fica fora do AVG.
         sinonimos:
         - idosos
         - 60 anos ou mais
       iep_setor:
         descricao: 'Índice de Envelhecimento Populacional: 60+ por 100 menores de 15 anos'
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: índice ×100
         formula: (V01040 + V01041) / (V01031 + V01032 + V01033) × 100
-        certificado: false
+        certificado: true
+        armadilhas: 'Escala ×100, sem corte: chega a 4.750 no recorte, onde há poucos menores de 15. No recorte,
+          992 setores ficam NULL: 774 sem menores de 15 (denominador zero ou sigiloso) e 218 com o numerador sigiloso.'
       rdi_setor:
         descricao: 'Razão de Dependência de Idosos: 60+ por 100 pessoas de 15 a 59 anos'
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: índice ×100
         formula: (V01040 + V01041) / (V01034 + V01035 + V01036 + V01037 + V01038 + V01039) × 100
-        certificado: false
+        certificado: true
+        armadilhas: 'Escala ×100, sem corte: chega a 1.000 no recorte. No recorte, 298 setores ficam NULL: 17 com
+          denominador zero ou sigiloso e 281 com o numerador sigiloso.'
       prop_70mais_entre_60mais:
-        descricao: Proporção de pessoas de 70+ entre os de 60+ (proxy de longevidade; NÃO é o LI, que exigiria a
-          faixa 75+, inexistente nos agregados por setor)
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
+        descricao: Percentual (0 a 100) de pessoas de 70+ entre as de 60+ (proxy de longevidade; NÃO é o LI, que
+          exigiria a faixa 75+, inexistente nos agregados por setor)
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline; fonte original:
+          dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada em bloco pelo
+          Pedro'
         unidade: índice ×100
         formula: (V01041) / (V01040 + V01041) × 100
-        certificado: false
+        certificado: true
+        armadilhas: 'Escala ×100, sem corte: vai de 0 a 100, não de 0 a 1. No recorte, 2.136 setores ficam NULL:
+          594 sem pessoas de 60+ (denominador zero ou sigiloso) e 1.542 com V01041 sigiloso.'
   dicionario_variaveis:
     termo: Variável do dicionário
     descricao: Dicionário das colunas de setores_censitarios.
@@ -815,27 +1002,43 @@ tabelas:
       coluna:
         descricao: Nome da coluna em setores_censitarios.
         fonte: amostra
-        certificado: false
+        certificado: true
       descricao:
         descricao: Significado da coluna.
         fonte: amostra
-        certificado: false
+        certificado: true
       tema:
-        descricao: Tema (Básico, Saneamento, Socioeconômica, Morfologia, Demografia).
-        fonte: amostra
-        certificado: false
+        descricao: 'Tema da coluna: o tema do arquivo do IBGE de onde ela vem, ou a dimensão do indicador calculado.
+          Valores (12): Alfabetização, Básico, Características do Domicílio - Parte 1, Características do Domicílio
+          - Parte 2, Cor ou Raça, Demografia, Identificação, Morfologia, Parentesco, Renda do Responsável, Saneamento,
+          Socioeconômica.'
+        fonte: usuario
+        certificado: true
+        referencia: 'fonte original: amostra; correção de 23/11/2026 proposta pelo Claude com evidência do banco
+          e aprovada em bloco pelo Pedro'
       origem:
-        descricao: Censo 2022 (IBGE) ou derivado pela pipeline.
-        fonte: amostra
-        certificado: false
+        descricao: De onde vem a coluna.
+        fonte: usuario
+        certificado: true
+        valores:
+          Censo 2022 (IBGE): lida dos agregados do IBGE (71 colunas)
+          Calculado pela pipeline: indicador com fórmula (28 colunas)
+          Derivado pela pipeline: classificação ou código derivado, sem fórmula (9 colunas)
+        referencia: 'fonte original: amostra; correção de 23/11/2026 proposta pelo Claude com evidência do banco
+          e aprovada em bloco pelo Pedro'
       arquivo_fonte:
-        descricao: Arquivo do IBGE de origem.
-        fonte: amostra
-        certificado: false
+        descricao: Arquivo do IBGE de origem (8 arquivos de agregados); '(derivado)' nas 37 colunas calculadas ou
+          derivadas pela pipeline.
+        fonte: usuario
+        certificado: true
+        referencia: 'fonte original: amostra; correção de 23/11/2026 proposta pelo Claude com evidência do banco
+          e aprovada em bloco pelo Pedro'
       formula:
-        descricao: Fórmula do indicador derivado, quando houver.
-        fonte: amostra
-        certificado: false
+        descricao: Fórmula do indicador; preenchida exatamente nas 28 colunas com origem 'Calculado pela pipeline'.
+        fonte: usuario
+        certificado: true
+        referencia: 'fonte original: amostra; correção de 23/11/2026 proposta pelo Claude com evidência do banco
+          e aprovada em bloco pelo Pedro'
   metadados:
     termo: Metadado da base
     descricao: Pares chave/valor sobre a geração da base (recorte, contagens, fontes).
@@ -848,15 +1051,15 @@ tabelas:
       chave:
         descricao: 'Nome do metadado (ex.: recorte_de_analise, n_setores).'
         fonte: amostra
-        certificado: false
+        certificado: true
       valor:
         descricao: Valor do metadado, em texto.
         fonte: amostra
-        armadilhas: 'Tudo é texto, e os números têm vírgula de milhar (''109,032''): CAST(valor AS INTEGER) dá 109. Use
-          CAST(REPLACE(valor, '','', '''') AS INTEGER). A chave setores_excluidos_de_renda_media_sem_extremo guarda o
-          código do setor excluído (310620005650366), não uma contagem.'
+        armadilhas: 'Tudo é texto, e os números têm vírgula de milhar (''109,032''): CAST(valor AS INTEGER) dá 109.
+          Use CAST(REPLACE(valor, '','', '''') AS INTEGER). A chave setores_excluidos_de_renda_media_sem_extremo
+          guarda o código do setor excluído (310620005650366), não uma contagem.'
         referencia: scripts/gerar_entrega_orientadora.py:138-166 (montagem da tabela, números formatados com :,)
-        certificado: false
+        certificado: true
 relacoes: []
 metricas:
   n_setores_recorte:
@@ -877,49 +1080,58 @@ metricas:
     expressao: AVG(setores_censitarios.pct_agua_inad)
     tabelas:
     - setores_censitarios
-    armadilhas: 'Sigilo do IBGE: X vira NULL; parcelas sigilosas entram valendo zero no numerador (viés para baixo).
-      Média simples entre setores; NULL fica fora do AVG.'
-    fonte: dicionario
+    armadilhas: 'Sigilo do IBGE: X vira NULL. Se só algumas parcelas do numerador são sigilosas, entram valendo
+      zero (viés para baixo); se todas são, o setor fica NULL e sai do AVG (no recorte: 0). Média simples entre
+      setores.'
+    fonte: usuario
     certificado: true
     filtros_obrigatorios:
     - recortes.analise
     unidade: proporção
-    referencia: src/ivs_censo/indicadores.py:78 (AGUA), :87 (Indicador), :211 (calcular_indicadores); scripts/gerar_entrega_orientadora.py:73-78
+    referencia: 'src/ivs_censo/indicadores.py:78 (AGUA), :87 (Indicador), :211 (calcular_indicadores); scripts/gerar_entrega_orientadora.py:73-78;
+      fonte original: dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada
+      em bloco pelo Pedro'
   media_pct_esgoto_inad:
     descricao: Média, entre setores, de pct_esgoto_inad (Proporção de domicílios com esgotamento sanitário inadequado
       ou ausente).
     expressao: AVG(setores_censitarios.pct_esgoto_inad)
     tabelas:
     - setores_censitarios
-    armadilhas: 'Sigilo do IBGE: X vira NULL; parcelas sigilosas entram valendo zero no numerador (viés para baixo).
-      Média simples entre setores; NULL fica fora do AVG.'
-    fonte: dicionario
+    armadilhas: 'Sigilo do IBGE: X vira NULL. Se só algumas parcelas do numerador são sigilosas, entram valendo
+      zero (viés para baixo); se todas são, o setor fica NULL e sai do AVG (no recorte: 1). Média simples entre
+      setores.'
+    fonte: usuario
     certificado: true
     filtros_obrigatorios:
     - recortes.analise
     unidade: proporção
-    referencia: src/ivs_censo/indicadores.py:79 (ESGOTO), :90 (Indicador), :211 (calcular_indicadores); scripts/gerar_entrega_orientadora.py:73-78
+    referencia: 'src/ivs_censo/indicadores.py:79 (ESGOTO), :90 (Indicador), :211 (calcular_indicadores); scripts/gerar_entrega_orientadora.py:73-78;
+      fonte original: dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada
+      em bloco pelo Pedro'
   media_pct_lixo_inad:
     descricao: Média, entre setores, de pct_lixo_inad (Proporção de domicílios com destino do lixo inadequado ou
       ausente).
     expressao: AVG(setores_censitarios.pct_lixo_inad)
     tabelas:
     - setores_censitarios
-    armadilhas: 'Sigilo do IBGE: X vira NULL; parcelas sigilosas entram valendo zero no numerador (viés para baixo).
-      Média simples entre setores; NULL fica fora do AVG.'
-    fonte: dicionario
+    armadilhas: 'Sigilo do IBGE: X vira NULL. Se só algumas parcelas do numerador são sigilosas, entram valendo
+      zero (viés para baixo); se todas são, o setor fica NULL e sai do AVG (no recorte: 0). Média simples entre
+      setores.'
+    fonte: usuario
     certificado: true
     filtros_obrigatorios:
     - recortes.analise
     unidade: proporção
-    referencia: src/ivs_censo/indicadores.py:83 (LIXO), :93 (Indicador), :211 (calcular_indicadores); scripts/gerar_entrega_orientadora.py:73-78
+    referencia: 'src/ivs_censo/indicadores.py:83 (LIXO), :93 (Indicador), :211 (calcular_indicadores); scripts/gerar_entrega_orientadora.py:73-78;
+      fonte original: dicionario; correção de 23/11/2026 proposta pelo Claude com evidência do banco e aprovada
+      em bloco pelo Pedro'
   media_pct_analfab:
     descricao: Média, entre setores, de pct_analfab (Taxa de analfabetismo entre pessoas de 15 anos ou mais).
     expressao: AVG(setores_censitarios.pct_analfab)
     tabelas:
     - setores_censitarios
-    armadilhas: 'Média simples entre setores; NULL fica fora do AVG. Só 87.556 dos 104.108 setores do recorte têm valor
-      (sigilo no denominador, ver a coluna pct_analfab).'
+    armadilhas: Média simples entre setores; NULL fica fora do AVG. Só 87.556 dos 104.108 setores do recorte têm
+      valor (sigilo no denominador, ver a coluna pct_analfab).
     fonte: dicionario
     certificado: true
     filtros_obrigatorios:
@@ -963,8 +1175,9 @@ metricas:
     filtros_obrigatorios:
     - recortes.analise
     unidade: BRL
-    referencia: src/ivs_censo/indicadores.py:102 (renda_media = V06004); src/ivs_censo/renda.py:90 (SETORES_RENDA_EXCLUIDA), :112
-      (renda_sem_extremos); scripts/gerar_entrega_orientadora.py:83; scripts/pecas_relatorio_raic.py:63, :79 (tabela aprovada em 11/10)
+    referencia: src/ivs_censo/indicadores.py:102 (renda_media = V06004); src/ivs_censo/renda.py:90 (SETORES_RENDA_EXCLUIDA),
+      :112 (renda_sem_extremos); scripts/gerar_entrega_orientadora.py:83; scripts/pecas_relatorio_raic.py:63, :79
+      (tabela aprovada em 11/10)
     historico:
     - valido_ate: '2026-09-01'
       expressao: AVG(setores_censitarios.renda_media)
@@ -994,6 +1207,6 @@ recortes:
     - setores_censitarios.SITUACAO = 'Urbana'
     - setores_censitarios.Dados_sig = 'OK'
     fonte: dicionario
-    referencia: metadados.recorte_de_analise; src/ivs_censo/indicadores.py:244 (classificar_dados_sig); scripts/gerar_entrega_orientadora.py:68-69 (Dados_sig e urbano),
-      :95 (recorte)
+    referencia: metadados.recorte_de_analise; src/ivs_censo/indicadores.py:244 (classificar_dados_sig); scripts/gerar_entrega_orientadora.py:68-69
+      (Dados_sig e urbano), :95 (recorte)
     certificado: true
