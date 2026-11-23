@@ -135,30 +135,32 @@ def gravar(df: pd.DataFrame, dicionario: pd.DataFrame, destino: Path, nome: str,
     csv_path, db_path = destino / f'{nome}.csv', destino / f'{nome}.db'
     df.to_csv(csv_path, sep=';', index=False, encoding='utf-8-sig')
 
+    # Números sem separador de milhar: '109,032' fazia CAST(valor AS INTEGER) dar 109 (D04 da auditoria de 22/11/2026).
     metadados = pd.DataFrame([
         ('recorte', rotulo),
         ('fonte', 'IBGE — Censo Demográfico 2022, Agregados por Setores Censitários'),
         ('gerado_em', date.today().isoformat()),
         ('gerado_por', 'scripts/gerar_entrega_orientadora.py'),
-        ('n_setores', f'{len(df):,}'),
+        ('n_setores', f'{len(df)}'),
         ('n_municipios', f"{df['CD_MUN'].nunique()}"),
-        ('n_setores_ok', f"{int((df['Dados_sig'] == 'OK').sum()):,}"),
+        ('n_setores_ok', f"{int((df['Dados_sig'] == 'OK').sum())}"),
         # Duas contagens diferentes, e a distinção importa: `n_setores_urbanos` conta
         # SITUACAO='Urbana' na base inteira (inclui zerados e sigilosos); o recorte de
         # análise é a INTERSEÇÃO com Dados_sig='OK'. Publicar só a primeira fazia a
         # documentação anunciar 106.347 como recorte — número maior que os 106.281
         # elegíveis, impossível por construção, e diferente dos 104.108 que a própria
         # consulta SQL recomendada devolve.
-        ('n_setores_urbanos', f"{int(df['urbano'].sum()):,}"),
+        ('n_setores_urbanos', f"{int(df['urbano'].sum())}"),
         ('n_setores_recorte_analise',
-         f"{int(((df['Dados_sig'] == 'OK') & (df['urbano'] == 1)).sum()):,}"),
-        ('n_setores_favela_fcu', f"{int(df['is_fcu'].sum()):,}"),
+         f"{int(((df['Dados_sig'] == 'OK') & (df['urbano'] == 1)).sum())}"),
+        ('n_setores_favela_fcu', f"{int(df['is_fcu'].sum())}"),
         ('n_setores_favela_fcu_no_recorte',
-         f"{int(((df['Dados_sig'] == 'OK') & (df['urbano'] == 1) & (df['is_fcu'] == 1)).sum()):,}"),
-        ('setores_excluidos_de_renda_media_sem_extremo',
+         f"{int(((df['Dados_sig'] == 'OK') & (df['urbano'] == 1) & (df['is_fcu'] == 1)).sum())}"),
+        # A chave guarda o CD_SETOR do setor excluído, não uma contagem; o nome diz isso.
+        ('cd_setor_excluido_de_renda_media_sem_extremo',
          ' | '.join(SETORES_RENDA_EXCLUIDA) or '(nenhum)'),
         ('setores_imputados_de_renda_media_mediana_mun',
-         f"{int((df['renda_media'].notna() & (df['renda_media'] != df['renda_media_mediana_mun'])).sum()):,}"),
+         f"{int((df['renda_media'].notna() & (df['renda_media'] != df['renda_media_mediana_mun'])).sum())}"),
         ('denominador_domiciliar', 'V00001 — Domicílios Particulares Permanentes Ocupados'),
         ('recorte_de_analise', 'Setores urbanos (SITUACAO = Urbana) com Dados_sig = OK'),
         ('arquivos_do_censo', ' | '.join(f.arquivo for f in ARQUIVOS_CENSO.values())),
