@@ -1,9 +1,9 @@
 # Estado — ontologia dos dados (nov/2026)
 
-Prompt: [`prompt_ontologia_dados_2026-11.md`](prompt_ontologia_dados_2026-11.md). Branch `feat/ontologia-dados`. Nada commitado.
+Prompt: [`prompt_ontologia_dados_2026-11.md`](prompt_ontologia_dados_2026-11.md). Branch `feat/ontologia-dados`. Commits: `9f8210e` (lotes 1-2) e o do `CLAUDE.md`.
 
-**Ponto atual:** sessão de 23/11 fechada. Lotes 1 e 2 certificados (27/128). Por decisão do Pedro, os lotes 3+ ficam para outra
-sessão. Commit e bloco do CLAUDE.md aguardam o OK dele.
+**Ponto atual:** lotes 1 e 2 certificados (27/128). Bloco "Dados" gravado no `CLAUDE.md` do projeto e commitado. Em 23/11 o
+Pedro pediu para seguir: lotes 3+ em andamento na mesma sessão.
 
 ## O que funcionou (com evidência)
 - **Fase 0:** branch certa; `checar.py` → `certificado: 0/128 itens`, sem PROBLEMA.
@@ -36,16 +36,12 @@ sessão. Commit e bloco do CLAUDE.md aguardam o OK dele.
 - Fase 6 (camada do IVS final): não executada, porque o IVS não está congelado.
 
 ## O que falta
-1. **Lotes 3+ (~101 colunas, a maioria `fonte: dicionario`), noutra sessão:** apresentar em lotes de até 15, por tabela. Começar
+1. **Lotes 3+ (101 itens, a maioria `fonte: dicionario`):** apresentar em lotes de até 15, por tabela. Começar
    pelas 93 colunas de `setores_censitarios` ainda `certificado: false`, depois as 6 de `dicionario_variaveis` e as 2 de
    `metadados`. Pedido de cada lote: descrição × `dicionario_variaveis` (consulta) e perfil no recorte. Gravar `true` só com
    "aprovo".
 2. Fase 5, passo 2 (opcional, com OK) e Fase 6 (só com o IVS congelado e o arquivo final nomeado pelo Pedro).
-3. Fase 7, pendente de OK: commit (mensagem abaixo), bloco "Dados" no `CLAUDE.md` do projeto, O03 (a branch não está na `main`;
-   a `main` está 2 commits à frente do `origin`: `8e1e1ca`, `482c37d`).
-
-Mensagem de commit proposta (só com o nome do Pedro, sem trailer):
-`feat(ontologia): armadilhas D03/D04, referências arquivo:linha e lotes 1-2 certificados`
+3. O03, pendente de OK: a branch não está na `main`, e a `main` está 2 commits à frente do `origin` (`8e1e1ca`, `482c37d`).
 
 Os scripts `certificar.py`, `aplicar_proposta.py` e `validar.py` estavam no scratchpad da sessão de 23/11 e podem ter sido
 apagados. `certificar.py` só troca `certificado: false` por `true` na linha do nó pedido.
