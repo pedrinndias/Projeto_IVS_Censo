@@ -10,31 +10,31 @@ Descrição de cada coluna: ontologia.yaml (leia só a tabela envolvida).
 - `metadados` — Metadado da base: uma linha por chave (chave chave)
 
 ## Recortes (filtros com nome)
-- `analise`: Setores que entram nas análises do IVS: urbanos e elegíveis. Regra de Dados_sig corrigida em 09/08/2026 (população zero avaliada antes do sigilo). → `setores_censitarios.SITUACAO = 'Urbana' AND setores_censitarios.Dados_sig = 'OK'` [não certificado]
+- `analise`: Setores que entram nas análises do IVS: urbanos e elegíveis. Regra de Dados_sig corrigida em 09/08/2026 (população zero avaliada antes do sigilo). → `setores_censitarios.SITUACAO = 'Urbana' AND setores_censitarios.Dados_sig = 'OK'` [certificado]
 
 ## Métricas vigentes (use a expressão; aplique os filtros obrigatórios)
-- `n_setores_recorte`: `COUNT(setores_censitarios.CD_SETOR)` [não certificado]
+- `n_setores_recorte`: `COUNT(setores_censitarios.CD_SETOR)` [certificado]
   - filtros obrigatórios: analise (setores_censitarios.SITUACAO = 'Urbana' AND setores_censitarios.Dados_sig = 'OK')
   - armadilhas: Recorte definido em metadados.recorte_de_analise.
-- `media_pct_agua_inad`: `AVG(setores_censitarios.pct_agua_inad)` [não certificado]
+- `media_pct_agua_inad`: `AVG(setores_censitarios.pct_agua_inad)` [certificado]
   - filtros obrigatórios: analise (setores_censitarios.SITUACAO = 'Urbana' AND setores_censitarios.Dados_sig = 'OK')
   - armadilhas: Sigilo do IBGE: X vira NULL; parcelas sigilosas entram valendo zero no numerador (viés para baixo). Média simples entre setores; NULL fica fora do AVG.
-- `media_pct_esgoto_inad`: `AVG(setores_censitarios.pct_esgoto_inad)` [não certificado]
+- `media_pct_esgoto_inad`: `AVG(setores_censitarios.pct_esgoto_inad)` [certificado]
   - filtros obrigatórios: analise (setores_censitarios.SITUACAO = 'Urbana' AND setores_censitarios.Dados_sig = 'OK')
   - armadilhas: Sigilo do IBGE: X vira NULL; parcelas sigilosas entram valendo zero no numerador (viés para baixo). Média simples entre setores; NULL fica fora do AVG.
-- `media_pct_lixo_inad`: `AVG(setores_censitarios.pct_lixo_inad)` [não certificado]
+- `media_pct_lixo_inad`: `AVG(setores_censitarios.pct_lixo_inad)` [certificado]
   - filtros obrigatórios: analise (setores_censitarios.SITUACAO = 'Urbana' AND setores_censitarios.Dados_sig = 'OK')
   - armadilhas: Sigilo do IBGE: X vira NULL; parcelas sigilosas entram valendo zero no numerador (viés para baixo). Média simples entre setores; NULL fica fora do AVG.
-- `media_pct_analfab`: `AVG(setores_censitarios.pct_analfab)` [não certificado]
+- `media_pct_analfab`: `AVG(setores_censitarios.pct_analfab)` [certificado]
+  - filtros obrigatórios: analise (setores_censitarios.SITUACAO = 'Urbana' AND setores_censitarios.Dados_sig = 'OK')
+  - armadilhas: Média simples entre setores; NULL fica fora do AVG. Só 87.556 dos 104.108 setores do recorte têm valor (sigilo no denominador, ver a coluna pct_analfab).
+- `media_pct_raca_pretpardind`: `AVG(setores_censitarios.pct_raca_pretpardind)` [certificado]
   - filtros obrigatórios: analise (setores_censitarios.SITUACAO = 'Urbana' AND setores_censitarios.Dados_sig = 'OK')
   - armadilhas: Média simples entre setores; NULL fica fora do AVG.
-- `media_pct_raca_pretpardind`: `AVG(setores_censitarios.pct_raca_pretpardind)` [não certificado]
+- `media_razao_moradores`: `AVG(setores_censitarios.razao_moradores)` [certificado]
   - filtros obrigatórios: analise (setores_censitarios.SITUACAO = 'Urbana' AND setores_censitarios.Dados_sig = 'OK')
   - armadilhas: Média simples entre setores; NULL fica fora do AVG.
-- `media_razao_moradores`: `AVG(setores_censitarios.razao_moradores)` [não certificado]
-  - filtros obrigatórios: analise (setores_censitarios.SITUACAO = 'Urbana' AND setores_censitarios.Dados_sig = 'OK')
-  - armadilhas: Média simples entre setores; NULL fica fora do AVG.
-- `media_renda`: `AVG(setores_censitarios.renda_media_sem_extremo)` [não certificado]
+- `media_renda`: `AVG(setores_censitarios.renda_media_sem_extremo)` [certificado]
   - filtros obrigatórios: analise (setores_censitarios.SITUACAO = 'Urbana' AND setores_censitarios.Dados_sig = 'OK')
   - armadilhas: Use renda_media_sem_extremo (padrão das análises). renda_media original só para reproduzir resultados anteriores a 01/09/2026; renda_media_mediana_mun é variante de sensibilidade. Média simples entre setores; NULL fica fora do AVG.
 
@@ -42,18 +42,22 @@ Descrição de cada coluna: ontologia.yaml (leia só a tabela envolvida).
 - `setores_censitarios.SITUACAO`: Urbana = setor urbano; Rural = setor rural; NULL = massa d'água
 - `setores_censitarios.CD_SIT`: 1-3 = urbana; 5-8 = rural; 9 = massa d'água (população zero)
 - `setores_censitarios.CD_TIPO`: 0 = setor não especial; 1 = Favela e Comunidade Urbana (FCU); 2-9 = outros setores especiais
+- `setores_censitarios.CD_FCU`: . = setor fora de FCU (marca de ausência; a coluna não tem NULL)
 - `setores_censitarios.Dados_sig`: OK = elegível; SIGILOSO = população ou domicílios sigilosos; ZERADO = setor sem população; COLETIVO = população só em domicílios coletivos
 - `setores_censitarios.urbano`: 1 = SITUACAO = Urbana; 0 = caso contrário
 - `setores_censitarios.is_fcu`: 1 = setor de favela/comunidade urbana (CD_TIPO = 1); 0 = não FCU
 
 ## Colunas com armadilha
 - `setores_censitarios.NM_MUN`: Filtre por igualdade (NM_MUN = 'São Paulo'), nunca LIKE: existe 'São Paulo das Missões'.
+- `setores_censitarios.CD_FCU`: Não use CD_FCU para contar favela: no projeto, favela é CD_TIPO = '1' (is_fcu). No recorte, 19 setores têm CD_FCU preenchido e CD_TIPO = '0' (25 na base); contar por CD_FCU <> '.' dá 19.471 setores, não 19.452. A ausência é '.', não NULL.
 - `setores_censitarios.v0001`: Minúsculo: total de pessoas. Não confundir com V00001 (domicílios). Pode ser NULL por sigilo.
-- `setores_censitarios.V00001`: Denominador domiciliar padrão. Pode ser NULL por sigilo (setor fica SIGILOSO).
+- `setores_censitarios.V00001`: Denominador domiciliar padrão. NULL em todos os setores SIGILOSO (1.015) e ZERADO (1.736) da base; no recorte nunca é NULL.
+- `setores_censitarios.Dados_sig`: Regra (avaliada nesta ordem): ZERADO se v0001 = 0; SIGILOSO se v0001 ou V00001 é NULL; COLETIVO se V00001 = 0 com v0001 > 0; OK nos demais. COLETIVO não ocorre nesta base (0 setores). Base: OK 106.281, SIGILOSO 1.015, ZERADO 1.736; entre os urbanos: OK 104.108, SIGILOSO 766, ZERADO 1.473. Os indicadores (pct_*, razao_moradores, renda_media) só são calculados para OK: nos demais setores ficam NULL.
 - `setores_censitarios.pct_agua_inad`, `setores_censitarios.pct_esgoto_inad`, `setores_censitarios.pct_lixo_inad`, `setores_censitarios.pct_raca_pretpardind`, `setores_censitarios.pct_dom_improv`, `setores_censitarios.pct_hab_precaria`, `setores_censitarios.pct_moradia_convencional`, `setores_censitarios.pct_moradia_nao_convencional`, `setores_censitarios.pct_apartamento`, `setores_censitarios.pct_casa`, `setores_censitarios.pct_casa_vila_condominio`, `setores_censitarios.pct_sem_agua_canalizada`, `setores_censitarios.pct_agua_nao_encanada`, `setores_censitarios.pct_agua_so_terreno`, `setores_censitarios.pct_sem_banheiro`, `setores_censitarios.pct_sem_banheiro_nem_sanitario`, `setores_censitarios.pct_so_sanitario`, `setores_censitarios.pct_banheiro_comum`, `setores_censitarios.pct_resp_feminino`, `setores_censitarios.pct_crianca_0a4`, `setores_censitarios.pct_pop_0a14`, `setores_censitarios.pct_idoso_60mais`: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo zero (viés para baixo).
-- `setores_censitarios.pct_analfab`: NULL quando qualquer parcela do denominador é sigilosa (min_count_den=2): em BH, ~22% dos setores do recorte ficam sem valor.
+- `setores_censitarios.pct_analfab`: NULL quando qualquer parcela do denominador é sigilosa (min_count_den=2): no recorte, 16.552 setores (15,9%) ficam sem valor; em BH, ~22%.
 - `setores_censitarios.renda_media`: Valor original com o setor extremo 310620005650366; as análises usam renda_media_sem_extremo.
 - `setores_censitarios.renda_media_sem_extremo`: Padrão das análises desde 01/09/2026.
+- `metadados.valor`: Tudo é texto, e os números têm vírgula de milhar ('109,032'): CAST(valor AS INTEGER) dá 109. Use CAST(REPLACE(valor, ',', '') AS INTEGER). A chave setores_excluidos_de_renda_media_sem_extremo guarda o código do setor excluído (310620005650366), não uma contagem.
 
 ## Glossário (palavra do usuário → item)
 - favela → `tabelas.setores_censitarios.colunas.is_fcu`

@@ -10,13 +10,13 @@ tabelas:
     chave:
     - CD_SETOR
     fonte: dicionario
-    certificado: false
+    certificado: true
     colunas:
       CD_SETOR:
         descricao: 'Geocódigo do setor censitário (15 dígitos): UF(2) + município(5) + distrito, subdistrito e setor'
         fonte: dicionario
         referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
-        certificado: false
+        certificado: true
       SITUACAO:
         descricao: 'Situação do setor: Urbana ou Rural (vazia nos setores de massa d''água)'
         fonte: dicionario
@@ -25,7 +25,7 @@ tabelas:
           Urbana: setor urbano
           Rural: setor rural
           'NULL': massa d'água
-        certificado: false
+        certificado: true
       CD_SIT:
         descricao: 'Código da situação do setor: 1-3 = urbana; 5-8 = rural; 9 = massa d''água (população zero)'
         fonte: dicionario
@@ -44,7 +44,7 @@ tabelas:
           '0': setor não especial
           '1': Favela e Comunidade Urbana (FCU)
           2-9: outros setores especiais
-        certificado: false
+        certificado: true
       NM_MUN:
         descricao: Nome do município
         fonte: dicionario
@@ -60,7 +60,12 @@ tabelas:
         descricao: Código da Favela ou Comunidade Urbana à qual o setor pertence
         fonte: dicionario
         referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
-        certificado: false
+        valores:
+          .: setor fora de FCU (marca de ausência; a coluna não tem NULL)
+        armadilhas: 'Não use CD_FCU para contar favela: no projeto, favela é CD_TIPO = ''1'' (is_fcu). No recorte, 19
+          setores têm CD_FCU preenchido e CD_TIPO = ''0'' (25 na base); contar por CD_FCU <> ''.'' dá 19.471 setores,
+          não 19.452. A ausência é ''.'', não NULL.'
+        certificado: true
       NM_FCU:
         descricao: Nome da Favela ou Comunidade Urbana à qual o setor pertence
         fonte: dicionario
@@ -82,14 +87,16 @@ tabelas:
         descricao: Código IBGE do município (7 primeiros dígitos do CD_SETOR)
         fonte: dicionario
         referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
-        certificado: false
+        certificado: true
       V00001:
         descricao: Domicílios Particulares Permanentes Ocupados
-        fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE)'
+        fonte: usuario
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Censo 2022 (IBGE); armadilha corrigida pelo
+          Pedro em 23/11/2026'
         unidade: domicílios
-        certificado: false
-        armadilhas: Denominador domiciliar padrão. Pode ser NULL por sigilo (setor fica SIGILOSO).
+        certificado: true
+        armadilhas: Denominador domiciliar padrão. NULL em todos os setores SIGILOSO (1.015) e ZERADO (1.736) da base; no
+          recorte nunca é NULL.
       V00002:
         descricao: Domicílios Particulares Improvisados Ocupados
         fonte: dicionario
@@ -484,15 +491,21 @@ tabelas:
       Dados_sig:
         descricao: 'Elegibilidade do setor: OK / SIGILOSO / ZERADO / COLETIVO (regra do Cálculo IVS2012.docx)'
         fonte: dicionario
-        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
+        referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline; regra em src/ivs_censo/indicadores.py:244
+          (classificar_dados_sig); indicadores só para OK em scripts/gerar_entrega_orientadora.py:73-78'
         valores:
           OK: elegível
           SIGILOSO: população ou domicílios sigilosos
           ZERADO: setor sem população
           COLETIVO: população só em domicílios coletivos
-        certificado: false
+        armadilhas: 'Regra (avaliada nesta ordem): ZERADO se v0001 = 0; SIGILOSO se v0001 ou V00001 é NULL; COLETIVO
+          se V00001 = 0 com v0001 > 0; OK nos demais. COLETIVO não ocorre nesta base (0 setores). Base: OK 106.281,
+          SIGILOSO 1.015, ZERADO 1.736; entre os urbanos: OK 104.108, SIGILOSO 766, ZERADO 1.473. Os indicadores
+          (pct_*, razao_moradores, renda_media) só são calculados para OK: nos demais setores ficam NULL.'
+        certificado: true
       urbano:
-        descricao: 1 se SITUACAO = Urbana (recorte de análise do IVS); 0 caso contrário
+        descricao: 1 se SITUACAO = Urbana; 0 caso contrário. Sozinho não é o recorte de análise (106.347 setores); o
+          recorte é urbano = 1 e Dados_sig = 'OK' (104.108), ver recortes.analise
         fonte: dicionario
         referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
         valores:
@@ -506,7 +519,7 @@ tabelas:
         valores:
           1: setor de favela/comunidade urbana (CD_TIPO = 1)
           0: não FCU
-        certificado: false
+        certificado: true
         sinonimos:
         - favela
         - comunidade urbana
@@ -526,7 +539,7 @@ tabelas:
         referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
         unidade: proporção
         formula: (V00112 + V00113 + V00114 + V00115 + V00116 + V00117 + V00118) / (V00001)
-        certificado: false
+        certificado: true
         armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
           zero (viés para baixo).
       pct_esgoto_inad:
@@ -535,7 +548,7 @@ tabelas:
         referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
         unidade: proporção
         formula: (V00312 + V00313 + V00314 + V00315 + V00316) / (V00001)
-        certificado: false
+        certificado: true
         armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
           zero (viés para baixo).
       pct_lixo_inad:
@@ -544,7 +557,7 @@ tabelas:
         referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
         unidade: proporção
         formula: (V00398 + V00399 + V00400 + V00401 + V00402) / (V00001)
-        certificado: false
+        certificado: true
         armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
           zero (viés para baixo).
       razao_moradores:
@@ -553,16 +566,16 @@ tabelas:
         referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
         unidade: pessoas por domicílio
         formula: (V00005 + V00006) / (V00001 + V00002)
-        certificado: false
+        certificado: true
       pct_analfab:
         descricao: Taxa de analfabetismo entre pessoas de 15 anos ou mais
         fonte: dicionario
         referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
         unidade: proporção
         formula: (V00901) / (V00900 + V00901)
-        certificado: false
-        armadilhas: 'NULL quando qualquer parcela do denominador é sigilosa (min_count_den=2): em BH, ~22% dos setores
-          do recorte ficam sem valor.'
+        certificado: true
+        armadilhas: 'NULL quando qualquer parcela do denominador é sigilosa (min_count_den=2): no recorte, 16.552 setores
+          (15,9%) ficam sem valor; em BH, ~22%.'
         sinonimos:
         - analfabetismo
         - taxa de analfabetismo
@@ -583,7 +596,7 @@ tabelas:
         fonte: dicionario
         referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Derivado pela pipeline'
         unidade: BRL
-        certificado: false
+        certificado: true
         armadilhas: Padrão das análises desde 01/09/2026.
       renda_media_mediana_mun:
         descricao: Igual a renda_media, exceto nos setores de SETORES_RENDA_EXCLUIDA, onde entra a mediana do próprio
@@ -599,7 +612,7 @@ tabelas:
         referencia: 'dicionario_variaveis (tabela do próprio banco); origem: Calculado pela pipeline'
         unidade: proporção
         formula: (V01318 + V01320 + V01321) / (v0001)
-        certificado: false
+        certificado: true
         armadilhas: NULL quando o denominador é zero ou sigiloso; parcelas sigilosas do numerador entram valendo
           zero (viés para baixo).
       pct_dom_improv:
@@ -797,7 +810,7 @@ tabelas:
     chave:
     - coluna
     fonte: amostra
-    certificado: false
+    certificado: true
     colunas:
       coluna:
         descricao: Nome da coluna em setores_censitarios.
@@ -830,7 +843,7 @@ tabelas:
     chave:
     - chave
     fonte: amostra
-    certificado: false
+    certificado: true
     colunas:
       chave:
         descricao: 'Nome do metadado (ex.: recorte_de_analise, n_setores).'
@@ -839,6 +852,10 @@ tabelas:
       valor:
         descricao: Valor do metadado, em texto.
         fonte: amostra
+        armadilhas: 'Tudo é texto, e os números têm vírgula de milhar (''109,032''): CAST(valor AS INTEGER) dá 109. Use
+          CAST(REPLACE(valor, '','', '''') AS INTEGER). A chave setores_excluidos_de_renda_media_sem_extremo guarda o
+          código do setor excluído (310620005650366), não uma contagem.'
+        referencia: scripts/gerar_entrega_orientadora.py:138-166 (montagem da tabela, números formatados com :,)
         certificado: false
 relacoes: []
 metricas:
@@ -849,10 +866,11 @@ metricas:
     - setores_censitarios
     armadilhas: Recorte definido em metadados.recorte_de_analise.
     fonte: dicionario
-    certificado: false
+    certificado: true
     filtros_obrigatorios:
     - recortes.analise
     unidade: contagem
+    referencia: scripts/gerar_entrega_orientadora.py:95 (recorte) e :153-154 (metadados.n_setores_recorte_analise)
   media_pct_agua_inad:
     descricao: Média, entre setores, de pct_agua_inad (Proporção de domicílios com abastecimento de água inadequado
       ou ausente).
@@ -862,10 +880,11 @@ metricas:
     armadilhas: 'Sigilo do IBGE: X vira NULL; parcelas sigilosas entram valendo zero no numerador (viés para baixo).
       Média simples entre setores; NULL fica fora do AVG.'
     fonte: dicionario
-    certificado: false
+    certificado: true
     filtros_obrigatorios:
     - recortes.analise
     unidade: proporção
+    referencia: src/ivs_censo/indicadores.py:78 (AGUA), :87 (Indicador), :211 (calcular_indicadores); scripts/gerar_entrega_orientadora.py:73-78
   media_pct_esgoto_inad:
     descricao: Média, entre setores, de pct_esgoto_inad (Proporção de domicílios com esgotamento sanitário inadequado
       ou ausente).
@@ -875,10 +894,11 @@ metricas:
     armadilhas: 'Sigilo do IBGE: X vira NULL; parcelas sigilosas entram valendo zero no numerador (viés para baixo).
       Média simples entre setores; NULL fica fora do AVG.'
     fonte: dicionario
-    certificado: false
+    certificado: true
     filtros_obrigatorios:
     - recortes.analise
     unidade: proporção
+    referencia: src/ivs_censo/indicadores.py:79 (ESGOTO), :90 (Indicador), :211 (calcular_indicadores); scripts/gerar_entrega_orientadora.py:73-78
   media_pct_lixo_inad:
     descricao: Média, entre setores, de pct_lixo_inad (Proporção de domicílios com destino do lixo inadequado ou
       ausente).
@@ -888,21 +908,24 @@ metricas:
     armadilhas: 'Sigilo do IBGE: X vira NULL; parcelas sigilosas entram valendo zero no numerador (viés para baixo).
       Média simples entre setores; NULL fica fora do AVG.'
     fonte: dicionario
-    certificado: false
+    certificado: true
     filtros_obrigatorios:
     - recortes.analise
     unidade: proporção
+    referencia: src/ivs_censo/indicadores.py:83 (LIXO), :93 (Indicador), :211 (calcular_indicadores); scripts/gerar_entrega_orientadora.py:73-78
   media_pct_analfab:
     descricao: Média, entre setores, de pct_analfab (Taxa de analfabetismo entre pessoas de 15 anos ou mais).
     expressao: AVG(setores_censitarios.pct_analfab)
     tabelas:
     - setores_censitarios
-    armadilhas: Média simples entre setores; NULL fica fora do AVG.
+    armadilhas: 'Média simples entre setores; NULL fica fora do AVG. Só 87.556 dos 104.108 setores do recorte têm valor
+      (sigilo no denominador, ver a coluna pct_analfab).'
     fonte: dicionario
-    certificado: false
+    certificado: true
     filtros_obrigatorios:
     - recortes.analise
     unidade: proporção
+    referencia: src/ivs_censo/indicadores.py:99 (Indicador, min_count_den=2), :211 (calcular_indicadores); scripts/gerar_entrega_orientadora.py:73-78
   media_pct_raca_pretpardind:
     descricao: Média, entre setores, de pct_raca_pretpardind (Proporção de pessoas de cor/raça preta, parda ou indígena).
     expressao: AVG(setores_censitarios.pct_raca_pretpardind)
@@ -910,10 +933,11 @@ metricas:
     - setores_censitarios
     armadilhas: Média simples entre setores; NULL fica fora do AVG.
     fonte: dicionario
-    certificado: false
+    certificado: true
     filtros_obrigatorios:
     - recortes.analise
     unidade: proporção
+    referencia: src/ivs_censo/indicadores.py:84 (RACA_PPI), :105 (Indicador), :211 (calcular_indicadores); scripts/gerar_entrega_orientadora.py:73-78
   media_razao_moradores:
     descricao: Média, entre setores, de razao_moradores (Razão de moradores por domicílio (reproduz o V0005 do IBGE)).
     expressao: AVG(setores_censitarios.razao_moradores)
@@ -921,10 +945,11 @@ metricas:
     - setores_censitarios
     armadilhas: Média simples entre setores; NULL fica fora do AVG.
     fonte: dicionario
-    certificado: false
+    certificado: true
     filtros_obrigatorios:
     - recortes.analise
     unidade: pessoas por domicílio
+    referencia: src/ivs_censo/indicadores.py:96 (Indicador, sem clip), :211 (calcular_indicadores); scripts/gerar_entrega_orientadora.py:73-78
   media_renda:
     descricao: Média, entre setores, do rendimento nominal médio mensal dos responsáveis, sem o setor extremo.
     expressao: AVG(setores_censitarios.renda_media_sem_extremo)
@@ -934,11 +959,12 @@ metricas:
       anteriores a 01/09/2026; renda_media_mediana_mun é variante de sensibilidade. Média simples entre setores;
       NULL fica fora do AVG.
     fonte: dicionario
-    certificado: false
+    certificado: true
     filtros_obrigatorios:
     - recortes.analise
     unidade: BRL
-    referencia: src/ivs_censo/renda.py (SETORES_RENDA_EXCLUIDA); scripts/pecas_relatorio_raic.py
+    referencia: src/ivs_censo/indicadores.py:102 (renda_media = V06004); src/ivs_censo/renda.py:90 (SETORES_RENDA_EXCLUIDA), :112
+      (renda_sem_extremos); scripts/gerar_entrega_orientadora.py:83; scripts/pecas_relatorio_raic.py:63, :79 (tabela aprovada em 11/10)
     historico:
     - valido_ate: '2026-09-01'
       expressao: AVG(setores_censitarios.renda_media)
@@ -968,5 +994,6 @@ recortes:
     - setores_censitarios.SITUACAO = 'Urbana'
     - setores_censitarios.Dados_sig = 'OK'
     fonte: dicionario
-    referencia: metadados.recorte_de_analise; src/ivs_censo/indicadores.py (classificar_dados_sig)
-    certificado: false
+    referencia: metadados.recorte_de_analise; src/ivs_censo/indicadores.py:244 (classificar_dados_sig); scripts/gerar_entrega_orientadora.py:68-69 (Dados_sig e urbano),
+      :95 (recorte)
+    certificado: true
