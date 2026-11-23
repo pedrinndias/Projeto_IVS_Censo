@@ -4209,7 +4209,7 @@
     ],
     [
      "Calculado em",
-     "src/ivs_censo/renda.py, função renda_sem_extremos (linha 113)"
+     "src/ivs_censo/renda.py, função renda_sem_extremos (linha 112)"
     ],
     [
      "Unidade",
@@ -4393,7 +4393,7 @@
     ],
     [
      "Calculado em",
-     "src/ivs_censo/renda.py, função renda_imputada_mediana_municipal (linha 130)"
+     "src/ivs_censo/renda.py, função renda_imputada_mediana_municipal (linha 129)"
     ],
     [
      "Unidade",
